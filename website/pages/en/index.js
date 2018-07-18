@@ -42,13 +42,13 @@ const MiniRepl = ({ language }) => {
       <div className="hero-repl__editor">
         <div className="hero-repl__pane hero-repl__pane--left">
           <h3>
-            <translate>Put in next-gen JavaScript</translate>
+            输入下一代 JavaScript 代码
           </h3>
           <div id="hero-repl-in" className="hero-repl__code" />
         </div>
         <div className="hero-repl__pane hero-repl__pane--right">
           <h3>
-            <translate>Get browser-compatible JavaScript out</translate>
+          获取浏览器兼容的 JavaScript 代码
           </h3>
           <div id="hero-repl-out" className="hero-repl__code" />
           <div className="hero-repl__error" />
@@ -56,9 +56,7 @@ const MiniRepl = ({ language }) => {
       </div>
       <div className="hero-repl__footer">
         <a href={pageUrl("repl.html", language)}>
-          <translate>
-            Check out our REPL to experiment more with Babel!
-          </translate>
+          查看 REPL 尝试更多！
         </a>
       </div>
 
@@ -101,21 +99,17 @@ const GetStarted = props => {
       className="blockElement twoByGridBlock get-started"
       style={{ flexBasis: "60%", margin: 0 }}
     >
-      <h2>Welcome!</h2>
+      <h2>欢迎！</h2>
 
       <p>
-        We&apos;re currently just a small group of{" "}
-        <a href={pageUrl("team.html", language)}>volunteers</a> that spend their
-        free time maintaining this project. If Babel has benefited you in your
-        work, becoming a contributor might be a great way to give back.
+        我们只是一个小的<a href={pageUrl("team.html", language)}>志愿者</a>团体，在业余时间维护这个项目。如果 Babel 使您再工作中获益，那么成为贡献者可能是一种非常好的回馈方式。
       </p>
       <p>
-        Learn more about Babel by reading the get started guide or watching
-        talks about the concepts behind it.
+      通过阅读入门指南或观看有关其内部概念的会议视频，了解有关Babel的更多信息。
       </p>
       <PromoSection>
-        <Button href={docUrl("index.html", language)}>Get Started</Button>
-        <Button href={pageUrl("videos.html", language)}>Videos</Button>
+        <Button href={docUrl("index.html", language)}>入门指南</Button>
+        <Button href={pageUrl("videos.html", language)}>会议视频</Button>
       </PromoSection>
     </div>
   );
@@ -127,10 +121,9 @@ const WorkSponsors = () => {
       className="blockElement alignCenter twoByGridBlock sponsors-work"
       style={{ flexBasis: "40%", margin: 0 }}
     >
-      <h2>Friends of Open Source</h2>
+      <h2>开源伙伴</h2>
       <p style={{ fontSize: 16 }}>
-        These companies are being awesome and paying their engineers to work on
-        Babel
+      这些公司非常棒，他们的工程师在支持 Babel 的工作
       </p>
       <div className="productShowcaseSection">
         <div className="cards">
@@ -153,7 +146,7 @@ const WorkSponsors = () => {
                   </div>
                   <div className="card-text">
                     <p>
-                      sponsoring{" "}
+                      发起者{" "}
                       <a href={`https://github.com/${sponsor.member}`}>
                         @{sponsor.member}
                       </a>
@@ -198,11 +191,11 @@ const SponsorTier = props => {
 const OpenCollectiveSponsors = props => {
   const language = props.language || "en";
   const ocButton = {
-      title: "Become a sponsor",
+      title: "成为赞助商",
       link: "https://opencollective.com/babel",
     },
     patreonButton = {
-      title: "Become a patron",
+      title: "参与众筹",
       link: "https://www.patreon.com/bePatron?u=905738",
     };
 
@@ -210,37 +203,32 @@ const OpenCollectiveSponsors = props => {
     <div className="container paddingTop paddingBottom">
       <div className="wrapper productShowcaseSection">
         <div className="support-the-team">
-          <h2>Support the Team</h2>
+          <h2>支持我们团队</h2>
           <p>
-            Babel is helping shape the future of the JavaScript language itself,
-            being used at companies like Facebook, Google, Netflix, and{" "}
-            <a href={pageUrl("users.html", language)}>hundreds more</a>. Your
-            donation will help cover expenses like attending TC39 (the committee
-            that specifies JavaScript) meetings and will directly support the
-            core team developers to continue working on improving Babel.
+            Babel 正在帮助 JavaScript 语言本身塑造其未来版本，被用于 Facebook，Google，Netflix等<a href={pageUrl("users.html", language)}>数百家公司的产品当中</a>。你的赞助将支付给 TC39（制订 JavaScript 规范的委员会）用于组织会议等费用，并会直接支持核心开发团队人员继续努力改进 Babel 。
           </p>
           <PromoSection>
             <Button href="https://opencollective.com/babel" target="_blank">
-              Become a sponsor
+              成为赞助商
             </Button>
           </PromoSection>
         </div>
         <div className="sponsor-tiers">
           <SponsorTier
             type="opencollective"
-            title="Gold Sponsors (Open Collective)"
+            title="金牌赞助（Open Collective）"
             tier="gold-sponsors"
             button={ocButton}
           />
           <SponsorTier
             type="patreon"
-            title="Gold Sponsors (Patreon)"
+            title="金牌赞助（众筹）"
             tier="gold-sponsors"
             button={patreonButton}
           />
           <SponsorTier
             type="opencollective"
-            title="Silver Sponsors (Open Collective)"
+            title="银牌赞助（Open Collective）"
             tier="silver-sponsors"
             button={ocButton}
           />
@@ -264,15 +252,11 @@ const HomeContainer = props => (
 const Hero = ({ language }) => (
   <div className="hero">
     <a href="https://tidelift.com/subscription/npm/babel">
-      <div className="tidelift-banner">Get Professionally Supported Babel</div>
+      <div className="tidelift-banner">获取更加专业的 Babel</div>
     </a>
     <div className="hero__container">
-      <h1>
-        <translate>Babel is a JavaScript compiler.</translate>
-      </h1>
-      <p>
-        <translate>Use next generation JavaScript, today.</translate>
-      </p>
+      <h1>Babel 是 JavaScript 编译器。</h1>
+      <p>今天就开始使用下一代 JavaScript 语法吧！</p>
       <MiniRepl language={language} />
     </div>
   </div>

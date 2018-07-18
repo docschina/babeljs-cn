@@ -26,15 +26,15 @@ class Footer extends React.Component {
             )}
           </a>
           <div>
-            <h5>Docs</h5>
+            <h5>文档</h5>
             <a href={this.docUrl("learn.html", this.props.language)}>
-              Learn ES2015
+              学习 ES2015
             </a>
           </div>
           <div>
-            <h5>Community</h5>
+            <h5>社区</h5>
             <a href={this.pageUrl("users.html", this.props.language)}>
-              User Showcase
+              用户
             </a>
             <a
               href="http://stackoverflow.com/questions/tagged/babeljs"
@@ -43,7 +43,7 @@ class Footer extends React.Component {
             >
               Stack Overflow
             </a>
-            <a href="https://babeljs.slack.com/">Slack Channel</a>
+            <a href="https://babeljs.slack.com/">Slack 通道</a>
             <a
               href="https://twitter.com/babeljs"
               rel="noopener noreferrer"
@@ -53,13 +53,13 @@ class Footer extends React.Component {
             </a>
           </div>
           <div>
-            <h5>More</h5>
-            <a href={this.props.config.baseUrl + "blog"}>Blog</a>
+            <h5>更多</h5>
+            <a href={this.props.config.baseUrl + "blog"}>博客</a>
             <a href="https://github.com/babel">GitHub Org</a>
             <a href="https://github.com/babel/babel">GitHub Repo</a>
             <a href="https://github.com/babel/website">Website Repo</a>
-            <a href="https://old.babeljs.io">Old 6.x Site</a>
-            <a href="http://henryzoo.com/babel.github.io">Old 5.x Site</a>
+            <a href="https://old.babeljs.io"> 旧版网址 6.x </a>
+            <a href="http://henryzoo.com/babel.github.io">旧版网址 5.x </a>
           </div>
         </section>
       </footer>
