@@ -12,12 +12,10 @@ const SetupHeader = () => {
   return (
     <div className="page-header text-center">
       <h1>
-        <translate desc="setup page - header">Using Babel</translate>
+        使用 Babel
       </h1>
       <p>
-        <translate desc="setup page - header desc">
-          How to use Babel with your tool of choice.
-        </translate>
+        教你如何在使用 Babel 时选择工具
       </p>
     </div>
   );
@@ -53,9 +51,7 @@ const SetupOptions = () => {
     <div className="step-setup">
       <h2>
         <span className="step-no">1</span>
-        <translate desc="setup page - step 1">
-          Choose your tool (try CLI)
-        </translate>
+        选择你的工具 (尝试 CLI)
       </h2>
       {showCase}
     </div>
@@ -76,7 +72,7 @@ const StepInstallAndUsage = props => {
     <div className="step-hidden step-setup">
       <h2 id={props.name === "install" ? "installation" : ""}>
         <span className="step-no">{props.number}</span>
-        {props.name === "install" ? installation : usage}
+        {props.name === "install" ? "安装" : "用法"}
       </h2>
       {markdownsElement}
     </div>
@@ -88,9 +84,9 @@ const StepFour = () => {
     <div className="step-hidden step-setup">
       <h2>
         <span className="step-no">4</span>
-        <translate desc="setup page - step 4 one">Create</translate>{" "}
-        <code>.babelrc</code>{" "}
-        <translate desc="setup page - step 4 two">configuration file</translate>
+        {"创建"}
+        <code>.babelrc</code>
+        {" 配置文件"}
       </h2>
       <MarkdownBlock>{setupBabelrc}</MarkdownBlock>
     </div>

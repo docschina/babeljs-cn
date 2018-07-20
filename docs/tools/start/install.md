@@ -1,3 +1,3 @@
 ```sh
-npm install -D @start/plugin-lib-babel
+npm install -D start-babel
 ```
