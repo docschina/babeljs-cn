@@ -1,3 +1,6 @@
+.video-wrapper .wrapper {
+  max-width: 1300px;
+}
 .babel-video {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.25rem;
@@ -51,6 +54,7 @@
 
 .babel-video-block {
   padding: 1.25rem;
+  height: 111px;
 }
 
 .babel-video-block p {
