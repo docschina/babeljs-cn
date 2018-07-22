@@ -1,5 +1,5 @@
 ---
-title: Learn ES2015
+title: 学习 ES2015
 id: version-6.x-learn
 original_id: learn
 ---

@@ -213,3 +213,8 @@
   max-height: 60px;
   max-width: 180px;
 }
+
+.navigationSlider .slidingNav ul li:first-child a {
+  color: #ffffff;
+  font-weight:bold;
+}

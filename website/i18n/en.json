@@ -50,8 +50,8 @@
     "babel-helper-wrap-function": "babel-helper-wrap-function",
     "babel-helpers": "babel-helpers",
     "babel-highlight": "babel-highlight",
-    "index": "What is Babel?",
-    "learn": "Learn ES2015",
+    "index": "什么是 Babel ?",
+    "learn": "学习 ES2015",
     "babel-minify": "babel-minify",
     "babel-node": "babel-node",
     "babel-parser": "babel-parser",
@@ -397,6 +397,7 @@
     "usage": "Usage Guide",
     "v7-migration-api": "Upgrade to Babel 7 (API)",
     "v7-migration": "Upgrade to Babel 7",
+    "印记中文": "印记中文",
     "文档": "文档",
     "配置": "配置",
     "试用": "试用",
@@ -409,7 +410,10 @@
     "General": "General",
     "Usage": "Usage",
     "Presets": "Presets",
-    "Tooling": "Tooling"
+    "Tooling": "Tooling",
+    "常规": "常规",
+    "用法": "用法",
+    "工具": "工具"
   },
   "pages-strings": {
     "Installation|setup page - step 2": "Installation",

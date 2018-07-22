@@ -1,6 +1,6 @@
 {
   "version-6.x-docs": {
-    "General": [
+    "常规": [
       "version-6.x-index",
       "version-6.x-learn",
       "version-6.x-editors",
@@ -8,7 +8,7 @@
       "version-6.x-caveats",
       "version-6.x-faq"
     ],
-    "Usage": [
+    "用法": [
       "version-6.x-babelrc",
       "version-6.x-babel-cli",
       "version-6.x-babel-polyfill",
@@ -29,7 +29,7 @@
       "version-6.x-babel-preset-react",
       "version-6.x-babel-preset-minify"
     ],
-    "Tooling": [
+    "工具": [
       "version-6.x-babylon",
       "version-6.x-babel-core",
       "version-6.x-babel-generator",

@@ -1,6 +1,6 @@
 ---
 id: index
-title: What is Babel?
+title: 什么是 Babel ?
 ---
 
 ## Babel is a JavaScript compiler

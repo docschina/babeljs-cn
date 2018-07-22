@@ -1,6 +1,6 @@
 ---
 id: version-6.x-index
-title: What is Babel?
+title: 什么是 Babel ？
 original_id: index
 ---
 

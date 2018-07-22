@@ -96,6 +96,7 @@ const siteConfig = {
   projectName: "babel",
   repoUrl: "https://github.com/babel/babel",
   headerLinks: [
+    { href: "https://docschina.org/", label: "印记中文" },
     { doc: "index", label: "文档" },
     { page: "setup", label: "配置" },
     { page: "repl", label: "试用" },
