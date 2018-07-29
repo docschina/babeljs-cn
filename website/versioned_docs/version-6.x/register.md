@@ -5,34 +5,30 @@ sidebar_label: babel-register
 original_id: babel-register
 ---
 
-One of the ways you can use Babel is through the require hook. The require hook
-will bind itself to node's `require` and automatically compile files on the
-fly. This is equivalent to CoffeeScript's
-[coffee-script/register](http://coffeescript.org/v2/annotated-source/register.html).
+一个使用 Babel 的方法是通过 require 钩子。 require 钩子会将自己绑定到 node 的 `require` 上并自动编译文件。这等同于 CoffeeScript 中的 [coffee-script/register](http://coffeescript.org/v2/annotated-source/register.html)。
 
-## Install
+## 安装
 
 ```sh
 npm install babel-register --save-dev
 ```
 
-## Usage
+## 用法
 
 ```js
 require("babel-register");
 ```
 
-All subsequent files required by node with the extensions `.es6`, `.es`, `.jsx`
-and `.js` will be transformed by Babel.
+通过 node 引入的带 `.es6`, `.es`, `.jsx`
+和 `.js` 后缀的所有后续文件都将会被 Babel 转译。
 
-> #### Polyfill not included
+> #### 不包含 polyfill
 > 
-> You must include a [polyfill](https://babeljs.io/docs/en/babel-polyfill) separately when using features that require it, like generators.
+> 当你使用依赖 polyfill 的特性、比如生成器，你必须单独的引入 [polyfill](babel-polyfill) 。
 
-### Ignores `node_modules` by default
+### 默认忽略 `node_modules`
 
-**NOTE:** By default all requires to `node_modules` will be ignored. You can
-override this by passing an ignore regex via:
+**注意：** 默认情况下，所有指向 `node_modules` 的 require 都会被忽略。你可以通过传递一个忽略正则表达式来覆盖它：
 
 ```js
 require("babel-register")({
@@ -42,7 +38,7 @@ require("babel-register")({
 });
 ```
 
-## Specifying options
+## 指定选项
 
 ```javascript
 require("babel-register")({
@@ -72,22 +68,17 @@ require("babel-register")({
 });
 ```
 
-You can pass in all other [options](https://babeljs.io/docs/en/babel-core#options) as well,
-including `plugins` and `presets`. But note that the closest [`.babelrc`](https://babeljs.io/docs/en/babelrc)
-to each file still applies, and takes precedence over any options you pass in here.
+你也可以传递所有其他的 [选项](babel-core#options)，包括  `plugins` 和 `presets`。但是注意，每个文件最接近的 [`.babelrc`](babelrc) 仍然有效，并且优先于你在此处传入的任何选项。
 
-## Environment variables
+## 环境变量
 
-By default `babel-node` and `babel-register` will save to a json cache in your
-temporary directory.
+默认情况下，`babel-node` 和 `babel-register` 会在你的临时目录下保存一个 json cache。
 
-This will heavily improve with the startup and compilation of your files. There
-are however scenarios where you want to change this behaviour and there are
-environment variables exposed to allow you to do this.
+这将大大提高您的文件启动和编译。 但是会一些情况下您想要更改此行为，并且有环境变量暴露出来允许您执行此操作。
 
 ### BABEL_CACHE_PATH
 
-Specify a different cache location.
+指定一个不同的 cache 位置。
 
 ```sh
 BABEL_CACHE_PATH=/foo/my-cache.json babel-node script.js
@@ -95,9 +86,8 @@ BABEL_CACHE_PATH=/foo/my-cache.json babel-node script.js
 
 ### BABEL_DISABLE_CACHE
 
-Disable the cache.
+禁用 cache。
 
 ```sh
 BABEL_DISABLE_CACHE=1 babel-node script.js
 ```
-
