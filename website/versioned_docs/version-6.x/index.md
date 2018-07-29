@@ -4,74 +4,74 @@ title: 什么是 Babel ？
 original_id: index
 ---
 
-## Babel is a JavaScript compiler
+## Babel 是一款 JavaScript 编译器
 
-Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in old browsers or environments.
+Babel 是一个工具链，主要用于在旧的浏览器或环境中将 ECMAScript 2015+ 代码转换为向后兼容的 JavaScript 版本。
 
-## Basic setup for a library  
+## Library 的基本设置  
 
-> Install the Babel command line tool (`babel-cli`) and a Babel preset
+> 安装 Babel 的命令行工具（`babel-cli`）以及 Babel 常用的 preset
 
 ```shell
 npm install --save-dev babel-cli babel-preset-env
 ```
 
-\> Create a [`.babelrc`](babelrc.md) file (or use your [package.json](babelrc.md#use-via-packagejson))
+> 创建一个 [`.babelrc`](babelrc.md) 文件（或者使用你的 [package.json](babelrc.md#use-via-packagejson) 文件)
 
 ```json
 { "presets": ["env"] }
 ```
 
-> Run over your src files and output to a folder
+> 运行 src 中的文件并输出到文件夹中
 
 ```sh
 ./node_modules/.bin/babel src --out-dir lib
 ```
 
-\> For more information on setting up Babel with your build system, IDE, and more, check out our [interactive setup guide](/setup.html).
+> 有关如何使用构建系统，IDE等设置 Babel 的更多信息，请查阅我们[交互设置指南](/setup.html)。
 
-ES2015 and beyond
+ES2015 及以后版本
 -----------------
 
-Babel has support for the latest version of JavaScript through syntax transformers. These [plugins](plugins.md) allow you to use new syntax, **right now** without waiting for browser support. Check out our [env preset](preset-env.md) to get started.
+Babel 通过语法转换器来支持最新版本的 JavaScript 。这些[插件](plugins.md)允许你**立刻**使用新语法，而无需等待浏览器支持。查阅我们的 [env preset](preset-env.md) 立即开始使用。
 
-You can install this preset with:
+使用如下命令安装此 preset:
 
 ```shell
 npm install --save-dev babel-preset-env
 ```
 
-and add `"env"` to your `.babelrc`: `{ "presets": ["env"] }`
+并在你的 `.babelrc` 文件中添加 `"env"` 选项： `{ "presets": ["env"] }`
 
-[Learn more about ES2015 →](learn.md)
+[了解有关 ES2015 的更多信息 →](learn.md)
 
 Polyfill
 --------
 
-Since Babel only transforms syntax (like arrow functions), you can use babel-polyfill in order to support new globals such as Promise or new native methods like String.padStart (left-pad). It uses [core-js](https://github.com/zloirock/core-js) and [regenerator](https://facebook.github.io/regenerator/). Check out our [babel-polyfill](/docs/usage/polyfill) docs for more info.
+由于 Babel 只进行语法转换（如箭头函数），你可以使用 babel-polyfill 来支持新的全局变量，如 Promise 或新的原生方法，如 String.padStart（left-pad）。它使用了 [core-js](https://github.com/zloirock/core-js) 和 [regenerator](https://facebook.github.io/regenerator/) 。查阅我们的 [babel-polyfill](/docs/usage/polyfill) 文档以获取更多信息。
 
-You can install the polyfill with
+你可以通过以下命令安装 polyfill
 
 ```shell
 npm install --save-dev babel-polyfill
 ```
 
-Use it by requiring it at the top of the entry point to your application or in your bundler config.
+通过在应用程序的入口起点顶部或在 bundler 配置中添加它来使用它。
 
-[Learn about more features →](https://github.com/zloirock/core-js#index)
+[了解更多功能 →](https://github.com/zloirock/core-js#index)
 
-JSX and Flow
+JSX 和 Flow
 ------------
 
-Babel can convert JSX syntax and strip out type annotations. Check out our [React preset](preset-react.md) to get started. Use it together with the [babel-sublime](https://github.com/babel/babel-sublime) package to bring syntax highlighting to a whole new level.
+Babel 可以转换 JSX 语法并去掉类型注释。查阅我们的 [React preset](preset-react.md) 即可开始使用。与 [babel-sublime](https://github.com/babel/babel-sublime) 同时使用将语法高亮提高到一个全新的层次。
 
-You can install this preset with
+你可以通过以下这个命令安装该 preset
 
 ```shell
 npm install --save-dev babel-preset-react
 ```
 
-and add `"react"` to your `.babelrc`: `{ "presets": ["env", "react"] }`
+并在 `.babelrc` 文件中添加 `"react"` 选项：`{ "presets": ["env", "react"] }`
 
 ```jsx
 export default React.createClass({
@@ -92,22 +92,22 @@ export default React.createClass({
 });
 ```
 
-> Learn more about [JSX](https://facebook.github.io/jsx/) and [Flow](http://flowtype.org/)
+> 了解更多关于 [JSX](https://facebook.github.io/jsx/) 和 [Flow](http://flowtype.org/) 的信息。
 
-Pluggable
+可定制
 ---------
 
-Babel is built out of plugins. Compose your own transformation pipeline using existing plugins or write your own. Easily use a set of plugins by using or creating a [preset](plugins.md#presets). [Learn more →](plugins.md)
+Babel 是用插件构建的。使用现有插件编写自己的转换管道或编写自己的插件。通过使用或创建 [preset](plugins.md#presets) 轻松使用一组插件。[学习更多 →](plugins.md)
 
-Create a plugin on the fly with [astexplorer.net](https://astexplorer.net/#/KJ8AjD6maa) or use [generator-babel-plugin](https://github.com/babel/generator-babel-plugin) to generate a plugin template.
+使用 [astexplorer.net](https://astexplorer.net/#/KJ8AjD6maa) 动态创建插件或使用 [generator-babel-plugin](https://github.com/babel/generator-babel-plugin) 生成插件模板。
 
 ```javascript
-// A plugin is just a function
+// 插件只是一个函数
 export default function ({types: t}) {
   return {
     visitor: {
       Identifier(path) {
-        let name = path.node.name; // reverse the name: JavaScript -> tpircSavaJ
+        let name = path.node.name; // 反转字符串: JavaScript -> tpircSavaJ
         path.node.name = name.split('').reverse().join('');
       }
     }
@@ -115,19 +115,19 @@ export default function ({types: t}) {
 }
 ```
 
-Debuggable
+可调试
 ----------
 
-**Source map** support so you can debug your compiled code with ease.
+支持 **Source map** ，因此可以轻松调试编译的代码。
 
-Spec Compliant
+规范性
 --------
 
-Babel tries to stay true to the ECMAScript standard, as much as reasonably possible. It may also have specific options to be more spec compliant as a tradeoff to performance.
+Babel 试图尽可能地遵循 ECMAScript 标准。它也可能有特定的选项，以便于更符合规范作为性能的权衡。
 
-Compact
+压缩性
 --------
 
-Babel tries uses the least amount of code possible with no dependence on a bulky runtime.
+Babel 尝试使用尽可能少的代码而不依赖于庞大的运行时环境。
 
-This may be difficult to do in cases, and there are "loose" options for specific transforms that may tradeoff spec compliancy for readability, file size, and speed.
+这种情况可能很难做到，并且在特定转换时存在"松散"选项，可能会因可读性，文件大小和速度而牺牲规范的合规性。
