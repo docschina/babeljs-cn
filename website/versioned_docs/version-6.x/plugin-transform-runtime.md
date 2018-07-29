@@ -5,45 +5,45 @@ sidebar_label: transform-runtime
 original_id: babel-plugin-transform-runtime
 ---
 
-NOTE: Instance methods such as `"foobar".includes("foo")` will not work since that would require modification of existing built-ins (Use [`babel-polyfill`](http://babeljs.io/docs/usage/polyfill) for that).
+注意：例如 `"foobar".includes("foo")` 等实例方法将不起作用，因为这需要修改现有的内置插件（此时使用 [`babel-polyfill`](babel-polyfill)）。
 
-## Why?
+## 为什么?
 
-Babel uses very small helpers for common functions such as `_extend`. By default this will be added to every file that requires it. This duplication is sometimes unnecessary, especially when your application is spread out over multiple files.
+Babel 使用了非常小的 helpers 来实现诸如 `_extend` 等常用功能。默认情况下，它将被添加到每个通过 require 引用它的文件中。这种重复（操作）有时是不必要的，特别是当你的应用程序被拆分为多个文件时。
 
-This is where the `transform-runtime` plugin comes in: all of the helpers will reference the module `babel-runtime` to avoid duplication across your compiled output. The runtime will be compiled into your build.
+这时则需要使用 `transform-runtime`：所有的 helper 都会引用模块 `babel-runtime`，以避免编译输出的重复问题。这个运行时会被编译到你的构建版本当中。
 
-Another purpose of this transformer is to create a sandboxed environment for your code. If you use [babel-polyfill](http://babeljs.io/docs/usage/polyfill/) and the built-ins it provides such as `Promise`, `Set` and `Map`, those will pollute the global scope. While this might be ok for an app or a command line tool, it becomes a problem if your code is a library which you intend to publish for others to use or if you can't exactly control the environment in which your code will run.
+这个转译器的另外一个目的就是为你的代码创建一个沙盒环境。如果你使用了 [babel-polyfill](babel-polyfill)，它提供了诸如 `Promise`，`Set` 以及 `Map` 之类的内置插件，这些将污染全局作用域。虽然这对于应用程序或命令行工具来说可能是好事，但如果你的代码打算发布为供其他人使用的库，或你无法完全控制代码运行的环境，则会成为问题。
 
-The transformer will alias these built-ins to `core-js` so you can use them seamlessly without having to require the polyfill.
+转译器将这些内置插件起了别名 `core-js`，这样你就可以无缝的使用它们，并且无需使用 polyfill。
 
-See the [technical details](#technical-details) section for more information on how this works and the types of transformations that occur.
+请参阅 [Technical details](#technical-details) 以获取更多信息，可以了解它如何工作以及发生转换的类型。
 
-## Installation
+## 安装
 
-**NOTE - Production vs. development dependencies**
+**注意 - 生产依赖 vs. 开发依赖**
 
-In most cases, you should install `babel-plugin-transform-runtime` as a development dependency (with `--save-dev`).
+在大多数情况下，你应该安装 `babel-plugin-transform-runtime` 作为开发依赖（使用 `--save-dev`）。
 
 ```sh
 npm install --save-dev babel-plugin-transform-runtime
 ```
 
-and `babel-runtime` as a production dependency (with `--save`).
+并且将 `babel-runtime` 作为生产依赖（使用 `--save`）。
 
 ```sh
 npm install --save babel-runtime
 ```
 
-The transformation plugin is typically used only in development, but the runtime itself will be depended on by your deployed/published code. See the examples below for more details.
+转译插件通常只用于开发，但你已部署/已发布的代码依赖于运行时（runtime）。有关更多详细信息，请参阅以下示例。
 
-## Usage
+## 用法
 
-### Via `.babelrc` (Recommended)
+### 通过 `.babelrc`（推荐）
 
-Add the following line to your `.babelrc` file:
+将以下内容添加到你的 `.babelrc` 文件中：
 
-Without options:
+未包含选项：
 
 ```json
 {
@@ -51,7 +51,7 @@ Without options:
 }
 ```
 
-With options:
+包含选项:
 
 ```json
 {
@@ -66,13 +66,13 @@ With options:
 }
 ```
 
-### Via CLI
+### 通过 CLI
 
 ```sh
 babel --plugins transform-runtime script.js
 ```
 
-### Via Node API
+### 通过 Node API
 
 ```javascript
 require("babel-core").transform("code", {
@@ -80,39 +80,39 @@ require("babel-core").transform("code", {
 });
 ```
 
-## Options
+## 选项
 
 ### `helpers`
 
-`boolean`, defaults to `true`.
+`boolean`， 默认为 `true`。
 
-Toggles whether or not inlined Babel helpers (`classCallCheck`, `extends`, etc.) are replaced with calls to `moduleName`.
+是否切换将内联（inline）的 Babel helper（`classCallCheck`，`extends` 等）替换为对 `moduleName` 的调用。
 
-For more information, see [Helper aliasing](#helper-aliasing).
+欲了解更多，请查阅 [Helper aliasing](#helper-aliasing)。
 
 ### `polyfill`
 
-`boolean`, defaults to `true`.
+`boolean`，默认为 `true`。
 
-Toggles whether or not new built-ins (`Promise`, `Set`, `Map`, etc.) are transformed to use a non-global polluting polyfill.
+是否切换新的内置插件（`Promise`，`Set`，`Map`等）为使用非全局污染的 polyfill。
 
-For more information, see [`core-js` aliasing](#core-js-aliasing).
+欲了解更多，请查阅 [`core-js` aliasing](#core-js-aliasing)。
 
 ### `regenerator`
 
-`boolean`, defaults to `true`.
+`boolean`，默认为 `true`。
 
-Toggles whether or not generator functions are transformed to use a regenerator runtime that does not pollute the global scope.
+是否切换 generator 函数为不污染全局作用域的 regenerator 运行时。
 
-For more information, see [Regenerator aliasing](#regenerator-aliasing).
+欲了解更多，请查阅 [Regenerator aliasing](#regenerator-aliasing)。
 
 ### `moduleName`
 
-`string`, defaults to `"babel-runtime"`.
+`string`，默认为 `"babel-runtime"`。
 
-Sets the name/path of the module used when importing helpers.
+当引入 helper 时，设置要使用的模块的名称/路径。
 
-Example:
+示例：
 
 ```json
 {
@@ -126,19 +126,19 @@ import extends from 'flavortown/runtime/helpers/extends';
 
 ## Technical details
 
-The `runtime` transformer plugin does three things:
+`runtime` 编译器插件做了以下三件事：
 
-* Automatically requires `babel-runtime/regenerator` when you use generators/async functions.
-* Automatically requires `babel-runtime/core-js` and maps ES6 static methods and built-ins.
-* Removes the inline Babel helpers and uses the module `babel-runtime/helpers` instead.
+* 当你使用 generators/async 函数时，自动引入 `babel-runtime/regenerator` 。
+* 自动引入 `babel-runtime/core-js` 并映射 ES6 静态方法和内置插件。
+* 移除内联的 Babel helper 并使用模块 `babel-runtime/helpers` 代替。
 
-What does this actually mean though? Basically, you can use built-ins such as `Promise`, `Set`, `Symbol`, etc., as well use all the Babel features that require a polyfill seamlessly, without global pollution, making it extremely suitable for libraries.
+这意味着什么？基本上，你可以使用诸如 `Promise`，`Set`，`Symbol` 等内置函数，以及所有需要 polyfill 来完成且不带来全局污染的 Babel 功能，因此非常适合作为库使用。
 
-Make sure you include `babel-runtime` as a dependency.
+确保你引入 `babel-runtime` 作为依赖。
 
 ### Regenerator aliasing
 
-Whenever you use a generator function or async function:
+每当你使用 generator 函数或 async 函数时：
 
 ```javascript
 function* foo() {
@@ -146,7 +146,7 @@ function* foo() {
 }
 ```
 
-the following is generated:
+生成如下内容：
 
 ```javascript
 "use strict";
@@ -166,10 +166,9 @@ function foo() {
 }
 ```
 
-This isn't ideal since it relies on the regenerator runtime being included, which
-pollutes the global scope.
+这并不理想，因为它依赖于被包含的 regenerator 运行时，这会污染全局作用域。
 
-With the `runtime` transformer, however, it is compiled to:
+然而，使用 `runtime` 转译器，它被编译为：
 
 ```javascript
 "use strict";
@@ -195,14 +194,13 @@ function foo() {
 }
 ```
 
-This means that you can use the regenerator runtime without polluting your current environment.
+这意味着你可以使用 regenerator 运行时而不会污染当前环境。
 
 ### `core-js` aliasing
 
-Sometimes you may want to use new built-ins such as `Map`, `Set`, `Promise` etc. Your only way
-to use these is usually to include a globally polluting polyfill.
+有时你可能想要使用新的内置函数，例如 `Map`，`Set`，`Promise` 等。使用这些函数的唯一方式通常是引入一个污染全局的 polyfill。
 
-What the `runtime` transformer does is transform the following:
+`runtime` 转译器做了如下改变：
 
 ```javascript
 var sym = Symbol();
@@ -212,7 +210,7 @@ var promise = new Promise;
 console.log(arr[Symbol.iterator]());
 ```
 
-into the following:
+输出如下内容：
 
 ```javascript
 "use strict";
@@ -238,26 +236,23 @@ var promise = new _promise2.default();
 console.log((0, _getIterator3.default)(arr));
 ```
 
-This means is that you can seamlessly use these native built-ins and static methods
-without worrying about where they come from.
+这意味着你可以无缝的使用这些原生内置的和静态方法，且无需担心它们的来源。
 
-**NOTE:** Instance methods such as `"foobar".includes("foo")` will **not** work.
+**注意：** 例如 `"foobar".includes("foo")` 等实例方法将**不会**正常工作。
 
 ### Helper aliasing
 
-Usually Babel will place helpers at the top of your file to do common tasks to avoid
-duplicating the code around in the current file. Sometimes these helpers can get a
-little bulky and add unnecessary duplication across files. The `runtime`
-transformer replaces all the helper calls to a module.
+通常，Babel 会将 helper 放置在文件顶部执行通用任务，以避免在文件中出现重复代码。有时这些 helper 可能会变得笨重，并且在文件中添加不必要的重复代码。该 `runtime`
+转译器将所有 helper 调用替换为一个模块。
 
-That means that the following code:
+这意味着下面的代码：
 
 ```javascript
 class Person {
 }
 ```
 
-usually turns into:
+通常会变成：
 
 ```javascript
 "use strict";
@@ -269,7 +264,7 @@ var Person = function Person() {
 };
 ```
 
-the `runtime` transformer however turns this into:
+`runtime` 转译器会将其变成：
 
 ```javascript
 "use strict";
@@ -284,4 +279,3 @@ var Person = function Person() {
   (0, _classCallCheck3.default)(this, Person);
 };
 ```
-
