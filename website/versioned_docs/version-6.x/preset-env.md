@@ -9,7 +9,7 @@ original_id: babel-preset-env
 npm install babel-preset-env --save-dev
 ```
 
-Without any configuration options, babel-preset-env behaves exactly the same as babel-preset-latest (or babel-preset-es2015, babel-preset-es2016, and babel-preset-es2017 together).
+在没有任何配置选项的情况下，babel-preset-env 与 babel-preset-latest（或者 babel-preset-es2015，babel-preset-es2016 和 babel-preset-es2017一起）的行为完全相同。
 
 ```json
 {
@@ -17,9 +17,9 @@ Without any configuration options, babel-preset-env behaves exactly the same as 
 }
 ```
 
-You can also configure it to only include the polyfills and transforms needed for the browsers you support. Compiling only what's needed can make your bundles smaller and your life easier.
+你也可以仅仅配置项目所支持浏览器所需的 polyfill 和 transform 。只编译所需的代码会使你的代码包更小。
 
-This example only includes the polyfills and code transforms needed for the last two versions of each browser, and versions of Safari greater than or equal to 7. We use [browserslist](https://github.com/ai/browserslist) to parse this information, so you can use [any valid query format supported by browserslist](https://github.com/ai/browserslist#queries).
+示例中只包含了支持每个浏览器最后两个版本和 Safari 大于等于 7 版本所需的 polyfill 和代码转换。我们使用 [browserslist](https://github.com/ai/browserslist) 来解析这些信息，所以你可以使用 [browserslist 支持的有效的查询格式](https://github.com/ai/browserslist#queries)。
 
 ```json
 {
@@ -33,7 +33,7 @@ This example only includes the polyfills and code transforms needed for the last
 }
 ```
 
-Similarly, if you're targeting Node.js instead of the browser, you can configure babel-preset-env to only include the polyfills and transforms necessary for a particular version:
+同样，如果你目标开发 Node.js 而不是浏览器应用的话，你可以配置 babel-preset-env 仅包含特定版本所需的 polyfill 和 transform：
 
 ```json
 {
@@ -47,7 +47,7 @@ Similarly, if you're targeting Node.js instead of the browser, you can configure
 }
 ```
 
-For convenience, you can use `"node": "current"` to only include the necessary polyfills and transforms for the Node.js version that you use to run Babel:
+方便起见，你可以使用 `"node": "current"` 来包含用于运行 Babel 的 Node.js 最新版所必需的 polyfill 和 transform 。
 
 ```json
 {
@@ -61,73 +61,73 @@ For convenience, you can use `"node": "current"` to only include the necessary p
 }
 ```
 
-Check out the many options (especially `useBuiltIns` to polyfill less)!
+看一下如下很多选项 (特别是 `useBuiltIns` 用更少的 polyfill)!
 
-- [How it Works](#how-it-works)
-- [Install](#install)
-- [Usage](#usage)
-- [Options](#options)
-- [Examples](#examples)
-- [Caveats](#caveats)
-- [Other Cool Projects](#other-cool-projects)
+- [如何运行](#如何运行)
+- [安装](#安装)
+- [使用](#使用)
+- [选项](#选项)
+- [举例](#举例)
+- [注意事项](#注意事项)
+- [其余项目](#其余项目)
 
-## How it Works
+## 如何运行
 
-### Determine environment support for ECMAScript features
+### 确定支持ECMAScript新特性的运行环境
 
-Use external data such as [`compat-table`](https://github.com/kangax/compat-table) to determine browser support. (We should create PRs there when necessary)
+使用 [`compat-table`](https://github.com/kangax/compat-table) 等外部数据来确定浏览器支持情况。（如果必要的话我们可以提PR）
 
 ![](https://cloud.githubusercontent.com/assets/588473/19214029/58deebce-8d48-11e6-9004-ee3fbcb75d8b.png)
 
-We can periodically run [build-data.js](https://github.com/babel/babel-preset-env/blob/master/scripts/build-data.js) which generates [plugins.json](https://github.com/babel/babel-preset-env/blob/master/data/plugins.json).
+我们可以定期运行 [build-data.js](https://github.com/babel/babel-preset-env/blob/master/scripts/build-data.js) 来生成 [plugins.json](https://github.com/babel/babel-preset-env/blob/master/data/plugins.json)。
 
-Ref: [#7](https://github.com/babel/babel-preset-env/issues/7)
+参考: [#7](https://github.com/babel/babel-preset-env/issues/7)
 
-### Maintain a mapping between JavaScript features and Babel plugins
+### 保持JavaScript新特性和Babel插件的映射关系
 
-> Currently located at [plugin-features.js](https://github.com/babel/babel-preset-env/blob/master/data/plugin-features.js).
+> 目前位于 [plugin-features.js](https://github.com/babel/babel-preset-env/blob/master/data/plugin-features.js)。
 
-This should be straightforward to do in most cases. There might be cases where plugins should be split up more or certain plugins aren't standalone enough (or impossible to do).
+在多数情况下这应该很直截了当。在一些情况下，可能需要分割为很多插件或者某些插件不够独立（或不能实现）。
 
-### Support all plugins in Babel that are considered `latest`
+### 支持被认为是 `latest` 的Babel所有插件
 
-> Default behavior without options is the same as `babel-preset-latest`.
+> 没有选项的默认行为与 `babel-preset-latest` 相同。
 
-It won't include `stage-x` plugins. env will support all plugins in what we consider the latest version of JavaScript (by matching what we do in [`babel-preset-latest`](http://babeljs.io/docs/plugins/preset-latest/)).
+它不会包含 `stage-x` 插件。env 将会支持我们认为最新版本的JavaScript的所有插件（过我们匹配在 [`babel-preset-latest`](preset-latest) 中所作的）。
 
-Ref: [#14](https://github.com/babel/babel-preset-env/issues/14)
+参考: [#14](https://github.com/babel/babel-preset-env/issues/14)
 
-### Determine the lowest common denominator of plugins to be included in the preset
+### 确定在 preset 的插件中支持的最低浏览器版本。
 
-If you are targeting IE 8 and Chrome 55 it will include all plugins required by IE 8 since you would need to support both still.
+如果你的项目需要支持 IE8 和 Chrome 55 。它必须包括IE8所支持的所有插件，因为你仍然需要支持它们。
 
-### Support a target option `"node": "current"` to compile for the currently running node version.
+### 支持一个目标选项 `"node": "current"` 用来编译当前node版本。
 
-For example, if you are building on Node 6, arrow functions won't be converted, but they will if you build on Node 0.12.
+例如，如果你基于Node 6构建项目，箭头函数将不会被转换。但项目基于Node 0.12的时候，它们将会被转换。
 
-### Support a `browsers` option like autoprefixer
+### 支持像 autoprefixer 一样的 `browsers` 选项。
 
-Use [browserslist](https://github.com/ai/browserslist) to declare supported environments by performing queries like `> 1%, last 2 versions`.
+使用[browserslist](https://github.com/ai/browserslist)通过像 `> 1%, last 2 versions` 查询语句来声明支持的环境。
 
-Ref: [#19](https://github.com/babel/babel-preset-env/pull/19)
+参考: [#19](https://github.com/babel/babel-preset-env/pull/19)
 
-## Install
+## 安装
 
-With [npm](https://www.npmjs.com):
+通过 [npm](https://www.npmjs.com):
 
 ```sh
 npm install --save-dev babel-preset-env
 ```
 
-Or [yarn](https://yarnpkg.com):
+或 [yarn](https://yarnpkg.com):
 
 ```sh
 yarn add babel-preset-env --dev
 ```
 
-## Usage
+## 使用
 
-The default behavior without options runs all transforms (behaves the same as [babel-preset-latest](https://babeljs.io/docs/plugins/preset-latest/)).
+没有选项的默认行为将运行所有transform（与 [babel-preset-latest](plugins/preset-latest/) 相同）。
 
 ```json
 {
@@ -135,122 +135,122 @@ The default behavior without options runs all transforms (behaves the same as [b
 }
 ```
 
-## Options
+## 选项
 
-For more information on setting options for a preset, refer to the [plugin/preset options](http://babeljs.io/docs/plugins/#plugin-preset-options) documentation.
+有关设置预设选项的更多信息，请参阅 [plugin/preset options](plugins#plugin-preset-选项) 文档。
 
 ### `targets`
 
-`{ [string]: number | string }`, defaults to `{}`.
+`{ [string]: number | string }`, 默认为 `{}`。
 
-Takes an object of environment versions to support.
+支持一个运行环境的对象
 
-Each target environment takes a number or a string (we recommend using a string when specifying minor versions like `node: "6.10"`).
+每个目标环境都有一个数字或字符串 (我们建议在使用次要版本的时候使用字符串，例如 `node: "6.10"`)。
 
-Example environments: `chrome`, `opera`, `edge`, `firefox`, `safari`, `ie`, `ios`, `android`, `node`, `electron`.
+运行示例环境: `chrome`, `opera`, `edge`, `firefox`, `safari`, `ie`, `ios`, `android`, `node`, `electron`。
 
-The [data](https://github.com/babel/babel-preset-env/blob/master/data/plugins.json) for this is generated by running the [build-data script](https://github.com/babel/babel-preset-env/blob/master/scripts/build-data.js) which pulls in data from [compat-table](https://kangax.github.io/compat-table).
+这些 [数据](https://github.com/babel/babel-preset-env/blob/master/data/plugins.json) 是通过从 [compat-table](https://kangax.github.io/compat-table) 中提取数据的 [build-data 脚本](https://github.com/babel/babel-preset-env/blob/master/scripts/build-data.js) 中生成的。
 
 ### `targets.node`
 
 `number | string | "current" | true`
 
-If you want to compile against the current node version, you can specify `"node": true` or `"node": "current"`, which would be the same as `"node": process.versions.node`.
+如果需要编译当前node版本，你可以指定 `"node": true` 或者 `"node": "current"`, 它与 `"node": process.versions.node` 相同。
 
 ### `targets.browsers`
 
 `Array<string> | string`
 
-A query to select browsers (ex: last 2 versions, > 5%) using [browserslist](https://github.com/ai/browserslist).
+可以利用 [browserslist](https://github.com/ai/browserslist) 查询选择的浏览器 (例如: last 2 versions, > 5%)。
 
-Note, browsers' results are overridden by explicit items from `targets`.
+请注意，浏览器的结果会被来自 `targets` 的明确条目覆盖。
 
 ### `targets.uglify`
 
 `true`
 
-When using `uglify-js` to minify your code, you may run into syntax errors when targeting later browsers since `uglify-js` does not support any ES2015+ syntax.
+在使用 `uglify-js` 压缩代码时, 由于 `uglify-js` 不支持任何ES2015+语法，因此浏览器运行时可能会遇到语法错误。
 
-To prevent these errors - set the `uglify` option to `true`, which enables all transformation plugins and as a result, your code is fully compiled to ES5. However, the `useBuiltIns` option will still work as before and only include the polyfills that your target(s) need.
+为了防止这些错误的发生 - 将 `uglify` 选项设置为 `true`， 它将会启用所有的翻译插件, 因此你的代码会被编译为ES5. 然而， `useBuiltIns` 选项仍然会像之前一样工作，只包含你的目标浏览器所需要的 polyfills。
 
-> Uglify has support for ES2015 syntax via [uglify-es](https://github.com/mishoo/UglifyJS2/tree/harmony). If you are using syntax unsupported by `uglify-es`, we recommend using [babel-minify](https://github.com/babel/minify).
+> Uglify通过 [uglify-es](https://github.com/mishoo/UglifyJS2/tree/harmony) 支持ES2015语法。如果您使用`uglify-es`不支持的语法，我们推荐使用 [babel-minify](https://github.com/babel/minify)。
 
-> Note: This option is deprecated in 2.x and replaced with a [`forceAllTransforms` option](https://github.com/babel/babel-preset-env/pull/264).
+> 注意: 这个选项在 2.x 中已经弃用，并且用 [`forceAllTransforms` 选项](https://github.com/babel/babel-preset-env/pull/264)来替代.
 
 ### `spec`
 
-`boolean`, defaults to `false`.
+`boolean`， 默认为 `false`。
 
-Enable more spec compliant, but potentially slower, transformations for any plugins in this preset that support them.
+对在这个 preset 中支持它们的插件启用更符合规范，但可能较慢的方式。
 
 ### `loose`
 
-`boolean`, defaults to `false`.
+`boolean`， 默认为 `false`。
 
-Enable "loose" transformations for any plugins in this preset that allow them.
+允许它们为这个 preset 的任何插件启用"loose" 转换。
 
 ### `modules`
 
-`"amd" | "umd" | "systemjs" | "commonjs" | false`, defaults to `"commonjs"`.
+`"amd" | "umd" | "systemjs" | "commonjs" | false`， 默认为 `"commonjs"`.
 
-Enable transformation of ES6 module syntax to another module type.
+启用将ES6模块语法转换为另一种模块类型。
 
-Setting this to `false` will not transform modules.
+将其设置为 `false` 就不会转换模块。
 
 ### `debug`
 
-`boolean`, defaults to `false`.
+`boolean`， 默认为 `false`。
 
-Outputs the targets/plugins used and the version specified in [plugin data version](https://github.com/babel/babel-preset-env/blob/master/data/plugins.json) to `console.log`.
+将使用的目标浏览器/插件和在 [数据插件版本](https://github.com/babel/babel-preset-env/blob/master/data/plugins.json) 中指定的版本用 `console.log` 输出。
 
 ### `include`
 
-`Array<string>`, defaults to `[]`.
+`Array<string>`， 默认为`[]`。
 
-> NOTE: `whitelist` is deprecated and will be removed in the next major in favor of this.
+> 注意: `whitelist` 已经被弃用，将在下一个主要版本中删除。
 
-An array of plugins to always include.
+它总是包含一系列插件。
 
-Valid options include any:
+有效的选项包括。
 
-- [Babel plugins](https://github.com/babel/babel-preset-env/blob/master/data/plugin-features.js) - both with (`babel-plugin-transform-es2015-spread`) and without prefix (`transform-es2015-spread`) are supported.
+- [Babel plugins](https://github.com/babel/babel-preset-env/blob/master/data/plugin-features.js) - 支持 (`babel-plugin-transform-es2015-spread`) 和无前缀的 (`transform-es2015-spread`)。
 
-- [Built-ins](https://github.com/babel/babel-preset-env/blob/master/data/built-in-features.js), such as `map`, `set`, or `object.assign`.
+- [Built-ins](https://github.com/babel/babel-preset-env/blob/master/data/built-in-features.js)，例如 `map`、 `set`、 或者 `object.assign`。
 
-This option is useful if there is a bug in a native implementation, or a combination of a non-supported feature + a supported one doesn't work.
+如果原生的环境有个bug，或者不支持的功能与支持的功能的组合不起作用，这个选项将会是一个非常有用的选项。
 
-For example, Node 4 supports native classes but not spread. If `super` is used with a spread argument, then the `transform-es2015-classes` transform needs to be `include`d, as it is not possible to transpile a spread with `super` otherwise.
+例如， Node 4 支持原生类但不支持类扩展。如果 `super` 与扩展参数一起使用，那么需要 `include` 选项 `transform-es2015-classes` 因为如果不是以 `super` 方式进行传播，则不可能进行传输。
 
-> NOTE: The `include` and `exclude` options _only_ work with the [plugins included with this preset](https://github.com/babel/babel-preset-env/blob/master/data/plugin-features.js); so, for example, including `transform-do-expressions` or excluding `transform-function-bind` will throw errors. To use a plugin _not_ included with this preset, add them to your [config](https://babeljs.io/docs/usage/babelrc/) directly.
+> 注意: `include` 与 `exclude` 选项 _仅仅_ 适用于 [preset中包含的插件](https://github.com/babel/babel-preset-env/blob/master/data/plugin-features.js); 所以，例如，包含 `transform-do-expressions` 或者不包含 `transform-function-bind` 将会抛出错误. 要在preset中使用 _不包含_ 的插件, 请直接将它们添加到你的 [config](babelrc) 中。
 
 ### `exclude`
 
-`Array<string>`, defaults to `[]`.
+`Array<string>`，默认为 `[]`。
 
-An array of plugins to always exclude/remove.
+总是移除的数组插件。
 
-The possible options are the same as the `include` option.
+可能的选项与 `include` 选项相同。
 
-This option is useful for "blacklisting" a transform like `transform-regenerator` if you don't use generators and don't want to include `regeneratorRuntime` (when using `useBuiltIns`) or for using another plugin like [fast-async](https://github.com/MatAtBread/fast-async) instead of [Babel's async-to-gen](http://babeljs.io/docs/plugins/transform-async-generator-functions/).
+如果你不使用生成器并且不想包含 `regeneratorRuntime` (当使用 `useBuiltIns` 时)或者使用另一个像[fast-async](https://github.com/MatAtBread/fast-async)而不是[Babel's async-to-gen](transform-async-generator-functions)的插件，这个选项对于像 `transform-regenerator` 这样的"黑名单"转换很有用。
 
 ### `useBuiltIns`
 
-`boolean`, defaults to `false`.
+`boolean`，默认为 `false`。
 
-A way to apply `babel-preset-env` for polyfills (via "babel-polyfill").
+一种将polyfill应用于 `babel-preset-env` 中的方法 (通过 "babel-polyfill")。
 
-> NOTE: This does not currently polyfill experimental/stage-x built-ins like the regular "babel-polyfill" does.
-> This will only work with npm >= 3 (which should be used with Babel 6 anyway)
+> 注意: 目前这种方式并没有像普通的"babel-polyfill"那样的试验性polyfill/stage-x内置插件。
+> 这只适用于npm >= 3（无论如何应该与Babel 6一起使用）。
 
 ```
 npm install babel-polyfill --save
 ```
 
-This option enables a new plugin that replaces the statement `import "babel-polyfill"` or `require("babel-polyfill")` with individual requires for `babel-polyfill` based on environment.
+这个选项可以启用一个新的插件来替换语句 `import "babel-polyfill"` 或者 `require("babel-polyfill")` 以及基于浏览器环境的 `babel-polyfill` 个性化需求。
 
-> NOTE: Only use `require("babel-polyfill");` once in your whole app.
-> Multiple imports or requires of `babel-polyfill` will throw an error since it can cause global collisions and other issues that are hard to trace.
-> We recommend creating a single entry file that only contains the `require` statement.
+> 注意: 在你的整个应用里只使用一次 `require("babel-polyfill");`。 
+> 多次 imports 或 requires `babel-polyfill` 会引起报错，因为它可能导致全局冲突和其他难以追踪的问题。
+> 我们建议创建一个只包含 `require` 语句的单个入口文件。
 
 **In**
 
@@ -258,7 +258,7 @@ This option enables a new plugin that replaces the statement `import "babel-poly
 import "babel-polyfill";
 ```
 
-**Out (different based on environment)**
+**Out (基于环境的不同)**
 
 ```js
 import "core-js/modules/es7.string.pad-start";
@@ -268,7 +268,7 @@ import "core-js/modules/web.immediate";
 import "core-js/modules/web.dom.iterable";
 ```
 
-This will also work for `core-js` directly (`import "core-js";`)
+这也将直接用于 `core-js` (`import "core-js";`)
 
 ```
 npm install core-js --save
@@ -276,15 +276,15 @@ npm install core-js --save
 
 ---
 
-## Examples
+## 举例
 
-### Export with various targets
+### 导出各种目标浏览器
 
 ```js
 export class A {}
 ```
 
-#### Target only Chrome 52
+#### 只针对 Chrome 52
 
 **.babelrc**
 
@@ -307,7 +307,7 @@ class A {}
 exports.A = A;
 ```
 
-#### Target Chrome 52 with webpack 2/rollup and loose mode
+#### 目标浏览器为 使用 webpack 2/rollup 和 loose 模式的 Chrome 52 
 
 **.babelrc**
 
@@ -331,7 +331,7 @@ exports.A = A;
 export class A {}
 ```
 
-#### Target specific browsers via browserslist
+#### 通过 browserslist 指定特定浏览器
 
 **.babelrc**
 
@@ -356,7 +356,7 @@ export var A = function A() {
 };
 ```
 
-#### Target latest node via `node: true` or `node: "current"`
+#### 通过 `node: true` 或 `node: "current"` 来指定node版本
 
 **.babelrc**
 
@@ -379,7 +379,7 @@ class A {}
 exports.A = A;
 ```
 
-### Show debug output
+### 显示调试输出
 
 **.babelrc**
 
@@ -421,9 +421,9 @@ Using polyfills:
   web.dom.iterable {}
 ```
 
-### Include and exclude specific plugins/built-ins
+### 包含和排除特定的插件/内置插件
 
-> always include arrow functions, explicitly exclude generators
+> 始终包含箭头函数，明确排除生成器
 
 ```json
 {
@@ -439,12 +439,11 @@ Using polyfills:
 }
 ```
 
-## Caveats
+## 注意事项
 
-If you get a `SyntaxError: Unexpected token ...` error when using the [object-rest-spread](babel-plugin-transform-object-rest-spread) transform then make sure the plugin has been updated to, at least, `v6.19.0`.
+如果在使用 [object-rest-spread](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-object-rest-spread) 转换时 发生 `SyntaxError: Unexpected token ...` 错误请确保该插件更新至至少 `v6.19.0`。
 
-## Other Cool Projects
+## 其余项目
 
 - [babel-preset-modern-browsers](https://github.com/christophehurpeau/babel-preset-modern-browsers)
 - ?
-
