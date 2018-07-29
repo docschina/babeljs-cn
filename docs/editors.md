@@ -1,5 +1,5 @@
 ---
-title: Editors
+title: 编辑器
 id: editors
 ---
 
