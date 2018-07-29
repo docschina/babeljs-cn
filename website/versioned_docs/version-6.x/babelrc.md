@@ -4,7 +4,7 @@ id: version-6.x-babelrc
 original_id: babelrc
 ---
 
-所有 Babel [API 选项](api.md) 都不接收回调方法 (因为 `.babelrc` 文件会被序列化为 [JSON5](https://github.com/json5/json5))。
+所有 Babel [API 选项](babel-core) 都不接收回调方法 (因为 `.babelrc` 文件会被序列化为 [JSON5](https://github.com/json5/json5))。
 
 **示例：**
 
@@ -86,4 +86,4 @@ SET BABEL_ENV=production
 
 Babel 会在正在被转录的文件的当前目录中查找一个 `.babelrc` 文件。 如果不存在，它会遍历目录树，直到找到一个 `.babelrc` 文件，或一个 `package.json` 文件中有 `"babel": {}` 。
 
-在 [options](api.md#options) 中使用 `"babelrc": false` 来停止查找行为，或者提供[`--no-babelrc` CLI 标志](babel-cli.md#babel-ignoring-babelrc)。
+在 [options](babel-core#options) 中使用 `"babelrc": false` 来停止查找行为，或者提供[`--no-babelrc` CLI 标志](babel-cli.md#babel-ignoring-babelrc)。
