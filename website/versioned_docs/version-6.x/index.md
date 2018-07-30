@@ -6,11 +6,11 @@ original_id: index
 
 ## Babel 是一款 JavaScript 编译器
 
-Babel 是一个工具链，主要用于在旧的浏览器或环境中将 ECMAScript 2015+ 代码转换为向后兼容的 JavaScript 版本。
+Babel 是一个工具链，主要用于在旧的浏览器或环境中将 ECMAScript 2015+ 代码转换为向后兼容版本的 JavaScript 代码。
 
 ## Library 的基本设置  
 
-> 安装 Babel 的命令行工具（`babel-cli`）以及 Babel 常用的 preset
+> 安装 Babel 命令行工具（`babel-cli`）以及一种 Babel preset
 
 ```shell
 npm install --save-dev babel-cli babel-preset-env
@@ -35,7 +35,7 @@ ES2015 及以后版本
 
 Babel 通过语法转换器来支持最新版本的 JavaScript 。这些[插件](plugins.md)允许你**立刻**使用新语法，而无需等待浏览器支持。查阅我们的 [env preset](preset-env.md) 立即开始使用。
 
-使用如下命令安装此 preset:
+preset 安装命令如下所示:
 
 ```shell
 npm install --save-dev babel-preset-env
@@ -107,7 +107,7 @@ export default function ({types: t}) {
   return {
     visitor: {
       Identifier(path) {
-        let name = path.node.name; // 反转字符串: JavaScript -> tpircSavaJ
+        let name = path.node.name; // 反转 name 变量: JavaScript -> tpircSavaJ
         path.node.name = name.split('').reverse().join('');
       }
     }
@@ -118,16 +118,16 @@ export default function ({types: t}) {
 可调试
 ----------
 
-支持 **Source map** ，因此可以轻松调试编译的代码。
+支持 **Source map** ，因此你可以轻松调试编译过的代码。
 
 规范性
 --------
 
-Babel 试图尽可能地遵循 ECMAScript 标准。它也可能有特定的选项，以便于更符合规范作为性能的权衡。
+Babel 试图尽可能地遵循 ECMAScript 标准。为了平衡性能，它也可能有特定的一些选项，以便可以更符合规范。
 
 压缩性
 --------
 
 Babel 尝试使用尽可能少的代码而不依赖于庞大的运行时环境。
 
-这种情况可能很难做到，并且在特定转换时存在"松散"选项，可能会因可读性，文件大小和速度而牺牲规范的合规性。
+有些情况可能很难达到，因此为了保证可读性、文件大小以及（运行）速度，会针对特定转换牺牲一些合规性，即提供 “loose” 选项。
