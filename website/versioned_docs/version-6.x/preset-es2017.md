@@ -5,7 +5,7 @@ sidebar_label: es2017
 original_id: babel-preset-es2017
 ---
 
-> 该 preset 不推荐使用。如果你想保持最新，请使用[env preset](babel-preset-env)
+> 该 preset 不推荐使用。如果你想保持最新，请使用 [env preset](babel-preset-env)
 
 该 preset 包含如下插件：
 
