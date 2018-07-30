@@ -5,41 +5,41 @@ sidebar_label: es2015
 original_id: babel-preset-es2015
 ---
 
-> This is deprecated. If you want to stay up to date, use the [env preset](https://babeljs.io/docs/en/babel-preset-env)
+> 该 preset 不推荐使用。如果你想保持最新，请使用[env preset](babel-preset-env)
 
-This preset includes the following plugins:
+该 preset 包含如下插件：
 
-- [check-es2015-constants](https://babeljs.io/docs/en/babel-plugin-check-es2015-constants)
-- [transform-es2015-arrow-functions](https://babeljs.io/docs/en/babel-plugin-transform-es2015-arrow-functions)
-- [transform-es2015-block-scoped-functions](https://babeljs.io/docs/en/babel-plugin-transform-es2015-block-scoped-functions)
-- [transform-es2015-block-scoping](https://babeljs.io/docs/en/babel-plugin-transform-es2015-block-scoping)
-- [transform-es2015-classes](https://babeljs.io/docs/en/babel-plugin-transform-es2015-classes)
-- [transform-es2015-computed-properties](https://babeljs.io/docs/en/babel-plugin-transform-es2015-computed-properties)
-- [transform-es2015-destructuring](https://babeljs.io/docs/en/babel-plugin-transform-es2015-destructuring)
-- [transform-es2015-duplicate-keys](https://babeljs.io/docs/en/babel-plugin-transform-es2015-duplicate-keys) 
-- [transform-es2015-for-of](https://babeljs.io/docs/en/babel-plugin-transform-es2015-for-of)
-- [transform-es2015-function-name](https://babeljs.io/docs/en/babel-plugin-transform-es2015-function-name)
-- [transform-es2015-literals](https://babeljs.io/docs/en/babel-plugin-transform-es2015-literals)
-- [transform-es2015-modules-commonjs](https://babeljs.io/docs/en/babel-plugin-transform-es2015-modules-commonjs)
-- [transform-es2015-object-super](https://babeljs.io/docs/en/babel-plugin-transform-es2015-object-super)
-- [transform-es2015-parameters](https://babeljs.io/docs/en/babel-plugin-transform-es2015-parameters)
-- [transform-es2015-shorthand-properties](https://babeljs.io/docs/en/babel-plugin-transform-es2015-shorthand-properties)
-- [transform-es2015-spread](https://babeljs.io/docs/en/babel-plugin-transform-es2015-spread)
-- [transform-es2015-sticky-regex](https://babeljs.io/docs/en/babel-plugin-transform-es2015-sticky-regex)
-- [transform-es2015-template-literals](https://babeljs.io/docs/en/babel-plugin-transform-es2015-template-literals)
-- [transform-es2015-typeof-symbol](https://babeljs.io/docs/en/babel-plugin-transform-es2015-typeof-symbol)
-- [transform-es2015-unicode-regex](https://babeljs.io/docs/en/babel-plugin-transform-es2015-unicode-regex)
-- [transform-regenerator](https://babeljs.io/docs/en/babel-plugin-transform-regenerator)
+- [check-es2015-constants](babel-plugin-check-es2015-constants)
+- [transform-es2015-arrow-functions](babel-plugin-transform-es2015-arrow-functions)
+- [transform-es2015-block-scoped-functions](babel-plugin-transform-es2015-block-scoped-functions)
+- [transform-es2015-block-scoping](babel-plugin-transform-es2015-block-scoping)
+- [transform-es2015-classes](babel-plugin-transform-es2015-classes)
+- [transform-es2015-computed-properties](babel-plugin-transform-es2015-computed-properties)
+- [transform-es2015-destructuring](babel-plugin-transform-es2015-destructuring)
+- [transform-es2015-duplicate-keys](babel-plugin-transform-es2015-duplicate-keys) 
+- [transform-es2015-for-of](babel-plugin-transform-es2015-for-of)
+- [transform-es2015-function-name](babel-plugin-transform-es2015-function-name)
+- [transform-es2015-literals](babel-plugin-transform-es2015-literals)
+- [transform-es2015-modules-commonjs](babel-plugin-transform-es2015-modules-commonjs)
+- [transform-es2015-object-super](babel-plugin-transform-es2015-object-super)
+- [transform-es2015-parameters](babel-plugin-transform-es2015-parameters)
+- [transform-es2015-shorthand-properties](babel-plugin-transform-es2015-shorthand-properties)
+- [transform-es2015-spread](babel-plugin-transform-es2015-spread)
+- [transform-es2015-sticky-regex](babel-plugin-transform-es2015-sticky-regex)
+- [transform-es2015-template-literals](babel-plugin-transform-es2015-template-literals)
+- [transform-es2015-typeof-symbol](babel-plugin-transform-es2015-typeof-symbol)
+- [transform-es2015-unicode-regex](babel-plugin-transform-es2015-unicode-regex)
+- [transform-regenerator](babel-plugin-transform-regenerator)
 
-## Install
+## 安装
 
 ```sh
 npm install --save-dev babel-preset-es2015
 ```
 
-## Usage
+## 使用
 
-### Via `.babelrc` (Recommended)
+### 通过 `.babelrc` (推荐)
 
 **.babelrc**
 
@@ -49,13 +49,13 @@ npm install --save-dev babel-preset-es2015
 }
 ```
 
-### Via CLI
+### 通过 CLI
 
 ```sh
 babel script.js --presets es2015
 ```
 
-### Via Node API
+### 通过 Node API
 
 ```javascript
 require("babel-core").transform("code", {
@@ -63,53 +63,52 @@ require("babel-core").transform("code", {
 });
 ```
 
-## Options
+## 选项
 
 ### `loose`
 
-`boolean`, defaults to `false`.
+`boolean`, 默认 `false`.
 
-Enable "loose" transformations for any plugins in this preset that allow them.
+为该预设中允许它们的任何插件启用 "loose" 转换。
 
 ### `modules`
 
-`"amd" | "umd" | "systemjs" | "commonjs" | false`, defaults to `"commonjs"`.
+`"amd" | "umd" | "systemjs" | "commonjs" | false`, 默认 `"commonjs"`.
 
-Enable transformation of ES6 module syntax to another module type.
+启用将 es6 模块语法转换为另一个模块类型。
 
-Setting this to `false` will not transform modules.
+将其设置为 `false` 将不会转换任何模块。
 
 ### `spec`
 
-`boolean`, defaults to `false`.
+`boolean`, 默认 `false`。
 
-Enable "spec" transformations for any plugins in this preset that allow them.
+为该预设中允许它们的任何插件启用 "spec" 转换。
 
-## Basic Setup (with the CLI)
+## 基本设置（使用 CLI）
 
-> For more info, check out docs for [babel-cli](https://babeljs.io/docs/en/babel-cli)
+> 有关详细信息，请查阅 [babel-cli](babel-cli) 文档。
 
-Install the CLI and this preset
+安装 CLI 和该 preset
 
 ```sh
 npm install --save-dev babel-cli babel-preset-es2015
 ```
 
-Make a .babelrc config file with the preset
+为该 preset 创建一个 .babelrc 配置文件
 
 ```sh
 echo '{ "presets": ["es2015"] }' > .babelrc
 ```
 
-Create a file to run on
+创建要运行的文件
 
 ```sh
 echo 'const a = 1;' > index.js
 ```
 
-Run it
+运行
 
 ```sh
 ./node_modules/.bin/babel-node index.js
 ```
-
