@@ -5,21 +5,21 @@ sidebar_label: es2016
 original_id: babel-preset-es2016
 ---
 
-> This is deprecated. If you want to stay up to date, use the [env preset](https://babeljs.io/docs/en/babel-preset-env)
+> 该 preset 不推荐使用。如果你想保持最新，请使用[env preset](babel-preset-env)
 
-This preset includes the following plugins:
+该 preset 包含如下插件：
 
-- [transform-exponentiation-operator](https://babeljs.io/docs/en/babel-plugin-transform-exponentiation-operator)
+- [transform-exponentiation-operator](babel-plugin-transform-exponentiation-operator)
 
-## Install
+## 安装
 
 ```sh
 npm install --save-dev babel-preset-es2016
 ```
 
-## Usage
+## 使用
 
-### Via `.babelrc` (Recommended)
+### 通过 `.babelrc` (推荐)
 
 **.babelrc**
 
@@ -29,13 +29,13 @@ npm install --save-dev babel-preset-es2016
 }
 ```
 
-### Via CLI
+### 通过 CLI
 
 ```sh
 babel script.js --presets es2016
 ```
 
-### Via Node API
+### 通过 Node API
 
 ```javascript
 require("babel-core").transform("code", {
@@ -43,31 +43,30 @@ require("babel-core").transform("code", {
 });
 ```
 
-## Basic Setup (with the CLI)
+## 基本设置（使用 CLI）
 
-> For more info, check out docs for [babel-cli](https://babeljs.io/docs/en/babel-cli)
+> 有关详细信息，请查阅 [babel-cli](babel-cli) 文档。
 
-Install the CLI and this preset
+安装 CLI 和该 preset
 
 ```sh
 npm install --save-dev babel-cli babel-preset-es2016
 ```
 
-Make a .babelrc config file with the preset
+为该 preset 创建一个 .babelrc 配置文件
 
 ```sh
 echo '{ "presets": ["es2016"] }' > .babelrc
 ```
 
-Create a file to run on
+创建要运行的文件
 
 ```sh
 echo 'console.log(2 ** 3)' > index.js
 ```
 
-Run it
+运行
 
 ```sh
 ./node_modules/.bin/babel-node index.js
 ```
-
