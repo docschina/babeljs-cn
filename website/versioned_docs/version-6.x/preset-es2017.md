@@ -5,22 +5,22 @@ sidebar_label: es2017
 original_id: babel-preset-es2017
 ---
 
-> This is deprecated. If you want to stay up to date, use the [env preset](https://babeljs.io/docs/en/babel-preset-env)
+> 该 preset 不推荐使用。如果你想保持最新，请使用[env preset](babel-preset-env)
 
-This preset includes the following plugins:
+该 preset 包含如下插件：
 
-- [syntax-trailing-function-commas](https://babeljs.io/docs/en/babel-plugin-syntax-trailing-function-commas)
-- [transform-async-to-generator](https://babeljs.io/docs/en/babel-plugin-transform-async-to-generator)
+- [syntax-trailing-function-commas](babel-plugin-syntax-trailing-function-commas)
+- [transform-async-to-generator](babel-plugin-transform-async-to-generator)
 
-## Install
+## 安装
 
 ```sh
 npm install --save-dev babel-preset-es2017
 ```
 
-## Usage
+## 使用
 
-### Via `.babelrc` (Recommended)
+### 通过 `.babelrc` (推荐)
 
 **.babelrc**
 
@@ -30,13 +30,13 @@ npm install --save-dev babel-preset-es2017
 }
 ```
 
-### Via CLI
+### 通过 CLI
 
 ```sh
 babel script.js --presets es2017
 ```
 
-### Via Node API
+### 通过 Node API
 
 ```javascript
 require("babel-core").transform("code", {
@@ -44,32 +44,30 @@ require("babel-core").transform("code", {
 });
 ```
 
+## 基本设置（使用 CLI）
 
-## Basic Setup (with the CLI)
+> 有关详细信息，请查阅 [babel-cli](babel-cli) 文档。
 
-> For more info, check out docs for [babel-cli](https://babeljs.io/docs/en/babel-cli)
-
-Install the CLI and this preset
+安装 CLI 和该 preset
 
 ```sh
 npm install --save-dev babel-cli babel-preset-es2017
 ```
 
-Make a .babelrc config file with the preset
+为该 preset 创建一个 .babelrc 配置文件
 
 ```sh
 echo '{ "presets": ["es2017"] }' > .babelrc
 ```
 
-Create a file to run on
+创建要运行的文件
 
 ```sh
 echo 'async function a() {}' > index.js
 ```
 
-Run it
+运行
 
 ```sh
 ./node_modules/.bin/babel-node index.js
 ```
-
