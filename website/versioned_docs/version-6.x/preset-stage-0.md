@@ -5,36 +5,36 @@ sidebar_label: stage-0
 original_id: babel-preset-stage-0
 ---
 
-The gist of Stage 0 is:
+第 0 阶段的要点:
 
-> **Stage 0**: strawman
+> **Stage 0**: 稻草人提案
 >
-> **What is it?** A free-form way of submitting ideas for evolving ECMAScript. Submissions must come either from a TC39 member or a non-member who [has registered as a TC39 contributor](http://www.ecma-international.org/memento/contribute_TC39_Royalty_Free_Task_Group.php).
+> **该阶段含义是？** 一种为 ECMAScript 的演变自由提交想法的方式。提交的内容必须来自 TC39 的成员或非成员但已经[注册成为 TC39 contributor](http://www.ecma-international.org/memento/contribute_TC39_Royalty_Free_Task_Group.php) 的人。
 >
-> **What’s required?** The document must be reviewed at a TC39 meeting (source) and is then added to [the page with stage 0 proposals](https://github.com/tc39/proposals/blob/master/stage-0-proposals.md).
+> **该阶段的要求是？** 该文档必须在 TC39 会议（源）上审核，然后添加到[第 0 阶段提案的页面](https://github.com/tc39/proposals/blob/master/stage-0-proposals.md)上。
 
-This preset includes the following plugins:
+该 preset 包含如下插件：
 
-- [transform-do-expressions](https://babeljs.io/docs/en/babel-plugin-transform-do-expressions)
-- [transform-function-bind](https://babeljs.io/docs/en/babel-plugin-transform-function-bind)
+- [transform-do-expressions](babel-plugin-transform-do-expressions)
+- [transform-function-bind](babel-plugin-transform-function-bind)
 
-And all plugins from presets:
+以及以下所有 preset 中的插件:
 
-- [preset-stage-1](https://babeljs.io/docs/en/babel-preset-stage-1)
-- [preset-stage-2](https://babeljs.io/docs/en/babel-preset-stage-2)
-- [preset-stage-3](https://babeljs.io/docs/en/babel-preset-stage-3)
+- [preset-stage-1](babel-preset-stage-1)
+- [preset-stage-2](babel-preset-stage-2)
+- [preset-stage-3](babel-preset-stage-3)
 
-> You can check the src/index.js to be sure the plugins used.
+> 你可以查阅 src/index.js 以确保成功使用插件。
 
-## Install
+## 安装
 
 ```sh
 npm install --save-dev babel-preset-stage-0
 ```
 
-## Usage
+## 使用
 
-### Via `.babelrc` (Recommended)
+### 通过 `.babelrc` 文件（推荐）
 
 **.babelrc**
 
@@ -44,13 +44,13 @@ npm install --save-dev babel-preset-stage-0
 }
 ```
 
-### Via CLI
+### 通过 CLI
 
 ```sh
 babel script.js --presets stage-0
 ```
 
-### Via Node API
+### 通过 Node API
 
 ```javascript
 require("babel-core").transform("code", {
@@ -58,7 +58,6 @@ require("babel-core").transform("code", {
 });
 ```
 
-## References
+## 参考资料
 
-- Chapter "[The TC39 process for ECMAScript features](http://exploringjs.com/es2016-es2017/ch_tc39-process.html)" in "Exploring ES2016 and ES2017" by Axel Rauschmayer
-
+- Axel Rauschmayer 在 "探索 ES2016 和 ES2017" 中的 "[TC39 的 ECMAScript 特性的流程](http://exploringjs.com/es2016-es2017/ch_tc39-process.html)" 章节。
