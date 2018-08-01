@@ -5,13 +5,13 @@ sidebar_label: babel-code-frame
 original_id: babel-code-frame
 ---
 
-## Install
+## 安装
 
 ```sh
 npm install --save-dev babel-code-frame
 ```
 
-## Usage
+## 使用
 
 ```js
 import codeFrame from 'babel-code-frame';
@@ -34,31 +34,30 @@ console.log(result);
   3 | }
 ```
 
-If the column number is not known, you may pass `null` instead.
+如果列号未知，你可以通过使用 `null` 代替。
 
-## Options
+## 选项
 
 ### `highlightCode`
 
-`boolean`, defaults to `false`.
+`boolean`，默认为 `false`。
 
-Toggles syntax highlighting the code as JavaScript for terminals.
+将终端中的 JavaScript 代码切换为语法高亮。
 
 ### `linesAbove`
 
-`number`, defaults to `2`.
+`number`，默认为 `2` 。
 
-Adjust the number of lines to show above the error.
+调整要显示在错误上方的行数。
 
 ### `linesBelow`
 
-`number`, defaults to `3`.
+`number`，默认为 `3` 。
 
-Adjust the number of lines to show below the error.
+调整要显示在错误下方的行数。
 
 ### `forceColor`
 
-`boolean`, defaults to `false`.
+`boolean`，默认为 `false` 。
 
-Enable this to forcibly syntax highlight the code as JavaScript (for non-terminals); overrides `highlightCode`.
-
+启用此选项可强制为 JavaScript 提供语法高亮(对于非终端)；覆盖 `highlightCode` 。
