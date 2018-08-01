@@ -5,15 +5,15 @@ sidebar_label: babel-traverse
 original_id: babel-traverse
 ---
 
-## Install
+## 安装
 
 ```sh
 $ npm install --save babel-traverse
 ```
 
-## Usage
+## 使用
 
-We can use it alongside Babylon to traverse and update nodes:
+它可以与 Babylon 搭配使用，用于遍历和更新节点:
 
 ```js
 import * as babylon from "babylon";
@@ -33,5 +33,5 @@ traverse(ast, {
   }
 });
 ```
-[:book: **Read the full docs here**](https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#babel-traverse)
 
+[:book: **阅读完整文档**](https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#babel-traverse)
