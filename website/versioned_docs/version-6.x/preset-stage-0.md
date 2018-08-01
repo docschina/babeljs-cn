@@ -18,7 +18,7 @@ original_id: babel-preset-stage-0
 - [transform-do-expressions](babel-plugin-transform-do-expressions)
 - [transform-function-bind](babel-plugin-transform-function-bind)
 
-以及以下所有 preset 中的插件:
+以及以下所有 preset 中的插件：
 
 - [preset-stage-1](babel-preset-stage-1)
 - [preset-stage-2](babel-preset-stage-2)

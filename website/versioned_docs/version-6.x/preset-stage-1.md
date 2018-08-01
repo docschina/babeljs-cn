@@ -59,5 +59,6 @@ require("babel-core").transform("code", {
 });
 ```
 
-## 参考
+## 参考资料
+
 - Axel Rauschmayer 在 "探索 ES2016 和 ES2017" 中的 "[TC39 的 ECMAScript 特性的流程](http://exploringjs.com/es2016-es2017/ch_tc39-process.html)" 章节。
