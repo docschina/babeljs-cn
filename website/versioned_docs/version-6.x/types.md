@@ -5,7 +5,7 @@ sidebar_label: babel-types
 original_id: babel-types
 ---
 
-## Install
+## 安装
 
 ```sh
 npm install --save-dev babel-types
@@ -20,9 +20,9 @@ npm install --save-dev babel-types
 t.anyTypeAnnotation()
 ```
 
-See also `t.isAnyTypeAnnotation(node, opts)` and `t.assertAnyTypeAnnotation(node, opts)`.
+参见 `t.isAnyTypeAnnotation(node, opts)` 和 `t.assertAnyTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`, `FlowBaseAnnotation`
+别名： `Flow`，`FlowBaseAnnotation`
 
 
 ---
@@ -32,11 +32,11 @@ Aliases: `Flow`, `FlowBaseAnnotation`
 t.arrayExpression(elements)
 ```
 
-See also `t.isArrayExpression(node, opts)` and `t.assertArrayExpression(node, opts)`.
+参见 `t.isArrayExpression(node, opts)` 和 `t.assertArrayExpression(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
- - `elements`: `Array<null | Expression | SpreadElement>` (default: `[]`)
+ - `elements`: `Array<null | Expression | SpreadElement>` (默认为： `[]`)
 
 ---
 
@@ -45,13 +45,13 @@ Aliases: `Expression`
 t.arrayPattern(elements, typeAnnotation)
 ```
 
-See also `t.isArrayPattern(node, opts)` and `t.assertArrayPattern(node, opts)`.
+参见 `t.isArrayPattern(node, opts)` 和 `t.assertArrayPattern(node, opts)` 。
 
-Aliases: `Pattern`, `LVal`
+别名： `Pattern`，`LVal`
 
- - `elements`: `Array<Identifier | Pattern | RestElement>` (required)
- - `typeAnnotation` (required)
- - `decorators`: `Array<Decorator>` (default: `null`)
+ - `elements`: `Array<Identifier | Pattern | RestElement>` (必填)
+ - `typeAnnotation` (必填)
+ - `decorators`: `Array<Decorator>` (默认为：`null`)
 
 ---
 
@@ -60,11 +60,11 @@ Aliases: `Pattern`, `LVal`
 t.arrayTypeAnnotation(elementType)
 ```
 
-See also `t.isArrayTypeAnnotation(node, opts)` and `t.assertArrayTypeAnnotation(node, opts)`.
+参加 `t.isArrayTypeAnnotation(node, opts)` 和 `t.assertArrayTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `elementType` (required)
+ - `elementType` (必填)
 
 ---
 
@@ -73,15 +73,15 @@ Aliases: `Flow`
 t.arrowFunctionExpression(params, body, async)
 ```
 
-See also `t.isArrowFunctionExpression(node, opts)` and `t.assertArrowFunctionExpression(node, opts)`.
+参见 `t.isArrowFunctionExpression(node, opts)` 和 `t.assertArrowFunctionExpression(node, opts)` 。
 
-Aliases: `Scopable`, `Function`, `BlockParent`, `FunctionParent`, `Expression`, `Pureish`
+别名： `Scopable`, `Function`, `BlockParent`, `FunctionParent`, `Expression`, `Pureish`
 
- - `params`: `Array<LVal>` (required)
- - `body`: `BlockStatement | Expression` (required)
- - `async`: `boolean` (default: `false`)
- - `returnType` (default: `null`)
- - `typeParameters` (default: `null`)
+ - `params`: `Array<LVal>` (必填)
+ - `body`: `BlockStatement | Expression` (必填)
+ - `async`: `boolean` (默认为：`false`)
+ - `returnType` (默认为：`null`)
+ - `typeParameters` (默认为：`null`)
 
 ---
 
@@ -90,13 +90,13 @@ Aliases: `Scopable`, `Function`, `BlockParent`, `FunctionParent`, `Expression`, 
 t.assignmentExpression(operator, left, right)
 ```
 
-See also `t.isAssignmentExpression(node, opts)` and `t.assertAssignmentExpression(node, opts)`.
+参见 `t.isAssignmentExpression(node, opts)` 和 `t.assertAssignmentExpression(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
- - `operator`: `string` (required)
- - `left`: `LVal` (required)
- - `right`: `Expression` (required)
+ - `operator`: `string` (必填)
+ - `left`: `LVal` (必填)
+ - `right`: `Expression` (必填)
 
 ---
 
@@ -105,13 +105,13 @@ Aliases: `Expression`
 t.assignmentPattern(left, right)
 ```
 
-See also `t.isAssignmentPattern(node, opts)` and `t.assertAssignmentPattern(node, opts)`.
+参见 `t.isAssignmentPattern(node, opts)` 和 `t.assertAssignmentPattern(node, opts)` 。
 
-Aliases: `Pattern`, `LVal`
+别名: `Pattern`, `LVal`
 
- - `left`: `Identifier` (required)
- - `right`: `Expression` (required)
- - `decorators`: `Array<Decorator>` (default: `null`)
+ - `left`: `Identifier` (必填)
+ - `right`: `Expression` (必填)
+ - `decorators`: `Array<Decorator>` (默认为：`null`)
 
 ---
 
@@ -120,11 +120,11 @@ Aliases: `Pattern`, `LVal`
 t.awaitExpression(argument)
 ```
 
-See also `t.isAwaitExpression(node, opts)` and `t.assertAwaitExpression(node, opts)`.
+参见 `t.isAwaitExpression(node, opts)` 和 `t.assertAwaitExpression(node, opts)` 。
 
-Aliases: `Expression`, `Terminatorless`
+别名: `Expression`, `Terminatorless`
 
- - `argument`: `Expression` (required)
+ - `argument`: `Expression` (必填)
 
 ---
 
@@ -133,13 +133,13 @@ Aliases: `Expression`, `Terminatorless`
 t.binaryExpression(operator, left, right)
 ```
 
-See also `t.isBinaryExpression(node, opts)` and `t.assertBinaryExpression(node, opts)`.
+参见 `t.isBinaryExpression(node, opts)` 和 `t.assertBinaryExpression(node, opts)` 。
 
-Aliases: `Binary`, `Expression`
+别名: `Binary`, `Expression`
 
- - `operator`: `'+' | '-' | '/' | '%' | '*' | '**' | '&' | '|' | '>>' | '>>>' | '<<' | '^' | '==' | '===' | '!=' | '!==' | 'in' | 'instanceof' | '>' | '<' | '>=' | '<='` (required)
- - `left`: `Expression` (required)
- - `right`: `Expression` (required)
+ - `operator`: `'+' | '-' | '/' | '%' | '*' | '**' | '&' | '|' | '>>' | '>>>' | '<<' | '^' | '==' | '===' | '!=' | '!==' | 'in' | 'instanceof' | '>' | '<' | '>=' | '<='` (必填)
+ - `left`: `Expression` (必填)
+ - `right`: `Expression` (必填)
 
 ---
 
@@ -148,12 +148,12 @@ Aliases: `Binary`, `Expression`
 t.bindExpression(object, callee)
 ```
 
-See also `t.isBindExpression(node, opts)` and `t.assertBindExpression(node, opts)`.
+参见 `t.isBindExpression(node, opts)` 和 `t.assertBindExpression(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
- - `object` (required)
- - `callee` (required)
+ - `object` (必填)
+ - `callee` (必填)
 
 ---
 
@@ -162,12 +162,12 @@ Aliases: `Expression`
 t.blockStatement(body, directives)
 ```
 
-See also `t.isBlockStatement(node, opts)` and `t.assertBlockStatement(node, opts)`.
+参见 `t.isBlockStatement(node, opts)` 和 `t.assertBlockStatement(node, opts)` 。
 
-Aliases: `Scopable`, `BlockParent`, `Block`, `Statement`
+别名: `Scopable`, `BlockParent`, `Block`, `Statement`
 
- - `body`: `Array<Statement>` (required)
- - `directives`: `Array<Directive>` (default: `[]`)
+ - `body`: `Array<Statement>` (必填)
+ - `directives`: `Array<Directive>` (默认为：`[]`)
 
 ---
 
@@ -176,11 +176,11 @@ Aliases: `Scopable`, `BlockParent`, `Block`, `Statement`
 t.booleanLiteral(value)
 ```
 
-See also `t.isBooleanLiteral(node, opts)` and `t.assertBooleanLiteral(node, opts)`.
+参见 `t.isBooleanLiteral(node, opts)` 和 `t.assertBooleanLiteral(node, opts)` 。
 
-Aliases: `Expression`, `Pureish`, `Literal`, `Immutable`
+别名: `Expression`, `Pureish`, `Literal`, `Immutable`
 
- - `value`: `boolean` (required)
+ - `value`: `boolean` (必填)
 
 ---
 
@@ -189,9 +189,9 @@ Aliases: `Expression`, `Pureish`, `Literal`, `Immutable`
 t.booleanLiteralTypeAnnotation()
 ```
 
-See also `t.isBooleanLiteralTypeAnnotation(node, opts)` and `t.assertBooleanLiteralTypeAnnotation(node, opts)`.
+参见 `t.isBooleanLiteralTypeAnnotation(node, opts)` 和 `t.assertBooleanLiteralTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
 
 ---
@@ -201,9 +201,9 @@ Aliases: `Flow`
 t.booleanTypeAnnotation()
 ```
 
-See also `t.isBooleanTypeAnnotation(node, opts)` and `t.assertBooleanTypeAnnotation(node, opts)`.
+参见 `t.isBooleanTypeAnnotation(node, opts)` 和 `t.assertBooleanTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`, `FlowBaseAnnotation`
+别名: `Flow`, `FlowBaseAnnotation`
 
 
 ---
@@ -213,11 +213,11 @@ Aliases: `Flow`, `FlowBaseAnnotation`
 t.breakStatement(label)
 ```
 
-See also `t.isBreakStatement(node, opts)` and `t.assertBreakStatement(node, opts)`.
+参见 `t.isBreakStatement(node, opts)` 和 `t.assertBreakStatement(node, opts)` 。
 
-Aliases: `Statement`, `Terminatorless`, `CompletionStatement`
+别名: `Statement`, `Terminatorless`, `CompletionStatement`
 
- - `label`: `Identifier` (default: `null`)
+ - `label`: `Identifier` (默认为：`null`)
 
 ---
 
@@ -226,12 +226,12 @@ Aliases: `Statement`, `Terminatorless`, `CompletionStatement`
 t.callExpression(callee, arguments)
 ```
 
-See also `t.isCallExpression(node, opts)` and `t.assertCallExpression(node, opts)`.
+参见 `t.isCallExpression(node, opts)` 和 `t.assertCallExpression(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
- - `callee`: `Expression` (required)
- - `arguments`: `Array<Expression | SpreadElement>` (required)
+ - `callee`: `Expression` (必填)
+ - `arguments`: `Array<Expression | SpreadElement>` (必填)
 
 ---
 
@@ -240,12 +240,12 @@ Aliases: `Expression`
 t.catchClause(param, body)
 ```
 
-See also `t.isCatchClause(node, opts)` and `t.assertCatchClause(node, opts)`.
+参见 `t.isCatchClause(node, opts)` 和 `t.assertCatchClause(node, opts)` 。
 
-Aliases: `Scopable`
+别名: `Scopable`
 
- - `param`: `Identifier` (required)
- - `body`: `BlockStatement` (required)
+ - `param`: `Identifier` (必填)
+ - `body`: `BlockStatement` (必填)
 
 ---
 
@@ -254,9 +254,9 @@ Aliases: `Scopable`
 t.classBody(body)
 ```
 
-See also `t.isClassBody(node, opts)` and `t.assertClassBody(node, opts)`.
+参见 `t.isClassBody(node, opts)` 和 `t.assertClassBody(node, opts)` 。
 
- - `body`: `Array<ClassMethod | ClassProperty>` (required)
+ - `body`: `Array<ClassMethod | ClassProperty>` (必填)
 
 ---
 
@@ -265,18 +265,18 @@ See also `t.isClassBody(node, opts)` and `t.assertClassBody(node, opts)`.
 t.classDeclaration(id, superClass, body, decorators)
 ```
 
-See also `t.isClassDeclaration(node, opts)` and `t.assertClassDeclaration(node, opts)`.
+参见 `t.isClassDeclaration(node, opts)` 和 `t.assertClassDeclaration(node, opts)` 。
 
-Aliases: `Scopable`, `Class`, `Statement`, `Declaration`, `Pureish`
+别名: `Scopable`, `Class`, `Statement`, `Declaration`, `Pureish`
 
- - `id`: `Identifier` (required)
- - `superClass`: `Expression` (default: `null`)
- - `body`: `ClassBody` (required)
- - `decorators`: `Array<Decorator>` (required)
- - `implements` (default: `null`)
- - `mixins` (default: `null`)
- - `superTypeParameters` (default: `null`)
- - `typeParameters` (default: `null`)
+ - `id`: `Identifier` (必填)
+ - `superClass`: `Expression` (默认为：`null`)
+ - `body`: `ClassBody` (必填)
+ - `decorators`: `Array<Decorator>` (必填)
+ - `implements` (默认为：`null`)
+ - `mixins` (默认为：`null`)
+ - `superTypeParameters` (默认为：`null`)
+ - `typeParameters` (默认为：`null`)
 
 ---
 
@@ -285,18 +285,18 @@ Aliases: `Scopable`, `Class`, `Statement`, `Declaration`, `Pureish`
 t.classExpression(id, superClass, body, decorators)
 ```
 
-See also `t.isClassExpression(node, opts)` and `t.assertClassExpression(node, opts)`.
+参见 `t.isClassExpression(node, opts)` 和 `t.assertClassExpression(node, opts)` 。
 
-Aliases: `Scopable`, `Class`, `Expression`, `Pureish`
+别名: `Scopable`, `Class`, `Expression`, `Pureish`
 
- - `id`: `Identifier` (default: `null`)
- - `superClass`: `Expression` (default: `null`)
- - `body`: `ClassBody` (required)
- - `decorators`: `Array<Decorator>` (required)
- - `implements` (default: `null`)
- - `mixins` (default: `null`)
- - `superTypeParameters` (default: `null`)
- - `typeParameters` (default: `null`)
+ - `id`: `Identifier` (默认为：`null`)
+ - `superClass`: `Expression` (默认为：`null`)
+ - `body`: `ClassBody` (必填)
+ - `decorators`: `Array<Decorator>` (必填)
+ - `implements` (默认为：`null`)
+ - `mixins` (默认为：`null`)
+ - `superTypeParameters` (默认为：`null`)
+ - `typeParameters` (默认为：`null`)
 
 ---
 
@@ -305,12 +305,12 @@ Aliases: `Scopable`, `Class`, `Expression`, `Pureish`
 t.classImplements(id, typeParameters)
 ```
 
-See also `t.isClassImplements(node, opts)` and `t.assertClassImplements(node, opts)`.
+参见 `t.isClassImplements(node, opts)` 和 `t.assertClassImplements(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `id` (required)
- - `typeParameters` (required)
+ - `id` (必填)
+ - `typeParameters` (必填)
 
 ---
 
@@ -319,21 +319,21 @@ Aliases: `Flow`
 t.classMethod(kind, key, params, body, computed, static)
 ```
 
-See also `t.isClassMethod(node, opts)` and `t.assertClassMethod(node, opts)`.
+参见 `t.isClassMethod(node, opts)` 和 `t.assertClassMethod(node, opts)` 。
 
-Aliases: `Function`, `Scopable`, `BlockParent`, `FunctionParent`, `Method`
+别名: `Function`, `Scopable`, `BlockParent`, `FunctionParent`, `Method`
 
- - `kind`: `"get" | "set" | "method" | "constructor"` (default: `'method'`)
- - `key`if computed then `Expression` else `Identifier | Literal` (required)
- - `params`: `Array<LVal>` (required)
- - `body`: `BlockStatement` (required)
- - `computed`: `boolean` (default: `false`)
- - `static`: `boolean` (default: `false`)
- - `async`: `boolean` (default: `false`)
- - `decorators` (default: `null`)
- - `generator`: `boolean` (default: `false`)
- - `returnType` (default: `null`)
- - `typeParameters` (default: `null`)
+ - `kind`: `"get" | "set" | "method" | "constructor"` (默认为：`'method'`)
+ - `key`if computed then `Expression` else `Identifier | Literal` (必填)
+ - `params`: `Array<LVal>` (必填)
+ - `body`: `BlockStatement` (必填)
+ - `computed`: `boolean` (默认为：`false`)
+ - `static`: `boolean` (默认为：`false`)
+ - `async`: `boolean` (默认为：`false`)
+ - `decorators` (默认为：`null`)
+ - `generator`: `boolean` (默认为：`false`)
+ - `returnType` (默认为：`null`)
+ - `typeParameters` (默认为：`null`)
 
 ---
 
@@ -342,15 +342,15 @@ Aliases: `Function`, `Scopable`, `BlockParent`, `FunctionParent`, `Method`
 t.classProperty(key, value, typeAnnotation, decorators, computed)
 ```
 
-See also `t.isClassProperty(node, opts)` and `t.assertClassProperty(node, opts)`.
+参见 `t.isClassProperty(node, opts)` 和 `t.assertClassProperty(node, opts)` 。
 
-Aliases: `Property`
+别名: `Property`
 
- - `key` (required)
- - `value` (required)
- - `typeAnnotation` (required)
- - `decorators` (required)
- - `computed`: `boolean` (default: `false`)
+ - `key` (必填)
+ - `value` (必填)
+ - `typeAnnotation` (必填)
+ - `decorators` (必填)
+ - `computed`: `boolean` (默认为：`false`)
 
 ---
 
@@ -359,13 +359,13 @@ Aliases: `Property`
 t.conditionalExpression(test, consequent, alternate)
 ```
 
-See also `t.isConditionalExpression(node, opts)` and `t.assertConditionalExpression(node, opts)`.
+参见 `t.isConditionalExpression(node, opts)` 和 `t.assertConditionalExpression(node, opts)` 。
 
-Aliases: `Expression`, `Conditional`
+别名: `Expression`, `Conditional`
 
- - `test`: `Expression` (required)
- - `consequent`: `Expression` (required)
- - `alternate`: `Expression` (required)
+ - `test`: `Expression` (必填)
+ - `consequent`: `Expression` (必填)
+ - `alternate`: `Expression` (必填)
 
 ---
 
@@ -374,11 +374,11 @@ Aliases: `Expression`, `Conditional`
 t.continueStatement(label)
 ```
 
-See also `t.isContinueStatement(node, opts)` and `t.assertContinueStatement(node, opts)`.
+参见 `t.isContinueStatement(node, opts)` 和 `t.assertContinueStatement(node, opts)` 。
 
-Aliases: `Statement`, `Terminatorless`, `CompletionStatement`
+别名: `Statement`, `Terminatorless`, `CompletionStatement`
 
- - `label`: `Identifier` (default: `null`)
+ - `label`: `Identifier` (默认为：`null`)
 
 ---
 
@@ -387,9 +387,9 @@ Aliases: `Statement`, `Terminatorless`, `CompletionStatement`
 t.debuggerStatement()
 ```
 
-See also `t.isDebuggerStatement(node, opts)` and `t.assertDebuggerStatement(node, opts)`.
+参见 `t.isDebuggerStatement(node, opts)` 和 `t.assertDebuggerStatement(node, opts)` 。
 
-Aliases: `Statement`
+别名: `Statement`
 
 
 ---
@@ -399,14 +399,14 @@ Aliases: `Statement`
 t.declareClass(id, typeParameters, extends, body)
 ```
 
-See also `t.isDeclareClass(node, opts)` and `t.assertDeclareClass(node, opts)`.
+参见 `t.isDeclareClass(node, opts)` 和 `t.assertDeclareClass(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `id` (required)
- - `typeParameters` (required)
- - `extends` (required)
- - `body` (required)
+ - `id` (必填)
+ - `typeParameters` (必填)
+ - `extends` (必填)
+ - `body` (必填)
 
 ---
 
@@ -415,13 +415,13 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.declareExportDeclaration(declaration, specifiers, source)
 ```
 
-See also `t.isDeclareExportDeclaration(node, opts)` and `t.assertDeclareExportDeclaration(node, opts)`.
+参见 `t.isDeclareExportDeclaration(node, opts)` 和 `t.assertDeclareExportDeclaration(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `declaration` (required)
- - `specifiers` (required)
- - `source` (required)
+ - `declaration` (必填)
+ - `specifiers` (必填)
+ - `source` (必填)
 
 ---
 
@@ -430,11 +430,11 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.declareFunction(id)
 ```
 
-See also `t.isDeclareFunction(node, opts)` and `t.assertDeclareFunction(node, opts)`.
+参见 `t.isDeclareFunction(node, opts)` 和 `t.assertDeclareFunction(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `id` (required)
+ - `id` (必填)
 
 ---
 
@@ -443,14 +443,14 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.declareInterface(id, typeParameters, extends, body)
 ```
 
-See also `t.isDeclareInterface(node, opts)` and `t.assertDeclareInterface(node, opts)`.
+参见 `t.isDeclareInterface(node, opts)` 和 `t.assertDeclareInterface(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `id` (required)
- - `typeParameters` (required)
- - `extends` (required)
- - `body` (required)
+ - `id` (必填)
+ - `typeParameters` (必填)
+ - `extends` (必填)
+ - `body` (必填)
 
 ---
 
@@ -459,12 +459,12 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.declareModule(id, body)
 ```
 
-See also `t.isDeclareModule(node, opts)` and `t.assertDeclareModule(node, opts)`.
+参见 `t.isDeclareModule(node, opts)` 和 `t.assertDeclareModule(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `id` (required)
- - `body` (required)
+ - `id` (必填)
+ - `body` (必填)
 
 ---
 
@@ -473,11 +473,11 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.declareModuleExports(typeAnnotation)
 ```
 
-See also `t.isDeclareModuleExports(node, opts)` and `t.assertDeclareModuleExports(node, opts)`.
+参见 `t.isDeclareModuleExports(node, opts)` 和 `t.assertDeclareModuleExports(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `typeAnnotation` (required)
+ - `typeAnnotation` (必填)
 
 ---
 
@@ -486,13 +486,13 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.declareOpaqueType(id, typeParameters, supertype)
 ```
 
-See also `t.isDeclareOpaqueType(node, opts)` and `t.assertDeclareOpaqueType(node, opts)`.
+参见 `t.isDeclareOpaqueType(node, opts)` 和 `t.assertDeclareOpaqueType(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `id` (required)
- - `typeParameters` (required)
- - `supertype` (required)
+ - `id` (必填)
+ - `typeParameters` (必填)
+ - `supertype` (必填)
 
 ---
 
@@ -501,13 +501,13 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.declareTypeAlias(id, typeParameters, right)
 ```
 
-See also `t.isDeclareTypeAlias(node, opts)` and `t.assertDeclareTypeAlias(node, opts)`.
+参见 `t.isDeclareTypeAlias(node, opts)` 和 `t.assertDeclareTypeAlias(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `id` (required)
- - `typeParameters` (required)
- - `right` (required)
+ - `id` (必填)
+ - `typeParameters` (必填)
+ - `right` (必填)
 
 ---
 
@@ -516,11 +516,11 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.declareVariable(id)
 ```
 
-See also `t.isDeclareVariable(node, opts)` and `t.assertDeclareVariable(node, opts)`.
+参见 `t.isDeclareVariable(node, opts)` 和 `t.assertDeclareVariable(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `id` (required)
+ - `id` (必填)
 
 ---
 
@@ -529,9 +529,9 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.decorator(expression)
 ```
 
-See also `t.isDecorator(node, opts)` and `t.assertDecorator(node, opts)`.
+参见 `t.isDecorator(node, opts)` 和 `t.assertDecorator(node, opts)` 。
 
- - `expression`: `Expression` (required)
+ - `expression`: `Expression` (必填)
 
 ---
 
@@ -540,9 +540,9 @@ See also `t.isDecorator(node, opts)` and `t.assertDecorator(node, opts)`.
 t.directive(value)
 ```
 
-See also `t.isDirective(node, opts)` and `t.assertDirective(node, opts)`.
+参见 `t.isDirective(node, opts)` 和 `t.assertDirective(node, opts)` 。
 
- - `value`: `DirectiveLiteral` (required)
+ - `value`: `DirectiveLiteral` (必填)
 
 ---
 
@@ -551,9 +551,9 @@ See also `t.isDirective(node, opts)` and `t.assertDirective(node, opts)`.
 t.directiveLiteral(value)
 ```
 
-See also `t.isDirectiveLiteral(node, opts)` and `t.assertDirectiveLiteral(node, opts)`.
+参见 `t.isDirectiveLiteral(node, opts)` 和 `t.assertDirectiveLiteral(node, opts)` 。
 
- - `value`: `string` (required)
+ - `value`: `string` (必填)
 
 ---
 
@@ -562,11 +562,11 @@ See also `t.isDirectiveLiteral(node, opts)` and `t.assertDirectiveLiteral(node, 
 t.doExpression(body)
 ```
 
-See also `t.isDoExpression(node, opts)` and `t.assertDoExpression(node, opts)`.
+参见 `t.isDoExpression(node, opts)` 和 `t.assertDoExpression(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
- - `body`: `BlockStatement` (required)
+ - `body`: `BlockStatement` (必填)
 
 ---
 
@@ -575,12 +575,12 @@ Aliases: `Expression`
 t.doWhileStatement(test, body)
 ```
 
-See also `t.isDoWhileStatement(node, opts)` and `t.assertDoWhileStatement(node, opts)`.
+参见 `t.isDoWhileStatement(node, opts)` 和 `t.assertDoWhileStatement(node, opts)` 。
 
-Aliases: `Statement`, `BlockParent`, `Loop`, `While`, `Scopable`
+别名: `Statement`, `BlockParent`, `Loop`, `While`, `Scopable`
 
- - `test`: `Expression` (required)
- - `body`: `Statement` (required)
+ - `test`: `Expression` (必填)
+ - `body`: `Statement` (必填)
 
 ---
 
@@ -589,9 +589,9 @@ Aliases: `Statement`, `BlockParent`, `Loop`, `While`, `Scopable`
 t.emptyStatement()
 ```
 
-See also `t.isEmptyStatement(node, opts)` and `t.assertEmptyStatement(node, opts)`.
+参见 `t.isEmptyStatement(node, opts)` 和 `t.assertEmptyStatement(node, opts)` 。
 
-Aliases: `Statement`
+别名: `Statement`
 
 
 ---
@@ -601,9 +601,9 @@ Aliases: `Statement`
 t.emptyTypeAnnotation()
 ```
 
-See also `t.isEmptyTypeAnnotation(node, opts)` and `t.assertEmptyTypeAnnotation(node, opts)`.
+参见 `t.isEmptyTypeAnnotation(node, opts)` 和 `t.assertEmptyTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`, `FlowBaseAnnotation`
+别名: `Flow`, `FlowBaseAnnotation`
 
 
 ---
@@ -613,9 +613,9 @@ Aliases: `Flow`, `FlowBaseAnnotation`
 t.existentialTypeParam()
 ```
 
-See also `t.isExistentialTypeParam(node, opts)` and `t.assertExistentialTypeParam(node, opts)`.
+参见 `t.isExistentialTypeParam(node, opts)` 和 `t.assertExistentialTypeParam(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
 
 ---
@@ -625,11 +625,11 @@ Aliases: `Flow`
 t.exportAllDeclaration(source)
 ```
 
-See also `t.isExportAllDeclaration(node, opts)` and `t.assertExportAllDeclaration(node, opts)`.
+参见 `t.isExportAllDeclaration(node, opts)` 和 `t.assertExportAllDeclaration(node, opts)` 。
 
-Aliases: `Statement`, `Declaration`, `ModuleDeclaration`, `ExportDeclaration`
+别名: `Statement`, `Declaration`, `ModuleDeclaration`, `ExportDeclaration`
 
- - `source`: `StringLiteral` (required)
+ - `source`: `StringLiteral` (必填)
 
 ---
 
@@ -638,11 +638,11 @@ Aliases: `Statement`, `Declaration`, `ModuleDeclaration`, `ExportDeclaration`
 t.exportDefaultDeclaration(declaration)
 ```
 
-See also `t.isExportDefaultDeclaration(node, opts)` and `t.assertExportDefaultDeclaration(node, opts)`.
+参见 `t.isExportDefaultDeclaration(node, opts)` 和 `t.assertExportDefaultDeclaration(node, opts)` 。
 
-Aliases: `Statement`, `Declaration`, `ModuleDeclaration`, `ExportDeclaration`
+别名: `Statement`, `Declaration`, `ModuleDeclaration`, `ExportDeclaration`
 
- - `declaration`: `FunctionDeclaration | ClassDeclaration | Expression` (required)
+ - `declaration`: `FunctionDeclaration | ClassDeclaration | Expression` (必填)
 
 ---
 
@@ -651,11 +651,11 @@ Aliases: `Statement`, `Declaration`, `ModuleDeclaration`, `ExportDeclaration`
 t.exportDefaultSpecifier(exported)
 ```
 
-See also `t.isExportDefaultSpecifier(node, opts)` and `t.assertExportDefaultSpecifier(node, opts)`.
+参见 `t.isExportDefaultSpecifier(node, opts)` 和 `t.assertExportDefaultSpecifier(node, opts)` 。
 
-Aliases: `ModuleSpecifier`
+别名: `ModuleSpecifier`
 
- - `exported`: `Identifier` (required)
+ - `exported`: `Identifier` (必填)
 
 ---
 
@@ -664,13 +664,13 @@ Aliases: `ModuleSpecifier`
 t.exportNamedDeclaration(declaration, specifiers, source)
 ```
 
-See also `t.isExportNamedDeclaration(node, opts)` and `t.assertExportNamedDeclaration(node, opts)`.
+参见 `t.isExportNamedDeclaration(node, opts)` 和 `t.assertExportNamedDeclaration(node, opts)` 。
 
-Aliases: `Statement`, `Declaration`, `ModuleDeclaration`, `ExportDeclaration`
+别名: `Statement`, `Declaration`, `ModuleDeclaration`, `ExportDeclaration`
 
- - `declaration`: `Declaration` (default: `null`)
- - `specifiers`: `Array<ExportSpecifier>` (required)
- - `source`: `StringLiteral` (default: `null`)
+ - `declaration`: `Declaration` (默认为：`null`)
+ - `specifiers`: `Array<ExportSpecifier>` (必填)
+ - `source`: `StringLiteral` (默认为：`null`)
 
 ---
 
@@ -679,11 +679,11 @@ Aliases: `Statement`, `Declaration`, `ModuleDeclaration`, `ExportDeclaration`
 t.exportNamespaceSpecifier(exported)
 ```
 
-See also `t.isExportNamespaceSpecifier(node, opts)` and `t.assertExportNamespaceSpecifier(node, opts)`.
+参见 `t.isExportNamespaceSpecifier(node, opts)` 和 `t.assertExportNamespaceSpecifier(node, opts)` 。
 
-Aliases: `ModuleSpecifier`
+别名: `ModuleSpecifier`
 
- - `exported`: `Identifier` (required)
+ - `exported`: `Identifier` (必填)
 
 ---
 
@@ -692,12 +692,12 @@ Aliases: `ModuleSpecifier`
 t.exportSpecifier(local, exported)
 ```
 
-See also `t.isExportSpecifier(node, opts)` and `t.assertExportSpecifier(node, opts)`.
+参见 `t.isExportSpecifier(node, opts)` 和 `t.assertExportSpecifier(node, opts)` 。
 
-Aliases: `ModuleSpecifier`
+别名: `ModuleSpecifier`
 
- - `local`: `Identifier` (required)
- - `exported`: `Identifier` (required)
+ - `local`: `Identifier` (必填)
+ - `exported`: `Identifier` (必填)
 
 ---
 
@@ -706,11 +706,11 @@ Aliases: `ModuleSpecifier`
 t.expressionStatement(expression)
 ```
 
-See also `t.isExpressionStatement(node, opts)` and `t.assertExpressionStatement(node, opts)`.
+参见 `t.isExpressionStatement(node, opts)` 和 `t.assertExpressionStatement(node, opts)` 。
 
-Aliases: `Statement`, `ExpressionWrapper`
+别名: `Statement`, `ExpressionWrapper`
 
- - `expression`: `Expression` (required)
+ - `expression`: `Expression` (必填)
 
 ---
 
@@ -719,11 +719,11 @@ Aliases: `Statement`, `ExpressionWrapper`
 t.file(program, comments, tokens)
 ```
 
-See also `t.isFile(node, opts)` and `t.assertFile(node, opts)`.
+参见 `t.isFile(node, opts)` 和 `t.assertFile(node, opts)` 。
 
- - `program`: `Program` (required)
- - `comments` (required)
- - `tokens` (required)
+ - `program`: `Program` (必填)
+ - `comments` (必填)
+ - `tokens` (必填)
 
 ---
 
@@ -732,13 +732,13 @@ See also `t.isFile(node, opts)` and `t.assertFile(node, opts)`.
 t.forAwaitStatement(left, right, body)
 ```
 
-See also `t.isForAwaitStatement(node, opts)` and `t.assertForAwaitStatement(node, opts)`.
+参见 `t.isForAwaitStatement(node, opts)` 和 `t.assertForAwaitStatement(node, opts)` 。
 
-Aliases: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`, `ForXStatement`
+别名: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`, `ForXStatement`
 
- - `left`: `VariableDeclaration | LVal` (required)
- - `right`: `Expression` (required)
- - `body`: `Statement` (required)
+ - `left`: `VariableDeclaration | LVal` (必填)
+ - `right`: `Expression` (必填)
+ - `body`: `Statement` (必填)
 
 ---
 
@@ -747,13 +747,13 @@ Aliases: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`, `ForXStatement`
 t.forInStatement(left, right, body)
 ```
 
-See also `t.isForInStatement(node, opts)` and `t.assertForInStatement(node, opts)`.
+参见 `t.isForInStatement(node, opts)` 和 `t.assertForInStatement(node, opts)` 。
 
-Aliases: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`, `ForXStatement`
+别名: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`, `ForXStatement`
 
- - `left`: `VariableDeclaration | LVal` (required)
- - `right`: `Expression` (required)
- - `body`: `Statement` (required)
+ - `left`: `VariableDeclaration | LVal` (必填)
+ - `right`: `Expression` (必填)
+ - `body`: `Statement` (必填)
 
 ---
 
@@ -762,13 +762,13 @@ Aliases: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`, `ForXStatement`
 t.forOfStatement(left, right, body)
 ```
 
-See also `t.isForOfStatement(node, opts)` and `t.assertForOfStatement(node, opts)`.
+参见 `t.isForOfStatement(node, opts)` 和 `t.assertForOfStatement(node, opts)` 。
 
-Aliases: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`, `ForXStatement`
+别名: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`, `ForXStatement`
 
- - `left`: `VariableDeclaration | LVal` (required)
- - `right`: `Expression` (required)
- - `body`: `Statement` (required)
+ - `left`: `VariableDeclaration | LVal` (必填)
+ - `right`: `Expression` (必填)
+ - `body`: `Statement` (必填)
 
 ---
 
@@ -777,14 +777,14 @@ Aliases: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`, `ForXStatement`
 t.forStatement(init, test, update, body)
 ```
 
-See also `t.isForStatement(node, opts)` and `t.assertForStatement(node, opts)`.
+参见 `t.isForStatement(node, opts)` 和 `t.assertForStatement(node, opts)` 。
 
-Aliases: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`
+别名: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`
 
- - `init`: `VariableDeclaration | Expression` (default: `null`)
- - `test`: `Expression` (default: `null`)
- - `update`: `Expression` (default: `null`)
- - `body`: `Statement` (required)
+ - `init`: `VariableDeclaration | Expression` (默认为：`null`)
+ - `test`: `Expression` (默认为：`null`)
+ - `update`: `Expression` (默认为：`null`)
+ - `body`: `Statement` (必填)
 
 ---
 
@@ -793,17 +793,17 @@ Aliases: `Scopable`, `Statement`, `For`, `BlockParent`, `Loop`
 t.functionDeclaration(id, params, body, generator, async)
 ```
 
-See also `t.isFunctionDeclaration(node, opts)` and `t.assertFunctionDeclaration(node, opts)`.
+参见 `t.isFunctionDeclaration(node, opts)` 和 `t.assertFunctionDeclaration(node, opts)` 。
 
-Aliases: `Scopable`, `Function`, `BlockParent`, `FunctionParent`, `Statement`, `Pureish`, `Declaration`
+别名: `Scopable`, `Function`, `BlockParent`, `FunctionParent`, `Statement`, `Pureish`, `Declaration`
 
- - `id`: `Identifier` (required)
- - `params`: `Array<LVal>` (required)
- - `body`: `BlockStatement` (required)
- - `generator`: `boolean` (default: `false`)
- - `async`: `boolean` (default: `false`)
- - `returnType` (default: `null`)
- - `typeParameters` (default: `null`)
+ - `id`: `Identifier` (必填)
+ - `params`: `Array<LVal>` (必填)
+ - `body`: `BlockStatement` (必填)
+ - `generator`: `boolean` (默认为：`false`)
+ - `async`: `boolean` (默认为：`false`)
+ - `returnType` (默认为：`null`)
+ - `typeParameters` (默认为：`null`)
 
 ---
 
@@ -812,17 +812,17 @@ Aliases: `Scopable`, `Function`, `BlockParent`, `FunctionParent`, `Statement`, `
 t.functionExpression(id, params, body, generator, async)
 ```
 
-See also `t.isFunctionExpression(node, opts)` and `t.assertFunctionExpression(node, opts)`.
+参见 `t.isFunctionExpression(node, opts)` 和 `t.assertFunctionExpression(node, opts)` 。
 
-Aliases: `Scopable`, `Function`, `BlockParent`, `FunctionParent`, `Expression`, `Pureish`
+别名: `Scopable`, `Function`, `BlockParent`, `FunctionParent`, `Expression`, `Pureish`
 
- - `id`: `Identifier` (default: `null`)
- - `params`: `Array<LVal>` (required)
- - `body`: `BlockStatement` (required)
- - `generator`: `boolean` (default: `false`)
- - `async`: `boolean` (default: `false`)
- - `returnType` (default: `null`)
- - `typeParameters` (default: `null`)
+ - `id`: `Identifier` (默认为：`null`)
+ - `params`: `Array<LVal>` (必填)
+ - `body`: `BlockStatement` (必填)
+ - `generator`: `boolean` (默认为：`false`)
+ - `async`: `boolean` (默认为：`false`)
+ - `returnType` (默认为：`null`)
+ - `typeParameters` (默认为：`null`)
 
 ---
 
@@ -831,14 +831,14 @@ Aliases: `Scopable`, `Function`, `BlockParent`, `FunctionParent`, `Expression`, 
 t.functionTypeAnnotation(typeParameters, params, rest, returnType)
 ```
 
-See also `t.isFunctionTypeAnnotation(node, opts)` and `t.assertFunctionTypeAnnotation(node, opts)`.
+参见 `t.isFunctionTypeAnnotation(node, opts)` 和 `t.assertFunctionTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `typeParameters` (required)
- - `params` (required)
- - `rest` (required)
- - `returnType` (required)
+ - `typeParameters` (必填)
+ - `params` (必填)
+ - `rest` (必填)
+ - `returnType` (必填)
 
 ---
 
@@ -847,12 +847,12 @@ Aliases: `Flow`
 t.functionTypeParam(name, typeAnnotation)
 ```
 
-See also `t.isFunctionTypeParam(node, opts)` and `t.assertFunctionTypeParam(node, opts)`.
+参见 `t.isFunctionTypeParam(node, opts)` 和 `t.assertFunctionTypeParam(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `name` (required)
- - `typeAnnotation` (required)
+ - `name` (必填)
+ - `typeAnnotation` (必填)
 
 ---
 
@@ -861,12 +861,12 @@ Aliases: `Flow`
 t.genericTypeAnnotation(id, typeParameters)
 ```
 
-See also `t.isGenericTypeAnnotation(node, opts)` and `t.assertGenericTypeAnnotation(node, opts)`.
+参见 `t.isGenericTypeAnnotation(node, opts)` 和 `t.assertGenericTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `id` (required)
- - `typeParameters` (required)
+ - `id` (必填)
+ - `typeParameters` (必填)
 
 ---
 
@@ -875,13 +875,13 @@ Aliases: `Flow`
 t.identifier(name)
 ```
 
-See also `t.isIdentifier(node, opts)` and `t.assertIdentifier(node, opts)`.
+参见 `t.isIdentifier(node, opts)` 和 `t.assertIdentifier(node, opts)` 。
 
-Aliases: `Expression`, `LVal`
+别名: `Expression`, `LVal`
 
- - `name``string` (required)
- - `decorators`: `Array<Decorator>` (default: `null`)
- - `typeAnnotation` (default: `null`)
+ - `name``string` (必填)
+ - `decorators`: `Array<Decorator>` (默认为：`null`)
+ - `typeAnnotation` (默认为：`null`)
 
 ---
 
@@ -890,13 +890,13 @@ Aliases: `Expression`, `LVal`
 t.ifStatement(test, consequent, alternate)
 ```
 
-See also `t.isIfStatement(node, opts)` and `t.assertIfStatement(node, opts)`.
+参见 `t.isIfStatement(node, opts)` 和 `t.assertIfStatement(node, opts)` 。
 
-Aliases: `Statement`, `Conditional`
+别名: `Statement`, `Conditional`
 
- - `test`: `Expression` (required)
- - `consequent`: `Statement` (required)
- - `alternate`: `Statement` (default: `null`)
+ - `test`: `Expression` (必填)
+ - `consequent`: `Statement` (必填)
+ - `alternate`: `Statement` (默认为：`null`)
 
 ---
 
@@ -905,9 +905,9 @@ Aliases: `Statement`, `Conditional`
 t.import()
 ```
 
-See also `t.isImport(node, opts)` and `t.assertImport(node, opts)`.
+参见 `t.isImport(node, opts)` 和 `t.assertImport(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
 
 ---
@@ -917,12 +917,12 @@ Aliases: `Expression`
 t.importDeclaration(specifiers, source)
 ```
 
-See also `t.isImportDeclaration(node, opts)` and `t.assertImportDeclaration(node, opts)`.
+参见 `t.isImportDeclaration(node, opts)` 和 `t.assertImportDeclaration(node, opts)` 。
 
-Aliases: `Statement`, `Declaration`, `ModuleDeclaration`
+别名: `Statement`, `Declaration`, `ModuleDeclaration`
 
- - `specifiers`: `Array<ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier>` (required)
- - `source`: `StringLiteral` (required)
+ - `specifiers`: `Array<ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier>` (必填)
+ - `source`: `StringLiteral` (必填)
 
 ---
 
@@ -931,11 +931,11 @@ Aliases: `Statement`, `Declaration`, `ModuleDeclaration`
 t.importDefaultSpecifier(local)
 ```
 
-See also `t.isImportDefaultSpecifier(node, opts)` and `t.assertImportDefaultSpecifier(node, opts)`.
+参见 `t.isImportDefaultSpecifier(node, opts)` 和 `t.assertImportDefaultSpecifier(node, opts)` 。
 
-Aliases: `ModuleSpecifier`
+别名: `ModuleSpecifier`
 
- - `local`: `Identifier` (required)
+ - `local`: `Identifier` (必填)
 
 ---
 
@@ -944,11 +944,11 @@ Aliases: `ModuleSpecifier`
 t.importNamespaceSpecifier(local)
 ```
 
-See also `t.isImportNamespaceSpecifier(node, opts)` and `t.assertImportNamespaceSpecifier(node, opts)`.
+参见 `t.isImportNamespaceSpecifier(node, opts)` 和 `t.assertImportNamespaceSpecifier(node, opts)` 。
 
-Aliases: `ModuleSpecifier`
+别名: `ModuleSpecifier`
 
- - `local`: `Identifier` (required)
+ - `local`: `Identifier` (必填)
 
 ---
 
@@ -957,13 +957,13 @@ Aliases: `ModuleSpecifier`
 t.importSpecifier(local, imported)
 ```
 
-See also `t.isImportSpecifier(node, opts)` and `t.assertImportSpecifier(node, opts)`.
+参见 `t.isImportSpecifier(node, opts)` 和 `t.assertImportSpecifier(node, opts)` 。
 
-Aliases: `ModuleSpecifier`
+别名: `ModuleSpecifier`
 
- - `local`: `Identifier` (required)
- - `imported`: `Identifier` (required)
- - `importKind`: `null | 'type' | 'typeof'` (default: `null`)
+ - `local`: `Identifier` (必填)
+ - `imported`: `Identifier` (必填)
+ - `importKind`: `null | 'type' | 'typeof'` (默认为：`null`)
 
 ---
 
@@ -972,14 +972,14 @@ Aliases: `ModuleSpecifier`
 t.interfaceDeclaration(id, typeParameters, extends, body)
 ```
 
-See also `t.isInterfaceDeclaration(node, opts)` and `t.assertInterfaceDeclaration(node, opts)`.
+参见 `t.isInterfaceDeclaration(node, opts)` 和 `t.assertInterfaceDeclaration(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `id` (required)
- - `typeParameters` (required)
- - `extends` (required)
- - `body` (required)
+ - `id` (必填)
+ - `typeParameters` (必填)
+ - `extends` (必填)
+ - `body` (必填)
 
 ---
 
@@ -988,12 +988,12 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.interfaceExtends(id, typeParameters)
 ```
 
-See also `t.isInterfaceExtends(node, opts)` and `t.assertInterfaceExtends(node, opts)`.
+参见 `t.isInterfaceExtends(node, opts)` 和 `t.assertInterfaceExtends(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `id` (required)
- - `typeParameters` (required)
+ - `id` (必填)
+ - `typeParameters` (必填)
 
 ---
 
@@ -1002,11 +1002,11 @@ Aliases: `Flow`
 t.intersectionTypeAnnotation(types)
 ```
 
-See also `t.isIntersectionTypeAnnotation(node, opts)` and `t.assertIntersectionTypeAnnotation(node, opts)`.
+参见 `t.isIntersectionTypeAnnotation(node, opts)` 和 `t.assertIntersectionTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `types` (required)
+ - `types` (必填)
 
 ---
 
@@ -1015,12 +1015,12 @@ Aliases: `Flow`
 t.jSXAttribute(name, value)
 ```
 
-See also `t.isJSXAttribute(node, opts)` and `t.assertJSXAttribute(node, opts)`.
+参见 `t.isJSXAttribute(node, opts)` 和 `t.assertJSXAttribute(node, opts)` 。
 
-Aliases: `JSX`, `Immutable`
+别名: `JSX`, `Immutable`
 
- - `name`: `JSXIdentifier | JSXNamespacedName` (required)
- - `value`: `JSXElement | StringLiteral | JSXExpressionContainer` (default: `null`)
+ - `name`: `JSXIdentifier | JSXNamespacedName` (必填)
+ - `value`: `JSXElement | StringLiteral | JSXExpressionContainer` (默认为：`null`)
 
 ---
 
@@ -1029,11 +1029,11 @@ Aliases: `JSX`, `Immutable`
 t.jSXClosingElement(name)
 ```
 
-See also `t.isJSXClosingElement(node, opts)` and `t.assertJSXClosingElement(node, opts)`.
+参见 `t.isJSXClosingElement(node, opts)` 和 `t.assertJSXClosingElement(node, opts)` 。
 
-Aliases: `JSX`, `Immutable`
+别名: `JSX`, `Immutable`
 
- - `name`: `JSXIdentifier | JSXMemberExpression` (required)
+ - `name`: `JSXIdentifier | JSXMemberExpression` (必填)
 
 ---
 
@@ -1042,14 +1042,14 @@ Aliases: `JSX`, `Immutable`
 t.jSXElement(openingElement, closingElement, children, selfClosing)
 ```
 
-See also `t.isJSXElement(node, opts)` and `t.assertJSXElement(node, opts)`.
+参见 `t.isJSXElement(node, opts)` 和 `t.assertJSXElement(node, opts)` 。
 
-Aliases: `JSX`, `Immutable`, `Expression`
+别名: `JSX`, `Immutable`, `Expression`
 
- - `openingElement`: `JSXOpeningElement` (required)
- - `closingElement`: `JSXClosingElement` (default: `null`)
- - `children`: `Array<JSXText | JSXExpressionContainer | JSXSpreadChild | JSXElement>` (required)
- - `selfClosing` (required)
+ - `openingElement`: `JSXOpeningElement` (必填)
+ - `closingElement`: `JSXClosingElement` (默认为：`null`)
+ - `children`: `Array<JSXText | JSXExpressionContainer | JSXSpreadChild | JSXElement>` (必填)
+ - `selfClosing` (必填)
 
 ---
 
@@ -1058,9 +1058,9 @@ Aliases: `JSX`, `Immutable`, `Expression`
 t.jSXEmptyExpression()
 ```
 
-See also `t.isJSXEmptyExpression(node, opts)` and `t.assertJSXEmptyExpression(node, opts)`.
+参见 `t.isJSXEmptyExpression(node, opts)` 和 `t.assertJSXEmptyExpression(node, opts)` 。
 
-Aliases: `JSX`, `Expression`
+别名: `JSX`, `Expression`
 
 
 ---
@@ -1070,11 +1070,11 @@ Aliases: `JSX`, `Expression`
 t.jSXExpressionContainer(expression)
 ```
 
-See also `t.isJSXExpressionContainer(node, opts)` and `t.assertJSXExpressionContainer(node, opts)`.
+参见 `t.isJSXExpressionContainer(node, opts)` 和 `t.assertJSXExpressionContainer(node, opts)` 。
 
-Aliases: `JSX`, `Immutable`
+别名: `JSX`, `Immutable`
 
- - `expression`: `Expression` (required)
+ - `expression`: `Expression` (必填)
 
 ---
 
@@ -1083,11 +1083,11 @@ Aliases: `JSX`, `Immutable`
 t.jSXIdentifier(name)
 ```
 
-See also `t.isJSXIdentifier(node, opts)` and `t.assertJSXIdentifier(node, opts)`.
+参见 `t.isJSXIdentifier(node, opts)` 和 `t.assertJSXIdentifier(node, opts)` 。
 
-Aliases: `JSX`, `Expression`
+别名: `JSX`, `Expression`
 
- - `name`: `string` (required)
+ - `name`: `string` (必填)
 
 ---
 
@@ -1096,12 +1096,12 @@ Aliases: `JSX`, `Expression`
 t.jSXMemberExpression(object, property)
 ```
 
-See also `t.isJSXMemberExpression(node, opts)` and `t.assertJSXMemberExpression(node, opts)`.
+参见 `t.isJSXMemberExpression(node, opts)` 和 `t.assertJSXMemberExpression(node, opts)` 。
 
-Aliases: `JSX`, `Expression`
+别名: `JSX`, `Expression`
 
- - `object`: `JSXMemberExpression | JSXIdentifier` (required)
- - `property`: `JSXIdentifier` (required)
+ - `object`: `JSXMemberExpression | JSXIdentifier` (必填)
+ - `property`: `JSXIdentifier` (必填)
 
 ---
 
@@ -1110,12 +1110,12 @@ Aliases: `JSX`, `Expression`
 t.jSXNamespacedName(namespace, name)
 ```
 
-See also `t.isJSXNamespacedName(node, opts)` and `t.assertJSXNamespacedName(node, opts)`.
+参见 `t.isJSXNamespacedName(node, opts)` 和 `t.assertJSXNamespacedName(node, opts)` 。
 
-Aliases: `JSX`
+别名: `JSX`
 
- - `namespace`: `JSXIdentifier` (required)
- - `name`: `JSXIdentifier` (required)
+ - `namespace`: `JSXIdentifier` (必填)
+ - `name`: `JSXIdentifier` (必填)
 
 ---
 
@@ -1124,13 +1124,13 @@ Aliases: `JSX`
 t.jSXOpeningElement(name, attributes, selfClosing)
 ```
 
-See also `t.isJSXOpeningElement(node, opts)` and `t.assertJSXOpeningElement(node, opts)`.
+参见 `t.isJSXOpeningElement(node, opts)` 和 `t.assertJSXOpeningElement(node, opts)` 。
 
-Aliases: `JSX`, `Immutable`
+别名: `JSX`, `Immutable`
 
- - `name`: `JSXIdentifier | JSXMemberExpression` (required)
- - `attributes`: `Array<JSXAttribute | JSXSpreadAttribute>` (required)
- - `selfClosing`: `boolean` (default: `false`)
+ - `name`: `JSXIdentifier | JSXMemberExpression` (必填)
+ - `attributes`: `Array<JSXAttribute | JSXSpreadAttribute>` (必填)
+ - `selfClosing`: `boolean` (默认为：`false`)
 
 ---
 
@@ -1139,11 +1139,11 @@ Aliases: `JSX`, `Immutable`
 t.jSXSpreadAttribute(argument)
 ```
 
-See also `t.isJSXSpreadAttribute(node, opts)` and `t.assertJSXSpreadAttribute(node, opts)`.
+参见 `t.isJSXSpreadAttribute(node, opts)` 和 `t.assertJSXSpreadAttribute(node, opts)` 。
 
-Aliases: `JSX`
+别名: `JSX`
 
- - `argument`: `Expression` (required)
+ - `argument`: `Expression` (必填)
 
 ---
 
@@ -1152,11 +1152,11 @@ Aliases: `JSX`
 t.jSXSpreadChild(expression)
 ```
 
-See also `t.isJSXSpreadChild(node, opts)` and `t.assertJSXSpreadChild(node, opts)`.
+参见 `t.isJSXSpreadChild(node, opts)` 和 `t.assertJSXSpreadChild(node, opts)` 。
 
-Aliases: `JSX`, `Immutable`
+别名: `JSX`, `Immutable`
 
- - `expression`: `Expression` (required)
+ - `expression`: `Expression` (必填)
 
 ---
 
@@ -1165,11 +1165,11 @@ Aliases: `JSX`, `Immutable`
 t.jSXText(value)
 ```
 
-See also `t.isJSXText(node, opts)` and `t.assertJSXText(node, opts)`.
+参见 `t.isJSXText(node, opts)` 和 `t.assertJSXText(node, opts)` 。
 
-Aliases: `JSX`, `Immutable`
+别名: `JSX`, `Immutable`
 
- - `value`: `string` (required)
+ - `value`: `string` (必填)
 
 ---
 
@@ -1178,12 +1178,12 @@ Aliases: `JSX`, `Immutable`
 t.labeledStatement(label, body)
 ```
 
-See also `t.isLabeledStatement(node, opts)` and `t.assertLabeledStatement(node, opts)`.
+参见 `t.isLabeledStatement(node, opts)` 和 `t.assertLabeledStatement(node, opts)` 。
 
-Aliases: `Statement`
+别名: `Statement`
 
- - `label`: `Identifier` (required)
- - `body`: `Statement` (required)
+ - `label`: `Identifier` (必填)
+ - `body`: `Statement` (必填)
 
 ---
 
@@ -1192,13 +1192,13 @@ Aliases: `Statement`
 t.logicalExpression(operator, left, right)
 ```
 
-See also `t.isLogicalExpression(node, opts)` and `t.assertLogicalExpression(node, opts)`.
+参见 `t.isLogicalExpression(node, opts)` 和 `t.assertLogicalExpression(node, opts)` 。
 
-Aliases: `Binary`, `Expression`
+别名: `Binary`, `Expression`
 
- - `operator`: `'||' | '&&'` (required)
- - `left`: `Expression` (required)
- - `right`: `Expression` (required)
+ - `operator`: `'||' | '&&'` (必填)
+ - `left`: `Expression` (必填)
+ - `right`: `Expression` (必填)
 
 ---
 
@@ -1207,13 +1207,13 @@ Aliases: `Binary`, `Expression`
 t.memberExpression(object, property, computed)
 ```
 
-See also `t.isMemberExpression(node, opts)` and `t.assertMemberExpression(node, opts)`.
+参见 `t.isMemberExpression(node, opts)` 和 `t.assertMemberExpression(node, opts)` 。
 
-Aliases: `Expression`, `LVal`
+别名: `Expression`, `LVal`
 
- - `object`: `Expression` (required)
- - `property`if computed then `Expression` else `Identifier` (required)
- - `computed`: `boolean` (default: `false`)
+ - `object`: `Expression` (必填)
+ - `property`if computed then `Expression` else `Identifier` (必填)
+ - `computed`: `boolean` (默认为：`false`)
 
 ---
 
@@ -1222,12 +1222,12 @@ Aliases: `Expression`, `LVal`
 t.metaProperty(meta, property)
 ```
 
-See also `t.isMetaProperty(node, opts)` and `t.assertMetaProperty(node, opts)`.
+参见 `t.isMetaProperty(node, opts)` 和 `t.assertMetaProperty(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
- - `meta`: `string` (required)
- - `property`: `string` (required)
+ - `meta`: `string` (必填)
+ - `property`: `string` (必填)
 
 ---
 
@@ -1236,9 +1236,9 @@ Aliases: `Expression`
 t.mixedTypeAnnotation()
 ```
 
-See also `t.isMixedTypeAnnotation(node, opts)` and `t.assertMixedTypeAnnotation(node, opts)`.
+参见 `t.isMixedTypeAnnotation(node, opts)` 和 `t.assertMixedTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`, `FlowBaseAnnotation`
+别名: `Flow`, `FlowBaseAnnotation`
 
 
 ---
@@ -1248,12 +1248,12 @@ Aliases: `Flow`, `FlowBaseAnnotation`
 t.newExpression(callee, arguments)
 ```
 
-See also `t.isNewExpression(node, opts)` and `t.assertNewExpression(node, opts)`.
+参见 `t.isNewExpression(node, opts)` 和 `t.assertNewExpression(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
- - `callee`: `Expression` (required)
- - `arguments`: `Array<Expression | SpreadElement>` (required)
+ - `callee`: `Expression` (必填)
+ - `arguments`: `Array<Expression | SpreadElement>` (必填)
 
 ---
 
@@ -1262,7 +1262,7 @@ Aliases: `Expression`
 t.noop()
 ```
 
-See also `t.isNoop(node, opts)` and `t.assertNoop(node, opts)`.
+参见 `t.isNoop(node, opts)` 和 `t.assertNoop(node, opts)` 。
 
 
 ---
@@ -1272,9 +1272,9 @@ See also `t.isNoop(node, opts)` and `t.assertNoop(node, opts)`.
 t.nullLiteral()
 ```
 
-See also `t.isNullLiteral(node, opts)` and `t.assertNullLiteral(node, opts)`.
+参见 `t.isNullLiteral(node, opts)` 和 `t.assertNullLiteral(node, opts)` 。
 
-Aliases: `Expression`, `Pureish`, `Literal`, `Immutable`
+别名: `Expression`, `Pureish`, `Literal`, `Immutable`
 
 
 ---
@@ -1284,9 +1284,9 @@ Aliases: `Expression`, `Pureish`, `Literal`, `Immutable`
 t.nullLiteralTypeAnnotation()
 ```
 
-See also `t.isNullLiteralTypeAnnotation(node, opts)` and `t.assertNullLiteralTypeAnnotation(node, opts)`.
+参见 `t.isNullLiteralTypeAnnotation(node, opts)` 和 `t.assertNullLiteralTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`, `FlowBaseAnnotation`
+别名: `Flow`, `FlowBaseAnnotation`
 
 
 ---
@@ -1296,11 +1296,11 @@ Aliases: `Flow`, `FlowBaseAnnotation`
 t.nullableTypeAnnotation(typeAnnotation)
 ```
 
-See also `t.isNullableTypeAnnotation(node, opts)` and `t.assertNullableTypeAnnotation(node, opts)`.
+参见 `t.isNullableTypeAnnotation(node, opts)` 和 `t.assertNullableTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `typeAnnotation` (required)
+ - `typeAnnotation` (必填)
 
 ---
 
@@ -1309,9 +1309,9 @@ Aliases: `Flow`
 t.numberTypeAnnotation()
 ```
 
-See also `t.isNumberTypeAnnotation(node, opts)` and `t.assertNumberTypeAnnotation(node, opts)`.
+参见 `t.isNumberTypeAnnotation(node, opts)` 和 `t.assertNumberTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`, `FlowBaseAnnotation`
+别名: `Flow`, `FlowBaseAnnotation`
 
 
 ---
@@ -1321,11 +1321,11 @@ Aliases: `Flow`, `FlowBaseAnnotation`
 t.numericLiteral(value)
 ```
 
-See also `t.isNumericLiteral(node, opts)` and `t.assertNumericLiteral(node, opts)`.
+参见 `t.isNumericLiteral(node, opts)` 和 `t.assertNumericLiteral(node, opts)` 。
 
-Aliases: `Expression`, `Pureish`, `Literal`, `Immutable`
+别名: `Expression`, `Pureish`, `Literal`, `Immutable`
 
- - `value`: `number` (required)
+ - `value`: `number` (必填)
 
 ---
 
@@ -1334,9 +1334,9 @@ Aliases: `Expression`, `Pureish`, `Literal`, `Immutable`
 t.numericLiteralTypeAnnotation()
 ```
 
-See also `t.isNumericLiteralTypeAnnotation(node, opts)` and `t.assertNumericLiteralTypeAnnotation(node, opts)`.
+参见 `t.isNumericLiteralTypeAnnotation(node, opts)` 和 `t.assertNumericLiteralTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
 
 ---
@@ -1346,11 +1346,11 @@ Aliases: `Flow`
 t.objectExpression(properties)
 ```
 
-See also `t.isObjectExpression(node, opts)` and `t.assertObjectExpression(node, opts)`.
+参见 `t.isObjectExpression(node, opts)` 和 `t.assertObjectExpression(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
- - `properties`: `Array<ObjectMethod | ObjectProperty | SpreadProperty>` (required)
+ - `properties`: `Array<ObjectMethod | ObjectProperty | SpreadProperty>` (必填)
 
 ---
 
@@ -1359,20 +1359,20 @@ Aliases: `Expression`
 t.objectMethod(kind, key, params, body, computed)
 ```
 
-See also `t.isObjectMethod(node, opts)` and `t.assertObjectMethod(node, opts)`.
+参见 `t.isObjectMethod(node, opts)` 和 `t.assertObjectMethod(node, opts)` 。
 
-Aliases: `UserWhitespacable`, `Function`, `Scopable`, `BlockParent`, `FunctionParent`, `Method`, `ObjectMember`
+别名: `UserWhitespacable`, `Function`, `Scopable`, `BlockParent`, `FunctionParent`, `Method`, `ObjectMember`
 
- - `kind`: `"method" | "get" | "set"` (default: `'method'`)
- - `key`if computed then `Expression` else `Identifier | Literal` (required)
- - `params` (required)
- - `body`: `BlockStatement` (required)
- - `computed`: `boolean` (default: `false`)
- - `async`: `boolean` (default: `false`)
- - `decorators`: `Array<Decorator>` (default: `null`)
- - `generator`: `boolean` (default: `false`)
- - `returnType` (default: `null`)
- - `typeParameters` (default: `null`)
+ - `kind`: `"method" | "get" | "set"` (默认为：`'method'`)
+ - `key`if computed then `Expression` else `Identifier | Literal` (必填)
+ - `params` (必填)
+ - `body`: `BlockStatement` (必填)
+ - `computed`: `boolean` (默认为：`false`)
+ - `async`: `boolean` (默认为：`false`)
+ - `decorators`: `Array<Decorator>` (默认为：`null`)
+ - `generator`: `boolean` (默认为：`false`)
+ - `returnType` (默认为：`null`)
+ - `typeParameters` (默认为：`null`)
 
 ---
 
@@ -1381,13 +1381,13 @@ Aliases: `UserWhitespacable`, `Function`, `Scopable`, `BlockParent`, `FunctionPa
 t.objectPattern(properties, typeAnnotation)
 ```
 
-See also `t.isObjectPattern(node, opts)` and `t.assertObjectPattern(node, opts)`.
+参见 `t.isObjectPattern(node, opts)` 和 `t.assertObjectPattern(node, opts)` 。
 
-Aliases: `Pattern`, `LVal`
+别名: `Pattern`, `LVal`
 
- - `properties`: `Array<RestProperty | Property>` (required)
- - `typeAnnotation` (required)
- - `decorators`: `Array<Decorator>` (default: `null`)
+ - `properties`: `Array<RestProperty | Property>` (必填)
+ - `typeAnnotation` (必填)
+ - `decorators`: `Array<Decorator>` (默认为：`null`)
 
 ---
 
@@ -1396,15 +1396,15 @@ Aliases: `Pattern`, `LVal`
 t.objectProperty(key, value, computed, shorthand, decorators)
 ```
 
-See also `t.isObjectProperty(node, opts)` and `t.assertObjectProperty(node, opts)`.
+参见 `t.isObjectProperty(node, opts)` 和 `t.assertObjectProperty(node, opts)` 。
 
-Aliases: `UserWhitespacable`, `Property`, `ObjectMember`
+别名: `UserWhitespacable`, `Property`, `ObjectMember`
 
- - `key`if computed then `Expression` else `Identifier | Literal` (required)
- - `value`: `Expression | Pattern | RestElement` (required)
- - `computed`: `boolean` (default: `false`)
- - `shorthand`: `boolean` (default: `false`)
- - `decorators`: `Array<Decorator>` (default: `null`)
+ - `key`if computed then `Expression` else `Identifier | Literal` (必填)
+ - `value`: `Expression | Pattern | RestElement` (必填)
+ - `computed`: `boolean` (默认为：`false`)
+ - `shorthand`: `boolean` (默认为：`false`)
+ - `decorators`: `Array<Decorator>` (默认为：`null`)
 
 ---
 
@@ -1413,13 +1413,13 @@ Aliases: `UserWhitespacable`, `Property`, `ObjectMember`
 t.objectTypeAnnotation(properties, indexers, callProperties)
 ```
 
-See also `t.isObjectTypeAnnotation(node, opts)` and `t.assertObjectTypeAnnotation(node, opts)`.
+参见 `t.isObjectTypeAnnotation(node, opts)` 和 `t.assertObjectTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `properties` (required)
- - `indexers` (required)
- - `callProperties` (required)
+ - `properties` (必填)
+ - `indexers` (必填)
+ - `callProperties` (必填)
 
 ---
 
@@ -1428,11 +1428,11 @@ Aliases: `Flow`
 t.objectTypeCallProperty(value)
 ```
 
-See also `t.isObjectTypeCallProperty(node, opts)` and `t.assertObjectTypeCallProperty(node, opts)`.
+参见 `t.isObjectTypeCallProperty(node, opts)` 和 `t.assertObjectTypeCallProperty(node, opts)` 。
 
-Aliases: `Flow`, `UserWhitespacable`
+别名: `Flow`, `UserWhitespacable`
 
- - `value` (required)
+ - `value` (必填)
 
 ---
 
@@ -1441,13 +1441,13 @@ Aliases: `Flow`, `UserWhitespacable`
 t.objectTypeIndexer(id, key, value)
 ```
 
-See also `t.isObjectTypeIndexer(node, opts)` and `t.assertObjectTypeIndexer(node, opts)`.
+参见 `t.isObjectTypeIndexer(node, opts)` 和 `t.assertObjectTypeIndexer(node, opts)` 。
 
-Aliases: `Flow`, `UserWhitespacable`
+别名: `Flow`, `UserWhitespacable`
 
- - `id` (required)
- - `key` (required)
- - `value` (required)
+ - `id` (必填)
+ - `key` (必填)
+ - `value` (必填)
 
 ---
 
@@ -1456,12 +1456,12 @@ Aliases: `Flow`, `UserWhitespacable`
 t.objectTypeProperty(key, value)
 ```
 
-See also `t.isObjectTypeProperty(node, opts)` and `t.assertObjectTypeProperty(node, opts)`.
+参见 `t.isObjectTypeProperty(node, opts)` 和 `t.assertObjectTypeProperty(node, opts)` 。
 
-Aliases: `Flow`, `UserWhitespacable`
+别名: `Flow`, `UserWhitespacable`
 
- - `key` (required)
- - `value` (required)
+ - `key` (必填)
+ - `value` (必填)
 
 ---
 
@@ -1470,11 +1470,11 @@ Aliases: `Flow`, `UserWhitespacable`
 t.objectTypeSpreadProperty(argument)
 ```
 
-See also `t.isObjectTypeSpreadProperty(node, opts)` and `t.assertObjectTypeSpreadProperty(node, opts)`.
+参见 `t.isObjectTypeSpreadProperty(node, opts)` 和 `t.assertObjectTypeSpreadProperty(node, opts)` 。
 
-Aliases: `Flow`, `UserWhitespacable`
+别名: `Flow`, `UserWhitespacable`
 
- - `argument` (required)
+ - `argument` (必填)
 
 ---
 
@@ -1483,14 +1483,14 @@ Aliases: `Flow`, `UserWhitespacable`
 t.opaqueType(id, typeParameters, impltype, supertype)
 ```
 
-See also `t.isOpaqueType(node, opts)` and `t.assertOpaqueType(node, opts)`.
+参见 `t.isOpaqueType(node, opts)` 和 `t.assertOpaqueType(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `id` (required)
- - `typeParameters` (required)
- - `impltype` (required)
- - `supertype` (required)
+ - `id` (必填)
+ - `typeParameters` (必填)
+ - `impltype` (必填)
+ - `supertype` (必填)
 
 ---
 
@@ -1499,11 +1499,11 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.parenthesizedExpression(expression)
 ```
 
-See also `t.isParenthesizedExpression(node, opts)` and `t.assertParenthesizedExpression(node, opts)`.
+参见 `t.isParenthesizedExpression(node, opts)` 和 `t.assertParenthesizedExpression(node, opts)` 。
 
-Aliases: `Expression`, `ExpressionWrapper`
+别名: `Expression`, `ExpressionWrapper`
 
- - `expression`: `Expression` (required)
+ - `expression`: `Expression` (必填)
 
 ---
 
@@ -1512,12 +1512,12 @@ Aliases: `Expression`, `ExpressionWrapper`
 t.program(body, directives)
 ```
 
-See also `t.isProgram(node, opts)` and `t.assertProgram(node, opts)`.
+参见 `t.isProgram(node, opts)` 和 `t.assertProgram(node, opts)` 。
 
-Aliases: `Scopable`, `BlockParent`, `Block`, `FunctionParent`
+别名: `Scopable`, `BlockParent`, `Block`, `FunctionParent`
 
- - `body`: `Array<Statement>` (required)
- - `directives`: `Array<Directive>` (default: `[]`)
+ - `body`: `Array<Statement>` (必填)
+ - `directives`: `Array<Directive>` (默认为：`[]`)
 
 ---
 
@@ -1526,12 +1526,12 @@ Aliases: `Scopable`, `BlockParent`, `Block`, `FunctionParent`
 t.qualifiedTypeIdentifier(id, qualification)
 ```
 
-See also `t.isQualifiedTypeIdentifier(node, opts)` and `t.assertQualifiedTypeIdentifier(node, opts)`.
+参见 `t.isQualifiedTypeIdentifier(node, opts)` 和 `t.assertQualifiedTypeIdentifier(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `id` (required)
- - `qualification` (required)
+ - `id` (必填)
+ - `qualification` (必填)
 
 ---
 
@@ -1540,12 +1540,12 @@ Aliases: `Flow`
 t.regExpLiteral(pattern, flags)
 ```
 
-See also `t.isRegExpLiteral(node, opts)` and `t.assertRegExpLiteral(node, opts)`.
+参见 `t.isRegExpLiteral(node, opts)` 和 `t.assertRegExpLiteral(node, opts)` 。
 
-Aliases: `Expression`, `Literal`
+别名: `Expression`, `Literal`
 
- - `pattern`: `string` (required)
- - `flags`: `string` (default: `''`)
+ - `pattern`: `string` (必填)
+ - `flags`: `string` (默认为：`''`)
 
 ---
 
@@ -1554,13 +1554,13 @@ Aliases: `Expression`, `Literal`
 t.restElement(argument, typeAnnotation)
 ```
 
-See also `t.isRestElement(node, opts)` and `t.assertRestElement(node, opts)`.
+参见 `t.isRestElement(node, opts)` 和 `t.assertRestElement(node, opts)` 。
 
-Aliases: `LVal`
+别名: `LVal`
 
- - `argument`: `LVal` (required)
- - `typeAnnotation` (required)
- - `decorators`: `Array<Decorator>` (default: `null`)
+ - `argument`: `LVal` (必填)
+ - `typeAnnotation` (必填)
+ - `decorators`: `Array<Decorator>` (默认为：`null`)
 
 ---
 
@@ -1569,11 +1569,11 @@ Aliases: `LVal`
 t.restProperty(argument)
 ```
 
-See also `t.isRestProperty(node, opts)` and `t.assertRestProperty(node, opts)`.
+参见 `t.isRestProperty(node, opts)` 和 `t.assertRestProperty(node, opts)` 。
 
-Aliases: `UnaryLike`
+别名: `UnaryLike`
 
- - `argument`: `LVal` (required)
+ - `argument`: `LVal` (必填)
 
 ---
 
@@ -1582,11 +1582,11 @@ Aliases: `UnaryLike`
 t.returnStatement(argument)
 ```
 
-See also `t.isReturnStatement(node, opts)` and `t.assertReturnStatement(node, opts)`.
+参见 `t.isReturnStatement(node, opts)` 和 `t.assertReturnStatement(node, opts)` 。
 
-Aliases: `Statement`, `Terminatorless`, `CompletionStatement`
+别名: `Statement`, `Terminatorless`, `CompletionStatement`
 
- - `argument`: `Expression` (default: `null`)
+ - `argument`: `Expression` (默认为：`null`)
 
 ---
 
@@ -1595,11 +1595,11 @@ Aliases: `Statement`, `Terminatorless`, `CompletionStatement`
 t.sequenceExpression(expressions)
 ```
 
-See also `t.isSequenceExpression(node, opts)` and `t.assertSequenceExpression(node, opts)`.
+参见 `t.isSequenceExpression(node, opts)` 和 `t.assertSequenceExpression(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
- - `expressions`: `Array<Expression>` (required)
+ - `expressions`: `Array<Expression>` (必填)
 
 ---
 
@@ -1608,11 +1608,11 @@ Aliases: `Expression`
 t.spreadElement(argument)
 ```
 
-See also `t.isSpreadElement(node, opts)` and `t.assertSpreadElement(node, opts)`.
+参见 `t.isSpreadElement(node, opts)` 和 `t.assertSpreadElement(node, opts)` 。
 
-Aliases: `UnaryLike`
+别名: `UnaryLike`
 
- - `argument`: `Expression` (required)
+ - `argument`: `Expression` (必填)
 
 ---
 
@@ -1621,11 +1621,11 @@ Aliases: `UnaryLike`
 t.spreadProperty(argument)
 ```
 
-See also `t.isSpreadProperty(node, opts)` and `t.assertSpreadProperty(node, opts)`.
+参见 `t.isSpreadProperty(node, opts)` 和 `t.assertSpreadProperty(node, opts)` 。
 
-Aliases: `UnaryLike`
+别名: `UnaryLike`
 
- - `argument`: `Expression` (required)
+ - `argument`: `Expression` (必填)
 
 ---
 
@@ -1634,11 +1634,11 @@ Aliases: `UnaryLike`
 t.stringLiteral(value)
 ```
 
-See also `t.isStringLiteral(node, opts)` and `t.assertStringLiteral(node, opts)`.
+参见 `t.isStringLiteral(node, opts)` 和 `t.assertStringLiteral(node, opts)` 。
 
-Aliases: `Expression`, `Pureish`, `Literal`, `Immutable`
+别名: `Expression`, `Pureish`, `Literal`, `Immutable`
 
- - `value`: `string` (required)
+ - `value`: `string` (必填)
 
 ---
 
@@ -1647,9 +1647,9 @@ Aliases: `Expression`, `Pureish`, `Literal`, `Immutable`
 t.stringLiteralTypeAnnotation()
 ```
 
-See also `t.isStringLiteralTypeAnnotation(node, opts)` and `t.assertStringLiteralTypeAnnotation(node, opts)`.
+参见 `t.isStringLiteralTypeAnnotation(node, opts)` 和 `t.assertStringLiteralTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
 
 ---
@@ -1659,9 +1659,9 @@ Aliases: `Flow`
 t.stringTypeAnnotation()
 ```
 
-See also `t.isStringTypeAnnotation(node, opts)` and `t.assertStringTypeAnnotation(node, opts)`.
+参见 `t.isStringTypeAnnotation(node, opts)` 和 `t.assertStringTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`, `FlowBaseAnnotation`
+别名: `Flow`, `FlowBaseAnnotation`
 
 
 ---
@@ -1671,9 +1671,9 @@ Aliases: `Flow`, `FlowBaseAnnotation`
 t.super()
 ```
 
-See also `t.isSuper(node, opts)` and `t.assertSuper(node, opts)`.
+参见 `t.isSuper(node, opts)` 和 `t.assertSuper(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
 
 ---
@@ -1683,10 +1683,10 @@ Aliases: `Expression`
 t.switchCase(test, consequent)
 ```
 
-See also `t.isSwitchCase(node, opts)` and `t.assertSwitchCase(node, opts)`.
+参见 `t.isSwitchCase(node, opts)` 和 `t.assertSwitchCase(node, opts)` 。
 
- - `test`: `Expression` (default: `null`)
- - `consequent`: `Array<Statement>` (required)
+ - `test`: `Expression` (默认为：`null`)
+ - `consequent`: `Array<Statement>` (必填)
 
 ---
 
@@ -1695,12 +1695,12 @@ See also `t.isSwitchCase(node, opts)` and `t.assertSwitchCase(node, opts)`.
 t.switchStatement(discriminant, cases)
 ```
 
-See also `t.isSwitchStatement(node, opts)` and `t.assertSwitchStatement(node, opts)`.
+参见 `t.isSwitchStatement(node, opts)` 和 `t.assertSwitchStatement(node, opts)` 。
 
-Aliases: `Statement`, `BlockParent`, `Scopable`
+别名: `Statement`, `BlockParent`, `Scopable`
 
- - `discriminant`: `Expression` (required)
- - `cases`: `Array<SwitchCase>` (required)
+ - `discriminant`: `Expression` (必填)
+ - `cases`: `Array<SwitchCase>` (必填)
 
 ---
 
@@ -1709,12 +1709,12 @@ Aliases: `Statement`, `BlockParent`, `Scopable`
 t.taggedTemplateExpression(tag, quasi)
 ```
 
-See also `t.isTaggedTemplateExpression(node, opts)` and `t.assertTaggedTemplateExpression(node, opts)`.
+参见 `t.isTaggedTemplateExpression(node, opts)` 和 `t.assertTaggedTemplateExpression(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
- - `tag`: `Expression` (required)
- - `quasi`: `TemplateLiteral` (required)
+ - `tag`: `Expression` (必填)
+ - `quasi`: `TemplateLiteral` (必填)
 
 ---
 
@@ -1723,10 +1723,10 @@ Aliases: `Expression`
 t.templateElement(value, tail)
 ```
 
-See also `t.isTemplateElement(node, opts)` and `t.assertTemplateElement(node, opts)`.
+参见 `t.isTemplateElement(node, opts)` 和 `t.assertTemplateElement(node, opts)` 。
 
- - `value` (required)
- - `tail`: `boolean` (default: `false`)
+ - `value` (必填)
+ - `tail`: `boolean` (默认为：`false`)
 
 ---
 
@@ -1735,12 +1735,12 @@ See also `t.isTemplateElement(node, opts)` and `t.assertTemplateElement(node, op
 t.templateLiteral(quasis, expressions)
 ```
 
-See also `t.isTemplateLiteral(node, opts)` and `t.assertTemplateLiteral(node, opts)`.
+参见 `t.isTemplateLiteral(node, opts)` 和 `t.assertTemplateLiteral(node, opts)` 。
 
-Aliases: `Expression`, `Literal`
+别名: `Expression`, `Literal`
 
- - `quasis`: `Array<TemplateElement>` (required)
- - `expressions`: `Array<Expression>` (required)
+ - `quasis`: `Array<TemplateElement>` (必填)
+ - `expressions`: `Array<Expression>` (必填)
 
 ---
 
@@ -1749,9 +1749,9 @@ Aliases: `Expression`, `Literal`
 t.thisExpression()
 ```
 
-See also `t.isThisExpression(node, opts)` and `t.assertThisExpression(node, opts)`.
+参见 `t.isThisExpression(node, opts)` 和 `t.assertThisExpression(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
 
 ---
@@ -1761,9 +1761,9 @@ Aliases: `Expression`
 t.thisTypeAnnotation()
 ```
 
-See also `t.isThisTypeAnnotation(node, opts)` and `t.assertThisTypeAnnotation(node, opts)`.
+参见 `t.isThisTypeAnnotation(node, opts)` 和 `t.assertThisTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`, `FlowBaseAnnotation`
+别名: `Flow`, `FlowBaseAnnotation`
 
 
 ---
@@ -1773,11 +1773,11 @@ Aliases: `Flow`, `FlowBaseAnnotation`
 t.throwStatement(argument)
 ```
 
-See also `t.isThrowStatement(node, opts)` and `t.assertThrowStatement(node, opts)`.
+参见 `t.isThrowStatement(node, opts)` 和 `t.assertThrowStatement(node, opts)` 。
 
-Aliases: `Statement`, `Terminatorless`, `CompletionStatement`
+别名: `Statement`, `Terminatorless`, `CompletionStatement`
 
- - `argument`: `Expression` (required)
+ - `argument`: `Expression` (必填)
 
 ---
 
@@ -1786,14 +1786,14 @@ Aliases: `Statement`, `Terminatorless`, `CompletionStatement`
 t.tryStatement(block, handler, finalizer)
 ```
 
-See also `t.isTryStatement(node, opts)` and `t.assertTryStatement(node, opts)`.
+参见 `t.isTryStatement(node, opts)` 和 `t.assertTryStatement(node, opts)` 。
 
-Aliases: `Statement`
+别名: `Statement`
 
- - `block` (required)
- - `handler` (default: `null`)
- - `finalizer`: `BlockStatement` (default: `null`)
- - `body`: `BlockStatement` (default: `null`)
+ - `block` (必填)
+ - `handler` (默认为：`null`)
+ - `finalizer`: `BlockStatement` (默认为：`null`)
+ - `body`: `BlockStatement` (默认为：`null`)
 
 ---
 
@@ -1802,11 +1802,11 @@ Aliases: `Statement`
 t.tupleTypeAnnotation(types)
 ```
 
-See also `t.isTupleTypeAnnotation(node, opts)` and `t.assertTupleTypeAnnotation(node, opts)`.
+参见 `t.isTupleTypeAnnotation(node, opts)` 和 `t.assertTupleTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `types` (required)
+ - `types` (必填)
 
 ---
 
@@ -1815,13 +1815,13 @@ Aliases: `Flow`
 t.typeAlias(id, typeParameters, right)
 ```
 
-See also `t.isTypeAlias(node, opts)` and `t.assertTypeAlias(node, opts)`.
+参见 `t.isTypeAlias(node, opts)` 和 `t.assertTypeAlias(node, opts)` 。
 
-Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
+别名: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 
- - `id` (required)
- - `typeParameters` (required)
- - `right` (required)
+ - `id` (必填)
+ - `typeParameters` (必填)
+ - `right` (必填)
 
 ---
 
@@ -1830,11 +1830,11 @@ Aliases: `Flow`, `FlowDeclaration`, `Statement`, `Declaration`
 t.typeAnnotation(typeAnnotation)
 ```
 
-See also `t.isTypeAnnotation(node, opts)` and `t.assertTypeAnnotation(node, opts)`.
+参见 `t.isTypeAnnotation(node, opts)` 和 `t.assertTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `typeAnnotation` (required)
+ - `typeAnnotation` (必填)
 
 ---
 
@@ -1843,12 +1843,12 @@ Aliases: `Flow`
 t.typeCastExpression(expression, typeAnnotation)
 ```
 
-See also `t.isTypeCastExpression(node, opts)` and `t.assertTypeCastExpression(node, opts)`.
+参见 `t.isTypeCastExpression(node, opts)` 和 `t.assertTypeCastExpression(node, opts)` 。
 
-Aliases: `Flow`, `ExpressionWrapper`, `Expression`
+别名: `Flow`, `ExpressionWrapper`, `Expression`
 
- - `expression` (required)
- - `typeAnnotation` (required)
+ - `expression` (必填)
+ - `typeAnnotation` (必填)
 
 ---
 
@@ -1857,11 +1857,11 @@ Aliases: `Flow`, `ExpressionWrapper`, `Expression`
 t.typeParameter(bound)
 ```
 
-See also `t.isTypeParameter(node, opts)` and `t.assertTypeParameter(node, opts)`.
+参见 `t.isTypeParameter(node, opts)` 和 `t.assertTypeParameter(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `bound` (required)
+ - `bound` (必填)
 
 ---
 
@@ -1870,11 +1870,11 @@ Aliases: `Flow`
 t.typeParameterDeclaration(params)
 ```
 
-See also `t.isTypeParameterDeclaration(node, opts)` and `t.assertTypeParameterDeclaration(node, opts)`.
+参见 `t.isTypeParameterDeclaration(node, opts)` 和 `t.assertTypeParameterDeclaration(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `params` (required)
+ - `params` (必填)
 
 ---
 
@@ -1883,11 +1883,11 @@ Aliases: `Flow`
 t.typeParameterInstantiation(params)
 ```
 
-See also `t.isTypeParameterInstantiation(node, opts)` and `t.assertTypeParameterInstantiation(node, opts)`.
+参见 `t.isTypeParameterInstantiation(node, opts)` 和 `t.assertTypeParameterInstantiation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `params` (required)
+ - `params` (必填)
 
 ---
 
@@ -1896,11 +1896,11 @@ Aliases: `Flow`
 t.typeofTypeAnnotation(argument)
 ```
 
-See also `t.isTypeofTypeAnnotation(node, opts)` and `t.assertTypeofTypeAnnotation(node, opts)`.
+参见 `t.isTypeofTypeAnnotation(node, opts)` 和 `t.assertTypeofTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `argument` (required)
+ - `argument` (必填)
 
 ---
 
@@ -1909,13 +1909,13 @@ Aliases: `Flow`
 t.unaryExpression(operator, argument, prefix)
 ```
 
-See also `t.isUnaryExpression(node, opts)` and `t.assertUnaryExpression(node, opts)`.
+参见 `t.isUnaryExpression(node, opts)` 和 `t.assertUnaryExpression(node, opts)` 。
 
-Aliases: `UnaryLike`, `Expression`
+别名: `UnaryLike`, `Expression`
 
- - `operator`: `'void' | 'delete' | '!' | '+' | '-' | '++' | '--' | '~' | 'typeof'` (required)
- - `argument`: `Expression` (required)
- - `prefix`: `boolean` (default: `true`)
+ - `operator`: `'void' | 'delete' | '!' | '+' | '-' | '++' | '--' | '~' | 'typeof'` (必填)
+ - `argument`: `Expression` (必填)
+ - `prefix`: `boolean` (默认为：`true`)
 
 ---
 
@@ -1924,11 +1924,11 @@ Aliases: `UnaryLike`, `Expression`
 t.unionTypeAnnotation(types)
 ```
 
-See also `t.isUnionTypeAnnotation(node, opts)` and `t.assertUnionTypeAnnotation(node, opts)`.
+参见 `t.isUnionTypeAnnotation(node, opts)` 和 `t.assertUnionTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`
+别名: `Flow`
 
- - `types` (required)
+ - `types` (必填)
 
 ---
 
@@ -1937,13 +1937,13 @@ Aliases: `Flow`
 t.updateExpression(operator, argument, prefix)
 ```
 
-See also `t.isUpdateExpression(node, opts)` and `t.assertUpdateExpression(node, opts)`.
+参见 `t.isUpdateExpression(node, opts)` 和 `t.assertUpdateExpression(node, opts)` 。
 
-Aliases: `Expression`
+别名: `Expression`
 
- - `operator`: `'++' | '--'` (required)
- - `argument`: `Expression` (required)
- - `prefix`: `boolean` (default: `false`)
+ - `operator`: `'++' | '--'` (必填)
+ - `argument`: `Expression` (必填)
+ - `prefix`: `boolean` (默认为：`false`)
 
 ---
 
@@ -1952,24 +1952,24 @@ Aliases: `Expression`
 t.variableDeclaration(kind, declarations)
 ```
 
-See also `t.isVariableDeclaration(node, opts)` and `t.assertVariableDeclaration(node, opts)`.
+参见 `t.isVariableDeclaration(node, opts)` 和 `t.assertVariableDeclaration(node, opts)` 。
 
-Aliases: `Statement`, `Declaration`
+别名: `Statement`, `Declaration`
 
- - `kind`: `"var" | "let" | "const"` (required)
- - `declarations`: `Array<VariableDeclarator>` (required)
+ - `kind`: `"var" | "let" | "const"` (必填)
+ - `declarations`: `Array<VariableDeclarator>` (必填)
 
----
+---` 。
 
 ### variableDeclarator
 ```javascript
 t.variableDeclarator(id, init)
 ```
 
-See also `t.isVariableDeclarator(node, opts)` and `t.assertVariableDeclarator(node, opts)`.
+参见 `t.isVariableDeclarator(node, opts)` 和 `t.assertVariableDeclarator(node, opts)` 。
 
- - `id`: `LVal` (required)
- - `init`: `Expression` (default: `null`)
+ - `id`: `LVal` (必填)
+ - `init`: `Expression` (默认为：`null`)
 
 ---
 
@@ -1978,9 +1978,9 @@ See also `t.isVariableDeclarator(node, opts)` and `t.assertVariableDeclarator(no
 t.voidTypeAnnotation()
 ```
 
-See also `t.isVoidTypeAnnotation(node, opts)` and `t.assertVoidTypeAnnotation(node, opts)`.
+参见 `t.isVoidTypeAnnotation(node, opts)` 和 `t.assertVoidTypeAnnotation(node, opts)` 。
 
-Aliases: `Flow`, `FlowBaseAnnotation`
+别名: `Flow`, `FlowBaseAnnotation`
 
 
 ---
@@ -1990,12 +1990,12 @@ Aliases: `Flow`, `FlowBaseAnnotation`
 t.whileStatement(test, body)
 ```
 
-See also `t.isWhileStatement(node, opts)` and `t.assertWhileStatement(node, opts)`.
+参见 `t.isWhileStatement(node, opts)` 和 `t.assertWhileStatement(node, opts)` 。
 
-Aliases: `Statement`, `BlockParent`, `Loop`, `While`, `Scopable`
+别名: `Statement`, `BlockParent`, `Loop`, `While`, `Scopable`
 
- - `test`: `Expression` (required)
- - `body`: `BlockStatement | Statement` (required)
+ - `test`: `Expression` (必填)
+ - `body`: `BlockStatement | Statement` (必填)
 
 ---
 
@@ -2004,12 +2004,12 @@ Aliases: `Statement`, `BlockParent`, `Loop`, `While`, `Scopable`
 t.withStatement(object, body)
 ```
 
-See also `t.isWithStatement(node, opts)` and `t.assertWithStatement(node, opts)`.
+参见 `t.isWithStatement(node, opts)` 和 `t.assertWithStatement(node, opts)` 。
 
-Aliases: `Statement`
+别名: `Statement`
 
- - `object` (required)
- - `body`: `BlockStatement | Statement` (required)
+ - `object` (必填)
+ - `body`: `BlockStatement | Statement` (必填)
 
 ---
 
@@ -2018,12 +2018,12 @@ Aliases: `Statement`
 t.yieldExpression(argument, delegate)
 ```
 
-See also `t.isYieldExpression(node, opts)` and `t.assertYieldExpression(node, opts)`.
+参见 `t.isYieldExpression(node, opts)` 和 `t.assertYieldExpression(node, opts)` 。
 
-Aliases: `Expression`, `Terminatorless`
+别名: `Expression`, `Terminatorless`
 
- - `argument`: `Expression` (default: `null`)
- - `delegate`: `boolean` (default: `false`)
+ - `argument`: `Expression` (默认为：`null`)
+ - `delegate`: `boolean` (默认为：`false`)
 
 ---
 
