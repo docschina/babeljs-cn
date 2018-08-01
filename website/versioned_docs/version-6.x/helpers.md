@@ -5,13 +5,13 @@ sidebar_label: babel-helpers
 original_id: babel-helpers
 ---
 
-## Install
+## 安装
 
 ```sh
 npm install --save-dev babel-helpers
 ```
 
-## Usage
+## 用法
 
 ```js
 import * as helpers from 'babel-helpers';
