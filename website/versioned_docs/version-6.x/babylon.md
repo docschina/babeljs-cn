@@ -6,7 +6,7 @@ original_id: babylon
 ---
 
 <p align="center">
-  Babylon is a JavaScript parser used in <a href="https://github.com/babel/babel">Babel</a>.
+  Babylon 是 <a href="https://github.com/babel/babel">Babel</a> 中使用的 JavaScript 解析器。
 </p>
 
 <p align="center">
@@ -14,17 +14,14 @@ original_id: babylon
   <a href="https://codecov.io/gh/babel/babylon"><img alt="Codecov Status" src="https://img.shields.io/codecov/c/github/babel/babylon/master.svg?style=flat"></a>
 </p>
 
- - The latest ECMAScript version enabled by default (ES2017).
- - Comment attachment.
- - Support for JSX and Flow.
- - Support for experimental language proposals (accepting PRs for anything at least [stage-0](https://github.com/tc39/proposals/blob/master/stage-0-proposals.md)).
+- 默认启用最新的 ECMAScript 版本(ES2017)。
+- 附加注释。
+- 支持 JSX, Flow, Typescript 语法。
+- 支持实验阶段的语法提案（支持至少达到 [stage-0](https://github.com/tc39/proposals/blob/master/stage-0-proposals.md) 阶段的 PR）。
 
-## Credits
+## 鸣谢
 
-Heavily based on [acorn](https://github.com/marijnh/acorn) and [acorn-jsx](https://github.com/RReverser/acorn-jsx),
-thanks to the awesome work of [@RReverser](https://github.com/RReverser) and [@marijnh](https://github.com/marijnh).
-
-Significant diversions are expected to occur in the future such as streaming, EBNF definitions, sweet.js integration, interspatial parsing and more.
+该项目中使用了大量的 [acorn](https://github.com/marijnh/acorn) 和 [acorn-jsx](https://github.com/RReverser/acorn-jsx) 语法，感谢 [@RReverser](https://github.com/RReverser) 和 [@marijnh](https://github.com/marijnh) 出色的工作。
 
 ## API
 
@@ -32,47 +29,43 @@ Significant diversions are expected to occur in the future such as streaming, EB
 
 ### `babylon.parseExpression(code, [options])`
 
-`parse()` parses the provided `code` as an entire ECMAScript program, while
-`parseExpression()` tries to parse a single Expression with performance in
-mind. When in doubt, use `.parse()`.
+`parse()` 将提供的 `code` 解析为完整的 ECMAScript 程序，而 `parseExpression()` 试图解析表达式，并会考虑性能问题。如果有疑问，请使用 `.parse()`。
 
-### Options
+### 选项
 
-- **allowImportExportEverywhere**: By default, `import` and `export`
-  declarations can only appear at a program's top level. Setting this
-  option to `true` allows them anywhere where a statement is allowed.
+- **allowImportExportEverywhere**: 默认情况下，`import` 和 `export` 声明只能出现在代码头部。设置该选项为 `true` 时，则允许他们在代码的任何地方使用。
 
-- **allowReturnOutsideFunction**: By default, a return statement at
-  the top level raises an error. Set this to `true` to accept such
-  code.
+- **allowReturnOutsideFunction**: 默认情况下，顶级的 return 语句会引发错误。设置该选项为 `true` 时，则会接受错误的代码。
 
 - **allowSuperOutsideMethod**: TODO
 
-- **sourceType**: Indicate the mode the code should be parsed in. Can be
-  either `"script"` or `"module"`.
+- **sourceType**: 表明代码应该解析的模式。可以是 `"script"`，`"module"` 或者 `"unambiguous"` 中任意一个。默认为 `"script"`。`"unambiguous"` 将使得 Babylon 尝试根据 ES6 的 `import` 或者 `export` 声明来进行_推测_。具有 ES6 `import` 和 `export` 的文件被认为是 `"module"`，否则被认为是 `"script"`。
 
-- **sourceFilename**: Correlate output AST nodes with their source filename.  Useful when generating code and source maps from the ASTs of multiple input files.
+- **sourceFilename**: 将输出的 AST 节点与其源文件名相关联。多用于多个输入文件的 AST 生成代码和 source map 时。
 
-- **startLine**: By default, the first line of code parsed is treated as line 1. You can provide a line number to alternatively start with. Useful for integration with other source tools.
+- **startLine**: 默认情况下，解析的第一行代码被视为第 1 行。你可以提供一个行号来作为起始。多用于与其他源工具集成。
 
-- **plugins**: Array containing the plugins that you want to enable.
+- **plugins**: 数组，包含要启用的插件。
 
 - **strictMode**: TODO
 
-### Output
+- **ranges**: 为每个节点添加 `ranges` 属性: `[node.start, node.end]`
 
-Babylon generates AST according to [Babel AST format][].
-It is based on [ESTree spec][] with the following deviations:
+- **tokens**: 将所有解析的 token 添加到 `File` 节点的上的 `tokens` 属性中。
 
-> There is now an `estree` plugin which reverts these deviations
+### 输出
 
-- [Literal][] token is replaced with [StringLiteral][], [NumericLiteral][], [BooleanLiteral][], [NullLiteral][], [RegExpLiteral][]
-- [Property][] token is replaced with [ObjectProperty][] and [ObjectMethod][]
-- [MethodDefinition][] is replaced with [ClassMethod][]
-- [Program][] and [BlockStatement][] contain additional `directives` field with [Directive][] and [DirectiveLiteral][]
-- [ClassMethod][], [ObjectProperty][], and [ObjectMethod][] value property's properties in [FunctionExpression][] is coerced/brought into the main method node.
+Babylon 根据 [Babel AST 的格式][Babel AST format] 生成 AST 。它基于 [ESTree 规范][ESTree spec]，具有以下差别：
 
-AST for JSX code is based on [Facebook JSX AST][] with the addition of one node type:
+> 现在可以使用 `estree` 插件来取消掉这些差别
+
+- [文字][Literal]符号会被替换为[字符串][StringLiteral]，[数字][NumericLiteral]，[布尔][BooleanLiteral]，[Null][NullLiteral]，[正则表达式][RegExpLiteral]
+- [属性][Property]符号会被替换为 [ObjectProperty][] 和 [ObjectMethod][]
+- [方法定义][MethodDefinition]会被替换为[类方法][ClassMethod]
+- [指令][Program]和[语法块][BlockStatement]的 `directives` 字段中包含额外的[指令][Directive]和[指令字符集][DirectiveLiteral]
+- [函数表达式][FunctionExpression]中的[类方法][ClassMethod]，[对象属性][ObjectProperty]和[对象方法][ObjectMethod]值属性的属性被强制/带入主方法节点。
+
+JSX 的 AST 代码基于 [Facebook JSX AST][] 并额外添加了一个节点类型:
 
 - `JSXText`
 
@@ -101,33 +94,33 @@ AST for JSX code is based on [Facebook JSX AST][] with the addition of one node 
 
 ### Semver
 
-Babylon follows semver in most situations. The only thing to note is that some spec-compliancy bug fixes may be released under patch versions.
+Babylon 在大多数情况下遵循 semver。唯一需要注意的是，某些规范遵从性错误的修复可能会在下一个补丁版本中发布。
 
-For example: We push a fix to early error on something like [#107](https://github.com/babel/babylon/pull/107) - multiple default exports per file. That would be considered a bug fix even though it would cause a build to fail.
+例如：我们推送了修复早期错误的代码，就像[#107](https://github.com/babel/babylon/pull/107) - 多个文件默认导出多个。这被视为一个错误进行修复，即时它会导致构建失败。
 
-### Example
+### 案例
 
 ```javascript
 require("babylon").parse("code", {
-  // parse in strict mode and allow module declarations
+  // 以严格模式解析并允许模块声明
   sourceType: "module",
 
   plugins: [
-    // enable jsx and flow syntax
+    // 启用 jsx 和 flow 语法
     "jsx",
     "flow"
   ]
 });
 ```
 
-### Plugins
+### 插件
 
  - `estree`
  - `jsx`
  - `flow`
  - `doExpressions`
  - `objectRestSpread`
- - `decorators` (Based on an outdated version of the Decorators proposal. Will be removed in a future version of `Babylon`)
+ - `decorators`（基于过时版本的 Decorators 提案。将在 `Babylon` 的未来版本中删除。）
  - `classProperties`
  - `exportExtensions`
  - `asyncGenerators`
