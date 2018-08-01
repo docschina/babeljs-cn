@@ -5,36 +5,36 @@ sidebar_label: stage-3
 original_id: babel-preset-stage-3
 ---
 
-The gist of Stage 3 is:
+Stage 3 的要点是：
 
-> **Stage 3**: candidate
+> **Stage 3**: 候选提案
 >
-> **What is it?** The proposal is mostly finished and now needs feedback from implementations and users to progress further.
-
-> **What’s required?** The spec text must be complete. Designated reviewers (appointed by TC39, not by the champion) and the ECMAScript spec editor must sign off on the spec text. There must be at least two spec-compliant implementations (which don’t have to be enabled by default).
+> **该阶段含义是？** 该提案已基本完成，接下来需要收集实现和使用者的反馈才能进一步发展。
 >
-> **What’s next?** Henceforth, changes should only be made in response to critical issues raised by the implementations and their use.
+> **该阶段的要求是？** 规范文本必须完整。指定的审阅者（由 TC39 指定，而非负责人）和 ECMAScript 规范的编者必须在规范上签名。必须至少有两个符合规范的实现（无需默认启用）。
+>
+> **下一步规划？** 此后，只有在实现和使用过程中出现了重大问题才能修改。
 
-This preset includes the following plugins:
+该 preset 包含以下插件：
 
-- [transform-object-rest-spread](https://babeljs.io/docs/en/babel-plugin-transform-object-rest-spread)
-- [transform-async-generator-functions](https://babeljs.io/docs/en/babel-plugin-transform-async-generator-functions)
+- [transform-object-rest-spread](babel-plugin-transform-object-rest-spread)
+- [transform-async-generator-functions](babel-plugin-transform-async-generator-functions)
 
-> trailing-commas, async, exponentiation will be removed in the next major since they are stage 4 already
+> 尾后逗号, async, 幂运算将在下一个主版本中移除，因为他们已经属于第 4 阶段。
 
-- [syntax-trailing-function-commas](https://babeljs.io/docs/en/babel-plugin-syntax-trailing-function-commas)
-- [transform-async-to-generator](https://babeljs.io/docs/en/babel-plugin-transform-async-to-generator)
-- [transform-exponentiation-operator](https://babeljs.io/docs/en/babel-plugin-transform-exponentiation-operator)
+- [syntax-trailing-function-commas](babel-plugin-syntax-trailing-function-commas)
+- [transform-async-to-generator](babel-plugin-transform-async-to-generator)
+- [transform-exponentiation-operator](babel-plugin-transform-exponentiation-operator)
 
-## Install
+## 安装
 
 ```sh
 npm install --save-dev babel-preset-stage-3
 ```
 
-## Usage
+## 使用
 
-### Via `.babelrc` (Recommended)
+### 通过 `.babelrc` 文件（推荐）
 
 **.babelrc**
 
@@ -44,13 +44,13 @@ npm install --save-dev babel-preset-stage-3
 }
 ```
 
-### Via CLI
+### 通过 CLI
 
 ```sh
 babel script.js --presets stage-3
 ```
 
-### Via Node API
+### 通过 Node API
 
 ```javascript
 require("babel-core").transform("code", {
@@ -58,7 +58,6 @@ require("babel-core").transform("code", {
 });
 ```
 
-## References
+## 参考资料
 
-- Chapter "[The TC39 process for ECMAScript features](http://exploringjs.com/es2016-es2017/ch_tc39-process.html)" in "Exploring ES2016 and ES2017" by Axel Rauschmayer
-
+- Axel Rauschmayer 在 "探索 ES2016 和 ES2017" 中的 "[TC39 的 ECMAScript 特性的流程](http://exploringjs.com/es2016-es2017/ch_tc39-process.html)" 章节。
