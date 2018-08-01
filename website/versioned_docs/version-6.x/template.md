@@ -5,15 +5,15 @@ sidebar_label: babel-template
 original_id: babel-template
 ---
 
-In computer science, this is known as an implementation of quasiquotes.
+在计算机科学中，这被称为 quasiquotes(逆符号) 的实现。
 
-## Install
+## 安装
 
 ```sh
 npm install --save-dev babel-template
 ```
 
-## Usage
+## 使用
 
 ```js
 import template from "babel-template";
@@ -42,27 +42,24 @@ const myModule = require("my-module");
 
 #### code
 
-Type: `string`
+类型: `string`
 
 #### options
 
-`babel-template` accepts all of the options from [babylon], and specifies
-some defaults of its own:
+`babel-template` 接收 [babylon] 中的所有选项，并为它自己指定一些默认值：
 
-* `allowReturnOutsideFunction` is set to `true` by default.
-* `allowSuperOutsideMethod` is set to `true` by default.
+* `allowReturnOutsideFunction` 默认设置为 `true` 。
+* `allowSuperOutsideMethod` 默认设置为 `true` 。
 
 ##### preserveComments
 
-Type: `boolean`
-Default: `false`
+类型: `boolean`
+默认值: `false`
 
-Set this to `true` to preserve any comments from the `code` parameter.
+将其设置为 `true` 以保留来自 `code` 参数的任何注释.
 
-#### Return value
+#### 返回值
 
-`babel-template` returns a `function` which is invoked with an optional object
-of replacements. See the usage section for an example.
+`babel-template` 返回一个带有可选替换对象一起调用的 `function` 。有关示例，请参阅用法部分。
 
 [babylon]: https://github.com/babel/babylon#options
-
