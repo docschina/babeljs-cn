@@ -5,13 +5,13 @@ sidebar_label: babel-generator
 original_id: babel-generator
 ---
 
-## Install
+## 安装
 
 ```sh
 npm install --save-dev babel-generator
 ```
 
-## Usage
+## 使用
 
 ```js
 import {parse} from 'babylon';
@@ -20,47 +20,43 @@ import generate from 'babel-generator';
 const code = 'class Example {}';
 const ast = parse(code);
 
-const output = generate(ast, { /* options */ }, code);
+const output = generate(ast, { /* 选项 */ }, code);
 ```
 
-## Options
+## 选项
 
-Options for formatting output:
+格式化输出的选项：
 
-name                   | type     | default         | description
+选项名                   | 类型     | 默认值         | 描述
 -----------------------|----------|-----------------|--------------------------------------------------------------------------
-auxiliaryCommentBefore | string   |                 | Optional string to add as a block comment at the start of the output file
-auxiliaryCommentAfter  | string   |                 | Optional string to add as a block comment at the end of the output file
-shouldPrintComment     | function | `opts.comments` | Function that takes a comment (as a string) and returns `true` if the comment should be included in the output.  By default, comments are included if `opts.comments` is `true` or if `opts.minifed` is `false` and the comment contains `@preserve` or `@license`
-retainLines            | boolean  | `false`         | Attempt to use the same line numbers in the output code as in the source code (helps preserve stack traces)
-retainFunctionParens   | boolean  | `false`         | Retain parens around function expressions (could be used to change engine parsing behavior)
-comments               | boolean  | `true`          | Should comments be included in output
-compact                | boolean or `'auto'` | `opts.minified` | Set to `true` to avoid adding whitespace for formatting
-minified               | boolean  | `false`         | Should the output be minified
-concise                | boolean  | `false`         | Set to `true` to reduce whitespace (but not as much as `opts.compact`)
-quotes                 | `'single'` or `'double'` | autodetect based on `ast.tokens` | The type of quote to use in the output
-filename               | string   |                 | Used in warning messages
-flowCommaSeparator     | boolean  | `false`         | Set to `true` to use commas instead of semicolons as Flow property separators
-jsonCompatibleStrings  | boolean  | `false`         | Set to true to run `jsesc` with "json": true to print "\u00A9" vs. "©";
+auxiliaryCommentBefore | string   |                 | 可选字符串，在输出文件的开始添加块注释
+auxiliaryCommentAfter  | string   |                 | 可选字符串，在输出文件的末尾添加块注释
+shouldPrintComment     | function | `opts.comments` | 如果注释需要包含在输出中，该函数则需接受注释（作为字符串）并返回 `true` 。 默认情况下，如果 `opts.commoents` 为 `true` 或者 `opts.minifed` 为 `false` 并且注释中包含 `@preserve` 或 `@license`，则包含注释。
+retainLines            | boolean  | `false`         | 尝试在输出的代码中使用与源代码相同的行号(有助于保留栈信息跟踪)
+retainFunctionParens   | boolean  | `false`         | 保留函数表达式的上下级 (可用于更改引擎解析行为)
+comments               | boolean  | `true`          | 输出中是否包含注释
+compact                | boolean or `'auto'` | `opts.minified` | 设置为 `true` 以避免添加用于格式化的空格
+minified               | boolean  | `false`         | 输出是否被压缩
+concise                | boolean  | `false`         | 设置为 `true` 以减少空格 (但效果不如 `opts.compact` )
+quotes                 | `'single'` or `'double'` | 基于 `ast.tokens` 的自动检测 | 输出中对引号的类型进行保留
+filename               | string   |                 | 在警告信息中使用
+flowCommaSeparator     | boolean  | `false`         | 设置为 `true` 以使用逗号而不是分号作为 Flow 属性的分隔符
+jsonCompatibleStrings  | boolean  | `false`         | 设置为 `true`，使用 "json" 运行 `jsesc`：正确的将 "\u00A9" 打印为 "©" ;
 
-Options for source maps:
+source maps 的选项:
 
-name                   | type     | default         | description
+选项名                   | 类型     | 默认值         | 描述
 -----------------------|----------|-----------------|--------------------------------------------------------------------------
-sourceMaps             | boolean  | `false`         | Enable generating source maps
-sourceMapTarget        | string   |                 | The filename of the generated code that the source map will be associated with
-sourceRoot             | string   |                 | A root for all relative URLs in the source map
-sourceFileName         | string   |                 | The filename for the source code (i.e. the code in the `code` argument).  This will only be used if `code` is a string.
+sourceMaps             | boolean  | `false`         | 启用生成 source maps
+sourceMapTarget        | string   |                 | source map 会与生成代码的文件名进行关联
+sourceRoot             | string   |                 | source map 中所有对应 URLs 的 root
+sourceFileName         | string   |                 | 源代码（例如，  `code` 参数中的代码）的文件名。只会在 `code` 为字符串时使用。
 
-## AST from Multiple Sources
+## 多个来源构建 AST
 
-In most cases, Babel does a 1:1 transformation of input-file to output-file.  However,
-you may be dealing with AST constructed from multiple sources - JS files, templates, etc.
-If this is the case, and you want the sourcemaps to reflect the correct sources, you'll need
-to pass an object to `generate` as the `code` parameter.  Keys
-should be the source filenames, and values should be the source content.
+在大多数情况下，Babel 会将输入文件与输出文件进行 1:1 转换。然而，你可能正在处理从多个来源构建的 AST - JS 文件，模板等。如果出现这种情况，并且你还希望 source map 为你提供正确的来源，则需要将一个对象作为 `code` 参数传递给 `generate`。其中键应该为源文件名称，值应该为源内容。
 
-Here's an example of what that might look like:
+这是一个差不多的例子：
 
 ```js
 import {parse} from 'babylon';
@@ -80,6 +76,5 @@ const { code, map } = generate(ast, { sourceMaps: true }, {
   'b.js': b
 });
 
-// Sourcemap will point to both a.js and b.js where appropriate.
+// 在适当情况下，source map 会指向 a.js 和 b.js 。
 ```
-
