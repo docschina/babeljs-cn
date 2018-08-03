@@ -26,12 +26,10 @@ class Users extends React.Component {
         <Container padding={["bottom"]}>
           <div className="showcaseSection">
             <div className="prose">
-              <h1>See who is using Babel</h1>
+              <h1>谁在使用 Babel ?</h1>
               <p>
-                Logos are submitted by company and project representatives.
-                These companies may or may not be using Babel on their main web
-                properties, but they are definitely using it somewhere in their
-                organizations 🙂
+                项目的 Logo 由公司和项目代表提交。
+                这些公司可能会或可能不会在其主要网站上使用 Babel，但他们肯定会在其组织的某个地方使用它。 🙂
               </p>
             </div>
             <hr />
@@ -39,17 +37,16 @@ class Users extends React.Component {
             <hr />
             <div className="prose">
               <p>
-                Are you using this project? Please submit a logo of 500x200
-                (2.5x1) run through{" "}
+                你在使用该项目么? 请提交 500x200（2.5x1）的 Logo 一枚。{" "}
                 <a href="https://jakearchibald.github.io/svgomg/">SVGO</a>
               </p>
-              <p>And give us a shout on what you love about Babel!</p>
+              <p>并向我们表达出你对 Babel 的喜爱！</p>
               <br />
               <a
                 href="https://github.com/babel/website/edit/master/website/data/users.yml"
                 className="button"
               >
-                Submit a Pull Request!
+                提交 Pull Request！
               </a>
             </div>
           </div>
