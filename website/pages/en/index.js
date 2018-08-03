@@ -123,7 +123,7 @@ const WorkSponsors = () => {
     >
       <h2>开源伙伴</h2>
       <p style={{ fontSize: 16 }}>
-      这些公司非常棒，他们的工程师在支持 Babel 的工作
+        这些公司非常棒，并派出这些工程师在支持 Babel 的工作
       </p>
       <div className="productShowcaseSection">
         <div className="cards">
@@ -142,7 +142,9 @@ const WorkSponsors = () => {
                     />
                   </a>
                   <div className="card-text">
-                    <p>{sponsor.description}</p>
+                    <p>
+                      {sponsor.description}
+                    </p>
                   </div>
                   <div className="card-text">
                     <p>
@@ -231,6 +233,11 @@ const OpenCollectiveSponsors = props => {
             title="银牌赞助（Open Collective）"
             tier="silver-sponsors"
             button={ocButton}
+          />
+          <SponsorTier
+            type="other"
+            title="Misc Sponsors"
+            tier="other-sponsors"
           />
         </div>
       </div>

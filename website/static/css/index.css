@@ -218,3 +218,8 @@
   color: #ffffff;
   font-weight:bold;
 }
+
+.tier-other-sponsors img {
+  max-height: 95px;
+  max-width: 90px;
+}
