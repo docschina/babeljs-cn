@@ -17,11 +17,11 @@ class Versions extends React.Component {
         <Container className="mainContainer versionsContainer">
           <div className="post">
             <header className="postHeader">
-              <h2>{siteConfig.title + " Versions"}</h2>
+              <h2>{siteConfig.title + " 版本"}</h2>
             </header>
-            <p>New versions of this project are released periodically.</p>
+            <p>该项目的新版本将定期发布。</p>
             <a name="latest" />
-            <h3>Current version (Stable)</h3>
+            <h3>当前版本（稳定版）</h3>
             <table className="versions">
               <tbody>
                 <tr>
@@ -32,16 +32,16 @@ class Versions extends React.Component {
                         siteConfig.baseUrl + "docs/" + language + "/index.html"
                       }
                     >
-                      Documentation
+                      文档
                     </a>
                   </td>
                   <td />
                 </tr>
               </tbody>
             </table>
-            <p>This is the current stable version of the project.</p>
+            <p>这是该项目当前的稳定版本。</p>
             <a name="rc" />
-            <h3>Pre-release versions</h3>
+            <h3>预发布版本</h3>
             <table className="versions">
               <tbody>
                 <tr>
@@ -56,13 +56,13 @@ class Versions extends React.Component {
                         "/index.html"
                       }
                     >
-                      Documentation
+                      文档
                     </a>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <p>These are the latest changes that have yet to be released.</p>
+            <p>这是尚未发布的最新变更版本。</p>
             {versions &&
               versions.length > 1 && (
                 <div>
