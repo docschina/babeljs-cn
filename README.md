@@ -16,7 +16,7 @@ $ git clone git@github.com:babel/website.git
 $ yarn && yarn start
 ```
 
-* Just run `npm start` next time (check the Makefile and the package.json).
+- Just run `npm start` next time (check the package.json for scripts).
 
 ### Contributing to the website
 
