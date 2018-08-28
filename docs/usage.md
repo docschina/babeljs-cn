@@ -1,26 +1,24 @@
 ---
 id: usage
-title: Usage Guide
+title: 使用指南
 ---
 
-There are quite a few tools in the Babel toolchain that try to make it easy for you to use Babel whether you're an "end-user" or building an integration of Babel itself. This will be a quick introduction to those tools and you can read more about them in the "Usage" section of the docs.
+Babel工具链中有很多工具可以让你轻松使用Babel，无论你是“终端用户”还是构建Babel本身的集成。这是快速使用这些工具的指南，你可以在文档的“用法”部分中阅读有关它们的更多信息。
 
-> If you're using a framework, the work of configuring Babel might be different or actually already handled for you. Check out our [interactive setup guide](/setup.html) instead.
+> 如果你正在使用框架，配置Babel的工作可能会有所不同或实际上已经为你处理。请查看我们的[交互式设置指南](/setup.html) 
+## 概览
 
-## Overview
+本指南将向你展示如何将使用ES2015 +语法的JavaScript应用程序代码编译为适用于当前浏览器的代码。这将涉及转换新语法和实现缺失的功能。
 
-This guide will show you how to compile your JavaScript application code that uses ES2015+ syntax into code that works in current browsers. That will involve both transforming new syntax and polyfilling missing features.
+整个设置过程的包括：
 
-The entire process to set this up involves:
-
-1. Running these commands to install the packages:
+1. 运行这些命令以安装 packages：
 
     ```sh
     npm install --save-dev @babel/core @babel/cli @babel/preset-env
     npm install --save @babel/polyfill
     ```
-2. Creating a config file named `babel.config.js` in the root of your project with this content:
-
+2. 使用以下内容在项目的根目录中创建名为 `babel.config.js` 的配置文件：
     ```js
     const presets = [
       ["@babel/env", {
@@ -37,53 +35,52 @@ The entire process to set this up involves:
     module.exports = { presets };
     ```
 
-    > The browsers list above is just an arbitrary example. You will have to adapt it for the browsers you want to support.
+    > 上面的浏览器列表只是一个随意的例子。你必须根据要支持的浏览器进行调整。
 
-3. And running this command to compile all your code from the `src` directory to `lib`:
+3. 并运行此命令将所有代码从 `src` 目录编译到 `lib`：
 
     ```sh
     ./node_modules/.bin/babel src --out-dir lib
     ```
 
-    > You can use the npm package runner that comes with npm@5.2.0 to shorten that command by replacing `./node_modules/.bin/babel` with `npx babel`
+    > 你可以通过npm@5.2.0附带的npm包运行器，用 `npx babel` 替换 `./node_modules/.bin/babel` 来缩短该命令。
 
-Read on for a step-by-step explanation of how this works and an introduction to each of the tools used.
+请继续阅读，了解其工作原理的逐步说明以及对所使用的每种工具的介绍。
 
-## Basic usage with CLI
+## CLI的基本用法
 
 All the Babel modules you'll need are published as separate npm packages scoped under `@babel` (since version 7). This modular design allows for various tools each designed for a specific use case. Here we'll look at `@babel/core` and `@babel/cli`.
+你需要的所有Babel模块都将作为单独的npm包发布，其范围为 `@ babel`（自版本7开始）。这种模块化设计允许每种工具都针对特定用例设计。查看 `@ babel / core` 和 `@ babel / cli` 。
 
-### Core Library
+### 核心库
 
 The core functionality of Babel resides at the [@babel/core](core.md) module. After installing it:
-
+Babel的核心功能在 [@babel/core](core.md) 模块。使用以下指令安装：
 ```sh
 npm install --save-dev @babel/core
 ```
 
-you can `require` it directly in your JavaScript program and use it like this:
+你可以直接在JavaScript中 `require` 它并像下面这样使用它：
 
 ```js
 const babel = require("@babel/core");
 
 babel.transform("code", optionsObject);
 ```
+但作为终端，你可能希望安装其他工具作为 `@babel/core` 的接口，并与你的开发过程很好地集成。即便如此，你仍可能需要查看其文档页面以了解这些选项，其中大部分选项也可以通过其他工具进行设置。
 
-As an end-user though, you'll probably want to install other tools that serve as an interface to `@babel/core` and integrate well with your development process. Even so, you might still want to check its documentation page to learn about the options, most of which can be set from the other tools as well.
+### CLI 工具
 
-### CLI tool
-
-[@babel/cli](cli.md) is a tool that allows you to use babel from the terminal. Here's the installation command and a basic usage example:
-
+[@babel/cli](cli.md) 是一个允许你从终端使用babel的工具。这是安装命令和基本用法示例：
 ```sh
 npm install --save-dev @babel/core @babel/cli
 
 ./node_modules/.bin/babel src --out-dir lib
 ```
 
-This will parse all the JavaScript files in the `src` directory, apply any transformations we have told it to, and output each file to the `lib` directory. Since we haven't told it to apply any transformations yet, the output code will be identical to the input (exact code styling is not preserved). We can specify what transformations we want by passing them as options.
+它解析 `src` 目录中的所有JavaScript文件，应用我们告诉它的任何转换，并将每个文件输出到 `lib` 目录。由于我们还没有告诉它应用任何转换，输出代码将与输入相同（不保留确切的代码样式）。我们可以通过将它们作为选项传递来指定我们想要的转换。
 
-We used the `--out-dir` option above. You can view the rest of the options accepted by the cli tool by running it with `--help`. But the most important to us right now are `--plugins` and `--presets`.
+我们使用上面的 `--out-dir` 选项。你可以通过使用 `--help` 运行它来查看cli工具接受的其余选项。但对我们来说最重要的是 `--plugins` 和 `--presets`。
 
 ## Plugins & Presets
 
