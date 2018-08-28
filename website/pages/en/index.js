@@ -215,7 +215,7 @@ const OpenCollectiveSponsors = props => {
             </Button>
           </PromoSection>
         </div>
-        <div className="sponsor-tiers">
+        <div className="sponsor-tiers" id="sponsors">
           <SponsorTier
             type="opencollective"
             title="金牌赞助（Open Collective）"
@@ -264,23 +264,38 @@ const Hero = ({ language }) => (
     <div className="hero__container">
       <h1>Babel 是 JavaScript 编译器。</h1>
       <p>今天就开始使用下一代 JavaScript 语法吧！</p>
+      <div className="hero__announcement">
+        <span>
+          <strong>Babel 7 发布!</strong> 请阅读我们的{" "}
+          <a href="/blog/2018/08/27/7.0.0">公告</a> 以及{" "}
+          <a href={docUrl("v7-migration", language)}>升级指南</a>了解更多详情。
+        </span>
+      </div>
       <MiniRepl language={language} />
     </div>
   </div>
 );
 
-const Index = ({ language = DEFAULT_LANGUAGE }) => (
-  <div>
-    <Hero language={language} />
+const Index = ({ language }) => {
+  let lang = language;
 
-    <div className="mainContainer" style={{ padding: 0 }}>
-      <HomeContainer>
-        <GetStarted language={language} />
-        <WorkSponsors language={language} />
-      </HomeContainer>
-      <OpenCollectiveSponsors />
+  if (!language || !language.length) {
+    lang = DEFAULT_LANGUAGE;
+  }
+
+  return (
+    <div>
+      <Hero language={lang} />
+
+      <div className="mainContainer" style={{ padding: 0 }}>
+        <HomeContainer>
+          <GetStarted language={lang} />
+          <WorkSponsors language={lang} />
+        </HomeContainer>
+        <OpenCollectiveSponsors />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 module.exports = Index;
