@@ -15,7 +15,7 @@ Babel 可以配置啦！许多其他的工具都有相似的配置：ESLint (`.e
 
 > 为你准备了[`babel.config.js`](#babelconfigjs)!
 
-- 有一个静态配置?
+- 有一个静态配置只适用于简单的一个包?
 
 > 为你准备了[`.babelrc`](#babelrc)!
 
