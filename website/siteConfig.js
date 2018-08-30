@@ -91,8 +91,8 @@ const siteConfig = {
   useEnglishUrl: true,
   editUrl: `${GITHUB_URL}/blob/master/docs/`,
   title: "Babel",
-  tagline: "The compiler for next generation JavaScript",
-  url: "https://babeljs.io",
+  tagline: "下一代 JavaScript 编译器",
+  url: "https://babel.docschina.org",
   baseUrl: "/",
   getDocUrl: (doc, language) =>
     `${siteConfig.baseUrl}docs/${language || DEFAULT_LANGUAGE}/${doc}`,
