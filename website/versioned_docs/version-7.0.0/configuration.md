@@ -1,31 +1,31 @@
 ---
 id: version-7.0.0-configuration
-title: Configure Babel
+title: 配置 Babel
 original_id: configuration
 ---
 
-Babel can be configured! Many other tools have similar configs: ESLint (`.eslintrc`), Prettier (`.prettierrc`).
+Babel 可以配置啦！许多其他的工具都有相似的配置：ESLint (`.eslintrc`), Prettier (`.prettierrc`)。
 
-All Babel API [options](core.md#options) are allowed. However if the option requires JavaScript, you may need to use a `.babelrc.js` file.
+所有的 Babel API [选项](core.md#options)都允许配置。但如果选项需要 JavaScript，你可能需要使用 `.babelrc.js` 文件。
 
-## What's your use case?
+## 你的使用情况?
 
-- You want to programmatically create the configuration?
-- You want to compile `node_modules`?
+- 想要以编程式创建配置?
+- 想要编译 `node_modules`?
 
-> [`babel.config.js`](#babelconfigjs) is for you!
+> 为你准备了[`babel.config.js`](#babelconfigjs)!
 
-- You have a static configuration?
+- 有一个静态配置?
 
-> [`.babelrc`](#babelrc) is for you!
+> 为你准备了[`.babelrc`](#babelrc)!
 
-- The Guy Fieri is your hero?
+- Guy Fieri 是你的英雄?
 
-> We recommend to use the [`babel.config.js`](#babelconfigjs) format. [Babel itself is using it](https://github.com/babel/babel/blob/master/babel.config.js).
+> 我们建议使用[`babel.config.js`](#babelconfigjs)格式。[Babel 自身也在使用](https://github.com/babel/babel/blob/master/babel.config.js)。
 
 ## `babel.config.js`
 
-Create a file called `babel.config.js` with the following content at the root of your project (where the `package.json` is).
+在项目的根目录（package.json所在目录）下创建一个名为 `babel.config.js` 的文件，其中包含以下内容。
 
 ```js
 module.exports = function () {
@@ -39,11 +39,11 @@ module.exports = function () {
 }
 ```
 
-Checkout the [`babel.config.js` documentation](babelconfigjs.md) to see more configuration options.
+查看[`babel.config.js` 文档](babelconfigjs.md)以查看更多配置选项。
 
 ## `.babelrc`
 
-Create a file called `.babelrc` with the following content in your project.
+在项目中创建一个名为 `.babelrc` 的文件并写入以下内容。
 
 ```json
 {
@@ -52,11 +52,12 @@ Create a file called `.babelrc` with the following content in your project.
 }
 ```
 
-Checkout the [.babelrc documentation](babelrc.md) to see more configuration options.
+查看[.babelrc 文档](babelrc.md)以查看更多配置选项。
+
 
 ### `package.json`
 
-Alternatively, you can choose to specify your [`.babelrc`](#babelrc) config from within `package.json` using the `babel` key like so:
+或者可以在 `package.json` 中，使用 `babel` 来指定[`.babelrc`](#babelrc)配置，如下所示：
 
 ```json
 {
@@ -71,7 +72,7 @@ Alternatively, you can choose to specify your [`.babelrc`](#babelrc) config from
 
 ### `.babelrc.js`
 
-The configuration is the same than [`.babelrc`](#babelrc), apart than you can write it using JavaScript.
+只是使用 JavaScript 编写，配置与[`.babelrc`](#babelrc)相同。
 
 ```js
 const presets = [ ... ];
@@ -80,7 +81,7 @@ const plugins = [ ... ];
 module.exports = { presets, plugins };
 ```
 
-You are allowed to access any Node.js APIs, for example a dynamic configuration based on the process environment:
+你可以访问任何 Node.js 的 API，例如基于流程环境的动态配置：
 
 ```js
 const presets = [ ... ];
@@ -93,15 +94,16 @@ if (process.env["ENV"] === "prod") {
 module.exports = { presets, plugins };
 ```
 
-## Using the CLI (`@babel/cli`)
+## 使用 CLI (`@babel/cli`)
 
 ```sh
 babel --plugins @babel/plugin-transform-arrow-functions script.js
 ```
 
-Checkout the [babel-cli documentation](babel-cli.md) to see more configuration options.
+查看[babel-cli 文档](babel-cli.md)以查看更多配置选项。
 
-## Using the API (`@babel/core`)
+
+## 使用 API (`@babel/core`)
 
 ```js
 require("@babel/core").transform("code", {
@@ -109,4 +111,5 @@ require("@babel/core").transform("code", {
 });
 ```
 
-Checkout the [babel-core documentation](babel-core.md) to see more configuration options.
+查看[babel-core 文档](babel-core.md)以查看更多配置选项。
+
