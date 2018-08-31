@@ -6,7 +6,7 @@ original_id: configuration
 
 Babel 可以配置啦！许多其他的工具都有相似的配置：ESLint (`.eslintrc`), Prettier (`.prettierrc`)。
 
-所有的 Babel API [选项](core.md#options)都允许配置。但如果选项需要 JavaScript，你可能需要使用 `.babelrc.js` 文件。
+所有的 Babel API [选项](options.md)都允许配置。但如果选项需要 JavaScript，你可能需要使用 Javascript [配置文件](config-files.md)。
 
 ## 你的使用情况?
 
@@ -25,7 +25,7 @@ Babel 可以配置啦！许多其他的工具都有相似的配置：ESLint (`.e
 
 ## `babel.config.js`
 
-在项目的根目录（package.json所在目录）下创建一个名为 `babel.config.js` 的文件，其中包含以下内容。
+在项目的根目录（`package.json` 所在目录）下创建一个名为 `babel.config.js` 的文件，其中包含以下内容。
 
 ```js
 module.exports = function () {
@@ -39,7 +39,7 @@ module.exports = function () {
 }
 ```
 
-查看[`babel.config.js` 文档](babelconfigjs.md)以查看更多配置选项。
+查看[`babel.config.js` 文档](config-files.md#project-wide-configuration)以查看更多配置选项。
 
 ## `.babelrc`
 
@@ -57,7 +57,7 @@ module.exports = function () {
 
 ### `package.json`
 
-或者可以在 `package.json` 中，使用 `babel` 来指定[`.babelrc`](#babelrc)配置，如下所示：
+或者可以在 `package.json` 中，使用 `babel` 属性来指定[`.babelrc`](#babelrc)配置，如下所示：
 
 ```json
 {
