@@ -83,15 +83,21 @@ toolsMD.forEach(tool => {
   tool.usage = loadMD(`${tool.path}/usage.md`);
 });
 
+const DEFAULT_LANGUAGE = "en";
+
 const GITHUB_URL = "https://github.com/babel/website";
 
 const siteConfig = {
   useEnglishUrl: true,
   editUrl: `${GITHUB_URL}/blob/master/docs/`,
   title: "Babel",
-  tagline: "The compiler for next generation JavaScript",
-  url: "https://babeljs.io",
+  tagline: "下一代 JavaScript 编译器",
+  url: "https://babel.docschina.org",
   baseUrl: "/",
+  getDocUrl: (doc, language) =>
+    `${siteConfig.baseUrl}docs/${language || DEFAULT_LANGUAGE}/${doc}`,
+  getPageUrl: (page, language) =>
+    `${siteConfig.baseUrl}${language || DEFAULT_LANGUAGE}/${page}`,
   organizationName: "babel",
   projectName: "babel",
   repoUrl: "https://github.com/babel/babel",
@@ -126,7 +132,7 @@ const siteConfig = {
   scripts: [
     "https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js",
     "/js/code-blocks-buttons.js",
-    "/scripts/hide-footer.js"
+    "/scripts/repl-page-hacks.js",
   ],
   // stylesheets: [ "" ],
   // translationRecruitingLink: "https://crowdin.com/project/",

@@ -2,14 +2,6 @@ const React = require("react");
 const translate = require("../../server/translate.js").translate;
 const siteConfig = require(process.cwd() + "/siteConfig.js");
 
-function docUrl(doc, language) {
-  return siteConfig.baseUrl + "docs/" + (language ? language + "/" : "") + doc;
-}
-
-function pageUrl(page, language) {
-  return siteConfig.baseUrl + (language ? language + "/" : "") + page;
-}
-
 class Button extends React.Component {
   render() {
     return (
@@ -25,8 +17,6 @@ class Button extends React.Component {
 Button.defaultProps = {
   target: "_self",
 };
-
-const DEFAULT_LANGUAGE = "en";
 
 const PromoSection = props => (
   <div className="section promoSection">
@@ -55,8 +45,8 @@ const MiniRepl = ({ language }) => {
         </div>
       </div>
       <div className="hero-repl__footer">
-        <a href={pageUrl("repl.html", language)}>
-          查看 REPL 尝试更多！
+        <a href={siteConfig.getPageUrl("repl.html", language)}>
+          查看我们的 REPL 以更多地体验 Babel ！
         </a>
       </div>
 
@@ -92,8 +82,7 @@ const MiniRepl = ({ language }) => {
 //   );
 // };
 
-const GetStarted = props => {
-  const language = props.language || "en";
+const GetStarted = ({ language }) => {
   return (
     <div
       className="blockElement twoByGridBlock get-started"
@@ -102,14 +91,14 @@ const GetStarted = props => {
       <h2>欢迎！</h2>
 
       <p>
-        我们只是一个小的<a href={pageUrl("team.html", language)}>志愿者</a>团体，在业余时间维护这个项目。如果 Babel 使您再工作中获益，那么成为贡献者可能是一种非常好的回馈方式。
+        我们只是一个小的<a href={siteConfig.getPageUrl("team.html", language)}>志愿者</a>团体，在业余时间维护这个项目。如果 Babel 使您再工作中获益，那么成为贡献者可能是一种非常好的回馈方式。
       </p>
       <p>
       通过阅读入门指南或观看有关其内部概念的会议视频，了解有关Babel的更多信息。
       </p>
       <PromoSection>
-        <Button href={docUrl("index.html", language)}>入门指南</Button>
-        <Button href={pageUrl("videos.html", language)}>会议视频</Button>
+        <Button href={siteConfig.getDocUrl("index.html", language)}>入门指南</Button>
+        <Button href={siteConfig.getPageUrl("videos.html", language)}>会议视频</Button>
       </PromoSection>
     </div>
   );
@@ -190,8 +179,7 @@ const SponsorTier = props => {
   );
 };
 
-const OpenCollectiveSponsors = props => {
-  const language = props.language || "en";
+const OpenCollectiveSponsors = ({ language }) => {
   const ocButton = {
       title: "成为赞助商",
       link: "https://opencollective.com/babel",
@@ -207,7 +195,7 @@ const OpenCollectiveSponsors = props => {
         <div className="support-the-team">
           <h2>支持我们团队</h2>
           <p>
-            Babel 正在帮助 JavaScript 语言本身塑造其未来版本，被用于 Facebook，Google，Netflix等<a href={pageUrl("users.html", language)}>数百家公司的产品当中</a>。你的赞助将支付给 TC39（制订 JavaScript 规范的委员会）用于组织会议等费用，并会直接支持核心开发团队人员继续努力改进 Babel 。
+            Babel 正在帮助 JavaScript 语言本身塑造其未来版本，被用于 Facebook，Google，Netflix等<a href={siteConfig.getPageUrl("users.html", language)}>数百家公司的产品当中</a>。你的赞助将支付给 TC39（制订 JavaScript 规范的委员会）用于组织会议等费用，并会直接支持核心开发团队人员继续努力改进 Babel 。
           </p>
           <PromoSection>
             <Button href="https://opencollective.com/babel" target="_blank">
@@ -215,7 +203,7 @@ const OpenCollectiveSponsors = props => {
             </Button>
           </PromoSection>
         </div>
-        <div className="sponsor-tiers">
+        <div className="sponsor-tiers" id="sponsors">
           <SponsorTier
             type="opencollective"
             title="金牌赞助（Open Collective）"
@@ -264,23 +252,35 @@ const Hero = ({ language }) => (
     <div className="hero__container">
       <h1>Babel 是 JavaScript 编译器。</h1>
       <p>今天就开始使用下一代 JavaScript 语法吧！</p>
+      <div className="hero__announcement">
+        <span>
+          <strong>Babel 7 发布!</strong> 请阅读我们的{" "}
+          <a href="/blog/2018/08/27/7.0.0">公告</a> 以及{" "}
+          <a href={siteConfig.getDocUrl("v7-migration", language)}>
+            升级指南
+          </a>{""}
+          了解更多详情。
+        </span>
+      </div>
       <MiniRepl language={language} />
     </div>
   </div>
 );
 
-const Index = ({ language = DEFAULT_LANGUAGE }) => (
-  <div>
-    <Hero language={language} />
+const Index = ({ language }) => {
+  return (
+    <div>
+      <Hero language={language} />
 
-    <div className="mainContainer" style={{ padding: 0 }}>
-      <HomeContainer>
-        <GetStarted language={language} />
-        <WorkSponsors language={language} />
-      </HomeContainer>
-      <OpenCollectiveSponsors />
+      <div className="mainContainer" style={{ padding: 0 }}>
+        <HomeContainer>
+          <GetStarted language={language} />
+          <WorkSponsors language={language} />
+        </HomeContainer>
+        <OpenCollectiveSponsors />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 module.exports = Index;

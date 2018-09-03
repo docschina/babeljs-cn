@@ -73,13 +73,13 @@ Included is a `root` option that defaults to the current working directory for i
 It is also not loaded relatively so it will handle symlinking correctly, whereas before you may have had
 hard-code the paths in webpack before.
 
-Check the `babel.config.js` docs for more info: https://babeljs.io/docs/en/next/babelconfigjs.html
+Check the `babel.config.js` docs for more info: [project-wide configuration](config-files.md#project-wide-configuration)
 
-This file combined with the new [`overrides`](https://babeljs.io/docs/en/next/babelrc.html#overrides) property and `env` lets you have a single config file
+This file combined with the new [`overrides`](options.md#overrides) property and `env` lets you have a single config file
 that can work for all the files in a project vs. multiple config files per folder.
 
 We also exclude `node_modules` by default and only look in the root unless you opt-in to setting
-an array of the `.babelrc` option such as `"babelrc": [".", "node_modules/pkgA"]`
+an array of the `.babelrcRoots` option such as `"babelrcRoots": [".", "node_modules/pkgA"]`
 
 ## Asserting Babel version [#7450](https://github.com/babel/babel/pull/7450)
 
@@ -242,7 +242,7 @@ The `expression` field was removed to eliminate two different sources of truth a
 
 ### Tokens removed
 
-In previous versions `tokens` were always attached to the AST on the top-level. In the latest version of `@babel/parser` we removed this behavior and made it disabled by default to improve the performance of the parser. All usages in babel itself have been remove and `@babel/generator` is not using the tokens anymore for pretty printing.
+In previous versions `tokens` were always attached to the AST on the top-level. In the latest version of `@babel/parser` we removed this behavior and made it disabled by default to improve the performance of the parser. All usages in babel itself have been removed and `@babel/generator` is not using the tokens anymore for pretty printing.
 
 If your babel plugin uses `tokens` at the moment, evaluate if it is still necessary and try to remove the usage if possible. If your plugin really depends on getting tokens you can reactivate it but please only consider this if there is no other way as this will hurt users performance.
 

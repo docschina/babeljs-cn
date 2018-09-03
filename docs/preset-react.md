@@ -1,6 +1,6 @@
 ---
 id: babel-preset-react
-title: babel-preset-react
+title: @babel/preset-react
 sidebar_label: react
 ---
 
@@ -93,7 +93,7 @@ Will use the native built-in instead of trying to polyfill behavior for any plug
 
 Toggles plugins that aid in development, such as [`@babel/plugin-transform-react-jsx-self`](https://babeljs.io/docs/plugins/transform-react-jsx-self/) and [`@babel/plugin-transform-react-jsx-source`](https://babeljs.io/docs/plugins/transform-react-jsx-source/).
 
-This is useful when combined with either a `babelrc.js` or [env option in a .babelrc](https://babeljs.io/docs/usage/babelrc/#env-option) configuration:
+This is useful when combined with the [env option](options.md#env) configuration or [js config files](config-files.md#javascript).
 
 ### `throwIfNamespace`
 
@@ -105,7 +105,7 @@ Toggles whether or not to throw an error if a XML namespaced tag name is used. F
 
 Though the JSX spec allows this, it is disabled by default since React's JSX does not currently have support for it.
 
-#### babelrc.js
+#### .babelrc.js
 
 ```js
 module.exports = {

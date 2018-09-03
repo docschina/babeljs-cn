@@ -1,6 +1,6 @@
 ---
 id: babel-register
-title: babel-register
+title: @babel/register
 sidebar_label: babel-register
 ---
 
@@ -74,9 +74,10 @@ require("@babel/register")({
 });
 ```
 
-You can pass in all other [options](https://babeljs.io/docs/usage/api/#options) as well,
-including `plugins` and `presets`. But note that the closest [`.babelrc`](https://babeljs.io/docs/usage/babelrc/)
-to each file still applies, and takes precedence over any options you pass in here.
+You can pass in all other [options](options.md) as well, including `plugins` and `presets`.
+Note that [config files](config-files.md) will also be loaded and the programmatic
+config will be merged over top of the file config options.
+
 
 ## Environment variables
 
@@ -114,12 +115,12 @@ user's file, Babel could end up trying to compile itself _as it is loading_.
 
 To avoid this problem, this module explicitly disallows re-entrant compilation,
 e.g. Babel's own compilation logic explicitly cannot trigger further compilation
-of any other files on the fly. The downside of this is that if you want to 
-define a plugin or preset that is itself live-compiled, the process is 
+of any other files on the fly. The downside of this is that if you want to
+define a plugin or preset that is itself live-compiled, the process is
 complicated.
 
-The crux of it is that your own code needs to load the plugin/preset first. 
-Assuming the plugin/preset loads all of its dependencies up front, what you'll 
+The crux of it is that your own code needs to load the plugin/preset first.
+Assuming the plugin/preset loads all of its dependencies up front, what you'll
 want to do is:
 
 ```

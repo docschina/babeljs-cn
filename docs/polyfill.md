@@ -1,6 +1,6 @@
 ---
 id: babel-polyfill
-title: babel-polyfill
+title: @babel/polyfill
 sidebar_label: babel-polyfill
 ---
 
@@ -49,7 +49,7 @@ With `webpack.config.js`, add `@babel/polyfill` to your entry array:
 
 ```js
 module.exports = {
-  entry: ["@babel/polyfill", "./app/js"]
+  entry: ["@babel/polyfill", "./app.js"]
 };
 ```
 

@@ -12,6 +12,9 @@ class Versions extends React.Component {
   render() {
     const language = this.props.language || "en";
     const latestVersion = versions[0];
+    const repoUrl = `https://github.com/${siteConfig.organizationName}/${
+      siteConfig.projectName
+    }`;
     return (
       <div className="docMainWrapper wrapper">
         <Container className="mainContainer versionsContainer">
@@ -35,17 +38,22 @@ class Versions extends React.Component {
                       文档
                     </a>
                   </td>
-                  <td />
+                  <td>
+                    <a href={`${repoUrl}/releases/tag/v${latestVersion}`}>
+                      Release Notes
+                    </a>
+                  </td>
                 </tr>
               </tbody>
             </table>
             <p>这是该项目当前的稳定版本。</p>
             <a name="rc" />
             <h3>预发布版本</h3>
+            <p>这是尚未发布的最新变更版本。</p>
             <table className="versions">
               <tbody>
                 <tr>
-                  <th>master (7.x)</th>
+                  <th>master</th>
                   <td>
                     <a
                       href={
@@ -59,10 +67,12 @@ class Versions extends React.Component {
                       文档
                     </a>
                   </td>
+                  <td>
+                    <a href={repoUrl}>Source Code</a>
+                  </td>
                 </tr>
               </tbody>
             </table>
-            <p>这是尚未发布的最新变更版本。</p>
             {versions &&
               versions.length > 1 && (
                 <div>
@@ -87,6 +97,11 @@ class Versions extends React.Component {
                                   }
                                 >
                                   Documentation
+                                </a>
+                              </td>
+                              <td>
+                                <a href={`${repoUrl}/releases/tag/v${version}`}>
+                                  Release Notes
                                 </a>
                               </td>
                             </tr>

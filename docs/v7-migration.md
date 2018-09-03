@@ -7,8 +7,6 @@ Refer users to this document when upgrading to Babel 7.
 
 <!--truncate-->
 
-Help edit this file [here](https://github.com/babel/website/blob/master/docs/v7-migration.md)
-
 Because not every breaking change will affect every project, we've sorted the sections by the likelihood of a change breaking tests when upgrading.
 
 ## All of Babel
@@ -53,7 +51,7 @@ import "core-js/shim"; // included < Stage 4 proposals
 import "regenerator-runtime/runtime";
 ```
 
-If you want to use proposals, you will need to import these independently. You should import then directy from the [`core-js`](https://github.com/zloirock/core-js/tree/v2#usage) package or another package on npm.
+If you want to use proposals, you will need to import these independently. You should import them directly from the [`core-js`](https://github.com/zloirock/core-js/tree/v2#usage) package or another package on npm.
 
 e.g.
 
@@ -186,7 +184,7 @@ This also means that when a proposal moves to Stage 4, we should rename the pack
 
 ### [Remove the year from package names](/blog/2017/12/27/nearing-the-7.0-release.html#renames-drop-the-year-from-the-plugin-name)
 
-Some of the plugins had `-es3-` or `-es2015-` in the names, but these were unncessary.
+Some of the plugins had `-es3-` or `-es2015-` in the names, but these were unnecessary.
 
 `@babel/plugin-transform-es2015-classes` became `@babel/plugin-transform-classes`.
 
@@ -225,19 +223,19 @@ require('a');
 
 If you were relying on Babel to inject `"use strict"` into all of your CommonJS modules automatically, you'll want to explicitly use the `transform-strict-mode` plugin in your Babel config.
 
-## Separation between the React and Flow presets
+## Separation of the React and Flow presets
 
-`babel-preset-react` has always included the flow plugin automatically from the beginning. This has actually caused a lot of issues with users that accidently use `flow` syntax without intending due to a typo, or adding it in without typechecking with `flow` itself, resulting in errors.
+`babel-preset-react` has always included the flow plugin. This has caused a lot of issues with users that accidently use `flow` syntax unintentionally due to a typo, or adding it in without typechecking with `flow` itself, resulting in errors.
 
-This became further of an issue after we decided to support TypeScript with the help of the TS team. If you wanted to use the react and typescript presets, we would have to figure out a way to turn on/off the syntax automatically via file type or the directive. In the end it seemed easiest to just separate the presets entirely. 
+This issue was compounded when we decided to support TypeScript. If you wanted to use the React and TypeScript presets, we would have to figure out a way to turn on/off the syntax, automatically, via file type or the directive. In the end, it was easier to separate the presets entirely.
 
-So now the react preset and the flow preset are separated.
+Presets enable Babel to parse types provided by Flow / TypeScript (and other dialects / languages), then strip them out when compiling down to JavaScript.
 
 ```diff
 {
 -  "presets": ["@babel/preset-react"]
-+  "presets": ["@babel/preset-react", "@babel/preset-flow"] // remove flow types
-+  "presets": ["@babel/preset-react", "@babel/preset-typescript"] // remove typescript types
++  "presets": ["@babel/preset-react", "@babel/preset-flow"] // parse & remove flow types
++  "presets": ["@babel/preset-react", "@babel/preset-typescript"] // parse & remove typescript types
 }
 ````
 
@@ -331,7 +329,7 @@ npm install @babel/plugin-transform-runtime --save-dev
   "plugins": [
 -   ["@babel/plugin-transform-runtime"],
 +   ["@babel/plugin-transform-runtime", {
-+     "corejs": 2,   
++     "corejs": 2,
 +   }],
   ]
 }
@@ -354,7 +352,7 @@ var {
 
 ---
 
-> Since Object Spread defines new propeties and `Object.assign` just sets them, Babel has changed the default behavior to be more spec compliant.
+> Since Object Spread defines new properties and `Object.assign` just sets them, Babel has changed the default behavior to be more spec compliant.
 
 - [objectSpread helper function](https://github.com/babel/babel/blob/007bfb656502a44f6ab50cd64750cc4b38f9efff/packages/babel-helpers/src/helpers.js#L375)
 - [extends helper function](https://github.com/babel/babel/blob/007bfb656502a44f6ab50cd64750cc4b38f9efff/packages/babel-helpers/src/helpers.js#L357-L373)
@@ -449,7 +447,7 @@ export * as ns from 'mod';
 
 See the proposal for [Template Literals Revision](https://tc39.github.io/proposal-template-literal-revision/).
 
-It cause Babel 6 to throw `Bad character escape sequence (5:6)`.
+It causes Babel 6 to throw `Bad character escape sequence (5:6)`.
 
 ```js
 tag`\unicode and \u{55}`;
@@ -507,7 +505,7 @@ In anticipation of the new decorators proposal implementation, we've decided to 
 
 ### `@babel/plugin-proposal-pipeline-operator`
 
-Newer proposals in flux will error by default and will require everyone opt into a specific proposal will things are still < Stage 2. This is explained more in this [post](https://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal)
+Newer proposals in flux will error by default and will require everyone to opt into a specific proposal while things are still < Stage 2. This is explained more in this [post](https://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal).
 
 ```diff
 {
@@ -608,7 +606,7 @@ This change just makes babel-generator output `,` instead of `;`.
 
 > Remove `babel-core/src/api/browser.js` [#5124](https://github.com/babel/babel/pull/5124) ![none](https://img.shields.io/badge/risk%20of%20breakage%3F-none-brightgreen.svg)
 
-`babel-browser` was already removed in 6.0. If you need to use Babel in the browser or a non-Node environment, use [babel-standalone](https://github.com/babel/babel-standalone).
+`babel-browser` was already removed in 6.0. If you need to use Babel in the browser or a non-Node environment, use [@babel/standalone](standalone.md).
 
 Babel will return `filename` as an absolute path [#8044](https://github.com/babel/babel/pull/8044)
 
