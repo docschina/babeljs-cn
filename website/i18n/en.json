@@ -397,7 +397,7 @@
     "tools/webstorm/usage": "tools/webstorm/usage",
     "babel-traverse": "babel-traverse",
     "babel-types": "babel-types",
-    "usage": "Usage Guide",
+    "usage": "使用指南",
     "v7-migration-api": "Upgrade to Babel 7 (API)",
     "v7-migration": "Upgrade to Babel 7",
     "印记中文": "印记中文",
