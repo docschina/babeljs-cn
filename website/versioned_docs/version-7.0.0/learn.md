@@ -527,7 +527,7 @@ var p = new Proxy(target, handler);
 p() === "I am the proxy";
 ```
 
-所有运行时级别的元操作都有对应的陷阱（使得这些操作都可以被代理）：
+所有运行时级别的元操作都有对应的陷阱：
 
 ```js
 var handler =
