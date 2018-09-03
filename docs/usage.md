@@ -3,22 +3,24 @@ id: usage
 title: 使用指南
 ---
 
-Babel工具链中有很多工具可以让你轻松使用Babel，无论你是“终端用户”还是构建Babel本身的集成。这是快速使用这些工具的指南，你可以在文档的“用法”部分中阅读有关它们的更多信息。
+Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是“终端用户”还是构建 Babel 本身的集成。本文是快速使用这些工具的指南，你可以在文档的“用法”部分中阅读有关它们的更多信息。
 
-> 如果你正在使用框架，配置Babel的工作可能会有所不同或实际上已经为你处理。请查看我们的[交互式设置指南](/setup.html) 
+> 如果你正在使用框架，不同框架配置 Babel 的方式可能会有所不同，实际上有些框架已经为你配置。具体的配置方法请查看[交互式设置指南](/setup.html)。
+
 ## 概览
 
-本指南将向你展示如何将使用ES2015 +语法的JavaScript应用程序代码编译为适用于当前浏览器的代码。这将涉及转换新语法和实现缺失的功能。
+本文将向你展示如何将使用 ES2015+ 语法的 JavaScript 应用程序代码编译为适用于当前浏览器的代码。这将涉及转换新语法和实现缺失的功能。
 
-整个设置过程的包括：
+整个设置过程包括：
 
-1. 运行这些命令以安装 packages：
+1. 运行这些命令以安装 packages:
 
     ```sh
     npm install --save-dev @babel/core @babel/cli @babel/preset-env
     npm install --save @babel/polyfill
     ```
 2. 使用以下内容在项目的根目录中创建名为 `babel.config.js` 的配置文件：
+
     ```js
     const presets = [
       ["@babel/env", {
@@ -35,56 +37,57 @@ Babel工具链中有很多工具可以让你轻松使用Babel，无论你是“�
     module.exports = { presets };
     ```
 
-    > 上面的浏览器列表只是一个随意的例子。你必须根据要支持的浏览器进行调整。
+    > 上面的浏览器列表只是一个随意的例子。你必须根据想要支持的浏览器进行调整。
 
-3. 并运行此命令将所有代码从 `src` 目录编译到 `lib`：
+3. 运行此命令将所有代码从 `src` 目录编译到 `lib`：
 
     ```sh
     ./node_modules/.bin/babel src --out-dir lib
     ```
 
-    > 你可以通过npm@5.2.0附带的npm包运行器，用 `npx babel` 替换 `./node_modules/.bin/babel` 来缩短该命令。
+    > 你可以通过 npm@5.2.0 附带的 npm 包运行器，用 `npx babel` 替换 `./node_modules/.bin/babel` 来缩短该命令。
 
 请继续阅读，了解其工作原理的逐步说明以及对所使用的每种工具的介绍。
 
-## CLI的基本用法
+## CLI 的基本用法
 
-All the Babel modules you'll need are published as separate npm packages scoped under `@babel` (since version 7). This modular design allows for various tools each designed for a specific use case. Here we'll look at `@babel/core` and `@babel/cli`.
-你需要的所有Babel模块都将作为单独的npm包发布，其范围为 `@ babel`（自版本7开始）。这种模块化设计允许每种工具都针对特定用例设计。查看 `@ babel / core` 和 `@ babel / cli` 。
+你需要的所有 Babel 模块都将作为单独的 npm 包发布，其范围为 `@babel`（自版本7开始）。这种模块化设计允许每种工具都针对特定用例设计。下面我们来看看 `@babel/core` 和 `@babel/cli`。
 
 ### 核心库
 
-The core functionality of Babel resides at the [@babel/core](core.md) module. After installing it:
-Babel的核心功能在 [@babel/core](core.md) 模块。使用以下指令安装：
+Babel 的核心功能在 [@babel/core](core.md) 模块。通过以下命令安装后：
+
 ```sh
 npm install --save-dev @babel/core
 ```
 
-你可以直接在JavaScript中 `require` 它并像下面这样使用它：
+你可以直接在 JavaScript 中 `require` 它并像下面这样使用它：
 
 ```js
 const babel = require("@babel/core");
 
 babel.transform("code", optionsObject);
 ```
-但作为终端，你可能希望安装其他工具作为 `@babel/core` 的接口，并与你的开发过程很好地集成。即便如此，你仍可能需要查看其文档页面以了解这些选项，其中大部分选项也可以通过其他工具进行设置。
+
+但作为终端用户，你可能希望安装其他工具作为 `@babel/core` 的接口，并能很好地集成在你的开发过程中。即便如此，你仍可能需要查看其文档页面以了解这些选项，其中大部分选项也可以通过其他工具进行设置。
 
 ### CLI 工具
 
-[@babel/cli](cli.md) 是一个允许你从终端使用babel的工具。这是安装命令和基本用法示例：
+[@babel/cli](cli.md) 是一个允许你从终端使用 babel 的工具。这是安装命令和基本用法示例：
+
 ```sh
 npm install --save-dev @babel/core @babel/cli
 
 ./node_modules/.bin/babel src --out-dir lib
 ```
 
-它解析 `src` 目录中的所有JavaScript文件，应用我们告诉它的任何转换，并将每个文件输出到 `lib` 目录。由于我们还没有告诉它应用任何转换，输出代码将与输入相同（不保留确切的代码样式）。我们可以通过将它们作为选项传递来指定我们想要的转换。
+它使用我们设置的解析方式来解析 `src` 目录中的所有 JavaScript 文件，并将转换后每个文件输出到 `lib` 目录。由于我们还没有设置解析方式，这里输出代码将与输入相同（不保留确切的代码样式）。我们可以通过将它们作为选项传入来指定我们想要的解析方式。
 
-我们使用上面的 `--out-dir` 选项。你可以通过使用 `--help` 运行它来查看cli工具接受的其余选项。但对我们来说最重要的是 `--plugins` 和 `--presets`。
+我们使用上面的 `--out-dir` 选项。你可以通过使用 `--help` 运行它来查看 cli 工具接受的其余选项。但对我们来说最重要的是 `--plugins` 和 `--presets`。
 
 ## Plugins & Presets
 
-Transformations come in the form of plugins, which are small JavaScript programs that instruct Babel on how to carry out transformations to the code. You can even write your own plugins to apply any transformations you want to your code. To transform ES2015+ syntax into ES5 we can rely on official plugins like `@babel/plugin-transform-arrow-functions`:
+代码转换以插件的形式出现，插件是小型 JavaScript 程序，它指示 Babel 如何对代码进行转换。你甚至可以编写自己的插件来应用你想要的任何代码转换。要将ES2015+ 语法转换为 ES5，我们可以依赖官方插件，如 `@ babel / plugin-transform-arrow-functions`：
 
 ```sh
 npm install --save-dev @babel/plugin-transform-arrow-functions
@@ -92,7 +95,7 @@ npm install --save-dev @babel/plugin-transform-arrow-functions
 ./node_modules/.bin/babel src --out-dir lib --plugins=@babel/plugin-transform-arrow-functions
 ```
 
-Now any arrow functions in our code will be transformed into ES5 compatible function expressions:
+现在我们代码中的所有箭头函数都将转换为 ES5 兼容函数表达式：
 
 ```js
 const fn = () => 1;
@@ -104,9 +107,9 @@ var fn = function fn() {
 };
 ```
 
-That's a good start! But we also have other ES2015+ features in our code that we want transformed. Instead of adding all the plugins we want one by one, we can use a "preset" which is just a pre-determined set of plugins.
+这是一个好的开始！如果想要转换代码中还有其他 ES2015+ 功能。我们可以使用 "preset" 来代替预先设定的一组插件，而不是逐一添加我们想要的所有插件。
 
-Just like with plugins, you can create your own presets too to share any combination of plugins you need. For our use case here, there's an excellent preset named `env`.
+就像使用 plugins 一样，你也可以创建自己的 preset，分享你需要的任何插件组合。在这个例子中，我们使用了 `env` preset。
 
 ```sh
 npm install --save-dev @babel/preset-env
@@ -114,13 +117,13 @@ npm install --save-dev @babel/preset-env
 ./node_modules/.bin/babel src --out-dir lib --presets=@babel/env
 ```
 
-Without any configuration, this preset will include all plugins to support modern JavaScript (ES2015, ES2016, etc.). But presets can take options too. Rather than passing both cli and preset options from the terminal, let's look at another way of passing options: configuration files.
+没有任何配置，这个 preset 包括支持现代 JavaScript（ES2015，ES2016 等）的所有插件。但是 presets 也可以选择。我们不从终端传入 cli 和 preset 选项，而是通过另一种传入选项的方式：配置文件。
 
-## Configuration
+## 配置
 
-> There are a few different ways to use configuration files depending on your needs. Be sure to read our in-depth guide on how to [configure Babel](configuration.md) for more information.
+> 根据你的需要，可以使用几种不同的方法配置文件。请务必阅读有关如何 [配置 Babel](configuration.md) 的深入指南以获取更多信息。
 
-For now, let's create a file called `babel.config.js` with the following content:
+现在，让我们创建一个名为 `babel.config.js` 的文件，其中包含以下内容：
 
 ```js
 const presets = [
@@ -137,27 +140,27 @@ const presets = [
 module.exports = { presets };
 ```
 
-Now the `env` preset will only load transformation plugins for features that are not available in our target browsers. We're all set for syntax. Let's look at polyfills next.
+现在 `env` preset 只会为目标浏览器中没有的功能加载转换插件。接下来我们看看 polyfills。
 
 ## Polyfill
 
-The [@babel/polyfill](polyfill.md) module includes [core-js](https://github.com/zloirock/core-js) and a custom [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js) to emulate a full ES2015+ environment.
+[@babel/polyfill](polyfill.md) 模块包括 [core-js](https://github.com/zloirock/core-js) 和自定义 [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js) 来模拟完整的 ES2015+ 环境。
 
-This means you can use new built-ins like `Promise` or `WeakMap`, static methods like `Array.from` or `Object.assign`, instance methods like `Array.prototype.includes`, and generator functions (provided you use the [regenerator](https://babeljs.io/docs/plugins/transform-regenerator/) plugin). The polyfill adds to the global scope as well as native prototypes like `String` in order to do this.
+这意味着你可以使用像 `Promise` 或 `WeakMap` 这样的新内置函数，像 `Array.from` 或 `Object.assign` 这样的静态方法，像`Array.prototype.includes` 这样的实例方法，以及 generator 函数（提供给你使用 [regenerator](https://babeljs.io/docs/plugins/transform-regenerator/) 插件）。为了做到这一点，polyfill 增加了全局范围以及像 `String` 这样的原生原型。
 
-For library/tool authors this may be too much. If you don't need the instance methods like `Array.prototype.includes` you can do without polluting the global scope altogether by using the [transform runtime](plugin-transform-runtime.md) plugin instead of `@babel/polyfill`.
+对于 library/tool 作者来说，这可能太多了。如果你不需要像 `Array.prototype.includes` 这样的实例方法，可以使用[ [transform runtime](plugin-transform-runtime.md) 插件而不是 `@babel/polyfill` 污染全局范围。
 
-To go one step further, if you know exactly what features you need polyfills for, you can require them directly from [core-js](https://github.com/zloirock/core-js#commonjs).
+更进一步，如果你确切知道需要实现的功能，可以直接从 [core-js](https://github.com/zloirock/core-js#commonjs) 中获取它们。
 
-Since we're building an application we can just install `@babel/polyfill`:
+由于我们正在构建一个应用程序，我们可以只安装 `@babel/polyfill`:
 
 ```sh
 npm install --save @babel/polyfill
 ```
 
-> Note the `--save` option instead of `--save-dev` as this is a polyfill that needs to run before your source code.
+> 注意 `--save` 选项而不是 `--save-dev`，因为这是一个需要在源代码之前运行的 polyfill。
 
-Now luckily for us, we're using the `env` preset which has a `"useBuiltIns"` option that when set to `"usage"` will practically apply the last optimization mentioned above where you only include the polyfills you need. With this new option the configuration changes like this:
+幸运的是，对于我们来说，我们使用的是 `env` preset，其中有一个 `"useBuiltIns"` 选项，当设置为 `"usage"` 时，实际上将应用上面提到的最后一个优化，只包括你需要的 polyfill。使用此新选项，配置更改如下：
 
 ```js
 const presets = [
@@ -175,13 +178,13 @@ const presets = [
 module.exports = { presets };
 ```
 
-Babel will now inspect all your code for features that are missing in your target environments and include only the required polyfills. For example this code:
+Babel 将检查你的所有代码，以查找目标环境中缺少的功能，并仅包含所需的 polyfill。例如这段代码：
 
 ```js
 Promise.resolve().finally()
 ```
 
-would turn into this (because Edge 17 doesn't have `Promise.prototype.finally`):
+会变成这个（因为 Edge 17 没有 `Promise.prototype.finally`）：
 
 ```js
 require("core-js/modules/es.promise.finally");
@@ -189,10 +192,10 @@ require("core-js/modules/es.promise.finally");
 Promise.resolve().finally()
 ```
 
-If we weren't using the `env` preset with the `"useBuiltIns"` option set to `"usage"` we would've had to require the full polyfill *only once* in our entry point before any other code.
+如果我们没有将 `env` preset 的 `"useBuiltIns"` 选项的设置为 `"usage"` ，就必须在其他代码之前 require *一次* 完整的 polyfill。
 
-## Summary
+## 总结
 
-We used `@babel/cli` to run Babel from the terminal, `@babel/polyfill` to polyfill all the new JavaScript features, and the `env` preset to only include the transformations and polyfills for the features that we use and that are missing in our target browsers.
+我们使用 `@babel / cli` 从终端运行 Babel，`@babel/polyfill` 来实现所有新的 JavaScript 功能，`env` preset 只包含我们使用的功能的转换，实现我们的目标浏览器中缺少的功能。
 
-For more information on setting up Babel with your build system, IDE, and more, check out our [interactive setup guide](/setup.html).
+有关使用构建系统，IDE 等设置 Babel 的更多信息，请查看[交互式设置指南](/setup.html)。
