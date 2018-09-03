@@ -21,7 +21,7 @@ Babel 可以配置啦！许多其他的工具都有相似的配置：ESLint (`.e
 
 - Guy Fieri 是你的英雄?
 
-> 我们建议使用[`babel.config.js`](#babelconfigjs)格式。[Babel 自身也在使用](https://github.com/babel/babel/blob/master/babel.config.js)。
+> 我们建议使用[`babel.config.js`](config-files.md#project-wide-configuration)格式。[Babel 自身也在使用](https://github.com/babel/babel/blob/master/babel.config.js)。
 
 ## `babel.config.js`
 
@@ -72,7 +72,7 @@ module.exports = function () {
 
 ### `.babelrc.js`
 
-只是使用 JavaScript 编写，配置与[`.babelrc`](#babelrc)相同。
+配置与[`.babelrc`](#babelrc)相同, 除此之外还可使用 JavaScript 编写，。
 
 ```js
 const presets = [ ... ];
