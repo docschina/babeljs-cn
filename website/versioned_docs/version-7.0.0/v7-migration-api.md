@@ -104,7 +104,7 @@ module.exports = function(api, options, dirname) { }
 
 这个包含所有的选项被删除了; 相反，你应该专门决定你想激活哪些插件。
 
-我们认为这对工具来说是一个好事。他们不必不断更新他们的配置，但这也意味着我们不能轻易做出改变。
+我们认为这对工具来说是一个好事。他们不必不断更新他们的配置，但这也意味着我们不能轻易做出突破性的变动。
 
 之前:
 
@@ -136,7 +136,7 @@ babelParser.parse(code, {
 
 详见 Babylon 的[插件选项](https://babeljs.io/docs/core-packages/babylon/#api-plugins)
 
->`decorators` 插件重命名为 `decorators-legacy` ![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
+>重命名 `decorators` 插件为 `decorators-legacy` ![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
 
 被重命名为 `@babel/plugin-proposal-decorators` 的 `legacy` 选项。一个已经实现贯彻新装饰器提案的 `decorators` 插件。
 
@@ -213,9 +213,9 @@ interface InterpreterDirective <: Node {
 
 通常，我们使用 Flow 的 `TypeAnnotation` 和 TypeScript 的 `TSTypeAnnotation` 来区分 ndoe 类型，因此对于共享类型节点，TypeScript 具有 TS 前缀。
 
-### `.expression` 字段从 `ArrowFunctionExpression` 中删除
+### 从 `ArrowFunctionExpression` 中 删除`.expression` 字段
 
-删除了 `expression` 字段以消除两个不同的来源并需要插件来手动使它们保持同步。现在可以简单地检查函数体是否是 `BlockStatement` ：
+为消除两个不同的来源的歧义，删除了 `expression` 字段。你需要插件来手动使它们保持同步。现在可以轻松地检查函数体是否为`BlockStatement` ：
 
 ```diff
   return {
@@ -230,9 +230,9 @@ interface InterpreterDirective <: Node {
   };
 ```
 
-### Tokens 移除
+### 移除 Tokens 
 
-在以前的版本中， `tokens` 总是附加在顶层的AST上。在 `@babel/parser` 的最新版本中，我们删除了此行为并默认禁用它以提高解析器的性能。Babel本身的所有用法都已删除，`@babel/generator` 不再使用 tokens 进行漂亮的打印。
+在以前的版本中， `tokens` 总是附加在顶层的AST上。在 `@babel/parser` 的最新版本中，我们删除了此行为并默认禁用它以提高解析器的性能。Babel本身的所有用法都已删除，`@babel/generator` 不再使用 tokens 进行漂亮的排版。
 
 如果你的 babel 插件目前使用 `tokens` ，请评估是否仍然需要并尝试删除使用。如果你的插件真的依赖于获取令牌，仅当没有别的办法时再重新激活它，因为这会损害用户的性能。
 
@@ -289,9 +289,8 @@ export default function() {
 
 ### 替换
 
-以下 AST 节点，字段 `variance` 的值已从简单的字符串值更改为其自己的名为 `Variance` 的 AST 节点[#333](https://github.com/babel/babylon/pull/333)。
+以下 AST 节点，字段 `variance` 的值已从简单的字符串值更改为名为 `Variance` 的 AST 节点[#333](https://github.com/babel/babylon/pull/333)。
 
-The field is only available when enabling the `flow` plugin in babylon.
 字段仅在启用 babylon 中的 `flow` 插件时可用。
 
   * ObjectProperty
