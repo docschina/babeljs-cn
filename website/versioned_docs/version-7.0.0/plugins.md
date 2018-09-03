@@ -246,9 +246,9 @@ Babel 是一个编译器（源代码=>输出代码）。像许多其他编译器
 
 ## 插件选项
 
-Both plugins and presets can have options specified by wrapping the name and an options object in an array inside your config.
+插件和 presets 都可以通过将名称和选项对象放在在配置中的数组中来指定选项。
 
-For specifying no options, these are all equivalent:
+对于不指定选项，这些都是等效的：
 
 ```json
 {
@@ -260,7 +260,7 @@ For specifying no options, these are all equivalent:
 }
 ```
 
-To specify an option, pass an object with the keys as the option names.
+要指定选项，输入一个选项名作为 key 的对象。
 
 ```json
 {
@@ -273,7 +273,7 @@ To specify an option, pass an object with the keys as the option names.
 }
 ```
 
-Settings options for presets works exactly the same:
+presets 的选项设置相同:
 
 ```json
 {
@@ -286,12 +286,11 @@ Settings options for presets works exactly the same:
 }
 ```
 
-## Plugin Development
+## 插件开发
 
-Please refer to the excellent [babel-handbook](https://github.com/thejameskyle/babel-handbook)
-to learn how to create your own plugins.
+了解如何创建自己的插件，请参阅优秀的 [babel-handbook](https://github.com/thejameskyle/babel-handbook)。
 
-The simple plugin that reverses names (from the homepage):
+简单的反转名称插件（来自主页）：
 
 ```js
 export default function () {
