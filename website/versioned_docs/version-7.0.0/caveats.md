@@ -1,63 +1,47 @@
 ---
-title: Caveats
+title: 注意事项
 id: version-7.0.0-caveats
 original_id: caveats
 ---
 
 ## Polyfills
 
-In order for certain features to work they require certain polyfills. You can satisfy **all**
-Babel feature requirements by using [@babel/polyfill](polyfill.md).
+为了使一些功能生效，需要特定的 polyfills。可以使用 [@babel/polyfill](polyfill.md) 来满足 **所有** Babel 功能要求。
 
-You may alternatively/selectively include what you need:
+你也许想根据你的需求选择性的引入：
 
-| Feature                     | Requirements                                                                          |
+| 功能                     | 需求                                                                          |
 | --------------------------- | ------------------------------------------------------------------------------------- |
 | Async functions, Generators | [regenerator runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime) |
 | Array destructuring, For Of | `Symbol`, `prototype[Symbol.iterator]`                                                |
 | Spread                      | `Array.from`                                                                          |
 
-There is also the `loose` option for some of these plugins.
+这些插件中有些也有 `loose` 选项。
 
-## Classes
+## 类
 
-Built-in classes such as `Date`, `Array`, `DOM` etc cannot be properly subclassed
-due to limitations in ES5 (for the [es2015-classes](plugin-transform-es2015-classes.md) plugin).
-You can try to use [babel-plugin-transform-builtin-extend](https://github.com/loganfsmyth/babel-plugin-transform-builtin-extend) based on `Object.setPrototypeOf` and `Reflect.construct`, but it also has some limitations.
+由于 ES5 的限制（对于 [es2015-classes](plugin-transform-es2015-classes.md) 插件），`Date`, `Array`, `DOM` 等内置类型无法正确子类化。你可以尝试基于 `Object.setPrototypeOf` 和 `Reflect.construct` 的 [babel-plugin-transform-builtin-extend](https://github.com/loganfsmyth/babel-plugin-transform-builtin-extend)，但是它也存在一些限制。
 
 ## ES5
 
-Since Babel assumes that your code will run in an ES5 environment it uses ES5
-functions. So if you're using an environment that has limited or no support for
-ES5 such as lower versions of IE then using [@babel/polyfill](polyfill.md) will add support for these methods.
+由于 Babel 假定你的代码将在 ES5 环境中运行，因此它使用 ES5 函数。因此，如果使用的环境对 ES5 的支持有限或不支持，例如较低版本的 IE，那么使用 [@babel/polyfill](polyfill.md) 将添加对这些方法的支持。
 
 ## Internet Explorer
 
-### Classes (10 and below)
+### 类 (IE10 及更低版本)
 
-If you're inheriting from a class then static properties are inherited from it
-via [\_\_proto\_\_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto),
-this is widely supported but you may run into problems with much older browsers.
+如果你继承自一个类，那么静态属性是通过 [\_\_proto\_\_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto) 从它继承的，这被广泛支持，但在很多旧浏览器运行时可能会遇到问题。
 
-**NOTE:** `__proto__` is not supported on IE <= 10 so static properties
-**will not** be inherited. See the
-[protoToAssign](plugin-transform-proto-to-assign.md) for a possible work
-around.
+**注意:** IE <= 10不支持 `__proto__`，因此 **不会** 继承静态属性。请参阅 [protoToAssign](plugin-transform-proto-to-assign.md) 以了解可能的解决方法。
 
-For classes that have `super`s, the super class won't resolve correctly. You can
-get around this by enabling the `loose` option in the [es2015-classes](plugin-transform-es2015-classes.md) plugin.
+对于具有 `super` 的类，super 类将无法正确解析。你可以通过启用 [es2015-classes](plugin-transform-es2015-classes.md) 插件中的 `loose` 选项来解决这个问题。
 
-### Getters/setters (8 and below)
+### Getters/setters (IE8 及更低版本)
 
-In IE8 `Object.defineProperty` can only be used on DOM objects. This is
-unfortunate as it's required to set getters and setters. Due to this if
-you plan on supporting IE8 or below then the usage of getters and setters
-isn't recommended.
+在 IE8 中， `Object.defineProperty` 只能用于 DOM 对象。这很遗憾，因为它需要设置 getter 和 setter。因此，如果计划支持 IE8 或更低版本，则不建议使用 getter 和 setter。
 
-**Reference**: [MDN](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Internet_Explorer_8_specific_notes).
+**参考**: [MDN](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Internet_Explorer_8_specific_notes).
 
-#### Modules
+#### 模块
 
-By default, when using modules with Babel a non-enumerable `__esModule` property
-is exported. This is done through the use of `Object.defineProperty` which is
-unsupported in IE8 and below. A workaround for this is to enable the `loose` option in your corresponding module plugin.
+默认情况下，在使用具有 Babel 的模块时，将导出不可枚举的 `__esModule` 属性。这是通过使用 `Object.defineProperty` 来完成的，而在 IE8 及以下版本是不支持的。解决方法是在相应的模块插件中启用 `loose` 选项。
