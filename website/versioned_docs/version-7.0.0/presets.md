@@ -4,7 +4,7 @@ title: Presets
 original_id: presets
 ---
 
-不想自己设置插件？没问题！Presets 可以像一组 Babel 插件那样操作甚至可共享[`options`](options.md)配置。
+不想自己设置插件？没问题！Presets 可以充当 Babel 插件数组甚至可共享[`options`](options.md)配置。
 
 ## 官方 Presets
 
