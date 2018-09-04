@@ -4,48 +4,47 @@ title: Presets
 original_id: presets
 ---
 
-Don't want to assemble your own set of plugins? No problem! Presets can act as an array of Babel plugins or even a sharable [`options`](options.md) config.
+不想自己设置插件？没问题！Presets 可以充当 Babel 插件数组甚至可共享[`options`](options.md)配置。
 
-## Official Presets
+## 官方 Presets
 
-We've assembled some for common environments:
+我们为常见环境组装了一些 presets ：
 
 - [@babel/preset-env](preset-env.md)
 - [@babel/preset-flow](preset-flow.md)
 - [@babel/preset-react](preset-react.md)
 - [@babel/preset-typescript](preset-typescript.md)
 
-> Many other community maintained presets are available [on npm](https://www.npmjs.com/search?q=babel-preset)!
+> 在[ npm ](https://www.npmjs.com/search?q=babel-preset)上有许多其他社区维护的 presets 可用!
 
-## Stage-X (Experimental Presets)
+## Stage-X (试验性 Presets)
 
-Any transforms in stage-x presets are changes to the language that haven't been approved to be part of a release of Javascript (such as ES6/ES2015).
+stage-x presets 中的任何转换都是对未被批准发布为 Javascript 的部分（如 ES6 / ES2015）的更改。
 
 <blockquote class="babel-callout babel-callout-danger">
-  <h4>Subject to change</h4>
+  <h4>可调整的改变</h4>
   <p>
-    These proposals are subject to change so <strong><em>use with extreme caution</em></strong>, especially for anything pre stage-3. We plan to update stage-x presets when proposals change after each TC39 meeting when possible.
+    这些提案可能会有所变化，因此<strong><em>请谨慎使用</em></strong>，特别是对于第3阶段之前的提案。我们计划在每次 TC39 会议后尽快更新变化到 stage-x presets。
   </p>
 </blockquote>
 
-The [TC39](https://github.com/tc39) categorizes proposals into the following stages:
+[TC39](https://github.com/tc39) 将提案分为以下阶段：
 
-- [Stage 0](preset-stage-0.md) - Strawman: just an idea, possible Babel plugin.
-- [Stage 1](preset-stage-1.md) - Proposal: this is worth working on.
-- [Stage 2](preset-stage-2.md) - Draft: initial spec.
-- [Stage 3](preset-stage-3.md) - Candidate: complete spec and initial browser implementations.
-- Stage 4 - Finished: will be added to the next yearly release.
+- [Stage 0](preset-stage-0.md) - 稻草人: 只是个想法可能会有相关的 Babel 插件。
+- [Stage 1](preset-stage-1.md) - 提议: 值得深入。
+- [Stage 2](preset-stage-2.md) - 草稿: 初始规范。
+- [Stage 3](preset-stage-3.md) - 候选: 完整的规范和初始浏览器实现。
+- Stage 4 - 结束: 将被添加到下一个年度版本中。
 
-For more information, be sure to check out the [current TC39 proposals](https://github.com/tc39/proposals) and its [process document](https://tc39.github.io/process-document).
+有关更多信息，请务必查看[最新 TC39 提案](https://github.com/tc39/proposals)及其[进程文档](https://tc39.github.io/process-document)。
 
-The TC39 stage process is also explained in detail across a few posts by Yehuda Katz (@wycatz) over at [thefeedbackloop.xyz](https://thefeedbackloop.xyz): [Stage 0 and 1](https://thefeedbackloop.xyz/tc39-a-process-sketch-stages-0-and-1/), [Stage 2](https://thefeedbackloop.xyz/tc39-process-sketch-stage-2/), [Stage 3](https://thefeedbackloop.xyz/tc39-process-sketch-stage-3/)
+Yehuda Katz（@wycatz）在 [thefeedbackloop.xyz](https://thefeedbackloop.xyz) 的几篇文章中详细解释了 TC39 阶段过程：[Stage 0 and 1](https://thefeedbackloop.xyz/tc39-a-process-sketch-stages-0-and-1/), [Stage 2](https://thefeedbackloop.xyz/tc39-process-sketch-stage-2/), [Stage 3](https://thefeedbackloop.xyz/tc39-process-sketch-stage-3/)。
 
+## 创建 Preset
 
-## Creating a Preset
+只需要导出一个配置，就可以创建自己的 preset。
 
-To make your own preset, you just need to export a config.
-
-> It could just return an array of plugins..
+> 它只是返回一个插件数组而已...
 
 ```js
 module.exports = function() {
@@ -59,7 +58,7 @@ module.exports = function() {
 }
 ```
 
-> Presets can contain other presets, and plugins with options.
+> Presets 可以包含其他的 presets 以及带有选项的插件。
 
 ```js
 module.exports = () => ({
@@ -73,11 +72,11 @@ module.exports = () => ({
 });
 ```
 
-For more info, check out the [babel handbook](https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/user-handbook.md#making-your-own-preset) section on presets.
+有关更多信息，请查看 [babel handbook](https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/user-handbook.md#making-your-own-preset) 部分。
 
-## Preset Paths
+## Preset 路径
 
-If the preset is on npm, you can pass in the name of the preset and babel will check that it's installed in `node_modules`
+如果 preset 在 npm 上，你可以传入预设名称，babel 将检查它是否已安装在 `node_modules` 中
 
 ```json
 {
@@ -85,7 +84,7 @@ If the preset is on npm, you can pass in the name of the preset and babel will c
 }
 ```
 
-You can also specify an relative/absolute path to your presets.
+还可以指定 presets 的相对/绝对路径。
 
 ```json
 {
@@ -93,33 +92,33 @@ You can also specify an relative/absolute path to your presets.
 }
 ```
 
-### Preset Shorthand
+### Preset 简写
 
-If the name of the package is prefixed with `babel-preset-`, you can use a shorthand:
+如果包的名称以 `babel-preset-` 为前缀，可以使用简写：
 
 ```js
 {
   "presets": [
     "myPreset",
-    "babel-preset-myPreset" // equivalent
+    "babel-preset-myPreset" // 等同
   ]
 }
 ```
 
-This also works with scoped packages:
+这也适用于 scoped 包：
 
 ```js
 {
   "presets": [
   	"@org/babel-preset-name",
-  	"@org/name" // equivalent
+  	"@org/name" // 等同
   ]
 }
 ```
 
-## Preset Ordering
+## Preset 顺序
 
-Preset ordering is reversed (last to first).
+Preset 的顺序是相反的(从最后一个到第一个).
 
 ```json
 {
@@ -131,15 +130,15 @@ Preset ordering is reversed (last to first).
 }
 ```
 
-Will run in the following order: `c`, `b`, then `a`.
+将会按照以下顺序运行：`c`, `b`, 然后 `a`。
 
-This was mostly for ensuring backwards compatibility, since most users listed "es2015" before "stage-0".
+这主要是为了确保向后兼容性，因为大多数用户在“stage-0”之前列出了“es2015”。
 
-## Preset Options
+## Preset 选项
 
-Both plugins and presets can have options specified by wrapping the name and an options object in an array inside your config.
+插件和 presets 都可以通过将名称和选项对象放在配置中的数组中来指定选项。
 
-For specifying no options, these are all equivalent:
+对于不指定选项，这些都是等同的：
 
 ```json
 {
@@ -151,7 +150,7 @@ For specifying no options, these are all equivalent:
 }
 ```
 
-To specify an option, pass an object with the keys as the option names.
+要指定选项，请使用选项名称作为 key 传递对象。
 
 ```json
 {
