@@ -1,16 +1,16 @@
 ---
 id: version-7.0.0-index
-title: What is Babel?
+title: 什么是 Babel ？
 original_id: index
 ---
 
-## Babel is a JavaScript compiler
+## Babel 是一个 JavaScript 编译器
 
-Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments. Here are the main things Babel can do for you:
-- Transform syntax
-- Polyfill features that are missing in your target environment (through [@babel/polyfill](polyfill.md))
-- Source code transformations (codemods)
-- And more! (check out these [videos](/videos.html) for inspiration)
+Babel 是一个工具链，主要用于在旧的浏览器或环境中将 ECMAScript 2015+ 代码转换为向后兼容版本的 JavaScript 代码。以下是Babel 可以为你做的主要事情：
+- 转换语法
+- Polyfill 实现目标环境中缺少的功能 （通过 [@babel/polyfill](polyfill.md)）
+- 源代码转换 (codemods)
+- 还有更多！（点开这些[视频](/videos.html)看看）
 
 ```js
 // Babel Input: ES2015 arrow function
@@ -22,25 +22,25 @@ Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a
 });
 ```
 
-> For an awesome tutorial on compilers, check out [the-super-tiny-compiler](https://github.com/thejameskyle/the-super-tiny-compiler), which also explains how Babel itself works on a high level.
+> 有关编译器的精彩教程，请查看[超级微型编译器](https://github.com/thejameskyle/the-super-tiny-compiler)，它还解释了 Babel 本身如何在高级语言上工作。
 
-## ES2015 and beyond
+## ES2015 及其他
 
-Babel has support for the latest version of JavaScript through syntax transformers.
+Babel 通过语法变换器支持最新版本的 JavaScript。
 
-These [plugins](plugins.md) allow you to use new syntax, **right now** without waiting for browser support. Check out our [usage guide](usage.md) to get started.
+这些 [plugins](plugins.md) 允许你**现在**就使用新语法，而无需等待浏览器的支持。点击查看[使用指南](usage.md)以开始使用。
 
-## JSX and React
+## JSX 和 React
 
-Babel can convert JSX syntax! Check out our [React preset](preset-react.md) to get started. Use it together with the [babel-sublime](https://github.com/babel/babel-sublime) package to bring syntax highlighting to a whole new level.
+Babel 可以转换 JSX 语法！点击查看 [React preset](preset-react.md) 以开始使用。 与 [babel-sublime](https://github.com/babel/babel-sublime) 一起使用可以把语法高亮显示提升到一个全新的水平。
 
-You can install this preset with
+你可以通过下面这个命令安装该 preset
 
 ```shell
 npm install --save-dev @babel/preset-react
 ```
 
-and add `@babel/preset-react` to your Babel configuration.
+并将 `@babel/preset-react` 添加到你的 Babel 配置中。
 
 ```jsx
 export default React.createClass({
@@ -61,13 +61,13 @@ export default React.createClass({
 });
 ```
 
-> Learn more about [JSX](https://facebook.github.io/jsx/)
+> 了解更多关于 [JSX](https://facebook.github.io/jsx/) 的信息。
 
-## Type Annotations (Flow and TypeScript)
+## 类型注释（Flow 和 TypeScript）
 
-Babel can strip out type annotations! Check out either our [Flow preset](preset-flow.md) or [TypeScript preset](preset-typescript.md) to get started. Keep in mind this just allows you to use these in combination with Babel, as Babel doesn't do the type checking itself.
+Babel 可以删除类型注释！点击查看 [Flow preset](preset-flow.md) 或 [TypeScript preset](preset-typescript.md) 以开始使用。Babel 本身没有进行类型检查的功能，只是结合这些使用。
 
-You can install the flow preset with
+你可以通过下面这个命令安装 flow preset
 
 ```shell
 npm install --save-dev @babel/preset-flow
@@ -80,7 +80,7 @@ function square(n: number): number {
 }
 ```
 
-or the typescript preset with
+也可以通过下面这个命令安装 typescript preset
 
 ```shell
 npm install --save-dev @babel/preset-typescript
@@ -92,14 +92,14 @@ function Greeter(greeting: string) {
 }
 ```
 
-> Learn more about [Flow](http://flowtype.org/) and [TypeScript](https://www.typescriptlang.org/)
+> 了解更多关于 [Flow](http://flowtype.org/) 和 [TypeScript](https://www.typescriptlang.org/) 的信息。
 
-Pluggable
+可插拔
 ---------
 
-Babel is built out of plugins. Compose your own transformation pipeline using existing plugins or write your own. Easily use a set of plugins by using or creating a [preset](plugins.md#presets). [Learn more →](plugins.md)
+Babel 是用插件构建的。你可以使用现有插件编写自己的转换管道或编写自己的插件。通过使用或创建 [preset](plugins.md#presets) 轻松使用一组插件。[了解更多 →](plugins.md)
 
-Create a plugin on the fly with [astexplorer.net](https://astexplorer.net/#/KJ8AjD6maa) or use [generator-babel-plugin](https://github.com/babel/generator-babel-plugin) to generate a plugin template.
+使用 [astexplorer.net](https://astexplorer.net/#/KJ8AjD6maa) 动态创建插件或使用 [generator-babel-plugin](https://github.com/babel/generator-babel-plugin) 生成插件模板。
 
 ```javascript
 // A plugin is just a function
@@ -115,19 +115,19 @@ export default function ({types: t}) {
 }
 ```
 
-Debuggable
+可调试
 ----------
 
-**Source map** support so you can debug your compiled code with ease.
+支持 **Source map**，因此你可以轻松调试编译过的代码。
 
-Spec Compliant
+规范性
 --------
 
-Babel tries to stay true to the ECMAScript standard, as much as reasonably possible. It may also have specific options to be more spec compliant as a tradeoff to performance.
+Babel 试图尽可能地遵循 ECMAScript 标准。为了平衡性能，它也可能有特定的一些选项，以便可以更符合规范。
 
-Compact
+压缩性
 --------
 
-Babel tries uses the least amount of code possible with no dependence on a bulky runtime.
+Babel 尝试使用尽可能少的代码而不依赖于庞大的运行时环境。
 
-This may be difficult to do in cases, and there are "loose" options for specific transforms that may tradeoff spec compliancy for readability, file size, and speed.
+有些情况可能很难达到，因此为了保证可读性、文件大小以及（运行）速度，会针对特定转换牺牲一些合规性，即提供 “loose” 选项。
