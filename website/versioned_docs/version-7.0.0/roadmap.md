@@ -1,197 +1,197 @@
 ---
 id: version-7.0.0-roadmap
-title: Babel Roadmap
+title: Babel 路线图
 sidebar_label: Roadmap
 original_id: roadmap
 ---
 
-> Not everything is set in stone or has an issue for it! Looking to post these to get more people involved or integrate with other projects.
+> 并非一切都是一成不变的，提出一个问题！希望发布这些内容能吸引更多人参与或在其他项目中使用。
 
 ## Babel 7
 
-Mentioned these in [babel/notes](https://github.com/babel/notes/blob/master/2017/2017-12/dec-21.md#before-the-v7-final) and some of the [high priority items](https://github.com/babel/babel/labels/Priority%3A%20High).
+在 [babel/notes](https://github.com/babel/notes/blob/master/2017/2017-12/dec-21.md#before-the-v7-final) 和一些[高优先级项目](https://github.com/babel/babel/labels/Priority%3A%20High)中有提到。
 
-## Ecosystem
+## 生态系统
 
-### Remake `compat-table` used in preset-env
+### 重新制作 preset-env 中的 `compat-table`。
 
-> https://github.com/kangax/compat-table could use a remake, ideally work with browser vendors on this
+> https://github.com/kangax/compat-table可以使用重制版本，理想情况下可以与浏览器供应商合作
 
-- There is also https://github.com/mdn/browser-compat-data
-- Also use data from test262?
-- Run tests against real browsers
-- have a data-only format
-- Need continued maintainence
+- https://github.com/mdn/browser-compat-data 这里也有使用
+- 还使用来自 test262 的数据？
+- 运行针对真实浏览器的测试
+- 拥有纯数据格式
+- 需要持续维护
 
-### Polyfill behavior
+### Polyfill 行为
 
-> This is regarding https://github.com/babel/babel/tree/master/packages/babel-preset-env#usebuiltins-usage
+> 参见 https://github.com/babel/babel/tree/master/packages/babel-preset-env#usebuiltins-usage
 
-- Allow any substitute polyfill instead of `core-js`. You should be able to override anything (custom `Promise`, etc)
-- Make `"usage"` option the default after it is stable.
+- 允许任何替代 polyfill 而不是 `core-js`。应该能够覆盖任何东西（自定义 `Promise` 等）。
+- 稳定后，将 `"usage"` 选项设置为默认。
 
-### Build/publish workflow
+### 构建/发布工作流程
 
-- Guide on compiling/publishing ES2015+, .mjs, etc: https://twitter.com/philwalton/status/908082461799616512
-- Support multi-build/folder outputs based on ES version/browser/engines?
-- Includes making sure you can run Babel safely over node_modules [like with #6280](https://github.com/babel/babel/pull/6280). [create-react-app has an issue for this](https://github.com/facebookincubator/create-react-app/issues/3777)
+- 编制/发布ES2015 +，.mjs 等指南: https://twitter.com/philwalton/status/908082461799616512
+- 支持基于 ES 版本/浏览器/引擎的多构建/文件夹输出？
+- 确保可以安全地运行 Babel 像在[#6280](https://github.com/babel/babel/pull/6280)的 node_modules 上，[create-react-app 有一个关于这个得问题](https://github.com/facebookincubator/create-react-app/issues/3777)
 
-### Codemods for TC39 Proposals
+### TC39 提案的重构件
 
-> Lebab/others are already used to convert from ES5 -> ESNext, so incorporate it into Babel itself.
+> Lebab /其他人已经习惯从 ES5 转换 -> ESNext，因此将其合并到 Babel 本身。
 
-- Refactor [Lebab](https://github.com/lebab/lebab/issues/138) as Babel transforms (can keep the cli since it's a separate tool)
-  - Usecase: ES3 -> ES6+ (on source code)
-  - Usecase: Remove usage of dropped proposals
-  - Usecase: Auto upgrade to the latest version of a proposal spec (if possible)
-  - Can we somehow combine forces in: babel-codemod/jscodeshift/lebab, prettier/recast/babel-generator? I really don't want to update all of these: new syntax equals re-writing the printer in all of these places separately/out of sync.
+- 重构 [Lebab](https://github.com/lebab/lebab/issues/138) 用作 Babel 变换（因为它是一个单独的工具，可以保留 cli）
+  - 用例: ES3 -> ES6+ (在源码上)
+  - 用例: 删除已废弃提案的使用
+  - 用例: 自动升级到最新版本的提案规范（尽可能）
+  - 我们可以以某种方式分离：babel-codemod / jscodeshift / lebab，prettier / recast / babel-generator？ 我真的不想更新所有这些：新语法等于在所有这些地方分离的/不同步的重新编写。
 
-## Increasing the quality of community plugins
+## 提高社区插件的质量
 
-- Work with the community to create guides on how to write plugins or understand ASTs, etc
-- Analysis of API's/syntax used (Google BigQuery)
-- Have #blessed/sanctioned/curated packages according to some standard
-  - Can use for smoke tests
-  - Official testing package
-  - Certain level of coverage, downloads, etc
-  - Create a scoped namespace on github/npm for these? like webpack-contrib
-  - Can enforce linting rules on apis?
-  - Makes ecosystem changes easier if can notify and upgrade these plugins beforehand
-  - Create a set of standard tests to verify against (handles all syntax)
-  - Documented/tested set of options
+- 与社区合作，创建有关如何编写插件或了解 AST 等的指南
+- 使用 API /语法的分析（Google BigQuery）
+- 根据一些标准有 #blessed/sanctioned/curated 包
+  - 可用于烟雾测试
+  - 官方测试包
+  - 稳定的覆盖，下载等
+  - 在 github / npm 上为这些创建一个范围命名空间？像 webpack-contrib
+  - 可以在 apis 上执行 linting 规则吗？
+  - 如果可以预先通知并且升级这些插件，可以更轻松地进行生态系统更改
+  - 创建一组标准的验证测试（处理所有语法）
+  - 记录/测试的一组选项
 
-### ASTExplorer
+### AST 管理器
 
-- allow custom version of babel-standalone (same as REPL to allow per PR tests)
-- integrate with repl? (both are in react)
-- auto publish a plugin to npm?
-- create tests?
-- hook into codesandbox?
+- 允许自定义版本的babel-standalone（与 REPL 相同，允许每个 PR 测试）
+- 与 repl 集成？（两者都在 react 中）
+- 自动发布一个插件到 npm？
+- 创建测试?
+- 挂进 codesandbox?
 
 ---
 
-## Feature
+## 功能
 
-### Performance table for ES6+ (used in babel-preset-env under new option e.g `perf`)
+### ES6 +的性能表（使用新选项中用于 babel-preset-env，例如 `perf`）
 
-> Add a new option in `preset-env`: will continue to compile if the native support is *slower*. Can setup a threshold, may need to compare against the size difference.
+> 在 `preset-env` 中加入一个新的选项: 如果原生支持 *较慢*，将继续编译。可以设置一个阈值，可能需要与大小差异进行比较
 
-- Use [six-speed](https://github.com/kpdecker/six-speed) repo as a base, needs to apply for ES6 and proposals
-- Need continued maintainence
+- 使用 [six-speed repo](https://github.com/kpdecker/six-speed) 作为基础，需要申请 ES6 并提案
+- 需要持续维护
 
-### Compiled Output Stats
+### 编译输出统计
 
-> [#5340](https://github.com/babel/babel/issues/5340) Can show the code size before and after compiling to give a sense of compiled output. Could create suggestions like using "loose" mode or not compiling, etc.
+> [#5340](https://github.com/babel/babel/issues/5340) 可以在编译之前和之后显示代码大小以给出编译输出的建议。可以创建诸如使用 “loose” 模式或不编译等建议。
 
-- The [REPL](https://twitter.com/existentialism/status/948940160653291520) just added a before/after code-size
-- Maybe difficult to do per transform
+- [REPL](https://twitter.com/existentialism/status/948940160653291520)只添加了一个前/后代码大小
+- 每次转换可能很难做到
 
-### Async Transforms
+### 异步转换
 
-Support having async plugins. Will require it to be opt-in and for all other plugins to be async.
+支持异步插件。将需要它选择加入和所有其他插件都是异步的。
 
-### Plugin Ordering
+### 插件排序
 
-- Add `before`/`after` keys for plugins so they can specify order.
-- Possibily implement related plugins in the same "plugin" but just expose a flag out to the end-user.
+- 为指定插件顺序，给插件添加 `before`/`after` 的 key
+- 可能在相同的 “plugin” 中实现相关插件，但只是向最终用户公开标志
 
-### Babel Helpers (shared code)
-- loader should handle these automatically like rollup
-- allow 3rd party helpers?  https://github.com/babel/babel/issues/6487
-- allow compilation of helpers (write in esnext?) https://github.com/babel/babel/issues/5876
+### Babel 辅助 (共享代码)
+- loader 应该自动处理像 rollup 这些打包工具
+- 允许第三方助手?  https://github.com/babel/babel/issues/6487
+- 允许编译助手（用 esnext 编写？） https://github.com/babel/babel/issues/5876
 
-## Repurpose `babel` / create `babel-init`
+## 重新调整 `babel` / 创建 `babel-init`
 
-> We can re-use the `babel` package for a more simplified *0 config™* version
+> 我们可以重新使用 `babel` 软件包以获得更简化的0 config™版本
 
-Not sure what this looks like but had this idea for a really long time and didn't really get anywhere - the cli version could just be https://github.com/developit/microbundle for libs? Maybe webpack/parcel would have it covered for apps?
+不确定这是什么样子但是这个想法很长一段时间并没有实现 - cli 版本可能只是给 libs？https://github.com/developit/microbundle也许 webpack / parcel 可以覆盖应用程序？
 
 ---
 
 ## General/Infra
 
-### Run Babel against Spec tests (test262, TS, Flow, JSX)
+### 针对 Spec 测试运行 Babel（test262，TS，Flow，JSX）
 
-Better set of tests for stability/spec compliancy.
+为了稳定性/规范合规性更好地一组测试。
 
-- The parser (babylon) already has a whitelist of test262 tests
-- Need to do the same for the transforms.
+- 解析器（babylon）已经有 test262 测试的白名单
+- 需要对变换执行相同的操作
 
-### Smoke Tests
+### 烟雾测试
 
-- Babel itself https://github.com/babel/babel/issues/6134
-- Important community plugins (`babel-plugin-instanbul`, css-in-js)
-- `babel-core` integrations (wrappers like `babel-loader`, test frameworks, etc)
-- Libraries (`(p)react`, `redux`, `vue`)
-- Tools that use individual packages (`debugger.html`, `prepack`)
-- OSS Apps (`nylas-mail`)
+- Babel 自身 https://github.com/babel/babel/issues/6134
+- 重要的社区插件(`babel-plugin-instanbul`, css-in-js)
+- `babel-core` 的集成 (被集成在像 `babel-loader`, 测试框架等)
+- 库 (`(p)react`, `redux`, `vue`)
+- 使用单个包的工具 (`debugger.html`, `prepack`)
+- OSS 应用程序 (`nylas-mail`)
 
-### Better Debuggability
+### 更好的可调试性
 
-- Query config for data for other tools
+- 查询其他工具的数据配置
 - `babel --settings`
-- Validate config better
-- Create/expand on new tools like https://github.com/boopathi/babel-time-travel
+- 更好地验证配置
+- 创建/扩展新工具，像 https://github.com/boopathi/babel-time-travel
 
-### Speed
+### 速度
 
-> Already working with v8 via https://github.com/v8/web-tooling-benchmark, but can add other representative workloads: jsx/flow/ts/es6+.
+> 已经通过 https://github.com/v8/web-tooling-benchmark 与 v8 合作，但可以加入其它代表性工作量：jsx/flow/ts/es6+。
 
-Can run these benchmarks for perf PRs, should track some over time.
+可以为 perf PR 运行这些基准测试，应该随着时间的推移进行跟踪。
 
-### Website Rehaul
+### 网站重组
 
-- Use a blog framework like Gatsby/Docusaurus
-- Versioned docs pages: currently we don't have an easy way to show both the documentation for v6, v7, and beyond.
-- Translatable docs
+- 使用像 Gatsby / Docusaurus 这样的博客框架
+- 版本化的文档页面：目前我们没有简单的方法来显示 v6，v7 及更高版本的文档。
+- 可翻译的文档
 
-#### Expanded Docs
+#### 扩展文档
 
-- Real documentation on APIs
-- Up to date babel-handbook/merge into rehauled website
-- Continue our [videos page](https://babeljs.io/docs/community/videos/)
-- Link to common errors pages
+- 有关 API 的真实文档
+- 更新 babel-handbook /合并到 rehauled 网站
+- 继续我们的[视频页面](https://babeljs.io/docs/community/videos/)
+- 链接到常见错误页面
 
-#### Better REPL
+#### 更好地 REPL
 
-- Dropdown examples/examples of syntax from github?
-- Import any package from npm (can give test examples for 3rd party plugins, debugging issues)
-- Run any plugin from npm
-- Create a plugin from the repl (can we merge it with ASTExplorer/codesandbox?), even publish, run from URL?
-- Import/Export a config file
-- Combine ^ with the ability to run the version of Babel in a PR/master.
-- Use plugin's tests in the repo as "examples" for docs.
+- 来自 github 的下拉示例/语法示例？
+- 可以从 npm 导入任何包（可以提供第三方插件的测试示例，调试问题）
+- 运行 npm 的任何插件
+- 从 repl 创建一个插件（我们可以将它与 ASTExplorer / codesandbox 合并吗？），甚至发布，从URL运行？
+- 引入/导出一个配置文件
+- 将^与在 PR / master 中运行 Babel 版本的能力结合起来。
+- 在 repo 中使用插件测试作为文档的“示例”。
 
 ### `babel-bot`
 
-> [#43](https://github.com/babel/babel-bot/issues/43) Rewrite it with [probot](https://github.com/probot/probot)
+> [#43](https://github.com/babel/babel-bot/issues/43) 用 [probot](https://github.com/probot/probot) 重写
 
-A bot is really useful to do github/maintainer activities automatically.
+bot 对于自动执行 github / maintainer 活动非常有用。
 
-We haven't updated this in a long time due to Andrew being busy and not setting up the automatic infra on AWS. Switching will make updating actually real so we can add some new features which would save some headache.
+由于 Andrew 很忙并且没有在 AWS 上设置自动 infra，我们在很长一段时间内都没有对此进行更新。切换将使更新实现，因此我们可以添加一些新功能，这将节省一些头痛。
 
-References: https://github.com/eslint/eslint-github-bot, https://github.com/open-bot/open-bot
+参考: https://github.com/eslint/eslint-github-bot, https://github.com/open-bot/open-bot
 
-### Expanded Maintainer Guide
+### 扩展的维护者指南
 
-> Better onboarding/contributing guide
-- Guide to different aspects of contributing with real examples to issues/PRs
+> 更好的管理/贡献指南
+- 为不同方面的 issues/ PR 提供真实案例的指导
 
-### Maintainers/Sustainability
+### 维护者/持续性
 
-- Promote Open Collective, talking with companies about office hours, sponsorship, contracting?
-- Mentoring: Google Summer of Code/Rails Girls Summer of Code were great but was hard to keep up with volunteeers and I felt like we could be doing a lot more with full time help.
-- Maybe doing local meetups on contributing, or livestreaming development/maintenance work?
-- Should focus on bringing in maintainers that will lower the burden, not increase it even if there is upfront work
+- 提升坦率的集体，与公司谈论办公时间，赞助，签约？
+- 指导：Google Summer of Code / Rails Girls Summer of Code 很棒，但很难留下志愿者，我觉得我们可以通过全职帮助做更多事情。
+- 也许在本地聚会上做贡献，或进行直播开发/维护工作？
+- 即使有前期工作不会增加，也应该专注于引入能够降低负担的维护者
 
 ---
 
-## Big Wishlist (might be out of scope/complex/ecosystem)
+## 庞大的愿望清单 (可能超出 scope/complex/生态系统)
 
-- Should Babel operate multi-file/take in a dep graph?
-- Should Babel use type info (from other things like ts/flow/runtime info)
+- Babel 应该运行多文件/接收 dep graph ？
+- Babel 应该使用类型信息（来自ts / flow / runtime info 等其他内容）
 - AST
-  - Can we just move back to acorn + estree?
-  - Should we switch to shift?
-  - What about binary ast?
-  - immutable? https://github.com/babel/babel/issues/4130#issuecomment-245411113
+  - 我们可以回到 acorn + estree吗？
+  - 我们应该改用 shift？
+  - 关于二进制 ast?
+  - 不变的? https://github.com/babel/babel/issues/4130#issuecomment-245411113
