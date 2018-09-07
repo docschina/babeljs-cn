@@ -1,22 +1,22 @@
 ---
 id: version-7.0.0-plugins
-title: Plugins
+title: 插件
 original_id: plugins
 ---
 
-Babel is a compiler (source code => output code). Like many other compilers it runs in 3 stages: parsing, transforming, and printing.
+Babel 是一个编译器（源代码=>输出代码）。像许多其他编译器一样，它分三个阶段运行：解析，转换和生成新代码。
 
-Now, out of the box Babel doesn't do anything. It basically acts like `const babel = code => code;` by parsing the code and then generating the same code back out again. You will need to add plugins for Babel to do anything.
+现在，开箱即用的 Babel 没有做任何事情。通过解析代码，基本上像 `const babel = code => code;` ，然后再次生成相同的代码。所以做任何事你都需要添加 Babel 插架来实现。
 
-Instead of individual plugins, you can also enable a set of plugins in a [preset](presets.md).
+可以在 [preset](presets.md) 中启用一组插件，而不是单独的插件。
 
-## Transform Plugins
+## 转换插件
 
-These plugins apply transformations to your code.
+这些插件将把转换应用到你的代码中。
 
 <blockquote class="babel-callout babel-callout-info">
   <p>
-    Transform plugins will enable the corresponding syntax plugin so you don't have to specify both.
+    转换插件将启用相应的语法插件，因此不必同时指定它们。
   </p>
 </blockquote>
 
@@ -69,14 +69,14 @@ These plugins apply transformations to your code.
 - [optional-catch-binding](plugin-proposal-optional-catch-binding.md)
 - [unicode-property-regex](plugin-proposal-unicode-property-regex.md)
 
-### Modules
+### 模块
 
 - [modules-amd](plugin-transform-modules-amd.md)
 - [modules-commonjs](plugin-transform-modules-commonjs.md)
 - [modules-systemjs](plugin-transform-modules-systemjs.md)
 - [modules-umd](plugin-transform-modules-umd.md)
 
-### Experimental
+### 试验阶段
 
 - [class-properties](plugin-proposal-class-properties.md)
 - [decorators](plugin-proposal-decorators.md)
@@ -92,11 +92,11 @@ These plugins apply transformations to your code.
 - [pipeline-operator](plugin-proposal-pipeline-operator.md)
 - [throw-expressions](plugin-proposal-throw-expressions.md)
 
-### Minification
+### 简化
 
-Check out our [minifier based on Babel](https://github.com/babel/minify)!
+查看 [基于 Babel 的简化](https://github.com/babel/minify)！
 
-These plugins are in the minify repo.
+这些插件都在 minify repo 中。
 
 - [inline-consecutive-adds](plugin-transform-inline-consecutive-adds.md)
 - [inline-environment-variables](plugin-transform-inline-environment-variables.md)
@@ -133,7 +133,7 @@ These plugins are in the minify repo.
 - [react-jsx-self](plugin-transform-react-jsx-self.md)
 - [react-jsx-source](plugin-transform-react-jsx-source.md)
 
-### Other
+### 其他
 
 - [external-helpers](plugin-external-helpers.md)
 - [flow-strip-types](plugin-transform-flow-strip-types.md)
@@ -145,15 +145,15 @@ These plugins are in the minify repo.
 - [runtime](plugin-transform-runtime.md)
 - [strict-mode](plugin-transform-strict-mode.md)
 
-## Syntax Plugins
+## 语法插件
 
-These plugins only allow Babel to **parse** specific types of syntax (not transform).
+这些插件允许 Babel **parse** 特定类型的语法（不是转换）。
 
-> NOTE: transform plugins automatically enable the syntax plugins. So you don't need to specify the syntax plugin if the corresponding transform plugin is used already.
+> 注意：转换插件会自动启用相应的语法插件。因此，如果已经使用了相应的转换插件，则无需指定语法插件。
 
-Alternatively, you can also provide any [`plugins` option](parser.md#plugins) from the Babel parser:
+或者，也可以从 Babel 解析器中的 [`plugins` 选项](parser.md#plugins)提供。
 
-Your `.babelrc`:
+你的 `.babelrc`:
 
 ```json
 {
@@ -163,9 +163,9 @@ Your `.babelrc`:
 }
 ```
 
-## Plugin/Preset Paths
+## 插件/Preset 路径
 
-If the plugin is on npm, you can pass in the name of the plugin and babel will check that it's installed in `node_modules`
+如果插件是在 npm 上，可以写入插件的名称，babel 将检查它是否已安装在 `node_modules` 中。
 
 ```json
 {
@@ -173,7 +173,7 @@ If the plugin is on npm, you can pass in the name of the plugin and babel will c
 }
 ```
 
-You can also specify an relative/absolute path to your plugin.
+也可以指定插件的相对/绝对路径。
 
 ```json
 {
@@ -181,41 +181,41 @@ You can also specify an relative/absolute path to your plugin.
 }
 ```
 
-### Plugin Shorthand
+### 插件简写
 
-If the name of the package is prefixed with `babel-plugin-`, you can use a shorthand:
+如果包的名称以 `babel-plugin-` 为前缀，可以使用简写：
 
 ```js
 {
   "plugins": [
     "myPlugin",
-    "babel-plugin-myPlugin" // equivalent
+    "babel-plugin-myPlugin" // 等同
   ]
 }
 ```
 
-This also works with scoped packages:
+也适用于范围包：
 
 ```js
 {
   "plugins": [
     "@org/babel-plugin-name",
-    "@org/name" // equivalent
+    "@org/name" // 等同
   ]
 }
 ```
 
-## Plugin Ordering
+## 插件顺序
 
-> Ordering matters for each visitor in the plugin.
+> 指定插件每个访问者的事项
 
-This means if two transforms both visit the "Program" node, the transforms will run in either plugin or preset order.
+这意味着如果两个转换器都访问同一个“ Program ”节点，则转换器将以插件或 preset 顺序运行。
 
-- Plugins run before Presets.
-- Plugin ordering is first to last.
-- Preset ordering is reversed (last to first).
+- 插件在 Presets 前运行。
+- 插件可以指定从头到尾的顺序。
+- Preset 顺序是相反的 (从后到前).
 
-For example:
+例如:
 
 ```json
 {
@@ -226,9 +226,9 @@ For example:
 }
 ```
 
-Will run `transform-decorators-legacy` then `transform-class-properties`.
+将会运行 `transform-decorators-legacy` 然后是 `transform-class-properties`。
 
-It is important to remember that with presets, the order is _reversed_. The following:
+关于 presets 一定要记住，顺序是相反的。如下：
 
 ```json
 {
@@ -240,15 +240,15 @@ It is important to remember that with presets, the order is _reversed_. The foll
 }
 ```
 
-Will run in the following order: `stage-2`, `react`, then `es2015`.
+将会以如下顺序运行：`stage-2`, `react` 然后是 `es2015`。
 
-This is mostly for ensuring backwards compatibility, since most users list "es2015" before "stage-0". For more information, see [notes on potential traversal API changes](https://github.com/babel/notes/blob/master/2016/2016-08/august-01.md#potential-api-changes-for-traversal).
+这主要是为了确保向后兼容性，因为大多数用户会在 "stage-0" 前列出 "es2015"。更多相关信息，详见[关于潜在遍历 API 更改的说明](https://github.com/babel/notes/blob/master/2016/2016-08/august-01.md#potential-api-changes-for-traversal)。
 
-## Plugin Options
+## 插件选项
 
-Both plugins and presets can have options specified by wrapping the name and an options object in an array inside your config.
+插件和 presets 都可以通过将名称和选项对象放在在配置中的数组中来指定选项。
 
-For specifying no options, these are all equivalent:
+对于不指定选项，这些都是等效的：
 
 ```json
 {
@@ -260,7 +260,7 @@ For specifying no options, these are all equivalent:
 }
 ```
 
-To specify an option, pass an object with the keys as the option names.
+要指定选项，输入一个选项名作为 key 的对象。
 
 ```json
 {
@@ -273,7 +273,7 @@ To specify an option, pass an object with the keys as the option names.
 }
 ```
 
-Settings options for presets works exactly the same:
+presets 的选项设置相同:
 
 ```json
 {
@@ -286,12 +286,11 @@ Settings options for presets works exactly the same:
 }
 ```
 
-## Plugin Development
+## 插件开发
 
-Please refer to the excellent [babel-handbook](https://github.com/thejameskyle/babel-handbook)
-to learn how to create your own plugins.
+了解如何创建自己的插件，请参阅优秀的 [babel-handbook](https://github.com/thejameskyle/babel-handbook)。
 
-The simple plugin that reverses names (from the homepage):
+简单的反转名称插件（来自主页）：
 
 ```js
 export default function () {
