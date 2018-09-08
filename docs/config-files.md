@@ -1,5 +1,5 @@
 ---
-title: Config Files
+title: 配置文件
 id: config-files
 ---
 

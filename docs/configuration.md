@@ -1,6 +1,6 @@
 ---
 id: configuration
-title: Configure Babel
+title: 配置 Babel
 ---
 
 Babel can be configured! Many other tools have similar configs: ESLint (`.eslintrc`), Prettier (`.prettierrc`).

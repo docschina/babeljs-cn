@@ -1,5 +1,5 @@
 ---
-title: Options
+title: 选项
 id: options
 ---
 
