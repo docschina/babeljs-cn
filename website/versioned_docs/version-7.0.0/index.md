@@ -22,7 +22,7 @@ Babel 是一个工具链，主要用于在旧的浏览器或环境中将 ECMAScr
 });
 ```
 
-> 有关编译器的精彩教程，请查看[超级微型编译器](https://github.com/thejameskyle/the-super-tiny-compiler)，它还解释了 Babel 本身如何在高级语言上工作。
+> 有关编译器的精彩教程，请查看 [the-super-tiny-compiler](https://github.com/thejameskyle/the-super-tiny-compiler)，它还解释了 Babel 本身如何在高级语言上工作。
 
 ## ES2015 及其他
 
