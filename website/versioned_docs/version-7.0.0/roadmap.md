@@ -5,7 +5,7 @@ sidebar_label: Roadmap
 original_id: roadmap
 ---
 
-> 并非一切都是一成不变的，提出一个问题！希望发布这些内容能吸引更多人参与或在其他项目中使用。
+> 并非一切是不可改变的，你可以提出一个问题！希望发布这些内容能吸引更多人参与或在其他项目中使用。
 
 ## Babel 7
 
@@ -42,13 +42,13 @@ original_id: roadmap
 
 - 重构 [Lebab](https://github.com/lebab/lebab/issues/138) 用作 Babel 变换（因为它是一个单独的工具，可以保留 cli）
   - 用例: ES3 -> ES6+ (在源码上)
-  - 用例: 删除已废弃提案的使用
+  - 用例: 删除已废弃提案的用法
   - 用例: 自动升级到最新版本的提案规范（尽可能）
   - 我们可以以某种方式分离：babel-codemod / jscodeshift / lebab，prettier / recast / babel-generator？ 我真的不想更新所有这些：新语法等于在所有这些地方分离的/不同步的重新编写。
 
 ## 提高社区插件的质量
 
-- 与社区合作，创建有关如何编写插件或了解 AST 等的指南
+- 与社区合作，创建有关如何编写插件或了解 AST 的指南，等等
 - 使用 API /语法的分析（Google BigQuery）
 - 根据一些标准有 #blessed/sanctioned/curated 包
   - 可用于烟雾测试
