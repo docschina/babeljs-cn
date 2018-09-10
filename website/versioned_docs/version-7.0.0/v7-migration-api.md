@@ -1,5 +1,5 @@
 ---
-title: 升级到 Babel 7 (API)
+title: 升级至 Babel 7 (API)
 id: version-7.0.0-v7-migration-api
 original_id: v7-migration-api
 ---
@@ -154,7 +154,7 @@ babelParser.parse(code, {
 
  `getFunctionParent` 也返回 Program 没有意义，因此被删除了。
 
-要得到相同的效果，需要进行以下类似的更改。
+要得到相同的效果，需要进行以下更改。
 
 ```diff
 - path.scope.getFunctionParent()
@@ -211,7 +211,7 @@ interface InterpreterDirective <: Node {
 + t.jsxIdentifier()
 ```
 
-通常，我们使用 Flow 的 `TypeAnnotation` 和 TypeScript 的 `TSTypeAnnotation` 来区分 ndoe 类型，因此对于共享类型节点，TypeScript 具有 TS 前缀。
+通常，我们使用 Flow 的 `TypeAnnotation` 和 TypeScript 的 `TSTypeAnnotation` 来区分 node 类型，因此对于共享类型节点，TypeScript 具有 TS 前缀。
 
 ### 从 `ArrowFunctionExpression` 中 删除`.expression` 字段
 
