@@ -5,10 +5,10 @@ id: config-files
 
 ## 配置文件类型
 
-Babel 有两种并行的配置文件格式，可以一起使用，也可以单独使用。
+Babel 有两种并行的配置文件方式，可以一起使用，也可以单独使用。
 
 * 项目范围的配置
-* 文件相关配置
+* 相关文件的配置
   * `.babelrc`（和 `.babelrc.js`）文件
   * 带有 `"babel"` 键的 `package.json` 文件
 
@@ -20,14 +20,14 @@ Babel 7.x 中的新功能，Babel 具有 ["root"](options.md#root) 目录的概�
 相对对于此根目录下的 `"babel.config.js"` 。或者，用户可以使用显式
  ["configFile"](options.md#configfile) 值覆盖默认的配置文件搜索行为。
 
-因为项目范围的配置文件与配置文件的物理位置分开，
-它们是非常合适并值得广泛应用的配置，
-它甚至允许 plugins 和 presets 可以轻松应用于 `node_modules` 或符号链接包中的文件，
-这在传统 Babel 6.x 中配置是非常痛苦。
+因为项目范围的配置文件与项目本身的文件的物理位置分开，
+这是个非常合适并值得广泛应用的配置方式，
+它甚至允许将 plugins 和 presets 轻松应用于 `node_modules` 或符号链接包中的文件，
+要实现这个操作在传统的 Babel 6.x 中配置是非常痛苦。
 
-这个项目范围配置的主要缺点是，因为它依赖于工作目录
+项目范围配置的主要缺点是，因为它依赖于工作目录
 如果工作目录不是 monorepo root，那么在 monorepos 中使用会更加痛苦。
-例如，如果你有
+例如：
 
 ```text
 babel.config.js
@@ -40,19 +40,19 @@ packages/
     src/index.js
 ```
 并且各个包负责运行他们的构建（以及他们的工作
- Babel 的目录是单独的包），`babel.config.js` 文件不会自动生成
+Babel 的目录是单独的包），`babel.config.js` 文件不会自动生成
 加载，用户将需要手动设置它的路径。
 
 也可以通过将 ["configFile"](options.md#configfile) 设置为 `false` 来禁用项目范围的配置。
 
-## 文件相关配置
+## 相关文件的配置
 
 通过搜索，Babel 加载 `.babelrc`（和 `.babelrc.js` /`package.json＃babel`）文件
-目录结构从正在编译的 ["filename"](options.md#filename) 开始。这个可以
-功能强大，因为它允许您为子部分创建独立的配置
-存储库。文件相关配置也在 [merged](options.md#merging) 之上
-项目范围的配置值，使它们可能对特定覆盖有用，尽管可以
-也可以通过 ["overrides"](options.md#overrides)来完成。
+目录结构从正在编译的 ["filename"](options.md#filename) 开始。这种方式
+功能强大，因为它允许你为子文件创建独立的配置
+存储库。相关文件的配置可以设置 [merged](options.md#merging) 
+使它们特定的配置覆盖项目范围的配置值，
+你也可以通过设置 ["overrides"](options.md#overrides) 来完成。
 
 使用文件相对配置时需要考虑一些边缘情况：
 * 一旦找到包含 `package.json` 的目录，搜索将停止，因此是相对配置
@@ -71,9 +71,9 @@ packages/
 * `.babelrc` 文件 _failed_ 应用于符号链接 `node_modules`，当人们期望它们表现得像正常的依赖。
 * `.babelrc` 文件 _in_ `node_modules` 依赖关系将被检测到，即使插件和
   它们内部的预设通常没有安装，甚至可能在版本中无效
-  Babel编译文件。
+  Babel 编译文件。
 
-对于具有monorepo结构的用户来说，这些情况会产生问题，因为如果你这样做的话
+对于具有 monorepo 结构的用户来说，这些情况会产生问题，因为如果你这样做的话
 有
 ```text
 .babelrc
@@ -87,17 +87,17 @@ packages/
 ```
 配置现在将被完全忽略，因为它跨越包边界
 
-一种替代方法是在每个使用 ["extends"](options.md#extends) 的子包中创建`.babelrc`
+一种替代方法是在每个使用 ["extends"](options.md#extends) 的子包中创建 `.babelrc` 
 ```json
 { "extends": "../../.babelrc" }
 ```
-不幸的是，这种方法可能有点重复，取决于如何使用Babel，
+不幸的是，这种方法可能有点重复，取决于如何使用 Babel，
 可能需要设置 ["babelrcRoots"](options.md#babelrcroots)。
 
 鉴于此，可能更希望将 `.babelrc` 重命名为
 [project-wide "babel.config.js"](#project-wide-configuration)。如项目范围所述
 上面的部分，这可能需要显式设置 ["configFile"](options.md#configfile)
-因为如果工作目录不正确，Babel将找不到配置文件。
+因为如果工作目录不正确，Babel 将找不到配置文件。
 
 
 ## 配置格式
