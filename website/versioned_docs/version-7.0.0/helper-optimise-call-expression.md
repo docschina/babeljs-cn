@@ -1,7 +1,8 @@
 ---
-id: babel-helper-optimise-call-expression
+id: version-7.0.0-babel-helper-optimise-call-expression
 title: @babel/helper-optimise-call-expression
 sidebar_label: helper-optimise-call-expression
+original_id: babel-helper-optimise-call-expression
 ---
 
 TODO
