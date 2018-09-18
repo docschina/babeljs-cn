@@ -1,14 +1,14 @@
 ---
-title: 升级到 Babel 7
+title: 升级至 Babel 7
 id: version-7.0.0-v7-migration
 original_id: v7-migration
 ---
 
-当用户需要升级到 Babel 7 时，请参照文档。
+当需要升级到 Babel 7 时，请参照此文档。
 
 <!--truncate-->
 
-因为并非每个重大变化都会影响所有项目，所以我们已经根据升级时更改破坏测试的可能性对这些部分进行了排序。
+因为并非每个重大变化都会影响所有项目，所以我们在升级时根据更改破坏测试的可能性对要内容进行了排序。
 
 ## 所有 Babel
 
@@ -19,7 +19,7 @@ original_id: v7-migration
 
 这只是意味着 Babel 本身不会在旧版本的 Node 上运行。它仍然可以输出在旧节点上运行的代码。
 
-## [每年弃用 Preset](/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
+## [弃用年份 Preset](/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
 
 "env" preset 现已推出一年多了，完全取代了之前我们已经/过去建议的一些预设。
 
@@ -31,11 +31,11 @@ original_id: v7-migration
 
 这些 preset 应替换为 "env" preset。
 
-## [阶段弃用 Preset](https://github.com/babel/babel/issues/7770)
+## [弃用 Stage Preset](https://github.com/babel/babel/issues/7770)
 
-我们正在删除阶段 presets，以支持明确的提案使用。可以检查 [stage-0 readme](https://github.com/babel/babel/tree/master/packages/babel-preset-stage-0#babelpreset-stage-0) 自述文件以获取更多迁移步骤。
+我们正在删除 Stage presets，以支持明确的提案使用。可以检查 [stage-0 readme](https://github.com/babel/babel/tree/master/packages/babel-preset-stage-0#babelpreset-stage-0) 自述文件以获取更多迁移步骤。
 
-要自动执行此操作，您可以运行 [`npx babel-upgrade`](https://github.com/babel/babel-upgrade)（[此处](https://github.com/babel/babel-upgrade/pull/69)添加 PR）。
+要自动执行此操作，您可以运行 [`npx babel-upgrade`](https://github.com/babel/babel-upgrade)（ PR 添加在[此处](https://github.com/babel/babel-upgrade/pull/69)）。
 
 （发布时添加博客文章的链接）。
 
@@ -60,7 +60,7 @@ e.g.
 import "core-js/fn/array/flatMap";
 ```
 
-以下是第三阶段前 `core-js` v2 中的3个提案 polyfill。
+以下是 `core-js` v2 中的 Stage < 3 提案的 polyfill 列表。
 
 <details>
 
@@ -140,7 +140,7 @@ import "core-js/fn/reflect/metadata";
 
 - `babylon` 现在是 `@babel/parser`
 
-你仍然可以在配置中使用包名称的简写版本（删除 `preset-` 或 `plugin-`），但我选择使用整个包名称来清楚（也许我们应该删除它，因为它没有保存那么多打字）。
+你仍然可以在配置中使用包名称的简写版本（删除 `preset-` 或 `plugin-`），但为了清晰起见，建议使用整个包名称（也许我们应该删除它，因为它并没减少多少输入）。
 
 ```diff
 {
@@ -151,7 +151,7 @@ import "core-js/fn/reflect/metadata";
 }
 ```
 
-### 包裹范围
+### Package 作用域
 
 最重要的变化是最终将所有包切换到 [scoped packages](/blog/2017/12/27/nearing-the-7.0-release.html#renames-scoped-packages-babel-x)。 ([monorepo](https://github.com/babel/babel/tree/master/packages) 中的文件夹名称不会更改，但 package.name 是)
 
@@ -163,7 +163,7 @@ import "core-js/fn/reflect/metadata";
 
 #### 在配置中使用
 
-你仍然可以使用指定预设或插件的简写方式。但是由于切换到作用域包，你仍然必须指定 `@babel/` 就像你有自己的预设添加到配置。
+你仍然可以使用指定预设或插件的简写方式。但是由于切换到作用域 package，你仍然必须要指定 `@babel/` 就像你有自己的预设添加到配置。
 
 ```js
 module.exports = {
@@ -181,7 +181,7 @@ module.exports = {
 - `@babel/plugin-transform-function-bind` is now `@babel/plugin-proposal-function-bind` (Stage 0)
 - `@babel/plugin-transform-class-properties` is now `@babel/plugin-proposal-class-properties` (Stage 3)
 
-这也意味着当提案移至第4阶段时，我们应该重命名包。
+这也意味着当提案移至第4阶段时，我们会对 Package 进行重命名。
 
 ### [从包名中删除年份](/blog/2017/12/27/nearing-the-7.0-release.html#renames-drop-the-year-from-the-plugin-name)
 
@@ -191,7 +191,7 @@ module.exports = {
 
 ## CommonJS 中的 `"use strict"` 和 `this`
 
-Babel 6 对 ES6 模块的转换不分青红皂白地对它所处理的任何文件进行了处理，从不考虑文件是否实际上有 ES6 导入/导出。这样做的效果是将对 `this` 的文件范围引用重写为 `undefined`，并在 Babel 处理的所有 CommonJS 模块的顶部插入 `"use strict"`。
+Babel 6 在转换 ES6 模块时，对任何文件都进行了相同的处理，从不考虑文件是否实际上有 ES6 导入/导出。这样做的效果是将对 `this` 的文件范围引用重写为 `undefined`，并会在 Babel 处理的所有 CommonJS 模块的顶部插入 `"use strict"`。
 
 ```js
 // input.js
@@ -209,7 +209,7 @@ undefined; // changed this to undefined
 this;
 ```
 
-这种行为在 Babel 7 中受到限制，因此对于 `transform-es2015-modules-commonjs` 转换，只有在文件中有ES6导入或导出时才会更改该文件。（编者注：如果我们登陆 https://github.com/babel/babel/issues/6242，这可能会再次发生变化，因此我们希望在发布之前重新审视这一点）。
+这种行为在 Babel 7 中受到限制，只有在文件中有 ES6 导入或导出时才会使用 `transform-es2015-modules-commonjs` 转译该文件。（编者注：如果我们查看 https://github.com/babel/babel/issues/6242，它可能会再次发生变化，因此我们希望在发布之前重新审视这一点）。
 
 ```js
 // input2.js
@@ -226,11 +226,11 @@ require('a');
 
 ## React 和 Flow presets 之间的分离
 
-`babel-preset-react` 总是从头开始自动包含流插件。这实际上已经引起很多问题，因为用户意外地使用 `flow` 语法而没有打算输入错误，或者在没有使用 `flow` 本身的类型检查的情况下添加它，导致错误。
+`babel-preset-react` 总是从一开始就自动包含 Flow 插件。这实际上已经引起很多问题，因为用户意外地使用 `flow` 语法而没有打算输入错误，或者在没有使用 `flow` 本身的类型检查的情况下添加它，导致错误。
 
-在我们决定在 TS 团队的帮助下支持 TypeScript 之后，这又成了一个问题。如果你想使用 react 和 typescript 预设，我们必须想出一种通过文件类型或指令自动打开/关闭语法的方法。最后，将预设完全分开似乎最简单。
+当我们决定在 TS 团队的帮助下支持 TypeScript 之后，这又成了一个问题。如果你想使用 react 和 typescript 预设，我们必须想出一种通过文件类型或指令自动打开/关闭语法的方法。最后，似乎将 preset 完全分离最简单。
 
-所以现在反应预设和流量预设是分开的。
+所以现在 React preset 和 Flow preset 是分开的。
 
 ```diff
 {
@@ -242,7 +242,7 @@ require('a');
 
 ## 选项解析
 
-Babel's 的配置选项比 Babel 6 更严格。
+Babel 的配置选项比 Babel 6 更严格。
 以逗号分隔的预设列表，例如 `"presets": 'es2015, es2016'` 在技术上工作过，它现在会失败，需要变成一个数组 [#5463](https://github.com/babel/babel/pull/5463)。
 
 请注意，这不适用于 CLI， 其中 `--presets es2015,es2016` 仍然有效。
@@ -256,13 +256,13 @@ Babel's 的配置选项比 Babel 6 更严格。
 
 ## Plugin/Preset 导出
 
-所有 plugins/presets 现在应该导出一个函数而不是一个对象以保持一致性 [来自 [babel/babel#6494](https://github.com/babel/babel/pull/6494)]。 这将有助于我们缓存。
+为了保持一致性，所有 plugins/presets 都应该导出函数而不是对象。[来自 [babel/babel#6494](https://github.com/babel/babel/pull/6494)]。这将有助于我们进行缓存操作。
 
 ## 解析基于字符串的配置值
 
-在 Babel 6 中，直接传递给 Babel 的值（而不是从配置文件中传递）相对于正在编译的文件被解析，这导致了很多混乱。
+在 Babel 6 中，直接传递 value 给 Babel（非 config 文件的方式）对于编译解析文件来说，会产生很多问题。
 
-在 Babel 7 中，值相对于加载它们的配置文件或相对于工作目录一致地解析。
+在 Babel 7 中，value 相对路径配置文件，或相对于工作目录均会被正常解析。
 
 对于 `presets` 和 `plugins` 值，此更改意味着 CLI 在诸如此类的情况下表现良好
 
@@ -272,7 +272,7 @@ babel --presets @babel/preset-es2015 ../file.js
 
 假设你的 `node_modules` 文件夹在 `.` 中，在 Babel 6 中，这将失败，因为无法找到预设。
 
-这种变化也会影响 `only` 和 `ignore`，这将在下一次扩展。
+这种变化也会影响 `only` 和 `ignore`，这将在下一次进行扩展。
 
 
 ## 基于路径的 `only` 和 `ignore` 模式
@@ -281,7 +281,7 @@ babel --presets @babel/preset-es2015 ../file.js
 
 在 Babel 7 中，这些现在被视为基于路径的 glob 模式，可以是相对路径或绝对路径。这意味着如果你使用这些模式，你可能需要至少为它们添加一个 `**/` 前缀，以确保你的模式与目录深深匹配。
 
-`only` 和 `ignore` 模式 _do_ 仍然适用于目录，所以你也可以使用 `only: './tests'` 来只编译 `tests` 目录中的文件，而不需要使用 `**/*.js` 匹配所有嵌套文件。
+`only` 和 `ignore` 模式仍然_适用_于目录，所以你也可以使用 `only: './tests'` 来只编译 `tests` 目录中的文件，而不需要使用 `**/*.js` 匹配所有嵌套文件。
 
 
 ## Babel's CLI commands
@@ -316,7 +316,7 @@ npm install @babel/plugin-transform-runtime --save-dev
 
 #### `core-js` 的 Helpers + polyfilling
 
-因此，如果你需要 `transform-js` 支持 `transform-runtime`，你现在将传递 `corejs` 选项并使用 `@babel / runtime-corejs2` 依赖而不是 `@babel / runtime`。
+因此，如果你需要 `transform-js` 支持 `transform-runtime`，你现在将传递 `corejs` 选项并使用 `@babel/runtime-corejs2` 依赖而不是 `@babel/runtime`。
 
 ```sh
 # install the runtime as a dependency
@@ -444,11 +444,11 @@ export * as ns from 'mod';
 
 ### `@babel/plugin-transform-template-literals`
 
->  模板文字修订已更新 [#5523](https://github.com/babel/babel/pull/5523) ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
+>  模板字符串修订已更新 [#5523](https://github.com/babel/babel/pull/5523) ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
 
 请参阅提案 [Template Literals Revision](https://tc39.github.io/proposal-template-literal-revision/).
 
-它导致Babel 6抛出 `Bad character escape sequence (5:6)`。
+它导致 Babel 6 抛出 `Bad character escape sequence (5:6)`。
 
 ```js
 tag`\unicode and \u{55}`;
@@ -491,7 +491,7 @@ tag(_templateObject);
 
 ### `@babel/plugin-proposal-decorators`
 
-在新的装饰器提议实现时，我们决定将其作为新的默认行为。这意味着要继续使用当前装饰器的语法/行为，必须将 `legacy` 选项设置为 `true`。
+在新的装饰器提案实现时，我们决定将其作为新的默认行为。这意味着要继续使用当前装饰器的语法/行为，必须将 `legacy` 选项设置为 `true`。
 
 ```diff
  {
@@ -506,7 +506,7 @@ tag(_templateObject);
 
 ### `@babel/plugin-proposal-pipeline-operator`
 
-默认情况下，较新的提案会出错而且在阶段 2 之前将要求每个人选择加入特定提案。更详细解释在这里 [post](https://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal).
+默认情况下，较新的提案会出错，而且在阶段 2 之前将要求每个人选择加入特定提案。更详细解释在这里 [post](https://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal).
 
 ```diff
 {
@@ -521,7 +521,7 @@ tag(_templateObject);
 
 > babel-plugin-transform-class-constructor-call 已经被删除 [#5119](https://github.com/babel/babel/pull/5119) ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
 
-TC39 决定放弃这个提议。你可以将逻辑移动到构造函数或静态方法中。
+TC39 决定放弃这个提案。你可以将逻辑移动到构造函数或静态方法中。
 
 查看 [/docs/plugins/transform-class-constructor-call/](/docs/plugins/transform-class-constructor-call/) 了解更多。
 
