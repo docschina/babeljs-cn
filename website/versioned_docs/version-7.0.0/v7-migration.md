@@ -1,58 +1,58 @@
 ---
-title: Upgrade to Babel 7
+title: 升级至 Babel 7
 id: version-7.0.0-v7-migration
 original_id: v7-migration
 ---
 
-Refer users to this document when upgrading to Babel 7.
+当需要升级到 Babel 7 时，请参照此文档。
 
 <!--truncate-->
 
-Because not every breaking change will affect every project, we've sorted the sections by the likelihood of a change breaking tests when upgrading.
+因为并非每个重大变化都会影响所有项目，所以我们在升级时根据更改破坏测试的可能性对要内容进行了排序。
 
-## All of Babel
+## 所有 Babel
 
-> Support for Node.js 0.10, 0.12, 4 and 5 has been dropped [#5025](https://github.com/babel/babel/pull/5025), [#5041](https://github.com/babel/babel/pull/5041), [#7755](https://github.com/babel/babel/pull/7755), [#5186](https://github.com/babel/babel/pull/5186) ![high](https://img.shields.io/badge/level%20of%20awesomeness%3F-high-red.svg)
+> 已经删除了对 Node.js 0.10，0.12，2 和 5 的支持 [#5025](https://github.com/babel/babel/pull/5025)，[#5041](https://github.com/babel/babel/pull/5041)，[#7755](https://github.com/babel/babel/pull/7755)，[#5186](https://github.com/babel/babel/pull/5186) ![high](https://img.shields.io/badge/level%20of%20awesomeness%3F-high-red.svg)
 
-We highly encourage you to use a newer version of Node.js (LTS v8) since the previous versions are not maintained.
-See [nodejs/LTS](https://github.com/nodejs/LTS) for more information.
+我们强烈建议您使用较新版本的 Node.js (LTS v8)，因为之前的版本未得到维护。
+有关更多信息，请参见 [nodejs/LTS](https://github.com/nodejs/LTS)。
 
-This just means Babel *itself* won't run on older versions of Node. It can still *output* code that runs on old Node.
+这只是意味着 Babel 本身不会在旧版本的 Node 上运行。它仍然可以输出在旧节点上运行的代码。
 
-## [Yearly Preset Deprecations](/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
+## [弃用年份 Preset](/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
 
-The "env" preset has been out for more than a year now, and completely replaces some of the presets we've had/suggested earlier.
+"env" preset 现已推出一年多了，完全取代了之前我们已经/过去建议的一些预设。
 
 - `babel-preset-es2015`
 - `babel-preset-es2016`
 - `babel-preset-es2017`
 - `babel-preset-latest`
-- A combination of the above ^
+- 以上的组合 ^
 
-These presets should be substituted with the "env" preset.
+这些 preset 应替换为 "env" preset。
 
-## [Stage Preset Deprecations](https://github.com/babel/babel/issues/7770)
+## [弃用 Stage Preset](https://github.com/babel/babel/issues/7770)
 
-We are removing the stage presets in favor of explicit proposal usage. Can check the [stage-0 readme](https://github.com/babel/babel/tree/master/packages/babel-preset-stage-0#babelpreset-stage-0) for more migration steps.
+我们正在删除 Stage presets，以支持明确的提案使用。可以检查 [stage-0 readme](https://github.com/babel/babel/tree/master/packages/babel-preset-stage-0#babelpreset-stage-0) 自述文件以获取更多迁移步骤。
 
-To do this automatically you can run [`npx babel-upgrade`](https://github.com/babel/babel-upgrade) (PR added [here](https://github.com/babel/babel-upgrade/pull/69)).
+要自动执行此操作，您可以运行 [`npx babel-upgrade`](https://github.com/babel/babel-upgrade)（ PR 添加在[此处](https://github.com/babel/babel-upgrade/pull/69)）。
 
-(add link to blog post when published).
+（发布时添加博客文章的链接）。
 
-## [Remove proposal polyfills in `@babel/polyfill`](https://github.com/babel/babel/issues/8416)
+## [删除 `@babel/polyfill` 中的 polyfill 提案](https://github.com/babel/babel/issues/8416)
 
-Based on similar thinking, we have removed the polyfill proposals from `@babel/polyfill`.
+基于类似的想法，我们从 `@babel/polyfill` 中删除了 polyfill 提案。
 
-Right now `@babel/polyfill` is mostly just an alias of `core-js` v2. [Source](https://github.com/babel/babel/blob/master/packages/babel-polyfill/src/index.js)
+现在 `@babel/polyfill` 大多只是 `core-js` v2的别名。[资源](https://github.com/babel/babel/blob/master/packages/babel-polyfill/src/index.js)
 
-Before it used to just be 2 imports:
+之前使用它时要两个 imports
 
 ```js
 import "core-js/shim"; // included < Stage 4 proposals
 import "regenerator-runtime/runtime";
 ```
 
-If you want to use proposals, you will need to import these independently. You should import them directly from the [`core-js`](https://github.com/zloirock/core-js/tree/v2#usage) package or another package on npm.
+如果要使用提案，则需要单独导入这些提案。您应该直接从 [`core-js`](https://github.com/zloirock/core-js/tree/v2#usage) 包或 npm 上的另一个包导入它们。
 
 e.g.
 
@@ -60,7 +60,7 @@ e.g.
 import "core-js/fn/array/flatMap";
 ```
 
-Below is a list of Stage < 3 proposal polyfills in `core-js` v2.
+以下是 `core-js` v2 中的 Stage < 3 提案的 polyfill 列表。
 
 <details>
 
@@ -132,15 +132,15 @@ import "core-js/fn/reflect/metadata";
 ```
 </details>
 
-## [Versioning/Dependencies](/blog/2017/12/27/nearing-the-7.0-release.html#peer-dependencies-integrations)
+## [版本/依赖](/blog/2017/12/27/nearing-the-7.0-release.html#peer-dependencies-integrations)
 
-Most plugins/top level packages now have a `peerDependency` on `@babel/core`.
+大多数 plugins/top 包现在在 `@babel/core` 上都有 `peerDependency`。
 
-## Package Renames
+## 包重命名
 
-- `babylon` is now `@babel/parser`
+- `babylon` 现在是 `@babel/parser`
 
-You can still use the shorthand version of a package name (remove the `preset-` or `plugin-`) in the config, but I'm choosing to use the whole package name for clarity (maybe we should just remove that, given it doesn't save that much typing anyway).
+你仍然可以在配置中使用包名称的简写版本（删除 `preset-` 或 `plugin-`），但为了清晰起见，建议使用整个包名称（也许我们应该删除它，因为它并没减少多少输入）。
 
 ```diff
 {
@@ -151,19 +151,19 @@ You can still use the shorthand version of a package name (remove the `preset-` 
 }
 ```
 
-### Scoped Packages
+### Package 作用域
 
-The most important change is finally switching all packages to [scoped packages](/blog/2017/12/27/nearing-the-7.0-release.html#renames-scoped-packages-babel-x). (the folder names in the [monorepo](https://github.com/babel/babel/tree/master/packages) are not changed but the package.name is)
+最重要的变化是最终将所有包切换到 [scoped packages](/blog/2017/12/27/nearing-the-7.0-release.html#renames-scoped-packages-babel-x)。 ([monorepo](https://github.com/babel/babel/tree/master/packages) 中的文件夹名称不会更改，但 package.name 是)
 
-This means there will be no more issues with accidental/intentional name squatting, a clear separation from community plugins, and a simpler naming convention.
+这意味着不会出现意外/故意名称抢注，与社区插件的明显分离以及更简单的命名约定等问题。
 
-Your dependencies will need to be modified like so:
+你的依赖项需要像这样修改：
 
-`babel-cli` -> `@babel/cli`. For us, we basically started by replacing `babel-` with `@babel/`.
+`babel-cli` -> `@babel/cli`。 对我们来说，我们基本上是用 `@babel/` 替换 `babel-`。
 
-#### Use in the config
+#### 在配置中使用
 
-You can still use the shorthand way of specifying a preset or plugin. However because of the switch to scoped packages, you still have to specify the `@babel/` just like if you had your own preset to add to the config.
+你仍然可以使用指定预设或插件的简写方式。但是由于切换到作用域 package，你仍然必须要指定 `@babel/` 就像你有自己的预设添加到配置。
 
 ```js
 module.exports = {
@@ -172,26 +172,26 @@ module.exports = {
 };
 ```
 
-### [Switch to `-proposal-` for TC39 Proposals](/blog/2017/12/27/nearing-the-7.0-release.html#renames-proposal)
+### [切换到 `-proposal-` 用于 TC39 提案](/blog/2017/12/27/nearing-the-7.0-release.html#renames-proposal)
 
-This means any plugin that isn't in a yearly release (ES2015, ES2016, etc) should be renamed to `-proposal`. This is so we can better signify that a proposal isn't officially in JavaScript.
+这意味着任何不在年度版本 (ES2015, ES2016, 等等) 中的插件都应该重命名为 `-proposal`。这样我们可以更好地表明提案不是正式的 JavaScript。
 
-Examples:
+例如：
 
 - `@babel/plugin-transform-function-bind` is now `@babel/plugin-proposal-function-bind` (Stage 0)
 - `@babel/plugin-transform-class-properties` is now `@babel/plugin-proposal-class-properties` (Stage 3)
 
-This also means that when a proposal moves to Stage 4, we should rename the package.
+这也意味着当提案移至第4阶段时，我们会对 Package 进行重命名。
 
-### [Remove the year from package names](/blog/2017/12/27/nearing-the-7.0-release.html#renames-drop-the-year-from-the-plugin-name)
+### [从包名中删除年份](/blog/2017/12/27/nearing-the-7.0-release.html#renames-drop-the-year-from-the-plugin-name)
 
-Some of the plugins had `-es3-` or `-es2015-` in the names, but these were unnecessary.
+有些插件名称中有 `-es3-` 或 `-es2015-`，但这些都是不必要的。
 
-`@babel/plugin-transform-es2015-classes` became `@babel/plugin-transform-classes`.
+`@babel/plugin-transform-es2015-classes` 变成 `@babel/plugin-transform-classes`.
 
-## `"use strict"` and `this` in CommonJS
+## CommonJS 中的 `"use strict"` 和 `this`
 
-Babel 6's transformations for ES6 modules ran indiscriminantly on whatever files it was told to process, never taking into account if the file actually had ES6 imports/exports in them. This had the effect of rewriting file-scoped references to `this` to be `undefined` and inserting `"use strict"` at the top of all CommonJS modules that were processed by Babel.
+Babel 6 在转换 ES6 模块时，对任何文件都进行了相同的处理，从不考虑文件是否实际上有 ES6 导入/导出。这样做的效果是将对 `this` 的文件范围引用重写为 `undefined`，并会在 Babel 处理的所有 CommonJS 模块的顶部插入 `"use strict"`。
 
 ```js
 // input.js
@@ -209,7 +209,7 @@ undefined; // changed this to undefined
 this;
 ```
 
-This behavior has been restricted in Babel 7 so that for the `transform-es2015-modules-commonjs` transform, the file is only changed if it has ES6 imports or exports in the file. (Editor's note: This may change again if we land https://github.com/babel/babel/issues/6242, so we'll want to revisit this before publishing).
+这种行为在 Babel 7 中受到限制，只有在文件中有 ES6 导入或导出时才会使用 `transform-es2015-modules-commonjs` 转译该文件。（编者注：如果我们查看 https://github.com/babel/babel/issues/6242，它可能会再次发生变化，因此我们希望在发布之前重新审视这一点）。
 
 ```js
 // input2.js
@@ -222,15 +222,15 @@ import 'a';
 require('a');
 ```
 
-If you were relying on Babel to inject `"use strict"` into all of your CommonJS modules automatically, you'll want to explicitly use the `transform-strict-mode` plugin in your Babel config.
+如果你依靠 Babel 自动将 `"use strict"` 注入所有 CommonJS 模块，那么你需要在 Babel 配置中明确使用 `transform-strict-mode` 插件。
 
-## Separation between the React and Flow presets
+## React 和 Flow presets 之间的分离
 
-`babel-preset-react` has always included the flow plugin automatically from the beginning. This has actually caused a lot of issues with users that accidently use `flow` syntax without intending due to a typo, or adding it in without typechecking with `flow` itself, resulting in errors.
+`babel-preset-react` 总是从一开始就自动包含 Flow 插件。这实际上已经引起很多问题，因为用户意外地使用 `flow` 语法而没有打算输入错误，或者在没有使用 `flow` 本身的类型检查的情况下添加它，导致错误。
 
-This became further of an issue after we decided to support TypeScript with the help of the TS team. If you wanted to use the react and typescript presets, we would have to figure out a way to turn on/off the syntax automatically via file type or the directive. In the end it seemed easiest to just separate the presets entirely.
+当我们决定在 TS 团队的帮助下支持 TypeScript 之后，这又成了一个问题。如果你想使用 react 和 typescript 预设，我们必须想出一种通过文件类型或指令自动打开/关闭语法的方法。最后，似乎将 preset 完全分离最简单。
 
-So now the react preset and the flow preset are separated.
+所以现在 React preset 和 Flow preset 是分开的。
 
 ```diff
 {
@@ -240,12 +240,12 @@ So now the react preset and the flow preset are separated.
 }
 ````
 
-## Option parsing
+## 选项解析
 
-Babel's config options are stricter than in Babel 6.
-Where a comma-separated list for presets, e.g. `"presets": 'es2015, es2016'` technically worked before, it will now fail and needs to be changed to an array [#5463](https://github.com/babel/babel/pull/5463).
+Babel 的配置选项比 Babel 6 更严格。
+以逗号分隔的预设列表，例如 `"presets": 'es2015, es2016'` 在技术上工作过，它现在会失败，需要变成一个数组 [#5463](https://github.com/babel/babel/pull/5463)。
 
-Note this does not apply to the CLI, where `--presets es2015,es2016` will certainly still work.
+请注意，这不适用于 CLI， 其中 `--presets es2015,es2016` 仍然有效。
 
 ```diff
 {
@@ -254,50 +254,50 @@ Note this does not apply to the CLI, where `--presets es2015,es2016` will certai
 }
 ```
 
-## Plugin/Preset Exports
+## Plugin/Preset 导出
 
-All plugins/presets should now export a function rather than an object for consistency [via [babel/babel#6494](https://github.com/babel/babel/pull/6494)]. This will help us with caching.
+为了保持一致性，所有 plugins/presets 都应该导出函数而不是对象。[来自 [babel/babel#6494](https://github.com/babel/babel/pull/6494)]。这将有助于我们进行缓存操作。
 
-## Resolving string-based config values
+## 解析基于字符串的配置值
 
-In Babel 6, values passed to Babel directly (not from a config file), were resolved relative to the files being compiled, which led to lots of confusion.
+在 Babel 6 中，直接传递 value 给 Babel（非 config 文件的方式）对于编译解析文件来说，会产生很多问题。
 
-In Babel 7, values are resolved consistently either relative to the config file that loaded them, or relative to the working directory.
+在 Babel 7 中，value 相对路径配置文件，或相对于工作目录均会被正常解析。
 
-For `presets` and `plugins` values, this change means that the CLI will behave nicely in cases such as
+对于 `presets` 和 `plugins` 值，此更改意味着 CLI 在诸如此类的情况下表现良好
 
 ```bash
 babel --presets @babel/preset-es2015 ../file.js
 ```
 
-Assuming your `node_modules` folder is in `.`, in Babel 6 this would fail because the preset could not be found.
+假设你的 `node_modules` 文件夹在 `.` 中，在 Babel 6 中，这将失败，因为无法找到预设。
 
-This change also affects `only` and `ignore` which will be expanded on next.
+这种变化也会影响 `only` 和 `ignore`，这将在下一次进行扩展。
 
 
-## Path-based `only` and `ignore` patterns
+## 基于路径的 `only` 和 `ignore` 模式
 
-In Babel 6, `only` and `ignore` were treated as a general matching string, rather than a filepath glob. This meant that for instance `*.foo.js` would match `./**/*.foo.js`, which was confusing and surprising to most users.
+在 Babel 6 中，`only` 和 `ignore` 被视为一般匹配字符串，而不是文件路径 glob。这意味着例如 `*.foo.js` 将匹配 `./**/*.foo.js`，这让大多数用户感到困惑和惊讶。
 
-In Babel 7, these are now treated as path-based glob patterns which can either be relative or absolute paths. This means that if you were using these patterns, you'll probably need to at least add a `**/` prefix to them now to ensure that your patterns match deeply into directories.
+在 Babel 7 中，这些现在被视为基于路径的 glob 模式，可以是相对路径或绝对路径。这意味着如果你使用这些模式，你可能需要至少为它们添加一个 `**/` 前缀，以确保你的模式与目录深深匹配。
 
-`only` and `ignore` patterns _do_ still also work for directories, so you could also use `only: './tests'` to only compile files in your `tests` directory, with no need to use `**/*.js` to match all nested files.
+`only` 和 `ignore` 模式仍然_适用_于目录，所以你也可以使用 `only: './tests'` 来只编译 `tests` 目录中的文件，而不需要使用 `**/*.js` 匹配所有嵌套文件。
 
 
 ## Babel's CLI commands
 
-The `--copy-files` argument for the `babel` command, which tells Babel to copy all files in a directory that Babel doesn't know how to handle, will also now copy files that failed an `only`/`ignore` check, where before it would silently skip all ignored files.
+`babel` 命令的 `--copy-files` 参数，告诉 Babel 复制 Babel 不知道如何处理的目录中的所有文件，现在也将复制 `only`/`ignore` 失败的文件校验，在它之前默默地跳过所有被忽略的文件。
 
 
 ### `@babel/node`
 
-The `babel-node` command in Babel 6 was part of the `babel-cli` package. In Babel 7, this command has been split out into its own `@babel/node` package, so if you are using that command, you'll want to add this new dependency.
+Babel 6 中的 `babel-node` 命令是 `babel-cli` 包的一部分。在 Babel 7 中，这个命令被分成了自己的 `@babel/node` 包，所以如果你使用那个命令，你会想要添加这个新的依赖。
 
 ### `@babel/runtime`, `@babel/plugin-transform-runtime`
 
-We have separated out Babel's helpers from it's "polyfilling" behavior in runtime. More details in the [PR](https://github.com/babel/babel/pull/8266).
+我们已经将 Babel 的助手从运行时的 "polyfilling" 行为中分离出来。更多的细节查看此 [PR](https://github.com/babel/babel/pull/8266).
 
-[`@babel/runtime`](runtime.md) now only contains the helpers, and if you need `core-js` you can use [`@babel/runtime-corejs2`](runtime-corejs2.md) and the option provided in the transform. For both you still need the [`@babel/plugin-transform-runtime`](plugin-transform-runtime.md)
+[`@babel/runtime`](runtime.md) 现在只包含 helpers, 如果需要 `core-js`，你可以使用 [`@babel/runtime-corejs2`](runtime-corejs2.md) 和转换中提供的选项。对于你们两个你仍然需要 [`@babel/plugin-transform-runtime`](plugin-transform-runtime.md)
 
 #### Only Helpers
 
@@ -314,9 +314,9 @@ npm install @babel/plugin-transform-runtime --save-dev
 }
 ```
 
-#### Helpers + polyfilling from `core-js`
+#### `core-js` 的 Helpers + polyfilling
 
-So if you need `core-js` support with `transform-runtime`, you would now pass the `corejs` option and use the `@babel/runtime-corejs2` dependency instead of `@babel/runtime`.
+因此，如果你需要 `transform-js` 支持 `transform-runtime`，你现在将传递 `corejs` 选项并使用 `@babel/runtime-corejs2` 依赖而不是 `@babel/runtime`。
 
 ```sh
 # install the runtime as a dependency
@@ -338,11 +338,11 @@ npm install @babel/plugin-transform-runtime --save-dev
 
 ---
 
-## Spec Compliancy
+## 规范合规性
 
 ### `@babel/plugin-proposal-object-rest-spread`
 
-> A trailing comma cannot come after a RestElement in objects [#290](https://github.com/babel/babylon/pull/290) ![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
+> 在对象中的 RestElement 之后不能出现尾随逗号 [#290](https://github.com/babel/babylon/pull/290) ![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
 
 ```diff
 var {
@@ -353,10 +353,10 @@ var {
 
 ---
 
-> Since Object Spread defines new properties and `Object.assign` just sets them, Babel has changed the default behavior to be more spec compliant.
+> 由于Object Spread定义了新属性，而 `Object.assign` 只是设置它们，因此 Babel 已将默认行为更改为更符合规范。
 
-- [objectSpread helper function](https://github.com/babel/babel/blob/007bfb656502a44f6ab50cd64750cc4b38f9efff/packages/babel-helpers/src/helpers.js#L375)
-- [extends helper function](https://github.com/babel/babel/blob/007bfb656502a44f6ab50cd64750cc4b38f9efff/packages/babel-helpers/src/helpers.js#L357-L373)
+- [objectSpread 辅助函数](https://github.com/babel/babel/blob/007bfb656502a44f6ab50cd64750cc4b38f9efff/packages/babel-helpers/src/helpers.js#L375)
+- [extends 辅助函数](https://github.com/babel/babel/blob/007bfb656502a44f6ab50cd64750cc4b38f9efff/packages/babel-helpers/src/helpers.js#L357-L373)
 
 ```js
 // input
@@ -390,7 +390,7 @@ z = Object.assign({
 
 ### `@babel/plugin-proposal-class-properties`
 
-The default behavior is changed to what was previously "spec" by default
+默认情况下，默认行为更改为以前的 "spec"
 
 ```js
 // input
@@ -426,9 +426,9 @@ var Bork = function Bork() {
 Bork.a = 'foo';
 ````
 
-### Split `@babel/plugin-transform-export-extensions` into the two renamed proposals
+### 将 `@babel/plugin-transform-export-extensions` 拆分为两个重命名的提案
 
-This is a long time coming but this was finally changed.
+这是很长一段时间，但最终改变了。
 
 `@babel/plugin-proposal-export-default-from`
 
@@ -444,17 +444,17 @@ export * as ns from 'mod';
 
 ### `@babel/plugin-transform-template-literals`
 
->  Template Literals Revision updated [#5523](https://github.com/babel/babel/pull/5523) ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
+>  模板字符串修订已更新 [#5523](https://github.com/babel/babel/pull/5523) ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
 
-See the proposal for [Template Literals Revision](https://tc39.github.io/proposal-template-literal-revision/).
+请参阅提案 [Template Literals Revision](https://tc39.github.io/proposal-template-literal-revision/).
 
-It causes Babel 6 to throw `Bad character escape sequence (5:6)`.
+它导致 Babel 6 抛出 `Bad character escape sequence (5:6)`。
 
 ```js
 tag`\unicode and \u{55}`;
 ```
 
-This has been fixed in Babel 7 and generates something like the following:
+这已在 Babel 7 中修复，并生成如下内容：
 
 ```js
 // default
@@ -472,7 +472,7 @@ tag(_templateObject);
 
 ---
 
-> Default to previous "spec" mode for regular template literals
+> 默认为常规模板文字的 "spec" 模式
 
 ```js
 // input
@@ -491,7 +491,7 @@ tag(_templateObject);
 
 ### `@babel/plugin-proposal-decorators`
 
-In anticipation of the new decorators proposal implementation, we've decided to make it the new default behavior. This means that to continue using the current decorators syntax/behavior, you must set the `legacy` option as `true`.
+在新的装饰器提案实现时，我们决定将其作为新的默认行为。这意味着要继续使用当前装饰器的语法/行为，必须将 `legacy` 选项设置为 `true`。
 
 ```diff
  {
@@ -502,11 +502,11 @@ In anticipation of the new decorators proposal implementation, we've decided to 
  }
 ```
 
-> NOTE: If you are using `@babel/preset-stage-0` or `@babel/preset-stage-1`, which include this plugin, you must pass them the `decoratorsLegacy` option.
+> 注意：如果你使用的是包含此插件的 `@babel/preset-stage-0` 或 `@babel/preset-stage-1`， 则必须将 `decoratorsLegacy` 选项传递给它们。
 
 ### `@babel/plugin-proposal-pipeline-operator`
 
-Newer proposals in flux will error by default and will require everyone to opt into a specific proposal while things are still < Stage 2. This is explained more in this [post](https://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal).
+默认情况下，较新的提案会出错，而且在阶段 2 之前将要求每个人选择加入特定提案。更详细解释在这里 [post](https://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal).
 
 ```diff
 {
@@ -517,13 +517,13 @@ Newer proposals in flux will error by default and will require everyone to opt i
 }
 ```
 
-### Removed `babel-plugin-transform-class-constructor-call`
+### 删除 `babel-plugin-transform-class-constructor-call`
 
-> babel-plugin-transform-class-constructor-call has been removed [#5119](https://github.com/babel/babel/pull/5119) ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
+> babel-plugin-transform-class-constructor-call 已经被删除 [#5119](https://github.com/babel/babel/pull/5119) ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
 
-TC39 decided to drop this proposal. You can move your logic into the constructor or into a static method.
+TC39 决定放弃这个提案。你可以将逻辑移动到构造函数或静态方法中。
 
-See [/docs/plugins/transform-class-constructor-call/](/docs/plugins/transform-class-constructor-call/) for more information.
+查看 [/docs/plugins/transform-class-constructor-call/](/docs/plugins/transform-class-constructor-call/) 了解更多。
 
 ```diff
   class Point {
@@ -545,7 +545,7 @@ See [/docs/plugins/transform-class-constructor-call/](/docs/plugins/transform-cl
 
 ### `@babel/plugin-async-to-generator`
 
-We merged `babel-plugin-transform-async-to-module-method` into the regular async plugin by just making it an option.
+我们将 `babel-plugin-transform-async-to-module-method` 合并到常规异步插件中，只需将其作为选项即可。
 
 ```diff
 {
@@ -561,56 +561,56 @@ We merged `babel-plugin-transform-async-to-module-method` into the regular async
 
 ## `babel`
 
-> Dropping the `babel` package [#5293](https://github.com/babel/babel/pull/5293) ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
+> 删除 `babel` package [#5293](https://github.com/babel/babel/pull/5293) ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
 
-This package currently gives you an error message to install `babel-cli` instead in v6.
-I think we can do something interesting with this name though.
+在 v6 中安装 `babel-cli` 这个包现在会给你一个错误信息。
+我想我们可以用这个名字做一些有趣的事情。
 
 ## `@babel/register`
 
-> `babel-core/register.js` has been removed [#5132](https://github.com/babel/babel/pull/5132) ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
+> `babel-core/register.js` 已被删除 [#5132](https://github.com/babel/babel/pull/5132) ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
 
-The deprecated usage of `babel-core/register` has been removed in Babel 7; instead use the standalone package `@babel/register`.
+Babel 7 中删除了 `babel-core/register`，不再推荐使用；而是使用独立包 `@babel/register`。
 
-Install `@babel/register` as a new dependency:
+安装 `@babel/register` 作为新的依赖：
 
 ```sh
 npm install --save-dev @babel/register
 ```
 
-Upgrading with Mocha:
+使用 Mocha 升级：
 
 ```diff
 - mocha --compilers js:babel-core/register
 + mocha --compilers js:@babel/register
 ```
 
-`@babel/register` will also now only compile files in the current working directly (was done to fix issues with symlinking).
+`@babel/register` 现在也只能直接编译当前工作中的文件（用于修复符号链接问题）。
 
-`@babel/register` options are now replaced instead of merged
+`@babel/register` 选项现在被替换而不是合并
 
 ## `@babel/generator`
 
-> Dropping the `quotes` option [#5154](https://github.com/babel/babel/pull/5154)] ![none](https://img.shields.io/badge/risk%20of%20breakage%3F-none-brightgreen.svg)
+> 删除 `quotes` 选项 [#5154](https://github.com/babel/babel/pull/5154)] ![none](https://img.shields.io/badge/risk%20of%20breakage%3F-none-brightgreen.svg)
 
-If you want formatting for compiled output you can use recast/prettier/escodegen/fork babel-generator.
+如果你想格式化编译输出你可以使用 recast/prettier/escodegen/fork babel-generator。
 
-This option was only available through `babel-generator` explicitly until v6.18.0 when we exposed `parserOpts` and `generatorOpts`. Because there was a bug in that release, no one should've used this option in Babel itself.
+这个选项只能通过 `babel-generator` 明确地提供，直到 v6.18.0，当我们暴露 `parserOpts`和 `generatorOpts` 时。因为该版本中存在错误，所以没有人应该在 Babel 本身中使用此选项。
 
-> Dropping the `flowUsesCommas` option [#5123](https://github.com/babel/babel/pull/5123) ![none](https://img.shields.io/badge/risk%20of%20breakage%3F-none-brightgreen.svg)
+> 删除 `flowUsesCommas` 选项 [#5123](https://github.com/babel/babel/pull/5123) ![none](https://img.shields.io/badge/risk%20of%20breakage%3F-none-brightgreen.svg)
 
-Currently there are 2 supported syntaxes (`,` and `;`) in Flow Object Types.
+目前，流对象类型中有 2 种支持的语法（`,` 和 `;`）。
 
-This change just makes babel-generator output `,` instead of `;`.
+这种变化只会使 babel-generator 输出 `,` 而不是 `;`。
 
 ## `@babel/core`
 
-> Remove `babel-core/src/api/browser.js` [#5124](https://github.com/babel/babel/pull/5124) ![none](https://img.shields.io/badge/risk%20of%20breakage%3F-none-brightgreen.svg)
+> 移除 `babel-core/src/api/browser.js` [#5124](https://github.com/babel/babel/pull/5124) ![none](https://img.shields.io/badge/risk%20of%20breakage%3F-none-brightgreen.svg)
 
-`babel-browser` was already removed in 6.0. If you need to use Babel in the browser or a non-Node environment, use [@babel/standalone](standalone.md).
+`babel-browser` 已在 6.0 中删除。如果你需要在浏览器或非节点环境中使用 Babel，请使用 [@babel/standalone](standalone.md)。
 
-Babel will return `filename` as an absolute path [#8044](https://github.com/babel/babel/pull/8044)
+Babel将返回 `filename` 作为绝对路径 [#8044](https://github.com/babel/babel/pull/8044)
 
 ## `@babel/preset-env`
 
-`loose` mode will now automatically exclude the `typeof-symbol` transform (a lot of projects using loose mode were doing this).
+`loose` 模式现在会自动排除 `typeof-symbol` 转换（许多使用松散模式的项目都是这样做的）。
