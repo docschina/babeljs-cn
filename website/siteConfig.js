@@ -138,8 +138,8 @@ const siteConfig = {
   // stylesheets: [ "" ],
   // translationRecruitingLink: "https://crowdin.com/project/",
   algolia: {
-    apiKey: "d42906b043c5422ea07b44fd49c40a0d",
-    indexName: "babeljs",
+    apiKey: "c774535d6e962c2bca4c05c5068f39f4",
+    indexName: "babeljs_cn",
   },
   disableHeaderTitle: true,
   onPageNav: "separate",
