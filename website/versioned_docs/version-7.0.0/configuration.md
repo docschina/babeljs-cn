@@ -100,7 +100,7 @@ module.exports = { presets, plugins };
 babel --plugins @babel/plugin-transform-arrow-functions script.js
 ```
 
-查看[babel-cli 文档](babel-cli.md)以查看更多配置选项。
+查看[babel-cli 文档](cli.md)以查看更多配置选项。
 
 
 ## 使用 API (`@babel/core`)
@@ -111,5 +111,5 @@ require("@babel/core").transform("code", {
 });
 ```
 
-查看[babel-core 文档](babel-core.md)以查看更多配置选项。
+查看[babel-core 文档](core.md)以查看更多配置选项。
 

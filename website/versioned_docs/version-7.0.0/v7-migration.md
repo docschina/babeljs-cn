@@ -224,19 +224,19 @@ require('a');
 
 如果你依靠 Babel 自动将 `"use strict"` 注入所有 CommonJS 模块，那么你需要在 Babel 配置中明确使用 `transform-strict-mode` 插件。
 
-## React 和 Flow presets 之间的分离
+## React 和 Flow presets 的分离
 
-`babel-preset-react` 总是从一开始就自动包含 Flow 插件。这实际上已经引起很多问题，因为用户意外地使用 `flow` 语法而没有打算输入错误，或者在没有使用 `flow` 本身的类型检查的情况下添加它，导致错误。
+`babel-preset-react` 总是包含 Flow 插件。这导致很多用户因为输入错误而无意中使用了 `flow` 语法，或者在没有使用 `flow` 进行类型检查的情况下添加了它而导致错误。
 
-当我们决定在 TS 团队的帮助下支持 TypeScript 之后，这又成了一个问题。如果你想使用 react 和 typescript 预设，我们必须想出一种通过文件类型或指令自动打开/关闭语法的方法。最后，似乎将 preset 完全分离最简单。
+当我们决定支持 TypeScript 时，这个问题就变得复杂了。如果你想使用 react 和 typescript preset，我们必须想出一种通过文件类型或指令自动打开/关闭语法的方法。最后发现，似乎将 preset 完全分离最简单。
 
-所以现在 React preset 和 Flow preset 是分开的。
+预设使 Babel 能够解析 Flow / TypeScript（以及其他方言/语言）提供的类型，然后在编译为 JavaScript 时将其移除。
 
 ```diff
 {
 -  "presets": ["@babel/preset-react"]
-+  "presets": ["@babel/preset-react", "@babel/preset-flow"] // remove flow types
-+  "presets": ["@babel/preset-react", "@babel/preset-typescript"] // remove typescript types
++  "presets": ["@babel/preset-react", "@babel/preset-flow"] // parse & remove flow types
++  "presets": ["@babel/preset-react", "@babel/preset-typescript"] // parse & remove typescript types
 }
 ````
 
@@ -303,7 +303,7 @@ Babel 6 中的 `babel-node` 命令是 `babel-cli` 包的一部分。在 Babel 7 
 
 ```sh
 # install the runtime as a dependency
-npm install @babel/runtime`
+npm install @babel/runtime
 # install the plugin as a devDependency
 npm install @babel/plugin-transform-runtime --save-dev
 ```
