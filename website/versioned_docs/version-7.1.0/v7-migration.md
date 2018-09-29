@@ -1,6 +1,7 @@
 ---
-title: "升级至 Babel 7"
-id: v7-migration
+title: 升级至 Babel 7
+id: version-7.1.0-v7-migration
+original_id: v7-migration
 ---
 
 Refer users to this document when upgrading to Babel 7.

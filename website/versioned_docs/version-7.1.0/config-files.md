@@ -1,6 +1,7 @@
 ---
 title: 配置文件
-id: config-files
+id: version-7.1.0-config-files
+original_id: config-files
 ---
 
 ## Configuration File Types
