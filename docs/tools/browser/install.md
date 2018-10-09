@@ -7,7 +7,7 @@
   </p>
 </blockquote>
 
-你可以使用 [babel/babel-standalone](https://github.com/babel/babel-standalone#usage) 作为 babel 的预编译版本，或者你自己在 babel 基础之上运行一个 bundler 。
+你可以使用 `@babel/babel-standalone` 作为 Babel 的预编译版本，或者你自己在 Babel 基础之上运行一个 bundler。请查看下面的使用部分，了解如何将其用作脚本。
 
 你还可以使用更多在线工具对脚本进行原型化:
 

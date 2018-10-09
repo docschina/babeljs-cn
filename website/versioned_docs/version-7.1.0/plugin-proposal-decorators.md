@@ -1,7 +1,8 @@
 ---
-id: babel-plugin-proposal-decorators
+id: version-7.1.0-babel-plugin-proposal-decorators
 title: @babel/plugin-proposal-decorators
 sidebar_label: proposal-decorators
+original_id: babel-plugin-proposal-decorators
 ---
 
 ## Example

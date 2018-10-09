@@ -1,6 +1,7 @@
 ---
-id: plugins
+id: version-7.1.0-plugins
 title: 插件
+original_id: plugins
 ---
 
 Babel is a compiler (source code => output code). Like many other compilers it runs in 3 stages: parsing, transforming, and printing.
