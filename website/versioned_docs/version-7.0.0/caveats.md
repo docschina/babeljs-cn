@@ -34,7 +34,7 @@ original_id: caveats
 
 **注意:** IE <= 10不支持 `__proto__`，因此 **不会** 继承静态属性。请参阅 [protoToAssign](plugin-transform-proto-to-assign.md) 以了解可能的解决方法。
 
-对于具有 `super` 的类，super 类将无法正确解析。你可以通过启用 [es2015-classes](plugin-transform-es2015-classes.md) 插件中的 `loose` 选项来解决这个问题。
+对于具有 `super` 的类，super 类将无法正确解析。你可以通过启用 [es2015-classes](plugin-transform-classes.md) 插件中的 `loose` 选项来解决这个问题。
 
 ### Getters/setters (IE8 及更低版本)
 

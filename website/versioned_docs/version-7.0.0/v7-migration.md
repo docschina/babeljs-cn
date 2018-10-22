@@ -31,7 +31,7 @@ original_id: v7-migration
 
 这些 preset 应替换为 "env" preset。
 
-## [弃用 Stage Preset](https://github.com/babel/babel/issues/7770)
+## [弃用 Stage Preset](https://babeljs.cn/blog/2018/07/27/removing-babels-stage-presets)
 
 我们正在删除 Stage presets，以支持明确的提案使用。可以检查 [stage-0 readme](https://github.com/babel/babel/tree/master/packages/babel-preset-stage-0#babelpreset-stage-0) 自述文件以获取更多迁移步骤。
 

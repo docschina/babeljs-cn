@@ -1,5 +1,5 @@
 ---
-id: version-7.0.0-babel-preset-es2017
+id: version-7.1.0-babel-preset-es2017
 title: @babel/preset-es2017
 sidebar_label: es2017
 original_id: babel-preset-es2017

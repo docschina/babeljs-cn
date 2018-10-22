@@ -98,6 +98,8 @@ const siteConfig = {
     `${siteConfig.baseUrl}docs/${language || DEFAULT_LANGUAGE}/${doc}`,
   getPageUrl: (page, language) =>
     `${siteConfig.baseUrl}${language || DEFAULT_LANGUAGE}/${page}`,
+  getVideoUrl: (videos, language) =>
+  `${siteConfig.baseUrl}${language || DEFAULT_LANGUAGE}/${videos}`,
   organizationName: "babel",
   projectName: "babel",
   repoUrl: "https://github.com/babel/babel",
@@ -106,6 +108,7 @@ const siteConfig = {
     { doc: "index", label: "文档" },
     { page: "setup", label: "配置" },
     { page: "repl", label: "试用" },
+    { page: "videos", label: "视频" },
     { blog: true, label: "博客" },
     { search: true, label: "搜索" },
     { href: "https://opencollective.com/babel", label: "赞助" },
@@ -128,6 +131,9 @@ const siteConfig = {
   },
   highlight: {
     theme: "tomorrow",
+    hljs: hljs => {
+      hljs.registerLanguage("json5", hljs => hljs.getLanguage("javascript"));
+    },
   },
   scripts: [
     "https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js",

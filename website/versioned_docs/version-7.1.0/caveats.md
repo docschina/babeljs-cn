@@ -1,6 +1,7 @@
 ---
 title: 注意事项
-id: caveats
+id: version-7.1.0-caveats
+original_id: caveats
 ---
 
 ## Polyfills
