@@ -3,7 +3,7 @@
 ```json
 {
   "helpers": [
-    "../node_modules/babel-register/lib/node.js"
+    "../node_modules/@babel/register/lib/node.js"
   ]
 }
 ```
