@@ -89,7 +89,9 @@ class Videos extends React.Component {
           <h1>视频</h1>
           <p className="lead">关于 Babel 及其基本概念的视频和播客。</p>
         </div>
-        <Container className="video-wrapper" padding={["bottom"]}>{showcase}</Container>
+        <Container className="video-wrapper" padding={["bottom"]}>
+          {showcase}
+        </Container>
       </div>
     );
   }
