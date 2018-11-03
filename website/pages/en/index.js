@@ -31,15 +31,11 @@ const MiniRepl = ({ language }) => {
     <div className="hero-repl" hidden={true}>
       <div className="hero-repl__editor">
         <div className="hero-repl__pane hero-repl__pane--left">
-          <h3>
-            输入下一代 JavaScript 代码
-          </h3>
+          <h3>输入下一代 JavaScript 代码</h3>
           <div id="hero-repl-in" className="hero-repl__code" />
         </div>
         <div className="hero-repl__pane hero-repl__pane--right">
-          <h3>
-          获取浏览器兼容的 JavaScript 代码
-          </h3>
+          <h3>获取浏览器兼容的 JavaScript 代码</h3>
           <div id="hero-repl-out" className="hero-repl__code" />
           <div className="hero-repl__error" />
         </div>
@@ -91,14 +87,21 @@ const GetStarted = ({ language }) => {
       <h2>欢迎！</h2>
 
       <p>
-        我们只是一个小的<a href={siteConfig.getPageUrl("team.html", language)}>志愿者</a>团体，在业余时间维护这个项目。如果 Babel 使您再工作中获益，那么成为贡献者可能是一种非常好的回馈方式。
+        我们只是一个小的
+        <a href={siteConfig.getPageUrl("team.html", language)}>志愿者</a>
+        团体，在业余时间维护这个项目。如果 Babel
+        使您再工作中获益，那么成为贡献者可能是一种非常好的回馈方式。
       </p>
       <p>
-      通过阅读入门指南或观看有关其内部概念的会议视频，了解有关Babel的更多信息。
+        通过阅读入门指南或观看有关其内部概念的会议视频，了解有关Babel的更多信息。
       </p>
       <PromoSection>
-        <Button href={siteConfig.getDocUrl("index.html", language)}>入门指南</Button>
-        <Button href={siteConfig.getPageUrl("videos.html", language)}>会议视频</Button>
+        <Button href={siteConfig.getDocUrl("index.html", language)}>
+          入门指南
+        </Button>
+        <Button href={siteConfig.getPageUrl("videos.html", language)}>
+          会议视频
+        </Button>
       </PromoSection>
     </div>
   );
@@ -131,9 +134,7 @@ const WorkSponsors = () => {
                     />
                   </a>
                   <div className="card-text">
-                    <p>
-                      {sponsor.description}
-                    </p>
+                    <p>{sponsor.description}</p>
                   </div>
                   <div className="card-text">
                     <p>
@@ -195,7 +196,14 @@ const OpenCollectiveSponsors = ({ language }) => {
         <div className="support-the-team">
           <h2>支持我们团队</h2>
           <p>
-            Babel 正在帮助 JavaScript 语言本身塑造其未来版本，被用于 Facebook，Google，Netflix等<a href={siteConfig.getPageUrl("users.html", language)}>数百家公司的产品当中</a>。你的赞助将支付给 TC39（制订 JavaScript 规范的委员会）用于组织会议等费用，并会直接支持核心开发团队人员继续努力改进 Babel 。
+            Babel 正在帮助 JavaScript 语言本身塑造其未来版本，被用于
+            Facebook，Google，Netflix等
+            <a href={siteConfig.getPageUrl("users.html", language)}>
+              数百家公司的产品当中
+            </a>
+            。你的赞助将支付给 TC39（制订 JavaScript
+            规范的委员会）用于组织会议等费用，并会直接支持核心开发团队人员继续努力改进
+            Babel 。
           </p>
           <PromoSection>
             <Button href="https://opencollective.com/babel" target="_blank">
@@ -206,9 +214,19 @@ const OpenCollectiveSponsors = ({ language }) => {
         <div className="sponsor-tiers" id="sponsors">
           <SponsorTier
             type="opencollective"
+            title="Base Support Sponsors"
+            tier="base-support-sponsor"
+          />
+          <SponsorTier
+            type="opencollective"
             title="金牌赞助（Open Collective）"
             tier="gold-sponsors"
             button={ocButton}
+          />
+          <SponsorTier
+            type="other"
+            title="Misc Sponsors"
+            tier="other-sponsors"
           />
           <SponsorTier
             type="patreon"
@@ -223,9 +241,10 @@ const OpenCollectiveSponsors = ({ language }) => {
             button={ocButton}
           />
           <SponsorTier
-            type="other"
-            title="Misc Sponsors"
-            tier="other-sponsors"
+            type="patreon"
+            title="Silver Sponsors (Patreon)"
+            tier="silver-sponsors"
+            button={patreonButton}
           />
         </div>
       </div>
@@ -256,9 +275,8 @@ const Hero = ({ language }) => (
         <span>
           <strong>Babel 7 发布!</strong> 请阅读我们的{" "}
           <a href="/blog/2018/08/27/7.0.0">公告</a> 以及{" "}
-          <a href={siteConfig.getDocUrl("v7-migration", language)}>
-            升级指南
-          </a>{""}
+          <a href={siteConfig.getDocUrl("v7-migration", language)}>升级指南</a>
+          {""}
           了解更多详情。
         </span>
       </div>

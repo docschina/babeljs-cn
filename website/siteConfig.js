@@ -73,7 +73,7 @@ const sponsors = [
 ];
 
 // move to website/data later
-const videos = loadYaml("./data/videos.yml");
+const videos = require(path.join(__dirname, "/data/videos.js"));
 const team = loadYaml("./data/team.yml");
 const tools = loadYaml("./data/tools.yml");
 const setupBabelrc = loadMD("../docs/tools/setup.md");
@@ -98,6 +98,8 @@ const siteConfig = {
     `${siteConfig.baseUrl}docs/${language || DEFAULT_LANGUAGE}/${doc}`,
   getPageUrl: (page, language) =>
     `${siteConfig.baseUrl}${language || DEFAULT_LANGUAGE}/${page}`,
+  getVideoUrl: (videos, language) =>
+  `${siteConfig.baseUrl}${language || DEFAULT_LANGUAGE}/${videos}`,
   organizationName: "babel",
   projectName: "babel",
   repoUrl: "https://github.com/babel/babel",
@@ -106,6 +108,7 @@ const siteConfig = {
     { doc: "index", label: "文档" },
     { page: "setup", label: "配置" },
     { page: "repl", label: "试用" },
+    { page: "videos", label: "视频" },
     { blog: true, label: "博客" },
     { search: true, label: "搜索" },
     { href: "https://opencollective.com/babel", label: "赞助" },
@@ -126,24 +129,42 @@ const siteConfig = {
     primaryColor: "#323330",
     secondaryColor: "#323330",
   },
+  blogSidebarCount: "ALL",
   highlight: {
     theme: "tomorrow",
+    hljs: hljs => {
+      hljs.registerLanguage("json5", hljs => hljs.getLanguage("javascript"));
+    },
   },
   scripts: [
-    "https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js",
-    "/js/code-blocks-buttons.js",
-    "/scripts/repl-page-hacks.js",
+    {
+      src: "https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js",
+      defer: true
+    },
+    {
+      src: "/js/code-blocks-buttons.js",
+      defer: true
+    },
+    {
+      src: "/scripts/repl-page-hacks.js",
+      defer: true
+    },
+    {
+      src: "/scripts/hmt.js",
+      defer: true
+    },
   ],
   // stylesheets: [ "" ],
   // translationRecruitingLink: "https://crowdin.com/project/",
   algolia: {
-    apiKey: "d42906b043c5422ea07b44fd49c40a0d",
-    indexName: "babeljs",
+    apiKey: "c774535d6e962c2bca4c05c5068f39f4",
+    indexName: "babeljs_cn",
   },
   disableHeaderTitle: true,
   onPageNav: "separate",
   gaTrackingId: "UA-114990275-1",
   cleanUrl: true,
+  enableUpdateTime: true,
   // markdownPlugins: [],
   // cname
 };

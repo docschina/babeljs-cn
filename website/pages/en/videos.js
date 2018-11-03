@@ -20,13 +20,14 @@ const VideosItem = props => {
 };
 
 const CategoryInfo = props => {
+  const authors = props.video.authors || [
+    { name: props.video.author, link: props.video.author_link },
+  ];
+
   return (
     <p className="text-muted">
       {" by "}
-      <CategoryLink
-        author_link={props.video.author_link}
-        author={props.video.author}
-      />
+      <AuthorLinks authors={authors} />
       {" at "}
       <CategoryLink
         event_link={props.video.event_link}
@@ -35,6 +36,20 @@ const CategoryInfo = props => {
       <time dateTime={props.video.year}>{` (${props.video.year})`}</time>
     </p>
   );
+};
+
+const AuthorLinks = props => {
+  const links = props.authors
+    .map(author => (
+      <CategoryLink
+        author_link={author.link}
+        author={author.name}
+        key={author.link}
+      />
+    ))
+    .reduce((left, right) => [left, " and ", right]);
+
+  return <span>{links}</span>;
 };
 
 const CategoryLink = props => {
@@ -74,7 +89,9 @@ class Videos extends React.Component {
           <h1>视频</h1>
           <p className="lead">关于 Babel 及其基本概念的视频和播客。</p>
         </div>
-        <Container className="video-wrapper" padding={["bottom"]}>{showcase}</Container>
+        <Container className="video-wrapper" padding={["bottom"]}>
+          {showcase}
+        </Container>
       </div>
     );
   }

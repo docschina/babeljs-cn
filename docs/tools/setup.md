@@ -3,11 +3,11 @@
 </p>
 
 <p>
-  首先，你可以使用转换 ES2015+ 的 <a href="/docs/plugins/preset-env/">env preset</a> 。 
+  首先，你可以使用转换 ES2015+ 的 <a href="/docs/en/babel-preset-env">env preset</a> 。 
 </p>
 
 ```shell
-npm install babel-preset-env --save-dev
+npm install @babel/preset-env --save-dev
 ```
 
 <p>
@@ -16,13 +16,6 @@ npm install babel-preset-env --save-dev
 
 ```json
 {
-  "presets": ["env"]
+  "presets": ["@babel/preset-env"]
 }
-```
-<p>
-  <strong>注意</strong>: 因为 npm 2.x 下载依赖的关系，在使用 npm 2.x 运行 Babel 6.x 的项目时，可能会引起性能问题。 你可以通过切换到 npm 3.x 或在 npm 2.x 上使用 <a href="https://docs.npmjs.com/cli/dedupe">dedupe</a> 选项来解决这个问题。查看 npm 版本你可以运行如下命令:
-</p>
-
-```shell
-npm --version
 ```

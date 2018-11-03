@@ -1,5 +1,5 @@
 ---
-title: 常见问题及答案
+title: FAQ
 id: version-7.0.0-faq
 original_id: faq
 ---

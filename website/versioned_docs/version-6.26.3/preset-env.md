@@ -9,7 +9,7 @@ original_id: babel-preset-env
 npm install babel-preset-env --save-dev
 ```
 
-在没有任何配置选项的情况下，babel-preset-env 与 babel-preset-latest（或者 babel-preset-es2015，babel-preset-es2016 和 babel-preset-es2017一起）的行为完全相同。
+在没有任何配置选项的情况下，`babel-preset-env` 与 [`babel-preset-latest`](babel-preset-latest)（或者 [`babel-preset-es2015`](preset-es2015.md)，[`babel-preset-es2016`](preset-es2016.md) 和 [`babel-preset-es2017`](preset-es2017.md) 全部）的行为完全相同。
 
 ```json
 {
@@ -33,7 +33,7 @@ npm install babel-preset-env --save-dev
 }
 ```
 
-同样，如果你目标开发 Node.js 而不是浏览器应用的话，你可以配置 babel-preset-env 仅包含特定版本所需的 polyfill 和 transform：
+同样，如果你目标开发 Node.js 而不是浏览器应用的话，你可以配置 `babel-preset-env` 仅包含特定版本所需的 polyfill 和 transform：
 
 ```json
 {
@@ -93,7 +93,7 @@ npm install babel-preset-env --save-dev
 
 > 没有选项的默认行为与 `babel-preset-latest` 相同。
 
-它不会包含 `stage-x` 插件。env 将会支持我们认为最新版本的JavaScript的所有插件（过我们匹配在 [`babel-preset-latest`](preset-latest) 中所作的）。
+它不会包含 `stage-x` 插件。env 将会支持我们认为最新版本的 JavaScript 的所有插件（过我们匹配在 [`babel-preset-latest`](babel-preset-latest) 中所作的）。
 
 参考: [#14](https://github.com/babel/babel-preset-env/issues/14)
 
@@ -127,7 +127,7 @@ yarn add babel-preset-env --dev
 
 ## 使用
 
-没有选项的默认行为将运行所有transform（与 [babel-preset-latest](plugins/preset-latest/) 相同）。
+没有选项的默认行为将运行所有transform（与 [babel-preset-latest](babel-preset-latest) 相同）。
 
 ```json
 {
@@ -137,7 +137,7 @@ yarn add babel-preset-env --dev
 
 ## 选项
 
-有关设置预设选项的更多信息，请参阅 [plugin/preset options](plugins#plugin-preset-选项) 文档。
+有关设置预设选项的更多信息，请参阅 [plugin/preset options](plugins.md#plugin-preset-options) 文档。
 
 ### `targets`
 
@@ -231,7 +231,7 @@ yarn add babel-preset-env --dev
 
 可能的选项与 `include` 选项相同。
 
-如果你不使用生成器并且不想包含 `regeneratorRuntime` (当使用 `useBuiltIns` 时)或者使用另一个像[fast-async](https://github.com/MatAtBread/fast-async)而不是[Babel's async-to-gen](transform-async-generator-functions)的插件，这个选项对于像 `transform-regenerator` 这样的"黑名单"转换很有用。
+如果你不使用生成器并且不想包含 `regeneratorRuntime` (当使用 `useBuiltIns` 时)或者使用另一个像 [fast-async](https://github.com/MatAtBread/fast-async) 而不是 [Babel's async-to-gen](babel-plugin-transform-async-generator-functions) 的插件，这个选项对于像 `transform-regenerator` 这样的"黑名单"转换很有用。
 
 ### `useBuiltIns`
 
@@ -239,7 +239,7 @@ yarn add babel-preset-env --dev
 
 一种将polyfill应用于 `babel-preset-env` 中的方法 (通过 "babel-polyfill")。
 
-> 注意: 目前这种方式并没有像普通的"babel-polyfill"那样的试验性polyfill/stage-x内置插件。
+> 注意: 目前这种方式并没有像普通的 `babel-polyfill` 那样的试验性 `experimental/stage-x` 内置插件。
 > 这只适用于npm >= 3（无论如何应该与Babel 6一起使用）。
 
 ```

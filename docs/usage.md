@@ -23,17 +23,19 @@ Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是�
 
     ```js
     const presets = [
-      ["@babel/env", {
-        targets: {
-          edge: "17",
-          firefox: "60",
-          chrome: "67",
-          safari: "11.1"
-        },
-        useBuiltIns: "usage"
-      }]
+      [
+        "@babel/env", 
+        {
+          targets: {
+            edge: "17",
+            firefox: "60",
+            chrome: "67",
+            safari: "11.1"
+          },
+          useBuiltIns: "usage"
+        }
+      ]
     ];
-
     module.exports = { presets };
     ```
 
@@ -41,11 +43,11 @@ Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是�
 
 3. 运行此命令将所有代码从 `src` 目录编译到 `lib`：
 
-    ```sh
-    ./node_modules/.bin/babel src --out-dir lib
-    ```
+   ```sh
+   ./node_modules/.bin/babel src --out-dir lib
+   ```
 
-    > 你可以通过 npm@5.2.0 附带的 npm 包运行器，用 `npx babel` 替换 `./node_modules/.bin/babel` 来缩短该命令。
+   > 你可以通过 npm@5.2.0 附带的 npm 包运行器，用 `npx babel` 替换 `./node_modules/.bin/babel` 来缩短该命令。
 
 请继续阅读，了解其工作原理的逐步说明以及对所使用的每种工具的介绍。
 
@@ -103,7 +105,7 @@ const fn = () => 1;
 // converted to
 
 var fn = function fn() {
-    return 1;
+  return 1;
 };
 ```
 
@@ -127,14 +129,17 @@ npm install --save-dev @babel/preset-env
 
 ```js
 const presets = [
-  ["@babel/env", {
-    targets: {
-      edge: "17",
-      firefox: "60",
-      chrome: "67",
-      safari: "11.1"
-    }
-  }]
+  [
+    "@babel/env",
+    {
+      targets: {
+        edge: "17",
+        firefox: "60",
+        chrome: "67",
+        safari: "11.1",
+      },
+    },
+  ],
 ];
 
 module.exports = { presets };
@@ -146,7 +151,7 @@ module.exports = { presets };
 
 [@babel/polyfill](polyfill.md) 模块包括 [core-js](https://github.com/zloirock/core-js) 和自定义 [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js) 来模拟完整的 ES2015+ 环境。
 
-这意味着你可以使用像 `Promise` 或 `WeakMap` 这样的新内置函数，像 `Array.from` 或 `Object.assign` 这样的静态方法，像`Array.prototype.includes` 这样的实例方法，以及 generator 函数（提供给你使用 [regenerator](https://babeljs.io/docs/plugins/transform-regenerator/) 插件）。为了做到这一点，polyfill 增加了全局范围以及像 `String` 这样的原生原型。
+这意味着你可以使用像 `Promise` 或 `WeakMap` 这样的新内置函数，像 `Array.from` 或 `Object.assign` 这样的静态方法，像`Array.prototype.includes` 这样的实例方法，以及 generator 函数（提供给你使用 [regenerator](plugin-transform-regenerator.md) 插件）。为了做到这一点，polyfill 增加了全局范围以及像 `String` 这样的原生原型。
 
 对于 library/tool 作者来说，这可能太多了。如果你不需要像 `Array.prototype.includes` 这样的实例方法，可以使用[ [transform runtime](plugin-transform-runtime.md) 插件而不是 `@babel/polyfill` 污染全局范围。
 
@@ -164,15 +169,18 @@ npm install --save @babel/polyfill
 
 ```js
 const presets = [
-  ["@babel/env", {
-    targets: {
-      edge: "17",
-      firefox: "60",
-      chrome: "67",
-      safari: "11.1"
+  [
+    "@babel/env",
+    {
+      targets: {
+        edge: "17",
+        firefox: "60",
+        chrome: "67",
+        safari: "11.1",
+      },
+      useBuiltIns: "usage",
     },
-    useBuiltIns: "usage"
-  }]
+  ],
 ];
 
 module.exports = { presets };
@@ -181,7 +189,7 @@ module.exports = { presets };
 Babel 将检查你的所有代码，以查找目标环境中缺少的功能，并仅包含所需的 polyfill。例如这段代码：
 
 ```js
-Promise.resolve().finally()
+Promise.resolve().finally();
 ```
 
 会变成这个（因为 Edge 17 没有 `Promise.prototype.finally`）：
@@ -189,10 +197,10 @@ Promise.resolve().finally()
 ```js
 require("core-js/modules/es.promise.finally");
 
-Promise.resolve().finally()
+Promise.resolve().finally();
 ```
 
-如果我们没有将 `env` preset 的 `"useBuiltIns"` 选项的设置为 `"usage"` ，就必须在其他代码之前 require *一次* 完整的 polyfill。
+如果我们没有将 `env` preset 的 `"useBuiltIns"` 选项的设置为 `"usage"` ，就必须在其他代码之前 require *仅一次*完整的 polyfill。
 
 ## 总结
 

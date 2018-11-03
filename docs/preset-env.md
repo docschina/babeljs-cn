@@ -39,7 +39,7 @@ We leverage these data sources to maintain mappings of which version of our supp
 
 For browser- or Electron-based projects, we recommend using a [`.browserslistrc`](https://github.com/browserslist/browserslist) file to specify targets. You may already have this configuration file as it is used by many tools in the ecosystem, like [autoprefixer](https://github.com/postcss/autoprefixer), [stylelint](https://stylelint.io/), [eslint-plugin-compat](https://github.com/amilajack/eslint-plugin-compat) and many others.
 
-By default `@babel/preset-env` will use [browserslist config sources](https://github.com/ai/browserslist#queries) _unless_ either the [targets](#targets) or [ignoreBrowserslistConfig](#ignoreBrowserslistConfig) options are set.
+By default `@babel/preset-env` will use [browserslist config sources](https://github.com/ai/browserslist#queries) _unless_ either the [targets](#targets) or [ignoreBrowserslistConfig](#ignorebrowserslistconfig) options are set.
 
 For example, to only include polyfills and code transforms needed for users whose browsers have >0.25% market share (ignoring browsers without security updates like IE 10 and BlackBerry):
 
@@ -75,7 +75,7 @@ or
 
 ## Options
 
-For more information on setting options for a preset, refer to the [plugin/preset options](http://babeljs.io/docs/plugins/#plugin-preset-options) documentation.
+For more information on setting options for a preset, refer to the [preset options](presets.md#preset-options) documentation.
 
 ### `targets`
 
@@ -104,7 +104,7 @@ Or an object of minimum environment versions to support:
 
 Example environments: `chrome`, `opera`, `edge`, `firefox`, `safari`, `ie`, `ios`, `android`, `node`, `electron`.
 
-Sidenote, if no targets are specified, `@babel/preset-env` behaves exactly the same as [`@babel/preset-es2015`](https://babeljs.io/docs/en/babel-preset-es2015), [`@babel/preset-es2016`](https://babeljs.io/docs/en/babel-preset-es2016) and [`@babel/preset-es2017`](https://babeljs.io/docs/en/babel-preset-es2017) together (or the deprecated `babel-preset-latest`).
+Sidenote, if no targets are specified, `@babel/preset-env` behaves exactly the same as [`@babel/preset-es2015`](preset-es2015.md), [`@babel/preset-es2016`](preset-es2016.md) and [`@babel/preset-es2017`](preset-es2017.md) together (or the deprecated [`babel-preset-latest`](/docs/en/babel-preset-latest)).
 
 > We don't recommend using `preset-env` this way because it doesn't take advantage of its ability to target specific browsers.
 
@@ -149,7 +149,7 @@ If you want to compile against the current node version, you can specify `"node"
 
 If you want to compile against the [technology preview](https://developer.apple.com/safari/technology-preview/) version of Safari, you can specify `"safari": "tp"`.
 
-#### `targets.browser`
+#### `targets.browsers`
 
 `string | Array<string>`.
 
@@ -221,7 +221,7 @@ An array of plugins to always exclude/remove.
 
 The possible options are the same as the `include` option.
 
-This option is useful for "blacklisting" a transform like `@babel/plugin-transform-regenerator` if you don't use generators and don't want to include `regeneratorRuntime` (when using `useBuiltIns`) or for using another plugin like [fast-async](https://github.com/MatAtBread/fast-async) instead of [Babel's async-to-gen](http://babeljs.io/docs/plugins/proposal-async-generator-functions/).
+This option is useful for "blacklisting" a transform like `@babel/plugin-transform-regenerator` if you don't use generators and don't want to include `regeneratorRuntime` (when using `useBuiltIns`) or for using another plugin like [fast-async](https://github.com/MatAtBread/fast-async) instead of [Babel's async-to-gen](plugin-proposal-async-generator-functions.md).
 
 ### `useBuiltIns`
 
@@ -346,7 +346,7 @@ environment that only supports ES5.
 > ES6 support, but it is not yet stable. You can follow its progress in
 > [UglifyJS2 issue #448](https://github.com/mishoo/UglifyJS2/issues/448). If you
 > require an alternative minifier which _does_ support ES6 syntax, we recommend
-> using [babel-minify](https://github.com/babel/minify).
+> using [babel-minify](preset-minify.md).
 
 ### `configPath`
 
@@ -364,14 +364,14 @@ Toggles whether or not [browserslist config sources](https://github.com/ai/brows
 
 `boolean`, defaults to `false`
 
-Toggles enabling support for builtin/feature proposals that have shipped in browsers. If your target environments have native support for a feature proposal, its matching parser syntax plugin is enabled instead of performing any transform. Note that this _does not_ enable the same transformations as [`@babel/preset-stage-3`](https://babeljs.io/docs/plugins/preset-stage-3/), since proposals can continue to change before landing in browsers.
+Toggles enabling support for builtin/feature proposals that have shipped in browsers. If your target environments have native support for a feature proposal, its matching parser syntax plugin is enabled instead of performing any transform. Note that this _does not_ enable the same transformations as [`@babel/preset-stage-3`](preset-stage-3.md), since proposals can continue to change before landing in browsers.
 
 The following are currently supported:
 
 **Builtins**
 
-- None
+- [es7.array.flat-map](https://github.com/tc39/proposal-flatMap)
 
 **Features**
 
-- [Optional catch binding](https://github.com/tc39/proposal-optional-catch-binding)
+- None
