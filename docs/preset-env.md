@@ -173,11 +173,13 @@ Enable ["loose" transformations](http://2ality.com/2015/12/babel6-loose-mode.htm
 
 ### `modules`
 
-`"amd" | "umd" | "systemjs" | "commonjs" | "cjs" | false`, defaults to `"commonjs"`.
+`"amd" | "umd" | "systemjs" | "commonjs" | "cjs" | "auto" | false`, defaults to `"auto"`.
 
 Enable transformation of ES6 module syntax to another module type.
 
 Setting this to `false` will not transform modules.
+
+Also note that `cjs` is just an alias for `commonjs`.
 
 ### `debug`
 

@@ -1,6 +1,7 @@
 ---
 title: FAQ
-id: faq
+id: version-7.1.0-faq
+original_id: faq
 ---
 
 ## Why is the output of `for...of` so verbose and ugly?
