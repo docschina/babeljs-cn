@@ -1,7 +1,8 @@
 ---
-id: babel-plugin-proposal-function-sent
+id: version-7.1.0-babel-plugin-proposal-function-sent
 title: @babel/plugin-proposal-function-sent
 sidebar_label: proposal-function-sent
+original_id: babel-plugin-proposal-function-sent
 ---
 
 ## Example

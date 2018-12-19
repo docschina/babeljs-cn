@@ -1,7 +1,8 @@
 ---
-id: babel-plugin-proposal-class-properties
+id: version-7.1.0-babel-plugin-proposal-class-properties
 title: @babel/plugin-proposal-class-properties
 sidebar_label: proposal-class-properties
+original_id: babel-plugin-proposal-class-properties
 ---
 
 ## Example

@@ -1,6 +1,7 @@
 ---
-id: index
+id: version-7.1.0-index
 title: 什么是 Babel ?
+original_id: index
 ---
 
 ## Babel 是一个 JavaScript 编译器
