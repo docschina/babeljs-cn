@@ -265,8 +265,8 @@ const HomeContainer = props => (
 
 const Hero = ({ language }) => (
   <div className="hero">
-    <a href="https://tidelift.com/subscription/npm/babel">
-      <div className="tidelift-banner">获取更加专业的 Babel</div>
+    <a href="https://teespring.com/babel-christmas?pr=FLAVORTOWN">
+      <div className="homepage-banner">获取 Babel 的假日服饰👕</div>
     </a>
     <div className="hero__container">
       <h1>Babel 是 JavaScript 编译器。</h1>
