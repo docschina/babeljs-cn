@@ -144,6 +144,7 @@ Babel 是一个编译器（源代码=>输出代码）。像许多其他编译器
 - [regenerator](plugin-transform-regenerator.md)
 - [runtime](plugin-transform-runtime.md)
 - [strict-mode](plugin-transform-strict-mode.md)
+- [typescript](plugin-transform-typescript.md)
 
 ## 语法插件
 
@@ -305,3 +306,4 @@ export default function () {
   };
 }
 ```
+

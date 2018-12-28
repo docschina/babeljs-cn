@@ -39,7 +39,7 @@ module.exports = function () {
 }
 ```
 
-查看[`babel.config.js` 文档](config-files.md#project-wide-configuration)以查看更多配置选项。
+查看 [`babel.config.js` 文档](config-files.md#project-wide-configuration) 以了解更多配置选项。
 
 ## `.babelrc`
 
@@ -52,7 +52,7 @@ module.exports = function () {
 }
 ```
 
-查看[.babelrc 文档](babelrc.md)以查看更多配置选项。
+查看 [.babelrc 文档](config-files.md#file-relative-configuration)以了解更多配置选项。
 
 
 ### `package.json`
@@ -72,7 +72,7 @@ module.exports = function () {
 
 ### `.babelrc.js`
 
-配置与[`.babelrc`](#babelrc)相同, 除此之外还可使用 JavaScript 编写，。
+配置与 [`.babelrc`](#babelrc) 相同，但你可以使用 JavaScript 编写。
 
 ```js
 const presets = [ ... ];
@@ -100,8 +100,7 @@ module.exports = { presets, plugins };
 babel --plugins @babel/plugin-transform-arrow-functions script.js
 ```
 
-查看[babel-cli 文档](cli.md)以查看更多配置选项。
-
+查看 [babel-cli 文档](cli.md)以查看了解配置选项。
 
 ## 使用 API (`@babel/core`)
 
@@ -111,5 +110,4 @@ require("@babel/core").transform("code", {
 });
 ```
 
-查看[babel-core 文档](core.md)以查看更多配置选项。
-
+查看 [babel-core 文档](core.md)以了解更多配置选项。

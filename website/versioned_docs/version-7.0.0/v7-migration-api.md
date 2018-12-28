@@ -14,11 +14,13 @@ original_id: v7-migration-api
 ## 所有 Babel 的包
 
 ### NodeJS 的支持
+
 ![high](https://img.shields.io/badge/level%20of%20awesomeness%3F-high-red.svg)
 
 由于 Node.js 0.10和0.12两个版本都没有维护，因此删除了对这两个版本的支持。
 
 ### 导出更改
+
 ![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
 
 由于 Babel 包中放弃使用 `add-module-exports` 插件，所以必须提前使用以为防止我们的出口发生重大变化。如果在库中导入 Babel 的包并且使用 `require` 而不是 `import` 时，可能需要使用 `.default`。
@@ -93,8 +95,8 @@ export default declare(api => {
 目前 `babel` 对象作为第一个参数，然后是插件/presets 选项和 `dirname`。
 
 ```js
-module.exports = function(api, options, dirname) { }
-````
+module.exports = function(api, options, dirname) {};
+```
 
 ## `babel-parser` (被称为 Babylon)
 
@@ -110,8 +112,8 @@ module.exports = function(api, options, dirname) { }
 
 ```js
 babelParser.parse(code, {
-  plugins: [ "*" ]
-})
+  plugins: ["*"],
+});
 ```
 
 可以使用以下方法代替旧行为：
@@ -130,11 +132,11 @@ babelParser.parse(code, {
     "functionSent",
     "jsx",
     "objectRestSpread",
-  ]
-})
+  ],
+});
 ```
 
-详见 Babylon 的[插件选项](https://babeljs.io/docs/core-packages/babylon/#api-plugins)
+详见 Babylon 的[插件选项](parser.md#plugins)
 
 >重命名 `decorators` 插件为 `decorators-legacy` ![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
 
@@ -293,20 +295,20 @@ export default function() {
 
 字段仅在启用 babylon 中的 `flow` 插件时可用。
 
-  * ObjectProperty
-  * ObjectMethod
-  * AssignmentProperty
-  * ClassMethod
-  * ClassProperty
-  * Property
+- ObjectProperty
+- ObjectMethod
+- AssignmentProperty
+- ClassMethod
+- ClassProperty
+- Property
 
 新的 `Variance` 节点的类型如下所示：
 
 ```js
 type VarianceNode = {
   type: "Variance",
-  kind: "plus"|"minus",
-}
+  kind: "plus" | "minus",
+};
 ```
 
 ```diff
@@ -330,7 +332,7 @@ type VarianceNode = {
 例子:
 
 ```js
-var a: { [a: number]: string; };
+var a: { [a: number]: string };
 ```
 
 ```diff

@@ -19,6 +19,12 @@ original_id: v7-migration
 
 这只是意味着 Babel 本身不会在旧版本的 Node 上运行。它仍然可以输出在旧节点上运行的代码。
 
+## Config Lookup Changes
+
+For more info, read our [6.x vs 7.x comparison](config-files.md#6x-vs-7x-babelrc-loading).
+
+Babel has had issues previously with handling `node_modules`, symlinks, and monorepos. We've made some changes to account for this: Babel will stop lookup at the `package.json` boundary instead of looking up the chain. For monorepo's we have added a new `babel.config.js` file that centralizes our config across all the packages (alternatively you could make a config per package). In 7.1, we've introduced a [`rootMode`](options.md#rootmode) option for further lookup if necessary.
+
 ## [弃用年份 Preset](/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
 
 "env" preset 现已推出一年多了，完全取代了之前我们已经/过去建议的一些预设。
@@ -33,7 +39,7 @@ original_id: v7-migration
 
 ## [弃用 Stage Preset](https://babeljs.cn/blog/2018/07/27/removing-babels-stage-presets)
 
-我们正在删除 Stage presets，以支持明确的提案使用。可以检查 [stage-0 readme](https://github.com/babel/babel/tree/master/packages/babel-preset-stage-0#babelpreset-stage-0) 自述文件以获取更多迁移步骤。
+我们正在删除 Stage presets，以支持明确的提案使用。可以检查 [stage-0 README](https://github.com/babel/babel/tree/master/packages/babel-preset-stage-0#babelpreset-stage-0) 自述文件以获取更多迁移步骤。
 
 要自动执行此操作，您可以运行 [`npx babel-upgrade`](https://github.com/babel/babel-upgrade)（ PR 添加在[此处](https://github.com/babel/babel-upgrade/pull/69)）。
 
@@ -72,7 +78,7 @@ import "core-js/fn/string/trim-left";
 import "core-js/fn/string/trim-right";
 import "core-js/fn/string/match-all";
 import "core-js/fn/array/flat-map";
-import "core-js/fn/array/flatten";  // RENAMED
+import "core-js/fn/array/flatten"; // RENAMED
 import "core-js/fn/global";
 
 // Stage 1
@@ -130,6 +136,7 @@ import "core-js/fn/reflect/has-metadata";
 import "core-js/fn/reflect/has-own-metadata";
 import "core-js/fn/reflect/metadata";
 ```
+
 </details>
 
 ## [版本/依赖](/blog/2017/12/27/nearing-the-7.0-release.html#peer-dependencies-integrations)
@@ -167,8 +174,8 @@ import "core-js/fn/reflect/metadata";
 
 ```js
 module.exports = {
-  "presets": ["@babel/env"], // "@babel/preset-env"
-  "plugins": ["@babel/transform-arrow-functions"] // same as "@babel/plugin-transform-arrow-functions"
+  presets: ["@babel/env"], // "@babel/preset-env"
+  plugins: ["@babel/transform-arrow-functions"], // same as "@babel/plugin-transform-arrow-functions"
 };
 ```
 
@@ -213,13 +220,13 @@ this;
 
 ```js
 // input2.js
-import 'a';
+import "a";
 ```
 
 ```js
 // output.js v6 and v7
-'use strict';
-require('a');
+"use strict";
+require("a");
 ```
 
 如果你依靠 Babel 自动将 `"use strict"` 注入所有 CommonJS 模块，那么你需要在 Babel 配置中明确使用 `transform-strict-mode` 插件。
@@ -238,7 +245,7 @@ require('a');
 +  "presets": ["@babel/preset-react", "@babel/preset-flow"] // parse & remove flow types
 +  "presets": ["@babel/preset-react", "@babel/preset-typescript"] // parse & remove typescript types
 }
-````
+```
 
 ## 选项解析
 
@@ -274,7 +281,6 @@ babel --presets @babel/preset-es2015 ../file.js
 
 这种变化也会影响 `only` 和 `ignore`，这将在下一次进行扩展。
 
-
 ## 基于路径的 `only` 和 `ignore` 模式
 
 在 Babel 6 中，`only` 和 `ignore` 被视为一般匹配字符串，而不是文件路径 glob。这意味着例如 `*.foo.js` 将匹配 `./**/*.foo.js`，这让大多数用户感到困惑和惊讶。
@@ -283,11 +289,9 @@ babel --presets @babel/preset-es2015 ../file.js
 
 `only` 和 `ignore` 模式仍然_适用_于目录，所以你也可以使用 `only: './tests'` 来只编译 `tests` 目录中的文件，而不需要使用 `**/*.js` 匹配所有嵌套文件。
 
-
 ## Babel's CLI commands
 
 `babel` 命令的 `--copy-files` 参数，告诉 Babel 复制 Babel 不知道如何处理的目录中的所有文件，现在也将复制 `only`/`ignore` 失败的文件校验，在它之前默默地跳过所有被忽略的文件。
-
 
 ### `@babel/node`
 
@@ -383,9 +387,12 @@ z = _extends({
 
 ```js
 // Substitute for Object.assign: ["proposal-object-rest-spread", { "loose": true, "useBuiltIns": true }]
-z = Object.assign({
-  x
-}, y);
+z = Object.assign(
+  {
+    x,
+  },
+  y
+);
 ```
 
 ### `@babel/plugin-proposal-class-properties`
@@ -395,7 +402,7 @@ z = Object.assign({
 ```js
 // input
 class Bork {
-  static a = 'foo';
+  static a = "foo";
   y;
 }
 ```
@@ -406,14 +413,14 @@ var Bork = function Bork() {
   Object.defineProperty(this, "y", {
     enumerable: true,
     writable: true,
-    value: void 0
+    value: void 0,
   });
 };
 
 Object.defineProperty(Bork, "a", {
   enumerable: true,
   writable: true,
-  value: 'foo'
+  value: "foo",
 });
 ```
 
@@ -423,8 +430,8 @@ var Bork = function Bork() {
   this.y = void 0;
 };
 
-Bork.a = 'foo';
-````
+Bork.a = "foo";
+```
 
 ### 将 `@babel/plugin-transform-export-extensions` 拆分为两个重命名的提案
 
@@ -433,14 +440,14 @@ Bork.a = 'foo';
 `@babel/plugin-proposal-export-default-from`
 
 ```js
-export v from 'mod';
+export v from "mod";
 ```
 
 `@babel/plugin-proposal-export-namespace-from`
 
 ```js
-export * as ns from 'mod';
-````
+export * as ns from "mod";
+```
 
 ### `@babel/plugin-transform-template-literals`
 
@@ -458,17 +465,30 @@ tag`\unicode and \u{55}`;
 
 ```js
 // default
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral([void 0], ["\\unicode and \\u{55}"]);
+function _taggedTemplateLiteral(strings, raw) {
+  return Object.freeze(
+    Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })
+  );
+}
+var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(
+  [void 0],
+  ["\\unicode and \\u{55}"]
+);
 tag(_templateObject);
 ```
 
 ```js
 // loose mode
-function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteralLoose([void 0], ["\\unicode and \\u{55}"]);
+function _taggedTemplateLiteralLoose(strings, raw) {
+  strings.raw = raw;
+  return strings;
+}
+var _templateObject = /*#__PURE__*/ _taggedTemplateLiteralLoose(
+  [void 0],
+  ["\\unicode and \\u{55}"]
+);
 tag(_templateObject);
-````
+```
 
 ---
 
@@ -557,7 +577,7 @@ TC39 决定放弃这个提案。你可以将逻辑移动到构造函数或静态
 +    }]
   ]
 }
-````
+```
 
 ## `babel`
 

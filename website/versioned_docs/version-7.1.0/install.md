@@ -2,23 +2,34 @@
 original_id: undefined
 id: version-7.1.0-undefined
 ---
-<blockquote class="babel-callout babel-callout-warning">
+虽然你 _可以_ 在你的机器上全局安装 Babel CLI, 但根据单个项目进行**本地**安装会更好一些。
+
+这样做有两个主要的原因：
+
+1. 同一机器上的不同的项目可以依赖不同版本的 Babel, 这允许你一次更新一个项目。
+2. 这意味着在你的工作环境中没有隐含的依赖项。它将使你的项目更方便移植、更易于安装。
+
+我们可以通过以下命令本地安装 Babel CLI:
+
+```sh
+npm install --save-dev @babel/core @babel/cli
+```
+
+<blockquote class="babel-callout babel-callout-info">
   <p>
-    在浏览器中编译的用例非常有限，
-    因此如果你在生产环境下工作，你应该在服务端预编译脚本。 
-    请查看 <a href="/docs/setup/#build-systems">配置构建系统</a> 
-    了解更多信息。
+    <strong>注意：</strong> 如果你没有一个 <code>package.json</code>,
+    在安装之前请新建一个。这可以保证
+    <code>npx</code> 命令产生合适的交互。
   </p>
 </blockquote>
 
-你可以使用 `@babel/babel-standalone` 作为 Babel 的预编译版本，或者你自己在 Babel 基础之上运行一个 bundler。请查看下面的使用部分，了解如何将其用作脚本。
+在完成安装之后，你的 `package.json` 文件应该包括：
 
-你还可以使用更多在线工具对脚本进行原型化:
-
-- [Babel 官方提供的 REPL](/repl)
-
-运行 Babel 于在线编辑器上:
-
-- [JSFiddle](https://jsfiddle.net/fh5whLfd/)
-- [JSBin](http://jsbin.com/rokimopuse/edit?html,js,console,output)
-- [Codepen](http://codepen.io/anon/pen/dOGgeO)
+```diff
+{
+  "devDependencies": {
++   "@babel/cli": "^7.0.0",
++   "@babel/core": "^7.0.0"
+  }
+}
+```

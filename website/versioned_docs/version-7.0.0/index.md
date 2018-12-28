@@ -65,7 +65,7 @@ export default React.createClass({
 
 ## 类型注释（Flow 和 TypeScript）
 
-Babel 可以删除类型注释！点击查看 [Flow preset](preset-flow.md) 或 [TypeScript preset](preset-typescript.md) 以开始使用。Babel 本身没有进行类型检查的功能，只是结合这些使用。
+Babel 可以删除类型注释！点击查看 [Flow preset](preset-flow.md) 或 [TypeScript preset](preset-typescript.md) 以开始使用。请注意 **Babel 本身不会进行类型检查**；当然，你仍可以使用 Flow 或者 TypeScript 来进行类型检查。
 
 你可以通过下面这个命令安装 flow preset
 
@@ -130,4 +130,4 @@ Babel 试图尽可能地遵循 ECMAScript 标准。为了平衡性能，它也�
 
 Babel 尝试使用尽可能少的代码而不依赖于庞大的运行时环境。
 
-有些情况可能很难达到，因此为了保证可读性、文件大小以及（运行）速度，会针对特定转换牺牲一些合规性，即提供 “loose” 选项。
+有些情况可能很难达到，因此为了保证可读性、文件大小以及（运行）速度，提供了 "loose" 选项，它会针对特定转换牺牲一些规范性的内容。

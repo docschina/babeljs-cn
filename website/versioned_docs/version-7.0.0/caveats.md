@@ -20,7 +20,7 @@ original_id: caveats
 
 ## 类
 
-由于 ES5 的限制（对于 [es2015-classes](plugin-transform-es2015-classes.md) 插件），`Date`, `Array`, `DOM` 等内置类型无法正确子类化。你可以尝试基于 `Object.setPrototypeOf` 和 `Reflect.construct` 的 [babel-plugin-transform-builtin-extend](https://github.com/loganfsmyth/babel-plugin-transform-builtin-extend)，但是它也存在一些限制。
+由于 ES5 的限制（对于 [transform-classes](plugin-transform-classes.md) 插件），`Date`, `Array`, `DOM` 等内置类型无法正确子类化。你可以尝试基于 `Object.setPrototypeOf` 和 `Reflect.construct` 的 [babel-plugin-transform-builtin-extend](https://github.com/loganfsmyth/babel-plugin-transform-builtin-extend)，但是它也存在一些限制。
 
 ## ES5
 

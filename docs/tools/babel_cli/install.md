@@ -8,7 +8,7 @@
 我们可以通过以下命令本地安装 Babel CLI:
 
 ```sh
-npm install --save-dev babel-cli
+npm install --save-dev @babel/core @babel/cli
 ```
 
 <blockquote class="babel-callout babel-callout-info">
@@ -24,7 +24,8 @@ npm install --save-dev babel-cli
 ```diff
 {
   "devDependencies": {
-+   "babel-cli": "^6.0.0"
++   "@babel/cli": "^7.0.0",
++   "@babel/core": "^7.0.0"
   }
 }
 ```

@@ -37,7 +37,7 @@ const user = {
 
 Babel 假设所有输入的代码都是 ES2015 模块。ES2015 模块是隐式严格模式，因此这意味着，顶层 `this` 在浏览器中不是 `window` Node.js 中也不是 `exports`
 
-如果你不想要这种行为，那么你可以选择在 [es2015-modules-transform](plugin-transform-es2015-modules-commonjs.md#usage) 中禁用 `strict`。
+如果你不想要这种行为，那么你可以选择在 [es2015-modules-transform](plugin-transform-modules-commonjs.md#usage) 中禁用 `strict`。
 
 **请注意:** 如果你这样做，你将愿意偏离规范，这可能会导致未来的互操作问题。
 
@@ -91,4 +91,4 @@ Babel 是一个开源项目，我们很感激所有得到的贡献。请帮忙�
 
 例如，Babel [v6.6.0 版本](https://github.com/babel/babel/releases/tag/v6.6.0)并不意味着所有包现在都是 6.6.0。
 
-> 为了确保你使用的包是最新版本，你可能要再次删除 `node_modules` 并执行 `npm install`。
+> 为了确保你使用的包是最新版本，你可能需要删除 `node_modules` 且再次执行 `npm install`。
