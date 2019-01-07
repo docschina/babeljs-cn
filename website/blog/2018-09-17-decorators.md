@@ -17,7 +17,7 @@ Babel 7.1.0 最终支持了新的装饰器提案：你可以使用 [`@babel/plug
 三年多以前，[Yehuda Katz](https://github.com/wycats) [首先提出](https://github.com/wycats/javascript-decorators/blob/696232bbd997618d603d6577848d635872f25c43/README.md)了装饰器的概念。TypeScript 在 [1.5 版本](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#typescript-15)（2015）中发布了对装饰器的支持以及许多 ES6 的相关特性。
 一些主流框架，如 Angular 和 MobX 等开始使用它们来增加开发者体验：这使得装饰器非常受欢迎，并给社区带来了一种已经稳定的错觉。
 
-Babel 第一次实现装饰器是在 [v5 版本中](https://github.com/babel/babel/blob/master/.github/CHANGELOG-v5.md#500)，但由于该提案仍在不断变化，则在 Babel v6 中移除了它们。[Logan Smyth](https://github.com/loganfsmyth) 创建了一个非官方的插件([`babel-plugin-transform-decorators-legacy`](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy))，它延续了 Babel 5 中装饰器的行为；在 Babel 7 的 alpha 版本发布期间该库被移至 Babel 官方的仓库中。当时该插件仍使用旧的装饰器语法，因为新提案尚未明确。
+Babel 第一次实现装饰器是在 [v5 版本中](https://github.com/babel/babel/blob/master/.github/CHANGELOG-v5.md#500)，但由于该提案仍在不断变化，则在 Babel v6 中移除了它们。[Logan Smyth](https://github.com/loganfsmyth) 创建了一个非官方的插件([`babel-plugin-transform-decorators-legacy`](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy))，它延用了 Babel 5 中装饰器的行为；在 Babel 7 的 alpha 版本发布期间该库被移至 Babel 官方的仓库中。当时该插件仍使用旧的装饰器语法，因为新提案尚未明确。
 
 自那时起，[Daniel Ehrenberg](https://github.com/littledan)、[Brian Terlson](https://github.com/bterlson) 以及 [Yehuda Katz](https://github.com/wycats) 就一起成为了该提案的共同作者，该提案几乎已被完全重写。当然并非一切事情都已确定，因为至今尚未出现符合规范的实现方式。
 
