@@ -1,39 +1,39 @@
 ---
 layout: post
-title:  "TC39 Standards Track Decorators in Babel"
+title:  "在 Babel 中支持 TC39 标准的装饰器"
 author: Nicolò Ribaudo
 authorURL: https://twitter.com/NicoloRibaudo
 date:   2018-09-17 12:00:00
 categories: announcements
-share_text: "TC39 Standards Track Decorators in Babel"
+share_text: "在 Babel 中支持 TC39 标准的装饰器"
 ---
 
-Babel 7.1.0 finally supports the new decorators proposal: you can try it out by using the [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) plugin 🎉.
+Babel 7.1.0 最终支持了新的装饰器提案：你可以使用 [`@babel/plugin-proposal-decorators`](https://babel.docschina.org/docs/en/babel-plugin-proposal-decorators) 插件来提前尝试此功能 🎉。
 
 <!--truncate-->
 
-## A Bit of History
+## 相关历史
 
-Decorators were [first proposed](https://github.com/wycats/javascript-decorators/blob/696232bbd997618d603d6577848d635872f25c43/README.md) by [Yehuda Katz](https://github.com/wycats) more than three years ago. TypeScript released support for decorators in [version 1.5](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#typescript-15) (2015) alongside with many ES6 features.
-Some major frameworks, like Angular and MobX, started using them to enhance their developer experience: this made decorators popular and gave the community a false sense of stability.
+三年多以前，[Yehuda Katz](https://github.com/wycats) [首先提出](https://github.com/wycats/javascript-decorators/blob/696232bbd997618d603d6577848d635872f25c43/README.md)了装饰器的概念。TypeScript 在 [1.5 版本](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#typescript-15)（2015）中发布了对装饰器的支持以及许多 ES6 的相关特性。
+一些主流框架，如 Angular 和 MobX 等开始使用它们来增加开发者体验：这使得装饰器非常受欢迎，并给社区带来了一种已经稳定的错觉。
 
-Babel first implemented decorators in [version 5](https://github.com/babel/babel/blob/master/.github/CHANGELOG-v5.md#500), but removed them in Babel 6 because the proposal was still in flux. [Logan Smyth](https://github.com/loganfsmyth) created an unofficial plugin ([`babel-plugin-transform-decorators-legacy`](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy)) which replicated the Babel 5 behavior; it has since then been moved to the official Babel repository during the first Babel 7 alpha release. This plugin still used the old decorators semantics, because it wasn't clear yet what the new proposal would have been.
+Babel 第一次实现装饰器是在 [v5 版本中](https://github.com/babel/babel/blob/master/.github/CHANGELOG-v5.md#500)，但由于该提案仍在不断变化，则在 Babel v6 中移除了它们。[Logan Smyth](https://github.com/loganfsmyth) 创建了一个非官方的插件([`babel-plugin-transform-decorators-legacy`](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy))，它延用了 Babel 5 中装饰器的行为；在 Babel 7 的 alpha 版本发布期间该库被移至 Babel 官方的仓库中。当时该插件仍使用旧的装饰器语法，因为新提案尚未明确。
 
-Since then, [Daniel Ehrenberg](https://github.com/littledan) and [Brian Terlson](https://github.com/bterlson) become co-authors of the proposal along with [Yehuda Katz](https://github.com/wycats), it has been almost completely rewritten. Not everything has been decided yet, and there isn't a compliant implementation as of today.
+自那时起，[Daniel Ehrenberg](https://github.com/littledan)、[Brian Terlson](https://github.com/bterlson) 以及 [Yehuda Katz](https://github.com/wycats) 就一起成为了该提案的共同作者，该提案几乎已被完全重写。当然并非一切事情都已确定，因为至今尚未出现符合规范的实现方式。
 
-Babel 7.0.0 introduced a new flag to the `@babel/plugin-proposal-decorators` plugin: the `legacy` option, whose only valid value was `true`. This breaking change was needed to provide a smooth transition path from the Stage 1 version of the proposal to the current one.
+Babel 7.0.0 为 `@babel/plugin-proposal-decorators` 插件引入了新的标识：`legacy` 选项，其唯一有效值为 `true`。这种突破性变更是必要的，它为提案从第一阶段到当前阶段平稳过渡作铺垫。
 
-In Babel 7.1.0 we are introducing support for this new proposal, and it is enabled by default when using the `@babel/plugin-proposal-decorators` plugin. If we didn't introduce the `legacy: true` option in Babel 7.0.0, it wouldn't be possible to use the correct semantics by default (which would be equivalent to `legacy: false`).
+在 Babel 7.1.0 中，我们引入了对这个新提案的支持，并且当 `@babel/plugin-proposal-decorators` 插件被使用时，默认启用。而在 Babel 7.0.0 中如果我们不设置 `legacy: true` 选项，默认情况下就不能使用该语义（相当于 `legacy: false`）。
 
-The new proposal also supports decorators on private fields and methods. We haven't implemented this feature yet in Babel (for each class, you can use either decorators or private elements), but it will come very soon.
+新提案同时支持使用装饰器实现私有字段（private fields）和私有方法（private methods）。我们尚未在 Babel 中实现此功能（在每个 class 中使用装饰器或私有元素），但我们会很快去出现它。
 
-## What Changed In The New Proposal?
+## 新提案有何变化？
 
-Even though the new proposal looks very similar to the old one, there are several important differences that make them incompatible.
+尽管新提案看起来与旧提案非常相似，但还是有几个重要的差异使得它们互不兼容。
 
-### Syntax
+### 语法
 
-The old proposal allowed any valid left-hand side expression (literals, function and class expressions, `new` expressions and function calls, simple and computed property accesses) to be used as the body of a decorator. For example, this was valid code:
+旧提案允许任何有效的左表达式（字面量，函数，类表达式，new 表达式以及函数调用等）用作装饰器主体。有效代码如下所示：
 
 ```javascript=
 class MyClass {
@@ -45,7 +45,7 @@ class MyClass {
 }
 ```
 
-That syntax had a problem: the `[...]` notation was used as *both* property access inside the decorator body and to define computed names. To prevent such ambiguity, the new proposal only allows dot property access (`foo.bar`), optionally with arguments at the end (`foo.bar()`). If you need more complex expressions, you can wrap them in parentheses:
+该语法存在问题：`[...]` 符号在装饰器内被用作属性访问及定义计算名称。为了防止这种歧义出现，新提案只允许通过点属性访问（`foo.bar`）可以选择在参数末尾使用（`foo.bar()`）。如果需要使用很复杂的表达式，可以将它们包裹在括号内：
 
 ```javascript=
 class MyClass {
@@ -57,9 +57,9 @@ class MyClass {
 }
 ```
 
-### Object Decorators
+### 对象装饰器
 
-The old version of the proposal allowed, in addition to class and class elements decorators, object members decorators:
+旧提案允许除类和类元素装饰器以外的对象成员使用装饰器：
 
 ```javascript=
 const myObj = {
@@ -68,80 +68,80 @@ const myObj = {
 };
 ```
 
-Due to some incompatibilities with the current object literal semantics, they have been removed from the proposal. If you are using them in your code, stay tuned because they might be re-introduced in a follow-on proposal ([tc39/proposal-decorators#119](https://github.com/tc39/proposal-decorators/issues/119)).
+由于与当前对象字面量语义的某些不兼容性，它们已从提案中被移除。如果你的代码中使用了它们，请继续关注，因为它们可能会在后续提案中被重新引入。（[tc39/proposal-decorators#119](https://github.com/tc39/proposal-decorators/issues/119)）
 
-### Decorator Functions Arguments
+### 装饰器函数相关参数
 
-The third important change introduced by the new proposal is about the arguments passed to the decorator functions.
+新提案提出的第三个重要变化与传递给装饰器函数参数相关。
 
-In the first version of the proposal, class elements decorators received a target class (or object), a key, and a property descriptor — similar in shape to what you would pass to `Object.defineProperty`. Class decorators took as their only argument a target constructor.
+在提案的第一个版本中，类元素装饰器接收的参数分别为目标类（或对象），key 以及属性描述符 - 与传递给 `Object.defineProperty` 的形式类似。类装饰器将目标构造函数（constructor）作为唯一参数。
 
-The new decorators proposal is much more powerful: element decorators take an object which, other than changing the property descriptor, allows changing the key, the placement (`static`, `prototype` or `own`), and the kind (`field` or `method`) of the element. They can also create additional properties and define a function (a *finisher*) which is run on the decorated class.
+新的装饰器提案更加强大：元素装饰器会接收一个对象，该对象除更改属性描述符外，还允许更改 key 值，可以赋值（`static`，`prototype` 或者 `own`），以及元素的类型（`field` 或 `method`）。它们还可以创建其他属性并在装饰类上定义运行函数（*完成器*）。
 
-Class decorators take an object which contains the descriptors of every single class element, making it possible to modify them before creating the class.
+类装饰器接收一个包含类描述符的对象，使得类在创建之前修改它们成为可能。
 
-### Upgrading
+### 升级
 
-Given these incompatibilities, it is not possible to use existing decorators with the new proposal: this would make the migration very slow, since existing libraries (MobX, Angular, etc.) can't be upgraded without introducing breaking changes.
-To workaround this issue, we have published an utility package which wraps the decorators in your code. After running it,
-you can safely change your Babel config to use the new proposal 🎉.
+鉴于这些不兼容性问题，新提案中不可能使用现有的装饰器：这将使得迁移变得缓慢，因为现有库（MobX，Angular等）无法在不引入这些突破性变化的情况下进行升级。
+为解决此问题，我们发布了实用工具包，它将装饰器包装在你的代码当中。运行后，
+你可以安心的更改你的 Babel 配置以便使用新提案 🎉。
 
-You can upgrade your files using a one-liner:
+使用如下命令来升级你的文件：
 
 ```shell=
 npx wrap-legacy-decorators src/file-with-decorators.js --decorators-before-export --write
 ```
 
-If your code only runs in Node, or if you are bundling your code with Webpack or Rollup, you can avoid injecting the wrapper function in each file by using an external dependency:
+如果你的代码仅在 Node 中运行，或者你会使用 webpack 或 rollup 构建你的代码，则需要使用外部依赖项（external dependency），避免在每个文件中注入包装函数：
 
 ```shell=
 npm install --save decorators-compat
 npx wrap-legacy-decorators src/file-with-decorators.js --decorators-before-export --external-helpers --write
 ```
 
-For more information, you can read [the package documentation](https://github.com/nicolo-ribaudo/legacy-decorators-migration-utility).
+欲了解更多信息，请参阅[工具包（package）相关文档](https://github.com/nicolo-ribaudo/legacy-decorators-migration-utility).
 
-## Open Questions
+## 开放问题
 
-Not everything has been decided yet: decorators are a very big feature and defining them in the best possible way is complex.
+并非所有内容都已确定：装饰器是一个非常强大的功能，想要将装饰器定义为最好的表现形式，是相当复杂的。
 
-### Where Should Decorators on Exported Classes Go?
+### 导出类(exported class)装饰器如何放置？
 
 > [tc39/proposal-decorators#69](https://github.com/tc39/proposal-decorators/issues/69)
 
-The decorator proposal has gone back and forth on this question: should decorators come before or after the export keyword?
+该问题在装饰器提案中反复被问到：装饰器应该放置在关键字 export 前还是关键字 export 后？
 
 ```javascript=
 export @decorator class MyClass {}
 
-// or
+// 或者
 
 @decorator
 export class MyClass {}
 ```
 
-The underlying question is whether or not the `export` keyword is part of the class declaration or it is a "wrapper". In the first case it should come *after* decorators, since decorators come at the beginning of the declaration; in the second one it should come *before*, because decorators are part of the class declaration.
+根本问题是 `export` 关键字是否是类声明的一部分，或者它是否是一个"包装器"。第一种情况下，它应该在装饰器*之后*，因为装饰器出现在声明的起始位置；第二种情况下，它应该在装饰器*之前*，因为装饰器是类声明的一部分。
 
-### How to Make Decorators Securely Interact with Private Elements?
+### 如何让装饰器与私有元素安全地交互？
 
 > [tc39/proposal-decorators#129](https://github.com/tc39/proposal-decorators/issues/129), [tc39/proposal-decorators#133](https://github.com/tc39/proposal-decorators/issues/133)
 
-Decorators give rise to an important security concern: if it is possible to decorate private elements, then private names (which can be considered as the "keys" of private elements) could be leaked. There are different safety levels to be thought of:
-  1) Decorators should not accidentally leak private names. Malicious code should not be able to "steal" private names from other decorators, in any way.
-  2) Only decorators directly applied to private elements might be considered trusted: should class decorators not be able to read and write private elements?
-  3) *Hard privacy* (one of the goals of the class fields proposal) means that private elements should only be accessible from inside the class: should any decorator have access to private names? Should it be only possible to decorate public elements?
+装饰器引发了一个重要的安全隐患：如果装饰私有元素，那么私有名称（可以视为私有元素的 "key"）可能会被泄露。有不同的安全级别需要考虑：
+  1) 装饰器有意外泄露私有名称的风险。恶意代码不应该以任何方式从其他装饰器中"窃取"私有名称。
+  2) 只有直接应用于私有元素的装饰器才被视为可信任：类装饰器是不是不应该读写私有元素？
+  3) *高度隐私* (class fields 提案的目标之一) 意味着私有元素只能从类内部访问：是否需要让任何装饰器都可以访问私有名称？是否应该只装饰公共元素？
 
-These questions need further discussion before being resolved, and that's where Babel comes in.
+这些问题需要在解决之前进一步讨论，这正是 Babel 所存在的意义。
 
-## The Role of Babel
+## Babel 的作用
 
-Following the trend in the [What's Happening With the Pipeline (|>) Proposal?](http://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal) article, with the Babel 7 release we are starting to use our position in the JS ecosystem to help proposal authors even more, by giving developers the ability to test and give feedback about different variations of the proposals.
+遵循 [What's Happening With the Pipeline (|>) Proposal?](http://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal) 文章中的走向，随着 Babel 7 的发布，我们开始利用我们在 JS 生态系统中的地位，通过让开发人员能够测试提案的不同变体，根据他们给出的反馈来帮助提案的作者完善提案。
 
-For this reason, alongside with the update of `@babel/plugin-proposal-decorators` we introduced a new option: `decoratorsBeforeExport`, which allows users to try both `export @decorator class C {}` and `@decorator export default class`.
+出于这样的角度，随着 `@babel/plugin-proposal-decorators` 的更新，我们引入了新的选项：`decoratorsBeforeExport`，它允许用户尝试使用 `export @decorator class C {}` 和 `@decorator export default class`。
 
-We will also introduce an option to customize the privacy constraint of decorated private elements. These options will be required until TC39 folks make a decision about them, so that we can let the default behavior be whatever the final proposal will specify.
+我们还将采用一个选项来定制装饰器私有元素的隐私约束。使用该选项是必要的，直到 TC39 人员对它们做出选择，由此就可以让默认行为指定为最终提案中的内容。
 
-If you are directly using our parser ([`@babel/parser`](https://babeljs.io/docs/en/next/babel-parser.html), formerly `babylon`) you can already use the `decoratorsBeforeExport` option in version 7.0.0:
+如果你直接使用 ([`@babel/parser`](https://babeljs.io/docs/en/next/babel-parser.html)，之前的 `babylon`)，你可以在 7.0.0 版本中使用 `decoratorsBeforeExport` 选项：
 
 ```javascript=
 const ast = babylon.parse(code, {
@@ -151,9 +151,9 @@ const ast = babylon.parse(code, {
 })
 ```
 
-### Usage
+### 用法
 
-For usage in Babel itself:
+用于 Babel 本身:
 
 ```sh
 npm install @babel/plugin-proposal-decorators --save-dev
@@ -165,10 +165,10 @@ npm install @babel/plugin-proposal-decorators --save-dev
 }
 ```
 
-Check the [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) docs for more options.
+查阅 [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) 文档以获取更多相关选项。
 
-## Your Role
+## 你的作用
 
-As a JavaScript developer, you can help outline the future of the language. You can test the various semantics which are being considered for decorators, and give feedback to the proposal authors. We need to know how you are using them in real-life projects! You can also find out why some design decisions were taken by reading the discussions in the issues and the meeting notes in the [proposal's repository](https://github.com/tc39/proposal-decorators).
+作为 JavaScript 开发者，你可以帮助规划改语言的未来。你可以为装饰器考虑各种语义环境同时进行测试，并向提案的作者提出反馈。我们需要知道你在真实项目环境中是如何使用它们的！你还可以通过阅读[提案仓库](https://github.com/tc39/proposal-decorators)中的 issues 讨论及会议记录来找出为什么最终做出这样的设计决策。
 
-If you want to try out decorators right now, you can play with the different presets options in our [repl](https://babeljs.io/repl/build/master)!
+如果想立即尝试装饰器，可以使用我们的 [repl](https://babeljs.io/repl/build/master) 配置不同的 preset 选项进行试用！
