@@ -40,11 +40,6 @@ const MiniRepl = ({ language }) => {
           <div className="hero-repl__error" />
         </div>
       </div>
-      <div className="hero-repl__footer">
-        <a href={siteConfig.getPageUrl("repl.html", language)}>
-          查看我们的 REPL 以更多地体验 Babel ！
-        </a>
-      </div>
 
       <script
         src="https://unpkg.com/babel-standalone@6/babel.min.js"
@@ -84,16 +79,15 @@ const GetStarted = ({ language }) => {
       className="blockElement twoByGridBlock get-started"
       style={{ flexBasis: "60%", margin: 0 }}
     >
-      <h2>欢迎！</h2>
-
+      <h3>欢迎！</h3>
+      <p>
+        在入门指南中可以了解有关 Babel 的更多信息，或查看有关其概念的相关讨论。
+      </p>
       <p>
         我们只是一个小的
         <a href={siteConfig.getPageUrl("team.html", language)}>志愿者</a>
         团体，在业余时间维护这个项目。如果 Babel
-        使您再工作中获益，那么成为贡献者可能是一种非常好的回馈方式。
-      </p>
-      <p>
-        通过阅读入门指南或观看有关其内部概念的会议视频，了解有关Babel的更多信息。
+        使您再工作中获益，那么成为贡献者可能是一种非常好的回馈方式！
       </p>
       <PromoSection>
         <Button href={siteConfig.getDocUrl("index.html", language)}>
@@ -107,51 +101,51 @@ const GetStarted = ({ language }) => {
   );
 };
 
-const WorkSponsors = () => {
-  return (
-    <div
-      className="blockElement alignCenter twoByGridBlock sponsors-work"
-      style={{ flexBasis: "40%", margin: 0 }}
-    >
-      <h2>开源伙伴</h2>
-      <p style={{ fontSize: 16 }}>
-        这些公司非常棒，并派出这些工程师在支持 Babel 的工作
-      </p>
-      <div className="productShowcaseSection">
-        <div className="cards">
-          {siteConfig.sponsors
-            .filter(sponsor => {
-              return sponsor.type == "work";
-            })
-            .map((sponsor, i) => {
-              return (
-                <div className="card" key={i}>
-                  <a href={sponsor.url} target="_blank" className="card-image">
-                    <img
-                      src={sponsor.image}
-                      title={sponsor.name}
-                      alt={`Sponsored by ${sponsor.name}`}
-                    />
-                  </a>
-                  <div className="card-text">
-                    <p>{sponsor.description}</p>
-                  </div>
-                  <div className="card-text">
-                    <p>
-                      发起者{" "}
-                      <a href={`https://github.com/${sponsor.member}`}>
-                        @{sponsor.member}
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
-      </div>
-    </div>
-  );
-};
+// const WorkSponsors = () => {
+//   return (
+//     <div
+//       className="blockElement alignCenter twoByGridBlock sponsors-work"
+//       style={{ flexBasis: "40%", margin: 0 }}
+//     >
+//       <h2>Friends of Open Source</h2>
+//       <p style={{ fontSize: 16 }}>
+//         These companies are awesome and pay these engineers to work on Babel
+//       </p>
+//       <div className="productShowcaseSection">
+//         <div className="cards">
+//           {siteConfig.sponsors
+//             .filter(sponsor => {
+//               return sponsor.type == "work";
+//             })
+//             .map((sponsor, i) => {
+//               return (
+//                 <div className="card" key={i}>
+//                   <a href={sponsor.url} target="_blank" className="card-image">
+//                     <img
+//                       src={sponsor.image}
+//                       title={sponsor.name}
+//                       alt={`Sponsored by ${sponsor.name}`}
+//                     />
+//                   </a>
+//                   <div className="card-text">
+//                     <p>{sponsor.description}</p>
+//                   </div>
+//                   <div className="card-text">
+//                     <p>
+//                       sponsoring{" "}
+//                       <a href={`https://github.com/${sponsor.member}`}>
+//                         @{sponsor.member}
+//                       </a>
+//                     </p>
+//                   </div>
+//                 </div>
+//               );
+//             })}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 const SponsorTier = props => {
   const tierSponsors = siteConfig.sponsors.filter(
@@ -159,11 +153,10 @@ const SponsorTier = props => {
   );
   return (
     <div>
-      <h3>{props.title}</h3>
       <ul className={`sponsors-tier tier-${props.tier}`}>
         {tierSponsors.map((sponsor, i) => (
           <li key={i}>
-            <a href={sponsor.url} title={sponsor.name}>
+            <a href={sponsor.url} title={sponsor.name} target="_blank">
               <img src={sponsor.image} alt={`Sponsored by ${sponsor.name}`} />
             </a>
           </li>
@@ -191,27 +184,10 @@ const OpenCollectiveSponsors = ({ language }) => {
     };
 
   return (
-    <div className="container paddingTop paddingBottom">
+    <div className="container paddingBottom">
       <div className="wrapper productShowcaseSection">
-        <div className="support-the-team">
-          <h2>支持我们团队</h2>
-          <p>
-            Babel 正在帮助 JavaScript 语言本身塑造其未来版本，被用于
-            Facebook，Google，Netflix等
-            <a href={siteConfig.getPageUrl("users.html", language)}>
-              数百家公司的产品当中
-            </a>
-            。你的赞助将支付给 TC39（制订 JavaScript
-            规范的委员会）用于组织会议等费用，并会直接支持核心开发团队人员继续努力改进
-            Babel 。
-          </p>
-          <PromoSection>
-            <Button href="https://opencollective.com/babel" target="_blank">
-              成为赞助商
-            </Button>
-          </PromoSection>
-        </div>
         <div className="sponsor-tiers" id="sponsors">
+          <h3>Open Collective Sponsors</h3>
           <SponsorTier
             type="opencollective"
             title="Base Support Sponsors"
@@ -221,29 +197,28 @@ const OpenCollectiveSponsors = ({ language }) => {
             type="opencollective"
             title="金牌赞助（Open Collective）"
             tier="gold-sponsors"
-            button={ocButton}
           />
           <SponsorTier
-            type="other"
-            title="Misc Sponsors"
-            tier="other-sponsors"
+            type="opencollective"
+            title="Silver Sponsors (Open Collective)"
+            tier="silver-sponsors"
+            button={ocButton}
           />
+          <h3>Patreon Sponsors</h3>
           <SponsorTier
             type="patreon"
             title="金牌赞助（众筹）"
             tier="gold-sponsors"
-            button={patreonButton}
-          />
-          <SponsorTier
-            type="opencollective"
-            title="银牌赞助（Open Collective）"
-            tier="silver-sponsors"
-            button={ocButton}
           />
           <SponsorTier
             type="patreon"
             title="Silver Sponsors (Patreon)"
             tier="silver-sponsors"
+          />
+          <SponsorTier
+            type="other"
+            title="Misc Sponsors"
+            tier="other-sponsors"
             button={patreonButton}
           />
         </div>
@@ -254,8 +229,8 @@ const OpenCollectiveSponsors = ({ language }) => {
 
 const HomeContainer = props => (
   <div
-    className="container paddingTop paddingBottom"
-    style={{ backgroundColor: "#f6f6f6" }}
+    className="container"
+    style={{ backgroundColor: "#f6f6f6", paddingBottom: 20 }}
   >
     <div className="wrapper">
       <div className="gridBlock">{props.children}</div>
@@ -281,6 +256,21 @@ const Hero = ({ language }) => (
         </span>
       </div>
       <MiniRepl language={language} />
+
+      <h3>Special Sponsor</h3>
+
+      <div class="sponsors-tier" style={{ margin: "10px 0" }}>
+        <a href="https://www.handshake.org" title="Handshake" target="_blank">
+          <img
+            src="https://handshake.org/images/landing/logo-light.svg"
+            alt="Sponsored by Handshake"
+            style={{ width: 180 }}
+          />
+          <div style={{ color: "#b7b8b7" }}>
+            Decentralized certificate authority and naming
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 );
@@ -293,7 +283,9 @@ const Index = ({ language }) => {
       <div className="mainContainer" style={{ padding: 0 }}>
         <HomeContainer>
           <GetStarted language={language} />
-          <WorkSponsors language={language} />
+          {
+            // <WorkSponsors language={language} />
+          }
         </HomeContainer>
         <OpenCollectiveSponsors />
       </div>

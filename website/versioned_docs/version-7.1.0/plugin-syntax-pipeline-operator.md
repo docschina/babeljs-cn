@@ -1,5 +1,5 @@
 ---
-id: version-7.0.0-babel-plugin-syntax-pipeline-operator
+id: version-7.1.0-babel-plugin-syntax-pipeline-operator
 title: @babel/plugin-syntax-pipeline-operator
 sidebar_label: syntax-pipeline-operator
 original_id: babel-plugin-syntax-pipeline-operator

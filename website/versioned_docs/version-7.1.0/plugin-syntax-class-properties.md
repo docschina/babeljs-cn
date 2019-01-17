@@ -1,5 +1,5 @@
 ---
-id: version-7.0.0-babel-plugin-syntax-class-properties
+id: version-7.1.0-babel-plugin-syntax-class-properties
 title: @babel/plugin-syntax-class-properties
 sidebar_label: syntax-class-properties
 original_id: babel-plugin-syntax-class-properties

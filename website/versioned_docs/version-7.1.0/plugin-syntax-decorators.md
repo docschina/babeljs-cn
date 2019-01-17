@@ -1,7 +1,8 @@
 ---
-id: babel-plugin-syntax-decorators
+id: version-7.1.0-babel-plugin-syntax-decorators
 title: @babel/plugin-syntax-decorators
 sidebar_label: syntax-decorators
+original_id: babel-plugin-syntax-decorators
 ---
 
 > #### Syntax only
