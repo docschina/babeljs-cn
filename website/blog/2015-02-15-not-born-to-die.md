@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Not Born to Die"
+title:  "并非出生而逐渐走向灭亡"
 author: James Kyle
 authorURL: https://twitter.com/thejameskyle
 date:   2015-02-15 9:18:00
@@ -8,36 +8,36 @@ categories: announcements
 share_text: "Not Born to Die: 6to5 has been renamed to Babel"
 ---
 
-I like to start off our blog posts with the latest big thing 6to5 has achieved. We haven’t reached it quite yet, but in a few days 6to5 and 6to5-core will have been downloaded **half a million times**, and in a month or so it will be over a **million** times.
+我想从 6to5 最新重大事件发生后都开始写博客文章。虽然还没有发生重大事件，不过这几天的时间，6to5 和 6to5-core 已经被下载**五十万次**，并且在一个月时间内将会超过**一百万次**。
 
-There has been a bit of confusion in the past as to 6to5’s role in the JavaScript community, which can largely be attributed to its name.
+过去，对于 6to5 在 JavaScript 社区中的所处角色存在一些混淆，这在很大程度上是由于它的名称产生的误解导致。
 
-6to5 was not born to die.
+但是 6to5 并非出生而逐渐走向灭亡。
 
 <!--truncate-->
 
-Even when the next edition of JavaScript is supported across all environments, the work that has gone into 6to5 will continue to serve an important role in the community.
+即使所有环境都开始支持 JavaScript 的下代版本，6to5 中的工作仍将继续在社区中发挥着重要作用。
 
-From minifiers to beautifiers, from linters to code coverage instrumentors, compile-to-javascript languages and syntax extensions, code highlighters and on and on. There are two things that almost any tooling of any programming language depends on really heavily: parsers and transpilers.
+这是因为，从压缩工具(minifier)到美化工具(beautifier)、从代码检查工具(linter)到代码覆盖工具(code coverage instrumentor)、可编译到 JavaScript 的语言和语法扩展、代码高亮等这些功能来看，几乎任何编程语言的任何工具都相当重度地依赖于两件事：解析器(parser)和转译器(transpiler)。
 
-The history of these tools in JavaScript has been long and sad. Everyone is constantly reimplementing the same things and it’s created an absolute mess. It’s also the number one reason new language features take a long time to roll out (i.e. “I love using Arrow Functions, but it breaks our code coverage”).
+在 JavaScript 中这些工具的历史很长、情况也很难受。每个人都在不断地重新实现相同的东西，造成了绝对的混乱。这也是新的语言特性花费很长时间推出的首要原因（比如“我喜欢使用箭头函数，但是它会破坏我们的代码覆盖率”）。
 
-Luckily a lot of work is happening to improve this.
+幸运的是，目前有很多人正在做的工作会改善这一点。
 
-Recently a number of people from Mozilla, Esprima, The jQuery Foundation, Acorn, 6to5, ESLint, and others have come together to create [ESTree](https://github.com/estree/estree), a standard upon which all parser and transpiler tooling will be based on.
+最近，来自 Mozilla, Esprima, jQuery 基金会, Acorn, 6to5, ESLint 和其他组织的许多人聚集在一起，共同创建了 [ESTree](https://github.com/estree/estree)，这是一个标准，所有解析器和转移器工具都将基于此标准。
 
-We want for 6to5 to solve the transpiler story. If the community could rally around a tool that provides a solid foundation for dealing with a lot of shared issues then we’ll all be much better off.
+我们希望 6to5 能够解决转译需求。如果社区可以整合围绕在一个能够提供坚实基础的工具，来处理大量共同的问题，那么我们将会变得更好。
 
-That might sound a bit absurd and like a fairly lofty goal. Many will think it’s _out of scope_ for something named “6to5”.
+这可能听起来有点荒谬，像是一个相当崇高的目标。很多人会认为这__超出了 “6to5” 的范围__。
 
-I guess it’d be a good idea to rename the project then!
+所以，我想此时重新命名这个项目是个好的想法！
 
-6to5 is now Babel.
+6to5 现在重生为 Babel。
 
-Babel will continue to serve as a JavaScript transpiler for using the very latest standards, but will also begin to open up its API for other tools. Anyone who has worked on the project internally knows that Babel is incredibly easy to work with.
+Babel 将继续作为使用最新标准的 JavaScript 转移器，但也将开始为其他工具开放其 API。任何在内部参与该项目的人，都知道 Babel 非常易用。
 
-We’re incredibly excited for the future and we hope that we can make an even bigger impact on the JavaScript community.
+我们对未来感到异常兴奋，我们希望我们能够对 JavaScript 社区产生更大的影响。
 
-Always bet on JavaScript.
+总是押注 JavaScript(always bet on JavaScript)。
 
-<p class="text-right">— The recently Babel team</p>
+<p class="text-right">— 来自当前的 Babel 团队</p>
