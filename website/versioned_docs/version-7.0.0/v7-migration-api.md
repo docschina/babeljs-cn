@@ -37,7 +37,7 @@ original_id: v7-migration-api
 
 `state.file.opts` 上公开的 `opts.basename` 选项已被删除 。如果您需要它，最好自己从 `opts.filename` 构建它  [babel/babel#5467](https://github.com/babel/babel/pull/5467)。
 
-删除了 `resolveModuleSource`。我们建议使用 `@babel/plugin-module-resolver` 的 'resolvePath' 选项  [babel/babel#6343](https://github.com/babel/babel/pull/6343)
+删除了 `resolveModuleSource`。我们建议使用 `babel-plugin-module-resolver@3` 的 'resolvePath' 选项  [babel/babel#6343](https://github.com/babel/babel/pull/6343)
 
 删除了  `babel.analyse` 因为它只是  `babel.transform` 的别名。
 

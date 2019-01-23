@@ -13,11 +13,13 @@ Refer users to this document when upgrading to Babel 7.
 ## All Babel packages
 
 ### NodeJS support
+
 ![high](https://img.shields.io/badge/level%20of%20awesomeness%3F-high-red.svg)
 
 Support for Node.js 0.10 and 0.12 has been dropped as both of this versions are out of maintenance.
 
 ### Export changes
+
 ![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
 
 Dropped use of `add-module-exports` plugin on Babel packages.
@@ -36,7 +38,7 @@ Calls to `babel.transform` or any other transform function may return `null` if 
 
 The `opts.basename` option exposed on `state.file.opts` has been removed. If you need it, best to build it from `opts.filename` yourself [babel/babel#5467](https://github.com/babel/babel/pull/5467).
 
-Removed `resolveModuleSource`. We recommend using `@babel/plugin-module-resolver`'s 'resolvePath' options [babel/babel#6343](https://github.com/babel/babel/pull/6343)
+Removed `resolveModuleSource`. We recommend using `babel-plugin-module-resolver@3`'s 'resolvePath' options [babel/babel#6343](https://github.com/babel/babel/pull/6343)
 
 Removed `babel.analyse` because it was just an alias for `babel.transform`
 
@@ -420,3 +422,4 @@ The two AST-Nodes `RestProperty` and `SpreadProperty` have been removed in favor
 ```
 
 See our [upgrade PR for Babel](https://github.com/babel/babel/pull/5317) and the [Babylon AST spec](https://github.com/babel/babylon/blob/7.0/ast/spec.md) for more information.
+

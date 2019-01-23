@@ -28,7 +28,9 @@ Babel 可以配置啦！许多其他的工具都有相似的配置：ESLint (`.e
 在项目的根目录（`package.json` 所在目录）下创建一个名为 `babel.config.js` 的文件，其中包含以下内容。
 
 ```js
-module.exports = function () {
+module.exports = function (api) {
+  api.cache(true);
+
   const presets = [ ... ];
   const plugins = [ ... ];
 
@@ -110,4 +112,4 @@ require("@babel/core").transform("code", {
 });
 ```
 
-查看 [babel-core 文档](core.md)以了解更多配置选项。
+查阅 [babel-core 文档](core.md) 以了解更多配置选项。
