@@ -8,7 +8,7 @@ sidebar_label: proposal-decorators
 
 (该示例来源于提案中)
 
-### 简单的类装饰器（Class decorator）
+### 简单的类装饰器（class decorator）
 
 ```js
 @annotation
@@ -19,7 +19,7 @@ function annotation(target) {
 }
 ```
 
-### 类装饰器（Class decorator）
+### 类装饰器（class decorator）
 
 ```js
 @isTestable(true)
