@@ -4,11 +4,11 @@ title: @babel/plugin-proposal-decorators
 sidebar_label: proposal-decorators
 ---
 
-## Example
+## 示例
 
-(examples are from proposal)
+(该示例来源于提案中)
 
-### Simple class decorator
+### 简单的类装饰器（Class decorator）
 
 ```js
 @annotation
@@ -19,7 +19,7 @@ function annotation(target) {
 }
 ```
 
-### Class decorator
+### 类装饰器（Class decorator）
 
 ```js
 @isTestable(true)
@@ -32,7 +32,7 @@ function isTestable(value) {
 }
 ```
 
-### Class function decorator
+### 类函数装饰器（Class function decorator）
 
 ```js
 class C {
@@ -48,15 +48,15 @@ function enumerable(value) {
 }
 ```
 
-## Installation
+## 安装
 
 ```sh
 npm install --save-dev @babel/plugin-proposal-decorators
 ```
 
-## Usage
+## 用法
 
-Add the following line to your .babelrc file:
+在 .babelrc 文件中添加插件依赖：
 
 ```json
 {
@@ -64,13 +64,13 @@ Add the following line to your .babelrc file:
 }
 ```
 
-### Via CLI
+### 通过 CLI 使用
 
 ```sh
 babel --plugins @babel/plugin-proposal-decorators script.js
 ```
 
-### Via Node API
+### 通过 Node API 使用
 
 ```javascript
 require("@babel/core").transform("code", {
@@ -78,7 +78,7 @@ require("@babel/core").transform("code", {
 });
 ```
 
-## Options
+## 选项
 
 ### `decoratorsBeforeExport`
 
@@ -93,23 +93,23 @@ export @decorator class Bar {}
 export class Foo {}
 ```
 
-This option was added to help tc39 collect feedback from the community by allowing experimentation with both possible syntaxes.
+添加该选项是为了针对于两种可能的语法进行实验，帮助 TC39 收集社区的反馈。
 
-For more information, check out: [tc39/proposal-decorators#69](https://github.com/tc39/proposal-decorators/issues/69).
+欲了解更多信息，请查阅：[tc39/proposal-decorators#69](https://github.com/tc39/proposal-decorators/issues/69).
 
 ### `legacy`
 
-`boolean`, defaults to `false`.
+`boolean`，默认为 `false`。
 
-Use the legacy (stage 1) decorators syntax and behavior.
+使用历史遗留的装饰器 (stage 1) 中的语法和行为。
 
-#### NOTE: Compatibility with `@babel/plugin-proposal-class-properties`
+#### 注意：`@babel/plugin-proposal-class-properties` 的兼容性问题
 
-If you are including your plugins manually and using `@babel/plugin-proposal-class-properties`, make sure that `@babel/plugin-proposal-decorators` comes *before* `@babel/plugin-proposal-class-properties`.
+如果你手动引用了插件 `@babel/plugin-proposal-class-properties` 并使用了它，请确保在引用 `@babel/plugin-proposal-class-properties` 之前引用 `@babel/plugin-proposal-decorators`。
 
-When using the `legacy: true` mode, `@babel/plugin-proposal-class-properties` must be used in `loose` mode to support the `@babel/plugin-proposal-decorators`.
+当使用 `legacy: true` 模式时，必须在 `loose` 模式下使用 `@babel/plugin-proposal-class-properties` 来支持 `@babel/plugin-proposal-decorators`。
 
-Wrong:
+错误示例：
 
 ```json
 {
@@ -120,7 +120,7 @@ Wrong:
 }
 ```
 
-Right:
+正确示例：
 
 ```json
 {
@@ -140,7 +140,7 @@ Right:
 }
 ```
 
-## References
+## 参考
 
-* [Proposal: JavaScript Decorators](https://github.com/wycats/javascript-decorators/blob/master/README.md)
+* [提案：JavaScript 装饰器](https://github.com/wycats/javascript-decorators/blob/master/README.md)
 
