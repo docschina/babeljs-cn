@@ -5,9 +5,9 @@ sidebar_label: proposal-class-properties
 original_id: babel-plugin-proposal-class-properties
 ---
 
-## Example
+## 示例
 
-Below is a class with four class properties which will be transformed.
+下面这段代码是包含 4 个类属性的类，它们将会被转译。
 
 ```js
   class Bork {
@@ -37,19 +37,19 @@ Below is a class with four class properties which will be transformed.
 ```
 
 
-## Installation
+## 安装
 
 ```sh
 npm install --save-dev @babel/plugin-proposal-class-properties
 ```
 
-## Usage
+## 用法
 
-### Via `.babelrc` (Recommended)
+### 通过 `.babelrc` 使用（推荐）
 
 **.babelrc**
 
-Without options:
+未使用选项：
 
 ```json
 {
@@ -57,7 +57,7 @@ Without options:
 }
 ```
 
-With options:
+使用选项：
 
 ```json
 {
@@ -67,13 +67,13 @@ With options:
 }
 ```
 
-### Via CLI
+### 通过 CLI 使用
 
 ```sh
 babel --plugins @babel/plugin-proposal-class-properties script.js
 ```
 
-### Via Node API
+### 通过 Node API 使用
 
 ```javascript
 require("@babel/core").transform("code", {
@@ -81,17 +81,17 @@ require("@babel/core").transform("code", {
 });
 ```
 
-## Options
+## 选项
 
 ### `loose`
 
-`boolean`, defaults to `false`.
+`boolean`，默认为 `false`。
 
-When `true`, class properties are compiled to use an assignment expression instead of `Object.defineProperty`.
+当设置为 `true` 时，类属性将被编译为赋值表达式而不是 `Object.defineProperty`。
 
-For an explanation of the consequences of using either, see [Definition vs. Assignment](http://2ality.com/2012/08/property-definition-assignment.html) (TL;DR in Part 5)
+有关使用其中任何一种结果的解释，请参考 [Definition vs. Assignment](http://2ality.com/2012/08/property-definition-assignment.html) (第 5 部分为总结)
 
-#### Example
+#### 示例
 
 ```js
   class Bork {
@@ -103,7 +103,7 @@ For an explanation of the consequences of using either, see [Definition vs. Assi
   }
 ```
 
-Without `{ "loose": true }`, the above code will compile to the following, using `Object.defineProperty`:
+如果没有使用选项 `{ "loose": true }`，上面的代码将使用 `Object.defineProperty`，被编译为如下代码：
 
 ```js
 var Bork = function Bork() {
@@ -136,7 +136,7 @@ Object.defineProperty(Bork, "b", {
 });
 ```
 
-However, with `{ "loose": true }`, it will compile using assignment expressions:
+但是，使用 `{ "loose": true }`，它将被编译为赋值表达式的形式：
 
 ```js
 var Bork = function Bork() {
@@ -149,7 +149,7 @@ Bork.a = 'foo';
 Bork.b = void 0;
 ```
 
-## References
+## 参考
 
-* [Proposal: ES Class Fields & Static Properties](https://github.com/jeffmo/es-class-static-properties-and-fields)
+* [提案：ES Class Fields & Static Properties](https://github.com/jeffmo/es-class-static-properties-and-fields)
 
