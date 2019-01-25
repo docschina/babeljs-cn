@@ -32,7 +32,7 @@ function isTestable(value) {
 }
 ```
 
-### 类函数装饰器（Class function decorator）
+### 类函数装饰器（class function decorator）
 
 ```js
 class C {
