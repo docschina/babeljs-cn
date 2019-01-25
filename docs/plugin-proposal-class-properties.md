@@ -10,13 +10,13 @@ sidebar_label: proposal-class-properties
 
 ```js
   class Bork {
-    //Property initializer syntax
+    // 属性初始化器语法
     instanceProperty = "bork";
     boundFunction = () => {
       return this.instanceProperty;
     };
 
-    //Static class properties
+    // 静态类属性
     static staticProperty = "babelIsCool";
     static staticFunction = function() {
       return Bork.staticProperty;
@@ -25,13 +25,13 @@ sidebar_label: proposal-class-properties
 
   let myBork = new Bork;
 
-  //Property initializers are not on the prototype.
+  // 属性初始化器设定的值不在原型上
   console.log(myBork.__proto__.boundFunction); // > undefined
 
-  //Bound functions are bound to the class instance.
+  // 绑定函数绑定到类实例上
   console.log(myBork.boundFunction.call(undefined)); // > "bork"
 
-  //Static function exists on the class.
+  // 类上包含静态函数
   console.log(Bork.staticFunction()); // > "babelIsCool"
 ```
 
