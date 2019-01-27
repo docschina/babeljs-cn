@@ -7,7 +7,7 @@ original_id: babel-plugin-proposal-class-properties
 
 ## 示例
 
-下面这段代码是包含 4 个类属性的类，它们将会被转译。
+以下展示了一个包含 4 个属性的类，它们将会被转译。
 
 ```js
   class Bork {
