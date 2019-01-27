@@ -101,7 +101,7 @@ export class Foo {}
 
 `boolean`，默认为 `false`。
 
-使用历史遗留的装饰器 (stage 1) 中的语法和行为。
+使用历史遗留（stage 1）的装饰器中的语法和行为。
 
 #### 注意：`@babel/plugin-proposal-class-properties` 的兼容性问题
 
