@@ -2671,6 +2671,10 @@
       "version-7.1.0-v7-migration": {
         "title": "Upgrade to Babel 7"
       },
+      "version-7.2.0-babel-parser": {
+        "title": "@babel/parser",
+        "sidebar_label": "parser"
+      },
       "version-7.2.0-babel-plugin-proposal-decorators": {
         "title": "@babel/plugin-proposal-decorators",
         "sidebar_label": "proposal-decorators"
@@ -2682,6 +2686,10 @@
       "version-7.2.0-babel-types": {
         "title": "@babel/types",
         "sidebar_label": "types"
+      },
+      "version-7.3.0-babel-plugin-proposal-pipeline-operator": {
+        "title": "@babel/plugin-proposal-pipeline-operator",
+        "sidebar_label": "proposal-pipeline-operator"
       },
       "version-7.3.0-babel-plugin-transform-named-capturing-groups-regex": {
         "title": "@babel/plugin-transform-named-capturing-groups-regex",
