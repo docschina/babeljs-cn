@@ -32,3 +32,5 @@ website/translated_docs
 
 package-lock.json
 yarn.lock
+
+.idea

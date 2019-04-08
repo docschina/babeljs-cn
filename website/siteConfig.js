@@ -93,7 +93,7 @@ const GITHUB_URL = "https://github.com/babel/website";
 const siteConfig = {
   useEnglishUrl: true,
   editUrl: `${GITHUB_URL}/blob/master/docs/`,
-  title: "Babel",
+  title: "Babel 中文文档 - 印记中文",
   tagline: "下一代 JavaScript 编译器",
   url: "https://babel.docschina.org",
   baseUrl: "/",
@@ -140,6 +140,10 @@ const siteConfig = {
     },
   },
   scripts: [
+    {
+      src: "/scripts/hmt.js",
+      defer: true
+    },
     {
       src: "https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js",
       defer: true,
