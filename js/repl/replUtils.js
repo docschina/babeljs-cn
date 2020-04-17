@@ -6,6 +6,7 @@ import UriUtils from "./UriUtils";
 
 import type {
   BabelState,
+  BabelPlugin,
   EnvState,
   EnvConfig,
   PresetsOptions,
@@ -35,7 +36,15 @@ export const envConfigToTargetsString = (envConfig: EnvConfig): string => {
 //  Repl state stored in Local storage
 const loadPersistedState = (): ReplState => {
   const storageState = StorageService.get("replState");
-  return { ...replDefaults, ...storageState };
+  return {
+    ...replDefaults,
+    ...storageState,
+    // HACK: We don't want to load the Babel version from the
+    // localStorage, otherwise users will use an old version
+    // unless they manually "update" it explicitly loading a
+    // new one via https://babeljs.io/repl/version/7.3.0
+    version: "",
+  };
 };
 
 //  Repl state in query string
@@ -143,9 +152,11 @@ export const persistedStateToEnvConfig = (
     isBuiltInsEnabled: !!persistedState.builtIns,
     isSpecEnabled: !!persistedState.spec,
     isLooseEnabled: !!persistedState.loose,
+    isBugfixesEnabled: !!persistedState.bugfixes,
     node: envPresetDefaults.node.default,
     version: persistedState.version,
     builtIns: envPresetDefaults.builtIns.default,
+    corejs: envPresetDefaults.corejs.default,
   };
 
   decodeURIComponent(persistedState.targets)
@@ -178,4 +189,19 @@ export const persistedStateToEnvConfig = (
     });
 
   return envConfig;
+};
+
+export const persistedStateToExternalPluginsState = (
+  persistedState: ReplState
+): Array<BabelPlugin> => {
+  const { externalPlugins } = persistedState;
+  if (!externalPlugins) {
+    return [];
+  }
+  return externalPlugins.split(",").map(plugin => {
+    const separator = plugin.lastIndexOf("@");
+    const name = plugin.slice(0, separator);
+    const version = plugin.slice(separator + 1);
+    return { name, version };
+  });
 };

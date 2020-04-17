@@ -39,9 +39,7 @@ See the [technical details](#technical-details) section for more information on 
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-Add the following line to your `.babelrc` file:
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -59,10 +57,12 @@ With options (and their defaults):
     [
       "@babel/plugin-transform-runtime",
       {
+        "absoluteRuntime": false,
         "corejs": false,
         "helpers": true,
         "regenerator": true,
-        "useESModules": false
+        "useESModules": false,
+        "version": "7.0.0-beta.0"
       }
     ]
   ]
@@ -154,6 +154,21 @@ export default function(instance, Constructor) {
   }
 }
 ```
+
+### `absoluteRuntime`
+
+`boolean` or `string`, defaults to `false`.
+
+This allows users to run `transform-runtime` broadly across a whole project. By default, `transform-runtime` imports from `@babel/runtime/foo` directly, but that only works if `@babel/runtime` is in the `node_modules` of the file that is being compiled. This can be problematic for nested `node_modules`, npm-linked modules, or CLIs that reside outside the user's project, among other cases. To avoid worrying about how the runtime module's location is resolved, this allows users to resolve the runtime once up front, and then insert absolute paths to the runtime into the output code.
+
+Using absolute paths is not desirable if files are compiled for use at a later time, but in contexts where a file is compiled and then immediately consumed, they can be quite helpful.
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+
+### `version`
+
+By default transform-runtime assumes that `@babel/runtime@7.0.0` is installed. If you have later versions of
+`@babel/runtime` (or their corejs counterparts e.g. `@babel/runtime-corejs3`) installed or listed as a dependency, transform-runtime can use more advanced features.
 
 ## Technical details
 
@@ -332,3 +347,5 @@ var Person = function Person() {
   (0, _classCallCheck3.default)(this, Person);
 };
 ```
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

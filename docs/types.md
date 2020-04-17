@@ -36,6 +36,17 @@ Aliases: `Expression`
 
 ---
 
+### argumentPlaceholder
+```javascript
+t.argumentPlaceholder()
+```
+
+See also `t.isArgumentPlaceholder(node, opts)` and `t.assertArgumentPlaceholder(node, opts)`.
+
+Aliases: none
+
+---
+
 ### arrayPattern
 ```javascript
 t.arrayPattern(elements)
@@ -375,7 +386,7 @@ Aliases: `Property`, `Private`
 
 ### classProperty
 ```javascript
-t.classProperty(key, value, typeAnnotation, decorators, computed)
+t.classProperty(key, value, typeAnnotation, decorators, computed, static)
 ```
 
 See also `t.isClassProperty(node, opts)` and `t.assertClassProperty(node, opts)`.
@@ -2710,7 +2721,7 @@ t.templateElement(value, tail)
 
 See also `t.isTemplateElement(node, opts)` and `t.assertTemplateElement(node, opts)`.
 
- - `value` (required)
+ - `value`: `{ raw: string, cooked: string }` (required)
  - `tail`: `boolean` (default: `false`)
 
 ---

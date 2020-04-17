@@ -38,9 +38,7 @@ npm install --save-dev @babel/plugin-transform-destructuring
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -100,6 +98,8 @@ var { ...x } = z;
 var _z = z,
     x = Object.assign({}, _z);
 ```
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
 
 ## References
 

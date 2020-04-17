@@ -2,16 +2,21 @@
 
 export type BabelPresets = Array<string | Array<string | Object>>;
 export type BabelPlugins = Array<string>;
+export type BabelPlugin = {
+  name: string,
+  version: string,
+};
 
 export type PresetsOptions = {
   decoratorsLegacy: boolean,
   decoratorsBeforeExport: boolean,
-  pipelineProposal: "smart" | "minimal",
+  pipelineProposal: "smart" | "minimal" | "fsharp",
 };
 
 export type EnvConfig = {
   browsers: string,
   electron: ?string,
+  isBugfixesEnabled: boolean,
   isEnvPresetEnabled: boolean,
   isElectronEnabled: boolean,
   isBuiltInsEnabled: boolean,
@@ -19,6 +24,7 @@ export type EnvConfig = {
   isSpecEnabled: boolean,
   isLooseEnabled: boolean,
   builtIns: string | false,
+  corejs: string,
   forceAllTransforms: boolean,
   shippedProposals: boolean,
   version?: any,
@@ -102,8 +108,8 @@ export type CompileConfig = {
 };
 
 export type ReplState = {
-  babili: boolean,
   browsers: string,
+  bugfixes: boolean,
   build: string,
   builtIns: string | boolean,
   spec: boolean,
@@ -125,7 +131,8 @@ export type ReplState = {
   version: any,
   decoratorsLegacy: boolean,
   decoratorsBeforeExport: boolean,
-  pipelineProposal: "minimal" | "smart",
+  pipelineProposal: "minimal" | "smart" | "fsharp",
+  externalPlugins: ?string,
 };
 
 export type SidebarTabSection = "env" | "plugins" | "presets" | "settings";
@@ -136,3 +143,5 @@ export type Transition = {
   visitorType: string,
   currentNode?: string,
 };
+
+export type SupportedFileExtension = ".js" | ".jsx" | ".ts" | ".tsx";

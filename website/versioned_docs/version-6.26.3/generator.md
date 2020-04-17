@@ -31,7 +31,7 @@ const output = generate(ast, { /* 选项 */ }, code);
 -----------------------|----------|-----------------|--------------------------------------------------------------------------
 auxiliaryCommentBefore | string   |                 | 可选字符串，在输出文件的开始添加块注释
 auxiliaryCommentAfter  | string   |                 | 可选字符串，在输出文件的末尾添加块注释
-shouldPrintComment     | function | `opts.comments` | 如果注释需要包含在输出中，该函数则需接受注释（作为字符串）并返回 `true` 。 默认情况下，如果 `opts.commoents` 为 `true` 或者 `opts.minifed` 为 `false` 并且注释中包含 `@preserve` 或 `@license`，则包含注释。
+shouldPrintComment     | function | `opts.comments` | 如果注释需要包含在输出中，该函数则需接受注释（作为字符串）并返回 `true`。 默认情况下，如果 `opts.commoents` 为 `true` 或者 `opts.minifed` 为 `false` 并且注释中包含 `@preserve` 或 `@license`，则包含注释。
 retainLines            | boolean  | `false`         | 尝试在输出的代码中使用与源代码相同的行号(有助于保留栈信息跟踪)
 retainFunctionParens   | boolean  | `false`         | 保留函数表达式的上下级 (可用于更改引擎解析行为)
 comments               | boolean  | `true`          | 输出中是否包含注释

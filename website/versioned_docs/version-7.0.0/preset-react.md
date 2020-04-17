@@ -28,9 +28,7 @@ npm install --save-dev @babel/preset-react
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -138,3 +136,5 @@ module.exports = {
   }
 }
 ```
+
+> You can read more about configuring preset options [here](https://babeljs.io/docs/en/presets#preset-options)

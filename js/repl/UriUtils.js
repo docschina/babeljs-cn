@@ -5,7 +5,6 @@ import LZString from "lz-string";
 import type { ReplState } from "./types";
 
 const URL_KEYS = [
-  "babili",
   "browsers",
   "build",
   "builtIns",
@@ -25,6 +24,7 @@ const URL_KEYS = [
   "prettier",
   "targets",
   "version",
+  "externalPlugins",
 ];
 
 const compress = (string: string) =>

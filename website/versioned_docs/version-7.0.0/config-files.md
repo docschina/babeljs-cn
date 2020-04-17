@@ -158,6 +158,8 @@ JS 配置很棒，因为他们可以动态计算配置，但缺点是
 * `api.cache.invalidate(() => process.env.NODE_ENV)` - 根据 `NODE_ENV` 的值缓存。
   每次 `using` 回调返回的值都不是预期的值，总体而言
   将再次调用 config 函数，缓存中的所有条目将替换为结果。
+* `api.cache(true)` - 与 `api.cache.forever()` 相同
+* `api.cache(false)` - 与 `api.cache.never()` 相同
 
 由于实际的回调结果用于检查缓存条目是否有效，因此建议使用
 那：
@@ -184,9 +186,7 @@ JS 配置很棒，因为他们可以动态计算配置，但缺点是
 * `api.env()` 返回当前的 `envName` 字符串。
 * `api.env(envName => envName.startsWith("test-"))` 如果 env 以 "test-" 开头，则返回 `true`。
 
-这个函数在内部使用下面提到的 `api.cache` 来确保这一点
- Babel 意识到这个构建取决于特定的 `envName`。
-
+**注意：** 这个函数在内部使用下面提到的 [`api.cache`](#apicache) 来确保这一点 Babel 意识到这个构建取决于特定的 `envName`。不应将其与 `api.cache.forever()` 或 `api.cache.never()` 一起使用.
 
 ### `api.caller(cb)`
 

@@ -31,9 +31,7 @@ npm install --save-dev @babel/plugin-proposal-nullish-coalescing-operator
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -80,6 +78,8 @@ var _object$foo;
 
 var foo = (_object$foo = object.foo) != null ? _object$foo : "default";
 ```
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
 
 ## References
 

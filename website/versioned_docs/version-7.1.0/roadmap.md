@@ -15,9 +15,13 @@ We should run against `test262` (the JavaScript test suite). This is made easier
 
 This will give us a few things:
 
-- Better confidence in Babel's output. More tests/coverage is better for catching regressions and finding spec bugs worth working on.
-- Can use these to help do a reverse test against any kind of "loose" mode. We can purposely fail a test when that option intends to not adhere to the spec.
-- Can use this new data instead of `compat-table` for `@babel/preset-env`.
+> https://github.com/kangax/compat-table could use a remake, ideally work with browser vendors on this
+
+- There is also https://github.com/mdn/browser-compat-data
+- Also use data from test262?
+- Run tests against real browsers
+- have a data-only format
+- Need continued maintenance
 
 ### Polyfill behavior
 
@@ -72,7 +76,7 @@ This will give us a few things:
 > Add a new option in `preset-env`: will continue to compile if the native support is *slower*. Can setup a threshold, may need to compare against the size difference.
 
 - Use [six-speed](https://github.com/kpdecker/six-speed) repo as a base, needs to apply for ES6 and proposals
-- Need continued maintainence
+- Need continued maintenance
 
 ### Compiled Output Stats
 
@@ -88,7 +92,7 @@ Support having async plugins. Will require it to be opt-in and for all other plu
 ### Plugin Ordering
 
 - Add `before`/`after` keys for plugins so they can specify order.
-- Possibily implement related plugins in the same "plugin" but just expose a flag out to the end-user.
+- Possibly implement related plugins in the same "plugin" but just expose a flag out to the end-user.
 
 ### Babel Helpers (shared code)
 - loader should handle these automatically like rollup
@@ -156,7 +160,7 @@ References: https://github.com/eslint/eslint-github-bot, https://github.com/open
 ### Maintainers/Sustainability
 
 - Promote Open Collective, talking with companies about office hours, sponsorship, contracting?
-- Mentoring: Google Summer of Code/Rails Girls Summer of Code were great but was hard to keep up with volunteeers and I felt like we could be doing a lot more with full time help.
+- Mentoring: Google Summer of Code/Rails Girls Summer of Code were great but was hard to keep up with volunteers and I felt like we could be doing a lot more with full time help.
 - Maybe doing local meetups on contributing, or livestreaming development/maintenance work?
 - Should focus on bringing in maintainers that will lower the burden, not increase it even if there is upfront work
 

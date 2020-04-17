@@ -7,14 +7,12 @@ sidebar_label: proposal-pipeline-operator
 ## Installation
 
 ```sh
-$ npm install @babel/plugin-proposal-pipeline-operator
+$ npm install --save-dev @babel/plugin-proposal-pipeline-operator
 ```
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -26,9 +24,7 @@ The Pipeline Proposal is one of three competing implementations. Which implement
 
 * `"minimal"` – [Minimal Pipeline](https://github.com/tc39/proposal-pipeline-operator/)
 * `"smart"` - [Smart Pipeline](https://github.com/js-choi/proposal-smart-pipelines)
-* `"fsharp"` - [F#-Style Pipeline](https://github.com/valtech-nyc/proposal-fsharp-pipelines) (Coming Soon!)
-
-Only "minimal" and "smart" are currently supported. "fsharp" is still in progress.
+* `"fsharp"` - [F#-Style Pipeline](https://github.com/valtech-nyc/proposal-fsharp-pipelines)
 
 When one of the implementations is accepted, it will become the default and the `"proposal"` option will no longer be required.
 

@@ -69,7 +69,7 @@ Reflect.construct(Foo, []); // => Foo (correct)
 Reflect.construct(Foo, [], Bar); // => Bar (correct)
 
 Reflect.construct(Bar, []); // => Bar (incorrect, though this is how ES5
-                            // inheritience is commonly implemented.)
+                            // inheritance is commonly implemented.)
 Reflect.construct(Foo, [], Baz); // => undefined (incorrect)
 ```
 
@@ -81,9 +81,7 @@ npm install --save-dev @babel/plugin-transform-new-target
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {

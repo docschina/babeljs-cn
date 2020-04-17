@@ -129,7 +129,7 @@ npx babel script.js --out-file script-compiled.js --plugins=transform-runtime,tr
 
 ### 使用 Presets
 
-使用 `--presets` 选项指定编译中要使用的插件
+使用 `--presets` 选项指定编译中要使用的 presets
 
 ```sh
 npx babel script.js --out-file script-compiled.js --presets=es2015,react
@@ -200,7 +200,7 @@ babel-node [options] [ -e script | script.js ] [arguments]
 当用户脚本的参数名称与 node 中的原生参数选项冲突时，可以在脚本名称之前加两个连接号来避免歧义
 
 ```sh
-npx babel-node --debug --presets es2015 -- script.js --debug
+npx babel-node --inspect --presets es2015 -- script.js --inspect
 ```
 
 ### 选项
@@ -211,5 +211,5 @@ npx babel-node --debug --presets es2015 -- script.js --debug
 | `-p, --print`            |                      | 评估脚本并且打印结果 |
 | `-i, --ignore [regex]`   | `node_modules`       | 在使用 require 钩子时，忽略与此正则表达式匹配的所有文件 |
 | `-x, --extensions`       | `".js",".jsx",".es6",".es"` | 可识别的拓展名列表 |
-| `--presets`                | `[]`                 | 加载和使用以逗号分隔的 [presets](plugins.md#presets) （一组插件）。 |
-| `--plugins`                | `[]`                 | 加载和使用以逗号分隔的[插件](plugins.md)列表。
+| `--presets`                | `[]`                 | 加载和使用以逗号分隔的 [presets](/docs/plugins/#preset) （一组插件）。 |
+| `--plugins`                | `[]`                 | 加载和使用以逗号分隔的[插件](/docs/plugins/)列表。

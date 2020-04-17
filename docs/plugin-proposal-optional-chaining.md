@@ -25,6 +25,9 @@ const safe = obj?.qux?.baz; // undefined
 // Optional chaining and normal chaining can be intermixed
 obj?.foo.bar?.baz; // Only access `foo` if `obj` exists, and `baz` if
                    // `bar` exists
+
+// Example usage with bracket notation:
+obj?.['foo']?.bar?.baz // 42
 ```
 
 ### Calling deeply nested functions
@@ -83,6 +86,18 @@ new Test?.(); // test instance
 new exists?.(); // undefined
 ```
 
+### Deleting deeply nested properties
+
+```js
+const obj = {
+  foo: {
+    bar: {}
+  },
+};
+
+const ret = delete obj?.foo?.bar?.baz; // true
+```
+
 ## Installation
 
 ```sh
@@ -91,9 +106,7 @@ npm install --save-dev @babel/plugin-proposal-optional-chaining
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -144,6 +157,8 @@ Out (`loose === false`)
 ```javascript
 foo === null || foo === void 0 ? void 0 : foo.bar;
 ```
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
 
 ## References
 

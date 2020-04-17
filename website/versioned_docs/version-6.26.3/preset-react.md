@@ -50,9 +50,7 @@ echo '<h1>Hello, world!</h1>' > index.js
 
 ## 使用方法
 
-### 通过 `.babelrc` 方式（推荐）
-
-**.babelrc**
+### 使用配置文件（推荐）
 
 ```json
 {

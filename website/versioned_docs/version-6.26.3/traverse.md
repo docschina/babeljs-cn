@@ -34,4 +34,4 @@ traverse(ast, {
 });
 ```
 
-[:book: **阅读完整文档**](https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#babel-traverse)
+[📖 **阅读完整文档**](https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#babel-traverse)

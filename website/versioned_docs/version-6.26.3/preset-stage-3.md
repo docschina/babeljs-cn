@@ -34,9 +34,7 @@ npm install --save-dev babel-preset-stage-3
 
 ## 使用
 
-### 通过 `.babelrc` 文件（推荐）
-
-**.babelrc**
+### 使用配置文件（推荐）
 
 ```json
 {

@@ -61,9 +61,7 @@ npm install --save-dev babel-plugin-transform-decorators
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -87,5 +85,5 @@ require("babel-core").transform("code", {
 
 ## References
 
-* [Proposal: Javascript Decorators](https://github.com/wycats/javascript-decorators/blob/master/README.md)
+* [Proposal: JavaScript Decorators](https://github.com/wycats/javascript-decorators/blob/master/README.md)
 

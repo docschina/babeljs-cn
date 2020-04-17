@@ -84,7 +84,7 @@ For more information on setting options for a preset, refer to the [preset optio
 
 Describes the environments you support/target for your project.
 
-This can either be a [browserslist-compatible](https://github.com/ai/browserslist) query:
+This can either be a [browserslist-compatible](https://github.com/ai/browserslist) query (with [caveats](presets.md#ineffective-browserslist-queries)):
 
 ```json
 {
@@ -196,7 +196,7 @@ An array of plugins to always include.
 
 Valid options include any:
 
-- [Babel plugins](https://github.com/babel/babel/blob/master/packages/babel-preset-env/data/plugin-features.js) - both with (`@babel/plugin-transform-spread`) and without prefix (`plugin-transform-spread`) are supported.
+- [Babel plugins](https://github.com/babel/babel/blob/master/packages/babel-compat-data/scripts/data/plugin-features.js) - both with (`@babel/plugin-transform-spread`) and without prefix (`plugin-transform-spread`) are supported.
 
 - [Built-ins](https://github.com/babel/babel/blob/master/packages/babel-preset-env/data/built-in-features.js), such as `es6.map`, `es6.set`, or `es6.object.assign`.
 
@@ -214,7 +214,7 @@ This option is useful if there is a bug in a native implementation, or a combina
 
 For example, Node 4 supports native classes but not spread. If `super` is used with a spread argument, then the `@babel/plugin-transform-classes` transform needs to be `include`d, as it is not possible to transpile a spread with `super` otherwise.
 
-> NOTE: The `include` and `exclude` options _only_ work with the [plugins included with this preset](https://github.com/babel/babel/blob/master/packages/babel-preset-env/data/plugin-features.js); so, for example, including `@babel/plugin-proposal-do-expressions` or excluding `@babel/plugin-proposal-function-bind` will throw errors. To use a plugin _not_ included with this preset, add them to your ["plugins"](options.md#plugins) directly.
+> NOTE: The `include` and `exclude` options _only_ work with the [plugins included with this preset](https://github.com/babel/babel/blob/master/packages/babel-compat-data/scripts/data/plugin-features.js); so, for example, including `@babel/plugin-proposal-do-expressions` or excluding `@babel/plugin-proposal-function-bind` will throw errors. To use a plugin _not_ included with this preset, add them to your ["plugins"](options.md#plugins) directly.
 
 ### `exclude`
 
@@ -312,7 +312,7 @@ Don't add polyfills automatically per file, or transform `import "@babel/polyfil
 <p><details>
   <summary><b>Example</b></summary>
 
-With Babel 7's [Javascipt config file](config-files#javascript) support, you can force all transforms to be run if env is set to `production`.
+With Babel 7's [JavaScript config file](config-files#javascript) support, you can force all transforms to be run if env is set to `production`.
 
 ```js
 module.exports = function(api) {
@@ -378,3 +378,10 @@ The following are currently supported:
 **Features**
 
 - None
+
+> You can read more about configuring preset options [here](https://babeljs.io/docs/en/presets#preset-options)
+
+## Caveats
+
+### Ineffective browserslist queries
+While `op_mini all` is a valid browserslist query, preset-env currently ignores it due to [lack of support data](https://github.com/kangax/compat-table/issues/1057) for Opera Mini.

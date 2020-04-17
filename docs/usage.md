@@ -19,25 +19,27 @@ Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是�
     npm install --save-dev @babel/core @babel/cli @babel/preset-env
     npm install --save @babel/polyfill
     ```
-2. 使用以下内容在项目的根目录中创建名为 `babel.config.js` 的配置文件：
+2. 使用以下内容在项目的根目录中创建名为 `babel.config.json` 的配置文件：
 
-    ```js
-    const presets = [
-      [
-        "@babel/env", 
-        {
-          targets: {
-            edge: "17",
-            firefox: "60",
-            chrome: "67",
-            safari: "11.1"
-          },
-          useBuiltIns: "usage"
-        }
-      ]
-    ];
-    module.exports = { presets };
-    ```
+   ```json
+   {
+     "presets": [
+       [
+         "@babel/env",
+         {
+           "targets": {
+             "edge": "17",
+             "firefox": "60",
+             "chrome": "67",
+             "safari": "11.1",
+           },
+           "useBuiltIns": "usage",
+           "corejs": "3.6.4",
+         }
+       ]
+     ]
+   }
+   ```
 
     > 上面的浏览器列表只是一个随意的例子。你必须根据想要支持的浏览器进行调整。
 
@@ -125,33 +127,39 @@ npm install --save-dev @babel/preset-env
 
 > 根据你的需要，可以使用几种不同的方法配置文件。请务必阅读有关如何 [配置 Babel](configuration.md) 的深入指南以获取更多信息。
 
-现在，让我们创建一个名为 `babel.config.js` 的文件，其中包含以下内容：
+现在，让我们创建一个名为 `babel.config.json` 的文件，其中包含以下内容：
 
-```js
-const presets = [
+```json
+{
+"presets": [
   [
-    "@babel/env",
+  "@babel/env",
     {
-      targets: {
-        edge: "17",
-        firefox: "60",
-        chrome: "67",
-        safari: "11.1",
-      },
-    },
-  ],
-];
-
-module.exports = { presets };
+      "targets": {
+        "edge": "17",
+        "firefox": "60",
+        "chrome": "67",
+        "safari": "11.1"
+        }
+      }
+    ]
+  ]
+}
 ```
 
 现在 `env` preset 只会为目标浏览器中没有的功能加载转换插件。接下来我们看看 polyfills。
 
 ## Polyfill
 
+> 🚨 自 Babel 7.4.0 起，该 package 已被弃用，你可以直接引入 `core-js/stable`（为 ECMAScript 新特性提供的 polyfill）以及 `regenerator-runtime/runtime` (需要转译 generator 函数)：
+> ```js
+> import "core-js/stable";
+> import "regenerator-runtime/runtime";
+> ```
+
 [@babel/polyfill](polyfill.md) 模块包括 [core-js](https://github.com/zloirock/core-js) 和自定义 [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js) 来模拟完整的 ES2015+ 环境。
 
-这意味着你可以使用像 `Promise` 或 `WeakMap` 这样的新内置函数，像 `Array.from` 或 `Object.assign` 这样的静态方法，像`Array.prototype.includes` 这样的实例方法，以及 generator 函数（提供给你使用 [regenerator](plugin-transform-regenerator.md) 插件）。为了做到这一点，polyfill 增加了全局范围以及像 `String` 这样的原生原型。
+这意味着你可以使用像 `Promise` 或 `WeakMap` 这样的新内置函数，像 `Array.from` 或 `Object.assign` 这样的静态方法，像`Array.prototype.includes` 这样的实例方法，以及 generator 函数（提供给你使用 regenerator 插件）。为了做到这一点，polyfill 增加了全局范围以及像 `String` 这样的原生原型。
 
 对于 library/tool 作者来说，这可能太多了。如果你不需要像 `Array.prototype.includes` 这样的实例方法，可以使用[ [transform runtime](plugin-transform-runtime.md) 插件而不是 `@babel/polyfill` 污染全局范围。
 
@@ -167,23 +175,23 @@ npm install --save @babel/polyfill
 
 幸运的是，对于我们来说，我们使用的是 `env` preset，其中有一个 `"useBuiltIns"` 选项，当设置为 `"usage"` 时，实际上将应用上面提到的最后一个优化，只包括你需要的 polyfill。使用此新选项，配置更改如下：
 
-```js
-const presets = [
-  [
-    "@babel/env",
-    {
-      targets: {
-        edge: "17",
-        firefox: "60",
-        chrome: "67",
-        safari: "11.1",
-      },
-      useBuiltIns: "usage",
-    },
-  ],
-];
-
-module.exports = { presets };
+```json
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "edge": "17",
+          "firefox": "60",
+          "chrome": "67",
+          "safari": "11.1",
+        },
+        "useBuiltIns": "usage",
+      }
+    ]
+  ]
+}
 ```
 
 Babel 将检查你的所有代码，以查找目标环境中缺少的功能，并仅包含所需的 polyfill。例如这段代码：

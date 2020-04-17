@@ -38,9 +38,7 @@ npm install babel-plugin-minify-mangle-names --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 // without options
@@ -80,3 +78,4 @@ require("@babel/core").transform("code", {
 + `topLevel` - mangle topLevel Identifiers (default: `false`)
 + `keepClassName` - prevent mangler from altering class names (default: `false`).
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

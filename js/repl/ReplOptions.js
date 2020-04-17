@@ -8,9 +8,10 @@ import PresetLoadingAnimation from "./PresetLoadingAnimation";
 import ExternalPlugins from "./ExternalPlugins";
 import Svg from "./Svg";
 import { colors, media } from "./styles";
-import { joinListEnglish } from "./Utils";
+import { compareVersions, joinListEnglish } from "./Utils";
 
 import type {
+  BabelPlugin,
   EnvConfig,
   EnvState,
   PluginConfig,
@@ -51,7 +52,7 @@ type Props = {
   pluginValue: ?string,
   showOfficialExternalPlugins: boolean,
   pluginChange: PluginChange,
-  externalPlugins: Array<string>,
+  externalPlugins: Array<BabelPlugin>,
   showOfficialExternalPluginsChanged: ShowOfficialExternalPluginsChanged,
   envConfig: EnvConfig,
   pluginSearch: PluginSearch,
@@ -85,7 +86,7 @@ const LinkToDocs = ({ className, children, section }: LinkProps) => (
   <a
     className={className}
     target="_blank"
-    href={`https://github.com/babel/babel/tree/master/packages/babel-preset-env#${section}`}
+    href={`/docs/en/next/babel-preset-env.html#${section}`}
   >
     {children}
   </a>
@@ -180,8 +181,6 @@ class ExpandedContainer extends Component<Props, State> {
     const {
       babelVersion,
       envConfig,
-      envPresetState,
-      shippedProposalsState,
       fileSize,
       timeTravel,
       sourceType,
@@ -207,11 +206,6 @@ class ExpandedContainer extends Component<Props, State> {
       isSettingsTabExpanded,
     } = this.state;
 
-    const disableEnvSettings =
-      !envPresetState.isLoaded ||
-      !envConfig.isEnvPresetEnabled ||
-      shippedProposalsState.isLoading;
-
     const isStage2Enabled =
       presetState["stage-0"].isEnabled ||
       presetState["stage-1"].isEnabled ||
@@ -219,6 +213,9 @@ class ExpandedContainer extends Component<Props, State> {
 
     const isStage1Enabled =
       presetState["stage-0"].isEnabled || presetState["stage-1"].isEnabled;
+
+    const isBugfixesSupported =
+      babelVersion && compareVersions(babelVersion, "7.9.0") !== -1;
 
     return (
       <div className={styles.expandedContainer}>
@@ -396,6 +393,12 @@ class ExpandedContainer extends Component<Props, State> {
                   >
                     Smart
                   </option>
+                  <option
+                    value="fsharp"
+                    selected={presetsOptions.pipelineProposal === "fsharp"}
+                  >
+                    F#
+                  </option>
                 </select>
               </PresetOption>
             </AccordionTab>
@@ -413,12 +416,7 @@ class ExpandedContainer extends Component<Props, State> {
                   type="checkbox"
                   onChange={this._onEnvPresetSettingCheck("isEnvPresetEnabled")}
                 />
-
-                {envPresetState.isLoading ? (
-                  <PresetLoadingAnimation />
-                ) : (
-                  "Enabled"
-                )}
+                Enabled
               </label>
 
               <div className={styles.envPresetColumn}>
@@ -426,12 +424,12 @@ class ExpandedContainer extends Component<Props, State> {
                   className={`${styles.envPresetColumnLabel} ${
                     styles.envPresetLabel
                   } ${styles.highlight}`}
-                  section="browserslist-support"
+                  section="browserslist-integration"
                 >
                   Browsers
                 </LinkToDocs>
                 <textarea
-                  disabled={disableEnvSettings}
+                  disabled={!envConfig.isEnvPresetEnabled}
                   className={`${styles.envPresetInput} ${
                     styles.envPresetTextarea
                   }`}
@@ -452,7 +450,6 @@ class ExpandedContainer extends Component<Props, State> {
                     styles.envPresetInput
                   }`}
                   disabled={
-                    !envPresetState.isLoaded ||
                     !envConfig.isEnvPresetEnabled ||
                     !envConfig.isElectronEnabled
                   }
@@ -466,7 +463,7 @@ class ExpandedContainer extends Component<Props, State> {
                 <input
                   checked={envConfig.isElectronEnabled}
                   className={styles.envPresetCheckbox}
-                  disabled={disableEnvSettings}
+                  disabled={!envConfig.isEnvPresetEnabled}
                   onChange={this._onEnvPresetSettingCheck("isElectronEnabled")}
                   type="checkbox"
                 />
@@ -483,9 +480,7 @@ class ExpandedContainer extends Component<Props, State> {
                     styles.envPresetInput
                   }`}
                   disabled={
-                    !envPresetState.isLoaded ||
-                    !envConfig.isEnvPresetEnabled ||
-                    !envConfig.isNodeEnabled
+                    !envConfig.isEnvPresetEnabled || !envConfig.isNodeEnabled
                   }
                   type="number"
                   min={envPresetDefaults.node.min}
@@ -497,7 +492,7 @@ class ExpandedContainer extends Component<Props, State> {
                 <input
                   checked={envConfig.isNodeEnabled}
                   className={styles.envPresetCheckbox}
-                  disabled={disableEnvSettings}
+                  disabled={!envConfig.isEnvPresetEnabled}
                   onChange={this._onEnvPresetSettingCheck("isNodeEnabled")}
                   type="checkbox"
                 />
@@ -510,11 +505,23 @@ class ExpandedContainer extends Component<Props, State> {
                   Built-ins
                 </LinkToDocs>
                 <select
+                  value={envConfig.corejs}
+                  className={styles.envPresetSelect}
+                  onChange={this._onEnvPresetSettingChange("corejs")}
+                  disabled={
+                    !envConfig.isEnvPresetEnabled ||
+                    !envConfig.isBuiltInsEnabled ||
+                    runtimePolyfillState.isEnabled
+                  }
+                >
+                  <option value="2">core-js 2</option>
+                  <option value="3.6">core-js 3.6</option>
+                </select>
+                <select
                   value={envConfig.builtIns}
                   className={styles.envPresetSelect}
                   onChange={this._onEnvPresetSettingChange("builtIns")}
                   disabled={
-                    !envPresetState.isLoaded ||
                     !envConfig.isEnvPresetEnabled ||
                     !envConfig.isBuiltInsEnabled ||
                     runtimePolyfillState.isEnabled
@@ -526,7 +533,7 @@ class ExpandedContainer extends Component<Props, State> {
                 <input
                   checked={envConfig.isBuiltInsEnabled}
                   className={styles.envPresetCheckbox}
-                  disabled={disableEnvSettings}
+                  disabled={!envConfig.isEnvPresetEnabled}
                   onChange={this._onEnvPresetSettingCheck("isBuiltInsEnabled")}
                   type="checkbox"
                 />
@@ -541,7 +548,7 @@ class ExpandedContainer extends Component<Props, State> {
                 <input
                   checked={envConfig.isSpecEnabled}
                   className={styles.envPresetCheckbox}
-                  disabled={disableEnvSettings}
+                  disabled={!envConfig.isEnvPresetEnabled}
                   onChange={this._onEnvPresetSettingCheck("isSpecEnabled")}
                   type="checkbox"
                 />
@@ -556,29 +563,42 @@ class ExpandedContainer extends Component<Props, State> {
                 <input
                   checked={envConfig.isLooseEnabled}
                   className={styles.envPresetCheckbox}
-                  disabled={disableEnvSettings}
+                  disabled={!envConfig.isEnvPresetEnabled}
                   onChange={this._onEnvPresetSettingCheck("isLooseEnabled")}
                   type="checkbox"
                 />
               </label>
-              <label className={styles.envPresetRow}>
-                {shippedProposalsState.isLoading ? (
-                  <span className={styles.envPresetLoaderWrapper}>
-                    <PresetLoadingAnimation size={1.6} />
-                  </span>
-                ) : (
+              {isBugfixesSupported && (
+                <label className={styles.envPresetRow}>
                   <LinkToDocs
                     className={`${styles.envPresetLabel} ${styles.highlight}`}
-                    section="shippedProposals"
+                    section="bugfixes"
                   >
-                    Shipped Proposals
+                    Bug Fixes
                   </LinkToDocs>
-                )}
+                  <input
+                    checked={envConfig.isBugfixesEnabled}
+                    className={styles.envPresetCheckbox}
+                    disabled={!envConfig.isEnvPresetEnabled}
+                    onChange={this._onEnvPresetSettingCheck(
+                      "isBugfixesEnabled"
+                    )}
+                    type="checkbox"
+                  />
+                </label>
+              )}
+              <label className={styles.envPresetRow}>
+                <LinkToDocs
+                  className={`${styles.envPresetLabel} ${styles.highlight}`}
+                  section="shippedproposals"
+                >
+                  Shipped Proposals
+                </LinkToDocs>
                 <input
                   checked={envConfig.shippedProposals}
                   className={styles.envPresetCheckbox}
                   // TODO
-                  disabled={disableEnvSettings}
+                  disabled={!envConfig.isEnvPresetEnabled}
                   onChange={this._onEnvPresetSettingCheck("shippedProposals")}
                   type="checkbox"
                 />
@@ -593,7 +613,7 @@ class ExpandedContainer extends Component<Props, State> {
                 <input
                   checked={envConfig.forceAllTransforms}
                   className={styles.envPresetCheckbox}
-                  disabled={disableEnvSettings}
+                  disabled={!envConfig.isEnvPresetEnabled}
                   onChange={this._onEnvPresetSettingCheck("forceAllTransforms")}
                   type="checkbox"
                 />
@@ -940,7 +960,7 @@ const styles = {
   }),
   optionSelect: css({
     appearance: "none",
-    backgroundColor: "#2D3035",
+    backgroundColor: colors.selectBackground,
     // eslint-disable-next-line
     backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='${
       colors.inverseForegroundLight
@@ -953,7 +973,7 @@ const styles = {
     transition: "all 0.25s ease-in",
 
     "&:hover": {
-      backgroundColor: "#32353A",
+      backgroundColor: colors.selectHover,
     },
 
     "&::-ms-expand": {
@@ -1002,17 +1022,18 @@ const styles = {
   }),
   envPresetLabel: css({
     flex: 1,
-    color: "#FFF",
+    color: colors.inverseForeground,
 
     ":hover": {
       textDecoration: "none",
-      color: "#FFF",
+      color: colors.inverseForeground,
     },
   }),
   envPresetSelect: css({
     maxWidth: "7rem",
     fontWeight: 400,
     color: colors.textareaForeground,
+    margin: "0 0 0 0.75rem",
 
     "&:disabled": {
       opacity: 0.5,

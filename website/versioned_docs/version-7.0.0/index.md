@@ -92,7 +92,7 @@ function Greeter(greeting: string) {
 }
 ```
 
-> 了解更多关于 [Flow](http://flowtype.org/) 和 [TypeScript](https://www.typescriptlang.org/) 的信息。
+> 了解更多关于 [Flow](http://flow.org/) 和 [TypeScript](https://www.typescriptlang.org/) 的信息。
 
 可插拔
 ---------

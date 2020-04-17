@@ -8,7 +8,7 @@ sidebar_label: proposal-throw-expressions
 
 ```js
 function test(param = throw new Error('required!')) {
-  const test = param === true || throw new Error('Falsey!');
+  const test = param === true || throw new Error('Falsy!');
 }
 ```
 
@@ -20,9 +20,7 @@ npm install --save-dev @babel/plugin-proposal-throw-expressions
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {

@@ -47,9 +47,7 @@ npm install --save-dev @babel/plugin-transform-for-of
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -155,3 +153,4 @@ for (var _i = 0; _i < _arr.length; _i++) {
 }
 ```
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

@@ -1,6 +1,6 @@
 ---
 id: version-7.0.0-babel-plugin-transform-member-expression-literals
-title: babel-plugin-transform-member-expression-literals
+title: @babel/plugin-transform-member-expression-literals
 sidebar_label: transform-member-expression-literals
 original_id: babel-plugin-transform-member-expression-literals
 ---
@@ -10,7 +10,7 @@ original_id: babel-plugin-transform-member-expression-literals
 **In**
 
 ```javascript
-obj["foo"] = "isValid";
+obj.foo = "isValid";
 
 obj.const = "isKeyword";
 obj["var"] = "isKeyword";
@@ -28,32 +28,30 @@ obj["var"] = "isKeyword";
 ## Installation
 
 ```sh
-npm install babel-plugin-transform-member-expression-literals --save-dev
+npm install @babel/plugin-transform-member-expression-literals --save-dev
 ```
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
-  "plugins": ["transform-member-expression-literals"]
+  "plugins": ["@babel/plugin-transform-member-expression-literals"]
 }
 ```
 
 ### Via CLI
 
 ```sh
-babel --plugins transform-member-expression-literals script.js
+babel --plugins @babel/plugin-transform-member-expression-literals script.js
 ```
 
 ### Via Node API
 
 ```javascript
 require("@babel/core").transform("code", {
-  plugins: ["transform-member-expression-literals"]
+  plugins: ["@babel/plugin-transform-member-expression-literals"]
 });
 ```
 

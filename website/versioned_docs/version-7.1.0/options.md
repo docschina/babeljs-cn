@@ -531,12 +531,13 @@ Type: `{}`<br />
 
 An opaque object containing options to pass through to the parser being used.
 
+For available parser options, see [Parser Options](parser.md#options).
 
 ### `generatorOpts`
 
 Type: `{}`<br />
 
-An opaque object containing options to pass through to the code generator being used.
+An opaque object containing options to pass through to the code generator being used. See [Code Generator Options](#code-generator-options) for most used options.
 
 
 ## Code Generator options
@@ -615,6 +616,10 @@ A function that can decide whether a given comment should be included in the
 output code from Babel.
 
 
+### Advanced Usage
+For more code generator options, see [Generator Options](generator.md#options).
+
+
 ## AMD / UMD / SystemJS module options
 
 ### `moduleIds`
@@ -651,7 +656,7 @@ A root path to include on generated module names.
 
 ### `MatchPattern`
 
-Type: `string | RegExp | (filename: string | void, context: { callee: { name: string } | void, envName: string ) => boolean`
+Type: `string | RegExp | (filename: string | void, context: { caller: { name: string } | void, envName: string, dirname: string ) => boolean`
 
 Several Babel options perform tests against file paths. In general, these
 options support a common pattern approach where each pattern can be
@@ -665,10 +670,10 @@ options support a common pattern approach where each pattern can be
 Importantly, if either of these are used, Babel requires that the `filename` option be present,
 and will consider it an error otherwise.
 
-* `(filename: string | void, context: { callee: { name: string } | void, envName: string }) => boolean` is a general callback that should
+* `(filename: string | void, context: { caller: { name: string } | void, envName: string, dirname: string }) => boolean` is a general callback that should
   return a boolean to indicate whether it is a match or not. The function is passed the filename
-  or `undefined` if one was not given to Babel. It is also passed the current `envName` and `callee`
-  options that were specified by the top-level call to Babel.
+  or `undefined` if one was not given to Babel. It is also passed the current `envName` and `caller`
+  options that were specified by the top-level call to Babel and `dirname` that is either a directory of the configuration file or the current working directory (if the transformation was called programmatically).
 
 
 ### Merging
@@ -744,7 +749,7 @@ Individual plugin/preset items can have several different structures:
 
 * `EntryTarget` - Individual plugin
 * `[EntryTarget, EntryOptions]` - Individual plugin w/ options
-* `[EntryTarget, EntryOptions, string]` - Individual plugin with options and name (see [merging](Merging) for more info on names)
+* `[EntryTarget, EntryOptions, string]` - Individual plugin with options and name (see [merging](#merging) for more info on names)
 * `ConfigItem` - A plugin configuration item created by `babel.createConfigItem()`.
 
 The same `EntryTarget` may be used multiple times unless each one is given a different

@@ -29,9 +29,7 @@ original_id: babel-preset-stage-2
 
 ## 使用
 
-### 通过 `.babelrc` 文件（推荐）
-
-**.babelrc**
+### 使用配置文件（推荐）
 
 ```json
 {

@@ -35,9 +35,7 @@ npm install --save-dev @babel/plugin-transform-spread
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -81,7 +79,8 @@ require("@babel/core").transform("code", {
 
 In loose mode, **all** iterables are assumed to be arrays.
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+
 ## References
 
 * [MDN: Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
-

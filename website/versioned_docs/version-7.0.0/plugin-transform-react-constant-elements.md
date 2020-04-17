@@ -59,9 +59,7 @@ npm install --save-dev @babel/plugin-transform-react-constant-elements
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -88,6 +86,8 @@ This will skip the `Mutable Properties` deopt.
 }
 
 ```
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
 
 ### Via CLI
 

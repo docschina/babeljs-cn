@@ -34,9 +34,7 @@ npm install --save-dev @babel/plugin-transform-named-capturing-groups-regex
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -74,3 +72,5 @@ var stringRe = /(?<quote>"|').*?\k<quote>/;
 stringRe.test("'foo'"); // "true", works
 stringRe.exec("'foo'").groups.quote; // Error
 ```
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

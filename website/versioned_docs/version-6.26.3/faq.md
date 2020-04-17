@@ -6,7 +6,7 @@ original_id: faq
 
 ## 为什么 `for...of` 的输出那么冗长和难看？
 
-为了符合规范，迭代器的返回方法必须被报错方法调用。另一种方法是启用[松散模式](plugin-transform-es2015-for-of.md#loose)，
+为了符合规范，迭代器的返回方法必须被报错方法调用。另一种方法是启用[松散模式](babel-plugin-transform-es2015-for-of#loose)，
 但请注意，如果你启用松散模式那会有**很多**注意事项，而且你愿意选择非规范。
 
 了解更多信息请查看 [google/traceur-compiler#1773](https://github.com/google/traceur-compiler/issues/1773) 和
@@ -38,7 +38,7 @@ const user = {
 
 Babel 假设所有输入的代码都是 ES2015 模块。ES2015 模块是隐式严格模式，因此这意味着，顶层 `this` 在浏览器中不是 `window`，在 Node.js 中也不是 `exports`。
 
-如果你不想要这种行为，那么你可以选择在 [es2015-modules-transform](plugin-transform-es2015-modules-commonjs.md#usage) 中禁用 `strict`。
+如果你不想要这种行为，那么你可以选择在 [es2015-modules-transform](babel-plugin-transform-es2015-modules-commonjs#usage)) 中禁用 `strict`。
 
 **请注意：** 如果你这样做，你将愿意偏离规范，这可能会导致未来的互操作问题。
 

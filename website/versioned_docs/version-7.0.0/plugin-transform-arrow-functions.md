@@ -62,9 +62,7 @@ npm install --save-dev @babel/plugin-transform-arrow-functions
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -151,3 +149,4 @@ This option enables the following:
 
  - Add names to arrow functions.
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

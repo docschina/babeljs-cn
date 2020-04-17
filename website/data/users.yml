@@ -4,7 +4,7 @@
   pinned: true
 - name: CloudFlare
   url: https://cloudflare.com/
-  logo: cloudflare.png
+  logo: cloudflare.svg
   pinned: true
 - name: Netflix
   url: https://www.netflix.com/
@@ -677,3 +677,6 @@
 - name: Taskade
   url: https://taskade.com
   logo: taskade-logo.svg
+- name: Skype
+  url: https://www.skype.com
+  logo: skype-logo.svg

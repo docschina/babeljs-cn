@@ -57,7 +57,7 @@ npm install --save-dev @babel/plugin-proposal-decorators
 
 ## Usage
 
-Add the following line to your .babelrc file:
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -140,6 +140,8 @@ Right:
   ]
 }
 ```
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
 
 ## References
 

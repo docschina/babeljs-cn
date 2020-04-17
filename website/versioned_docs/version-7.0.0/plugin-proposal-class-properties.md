@@ -45,9 +45,7 @@ npm install --save-dev @babel/plugin-proposal-class-properties
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -149,8 +147,10 @@ Bork.a = 'foo';
 Bork.b = void 0;
 ```
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+
 ## References
 
-* [Proposal: ES Class Fields & Static Properties](https://github.com/jeffmo/es-class-static-properties-and-fields)
-
+* [Proposal: Public and private instance fields](https://github.com/tc39/proposal-class-fields)
+* [Proposal: Static class features](https://github.com/tc39/proposal-static-class-features)
 

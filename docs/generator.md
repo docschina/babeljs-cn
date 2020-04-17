@@ -30,7 +30,7 @@ name                   | type     | default         | description
 -----------------------|----------|-----------------|--------------------------------------------------------------------------
 auxiliaryCommentBefore | string   |                 | Optional string to add as a block comment at the start of the output file
 auxiliaryCommentAfter  | string   |                 | Optional string to add as a block comment at the end of the output file
-shouldPrintComment     | function | `opts.comments` | Function that takes a comment (as a string) and returns `true` if the comment should be included in the output.  By default, comments are included if `opts.comments` is `true` or if `opts.minifed` is `false` and the comment contains `@preserve` or `@license`
+shouldPrintComment     | function | `opts.comments` | Function that takes a comment (as a string) and returns `true` if the comment should be included in the output.  By default, comments are included if `opts.comments` is `true` or if `opts.minified` is `false` and the comment contains `@preserve` or `@license`
 retainLines            | boolean  | `false`         | Attempt to use the same line numbers in the output code as in the source code (helps preserve stack traces)
 retainFunctionParens   | boolean  | `false`         | Retain parens around function expressions (could be used to change engine parsing behavior)
 comments               | boolean  | `true`          | Should comments be included in output
@@ -39,6 +39,7 @@ minified               | boolean  | `false`         | Should the output be minif
 concise                | boolean  | `false`         | Set to `true` to reduce whitespace (but not as much as `opts.compact`)
 filename               | string   |                 | Used in warning messages
 jsonCompatibleStrings  | boolean  | `false`         | Set to true to run `jsesc` with "json": true to print "\u00A9" vs. "©";
+jsescOption            | object   |                 | Use `jsesc` to process literals. `jsesc` is applied to numbers only if `jsescOption.numbers` is present. You can customize `jsesc` by [passing options](https://github.com/mathiasbynens/jsesc#api) to it.
 
 Options for source maps:
 

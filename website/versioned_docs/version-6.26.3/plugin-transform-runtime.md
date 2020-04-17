@@ -39,9 +39,7 @@ npm install --save babel-runtime
 
 ## 用法
 
-### 通过 `.babelrc`（推荐）
-
-将以下内容添加到你的 `.babelrc` 文件中：
+### 使用配置文件（推荐）
 
 未包含选项：
 
@@ -123,6 +121,8 @@ require("babel-core").transform("code", {
 ```js
 import extends from 'flavortown/runtime/helpers/extends';
 ```
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
 
 ## Technical details
 

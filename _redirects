@@ -5,8 +5,9 @@
 # Previous versions of the REPL
 /repl/version/:version /repl/ 200
 
-# Ported from redirect_from
-# old.babeljs.io
+# Redirect aliases
+https://new.babeljs.io/* https://babeljs.io/:splat 301!
+https://babel.netlify.com/* https://babeljs.io/:splat 301!
 
 /php.html                           https://old.babeljs.io/php/
 /repl_old.html                      https://old.babeljs.io/repl/
@@ -72,3 +73,5 @@
 /docs/plugins/check-es2015-constants/ /docs/en/babel-plugin-check-es2015-constants
 /docs/plugins/transform-es2015-constants /docs/en/babel-plugin-check-es2015-constants
 /docs/plugins/undeclared-variables-check/ /docs/en/babel-plugin-undeclared-variables-check
+
+/docs/en/next/tools/*               /setup

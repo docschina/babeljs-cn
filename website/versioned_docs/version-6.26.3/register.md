@@ -91,3 +91,5 @@ BABEL_CACHE_PATH=/foo/my-cache.json babel-node script.js
 ```sh
 BABEL_DISABLE_CACHE=1 babel-node script.js
 ```
+
+**注意：** `babel-register` *不支持*动态编译原生 Node.js 的 ES 模块，因为当前没有用于拦截 ES 模块加载的稳定 API。

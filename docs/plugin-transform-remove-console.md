@@ -26,9 +26,7 @@ npm install babel-plugin-transform-remove-console --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 // without options
@@ -62,3 +60,4 @@ require("@babel/core").transform("code", {
 
 + `exclude` - An array of console methods to exclude from removal.
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

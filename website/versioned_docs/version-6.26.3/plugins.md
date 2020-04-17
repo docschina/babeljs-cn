@@ -33,7 +33,7 @@ Babel 是一个编译器。从宏观角度看，它将运行代码分为3个阶�
 
 ### Stage-X (实验阶段 Presets)
 
-Stage-x preset 中的任何转换都是对未被批准为 JavaScript 版本一部分的语言的变化(如 es6 / es2015 )。
+Stage-x presets 中的任何转换都是针对未发布的 Javascript 特性（如 ES6 / ES2015）的更改。
 
 > "语言的变化需要一个过程来发展，该过程提供了将一个想法进化为一种完善规范的指导原则。"
 

@@ -28,8 +28,15 @@ it will compile ES6 code before running it.
 
 Launch a REPL (Read-Eval-Print-Loop).
 
+> You should install `@babel/node` and `@babel/core` first before `npx babel-node`, otherwise `npx` will install out-of-dated legacy `babel-node` 6.x.
+
 ```sh
 npx babel-node
+```
+
+If you prefer not to install `@babel/node` and `@babel/core`, you can install them on-the-fly:
+```sh
+npx -p @babel/core -p @babel/node babel-node
 ```
 
 Evaluate code.
@@ -47,13 +54,13 @@ npx babel-node test
 > **Tip:** Use `rlwrap` to get a REPL with input history
 >
 > ```sh
-> npx rlwrap babel-node
+> rlwrap npx babel-node
 > ```
 >
 > On some platforms (like OSX), extra arguments may be required for `rlwrap` to function properly, eg:
 >
 > ```sh
-> NODE_NO_READLINE=1 npx rlwrap --always-readline babel-node
+> NODE_NO_READLINE=1 rlwrap --always-readline npx babel-node
 > ```
 
 ### Usage
@@ -65,7 +72,7 @@ babel-node [options] [ -e script | script.js ] [arguments]
 When arguments for user script have names conflicting with node options, double dash placed before script name can be used to resolve ambiguities
 
 ```sh
-npx babel-node --debug --presets es2015 -- script.js --debug
+npx babel-node --inspect --presets es2015 -- script.js --inspect
 ```
 
 ### Options
@@ -74,9 +81,11 @@ npx babel-node --debug --presets es2015 -- script.js --debug
 | ---------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | `-e, --eval [script]`  |                             | Evaluate script                                                                                                                             |
 | `-p, --print`          |                             | Evaluate script and print result                                                                                                            |
-| `-i, --ignore [regex]` | `node_modules`              | Ignore all files that match this regex when using the require hook                                                                          |
+| `-i, --ignore [regex]` | `node_modules`              | Ignore all files that match this regex when using the require hook. If both `-i` and `-o` are omitted, files outside the current working directory are also ignored. |
+| `-o, --only [regex]`   | current working directory   | Only include (and exclude all other) files that match this regex when using the require hook. If both `-i` and `-o` are omitted, files outside the current working directory are also ignored. |
 | `-x, --extensions`     | `".js",".jsx",".es6",".es"` | List of extensions to hook into                                                                                                             |
 | `--presets`            | `[]`                        | Comma-separated list of [presets](presets.md) (a set of plugins) to load and use.                                                           |
 | `--plugins`            | `[]`                        | Comma-separated list of [plugins](plugins.md) to load and use.                                                                              |
 | `--config-file [path]` | `[]`                        | Path to the babel config file to use. Defaults to working directory babel.config.js                                                         |
 | `--env-name [name]`    | `[]`                        | The name of the 'env' to use when loading configs and plugins. Defaults to the value of BABEL_ENV, or else NODE_ENV, or else 'development'. |
+

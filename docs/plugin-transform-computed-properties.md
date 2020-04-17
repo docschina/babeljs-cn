@@ -55,9 +55,7 @@ npm install --save-dev @babel/plugin-transform-computed-properties
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -131,3 +129,4 @@ var obj = (
 );
 ```
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

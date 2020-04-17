@@ -6,7 +6,7 @@ original_id: faq
 
 ## 为什么 for...of 的输出那么冗长和难看？?
 
-为了符合规范，必须在出错时调用迭代器的返回方法。另一种方法是启用 [loose 模式](plugin-transform-for-of.md#loose) 但请注意，如果启用 loose 模式，那会有很多注意事项，而且你愿意选择非规范。
+为了符合规范，必须在出错时调用迭代器的返回方法。另一种方法是启用 [loose 模式](plugin-transform-for-of.md#loose) 但请注意，如果启用 loose 模式，那会有很多注意事项，而且你愿意选择不遵守规范。
 
 更多相关信息请查阅[google/traceur-compiler#1773](https://github.com/google/traceur-compiler/issues/1773) 和
 [babel/babel#838](https://github.com/babel/babel/issues/838)。

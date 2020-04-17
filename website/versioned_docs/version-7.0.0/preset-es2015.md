@@ -16,9 +16,7 @@ npm install --save-dev @babel/preset-es2015
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -62,3 +60,4 @@ Setting this to `false` will not transform modules.
 
 Enable "spec" transformations for any plugins in this preset that allow them.
 
+> You can read more about configuring preset options [here](https://babeljs.io/docs/en/presets#preset-options)

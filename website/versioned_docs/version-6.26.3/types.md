@@ -1725,8 +1725,8 @@ t.templateElement(value, tail)
 
 参见 `t.isTemplateElement(node, opts)` 和 `t.assertTemplateElement(node, opts)` 。
 
- - `value` (必填)
- - `tail`: `boolean` (默认为：`false`)
+ - `value`：`{ raw: string, cooked: string }` (必填)
+ - `tail`：`boolean` (默认为：`false`)
 
 ---
 

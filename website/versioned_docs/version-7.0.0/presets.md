@@ -19,7 +19,7 @@ original_id: presets
 
 ## Stage-X (试验性 Presets)
 
-stage-x presets 中的任何转换都是对未被批准发布为 Javascript 的部分（如 ES6 / ES2015）的更改。
+Stage-x presets 中的任何转换都是针对未发布的 Javascript 特性（如 ES6 / ES2015）的更改。
 
 <blockquote class="babel-callout babel-callout-danger">
   <h4>可调整的改变</h4>

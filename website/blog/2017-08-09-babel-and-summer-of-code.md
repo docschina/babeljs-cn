@@ -74,7 +74,7 @@ In the meantime, they've already done all the necessary work to implement the ne
 - Hopefully it inspires some to get involved as a result of the program, and for others to step up as mentors/maintainers (ideally from the hundreds of top companies that use this project everyday) to bring people in.
 - Ultimately, this is just about building a community and making a great experience for our students/interns.
 
-It takes a lot of work to get involved in any community, and it's up to the people aleady involved to make this as easy as possible to join in. It requires one to spend the time to meet people where they are at (in many ways), not just write code but to invest in others. A community is about the people, and open source is about the community.
+It takes a lot of work to get involved in any community, and it's up to the people already involved to make this as easy as possible to join in. It requires one to spend the time to meet people where they are at (in many ways), not just write code but to invest in others. A community is about the people, and open source is about the community.
 
 Participating in Summer of Code gives us a great opportunity to make this happen, and we're continuously working on improving.
 
@@ -88,7 +88,7 @@ Look at all the amazing work they've already done! We're really excited for what
 
 To my team at Behance/Adobe for allowing me to spend time at work maintaining Babel and participating in Summer of Code!
 
-Thanks to all the other helpers/maintainers ([Brian](https://github.com/existentialism), [Logan](https://github.com/loganfsmyth), [Diogo](https://github.com/Kovensky), [Sven](https://github.com/xtuc), [Justin](https://github.com/jridgewell), [Boopathi](https://github.com/boopathi)), on Slack and GitHub issues! It can be a lot of work managing all the parts of an open source project, so we are glad to have the extra help!
+Thanks to all the other helpers/maintainers ([Brian](https://github.com/existentialism), [Logan](https://github.com/loganfsmyth), [Jessica](https://github.com/Jessidhia), [Sven](https://github.com/xtuc), [Justin](https://github.com/jridgewell), [Boopathi](https://github.com/boopathi)), on Slack and GitHub issues! It can be a lot of work managing all the parts of an open source project, so we are glad to have the extra help!
 
 Huge shoutout to many [TC39](https://github.com/tc39) members like [@littledan](https://twitter.com/littledan), [@bakkoting](https://twitter.com/bakkoting), [@ljharb](https://twitter.com/ljharb) for helping review PRs, better inform/work on [babel/proposals](https://github.com/babel/proposals), and discuss implementation/spec details in our Slack rooms! I know it's a lot of work 🙂
 

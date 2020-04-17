@@ -18,7 +18,7 @@ function findMarkDownSync(startPath) {
   });
   return result;
 }
-const toolsMD = findMarkDownSync("../docs/tools/");
+const toolsMD = findMarkDownSync("./data/tools/");
 
 function loadMD(fsPath) {
   return fs.readFileSync(path.join(__dirname, fsPath), "utf8");
@@ -37,7 +37,7 @@ const users = loadYaml("./data/users.yml").map(user => ({
 
 const sponsorsManual = loadYaml("./data/sponsors.yml").map(sponsor => ({
   ...sponsor,
-  image: `/img/sponsors/${sponsor.logo}`,
+  image: sponsor.image || path.join("/img/sponsors/", sponsor.logo),
 }));
 const sponsorsDownloaded = require(path.join(__dirname, "/data/sponsors.json"));
 
@@ -45,16 +45,8 @@ const sponsors = [
   ...sponsorsManual,
   ...sponsorsDownloaded
     // filter out Handshake for special tier
-    .filter(sponsor => sponsor.id !== 19490)
+    .filter(sponsor => sponsor.slug !== "handshake")
     .map(sponsor => {
-      // temporary fix for coinbase and webflow
-      let tier = sponsor.tier;
-      if (sponsor.id == 12671) {
-        tier = "gold-sponsors";
-      } else if (sponsor.id == 5954) {
-        tier = "silver-sponsors";
-      }
-
       let website = sponsor.website;
       if (typeof website == "string") {
         website = url.parse(website).protocol ? website : `http://${website}`;
@@ -66,7 +58,7 @@ const sponsors = [
 
       return {
         type: "opencollective",
-        tier,
+        tier: sponsor.tier,
         name: sponsor.name,
         url: website,
         image: sponsor.avatar || "/img/user.svg",
@@ -79,7 +71,7 @@ const sponsors = [
 const videos = require(path.join(__dirname, "/data/videos.js"));
 const team = loadYaml("./data/team.yml");
 const tools = loadYaml("./data/tools.yml");
-const setupBabelrc = loadMD("../docs/tools/setup.md");
+const setupBabelrc = loadMD("./data/tools/setup.md");
 
 toolsMD.forEach(tool => {
   tool.install = loadMD(`${tool.path}/install.md`);
@@ -167,7 +159,11 @@ const siteConfig = {
   onPageNav: "separate",
   gaTrackingId: "UA-114990275-1",
   cleanUrl: true,
-  enableUpdateTime: true,
+  // These two options make the build insanely slow
+  enableUpdateBy: false,
+  enableUpdateTime: false,
+  // ----
+  scrollToTop: true,
   // markdownPlugins: [],
   // cname
 };

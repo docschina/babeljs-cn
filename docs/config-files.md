@@ -8,17 +8,18 @@ id: config-files
 Babel 有两种并行的配置文件方式，可以一起使用，也可以单独使用。
 
 * 项目范围的配置
+  * `babel.config.json` 文件，以及不同扩展名的文件
 * 相关文件的配置
-  * `.babelrc`（和 `.babelrc.js`）文件
+  * `.babelrc.json` 文件，以及不同扩展名的文件
   * 带有 `"babel"` 键的 `package.json` 文件
-
 
 ## 项目范围的配置
 
 Babel 7.x 中的新功能，Babel 具有 ["root"](options.md#root) 目录的概念，默认为
 到当前的工作目录。对于项目范围的配置，Babel 将自动搜索
-相对对于此根目录下的 `"babel.config.js"` 。或者，用户可以使用显式
- ["configFile"](options.md#configfile) 值覆盖默认的配置文件搜索行为。
+对于此根目录下的 `"babel.config.json"` 文件，或者，在此根目录中使用支持[扩展名](#supported-file-extensions)的方式。
+再者，用户可以使用显式 
+["configFile"](options.md#configfile) 值覆盖默认的配置文件搜索行为。
 
 因为项目范围的配置文件与项目本身的文件的物理位置分开，
 这是个非常合适并值得广泛应用的配置方式，
@@ -33,21 +34,18 @@ See the [monorepo](#monorepos) documentation for examples of how to use config f
 
 ## 相关文件的配置
 
-通过搜索，Babel 加载 `.babelrc`（和 `.babelrc.js` /`package.json＃babel`）文件
-目录结构从正在编译的 ["filename"](options.md#filename) 开始（受到以下警告限制）。
-这种方式功能强大，因为它允许你为子文件创建独立的配置
-存储库。相关文件的配置可以设置 [merged](options.md#merging) 
+Babel 通过从被编译（受以下警告限制） ["filename"](options.md#filename) 所处的目录来加载 `.babelrc.json` 文件，
+或者加载其它[扩展类型](#supported-file-extensions)的等效文件。
+这种功能非常强大，因为它允许你为子 package 创建独立的配置。
+相关文件的配置可以设置 [merged](options.md#merging) 
 使它们特定的配置覆盖项目范围的配置值，
 你也可以通过设置 ["overrides"](options.md#overrides) 来完成。
 
-使用文件相对配置时需要考虑一些边缘情况：
-* 一旦找到包含 `package.json` 的目录，搜索将停止，因此是相对配置
-  仅适用于单个包装。
-* 正在编译的 ["filename"](options.md#filename) 必须有
-  ["babelrcRoots"](options.md#babelrcroots) 包，否则将完全跳过搜索。
+这些警告意味着：
+* `.babelrc.json` 文件*仅*适用于自己的 package。
+* `.babelrc.json` 文件在 packages 中，除非你选择加入 ["babelrcRoots"](options.md#babelrcroots) 字段，否则 Babel 将忽略的 root。
 
 有关如何配置具有多个 packages 的 monorepos 的更多讨论，请参阅 [monorepo](#monorepos) 相关文档。
-
 通过将 ["babelrc"](options.md#babelrc) 设置为 `false`，也可以禁用文件相关配置。
 
 ### 6.x vs 7.x `.babelrc` loading
@@ -83,10 +81,44 @@ packages/
 可能需要设置 ["babelrcRoots"](options.md#babelrcroots)。
 
 鉴于此，可能更希望将 `.babelrc` 重命名为
-[project-wide "babel.config.js"](#project-wide-configuration)。如项目范围所述
+[project-wide "babel.config.json"](#project-wide-configuration)。如项目范围所述
 上面的部分，这可能需要显式设置 ["configFile"](options.md#configfile)
 因为如果工作目录不正确，Babel 将找不到配置文件。
 
+## Supported file extensions
+
+Babel can be configured using any file extension natively supported by Node.js: you can use `.json`,
+`.js`, `.cjs` and `.mjs`, both for `babel.config.json` and `.babelrc.json` files.
+
+- `babel.config.json` and `.babelrc.json` are parsed as JSON5 and should contain an object matching
+  the [options](options.md) format that Babel accepts.
+  
+  We recommend using this file type wherever possible: JS config files are
+  handy if you have complex configuration that is conditional or otherwise computed at build time.
+  However, the downside is that JS configs are less statically analyzable, and therefore have
+  negative effects on cacheability, linting, IDE autocomplete, etc.
+  Since `babel.config.json` and `.babelrc.json` are static JSON files, it allows other tools that
+  use Babel such as bundlers to cache the results of Babel safely, which can be a huge build
+  performance win.
+
+- `babel.config.cjs` and `.babelrc.cjs` allow you to define your configuration as CommonJS,
+  using `module.exports`.
+
+- `babel.config.mjs` and `.babelrc.mjs` use native ECMAScript modules. They are supported by Node.js 13.2+ (or older versions via the `--experimental-modules` flag).
+  Please remember that native ECMAScript modules are asynchronous (that's why `import()` always
+  returns a promise!): for this reason, `.mjs` config files will throw when calling Babel
+  synchronously.
+
+- `babel.config.js` and `.babelrc.js` behave like the `.mjs` equivalents when your `package.json`
+  file contains the [`"type": "module"`](https://nodejs.org/api/esm.html#esm_code_package_json_code_code_type_code_field)
+  option, otherwise they are exactly the same as the `.cjs` files.
+
+JavaScript configuration files can either export an object, or a function that when called will
+return the generated configuration.
+Function-returning configs are given a few special powers because they can access an API exposed
+by Babel itself. See [Config Function API](#config-function-api) for more information.
+
+> For compatibility reasons, `.babelrc` is an alias for `.babelrc.json`.
 
 ## Monorepos
 
@@ -99,45 +131,45 @@ With monorepo setups, the core thing to understand is that Babel treats your wor
 as its logical ["root"](options.md#root), which causes problems if you want to run Babel
 tools within a specific sub-package without having Babel apply to the repo as a whole.
 
-Separately, it is also important to decide if you want to use [`.babelrc`](#file-relative-configuration)
-files or just a central [`babel.config.js`](#project-wide-configuration). [`.babelrc`](#file-relative-configuration)
-files are not required for subfolder-specific configuration like they were in Babel 6, so
-often they are not needed in Babel 7, in favor of a [`babel.config.js`](#project-wide-configuration).
+Separately, it is also important to decide if you want to use [`.babelrc.json`](#file-relative-configuration)
+files or just a central [`babel.config.json`](#project-wide-configuration). [`.babelrc.json`](#file-relative-configuration) 
+files are not required for subfolder-specific configuration like they were in Babel 6, so often 
+they are not needed in Babel 7, in favor of [`babel.config.json`](#project-wide-configuration).
 
+### Root `babel.config.json` file
 
-### Root `babel.config.js` files
+The first step in any monorepo structure should be to create a [`babel.config.json`](#project-wide-configuration)
+file in repository root. This establishes Babel's core concept of the base directory of your repository. 
+Even if you want to use [`.babelrc.json`](#file-relative-configuration) files to configure each separate package, 
+it is important to have as a place for repo-level options.
 
-The first step in any monorepo structure should be to create a
-[`babel.config.js`](#project-wide-configuration) file in repository root. This
-establishes Babel's core concept of the base directory of your repository. Even if you want to use
-[`.babelrc`](#file-relative-configuration) files to configure each separate package, it is important
-to have as a place for repo-level options.
+You can often place all of your repo configuration in the root [`babel.config.json`](#project-wide-configuration).
+With ["overrides"](options.md#overrides), you can easily 
+specify configuration that only applies to certain subfolders of your repository, which can often be easier to 
+follow than creating many `.babelrc.json` files across the repo.
 
-You can often place all of your repo configuration in the root [`babel.config.js`](#project-wide-configuration).
-With ["overrides"](options.md#overrides), you can easily specify configuration that only applies to
-certain subfolders of your repository, which can often be easier to follow than creating many
-`.babelrc` files across the repo.
-
-The first issue you'll likely run into is that by default, Babel expects to load [`babel.config.js`](#project-wide-configuration)
+The first issue you'll likely run into is that by default, Babel expects to load [`babel.config.json`](#project-wide-configuration)
 files from the directory set as its ["root"](options.md#root), which means that if you create
-a [`babel.config.js`](#project-wide-configuration), but run Babel inside an individual package, e.g.
+a [`babel.config.json`](#project-wide-configuration), but run 
+Babel inside an individual package, e.g.
 
 ```bash
 cd packages/some-package;
 babel src -d dist
 ```
 the ["root"](options.md#root) Babel is using in that context is _not_ your monorepo root,
-and it won't be able to find the [`babel.config.js`](#project-wide-configuration) file.
+and it won't be able to find the [`babel.config.json`](#project-wide-configuration) file.
 
 If all of your build scripts run relative to your repository root, things should already work, but if
 you are running your Babel compilation process from within a subpackage, you need to tell Babel where
 to look for the config. There are a few ways to do that, but the recommended way is
 the ["rootMode"](options.md#rootmode) option with `"upward"`, which will make Babel search from
-the working directory upward looking for your [`babel.config.js`](#project-wide-configuration) file,
+the working directory upward looking for your [`babel.config.json`](#project-wide-configuration) file,
 and will use its location as the ["root"](options.md#root) value.
 
 One helpful way to test if your config is being detected is to place a `console.log()` call
-inside of it. Since it is a JS file, the log will execute the first time Babel loads it.
+inside of it if it is a [`babel.config.json`](#project-wide-configuration) JavaScript file: the log will execute 
+the first time Babel loads it.
 
 How you set this value varies by project, but here are a few examples:
 
@@ -191,14 +223,14 @@ There are tons of tools, but at the core of it is that they need the `rootMode` 
 if the working directory is not already the monorepo root.
 
 
-### Subpackage `.babelrc` files
+### Subpackage `.babelrc.json` files
 
-Similar to the the way `babel.config.js` files are required to be in the ["root"](options.md#root),
-`.babelrc` files must be in the root _package_, by default. This means that, the same way the
-working directory affects `babel.config.js` loading, it also affects `.babelrc` loading.
+Similar to the the way [`babel.config.json`](#project-wide-configuration) files are required to be in the ["root"](options.md#root),
+[`.babelrc.json`](#file-relative-configuration) files must be in the root _package_, by default. This means that, the same way the
+working directory affects [`babel.config.json`](#project-wide-configuration) loading, it also affects [`.babelrc.json`](#file-relative-configuration) loading.
 
-Assuming you've already gotten your `babel.config.js` file loaded properly as discussed above,
-Babel will only process `.babelrc` files inside that root package (and not subpackages),
+Assuming you've already gotten your [`babel.config.json`](#project-wide-configuration) file loaded properly as discussed above,
+Babel will only process [`.babelrc.json`](#file-relative-configuration) files inside that root package (and not subpackages),
 so given for instance
 
 ```text
@@ -207,14 +239,14 @@ babel.config.js
 packages/
   mod/
     package.json
-    .babelrc
+    .babelrc.json
     index.js
 ```
-compiling the `packages/mod/index.js` file will not load `packages/mod/.babelrc` because
-this `.babelrc` is within a sub-package, not the root package.
+compiling the `packages/mod/index.js` file will not load `packages/mod/.babelrc.json` because
+this [`.babelrc.json`](#file-relative-configuration) is within a sub-package, not the root package.
 
-To enable processing of that `.babelrc`, you will want to use the ["babelrcRoots"](options.md#babelrcroots)
-option from inside your `babel.config.js` file to do
+To enable processing of that [`.babelrc.json`](#file-relative-configuration), you will want to use the ["babelrcRoots"](options.md#babelrcroots)
+option from inside your [`babel.config.json`](#project-wide-configuration) file to do
 
 ```js
 babelrcRoots: [
@@ -222,29 +254,8 @@ babelrcRoots: [
   "packages/*",
 ],
 ```
-so that Babel will consider all `packages/*` packages as allowed to load `.babelrc` files,
+so that Babel will consider all `packages/*` packages as allowed to load [`.babelrc.json`](#file-relative-configuration) files,
 along with the original repo root.
-
-
-## 配置格式
-
-各个配置文件的格式本身分为 JS 文件和 [JSON5](https://json5.org/) 文件。
-
-### JSON5
-
-任何不是 `.js` 文件的文件都将被解析为 JSON5 并且应该包含一个对象匹配
- Babel 接受的 [options](options.md) 格式。
-
-### JavaScript
-
-任何 `.js` 文件都是 `require()` ed 并且应该导出配置对象或函数
-这将在调用时返回配置对象。用户可以包括的主要好处是
-JS 逻辑构建他们的配置结构，可能允许共享配置逻辑
-更容易。 `.js` 文件可以用作 [project-wide configuration](#project-wide-configuration) 或
-通过 `.babelrc.js` 文件 [file-relative configuration](#file-relative-configuration)。
-
-功能返回配置具有一些特殊功能，因为它们可以访问暴露的API
-由 Babel 本身。有关详细信息，请参阅 [Config Function API](#config-function-api) 。
 
 ## 配置函数API
 
@@ -283,6 +294,8 @@ JS 配置很棒，因为他们可以动态计算配置，但缺点是
 * `api.cache.invalidate(() => process.env.NODE_ENV)` - 根据 `NODE_ENV` 的值缓存。
   每次 `using` 回调返回的值都不是预期的值，总体而言
   将再次调用 config 函数，缓存中的所有条目将替换为结果。
+* `api.cache(true)` - 与 `api.cache.forever()` 相同
+* `api.cache(false)` - 与 `api.cache.never()` 相同
 
 由于实际的回调结果用于检查缓存条目是否有效，因此建议使用
 那：
@@ -309,9 +322,7 @@ JS 配置很棒，因为他们可以动态计算配置，但缺点是
 * `api.env()` 返回当前的 `envName` 字符串。
 * `api.env(envName => envName.startsWith("test-"))` 如果 env 以 "test-" 开头，则返回 `true`。
 
-这个函数在内部使用下面提到的 `api.cache` 来确保这一点
- Babel 意识到这个构建取决于特定的 `envName`。
-
+> **Note:** This function internally makes use of [`api.cache`](#apicache) mentioned above to ensure that Babel is aware that this build depends on a specific `envName`. You should not use it alongside with `api.cache.forever()` or `api.cache.never()`.
 
 ### `api.caller(cb)`
 
@@ -350,5 +361,3 @@ module.exports = function(api) {
   };
 };
 ```
-
-

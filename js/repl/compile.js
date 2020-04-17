@@ -1,12 +1,19 @@
 // @flow
 
 // Globals pre-loaded by Worker
+import { compareVersions } from "./Utils";
+
 declare var Babel: any;
 declare var prettier: any;
 declare var prettierPlugins: any;
 
 import Transitions from "./Transitions";
-import type { CompileConfig, Transition } from "./types";
+import type {
+  BabelPresets,
+  CompileConfig,
+  Transition,
+  SupportedFileExtension,
+} from "./types";
 
 type Return = {
   compiled: ?string,
@@ -32,6 +39,17 @@ const DEFAULT_PRETTIER_CONFIG = {
   useTabs: false,
 };
 
+function guessFileExtension(presets: BabelPresets): SupportedFileExtension {
+  let ext = ".js";
+  if (presets.includes("typescript")) {
+    ext = ".ts";
+  }
+  if (presets.includes("react")) {
+    ext = (ext + "x": any);
+  }
+  return (ext: SupportedFileExtension);
+}
+
 export default function compile(code: string, config: CompileConfig): Return {
   const { envConfig, presetsOptions } = config;
 
@@ -42,11 +60,15 @@ export default function compile(code: string, config: CompileConfig): Return {
   let useBuiltIns = false;
   let spec = false;
   let loose = false;
+  let bugfixes = false;
+  let corejs = "3.6";
   const transitions = new Transitions();
   const meta = {
     compiledSize: 0,
     rawSize: new Blob([code], { type: "text/plain" }).size,
   };
+
+  let presetEnvOptions = {};
 
   if (envConfig && envConfig.isEnvPresetEnabled) {
     const targets = {};
@@ -63,6 +85,9 @@ export default function compile(code: string, config: CompileConfig): Return {
     }
     if (envConfig.isBuiltInsEnabled) {
       useBuiltIns = !config.evaluate && envConfig.builtIns;
+      if (envConfig.corejs) {
+        corejs = envConfig.corejs;
+      }
     }
     if (envConfig.isNodeEnabled) {
       targets.node = envConfig.node;
@@ -73,27 +98,36 @@ export default function compile(code: string, config: CompileConfig): Return {
     if (envConfig.isLooseEnabled) {
       loose = envConfig.isLooseEnabled;
     }
+    if (envConfig.isBugfixesEnabled) {
+      bugfixes = envConfig.isBugfixesEnabled;
+    }
 
-    const options: { [string]: any } = {
+    presetEnvOptions = {
       targets,
       forceAllTransforms,
       shippedProposals,
       useBuiltIns,
+      corejs,
       spec,
       loose,
     };
-
-    config.presets.push(["env", options]);
+    if (Babel.version && compareVersions(Babel.version, "7.9.0") !== -1) {
+      (presetEnvOptions: any).bugfixes = bugfixes;
+    }
   }
 
   try {
     const babelConfig = {
       babelrc: false,
-      filename: "repl",
+      filename: "repl" + guessFileExtension(config.presets),
       sourceMap: config.sourceMap,
 
       presets: config.presets.map(preset => {
-        if (typeof preset === "string" && /^stage-[0-2]$/.test(preset)) {
+        if (typeof preset !== "string") return preset;
+        if (preset === "env") {
+          return ["env", presetEnvOptions];
+        }
+        if (/^stage-[0-2]$/.test(preset)) {
           const decoratorsLegacy = presetsOptions.decoratorsLegacy;
           const decoratorsBeforeExport = decoratorsLegacy
             ? undefined

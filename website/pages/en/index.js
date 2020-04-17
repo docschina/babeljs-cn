@@ -26,7 +26,7 @@ const PromoSection = props => (
   </div>
 );
 
-const MiniRepl = ({ language }) => {
+const MiniRepl = () => {
   return (
     <div className="hero-repl" hidden={true}>
       <div className="hero-repl__editor">
@@ -76,27 +76,33 @@ const MiniRepl = ({ language }) => {
 const GetStarted = ({ language }) => {
   return (
     <div
-      className="blockElement twoByGridBlock get-started"
-      style={{ flexBasis: "60%", margin: 0 }}
+      className="blockElement"
+      style={{
+        fontSize: "18px",
+        maxWidth: "800px",
+        padding: "45px 0 7px",
+        margin: "0 auto",
+      }}
     >
-      <h3>欢迎！</h3>
       <p>
-        在入门指南中可以了解有关 Babel 的更多信息，或查看有关其概念的相关讨论。
+        了解更多关于 Babel 的信息{" "}
+        <a href={siteConfig.getDocUrl("index.html", language)}>
+          入门指南
+        </a>{" "}
+        或者翻阅{" "}
+        <a href={siteConfig.getPageUrl("videos.html", language)}>视频</a>
+        了解更多关于 Babel 的故事
       </p>
       <p>
         我们只是一个小的
-        <a href={siteConfig.getPageUrl("team.html", language)}>志愿者</a>
-        团体，在业余时间维护这个项目。如果 Babel
-        使您再工作中获益，那么成为贡献者可能是一种非常好的回馈方式！
+        <a href={siteConfig.getPageUrl("team.html", language)}>志愿者</a>{" "}
+        在社区的赞助下，业余时间维护这个项目。
+        如果 Babel 在你工作中使你受益颇丰，可以成为
+        <a href="https://github.com/babel/babel/blob/master/CONTRIBUTING.md">
+          贡献者
+        </a>{" "}
+        或者也可以<a href="https://opencollective.com/babel">赞助</a>我们！
       </p>
-      <PromoSection>
-        <Button href={siteConfig.getDocUrl("index.html", language)}>
-          入门指南
-        </Button>
-        <Button href={siteConfig.getPageUrl("videos.html", language)}>
-          会议视频
-        </Button>
-      </PromoSection>
     </div>
   );
 };
@@ -156,7 +162,12 @@ const SponsorTier = props => {
       <ul className={`sponsors-tier tier-${props.tier}`}>
         {tierSponsors.map((sponsor, i) => (
           <li key={i}>
-            <a href={sponsor.url} title={sponsor.name} target="_blank">
+            <a
+              href={sponsor.url}
+              title={sponsor.name}
+              target="_blank"
+              rel="noopener sponsored"
+            >
               <img src={sponsor.image} alt={`Sponsored by ${sponsor.name}`} />
             </a>
           </li>
@@ -173,14 +184,14 @@ const SponsorTier = props => {
   );
 };
 
-const OpenCollectiveSponsors = ({ language }) => {
+const OpenCollectiveSponsors = () => {
   const ocButton = {
       title: "成为赞助商",
       link: "https://opencollective.com/babel",
     },
     patreonButton = {
-      title: "参与众筹",
-      link: "https://www.patreon.com/bePatron?u=905738",
+      title: "成为赞助人",
+      link: "https://www.patreon.com/join/henryzhu",
     };
 
   return (
@@ -211,14 +222,14 @@ const OpenCollectiveSponsors = ({ language }) => {
             tier="gold-sponsors"
           />
           <SponsorTier
-            type="patreon"
-            title="Silver Sponsors (Patreon)"
-            tier="silver-sponsors"
-          />
-          <SponsorTier
             type="other"
             title="Misc Sponsors"
             tier="other-sponsors"
+          />
+          <SponsorTier
+            type="patreon"
+            title="Silver Sponsors (Patreon)"
+            tier="silver-sponsors"
             button={patreonButton}
           />
         </div>
@@ -259,7 +270,7 @@ const Hero = ({ language }) => (
 
       <h3>Special Sponsor</h3>
 
-      <div class="sponsors-tier" style={{ margin: "10px 0" }}>
+      <div className="sponsors-tier" style={{ margin: "10px 0" }}>
         <a href="https://www.handshake.org" title="Handshake" target="_blank">
           <img
             src="https://handshake.org/images/landing/logo-light.svg"

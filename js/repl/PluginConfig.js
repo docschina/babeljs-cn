@@ -1,11 +1,6 @@
 // @flow
 import camelCase from "lodash.camelcase";
-import type {
-  PluginConfig,
-  MultiPackagesConfig,
-  ReplState,
-  EnvFeatures,
-} from "./types";
+import type { PluginConfig, MultiPackagesConfig, ReplState } from "./types";
 
 const normalizePluginName = pluginName =>
   `_babel_${camelCase(`plugin-${pluginName}`)}`;
@@ -26,9 +21,9 @@ const envPresetConfig: PluginConfig = {
   instanceName: "babelPresetEnv",
 };
 
-/* Some of stage-3 plugins've been added to @babel/standalone gradually. If a new
-*  shippedProposal is added, add it to this list.
-*/
+/* Some of stage-3 plugins have been added to @babel/standalone gradually. If a new
+ * shippedProposal is added, add it to this list.
+ */
 const shippedProposalsPackages: Array<PluginConfig> = [
   // "proposal-async-generator-functions",
   // "proposal-object-rest-spread",
@@ -68,33 +63,30 @@ const envPresetDefaults = {
   builtIns: {
     default: "usage",
   },
+  corejs: {
+    default: "3.6",
+  },
 };
 
 const runtimePolyfillConfig: PluginConfig = {
   label: "Runtime Polyfill",
   package: "@babel/polyfill",
-  version: "^7.0.0",
+  version: "7",
 };
 
 const pluginConfigs: Array<PluginConfig> = [
   {
     baseUrl: "https://unpkg.com",
-    label: "Minify",
-    package: "babili-standalone", // TODO Switch to babel-minify-standalone
-    version: "0",
-  },
-  {
-    baseUrl: "https://unpkg.com",
     label: "Prettify",
     package: "prettier",
-    version: "1.13.0",
+    version: "2",
     files: ["standalone.js", "parser-babylon.js"],
   },
 ];
 
 const replDefaults: ReplState = {
-  babili: false,
   browsers: "",
+  bugfixes: false,
   build: "",
   builtIns: false,
   spec: false,
@@ -125,6 +117,7 @@ const replDefaults: ReplState = {
   decoratorsLegacy: false,
   decoratorsBeforeExport: false,
   pipelineProposal: "minimal",
+  externalPlugins: "",
 };
 
 export {

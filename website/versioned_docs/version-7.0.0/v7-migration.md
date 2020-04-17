@@ -12,7 +12,7 @@ original_id: v7-migration
 
 ## 所有 Babel
 
-> 已经删除了对 Node.js 0.10，0.12，2 和 5 的支持 [#5025](https://github.com/babel/babel/pull/5025)，[#5041](https://github.com/babel/babel/pull/5041)，[#7755](https://github.com/babel/babel/pull/7755)，[#5186](https://github.com/babel/babel/pull/5186) ![high](https://img.shields.io/badge/level%20of%20awesomeness%3F-high-red.svg)
+> 已经删除了对 Node.js 0.10，0.12，2 和 5 的支持 [#5025](https://github.com/babel/babel/pull/5025)，[#5041](https://github.com/babel/babel/pull/5041)，[#7755](https://github.com/babel/babel/pull/7755)，[#5186](https://github.com/babel/babel/pull/5186)
 
 我们强烈建议您使用较新版本的 Node.js (LTS v8)，因为之前的版本未得到维护。
 有关更多信息，请参见 [nodejs/LTS](https://github.com/nodejs/LTS)。
@@ -23,7 +23,7 @@ original_id: v7-migration
 
 For more info, read our [6.x vs 7.x comparison](config-files.md#6x-vs-7x-babelrc-loading).
 
-Babel has had issues previously with handling `node_modules`, symlinks, and monorepos. We've made some changes to account for this: Babel will stop lookup at the `package.json` boundary instead of looking up the chain. For monorepo's we have added a new `babel.config.js` file that centralizes our config across all the packages (alternatively you could make a config per package). In 7.1, we've introduced a [`rootMode`](options.md#rootmode) option for further lookup if necessary.
+Babel has had issues previously with handling `node_modules`, symlinks, and monorepos. We've made some changes to account for this: Babel will stop lookup at the `package.json` boundary instead of looking up the chain. For monorepos we have added a new `babel.config.js` file that centralizes our config across all the packages (alternatively you could make a config per package). In 7.1, we've introduced a [`rootMode`](options.md#rootmode) option for further lookup if necessary.
 
 ## [弃用年份 Preset](/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
 
@@ -39,7 +39,7 @@ Babel has had issues previously with handling `node_modules`, symlinks, and mono
 
 ## [弃用 Stage Preset](https://babeljs.cn/blog/2018/07/27/removing-babels-stage-presets)
 
-我们正在删除 Stage presets，以支持明确的提案使用。可以检查 [stage-0 README](https://github.com/babel/babel/tree/master/packages/babel-preset-stage-0#babelpreset-stage-0) 自述文件以获取更多迁移步骤。
+我们正在删除 Stage presets，以支持明确的提案使用。可以检查 [stage-0 README](https://github.com/babel/babel/tree/755ec192e22c6b6e00782e4810366d0166fdbebd/packages/babel-preset-stage-0#babelpreset-stage-0) 自述文件以获取更多迁移步骤。
 
 要自动执行此操作，您可以运行 [`npx babel-upgrade`](https://github.com/babel/babel-upgrade)（ PR 添加在[此处](https://github.com/babel/babel-upgrade/pull/69)）。
 
@@ -63,7 +63,7 @@ import "regenerator-runtime/runtime";
 e.g.
 
 ```js
-import "core-js/fn/array/flatMap";
+import "core-js/fn/array/flat-map";
 ```
 
 以下是 `core-js` v2 中的 Stage < 3 提案的 polyfill 列表。
@@ -601,8 +601,8 @@ npm install --save-dev @babel/register
 使用 Mocha 升级：
 
 ```diff
-- mocha --compilers js:babel-core/register
-+ mocha --compilers js:@babel/register
+- mocha --require babel-core/register
++ mocha --require @babel/register
 ```
 
 `@babel/register` 现在也只能直接编译当前工作中的文件（用于修复符号链接问题）。

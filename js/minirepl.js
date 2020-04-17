@@ -3,10 +3,9 @@
 import debounce from "lodash.debounce";
 
 const miniReplExamples = [
-  "[1, 2, 3].map(n => n ** 2);",
-  "var [a,,b] = [1,2,3];",
-  "const x = [1, 2, 3];\nfoo([...x]);",
-  'var obj = {\n  shorthand,\n  method() {\n    return "😀";\n  }\n};',
+  "element.index ?? -1;",
+  "const styles = {\n" + "  ...defaults,\n" + '  color: "#f5da55",\n' + "};",
+  "const city = address?.city",
   'var name = "Guy Fieri";\nvar place = "Flavortown";\n\n`Hello ${name}, ready for ${place}?`;',
   'let yourTurn = "Type some code in here!";',
 ];
@@ -109,7 +108,11 @@ function compileCode(sourceEditor, targetEditor) {
 
   try {
     transformed = Babel.transform(sourceEditor.getValue(), {
-      presets: ["es2015", "es2016", "es2017"],
+      presets: [
+        "react",
+        ["env", { targets: "defaults, not ie 11, not ie_mob 11", loose: true }],
+      ],
+      plugins: [["external-helpers", { helperVersion: "7.100.0" }]],
       filename: "repl",
       babelrc: false,
     });

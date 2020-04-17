@@ -40,9 +40,7 @@ npm install --save-dev @babel/plugin-transform-block-scoping
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -105,3 +103,4 @@ let i;
 
 If you need these errors you can tell Babel to try and find them by setting `"tdz": true` for this plugin. However, the current implementation might not get all edge cases right and its best to just avoid code like this in the first place.
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

@@ -20,7 +20,7 @@ original_id: caveats
 
 ## Classes
 
-由于 ES5 的限制，诸如 `Date`, `Array`, `DOM` 等内置类型不能被适当的子类化（对于 [es2015-classes](plugin-transform-es2015-classes.md) 插件）。
+由于 ES5 的限制，诸如 `Date`, `Array`, `DOM` 等内置类型不能被适当的子类化（对于 [es2015-classes](babel-plugin-transform-es2015-classes) 插件）。
 你可以尝试基于 `Object.setPrototypeOf` 和 `Reflect.construct` 使用 [babel-plugin-transform-builtin-extend](https://github.com/loganfsmyth/babel-plugin-transform-builtin-extend), 但仍然有一些限制。
 
 ## ES5
@@ -33,9 +33,9 @@ original_id: caveats
 
 如果你从一个类继承，那么静态属性将从类的 [\_\_proto\_\_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto) 中继承，这是广泛支持的但是你仍旧会在一些很老的浏览器上运行出问题。
 
-**注意：** `__proto__` 在 IE10 及更旧的版本上是不支持的，所以静态属性**不会**被继承。请参阅 [protoToAssign](plugin-transform-proto-to-assign.md) 查看一个可能的解决方案。
+**注意：** `__proto__` 在 IE10 及更旧的版本上是不支持的，所以静态属性**不会**被继承。请参阅 [protoToAssign](babel-plugin-transform-proto-to-assign) 查看一个可能的解决方案。
 
-对于有 `super` 的类， super 类将不会被正常解析。你可以通过启用 [es2015-classes](plugin-transform-es2015-classes.md) 插件中的 `loose` 选项来解决此问题。
+对于有 `super` 的类， super 类将不会被正常解析。你可以通过启用 [es2015-classes](babel-plugin-transform-es2015-classes) 插件中的 `loose` 选项来解决此问题。
 
 ### Getters/setters（8 及以下）
 

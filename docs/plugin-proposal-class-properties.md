@@ -44,9 +44,7 @@ npm install --save-dev @babel/plugin-proposal-class-properties
 
 ## 用法
 
-### 通过 `.babelrc` 使用（推荐）
-
-**.babelrc**
+### 使用配置文件（推荐）
 
 未使用选项：
 
@@ -148,7 +146,9 @@ Bork.a = 'foo';
 Bork.b = void 0;
 ```
 
+> 你可以通过[该链接](https://babeljs.io/docs/en/plugins#plugin-options)了解更多插件配置选项。
+
 ## 参考
 
-* [提案：ES Class Fields & Static Properties](https://github.com/jeffmo/es-class-static-properties-and-fields)
-
+* [提案：公共与私有实例的 fields](https://github.com/tc39/proposal-class-fields)
+* [提案：静态 class 特性](https://github.com/tc39/proposal-static-class-features)

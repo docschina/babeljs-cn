@@ -56,7 +56,7 @@ npm install --save-dev @babel/plugin-proposal-decorators
 
 ## 用法
 
-在 .babelrc 文件中添加插件依赖：
+### 使用配置文件（推荐）
 
 ```json
 {
@@ -140,7 +140,8 @@ export class Foo {}
 }
 ```
 
+> 你可以通过[该链接](https://babeljs.io/docs/en/plugins#plugin-options)了解更多插件配置选项。
+
 ## 参考
 
 * [提案：JavaScript 装饰器](https://github.com/wycats/javascript-decorators/blob/master/README.md)
-

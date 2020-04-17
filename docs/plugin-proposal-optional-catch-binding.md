@@ -11,7 +11,7 @@ sidebar_label: proposal-optional-catch-binding
 try {
   throw 0;
 } catch {
-  doSomethingWhichDoesntCareAboutTheValueThrown();
+  doSomethingWhichDoesNotCareAboutTheValueThrown();
 }
 ```
 
@@ -19,7 +19,7 @@ try {
 try {
   throw 0;
 } catch {
-  doSomethingWhichDoesntCareAboutTheValueThrown();
+  doSomethingWhichDoesNotCareAboutTheValueThrown();
 } finally {
   doSomeCleanup();
 }
@@ -34,9 +34,7 @@ npm install --save-dev @babel/plugin-proposal-optional-catch-binding
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {

@@ -4,6 +4,8 @@ title: @babel/plugin-transform-modules-commonjs
 sidebar_label: transform-modules-commonjs
 ---
 
+This plugin transforms ECMAScript modules to [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1). Note that only the _syntax_ of import/export statements (`import "./mod.js"`) and import expressions (`import('./mod.js')`) is transformed, as Babel is unaware of different resolution algorithms between implementations of ECMAScript modules and CommonJS.
+
 ## Example
 
 **In**
@@ -30,9 +32,7 @@ npm install --save-dev @babel/plugin-transform-modules-commonjs
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```js
 // without options
@@ -164,3 +164,4 @@ The two cases where imports can never be lazy are:
   Re-exporting all names requires up-front execution because otherwise there is no
   way to know what names need to be exported.
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

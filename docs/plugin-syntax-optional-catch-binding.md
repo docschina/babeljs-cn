@@ -16,7 +16,7 @@ sidebar_label: syntax-optional-catch-binding
 try {
   throw 0;
 } catch {
-  doSomethingWhichDoesntCareAboutTheValueThrown();
+  doSomethingWhichDoesNotCareAboutTheValueThrown();
   console.log("Yay, code executes!");
 }
 ```
@@ -29,9 +29,7 @@ npm install --save-dev @babel/plugin-syntax-optional-catch-binding
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {

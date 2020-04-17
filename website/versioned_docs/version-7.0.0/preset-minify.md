@@ -17,9 +17,7 @@ npm install babel-preset-minify --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -168,3 +166,4 @@ tdz                 | Passed to [builtIns][builtIns], [evaluate][evaluate], [dea
 [typeConstructors]: babel-plugin-minify-type-constructors
 [undefinedToVoid]: babel-plugin-transform-undefined-to-void
 
+> You can read more about configuring preset options [here](https://babeljs.io/docs/en/presets#preset-options)

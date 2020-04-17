@@ -16,6 +16,24 @@ needs to be wrapped. This is needed to workaround two problems:
 The wrapper works on IE11 and every other browser with `Object.setPrototypeOf` or `__proto__` as fallback.
 There is **NO IE <= 10 support**. If you need IE <= 10 it's recommended that you don't extend natives.
 
+Babel needs to statically know if you are extending a built-in class. For this reason, the "mixin pattern" doesn't work:
+
+```js
+class Foo extends mixin(Array) {}
+
+function mixin(Super) {
+  return class extends Super { mix() {} };
+}
+```
+
+To workaround this limitation, you can add another class in the inheritance chain so that Babel can wrap the native class:
+
+```js
+const ExtensibleArray = class extends Array {}
+
+class Foo extends mixin(ExtensibleArray) {}
+```
+
 ## Examples
 
 **In**
@@ -60,9 +78,7 @@ npm install --save-dev @babel/plugin-transform-classes
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```js
 // without options
@@ -128,3 +144,4 @@ When `Bar.prototype.foo` is defined it triggers the setter on `Foo`. This is a
 case that is very unlikely to appear in production code however it's something
 to keep in mind.
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

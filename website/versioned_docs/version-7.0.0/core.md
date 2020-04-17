@@ -148,7 +148,7 @@ Given an [AST](https://astexplorer.net/), transform it.
 
 ```js
 const sourceCode = "if (true) return;";
-const parsedAst = babel.parse(sourceCode, { allowReturnOutsideFunction: true });
+const parsedAst = babel.parse(sourceCode, { parserOpts: { allowReturnOutsideFunction: true } });
 babel.transformFromAst(parsedAst, sourceCode, options, function(err, result) {
   const { code, map, ast } = result;
 });
@@ -167,7 +167,7 @@ Given an [AST](https://astexplorer.net/), transform it.
 
 ```js
 const sourceCode = "if (true) return;";
-const parsedAst = babel.parse(sourceCode, { allowReturnOutsideFunction: true });
+const parsedAst = babel.parse(sourceCode, { parserOpts: { allowReturnOutsideFunction: true } });
 const { code, map, ast } = babel.transformFromAstSync(parsedAst, sourceCode, options);
 ```
 
@@ -179,9 +179,9 @@ Given an [AST](https://astexplorer.net/), transform it.
 
 ```js
 const sourceCode = "if (true) return;";
-babel.parseAsync(sourceCode, { allowReturnOutsideFunction: true })
+babel.parseAsync(sourceCode, { parserOpts: { allowReturnOutsideFunction: true } })
   .then(parsedAst => {
-    return babel.transformFromAstSync(parsedAst, sourceCode, options);
+    return babel.transformFromAstAsync(parsedAst, sourceCode, options);
   })
   .then(({ code, map, ast }) => {
     // ...
@@ -256,7 +256,7 @@ invalidate properly, but it is the best we have at the moment.
 
 To allow systems to easily manipulate and validate a user's config, this function
 resolves the plugins and presets and proceeds no further. The expectation is
-that callers will take the config's `.options`, manipulate it as then see fit
+that callers will take the config's `.options`, manipulate it as they see fit
 and pass it back to Babel again.
 
 * `babelrc: string | void` - The path of the [file-relative configuration](config-files.md#file-relative-configuration) file, if there was one.
@@ -299,6 +299,13 @@ Each `ConfigItem` exposes all of the information Babel knows. The fields are:
   * `request: string` - The file that the user requested, e.g. `"@babel/env"`
   * `resolved: string` - The full path of the resolved file, e.g. `"/tmp/node_modules/@babel/preset-env/lib/index.js"`
 
+## DEFAULT_EXTENSIONS
+
+> babel.DEFAULT_EXTENSIONS: ReadonlyArray<string>
+
+A list of default extensions supported by babel (".js", ".jsx", ".es6", ".es", ".mjs").
+This list is used by @babel/register and @babel/cli to determine which files need transpiling.
+Extending this list isn't possible, however @babel/cli does provide ways to support other extensions with `--extensions`.
 
 ## Options
 

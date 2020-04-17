@@ -28,9 +28,7 @@ npm install --save-dev @babel/preset-stage-2
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -71,6 +69,8 @@ Will use the native built-in instead of trying to polyfill behavior for any plug
 `boolean`, defaults to `false`.
 
 Use the legacy (stage 1) decorators syntax and behavior.
+
+> You can read more about configuring preset options [here](https://babeljs.io/docs/en/presets#preset-options)
 
 ## References
 

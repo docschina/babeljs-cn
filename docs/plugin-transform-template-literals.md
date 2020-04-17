@@ -26,9 +26,7 @@ npm install --save-dev @babel/plugin-transform-template-literals
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -86,3 +84,4 @@ When `false` or not set, all template literal expressions and quasis are combine
 "foo" + bar;
 ```
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

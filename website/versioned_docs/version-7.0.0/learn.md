@@ -82,7 +82,7 @@ square(2, 4, 7.5, 8, 11.5, 21); // returns: [4, 16, 56.25, 64, 132.25, 441]
 
 ### 类
 
-ES 2015中类比基于原型的面向对象模式简单。拥有一个方便的声明形式使类模式更易于使用，并鼓励互用性。类支持基于原型的继承，超级调用，实例和静态方法以及构造函数。
+ES2015 中 class 是基于原型的语法糖。拥有一个方便的声明形式使类模式更易于使用，并鼓励互用性。类支持基于原型的继承，超级调用，实例和静态方法以及构造函数。
 
 ```js
 class SkinnedMesh extends THREE.Mesh {
@@ -272,7 +272,7 @@ for (var n of fibonacci) {
 }
 ```
 
-Iteration 基于这些 duck-typed 接口（仅使用[TypeScript](http://typescriptlang.org)类型语法进行展示）：
+Iteration 基于这些 duck-typed 接口（仅使用 [TypeScript](https://www.typescriptlang.org/) 类型语法进行展示）：
 
 ```ts
 interface IteratorResult {
@@ -321,7 +321,7 @@ for (var n of fibonacci) {
 }
 ```
 
- 生成器接口如下(此处使用 [TypeScript](http://typescriptlang.org) 的类型语法，仅用于阐述问题)：
+生成器接口如下(此处使用 [TypeScript](https://www.typescriptlang.org/) 的类型语法，仅用于阐述问题)：
 
 ```ts
 interface Generator extends Iterator {
@@ -353,7 +353,8 @@ interface Generator extends Iterator {
 "𠮷".match(/./u)[0].length == 2
 
 // new form
-"\u{20BB7}" == "𠮷" == "\uD842\uDFB7"
+"\u{20BB7}" == "𠮷"
+"𠮷" == "\uD842\uDFB7"
 
 // new String ops
 "𠮷".codePointAt(0) == 0x20BB7

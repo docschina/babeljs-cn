@@ -17,9 +17,7 @@ npm install --save-dev babel-preset-minify
 
 ## 使用
 
-### 通过 `.babelrc` (推荐)
-
-**.babelrc**
+### 使用配置文件（推荐）
 
 ```json
 {
