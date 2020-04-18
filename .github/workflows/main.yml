@@ -34,5 +34,5 @@ jobs:
         secretId: ${{ secrets.SECRET_ID }}
         secretKey: ${{ secrets.SECRET_KEY }}
         staticSrcPath: ./website/build/babel
-        isForce: ${{ secrets.ISFORCE }}
-        envId: ${{ secrets.ENV_ID }}
+        bucket: ${{ secrets.BUCKET }}
+        region: ${{ secrets.REGION }}
