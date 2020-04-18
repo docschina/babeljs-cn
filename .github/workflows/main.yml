@@ -26,6 +26,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BASE_BRANCH: cn-v7
         BRANCH: gh-pages-v7
         FOLDER: website/build/babel
         BUILD_SCRIPT: yarn && yarn bootstrap
