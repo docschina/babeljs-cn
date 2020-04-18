@@ -6,9 +6,9 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ cn-v7 ]
   pull_request:
-    branches: [ master ]
+    branches: [ cn-v7 ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,13 +22,10 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: build
-        BUILD_SCRIPT: npm install --unsafe-perm=true && npm run build
+    - name: Build
+      run: |
+        npm install
+        npm run build --if-present
         
     - name: Docschina Github Action
       id: deployStatic
@@ -36,6 +33,6 @@ jobs:
       with:
         secretId: ${{ secrets.SECRET_ID }}
         secretKey: ${{ secrets.SECRET_KEY }}
-        staticSrcPath: ./build
+        staticSrcPath: ./website/build/babel
         isForce: ${{ secrets.ISFORCE }}
         envId: ${{ secrets.ENV_ID }}
