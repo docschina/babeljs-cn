@@ -26,6 +26,10 @@ jobs:
       run: |
         yarn
         yarn bootstrap
+    - name: Check Build
+        run: |
+          sudo -i
+          sudo chown -R $USER ./website/build/babel
         
     - name: Docschina Github Action
       id: deployStatic
