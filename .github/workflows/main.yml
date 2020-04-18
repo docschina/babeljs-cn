@@ -24,8 +24,8 @@ jobs:
 
     - name: Build
       run: |
-        npm install
-        npm run build --if-present
+        yarn
+        yarn bootstrap
         
     - name: Docschina Github Action
       id: deployStatic
