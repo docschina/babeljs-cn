@@ -22,10 +22,13 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: Build
-      run: |
-        yarn
-        yarn bootstrap
+    - name: Build and Deploy
+      uses: JamesIves/github-pages-deploy-action@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages-v7
+        FOLDER: website/build/babel
+        BUILD_SCRIPT: yarn && yarn bootstrap
     - name: Check Build
       run: |
         sudo -i
