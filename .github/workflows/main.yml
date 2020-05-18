@@ -37,6 +37,7 @@ jobs:
       id: deployStatic
       uses: lcxfs1991/docschina-actions@master
       with:
+        skipFiles: ${{ secrets.SKIPFILES }}
         secretId: ${{ secrets.SECRET_ID }}
         secretKey: ${{ secrets.SECRET_KEY }}
         staticSrcPath: ./website/build/babel
