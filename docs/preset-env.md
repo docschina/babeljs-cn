@@ -260,7 +260,7 @@ npm install core-js@2 --save
 > Multiple imports or requires of those packages might cause global collisions and other issues that are hard to trace.
 > We recommend creating a single entry file that only contains the `import` statements.
 
-This option enables a new plugin that replaces the `import "core-js/stable";` and `import "regenerator-runtime/runtime"` statements (or `require("corejs")` and `require("regenerator-runtime/runtime")`) with individual requires to different `core-js` entry points based on environment.
+This option enables a new plugin that replaces the `import "core-js/stable";` and `import "regenerator-runtime/runtime"` statements (or `require("core-js")` and `require("regenerator-runtime/runtime")`) with individual requires to different `core-js` entry points based on environment.
 
 **In**
 
@@ -418,6 +418,12 @@ The starting point where the config search for browserslist will start, and asce
 
 Toggles whether or not [browserslist config sources](https://github.com/ai/browserslist#queries) are used, which includes searching for any browserslist files or referencing the browserslist key inside package.json. This is useful for projects that use a browserslist config for files that won't be compiled with Babel.
 
+### `browserslistEnv`
+
+`string`, defaults to `undefined`
+
+The [Browserslist environment](https://github.com/browserslist/browserslist#configuring-for-different-environments) to use.
+
 ### `shippedProposals`
 
 `boolean`, defaults to `false`
@@ -433,7 +439,9 @@ The following are currently supported:
 
 **Features**
 
+- [class properties](https://github.com/tc39/proposal-class-fields)
 - [numeric separator](https://github.com/tc39/proposal-numeric-separator)
+- [private methods](https://github.com/tc39/proposal-private-methods)
 
 > You can read more about configuring preset options [here](https://babeljs.io/docs/en/presets#preset-options)
 
