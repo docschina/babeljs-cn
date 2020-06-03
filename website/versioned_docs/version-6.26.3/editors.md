@@ -33,7 +33,7 @@ original_id: editors
 
 安装 [sublime-babel-vscode](https://marketplace.visualstudio.com/items?itemName=mgmcdermott.vscode-language-babel) 扩展程序和按照说明操作.
 
-还有其他方法可以支持语法高亮，你可以在 [Visual Studio Code 文档](https://code.visualstudio.com/Docs/languages/javascript#_writing-jsconfigjson)中了解更多。
+还有其他方法可以支持语法高亮，你可以在 [Visual Studio Code 文档](https://code.visualstudio.com/Docs/languages/javascript#_javascript-projects-jsconfigjson)中了解更多。
 
 ### WebStorm
 

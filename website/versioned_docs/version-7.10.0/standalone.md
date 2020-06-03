@@ -1,7 +1,8 @@
 ---
-id: babel-standalone
+id: version-7.10.0-babel-standalone
 title: @babel/standalone
 sidebar_label: standalone
+original_id: babel-standalone
 ---
 
 @babel/standalone provides a standalone build of Babel for use in browsers and other non-Node.js environments.
@@ -81,7 +82,7 @@ var output = Babel.transform(input, { presets: ['env'] }).code;
 
 Note that [config files](config-files.md) don't work in @babel/standalone, as no file system access is available. The presets and/or plugins to use **must** be specified in the options passed to `Babel.transform`.
 
-Customization
+Customisation
 =============
 Custom plugins and presets can be added using the `registerPlugin` and `registerPreset` methods respectively:
 
