@@ -19,5 +19,5 @@ nodemon --exec npm run babel-node -- path/to/script.js
 使用 babel-node 调用 nodemon 时如果忘记使用双短划线，可能会导致错误地分析参数。 使用npm-scripts 来防止这一点。 如果您选择跳过使用 npm-scripts 脚本，它可以表示为：
 
 ```sh
-nodemon --exec babel-node --presets=es2015 --ignore='foo\|bar\|baz' -- path/to/script.js
+nodemon --exec babel-node --presets=@babel/preset-env --ignore='foo\|bar\|baz' -- path/to/script.js
 ```

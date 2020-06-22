@@ -274,7 +274,7 @@ Babel 的配置选项比 Babel 6 更严格。
 对于 `presets` 和 `plugins` 值，此更改意味着 CLI 在诸如此类的情况下表现良好
 
 ```bash
-babel --presets @babel/preset-es2015 ../file.js
+babel --presets @babel/preset-env ../file.js
 ```
 
 假设你的 `node_modules` 文件夹在 `.` 中，在 Babel 6 中，这将失败，因为无法找到预设。
