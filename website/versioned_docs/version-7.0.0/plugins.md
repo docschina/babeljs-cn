@@ -233,17 +233,11 @@ Babel 是一个编译器（源代码=>输出代码）。像许多其他编译器
 
 ```json
 {
-  "presets": [
-    "es2015",
-    "react",
-    "stage-2"
-  ]
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
 }
 ```
 
-将会以如下顺序运行：`stage-2`, `react` 然后是 `es2015`。
-
-这主要是为了确保向后兼容性，因为大多数用户会在 "stage-0" 前列出 "es2015"。更多相关信息，详见[关于潜在遍历 API 更改的说明](https://github.com/babel/notes/blob/master/2016/2016-08/august-01.md#potential-api-changes-for-traversal)。
+按以下顺序运行：`@babel/preset-react` 再运行 `@babel/preset-env`。
 
 ## 插件选项
 
