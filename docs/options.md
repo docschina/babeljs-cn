@@ -42,7 +42,15 @@ relative to.
 
 ### `caller`
 
-Type: `Object` with a string-typed `"name"` property.<br />
+Type: An object with the shape of
+```flow
+interface CallerData {
+  name: string;
+  supportsStaticESM?: boolean;
+  supportsDynamicImport?: boolean;
+  supportsTopLevelAwait?: boolean;
+}
+```
 
 Utilities may pass a `caller` object to identify themselves to Babel and pass
 capability-related flags for use by configs, presets and plugins. For example
@@ -123,6 +131,14 @@ Note: This option is not on by default because the majority of users won't need
 it and because we'd like to eventually add a caching layer to Babel. Having
 to cache the AST structure will take significantly more space.
 
+### `cloneInputAst`
+
+Type: `boolean`<br />
+Default: `true`<br />
+
+By default `babel.transformFromAst` will clone the input AST to avoid mutations.
+Specifying `cloneInputAst: false` can improve parsing performance if the input AST
+is not used elsewhere.
 
 ## Config Loading options
 
