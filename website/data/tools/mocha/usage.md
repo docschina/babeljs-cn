@@ -7,7 +7,7 @@
 ```json
 {
   "scripts": {
-    "test": "mocha --require babel-register"
+    "test": "mocha --require @babel/register"
   }
 }
 ```
@@ -21,7 +21,7 @@ npm install --save-dev babel-polyfill
 ```json
 {
   "scripts": {
-    "test": "mocha --require babel-polyfill --require babel-register"
+    "test": "mocha --require babel-polyfill --require @babel/register"
   }
 }
 ```
@@ -32,7 +32,7 @@ npm install --save-dev babel-polyfill
 ```json
 {
   "scripts": {
-    "test": "mocha --compilers js:babel-register"
+    "test": "mocha --compilers js:@babel/register"
   }
 }
 ```
@@ -42,7 +42,7 @@ npm install --save-dev babel-polyfill
 ```json
 {
   "scripts": {
-    "test": "mocha --require babel-polyfill --compilers js:babel-register"
+    "test": "mocha --require babel-polyfill --compilers js:@babel/register"
   }
 }
 ```
