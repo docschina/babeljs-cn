@@ -1,6 +1,7 @@
 ---
-id: configuration
-title: 配置 Babel
+id: version-7.11.0-configuration
+title: Configure Babel
+original_id: configuration
 ---
 
 Babel can be configured! Many other tools have similar configs: ESLint (`.eslintrc`), Prettier (`.prettierrc`).
