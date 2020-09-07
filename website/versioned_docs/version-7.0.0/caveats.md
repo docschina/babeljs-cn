@@ -10,15 +10,28 @@ original_id: caveats
 
 你可以选择性引入：
 
+<<<<<<< HEAD
 | 功能                     | 需求                                                                          |
 | --------------------------- | ------------------------------------------------------------------------------------- |
+=======
+| Feature                     | Requirements                                                                                            |
+| --------------------------- | ------------------------------------------------------------------------------------------------------- |
+>>>>>>> 48b8baa695550f5424c6d7f398751dcd35c1c804
 | Async functions, Generators | [regenerator runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime) |
-| Array destructuring, For Of | `Symbol`, `prototype[Symbol.iterator]`                                                |
-| Spread                      | `Array.from`                                                                          |
+| Array destructuring, For Of | `Symbol`, `prototype[Symbol.iterator]`                                                                  |
+| Spread                      | `Array.from`                                                                                            |
 
 这些插件中有些也有 `loose` 选项。
 
+<<<<<<< HEAD
 ## 类
+=======
+## Built-ins
+
+Babel assumes that built-ins (e.g. `Array`, `WeakMap` and others), if polyfilled, are modified in a manner that is spec-compliant.
+
+## Classes
+>>>>>>> 48b8baa695550f5424c6d7f398751dcd35c1c804
 
 由于 ES5 的限制（对于 [transform-classes](plugin-transform-classes.md) 插件），`Date`, `Array`, `DOM` 等内置类型无法正确子类化。你可以尝试基于 `Object.setPrototypeOf` 和 `Reflect.construct` 的 [babel-plugin-transform-builtin-extend](https://github.com/loganfsmyth/babel-plugin-transform-builtin-extend)，但是它也存在一些限制。
 
