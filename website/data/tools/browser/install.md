@@ -11,7 +11,12 @@
 
 你还可以使用更多在线工具对脚本进行原型化:
 
+<<<<<<< HEAD
 - [Babel 官方提供的 REPL](/repl)
+=======
+- [Babel's own REPL](https://babeljs.io/repl)
+- [CodeSandbox](https://codesandbox.io/s/babel-repl-custom-plugin-7s08o?file=/src/index.js)
+>>>>>>> 00d2c29cc27ca5ce455e77771d769f644bddbd50
 
 运行 Babel 于在线编辑器上:
 

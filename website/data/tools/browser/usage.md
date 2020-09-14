@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 <h4>使用 babel-standalone </h4>
+=======
+<h4>With @babel/standalone</h4>
+>>>>>>> 00d2c29cc27ca5ce455e77771d769f644bddbd50
 
 ```html
 <div id="output"></div>
@@ -12,3 +16,9 @@ const getMessage = () => "Hello World";
 document.getElementById('output').innerHTML = getMessage();
 </script>
 ```
+
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    See <a href="/docs/babel-standalone">docs</a> for full documentation on <code>@babel/standalone</code>.
+  </p>
+</blockquote>
