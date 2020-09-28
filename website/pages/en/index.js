@@ -54,25 +54,6 @@ const MiniRepl = () => {
   );
 };
 
-// const SpecialSponsors = () => {
-//   return (
-//     <div className="productShowcaseSection sponsors-special">
-//       <p>Special Sponsors</p>
-//       <div className="sponsors-special-logos">
-//         {siteConfig.sponsors
-//           .filter(sponsor => sponsor.type == "special")
-//           .map((sponsor, i) => {
-//             return (
-//               <a href={sponsor.url} target="_blank" key={i}>
-//                 <img src={sponsor.image} title={sponsor.name} />
-//               </a>
-//             );
-//           })}
-//       </div>
-//     </div>
-//   );
-// };
-
 const GetStarted = ({ language }) => {
   return (
     <div
@@ -106,52 +87,6 @@ const GetStarted = ({ language }) => {
     </div>
   );
 };
-
-// const WorkSponsors = () => {
-//   return (
-//     <div
-//       className="blockElement alignCenter twoByGridBlock sponsors-work"
-//       style={{ flexBasis: "40%", margin: 0 }}
-//     >
-//       <h2>Friends of Open Source</h2>
-//       <p style={{ fontSize: 16 }}>
-//         These companies are awesome and pay these engineers to work on Babel
-//       </p>
-//       <div className="productShowcaseSection">
-//         <div className="cards">
-//           {siteConfig.sponsors
-//             .filter(sponsor => {
-//               return sponsor.type == "work";
-//             })
-//             .map((sponsor, i) => {
-//               return (
-//                 <div className="card" key={i}>
-//                   <a href={sponsor.url} target="_blank" className="card-image">
-//                     <img
-//                       src={sponsor.image}
-//                       title={sponsor.name}
-//                       alt={`Sponsored by ${sponsor.name}`}
-//                     />
-//                   </a>
-//                   <div className="card-text">
-//                     <p>{sponsor.description}</p>
-//                   </div>
-//                   <div className="card-text">
-//                     <p>
-//                       sponsoring{" "}
-//                       <a href={`https://github.com/${sponsor.member}`}>
-//                         @{sponsor.member}
-//                       </a>
-//                     </p>
-//                   </div>
-//                 </div>
-//               );
-//             })}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 
 const SponsorTier = props => {
   const tierSponsors = siteConfig.sponsors.filter(
@@ -209,6 +144,7 @@ const OpenCollectiveSponsors = () => {
             title="金牌赞助（Open Collective）"
             tier="gold-sponsors"
           />
+<<<<<<< HEAD
           <SponsorTier
             type="opencollective"
             title="Silver Sponsors (Open Collective)"
@@ -232,6 +168,8 @@ const OpenCollectiveSponsors = () => {
             tier="silver-sponsors"
             button={patreonButton}
           />
+=======
+>>>>>>> 0ffcbdc82d3ad8750b4dbb2a7ac83e9765174c4f
         </div>
       </div>
     </div>
