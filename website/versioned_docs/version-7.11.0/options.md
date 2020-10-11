@@ -1,6 +1,7 @@
 ---
-title: 选项
-id: options
+title: Options
+id: version-7.11.0-options
+original_id: options
 ---
 
 - [Primary options](#primary-options)
