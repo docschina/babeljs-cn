@@ -8,7 +8,19 @@
 }
 ```
 
+<<<<<<< HEAD
 这个文件在你通过 `jasmine init` 命令建立一个项目生成。
+=======
+This file is created when you setup a project with the `jasmine init` command. Note that the file paths in `helpers` option are relative to `spec_dir`, not to project root path.
+
+Create a `babel.config.json` in your project root:
+
+```json
+{
+  "presets": ["@babel/preset-env"]
+}
+```
+>>>>>>> f3881388602be75aa43a610fbb05312410cd6724
 
 <blockquote class="babel-callout babel-callout-info">
   <p>

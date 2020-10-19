@@ -2,9 +2,10 @@
 
 ```js
 paths: {
-  es6: "node_modules/requirejs-babel/es6",
-  babel: "node_modules/requirejs-babel/babel-4.6.6.min"
-}
+    es6: '...node_modules/requirejs-babel/es6',
+    babel: '...node_modules/@babel/standalone/babel.min',
+    'babel-plugin-module-resolver': '...node_modules/babel-plugin-module-resolver-standalone/index'
+  }
 ```
 
 接下来，通过 `es6!` 加插件名引用文件:
