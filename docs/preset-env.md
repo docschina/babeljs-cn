@@ -29,7 +29,7 @@ yarn add @babel/preset-env --dev
 
 `@babel/preset-env` would not be possible if not for a number of awesome open-source projects, like [`browserslist`](https://github.com/browserslist/browserslist), [`compat-table`](https://github.com/kangax/compat-table), and [`electron-to-chromium`](https://github.com/Kilian/electron-to-chromium).
 
-We leverage these data sources to maintain mappings of which version of our supported target environments gained support of a JavaScript syntax or browser feature, as well as a mapping of those syntaxes and features to Babel transform plugins and core-js polyfills.
+We leverage these data sources to maintain [mappings of which version](https://github.com/babel/babel/blob/master/packages/babel-compat-data/data/plugins.json) of our supported target environments gained support of a JavaScript syntax or browser feature, as well as a mapping of those syntaxes and features to Babel transform plugins and core-js polyfills.
 
 > It is important to note that `@babel/preset-env` does _not_ support `stage-x` plugins.
 
@@ -41,9 +41,9 @@ For browser- or Electron-based projects, we recommend using a [`.browserslistrc`
 
 By default `@babel/preset-env` will use [browserslist config sources](https://github.com/ai/browserslist#queries) _unless_ either the [targets](#targets) or [ignoreBrowserslistConfig](#ignorebrowserslistconfig) options are set.
 
-For example, to only include polyfills and code transforms needed for users whose browsers have >0.25% market share (ignoring browsers without security updates like IE 10 and BlackBerry):
+> Please note that if you are relying on browserslist's defaults query (either explicitly or by having no browserslist config), you will want to check out the [No targets](#no-targets) section for information on preset-env's behavior.
 
-[Options](options.md#presets)
+For example, to only include polyfills and code transforms needed for users whose browsers have >0.25% market share (ignoring browsers without security updates like IE 10 and BlackBerry):
 
 ```json
 {
@@ -72,6 +72,9 @@ or
 ```
 "browserslist": "> 0.25%, not dead"
 ```
+
+> Please note that since `v7.4.5` the browserslist query is resolved with [`mobileToDesktop: true`](https://github.com/browserslist/browserslist#js-api).
+> For example, if you want to create a snapshot of a query run `npx browserslist --mobile-to-desktop ">0.25%, not dead"`.
 
 ## Options
 
@@ -104,15 +107,27 @@ Or an object of minimum environment versions to support:
 
 Example environments: `chrome`, `opera`, `edge`, `firefox`, `safari`, `ie`, `ios`, `android`, `node`, `electron`.
 
-Sidenote, if no targets are specified, `@babel/preset-env` will transform all ECMAScript 2015+ code by default.
+#### No targets
 
-> We don't recommend using `preset-env` this way because it doesn't take advantage of its ability to target specific browsers.
+Since one of the original goals of `preset-env` was to help users easily transition from using `preset-latest`, it behaves similarly when no targets are specified: `preset-env` will transform all ES2015-ES2020 code to be ES5 compatible.
+
+> We don't recommend using `preset-env` this way because it doesn't take advantage of its ability to target specific environments/versions.
 
 ```json
 {
   "presets": ["@babel/preset-env"]
 }
 ```
+
+Because of this, `preset-env`'s behavior is different than [browserslist](https://github.com/browserslist/browserslist#queries): it does _not_ use the `defaults` query when there are no targets are found in your Babel _or_ browserslist config(s). If you want to use the `defaults` query, you will need to explicitly pass it as a target:
+
+```json
+{
+  "presets": [["@babel/preset-env", { "targets": "defaults" }]]
+}
+```
+
+We recognize this isn’t ideal and will be revisiting this in Babel v8.
 
 #### `targets.esmodules`
 
@@ -163,6 +178,8 @@ Note, browsers' results are overridden by explicit items from `targets`.
 
 `boolean`, defaults to `false`.
 
+Added in: `v7.9.0`
+
 > Note: These optimizations will be enabled by default in Babel 8
 
 By default, `@babel/preset-env` (and Babel plugins in general) grouped ECMAScript syntax features into collections of closely related smaller features. These groups can be large and include a lot of edge cases, for example "function arguments" includes destructured, default and rest parameters. From this grouping information, Babel enables or disables each group based on the browser support target you specify to `@babel/preset-env`’s `targets` option.
@@ -185,21 +202,29 @@ Enable ["loose" transformations](http://2ality.com/2015/12/babel6-loose-mode.htm
 
 `"amd" | "umd" | "systemjs" | "commonjs" | "cjs" | "auto" | false`, defaults to `"auto"`.
 
-Enable transformation of ES6 module syntax to another module type.
+Enable transformation of ES module syntax to another module type. Note that `cjs` is just an alias for `commonjs`.
 
-Setting this to `false` will not transform modules.
+Setting this to `false` will preserve ES modules. Use this only if you intend to ship native ES Modules to browsers. If you are using a bundler with Babel, the default `modules: "auto"` is always preferred.
 
-Also note that `cjs` is just an alias for `commonjs`.
+#### `modules: "auto"`
+By default `@babel/preset-env` uses [`caller`](options.md#caller) data to determine whether ES modules and module features (e.g. `import()`) should be transformed. Generally `caller` data will be specified in the bundler plugins (e.g. `babel-loader`, `@rollup/plugin-babel`) and thus it is not recommended to pass `caller` data yourself -- The passed `caller` may overwrite the one from bundler plugins and in the future you may get suboptimal results if bundlers supports new module features.
 
 ### `debug`
 
 `boolean`, defaults to `false`.
 
-Outputs the targets/plugins used and the version specified in [plugin data version](https://github.com/babel/babel/blob/master/packages/babel-preset-env/data/plugins.json) to `console.log`.
+Outputs to `console.log` the polyfills and transform plugins enabled by `preset-env` and, if applicable, which one of your targets that needed it.
 
 ### `include`
 
 `Array<string|RegExp>`, defaults to `[]`.
+
+<details>
+  <summary>History</summary>
+| Version | Changes |
+| --- | --- |
+| `v7.4.0` | Support injecting `core-js@3` polyfills |
+</details>
 
 An array of plugins to always include.
 
@@ -254,6 +279,14 @@ npm install core-js@2 --save
 ```
 
 #### `useBuiltIns: 'entry'`
+
+<details>
+  <summary>History</summary>
+| Version | Changes |
+| --- | --- |
+| `v7.4.0` | It replaces `"core-js/stable"` and `"regenerator-runtime/runtime"` entry imports |
+| `v7.0.0` | It replaces `"@babel/polyfill"` entry imports |
+</details>
 
 > NOTE: Only use `import "core-js";` and `import "regenerator-runtime/runtime";` once in your whole app.
 > If you are using `@babel/polyfill`, it already includes both `core-js` and `regenerator-runtime`: importing it twice will throw an error.
@@ -357,6 +390,8 @@ Don't add polyfills automatically per file, and don't transform `import "core-js
 
 ### `corejs`
 
+Added in: `v7.4.0`
+
 `2`, `3` or `{ version: 2 | 3, proposals: boolean }`, defaults to `2`.
 
 This option only has an effect when used alongside `useBuiltIns: usage` or `useBuiltIns: entry`, and ensures `@babel/preset-env` injects the correct imports for your `core-js` version.
@@ -428,6 +463,7 @@ Toggles whether or not [browserslist config sources](https://github.com/ai/brows
 
 ### `browserslistEnv`
 
+Added in: `v7.10.0`
 `string`, defaults to `undefined`
 
 The [Browserslist environment](https://github.com/browserslist/browserslist#configuring-for-different-environments) to use.
@@ -435,6 +471,15 @@ The [Browserslist environment](https://github.com/browserslist/browserslist#conf
 ### `shippedProposals`
 
 `boolean`, defaults to `false`
+
+<details>
+  <summary>History</summary>
+| Version | Changes |
+| --- | --- |
+| `v7.12.0` | Include class static block and import assertions |
+| `v7.10.0` | Include class properties and private methods |
+| `v7.9.0` | Include numeric separator |
+</details>
 
 Toggles enabling support for builtin/feature proposals that have shipped in browsers. If your target environments have native support for a feature proposal, its matching parser syntax plugin is enabled instead of performing any transform. Note that this _does not_ enable the same transformations as [`@babel/preset-stage-3`](preset-stage-3.md), since proposals can continue to change before landing in browsers.
 
