@@ -8,7 +8,7 @@ sidebar_label: transform-react-jsx
 
 ### React Automatic Runtime
 
-Automatic runtime is a feature available in v7.9.0. With this runtime enabled, the functions that JSX compiles to will be imported automatically.
+Automatic runtime is a feature added in `v7.9.0`. With this runtime enabled, the functions that JSX compiles to will be imported automatically.
 
 **In**
 
@@ -24,8 +24,8 @@ const profile = (
 **Out**
 
 ```javascript
-import { jsx as _jsx } from "react";
-import { jsxs as _jsxs } from "react";
+import { jsx as _jsx } from "react/jsx-runtime";
+import { jsxs as _jsxs } from "react/jsx-runtime";
 
 const profile = _jsxs("div", {
   children: [
@@ -58,8 +58,8 @@ const profile = (
 **Out**
 
 ```javascript
-import { jsx as _jsx } from "custom-jsx-library";
-import { jsxs as _jsxs } from "custom-jsx-library";
+import { jsx as _jsx } from "custom-jsx-library/jsx-runtime";
+import { jsxs as _jsxs } from "custom-jsx-library/jsx-runtime";
 
 const profile = _jsxs("div", {
   children: [
@@ -293,6 +293,8 @@ Though the JSX spec allows this, it is disabled by default since React's JSX doe
 
 `classic | automatic`, defaults to `classic`
 
+Added in: `v7.9.0`
+
 Decides which runtime to use.
 
 `automatic` auto imports the functions that JSX transpiles to. `classic` does not automatically import anything.
@@ -302,6 +304,8 @@ Decides which runtime to use.
 #### importSource
 
 `string`, defaults to `react`.
+
+Added in: `v7.9.0`
 
 Replaces the import source when importing functions.
 
