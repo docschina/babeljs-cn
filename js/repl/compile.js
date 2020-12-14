@@ -30,7 +30,7 @@ type Return = {
 const DEFAULT_PRETTIER_CONFIG = {
   bracketSpacing: true,
   jsxBracketSameLine: false,
-  parser: "babylon",
+  parser: "babel",
   printWidth: 80,
   semi: true,
   singleQuote: false,
@@ -139,6 +139,14 @@ export default function compile(code: string, config: CompileConfig): Return {
               decoratorsLegacy,
               decoratorsBeforeExport,
               pipelineProposal: presetsOptions.pipelineProposal,
+            },
+          ];
+        }
+        if (preset === "react") {
+          return [
+            "react",
+            {
+              runtime: presetsOptions.reactRuntime,
             },
           ];
         }

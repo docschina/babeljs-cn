@@ -3,7 +3,7 @@
 ```json
 {
   "scripts": {
-    "babel-node": "babel-node --presets=/*a*/ --ignore='foo|bar|baz'"
+    "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'"
   }
 }
 ```
