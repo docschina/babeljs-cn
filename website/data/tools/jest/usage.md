@@ -7,7 +7,7 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.jsx?$": "babel-jest"
+      "^.+\\.[t|j]sx?$": "babel-jest"
     }
   }
 }

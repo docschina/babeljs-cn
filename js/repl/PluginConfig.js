@@ -80,7 +80,7 @@ const pluginConfigs: Array<PluginConfig> = [
     label: "Prettify",
     package: "prettier",
     version: "2",
-    files: ["standalone.js", "parser-babylon.js"],
+    files: ["standalone.js", "parser-babel.js"],
   },
 ];
 
@@ -114,6 +114,7 @@ const replDefaults: ReplState = {
   shippedProposals: false,
   targets: "",
   version: "",
+  reactRuntime: "classic",
   decoratorsLegacy: false,
   decoratorsBeforeExport: false,
   pipelineProposal: "minimal",
