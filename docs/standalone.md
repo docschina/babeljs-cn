@@ -26,8 +26,6 @@ There are several ways to get a copy of @babel/standalone. Pick whichever one yo
 
 - Use it via UNPKG: https://unpkg.com/@babel/standalone/babel.min.js. This is a simple way to embed it on a webpage without having to do any other setup.
 - Install via NPM: `npm install --save @babel/standalone`
-- Manually grab `babel.js` and/or `babel.min.js` from the [GitHub releases page](https://github.com/Daniel15/babel-standalone/releases). Every release includes these files.
-- Install it via Git: You can use the repo at https://github.com/Daniel15/babel-standalone-bower to pull a prebuilt version from Git. Note that this is generally only advised for systems that *must* pull artifacts from Git, such as Bower.
 
 Script Tags
 ===========
@@ -45,8 +43,11 @@ document.getElementById('output').innerHTML = getMessage();
 </script>
 ```
 
-If you want to use your browser's native support for ES Modules, you'd normally need to set a `type="module"` attribute on your script tag. With @babel/standalone, set a `data-type="module"` attribute instead, like this:
+If you want to use your browser's native support for ES Modules, you'd normally need to set a `type="module"` attribute on your script tag.
 
+Added in: `v7.10.0`
+
+With @babel/standalone, set a `data-type="module"` attribute instead, like this:
 ```html
 <script type="text/babel" data-type="module">
 ```
@@ -83,6 +84,9 @@ Note that [config files](config-files.md) don't work in @babel/standalone, as no
 
 Customization
 =============
+
+### custom plugins
+
 Custom plugins and presets can be added using the `registerPlugin` and `registerPreset` methods respectively:
 
 ```js
@@ -113,4 +117,27 @@ var output = Babel.transform(
   {plugins: ['lolizer']}
 );
 // Returns "function LOL() { LOL(LOL); }"
+```
+
+### custom presets: passing options to built-in presets/plugins
+
+If you want to pass options to builtin plugins and presets, you can create a new preset and pass these options inside the preset.
+```js
+// Define a preset
+Babel.registerPreset("env-plus", {
+  presets: [
+    [Babel.availablePresets["env"], { "loose": true }]
+  ],
+  plugins: [
+    [
+      Babel.availablePlugins["proposal-decorators"], { decoratorsBeforeExport: true }
+    ]
+  ],
+});
+```
+
+Once registered, you can use this preset in an inline script:
+
+```html
+<script type="text/babel" data-presets="env-plus">
 ```
