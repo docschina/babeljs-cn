@@ -1,4 +1,5 @@
 ```sh
+<<<<<<< HEAD
 npm install --save-dev rollup
 ```
 
@@ -10,4 +11,7 @@ npm install --save-dev rollup-plugin-babel
 
 ```sh
 npm install --save-dev babel-preset-es2015-rollup
+=======
+npm install --save-dev @rollup/plugin-babel @babel/core
+>>>>>>> 3d63a98a5047f8f5f5479c8c33362a23711808aa
 ```

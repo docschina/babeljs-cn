@@ -54,25 +54,6 @@ const MiniRepl = () => {
   );
 };
 
-// const SpecialSponsors = () => {
-//   return (
-//     <div className="productShowcaseSection sponsors-special">
-//       <p>Special Sponsors</p>
-//       <div className="sponsors-special-logos">
-//         {siteConfig.sponsors
-//           .filter(sponsor => sponsor.type == "special")
-//           .map((sponsor, i) => {
-//             return (
-//               <a href={sponsor.url} target="_blank" key={i}>
-//                 <img src={sponsor.image} title={sponsor.name} />
-//               </a>
-//             );
-//           })}
-//       </div>
-//     </div>
-//   );
-// };
-
 const GetStarted = ({ language }) => {
   return (
     <div
@@ -106,52 +87,6 @@ const GetStarted = ({ language }) => {
     </div>
   );
 };
-
-// const WorkSponsors = () => {
-//   return (
-//     <div
-//       className="blockElement alignCenter twoByGridBlock sponsors-work"
-//       style={{ flexBasis: "40%", margin: 0 }}
-//     >
-//       <h2>Friends of Open Source</h2>
-//       <p style={{ fontSize: 16 }}>
-//         These companies are awesome and pay these engineers to work on Babel
-//       </p>
-//       <div className="productShowcaseSection">
-//         <div className="cards">
-//           {siteConfig.sponsors
-//             .filter(sponsor => {
-//               return sponsor.type == "work";
-//             })
-//             .map((sponsor, i) => {
-//               return (
-//                 <div className="card" key={i}>
-//                   <a href={sponsor.url} target="_blank" className="card-image">
-//                     <img
-//                       src={sponsor.image}
-//                       title={sponsor.name}
-//                       alt={`Sponsored by ${sponsor.name}`}
-//                     />
-//                   </a>
-//                   <div className="card-text">
-//                     <p>{sponsor.description}</p>
-//                   </div>
-//                   <div className="card-text">
-//                     <p>
-//                       sponsoring{" "}
-//                       <a href={`https://github.com/${sponsor.member}`}>
-//                         @{sponsor.member}
-//                       </a>
-//                     </p>
-//                   </div>
-//                 </div>
-//               );
-//             })}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 
 const SponsorTier = props => {
   const tierSponsors = siteConfig.sponsors.filter(
@@ -215,6 +150,7 @@ const OpenCollectiveSponsors = () => {
             tier="silver-sponsors"
             button={ocButton}
           />
+<<<<<<< HEAD
           <h3>Patreon Sponsors</h3>
           <SponsorTier
             type="patreon"
@@ -232,6 +168,8 @@ const OpenCollectiveSponsors = () => {
             tier="silver-sponsors"
             button={patreonButton}
           />
+=======
+>>>>>>> 3d63a98a5047f8f5f5479c8c33362a23711808aa
         </div>
       </div>
     </div>
@@ -259,11 +197,17 @@ const Hero = ({ language }) => (
       <p>今天就开始使用下一代 JavaScript 语法吧！</p>
       <div className="hero__announcement">
         <span>
+<<<<<<< HEAD
           <strong>Babel 7 发布!</strong> 请阅读我们的{" "}
           <a href="/blog/2018/08/27/7.0.0">公告</a> 以及{" "}
           <a href={siteConfig.getDocUrl("v7-migration", language)}>升级指南</a>
           {""}
           了解更多详情。
+=======
+          <strong>Babel 7.12 is released!</strong> Please read our{" "}
+          <a href="blog/2020/10/15/7.12.0">blog post</a> for highlights and{" "}
+          <a href="https://github.com/babel/babel/releases/tag/v7.12.0">changelog</a> for more details!
+>>>>>>> 3d63a98a5047f8f5f5479c8c33362a23711808aa
         </span>
       </div>
       <MiniRepl language={language} />

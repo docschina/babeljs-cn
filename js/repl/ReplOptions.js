@@ -24,18 +24,20 @@ import type {
 } from "./types";
 
 const PRESET_ORDER = [
-  "es2015",
-  "es2015-loose",
-  "es2016",
-  "es2017",
-  "stage-0",
-  "stage-1",
-  "stage-2",
-  "stage-3",
   "react",
   "flow",
   "typescript",
+  "stage-3",
+  "stage-2",
+  "stage-1",
+  "stage-0",
 ];
+
+// These presets are deprecated. We only show them if they are enabled, so that
+// when they are enabled because of an old URL or local storage they can still
+// be disabled.
+// Otherwise we don't show them, to prevent people from enabling them.
+const HIDDEN_PRESETS = ["es2015", "es2015-loose", "es2016", "es2017"];
 
 type ToggleEnvPresetSetting = (name: string, value: any) => void;
 type ToggleExpanded = (isExpanded: boolean) => void;
@@ -206,6 +208,8 @@ class ExpandedContainer extends Component<Props, State> {
       isSettingsTabExpanded,
     } = this.state;
 
+    const isReactEnabled = presetState["react"].isEnabled;
+
     const isStage2Enabled =
       presetState["stage-0"].isEnabled ||
       presetState["stage-1"].isEnabled ||
@@ -285,6 +289,24 @@ class ExpandedContainer extends Component<Props, State> {
                   <option value="unambiguous">Unambiguous</option>
                 </select>
               </label>
+              <div className={styles.verticalLabeledOption}>
+                <LinkToDocs
+                  className={`${styles.verticalLabeledOptionLabel} ${
+                    styles.envPresetLabel
+                  } ${styles.highlight}`}
+                  section="targets"
+                >
+                  Targets
+                </LinkToDocs>
+                <textarea
+                  className={`${styles.envPresetInput} ${
+                    styles.envPresetTextarea
+                  }`}
+                  onChange={this._onEnvPresetSettingChange("browsers")}
+                  placeholder={envPresetDefaults.browsers.placeholder}
+                  value={envConfig.browsers}
+                />
+              </div>
             </AccordionTab>
             <AccordionTab
               className={styles.section}
@@ -307,11 +329,55 @@ class ExpandedContainer extends Component<Props, State> {
                   />
                 );
               })}
+              {HIDDEN_PRESETS.map(preset => {
+                const state = presetState[preset];
+
+                if (!state?.isEnabled) return null;
+
+                return (
+                  <PluginToggle
+                    config={state.config}
+                    key={preset}
+                    onSettingChange={onSettingChange}
+                    state={state}
+                    hidden
+                  />
+                );
+              })}
               <span
                 className={`${styles.presetsOptionsTitle} ${styles.highlight}`}
               >
                 Options
               </span>
+              <PresetOption
+                when={isReactEnabled}
+                option="runtime"
+                presets={["react"]}
+              >
+                <span className={styles.presetsOptionsLabel}>
+                  React Runtime
+                </span>
+                <select
+                  className={cx(styles.optionSelect, styles.presetOptionSelect)}
+                  onChange={this._onPresetOptionChange(
+                    "reactRuntime",
+                    t => t.value
+                  )}
+                >
+                  <option
+                    value="automatic"
+                    selected={!presetsOptions.reactRuntime}
+                  >
+                    Automatic
+                  </option>
+                  <option
+                    value="classic"
+                    selected={presetsOptions.reactRuntime}
+                  >
+                    Classic
+                  </option>
+                </select>
+              </PresetOption>
               <PresetOption
                 when={isStage2Enabled}
                 option="decoratorsLegacy"
@@ -419,25 +485,6 @@ class ExpandedContainer extends Component<Props, State> {
                 Enabled
               </label>
 
-              <div className={styles.envPresetColumn}>
-                <LinkToDocs
-                  className={`${styles.envPresetColumnLabel} ${
-                    styles.envPresetLabel
-                  } ${styles.highlight}`}
-                  section="browserslist-integration"
-                >
-                  Browsers
-                </LinkToDocs>
-                <textarea
-                  disabled={!envConfig.isEnvPresetEnabled}
-                  className={`${styles.envPresetInput} ${
-                    styles.envPresetTextarea
-                  }`}
-                  onChange={this._onEnvPresetSettingChange("browsers")}
-                  placeholder={envPresetDefaults.browsers.placeholder}
-                  value={envConfig.browsers}
-                />
-              </div>
               <label className={styles.envPresetRow}>
                 <LinkToDocs
                   className={`${styles.envPresetLabel} ${styles.highlight}`}
@@ -666,6 +713,9 @@ class ExpandedContainer extends Component<Props, State> {
   _onEnvPresetSettingCheck = (type: string) => (
     event: SyntheticInputEvent<*>
   ) => {
+    if (type === "isEnvPresetEnabled") {
+      this.props.presetState.env.isEnabled = event.target.checked;
+    }
     this.props.onEnvPresetSettingChange(type, event.target.checked);
   };
 
@@ -722,6 +772,7 @@ type PluginToggleProps = {
   label?: string,
   state: PluginState,
   onSettingChange: ToggleSetting,
+  hidden?: boolean,
 };
 
 const PluginToggle = ({
@@ -729,8 +780,17 @@ const PluginToggle = ({
   label,
   state,
   onSettingChange,
+  hidden,
 }: PluginToggleProps) => (
-  <label key={config.label} className={styles.settingsLabel}>
+  <label
+    key={config.label}
+    className={styles.settingsLabel}
+    title={
+      hidden
+        ? "This plugin has been deprecated: this option will disappear once disabled."
+        : null
+    }
+  >
     <input
       checked={state.isEnabled && !state.didError}
       className={styles.inputCheckboxLeft}
@@ -740,6 +800,7 @@ const PluginToggle = ({
       }
       type="checkbox"
     />
+    {hidden && <span>{"❗ "}</span>}
     {state.isLoading ? <PresetLoadingAnimation /> : label || config.label}
   </label>
 );
@@ -945,6 +1006,7 @@ const styles = {
     margin: "0 -0.5rem",
     padding: "0 1rem",
     transition: "background-color 250ms ease-in-out, color 250ms ease-in-out",
+    cursor: "pointer",
 
     "&:hover": {
       backgroundColor: colors.inverseBackgroundDark,
@@ -990,13 +1052,13 @@ const styles = {
     padding: "0.2rem 1.5rem 0.2rem 0.5rem",
     backgroundPosition: "calc(100% - 0.5rem) calc(100% - 0.3rem)",
   }),
-  envPresetColumn: css({
+  verticalLabeledOption: css({
     display: "flex",
     flexDirection: "column",
     margin: "0.5rem",
     flex: "0 0 auto",
   }),
-  envPresetColumnLabel: css({
+  verticalLabeledOptionLabel: css({
     marginBottom: "0.75rem",
   }),
   envPresetRow: css({

@@ -6,7 +6,7 @@ const Container = CompLibrary.Container;
 const CWD = process.cwd();
 
 const siteConfig = require(CWD + "/siteConfig.js");
-const versions = require(CWD + "/versions.json");
+const versions = require(CWD + "/past-versions.json");
 
 class Versions extends React.Component {
   render() {
@@ -41,6 +41,11 @@ class Versions extends React.Component {
                   <td>
                     <a href={`${repoUrl}/releases/tag/v${latestVersion}`}>
                       Release Notes
+                    </a>
+                  </td>
+                  <td>
+                    <a href={`${siteConfig.baseUrl}${latestVersion}`}>
+                      Blog Post
                     </a>
                   </td>
                 </tr>
@@ -103,9 +108,28 @@ class Versions extends React.Component {
                                 Release Notes
                               </a>
                             </td>
+                            <td>
+                              <a href={`${siteConfig.baseUrl}${version}`}>
+                                Blog Post
+                              </a>
+                            </td>
                           </tr>
                         )
                     )}
+                    <tr>
+                      <th>6.26.3</th>
+                      <td>
+                        <a href={siteConfig.v6Url}>Documentation</a>
+                      </td>
+                      <td>
+                        <a href={`${repoUrl}/releases/tag/v6.26.3`}>
+                          Release Notes
+                        </a>
+                      </td>
+                      <td>
+                        <a href={`${siteConfig.baseUrl}6.23.0`}>Blog Post</a>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
