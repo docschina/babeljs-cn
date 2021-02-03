@@ -1,3 +1,4 @@
 ```sh
-npm install --save-dev gulp-babel
+# Babel 7
+npm install --save-dev gulp-babel @babel/core
 ```

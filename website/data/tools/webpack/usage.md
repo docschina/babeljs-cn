@@ -1,18 +1,22 @@
 #### 通过 config 方式
 
 ```js
-module: {
-  rules: [
-    { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
-  ]
+{
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
+    ]
+  }
 }
-```
-
-#### 通过 loader 方式
-
-```js
-var Person = require("babel!./Person.js").default;
-new Person();
 ```
 
 <blockquote class="babel-callout babel-callout-info">

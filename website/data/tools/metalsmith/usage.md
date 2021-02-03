@@ -7,6 +7,7 @@
   "plugins": {
     "metalsmith-babel": {
       // babel 选项
+      "presets": ["@babel/preset-env"]
     }
   }
 }
@@ -19,7 +20,10 @@ var Metalsmith = require("metalsmith");
 var babel = require("metalsmith-babel");
 
 new Metalsmith("./source")
-  .use(babel({/* babel 选项 */}));
+  .use(babel({
+    /* babel 选项 */
+    presets: ["@babel/preset-env"]
+  }))
   .build(function(err, files) {
     if (err) {
       throw err;
