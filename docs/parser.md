@@ -30,6 +30,15 @@ mind. When in doubt, use `.parse()`.
 
 ### Options
 
+<details>
+  <summary>History</summary>
+| Version | Changes |
+| --- | --- |
+| `v7.7.0` | Added `errorRecovery` |
+| `v7.5.0` | Added `allowUndeclaredExports` |
+| `v7.2.0` | Added `createParenthesizedExpressions` |
+</details>
+
 - **allowImportExportEverywhere**: By default, `import` and `export`
   declarations can only appear at a program's top level. Setting this
   option to `true` allows them anywhere where a statement is allowed.
@@ -149,6 +158,12 @@ require("@babel/parser").parse("code", {
 
 #### Language extensions
 
+<details>
+  <summary>History</summary>
+| Version | Changes |
+| --- | --- |
+| `v7.6.0` | Added `v8intrinsic` |
+</details>
 | Name | Code Example |
 |------|--------------|
 | `flow` ([repo](https://github.com/facebook/flow)) | `var a: string = "";` |
@@ -159,6 +174,14 @@ require("@babel/parser").parse("code", {
 
 #### ECMAScript [proposals](https://github.com/babel/proposals)
 
+<details>
+  <summary>History</summary>
+| Version | Changes |
+| --- | --- |
+| `v7.7.0` | Added `topLevelAwait` |
+| `v7.4.0` | Added `partialApplication` |
+</details>
+
 | Name | Code Example |
 |------|--------------|
 | `asyncGenerators` ([proposal](https://github.com/tc39/proposal-async-iteration)) | `async function*() {}`, `for await (let a of b) {}` |
@@ -166,6 +189,7 @@ require("@babel/parser").parse("code", {
 | `classProperties` ([proposal](https://github.com/tc39/proposal-class-public-fields)) | `class A { b = 1; }` |
 | `classPrivateProperties` ([proposal](https://github.com/tc39/proposal-private-fields)) | `class A { #b = 1; }` |
 | `classPrivateMethods` ([proposal](https://github.com/tc39/proposal-private-methods)) | `class A { #c() {} }` |
+| `classStaticBlock` ([proposal](https://github.com/tc39/proposal-class-static-block)) | `class A { static {} }` |
 | `decorators` ([proposal](https://github.com/tc39/proposal-decorators)) <br> `decorators-legacy` | `@a class A {}` |
 | `doExpressions` ([proposal](https://github.com/tc39/proposal-do-expressions)) | `var a = do { if (true) { 'hi'; } };` |
 | `dynamicImport` ([proposal](https://github.com/tc39/proposal-dynamic-import)) | `import('./guy').then(a)` |
@@ -173,6 +197,7 @@ require("@babel/parser").parse("code", {
 | `exportNamespaceFrom` ([proposal](https://github.com/leebyron/ecmascript-export-ns-from)) | `export * as ns from "mod"` |
 | `functionBind` ([proposal](https://github.com/zenparsing/es-function-bind)) | `a::b`, `::console.log` |
 | `functionSent` | `function.sent` |
+| `importAssertions` ([proposal](https://github.com/tc39/proposal-import-assertions)) | `import json from "./foo.json" assert { type: "json" };` |
 | `importMeta` ([proposal](https://github.com/tc39/proposal-import-meta)) | `import.meta.url` |
 | `logicalAssignment` ([proposal](https://github.com/tc39/proposal-logical-assignment)) | `a &&= b` |
 | `nullishCoalescingOperator` ([proposal](https://github.com/babel/proposals/issues/14)) | `a ?? b` |

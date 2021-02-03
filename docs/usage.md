@@ -15,11 +15,12 @@ Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是�
 
 1. 运行这些命令以安装 packages:
 
-    ```sh
-    npm install --save-dev @babel/core @babel/cli @babel/preset-env
-    npm install --save @babel/polyfill
-    ```
-2. 使用以下内容在项目的根目录中创建名为 `babel.config.json` 的配置文件：
+   ```sh
+   npm install --save-dev @babel/core @babel/cli @babel/preset-env
+   npm install --save @babel/polyfill
+   ```
+
+2. 使用以下内容在项目的根目录中创建名为 `babel.config.json` (requires `v7.8.0` and above) 的配置文件：
 
    ```json
    {
@@ -34,7 +35,7 @@ Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是�
              "safari": "11.1",
            },
            "useBuiltIns": "usage",
-           "corejs": "3.6.4",
+           "corejs": "3.6.5",
          }
        ]
      ]
@@ -42,6 +43,28 @@ Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是�
    ```
 
     > 上面的浏览器列表只是一个随意的例子。你必须根据想要支持的浏览器进行调整。
+
+或者使用 `babel.config.js`，如果你在使用旧版本 Babel
+
+   ```js
+   const presets = [
+     [
+       "@babel/env",
+       {
+         targets: {
+           edge: "17",
+           firefox: "60",
+           chrome: "67",
+           safari: "11.1",
+         },
+         useBuiltIns: "usage",
+         "corejs": "3.6.4",
+       },
+     ],
+   ];
+
+   module.exports = { presets };
+   ```
 
 3. 运行此命令将所有代码从 `src` 目录编译到 `lib`：
 
@@ -127,7 +150,7 @@ npm install --save-dev @babel/preset-env
 
 > 根据你的需要，可以使用几种不同的方法配置文件。请务必阅读有关如何 [配置 Babel](configuration.md) 的深入指南以获取更多信息。
 
-现在，让我们创建一个名为 `babel.config.json` 的文件，其中包含以下内容：
+现在，让我们创建一个名为 `babel.config.json` (requires `v7.8.0` and above) 的文件，其中包含以下内容：
 
 ```json
 {
