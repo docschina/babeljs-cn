@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-.NET 中支持 Babel 是由 [ReactJS.NET](http://reactjs.net/) 项目所提供的。通过 NuGet 执行 MSBuild 安装任务:
-=======
-Support for Babel in ASP.NET 4.x is provided by the [ReactJS.NET](http://reactjs.net/) project. Install the MSBuild task via NuGet:
->>>>>>> 498e5d3d41fcd5bbf262d6ff05f987e7a886d8f8
+[ReactJS.NET](http://reactjs.net/) 项目提供 ASP.NET 4.x 以上 Babel 支持。通过 NuGet 安装 MSBuild 任务：
 
 ```
 Install-Package React.MSBuild
