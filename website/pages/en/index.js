@@ -1,5 +1,5 @@
 const React = require("react");
-const translate = require("../../server/translate.js").translate;
+// const translate = require("../../server/translate.js").translate;
 const siteConfig = require(process.cwd() + "/siteConfig.js");
 
 class Button extends React.Component {
@@ -144,32 +144,6 @@ const OpenCollectiveSponsors = () => {
             title="金牌赞助（Open Collective）"
             tier="gold-sponsors"
           />
-<<<<<<< HEAD
-          <SponsorTier
-            type="opencollective"
-            title="Silver Sponsors (Open Collective)"
-            tier="silver-sponsors"
-            button={ocButton}
-          />
-          <h3>Patreon Sponsors</h3>
-          <SponsorTier
-            type="patreon"
-            title="金牌赞助（众筹）"
-            tier="gold-sponsors"
-          />
-          <SponsorTier
-            type="other"
-            title="Misc Sponsors"
-            tier="other-sponsors"
-          />
-          <SponsorTier
-            type="patreon"
-            title="Silver Sponsors (Patreon)"
-            tier="silver-sponsors"
-            button={patreonButton}
-          />
-=======
->>>>>>> 48b8baa695550f5424c6d7f398751dcd35c1c804
         </div>
       </div>
     </div>
