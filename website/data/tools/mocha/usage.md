@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-#### Mocha 4
-
-从 Mocha v4.0.0 开始，不推荐使用 `--compilers`. 请参阅 [进一步解释和解决办法](https://github.com/mochajs/mocha/wiki/compilers-deprecation)。
-=======
 #### Mocha 8
->>>>>>> 0c904d6d88d2d86cb7502df053419e19b3a97c15
 
 在你的 `package.json` 文件中做如下变化：
 
@@ -14,11 +8,7 @@ require:
   - '@babel/register'
 ```
 
-<<<<<<< HEAD
 有些特性需要一个 polyfill:
-=======
-Some features may require a polyfill:
->>>>>>> 0c904d6d88d2d86cb7502df053419e19b3a97c15
 
 ```sh
 # Polyfills for builtin methods
