@@ -19,16 +19,6 @@
 }
 ```
 
-<<<<<<< HEAD
-#### 通过 loader 方式
-
-```js
-var Person = require("babel!./Person.js").default;
-new Person();
-```
-
-=======
->>>>>>> 7ae691a15da4168e1d53c274a67fee118648d8a9
 <blockquote class="babel-callout babel-callout-info">
   <p>
     欲了解更多信息，请参阅 <a href="https://github.com/babel/babel-loader">babel/babel-loader 项目</a>。
