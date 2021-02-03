@@ -10,13 +10,17 @@ original_id: caveats
 
 你可以选择性引入：
 
-| 功能                     | 需求                                                                          |
-| --------------------------- | ------------------------------------------------------------------------------------- |
+| 功能 | 需求 |
+| --------------------------- | ------------------------------------------------------------------------------------------------------- |
 | Async functions, Generators | [regenerator runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime) |
-| Array destructuring, For Of | `Symbol`, `prototype[Symbol.iterator]`                                                |
-| Spread                      | `Array.from`                                                                          |
+| Array destructuring, For Of | `Symbol`, `prototype[Symbol.iterator]` |
+| Spread | `Array.from` |
 
 这些插件中有些也有 `loose` 选项。
+
+## Built-ins
+
+Babel assumes that built-ins (e.g. `Array`, `WeakMap` and others), if polyfilled, are modified in a manner that is spec-compliant.
 
 ## 类
 
