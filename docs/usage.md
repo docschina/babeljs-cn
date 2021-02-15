@@ -32,39 +32,43 @@ Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是�
              "edge": "17",
              "firefox": "60",
              "chrome": "67",
-             "safari": "11.1",
+             "safari": "11.1"
            },
            "useBuiltIns": "usage",
-           "corejs": "3.6.5",
+           "corejs": "3.6.5"
          }
        ]
      ]
    }
    ```
 
+<<<<<<< HEAD
     > 上面的浏览器列表只是一个随意的例子。你必须根据想要支持的浏览器进行调整。
+=======
+   > The browsers list above is just an arbitrary example. You will have to adapt it for the browsers you want to support. See [here](preset-env.md) for more `@babel/preset-env` options.
+>>>>>>> f70f28388f89261c49a4d182633b6955b5344ca5
 
 或者使用 `babel.config.js`，如果你在使用旧版本 Babel
 
-   ```js
-   const presets = [
-     [
-       "@babel/env",
-       {
-         targets: {
-           edge: "17",
-           firefox: "60",
-           chrome: "67",
-           safari: "11.1",
-         },
-         useBuiltIns: "usage",
-         "corejs": "3.6.4",
-       },
-     ],
-   ];
+```js
+const presets = [
+  [
+    "@babel/env",
+    {
+      targets: {
+        edge: "17",
+        firefox: "60",
+        chrome: "67",
+        safari: "11.1",
+      },
+      useBuiltIns: "usage",
+      corejs: "3.6.4",
+    },
+  ],
+];
 
-   module.exports = { presets };
-   ```
+module.exports = { presets };
+```
 
 3. 运行此命令将所有代码从 `src` 目录编译到 `lib`：
 
@@ -154,15 +158,15 @@ npm install --save-dev @babel/preset-env
 
 ```json
 {
-"presets": [
-  [
-  "@babel/env",
-    {
-      "targets": {
-        "edge": "17",
-        "firefox": "60",
-        "chrome": "67",
-        "safari": "11.1"
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "edge": "17",
+          "firefox": "60",
+          "chrome": "67",
+          "safari": "11.1"
         }
       }
     ]
@@ -174,7 +178,12 @@ npm install --save-dev @babel/preset-env
 
 ## Polyfill
 
+<<<<<<< HEAD
 > 🚨 自 Babel 7.4.0 起，该 package 已被弃用，你可以直接引入 `core-js/stable`（为 ECMAScript 新特性提供的 polyfill）以及 `regenerator-runtime/runtime` (需要转译 generator 函数)：
+=======
+> 🚨 As of Babel 7.4.0, this package has been deprecated in favor of directly including `core-js/stable` (to polyfill ECMAScript features) and `regenerator-runtime/runtime` (needed to use transpiled generator functions):
+>
+>>>>>>> f70f28388f89261c49a4d182633b6955b5344ca5
 > ```js
 > import "core-js/stable";
 > import "regenerator-runtime/runtime";
@@ -208,9 +217,9 @@ npm install --save @babel/polyfill
           "edge": "17",
           "firefox": "60",
           "chrome": "67",
-          "safari": "11.1",
+          "safari": "11.1"
         },
-        "useBuiltIns": "usage",
+        "useBuiltIns": "usage"
       }
     ]
   ]

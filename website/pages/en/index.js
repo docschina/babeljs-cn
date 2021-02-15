@@ -144,6 +144,12 @@ const OpenCollectiveSponsors = () => {
             title="金牌赞助（Open Collective）"
             tier="gold-sponsors"
           />
+          <SponsorTier
+            type="opencollective"
+            title="Silver Sponsors (Open Collective)"
+            tier="silver-sponsors"
+            button={ocButton}
+          />
         </div>
       </div>
     </div>
@@ -171,11 +177,17 @@ const Hero = ({ language }) => (
       <p>今天就开始使用下一代 JavaScript 语法吧！</p>
       <div className="hero__announcement">
         <span>
+<<<<<<< HEAD
           <strong>Babel 7 发布!</strong> 请阅读我们的{" "}
           <a href="/blog/2018/08/27/7.0.0">公告</a> 以及{" "}
           <a href={siteConfig.getDocUrl("v7-migration", language)}>升级指南</a>
           {""}
           了解更多详情。
+=======
+          <strong>Babel 7.12 is released!</strong> Please read our{" "}
+          <a href="blog/2020/10/15/7.12.0">blog post</a> for highlights and{" "}
+          <a href="https://github.com/babel/babel/releases/tag/v7.12.0">changelog</a> for more details!
+>>>>>>> f70f28388f89261c49a4d182633b6955b5344ca5
         </span>
       </div>
       <MiniRepl language={language} />
