@@ -73,7 +73,7 @@ babel --plugins @babel/plugin-proposal-class-properties script.js
 ### 通过 Node API 使用
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-proposal-class-properties"]
 });
 ```
