@@ -1,8 +1,8 @@
 <blockquote class="babel-callout babel-callout-warning">
   <p>
     在浏览器中编译的用例非常有限，
-    因此如果你在生产环境下工作，你应该在服务端预编译脚本。 
-    请查看 <a href="/docs/setup/#build-systems">配置构建系统</a> 
+    因此如果你在生产环境下工作，你应该在服务端预编译脚本。
+    请查看 <a href="/docs/setup/#build-systems">配置构建系统</a>
     了解更多信息。
   </p>
 </blockquote>
@@ -11,12 +11,8 @@
 
 你还可以使用更多在线工具对脚本进行原型化:
 
-<<<<<<< HEAD
-- [Babel 官方提供的 REPL](/repl)
-=======
-- [Babel's own REPL](https://babeljs.io/repl)
+- [Babel 官方提供的 REPL](https://babel.docschina.org/repl)
 - [CodeSandbox](https://codesandbox.io/s/babel-repl-custom-plugin-7s08o?file=/src/index.js)
->>>>>>> 3ab4f32200f518a45063f2560684b8873bd8603b
 
 运行 Babel 于在线编辑器上:
 
