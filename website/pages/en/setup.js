@@ -98,15 +98,9 @@ const StepFour = () => {
     <div className="step-hidden step-setup">
       <h2>
         <span className="step-no">4</span>
-<<<<<<< HEAD
-        {"创建"}
-        <code>.babelrc</code>
-        {" 配置文件"}
-=======
-        <translate desc="setup page - step 4 one">Create</translate>{" "}
+        <translate desc="setup page - step 4 one">创建</translate>{" "}
         <code>babel.config.json</code>{" "}
-        <translate desc="setup page - step 4 two">configuration file</translate>
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
+        <translate desc="setup page - step 4 two">配置文件</translate>
       </h2>
       <MarkdownBlock>{setupBabelrc}</MarkdownBlock>
     </div>

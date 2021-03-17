@@ -7,13 +7,6 @@ id: config-files
 
 Babel 有两种并行的配置文件方式，可以一起使用，也可以单独使用。
 
-<<<<<<< HEAD
-* 项目范围的配置
-  * `babel.config.json` 文件，以及不同扩展名的文件
-* 相关文件的配置
-  * `.babelrc.json` 文件，以及不同扩展名的文件
-  * 带有 `"babel"` 键的 `package.json` 文件
-=======
 <details>
   <summary>History</summary>
 | Version | Changes |
@@ -22,19 +15,18 @@ Babel 有两种并行的配置文件方式，可以一起使用，也可以单�
 | `v7.7.0` | Support `.babelrc.json`, `.babelrc.cjs`, `babel.config.json`, `babel.config.cjs` |
 </details>
 
-- Project-wide configuration
-  - `babel.config.json` files, with the different extensions (`.js`, `.cjs`, `.mjs`)
-- File-relative configuration
-  - `.babelrc.json` files, with the different extensions (`.babelrc`, `.js`, `.cjs`, `.mjs`)
-  - `package.json` files with a `"babel"` key
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
+- 项目范围的配置
+  - `babel.config.json` 文件，以及不同扩展名的文件 (`.js`, `.cjs`, `.mjs`)
+- 相关文件的配置
+  - `.babelrc.json` 文件，以及不同扩展名的文件 (`.babelrc`, `.js`, `.cjs`, `.mjs`)
+  - 带有 `"babel"` key 的 `package.json` 文件
 
 ## 项目范围的配置
 
 Babel 7.x 中的新功能，Babel 具有 ["root"](options.md#root) 目录的概念，默认为
 到当前的工作目录。对于项目范围的配置，Babel 将自动搜索
 对于此根目录下的 `"babel.config.json"` 文件，或者，在此根目录中使用支持[扩展名](#supported-file-extensions)的方式。
-再者，用户可以使用显式 
+再者，用户可以使用显式
 ["configFile"](options.md#configfile) 值覆盖默认的配置文件搜索行为。
 
 因为项目范围的配置文件与项目本身的文件的物理位置分开，
@@ -53,18 +45,10 @@ See the [monorepo](#monorepos) documentation for examples of how to use config f
 Babel 通过从被编译（受以下警告限制） ["filename"](options.md#filename) 所处的目录来加载 `.babelrc.json` 文件，
 或者加载其它[扩展类型](#supported-file-extensions)的等效文件。
 这种功能非常强大，因为它允许你为子 package 创建独立的配置。
-相关文件的配置可以设置 [merged](options.md#merging) 
+相关文件的配置可以设置 [merged](options.md#merging)
 使它们特定的配置覆盖项目范围的配置值，
 你也可以通过设置 ["overrides"](options.md#overrides) 来完成。
 
-<<<<<<< HEAD
-这些警告意味着：
-* `.babelrc.json` 文件*仅*适用于自己的 package。
-* `.babelrc.json` 文件在 packages 中，除非你选择加入 ["babelrcRoots"](options.md#babelrcroots) 字段，否则 Babel 将忽略的 root。
-
-有关如何配置具有多个 packages 的 monorepos 的更多讨论，请参阅 [monorepo](#monorepos) 相关文档。
-通过将 ["babelrc"](options.md#babelrc) 设置为 `false`，也可以禁用文件相关配置。
-=======
 There are a few edge cases to consider when using a file-relative config:
 
 - Searching will stop once a directory containing a `package.json` is found, so a relative config
@@ -72,41 +56,29 @@ There are a few edge cases to consider when using a file-relative config:
 - The ["filename"](options.md#filename) being compiled must be inside of
   ["babelrcRoots"](options.md#babelrcroots) packages, or else searching will be skipped entirely.
 
-These caveats mean that:
+这些警告意味着：
 
-- `.babelrc.json` files _only_ apply to files within their own package
-- `.babelrc.json` files in packages that aren't Babel's 'root' are ignored unless you opt in
-  with ["babelrcRoots"](options.md#babelrcroots).
+- `.babelrc.json` 文件_仅适用于_自己的 package
+- `.babelrc.json` 文件在 packages 中，除非你选择加入 ["babelrcRoots"](options.md#babelrcroots) 字段，
+否则 Babel 将忽略的 root。
 
-See the [monorepo](#monorepos) documentation for more discussion on how to configure monorepos that have many packages.
-File-relative configs can also be disabled by setting ["babelrc"](options.md#babelrc) to `false`.
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
+有关如何配置具有多个 packages 的 monorepos 的更多讨论，请参阅 [monorepo](#monorepos) 相关文档。
+通过将 ["babelrc"](options.md#babelrc) 设置为 `false`，也可以禁用文件相关配置。
 
 ### 6.x vs 7.x `.babelrc` loading
 
 来自 Babel 6.x 的用户可能会在这两个边缘情况下绊倒，这是 Babel 7.x 中的新功能。
 添加了这两个限制以解决 Babel 6.x 中的常见脚注：
 
-<<<<<<< HEAD
-* `.babelrc` 文件经常出乎意料地应用于 `node_modules` 依赖项。
-* `.babelrc` 文件 _failed_ 应用于符号链接 `node_modules`，当人们期望它们表现得像正常的依赖。
-* `.babelrc` 文件 _in_ `node_modules` 依赖关系将被检测到，即使插件和
+- `.babelrc` 文件经常出乎意料地应用于 `node_modules` 依赖项。
+- `.babelrc` 文件 _failed_ 应用于符号链接 `node_modules`，当人们期望它们表现得像正常的依赖。
+- `.babelrc` 文件 _in_ `node_modules` 依赖关系将被检测到，即使插件和
   它们内部的预设通常没有安装，甚至可能在版本中无效
   Babel 编译文件。
 
-对于具有 monorepo 结构的用户来说，这些情况会产生问题，因为如果你这样做的话
-有
-=======
-- `.babelrc` files applied to `node_modules` dependencies, often unexpectedly.
-- `.babelrc` files _failed_ to apply to symlinked `node_modules` when people expected them to behave like normal dependencies.
-- `.babelrc` files _in_ `node_modules` dependencies would be detected, even though the plugins and
-  presets inside they were generally not installed, and may not even be valid in the version of
-  Babel compiling the file.
+对于具有 monorepo 结构的用户来说，这些情况是_产生主要问题_的原因，
+因为如果你这样做的话
 
-These cases will _primarily_ cause issues for users with a monorepo structure, because if you
-have
-
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
 ```text
 .babelrc
 packages/
@@ -117,28 +89,17 @@ packages/
     package.json
     src/index.js
 ```
-<<<<<<< HEAD
-配置现在将被完全忽略，因为它跨越包边界
 
-一种替代方法是在每个使用 ["extends"](options.md#extends) 的子包中创建 `.babelrc` 
+配置现在将被完全忽略，因为它跨越 package 边界。
+
+一种替代方法是在每个使用 ["extends"](options.md#extends) 的子 package 中创建 `.babelrc`
+
 ```json
 { "extends": "../../.babelrc" }
 ```
+
 不幸的是，这种方法可能有点重复，取决于如何使用 Babel，
 可能需要设置 ["babelrcRoots"](options.md#babelrcroots)。
-=======
-
-the config will now be entirely ignored, because it is across a package boundary.
-
-One alternative would be to create a `.babelrc` in each sub-package that uses ["extends"](options.md#extends) as
-
-```json
-{ "extends": "../../.babelrc" }
-```
-
-Unfortunately, this approach can be a bit repetitive, and depending on how Babel is being used,
-could require setting ["babelrcRoots"](options.md#babelrcroots).
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
 
 鉴于此，可能更希望将 `.babelrc` 重命名为
 [project-wide "babel.config.json"](#project-wide-configuration)。如项目范围所述
@@ -358,48 +319,26 @@ JS 配置很棒，因为他们可以动态计算配置，但缺点是
 避免这种情况，Babel 希望用户在配置函数时告诉它如何管理
 在配置文件中缓存。
 
-<<<<<<< HEAD
-* `api.cache.forever()` - Permacache 计算的配置，永远不再调用该函数。
-* `api.cache.never()` - 不要缓存此配置，并且每次都重新执行该功能。
-* `api.cache.using(() => process.env.NODE_ENV)` - 根据 `NODE_ENV` 的值缓存。
+- `api.cache.forever()` - Permacache 计算的配置，永远不再调用该函数。
+- `api.cache.never()` - 不要缓存此配置，并且每次都重新执行该功能。
+- `api.cache.using(() => process.env.NODE_ENV)` - 根据 `NODE_ENV` 的值缓存。
   每次 `using` 回调返回的值都不是预期的值，总体而言
   将再次调用 config 函数，并将新条目添加到缓存中。
-* `api.cache.invalidate(() => process.env.NODE_ENV)` - 根据 `NODE_ENV` 的值缓存。
+- `api.cache.invalidate(() => process.env.NODE_ENV)` - 根据 `NODE_ENV` 的值缓存。
   每次 `using` 回调返回的值都不是预期的值，总体而言
   将再次调用 config 函数，缓存中的所有条目将替换为结果。
-* `api.cache(true)` - 与 `api.cache.forever()` 相同
-* `api.cache(false)` - 与 `api.cache.never()` 相同
-=======
-- `api.cache.forever()` - Permacache the computed config and never call the function again.
-- `api.cache.never()` - Do not cache this config, and re-execute the function every time.
-- `api.cache.using(() => process.env.NODE_ENV)` - Cache based on the value of `NODE_ENV`.
-  Any time the `using` callback returns a value other than the one that was expected, the overall
-  config function will be called again and a new entry will be added to the cache.
-- `api.cache.invalidate(() => process.env.NODE_ENV)` - Cache based on the value of `NODE_ENV`.
-  Any time the `using` callback returns a value other than the one that was expected, the overall
-  config function will be called again and all entries in the cache will be replaced with the result.
-- `api.cache(true)` - Same as `api.cache.forever()`
-- `api.cache(false)` - Same as `api.cache.never()`
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
+- `api.cache(true)` - 与 `api.cache.forever()` 相同
+- `api.cache(false)` - 与 `api.cache.never()` 相同
 
 由于实际的回调结果用于检查缓存条目是否有效，因此建议使用
 那：
 
-<<<<<<< HEAD
-* 回调应该小而且没有副作用。
-* 回调应该返回可能的最小范围的值。例如
-  `.using(() => process.env.NODE_ENV)` 上面的用法并不理想，因为它会造成一个未知的
+- 回调应该小而且没有副作用。
+- 回调应该返回可能的最小范围的值。例如
+  `.using(() => process.env.NODE_ENV)`上面的用法并不理想，因为它会造成一个未知的
   高速缓存条目的数量取决于检测到多少个 `NODE_ENV` 值。
   `.using(() => process.env.NODE_ENV === "development")` 更安全，因为缓存条目
   只能是 `true` 或 `false`。
-=======
-- Callbacks should be small and side-effect free.
-- Callbacks should return values with the smallest range possible. For example, the
-  `.using(() => process.env.NODE_ENV)` usage above is not ideal because it would create an unknown
-  number of cache entries depending on how many values of `NODE_ENV` are detected. It would be
-  safer to do `.using(() => process.env.NODE_ENV === "development")` because then the cache entry
-  can only ever be `true` or `false`.
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
 
 ### `api.env(...)`
 
@@ -410,17 +349,10 @@ JS 配置很棒，因为他们可以动态计算配置，但缺点是
 
 它有几种不同的形式：
 
-<<<<<<< HEAD
-* `api.env("production")` 返回 `true` 如果 `envName === "production"`.
-* `api.env(["development", "test"])` 返回 `true` 如果 `["development", "test"].includes(envName)`.
-* `api.env()` 返回当前的 `envName` 字符串。
-* `api.env(envName => envName.startsWith("test-"))` 如果 env 以 "test-" 开头，则返回 `true`。
-=======
-- `api.env("production")` returns `true` if `envName === "production"`.
-- `api.env(["development", "test"])` returns `true` if `["development", "test"].includes(envName)`.
-- `api.env()` returns the current `envName` string.
-- `api.env(envName => envName.startsWith("test-"))` returns `true` if the env starts with "test-".
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
+- `api.env("production")` 返回 `true` 如果 `envName === "production"`.
+- `api.env(["development", "test"])` 返回 `true` 如果 `["development", "test"].includes(envName)`.
+- `api.env()` 返回当前的 `envName` 字符串。
+- `api.env(envName => envName.startsWith("test-"))` 如果 env 以 "test-" 开头，则返回 `true`。
 
 > **Note:** This function internally makes use of [`api.cache`](#apicache) mentioned above to ensure that Babel is aware that this build depends on a specific `envName`. You should not use it alongside with `api.cache.forever()` or `api.cache.never()`.
 
@@ -430,14 +362,9 @@ JS 配置很棒，因为他们可以动态计算配置，但缺点是
 由于 Babel 的许多实例可能在不同的 `caller` 的同一进程中运行
 值，这个 API 旨在自动配置 `api.cache`，就像 `api.env()` 一样。
 
-<<<<<<< HEAD
-`caller` 值可用作回调函数的第一个参数。最好用
-有类似的东西
-=======
-The `caller` value is available as the first parameter of the callback function. It is best used
-with something like
+`caller` 值可用作回调函数的第一个参数。
+最好用有类似的东西
 
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
 ```js
 function isBabelRegister(caller) {
   return !!(caller && caller.name === "@babel/register");
@@ -451,23 +378,14 @@ module.exports = function(api) {
   };
 };
 ```
-<<<<<<< HEAD
-根据特定环境切换配置行为。
-=======
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
 
-to toggle configuration behavior based on a specific environment.
+根据特定环境切换配置行为。
 
 ### `api.assertVersion(range)`
 
-<<<<<<< HEAD
 虽然 `api.version` 在一般情况下很有用，但有时候声明你的版本会很好。
 此 API 公开了一种简单的方法：
-=======
-While `api.version` can be useful in general, it's sometimes nice to just declare your version.
-This API exposes a simple way to do that with:
 
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
 ```js
 module.exports = function(api) {
   api.assertVersion("^7.2");

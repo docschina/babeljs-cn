@@ -15,10 +15,6 @@ export default config;
 
 <blockquote class="babel-callout babel-callout-info">
   <p>
-<<<<<<< HEAD
-    欲了解更多信息，请参阅 <a href="https://github.com/rollup/rollup">rollup</a> 和 <a href="https://github.com/rollup/rollup-plugin-babel">rollup-plugin-babel</a> 项目.
-=======
-    For more information see the <a href="https://github.com/rollup/rollup">rollup</a> and <a href="https://github.com/rollup/plugins/tree/master/packages/babel">@rollup/plugin-babel</a> repos.
->>>>>>> 42632b66e02e898b53f56573cbf10769c62a1ddf
+    欲了解更多信息，请参阅 <a href="https://github.com/rollup/rollup">rollup</a> 和 <a href="https://github.com/rollup/plugins/tree/master/packages/babel">@rollup/plugin-babel</a> 项目.
   </p>
 </blockquote>
