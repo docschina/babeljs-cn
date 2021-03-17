@@ -42,11 +42,7 @@ Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是�
    }
    ```
 
-<<<<<<< HEAD
-    > 上面的浏览器列表只是一个随意的例子。你必须根据想要支持的浏览器进行调整。
-=======
-   > The browsers list above is just an arbitrary example. You will have to adapt it for the browsers you want to support. See [here](preset-env.md) for more `@babel/preset-env` options.
->>>>>>> 83bfd5879af0e38f8e2ee2e2583b45b97f621975
+> 上面的浏览器列表只是一个随意的例子。你必须根据想要支持的浏览器进行调整。更多 `@babel/preset-env` 选项，请查看 [这里](preset-env.md)。
 
 或者使用 `babel.config.js`，如果你在使用旧版本 Babel
 
