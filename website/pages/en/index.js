@@ -177,17 +177,9 @@ const Hero = ({ language }) => (
       <p>今天就开始使用下一代 JavaScript 语法吧！</p>
       <div className="hero__announcement">
         <span>
-<<<<<<< HEAD
-          <strong>Babel 7 发布!</strong> 请阅读我们的{" "}
-          <a href="/blog/2018/08/27/7.0.0">公告</a> 以及{" "}
-          <a href={siteConfig.getDocUrl("v7-migration", language)}>升级指南</a>
-          {""}
-          了解更多详情。
-=======
-          <strong>Babel 7.13 is released!</strong> Please read our{" "}
-          <a href="blog/2021/02/22/7.13.0">blog post</a> for highlights and{" "}
-          <a href="https://github.com/babel/babel/releases/tag/v7.13.0">changelog</a> for more details!
->>>>>>> 3d0c664c64c5e211c0e0c90baf67ed9cdac8e243
+          <strong>Babel 7.12 发布！</strong> 请阅读我们的{" "}
+          <a href="blog/2020/10/15/7.12.0">博客公告</a> 以及{" "}
+          <a href="https://github.com/babel/babel/releases/tag/v7.12.0">changelog</a> 了解更多详情！
         </span>
       </div>
       <MiniRepl language={language} />
