@@ -174,12 +174,8 @@ npm install --save-dev @babel/preset-env
 
 ## Polyfill
 
-<<<<<<< HEAD
 > 🚨 自 Babel 7.4.0 起，该 package 已被弃用，你可以直接引入 `core-js/stable`（为 ECMAScript 新特性提供的 polyfill）以及 `regenerator-runtime/runtime` (需要转译 generator 函数)：
-=======
-> 🚨 As of Babel 7.4.0, this package has been deprecated in favor of directly including `core-js/stable` (to polyfill ECMAScript features) and `regenerator-runtime/runtime` (needed to use transpiled generator functions):
 >
->>>>>>> 83bfd5879af0e38f8e2ee2e2583b45b97f621975
 > ```js
 > import "core-js/stable";
 > import "regenerator-runtime/runtime";
