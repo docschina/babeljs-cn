@@ -82,7 +82,7 @@ For more information on setting options for a preset, refer to the [preset optio
 
 ### `targets`
 
-`string | Array<string> | { [string]: string }`, defaults to `{}`.
+`string | Array<string> | { [string]: string }`, defaults to the top-level `targets` option if no browserslist-related option is specified in `@babel/preset-env`'s docs, otherwise to `{}`.
 
 Describes the environments you support/target for your project.
 
@@ -154,9 +154,9 @@ You may also target browsers supporting ES Modules (https://www.ecma-internation
 
 #### `targets.node`
 
-`string | "current" | true`.
+`string | "current"`.
 
-If you want to compile against the current node version, you can specify `"node": true` or `"node": "current"`, which would be the same as `"node": process.versions.node`.
+If you want to compile against the current node version, you can specify `"node": "current"`, which would be the same as `"node": process.versions.node`.
 
 #### `targets.safari`
 
