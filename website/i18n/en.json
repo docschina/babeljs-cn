@@ -185,7 +185,7 @@
         "sidebar_label": "highlight"
       },
       "index": {
-        "title": "什么是 Babel ?"
+        "title": "什么是 Babel？"
       },
       "learn": {
         "title": "学习 ES2015"
@@ -332,6 +332,10 @@
       "babel-plugin-proposal-private-property-in-object": {
         "title": "@babel/plugin-proposal-private-property-in-object",
         "sidebar_label": "proposal-private-property-in-object"
+      },
+      "babel-plugin-proposal-record-and-tuple": {
+        "title": "@babel/plugin-proposal-record-and-tuple",
+        "sidebar_label": "proposal-proposal-record-and-tuple"
       },
       "babel-plugin-proposal-throw-expressions": {
         "title": "@babel/plugin-proposal-throw-expressions",
@@ -1338,8 +1342,11 @@
     }
   },
   "pages-strings": {
+    "Assumptions|assumptions page - header": "Assumptions",
     "Installation|setup page - step 2": "Installation",
     "Usage|setup page - step 3": "Usage",
+    "创建|setup page - step 4 one": "创建",
+    "配置文件|setup page - step 4 two": "配置文件",
     "Help Translate|recruit community translators for your project": "Help Translate",
     "Edit this Doc|recruitment message asking to edit the doc source": "Edit",
     "Translate this Doc|recruitment message asking to translate the docs": "Translate"
