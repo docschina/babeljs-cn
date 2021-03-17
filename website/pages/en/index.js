@@ -144,6 +144,12 @@ const OpenCollectiveSponsors = () => {
             title="金牌赞助（Open Collective）"
             tier="gold-sponsors"
           />
+          <SponsorTier
+            type="opencollective"
+            title="Silver Sponsors (Open Collective)"
+            tier="silver-sponsors"
+            button={ocButton}
+          />
         </div>
       </div>
     </div>
