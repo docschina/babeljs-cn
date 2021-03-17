@@ -42,11 +42,7 @@ Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是�
    }
    ```
 
-<<<<<<< HEAD
-    > 上面的浏览器列表只是一个随意的例子。你必须根据想要支持的浏览器进行调整。
-=======
-   > The browsers list above is just an arbitrary example. You will have to adapt it for the browsers you want to support. See [here](preset-env.md) for more `@babel/preset-env` options.
->>>>>>> f70f28388f89261c49a4d182633b6955b5344ca5
+> 上面的浏览器列表只是一个随意的例子。你必须根据想要支持的浏览器进行调整。更多 `@babel/preset-env` 选项，请查看 [这里](preset-env.md)。
 
 或者使用 `babel.config.js`，如果你在使用旧版本 Babel
 
@@ -178,12 +174,8 @@ npm install --save-dev @babel/preset-env
 
 ## Polyfill
 
-<<<<<<< HEAD
 > 🚨 自 Babel 7.4.0 起，该 package 已被弃用，你可以直接引入 `core-js/stable`（为 ECMAScript 新特性提供的 polyfill）以及 `regenerator-runtime/runtime` (需要转译 generator 函数)：
-=======
-> 🚨 As of Babel 7.4.0, this package has been deprecated in favor of directly including `core-js/stable` (to polyfill ECMAScript features) and `regenerator-runtime/runtime` (needed to use transpiled generator functions):
 >
->>>>>>> f70f28388f89261c49a4d182633b6955b5344ca5
 > ```js
 > import "core-js/stable";
 > import "regenerator-runtime/runtime";
