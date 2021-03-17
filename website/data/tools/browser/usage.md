@@ -1,9 +1,5 @@
 
-<<<<<<< HEAD
-<h4>使用 babel-standalone </h4>
-=======
-<h4>With @babel/standalone</h4>
->>>>>>> 097bdc14f350c0cb680ba2c698446463b83a8cbb
+<h4>使用 @babel/standalone</h4>
 
 ```html
 <div id="output"></div>
