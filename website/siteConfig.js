@@ -85,16 +85,10 @@ const GITHUB_URL = "https://github.com/babel/website";
 const siteConfig = {
   useEnglishUrl: true,
   editUrl: `${GITHUB_URL}/blob/master/docs/`,
-<<<<<<< HEAD
-  title: "Babel 中文文档 - 印记中文",
-  tagline: "下一代 JavaScript 编译器",
+  title: "Babel 中文文档",
+  tagline: "下一代 JavaScript compiler",
   url: "https://babel.docschina.org",
-=======
-  title: "Babel",
-  tagline: "The compiler for next generation JavaScript",
-  url: "https://babeljs.io",
-  v6Url: "https://v6.babeljs.io/docs/setup/",
->>>>>>> 48186339ee2f4bdf322d3e78d112376d9d4fab10
+  v6Url: "https://babel.docschina.org/docs/en/6.26.3/",
   baseUrl: "/",
   getDocUrl: (doc, language) =>
     `${siteConfig.baseUrl}docs/${language || DEFAULT_LANGUAGE}/${doc}`,
