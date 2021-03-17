@@ -6,12 +6,8 @@
 {
   "plugins": {
     "metalsmith-babel": {
-<<<<<<< HEAD
       // babel 选项
-=======
-      // babel options
       "presets": ["@babel/preset-env"]
->>>>>>> 3d63a98a5047f8f5f5479c8c33362a23711808aa
     }
   }
 }
@@ -24,14 +20,10 @@ var Metalsmith = require("metalsmith");
 var babel = require("metalsmith-babel");
 
 new Metalsmith("./source")
-<<<<<<< HEAD
-  .use(babel({/* babel 选项 */}));
-=======
   .use(babel({
-    /* babel options */
+    /* babel 选项 */
     presets: ["@babel/preset-env"]
   }))
->>>>>>> 3d63a98a5047f8f5f5479c8c33362a23711808aa
   .build(function(err, files) {
     if (err) {
       throw err;

@@ -1,5 +1,5 @@
 const React = require("react");
-const translate = require("../../server/translate.js").translate;
+// const translate = require("../../server/translate.js").translate;
 const siteConfig = require(process.cwd() + "/siteConfig.js");
 
 class Button extends React.Component {
@@ -144,32 +144,6 @@ const OpenCollectiveSponsors = () => {
             title="金牌赞助（Open Collective）"
             tier="gold-sponsors"
           />
-          <SponsorTier
-            type="opencollective"
-            title="Silver Sponsors (Open Collective)"
-            tier="silver-sponsors"
-            button={ocButton}
-          />
-<<<<<<< HEAD
-          <h3>Patreon Sponsors</h3>
-          <SponsorTier
-            type="patreon"
-            title="金牌赞助（众筹）"
-            tier="gold-sponsors"
-          />
-          <SponsorTier
-            type="other"
-            title="Misc Sponsors"
-            tier="other-sponsors"
-          />
-          <SponsorTier
-            type="patreon"
-            title="Silver Sponsors (Patreon)"
-            tier="silver-sponsors"
-            button={patreonButton}
-          />
-=======
->>>>>>> 3d63a98a5047f8f5f5479c8c33362a23711808aa
         </div>
       </div>
     </div>
@@ -197,17 +171,9 @@ const Hero = ({ language }) => (
       <p>今天就开始使用下一代 JavaScript 语法吧！</p>
       <div className="hero__announcement">
         <span>
-<<<<<<< HEAD
-          <strong>Babel 7 发布!</strong> 请阅读我们的{" "}
-          <a href="/blog/2018/08/27/7.0.0">公告</a> 以及{" "}
-          <a href={siteConfig.getDocUrl("v7-migration", language)}>升级指南</a>
-          {""}
-          了解更多详情。
-=======
-          <strong>Babel 7.12 is released!</strong> Please read our{" "}
-          <a href="blog/2020/10/15/7.12.0">blog post</a> for highlights and{" "}
-          <a href="https://github.com/babel/babel/releases/tag/v7.12.0">changelog</a> for more details!
->>>>>>> 3d63a98a5047f8f5f5479c8c33362a23711808aa
+          <strong>Babel 7.12 发布！</strong> 请阅读我们的{" "}
+          <a href="blog/2020/10/15/7.12.0">博客公告</a> 以及{" "}
+          <a href="https://github.com/babel/babel/releases/tag/v7.12.0">changelog</a> 了解更多详情！
         </span>
       </div>
       <MiniRepl language={language} />
