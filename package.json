@@ -20,13 +20,9 @@
     "start": "run-p start:codemirror6 start:repl start:docusaurus",
     "start:docusaurus": "cd website && yarn start",
     "start:repl": "webpack -d -w",
-<<<<<<< HEAD
+    "start:codemirror6": "cross-env NODE_ENV=development yarn build:codemirror6",
     "test": "remark docs README.md --quiet",
     "deploy": "gh-pages -d ./website/build/babel -b gh-pages-v7"
-=======
-    "start:codemirror6": "cross-env NODE_ENV=development yarn build:codemirror6",
-    "test": "remark docs README.md --quiet"
->>>>>>> 3d0c664c64c5e211c0e0c90baf67ed9cdac8e243
   },
   "remarkConfig": {
     "plugins": {
