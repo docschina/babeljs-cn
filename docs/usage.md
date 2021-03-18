@@ -3,13 +3,13 @@ id: usage
 title: 使用指南
 ---
 
-Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是“终端用户”还是构建 Babel 本身的集成。本文是快速使用这些工具的指南，你可以在文档的“用法”部分中阅读有关它们的更多信息。
+无论你是“终端用户”还是基于 Babel 自身构建一个集成工具的用户，Babel 工具链中都有很多工具可以让你轻松使用 Babel。这里简要介绍下这些工具，你可以在文档的“用法”部分中阅读有关它们的更多信息。
 
-> 如果你正在使用框架，不同框架配置 Babel 的方式可能会有所不同，实际上有些框架已经为你配置。具体的配置方法请查看[交互式设置指南](/setup.html)。
+> 如果你正在使用框架，不同框架配置 Babel 的方式可能会有所不同，实际上有些框架已经为你配置。具体的配置方法请查看 [交互式设置指南](/setup.html)。
 
 ## 概览
 
-本文将向你展示如何将使用 ES2015+ 语法的 JavaScript 应用程序代码编译为适用于当前浏览器的代码。这将涉及转换新语法和实现缺失的功能。
+本文将向你展示如何将使用 ES2015+ 语法的 JavaScript 应用程序代码编译为适用于当前浏览器的代码。这将涉及转换新语法和 polyfill 缺失的功能。
 
 整个设置过程包括：
 
@@ -20,7 +20,7 @@ Babel 工具链中有很多工具可以让你轻松使用 Babel，无论你是�
    npm install --save @babel/polyfill
    ```
 
-2. 使用以下内容在项目的根目录中创建名为 `babel.config.json` (requires `v7.8.0` and above) 的配置文件：
+2. 使用以下内容在项目的根目录中创建名为 `babel.config.json` (需要 `v7.8.0` 及以上版本) 的配置文件：
 
    ```json
    {
@@ -72,17 +72,17 @@ module.exports = { presets };
    ./node_modules/.bin/babel src --out-dir lib
    ```
 
-   > 你可以通过 npm@5.2.0 附带的 npm 包运行器，用 `npx babel` 替换 `./node_modules/.bin/babel` 来缩短该命令。
+   > 你可以通过 npm@5.2.0 附带的 npm package runner，用 `npx babel` 替换 `./node_modules/.bin/babel` 来缩短该命令。
 
 请继续阅读，了解其工作原理的逐步说明以及对所使用的每种工具的介绍。
 
 ## CLI 的基本用法
 
-你需要的所有 Babel 模块都将作为单独的 npm 包发布，其范围为 `@babel`（自版本7开始）。这种模块化设计允许每种工具都针对特定用例设计。下面我们来看看 `@babel/core` 和 `@babel/cli`。
+你需要的所有 Babel 模块都将作为单独的 npm 包发布，其范围为 `@babel`（自版本 7 开始）。这种模块化设计允许每种工具都针对特定用例设计。下面我们来看看 `@babel/core` 和 `@babel/cli`。
 
 ### 核心库
 
-Babel 的核心功能在 [@babel/core](core.md) 模块。通过以下命令安装后：
+Babel 的核心功能容纳于 [@babel/core](core.md) 模块。通过以下命令安装后：
 
 ```sh
 npm install --save-dev @babel/core
@@ -96,11 +96,11 @@ const babel = require("@babel/core");
 babel.transform("code", optionsObject);
 ```
 
-但作为终端用户，你可能希望安装其他工具作为 `@babel/core` 的接口，并能很好地集成在你的开发过程中。即便如此，你仍可能需要查看其文档页面以了解这些选项，其中大部分选项也可以通过其他工具进行设置。
+但作为终端用户，你可能需要安装其他工具，并且通过此工具提供的接口来使用 `@babel/core`，这样更容易与你的开发过程集成。即便其中的大部分选项可以通过其他工具进行设置，你可能还是需要查看 Babel 文档页面来了解这些选项。
 
 ### CLI 工具
 
-[@babel/cli](cli.md) 是一个允许你从终端使用 babel 的工具。这是安装命令和基本用法示例：
+[@babel/cli](cli.md) 是一个允许你在终端使用 babel 的工具。这是安装命令和基本用法示例：
 
 ```sh
 npm install --save-dev @babel/core @babel/cli
