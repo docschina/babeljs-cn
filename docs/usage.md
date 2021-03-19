@@ -108,13 +108,13 @@ npm install --save-dev @babel/core @babel/cli
 ./node_modules/.bin/babel src --out-dir lib
 ```
 
-它使用我们设置的解析方式来解析 `src` 目录中的所有 JavaScript 文件，并将转换后每个文件输出到 `lib` 目录。由于我们还没有设置解析方式，这里输出代码将与输入相同（不保留确切的代码样式）。我们可以通过将它们作为选项传入来指定我们想要的解析方式。
+它解析 `src` 目录中的所有 JavaScript 文件，使用我们设置的转换规则,并将转换后每个文件输出到 `lib` 目录。由于我们还没有设置转换规则，这里输出代码将与输入保持一致（不保留确切的代码样式）。我们可以指定我们想要的转换规则，通过把它们作为选项传给 CLI。
 
-我们使用上面的 `--out-dir` 选项。你可以通过使用 `--help` 运行它来查看 cli 工具接受的其余选项。但对我们来说最重要的是 `--plugins` 和 `--presets`。
+我们使用上面的 `--out-dir` 选项。你可以通过使用 `--help` 运行它来查看 cli 工具接收的其余选项。但对我们来说最重要的是 `--plugins` 和 `--presets`。
 
 ## plugins & presets
 
-代码转换以插件的形式出现，插件是小型 JavaScript 程序，它指示 Babel 如何对代码进行转换。你甚至可以编写自己的插件来应用你想要的任何代码转换。想要将 ES2015+ 语法转换为 ES5，我们可以依赖官方插件，如 `@babel/plugin-transform-arrow-functions`：
+转换规则会体现为插件的形式，插件是小型 JavaScript 程序，它指示 Babel 如何进行代码转换。你甚至可以编写自己的插件，来应用你想要的任何转换规则。想要将 ES2015+ 语法转换为 ES5，我们可以依赖类似 `@babel/plugin-transform-arrow-functions` 这样的官方插件，如：
 
 ```sh
 npm install --save-dev @babel/plugin-transform-arrow-functions
@@ -122,7 +122,7 @@ npm install --save-dev @babel/plugin-transform-arrow-functions
 ./node_modules/.bin/babel src --out-dir lib --plugins=@babel/plugin-transform-arrow-functions
 ```
 
-现在我们代码中的所有箭头函数都将转换为 ES5 兼容函数表达式：
+现在代码中的所有箭头函数都将被转换为 ES5 兼容的函数表达式：
 
 ```js
 const fn = () => 1;
@@ -134,7 +134,7 @@ var fn = function fn() {
 };
 ```
 
-这是一个好的开始！如果想要转换代码中还有其他 ES2015+ 功能。我们可以使用 "preset" 来代替预先设定的一组插件，而不是逐一添加我们想要的所有插件。
+这是一个好的开始！如果代码中还有其他 ES2015+ 功能也需要转换。我们可以使用一个 "preset"，其中包含着一组预先设定的插件，而不是逐一添加我们想要的所有插件。
 
 就像使用 plugins 一样，你也可以创建自己的 preset，分享你需要的任何插件组合。在这个例子中，我们使用了 `env` preset。
 
@@ -144,13 +144,13 @@ npm install --save-dev @babel/preset-env
 ./node_modules/.bin/babel src --out-dir lib --presets=@babel/env
 ```
 
-没有任何配置，这个 preset 包括支持现代 JavaScript（ES2015，ES2016 等）的所有插件。但是 presets 也可以选择。我们不从终端传入 cli 和 preset 选项，而是通过另一种传入选项的方式：配置文件。
+没有任何配置，这个 preset 包括支持现代 JavaScript（ES2015，ES2016 等）的所有插件。然而 presets 也可以接收配置选项。相比从终端传入 cli 和 preset 选项，我们还可以使用另一种方式传入选项：通过配置文件。
 
 ## 配置文件
 
-> 根据你的需要，可以使用几种不同的方法配置文件。请务必阅读有关如何 [配置 Babel](configuration.md) 的深入指南以获取更多信息。
+> 根据你的需要，可以使用几种不同形式的配置文件。请务必阅读有关如何 [配置 Babel](configuration.md) 的深入指南以获取更多信息。
 
-现在，让我们创建一个名为 `babel.config.json` (requires `v7.8.0` and above) 的文件，其中包含以下内容：
+现在，让我们创建一个名为 `babel.config.json` (需要 `v7.8.0` 及以上) 的文件，其中包含以下内容：
 
 ```json
 {
@@ -170,24 +170,24 @@ npm install --save-dev @babel/preset-env
 }
 ```
 
-现在 `env` preset 只会为目标浏览器中没有的功能加载转换插件。接下来我们看看 polyfills。
+现在 `env` preset 只会为目标浏览器中没有的功能加载转换插件。上面已经介绍过所有语法。接下来我们看看 polyfills。
 
 ## polyfill
 
-> 🚨 自 Babel 7.4.0 起，该 package 已被弃用，你可以直接引入 `core-js/stable`（为 ECMAScript 新特性提供的 polyfill）以及 `regenerator-runtime/runtime` (需要转译 generator 函数)：
+> 🚨 自 Babel 7.4.0 起，此 package 已被弃用，你可以直接引入 `core-js/stable`（用于 polyfill ECMAScript 新特性）以及 `regenerator-runtime/runtime` (被用于转译 generator 函数)：
 >
 > ```js
 > import "core-js/stable";
 > import "regenerator-runtime/runtime";
 > ```
 
-[@babel/polyfill](polyfill.md) 模块包括 [core-js](https://github.com/zloirock/core-js) 和自定义 [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js) 来模拟完整的 ES2015+ 环境。
+[@babel/polyfill](polyfill.md) 模块包括 [core-js](https://github.com/zloirock/core-js) 和一个自定义 [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js)，用于模拟完整的 ES2015+ 环境。
 
-这意味着你可以使用像 `Promise` 或 `WeakMap` 这样的新内置函数，像 `Array.from` 或 `Object.assign` 这样的静态方法，像`Array.prototype.includes` 这样的实例方法，以及 generator 函数（提供给你使用 regenerator 插件）。为了做到这一点，polyfill 增加了全局范围以及像 `String` 这样的原生原型。
+这意味着你可以使用像 `Promise` 或 `WeakMap` 这样的新内置函数，像 `Array.from` 或 `Object.assign` 这样的静态方法，像 `Array.prototype.includes` 这样的实例方法，以及（提供 regenerator 插件后可以使用） generator 函数。为了做到这一点，polyfill 会在全局作用域和类似 `String` 这样的内置对象的原型对象上添加对象或方法。
 
-对于 library/tool 作者来说，这可能太多了。如果你不需要像 `Array.prototype.includes` 这样的实例方法，可以使用 [transform runtime](plugin-transform-runtime.md) 插件而不是 `@babel/polyfill` 污染全局范围。
+对于 library/tool 作者来说，这可能显得多余。如果你不需要像 `Array.prototype.includes` 这样的实例方法，可以使用 [transform runtime](plugin-transform-runtime.md) 插件，来避免 `@babel/polyfill` 污染全局作用域。
 
-更进一步，如果你确切知道需要实现的功能，可以直接从 [core-js](https://github.com/zloirock/core-js#commonjs) 中获取它们。
+更进一步，如果你明确知道需要 polyfill 的那些功能，可以直接从 [core-js](https://github.com/zloirock/core-js#commonjs) 中引用。
 
 由于我们正在构建一个应用程序，我们可以只安装 `@babel/polyfill`:
 
@@ -195,9 +195,9 @@ npm install --save-dev @babel/preset-env
 npm install --save @babel/polyfill
 ```
 
-> 注意 `--save` 选项而不是 `--save-dev`，因为这是一个需要在源代码之前运行的 polyfill。
+> 注意：使用 `--save` 选项，而不是 `--save-dev`，这是因为 polyfill 需要在运行时中在源代码之前执行。
 
-幸运的是，对于我们来说，我们使用的是 `env` preset，其中有一个 `"useBuiltIns"` 选项，当设置为 `"usage"` 时，实际上将应用上面提到的最后一个优化，只包括你需要的 polyfill。使用此新选项，配置更改如下：
+幸运的是，对于我们来说，我们使用的是 `env` preset，其中有一个 `"useBuiltIns"` 选项，当设置为 `"usage"` 时，实际上针对最后一个版本的浏览器应用优化，只会包含你需要的 polyfill。使用此新选项，配置更改如下：
 
 ```json
 {
@@ -224,7 +224,7 @@ Babel 将检查你的所有代码，以查找目标环境中缺少的功能，�
 Promise.resolve().finally();
 ```
 
-会变成这个（因为 Edge 17 没有 `Promise.prototype.finally`）：
+会变成这样（因为 Edge 17 没有 `Promise.prototype.finally`）：
 
 ```js
 require("core-js/modules/es.promise.finally");
@@ -232,10 +232,10 @@ require("core-js/modules/es.promise.finally");
 Promise.resolve().finally();
 ```
 
-如果我们没有将 `env` preset 的 `"useBuiltIns"` 选项的设置为 `"usage"` ，就必须在其他代码之前 require *仅一次*完整的 polyfill。
+如果没有将 `env` preset 的 `"useBuiltIns"` 选项的设置为 `"usage"` ，我们必须在入口起点的其他代码之前先完整 polyfill *一次*。
 
 ## 总结
 
-我们使用 `@babel/cli` 从终端运行 Babel，`@babel/polyfill` 来实现所有新的 JavaScript 功能，`env` preset 只包含我们使用的功能的转换，实现我们的目标浏览器中缺少的功能。
+我们使用 `@babel/cli` 从终端运行 Babel，`@babel/polyfill` 用于 polyfill 所有新的 JavaScript 功能，`env` preset 只包含我们使用的功能的转换规则，polyfills 用于填充目标浏览器中缺少的功能。
 
-有关使用构建系统，IDE 等设置 Babel 的更多信息，请查看[交互式设置指南](/setup.html)。
+有关使用构建系统设置 Babel，以及 IDE 等更多信息，请查看 [交互式设置指南](/setup.html)。
