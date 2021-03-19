@@ -93,7 +93,7 @@ npm install --save-dev @babel/core
 ```js
 const babel = require("@babel/core");
 
-babel.transform("code", optionsObject);
+babel.transformSync("code", optionsObject);
 ```
 
 但作为终端用户，你可能需要安装其他工具，并且通过此工具提供的接口来使用 `@babel/core`，这样更容易与你的开发过程集成。即便其中的大部分选项可以通过其他工具进行设置，你可能还是需要查看 Babel 文档页面来了解这些选项。
@@ -112,9 +112,9 @@ npm install --save-dev @babel/core @babel/cli
 
 我们使用上面的 `--out-dir` 选项。你可以通过使用 `--help` 运行它来查看 cli 工具接受的其余选项。但对我们来说最重要的是 `--plugins` 和 `--presets`。
 
-## Plugins & Presets
+## plugins & presets
 
-代码转换以插件的形式出现，插件是小型 JavaScript 程序，它指示 Babel 如何对代码进行转换。你甚至可以编写自己的插件来应用你想要的任何代码转换。要将ES2015+ 语法转换为 ES5，我们可以依赖官方插件，如 `@ babel / plugin-transform-arrow-functions`：
+代码转换以插件的形式出现，插件是小型 JavaScript 程序，它指示 Babel 如何对代码进行转换。你甚至可以编写自己的插件来应用你想要的任何代码转换。想要将 ES2015+ 语法转换为 ES5，我们可以依赖官方插件，如 `@babel/plugin-transform-arrow-functions`：
 
 ```sh
 npm install --save-dev @babel/plugin-transform-arrow-functions
@@ -127,7 +127,7 @@ npm install --save-dev @babel/plugin-transform-arrow-functions
 ```js
 const fn = () => 1;
 
-// converted to
+// 转为
 
 var fn = function fn() {
   return 1;
@@ -146,7 +146,7 @@ npm install --save-dev @babel/preset-env
 
 没有任何配置，这个 preset 包括支持现代 JavaScript（ES2015，ES2016 等）的所有插件。但是 presets 也可以选择。我们不从终端传入 cli 和 preset 选项，而是通过另一种传入选项的方式：配置文件。
 
-## 配置
+## 配置文件
 
 > 根据你的需要，可以使用几种不同的方法配置文件。请务必阅读有关如何 [配置 Babel](configuration.md) 的深入指南以获取更多信息。
 
@@ -172,7 +172,7 @@ npm install --save-dev @babel/preset-env
 
 现在 `env` preset 只会为目标浏览器中没有的功能加载转换插件。接下来我们看看 polyfills。
 
-## Polyfill
+## polyfill
 
 > 🚨 自 Babel 7.4.0 起，该 package 已被弃用，你可以直接引入 `core-js/stable`（为 ECMAScript 新特性提供的 polyfill）以及 `regenerator-runtime/runtime` (需要转译 generator 函数)：
 >
@@ -185,7 +185,7 @@ npm install --save-dev @babel/preset-env
 
 这意味着你可以使用像 `Promise` 或 `WeakMap` 这样的新内置函数，像 `Array.from` 或 `Object.assign` 这样的静态方法，像`Array.prototype.includes` 这样的实例方法，以及 generator 函数（提供给你使用 regenerator 插件）。为了做到这一点，polyfill 增加了全局范围以及像 `String` 这样的原生原型。
 
-对于 library/tool 作者来说，这可能太多了。如果你不需要像 `Array.prototype.includes` 这样的实例方法，可以使用[ [transform runtime](plugin-transform-runtime.md) 插件而不是 `@babel/polyfill` 污染全局范围。
+对于 library/tool 作者来说，这可能太多了。如果你不需要像 `Array.prototype.includes` 这样的实例方法，可以使用 [transform runtime](plugin-transform-runtime.md) 插件而不是 `@babel/polyfill` 污染全局范围。
 
 更进一步，如果你确切知道需要实现的功能，可以直接从 [core-js](https://github.com/zloirock/core-js#commonjs) 中获取它们。
 
@@ -236,6 +236,6 @@ Promise.resolve().finally();
 
 ## 总结
 
-我们使用 `@babel / cli` 从终端运行 Babel，`@babel/polyfill` 来实现所有新的 JavaScript 功能，`env` preset 只包含我们使用的功能的转换，实现我们的目标浏览器中缺少的功能。
+我们使用 `@babel/cli` 从终端运行 Babel，`@babel/polyfill` 来实现所有新的 JavaScript 功能，`env` preset 只包含我们使用的功能的转换，实现我们的目标浏览器中缺少的功能。
 
 有关使用构建系统，IDE 等设置 Babel 的更多信息，请查看[交互式设置指南](/setup.html)。
