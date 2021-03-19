@@ -1331,14 +1331,13 @@
       "GitHub": "GitHub"
     },
     "categories": {
-      "Guides": "Guides",
-      "General": "General",
-      "Usage": "Usage",
-      "Presets": "Presets",
-      "Tooling": "Tooling",
-      "常规": "常规",
+      "指南": "指南",
+      "通用": "通用",
       "用法": "用法",
-      "工具": "工具"
+      "presets": "presets",
+      "工具": "工具",
+      "常规": "常规",
+      "Presets": "Presets"
     }
   },
   "pages-strings": {
