@@ -185,7 +185,7 @@
         "sidebar_label": "highlight"
       },
       "index": {
-        "title": "什么是 Babel ?"
+        "title": "什么是 Babel？"
       },
       "learn": {
         "title": "学习 ES2015"
@@ -332,6 +332,10 @@
       "babel-plugin-proposal-private-property-in-object": {
         "title": "@babel/plugin-proposal-private-property-in-object",
         "sidebar_label": "proposal-private-property-in-object"
+      },
+      "babel-plugin-proposal-record-and-tuple": {
+        "title": "@babel/plugin-proposal-record-and-tuple",
+        "sidebar_label": "proposal-proposal-record-and-tuple"
       },
       "babel-plugin-proposal-throw-expressions": {
         "title": "@babel/plugin-proposal-throw-expressions",
@@ -1327,19 +1331,21 @@
       "GitHub": "GitHub"
     },
     "categories": {
-      "Guides": "Guides",
-      "General": "General",
-      "Usage": "Usage",
-      "Presets": "Presets",
-      "Tooling": "Tooling",
-      "常规": "常规",
+      "指南": "指南",
+      "通用": "通用",
       "用法": "用法",
-      "工具": "工具"
+      "presets": "presets",
+      "工具": "工具",
+      "常规": "常规",
+      "Presets": "Presets"
     }
   },
   "pages-strings": {
+    "Assumptions|assumptions page - header": "Assumptions",
     "Installation|setup page - step 2": "Installation",
     "Usage|setup page - step 3": "Usage",
+    "创建|setup page - step 4 one": "创建",
+    "配置文件|setup page - step 4 two": "配置文件",
     "Help Translate|recruit community translators for your project": "Help Translate",
     "Edit this Doc|recruitment message asking to edit the doc source": "Edit",
     "Translate this Doc|recruitment message asking to translate the docs": "Translate"

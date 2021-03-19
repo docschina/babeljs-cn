@@ -1,6 +1,6 @@
 {
   "docs": {
-    "Guides": [
+    "指南": [
       "index",
       "usage",
       "configuration",
@@ -8,7 +8,7 @@
       "v7-migration",
       "v7-migration-api"
     ],
-    "General": [
+    "通用": [
       "editors",
       "plugins",
       "presets",
@@ -16,7 +16,7 @@
       "faq",
       "roadmap"
     ],
-    "Usage": [
+    "用法": [
       "options",
       "config-files",
       "babel-cli",
@@ -24,13 +24,13 @@
       "babel-plugin-transform-runtime",
       "babel-register"
     ],
-    "Presets": [
+    "presets": [
       "babel-preset-env",
       "babel-preset-flow",
       "babel-preset-react",
       "babel-preset-typescript"
     ],
-    "Tooling": [
+    "工具": [
       "babel-parser",
       "babel-core",
       "babel-generator",
