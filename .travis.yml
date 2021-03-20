@@ -1,9 +1,0 @@
-branches:
-  only:
-  - cn-v7
-language: node_js
-node_js:
-- '8'
-script:
-- bash ./shell/deploy.sh
-sudo: required
