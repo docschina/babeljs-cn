@@ -3,28 +3,28 @@ id: configuration
 title: 配置 Babel
 ---
 
-Babel can be configured! Many other tools have similar configs: ESLint (`.eslintrc`), Prettier (`.prettierrc`).
+Babel 是可配置的！许多其他工具都有类似的配置：ESLint (`.eslintrc`), Prettier (`.prettierrc`)。
 
-All Babel API [options](options.md) are allowed. However, if the option requires JavaScript, you may want to use a JavaScript [configuration file](config-files.md).
+所有 Babel API [可选项](options.md) 都可以配置。然而，如果选项中含有 JavaScript，你可能需要使用一个 JavaScript [配置文件](config-files.md)。
 
-## What's your use case?
+## 你的使用场景是什么？
 
-- You are using a monorepo?
-- You want to compile `node_modules`?
+- 你正在使用一个 monorepo？
+- 你想要编译 `node_modules`？
 
-> [`babel.config.json`](#babelconfigjson) is for you!
+> [`babel.config.json`](#babelconfigjson) 推荐你使用！
 
-- You have a configuration that only applies to a single part of your project?
+- 配置仅适用于项目的单个部分吗？
 
-> [`.babelrc.json`](#babelrcjson) is for you!
+> [`.babelrc.json`](#babelrcjson) 推荐你使用！
 
-- Guy Fieri is your hero?
+- Guy Fieri 是你的英雄？（译注：Guy Fieri 是明星厨师，这里意思是喜欢根据自己喜好配置）
 
-> We recommend using the [`babel.config.json`](config-files.md#project-wide-configuration) format. [Babel itself is using it](https://github.com/babel/babel/blob/master/babel.config.js).
+> 我们建议使用 [`babel.config.json`](config-files.md#project-wide-configuration) 格式。[Babel 本身正在使用它](https://github.com/babel/babel/blob/master/babel.config.js)。
 
 ### `babel.config.json`
 
-Create a file called `babel.config.json` with the following content at the root of your project (where the `package.json` is).
+在项目的根目录（`package.json` 所在的位置）中，创建一个名为 `babel.config.json` 的文件，其中包含以下内容。
 
 ```json
 {
@@ -47,11 +47,11 @@ module.exports = function (api) {
 }
 ```
 
-Check out the [`babel.config.json` documentation](config-files.md#project-wide-configuration) to see more configuration options.
+查阅 [`babel.config.json` 文档](config-files.md#project-wide-configuration) 以查看更多配置选项。
 
 ### `.babelrc.json`
 
-Create a file called `.babelrc.json` with the following content in your project.
+在项目中创建一个名为 `.babelrc.json` 的文件，其中包含以下内容。
 
 ```json
 {
@@ -60,11 +60,11 @@ Create a file called `.babelrc.json` with the following content in your project.
 }
 ```
 
-Check out the [.babelrc documentation](config-files.md#file-relative-configuration) to see more configuration options.
+查阅 [.babelrc 文档](config-files.md#file-relative-configuration)，以查看更多配置选项。
 
 ### `package.json`
 
-Alternatively, you can choose to specify your [`.babelrc.json`](#babelrcjson) config from within `package.json` using the `babel` key like so:
+或者，你可以选择在 package.json 中 `babel` key 中指定 [`.babelrc.json`](#babelrcjson) 配置，如下所示：
 
 ```json
 {
@@ -77,9 +77,9 @@ Alternatively, you can choose to specify your [`.babelrc.json`](#babelrcjson) co
 }
 ```
 
-### JavaScript configuration files
+### JavaScript 配置文件
 
-You can also write `babel.config.json` and `.babelrc.json` files using JavaScript:
+还可以使用 JavaScript 编写 `babel.config.json` 和 `.babelrc.json` 文件：
 
 ```js
 const presets = [ ... ];
@@ -88,7 +88,7 @@ const plugins = [ ... ];
 module.exports = { presets, plugins };
 ```
 
-You are allowed to access any Node.js APIs, for example a dynamic configuration based on the process environment:
+你可以访问任何 Node.js API，例如基于 process environment 的动态配置：
 
 ```js
 const presets = [ ... ];
@@ -101,17 +101,17 @@ if (process.env["ENV"] === "prod") {
 module.exports = { presets, plugins };
 ```
 
-You can read more about JavaScript configuration files in the [dedicated documentation](config-files.md)
+你可以在 [专用文档](config-files.md) 中，阅读有关 JavaScript 配置文件的更多信息。
 
-## Using the CLI (`@babel/cli`)
+## 使用 CLI (`@babel/cli`)
 
 ```sh
 babel --plugins @babel/plugin-transform-arrow-functions script.js
 ```
 
-Check out the [babel-cli documentation](cli.md) to see more configuration options.
+查阅 [babel-cli 文档](cli.md)，以查看更多配置选项。
 
-## Using the API (`@babel/core`)
+## 使用 API (`@babel/core`)
 
 ```js
 require("@babel/core").transformSync("code", {
@@ -119,13 +119,13 @@ require("@babel/core").transformSync("code", {
 });
 ```
 
-Check out the [babel-core documentation](core.md) to see more configuration options.
+查阅 [babel-core 文档](core.md)，以查看更多配置选项。
 
-## Print effective configs
+## 打印生效配置
 
-You can tell Babel to print effective configs on a given input path
+你可以告知 Babel，为给定的输入路径打印生效的配置
 ```sh
-# *nix or WSL
+# *nix 或 WSL
 BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
 ```
 
@@ -133,12 +133,12 @@ BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
 $env:BABEL_SHOW_CONFIG_FOR = ".\src\myComponent.jsx"; npm start
 ```
 
-`BABEL_SHOW_CONFIG_FOR` accepts both absolute and relative _file_ paths. If it is a relative path, it will be resolved from [`cwd`](options.md#cwd).
+`BABEL_SHOW_CONFIG_FOR` 接收绝对和相对_文件_路径。如果是相对路径，将从 [`cwd`](options.md#cwd) 解析。
 
-Once Babel processes the input file specified by `BABEL_SHOW_CONFIG_FOR`, Babel will print effective configs to the console. Here is an example output:
+当 Babel 处理完由 `BABEL_SHOW_CONFIG_FOR` 指定的输入文件之后，Babel 就会将生效配置打印到控制台。这里是示例输出：
 
 ```
-Babel configs on "/path/to/cwd/src/index.js" (ascending priority):
+Babel configs on "/path/to/cwd/src/index.js" (按优先级升序):
 config /path/to/cwd/babel.config.json
 {
   "sourceType": "script",
@@ -169,7 +169,7 @@ config /path/to/cwd/babel.config.json .overrides[0]
 config /path/to/cwd/.babelrc
 {}
 
-programmatic options from @babel/cli
+@babel/cli 可编程选项
 {
   "sourceFileName": "./src/index.js",
   "presets": [
@@ -183,20 +183,20 @@ programmatic options from @babel/cli
 }
 ```
 
-Babel will print effective config sources ordered by ascending priority. Using the example above, the priority is:
+Babel 将按优先级升序打印生效的配置源。上面示例的优先级为：
 
 ```
-babel.config.json < .babelrc < programmatic options from @babel/cli
+babel.config.json < .babelrc < @babel/cli 可编程选项
 ```
-In other words, `babel.config.json` is overwritten by `.babelrc`, and `.babelrc` is overwritten by programmatic options.
+换句话说，`babel.config.json` 会被 `.babelrc` 覆盖，而 `.babelrc` 被可编程选项覆盖。
 
-For each config source, Babel prints applicable config items (e.g. [`overrides`](options.md#overrides) and [`.env`](options.md#env)) in the order of ascending priority. Generally each config sources has at least one config item -- the root content of configs. If you have configured `overrides` or `env`, Babel will not print them in the root, but will instead output a separate config item titled as `.overrides[index]`, where `index` is the position of the item. This helps determine whether the item is effective on the input and which configs it will override.
+对于每个配置源，Babel 会按优先级升序打印适用的配置项（例如 [`overrides`](options.md#overrides) 和 [`.env`](options.md#env)）。通常，每个配置源都有至少一个配置项 - 所有配置的根路径。如果你配置了 `overrides` 或 `env`，Babel 不会在根路径中打印它们，而是输出一个名为 `.overrides[index]` 的单独配置项，其中 `index` 是项目的位置。这有助于确定该项对输入路径是否生效，以及将覆盖哪些配置。
 
-If your input is ignored by `ignore` or `only`, Babel will print that this file is ignored.
+如果输入路径是通过 `ignore` 或 `only` 来配置忽略，Babel 将打印：该文件被忽略。
 
-### How Babel merges config items
+### Babel 如何合并配置项
 
-For each config items mentioned above, Babel applies `Object.assign` on options except for `plugins` and `presets`, which is concatenated by `Array#concat`. For example
+对于上面提到的每个配置项，Babel 将通过 `Object.assign` 应用于选项（`plugins` 和 `presets` 除外，这些选项由 `Array#concat` 拼接）。例如
 ```js
 const config = {
   plugins: [["plugin-1a", { loose: true }], "plugin-1b"],
@@ -211,19 +211,19 @@ const newConfigItem = {
 }
 
 BabelConfigMerge(config, newConfigItem);
-// returns
+// 返回
 ({
   plugins: [
     ["plugin-1a", { loose: true }],
     "plugin-1b",
     ["plugin-1a", { loose: false }],
     "plugin-2b"
-  ], // new plugins are pushed
+  ], // 推入新的 plugins
   presets: [
     "preset-1a",
     "preset-1a",
     "preset-2b"
-  ], // new presets are pushed
-  sourceType: "module" // sourceType: "script" is overwritten
+  ], // 推入新的 presets
+  sourceType: "module" // sourceType: "script" 被覆盖
 })
 ```
