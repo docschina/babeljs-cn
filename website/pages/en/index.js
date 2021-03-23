@@ -1,5 +1,5 @@
 const React = require("react");
-// const translate = require("../../server/translate.js").translate;
+const translate = require("../../server/translate.js").translate;
 const siteConfig = require(process.cwd() + "/siteConfig.js");
 
 class Button extends React.Component {
@@ -31,7 +31,7 @@ const MiniRepl = () => {
     <div className="hero-repl" hidden={true}>
       <div className="hero-repl__editor">
         <div className="hero-repl__pane hero-repl__pane--left">
-          <h3>输入下一代 JavaScript 代码</h3>
+          <h3>请输入下一代 JavaScript 代码</h3>
           <div id="hero-repl-in" className="hero-repl__code" />
         </div>
         <div className="hero-repl__pane hero-repl__pane--right">
@@ -173,15 +173,21 @@ const Hero = ({ language }) => (
       <div className="homepage-banner">获取 Babel 的假日服饰👕</div>
     </a>
     <div className="hero__container">
-      <h1>Babel 是 JavaScript 编译器。</h1>
-      <p>今天就开始使用下一代 JavaScript 语法吧！</p>
+      <h1>
+        <translate>Babel 是一个 JavaScript compiler。</translate>
+      </h1>
+      <p>
+        <translate>现在就开始使用下一代 JavaScript 语法吧。</translate>
+      </p>
+
       <div className="hero__announcement">
         <span>
           <strong>Babel 7.12 发布！</strong> 请阅读我们的{" "}
-          <a href="blog/2020/10/15/7.12.0">博客公告</a> 以及{" "}
-          <a href="https://github.com/babel/babel/releases/tag/v7.12.0">changelog</a> 了解更多详情！
+          <a href="blog/2021/02/22/7.13.0">博客公告</a> 以及{" "}
+          <a href="https://github.com/babel/babel/releases/tag/v7.13.0">changelog</a> 了解更多详情！
         </span>
       </div>
+
       <MiniRepl language={language} />
 
       <h3>Special Sponsor</h3>
