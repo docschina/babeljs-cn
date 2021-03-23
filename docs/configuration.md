@@ -103,15 +103,15 @@ module.exports = { presets, plugins };
 
 你可以在 [专用文档](config-files.md) 中，阅读有关 JavaScript 配置文件的更多信息。
 
-## Using the CLI (`@babel/cli`)
+## 使用 CLI (`@babel/cli`)
 
 ```sh
 babel --plugins @babel/plugin-transform-arrow-functions script.js
 ```
 
-Check out the [babel-cli documentation](cli.md) to see more configuration options.
+查阅 [babel-cli 文档](cli.md)，以查看更多配置选项。
 
-## Using the API (`@babel/core`)
+## 使用 API (`@babel/core`)
 
 ```js
 require("@babel/core").transformSync("code", {
@@ -119,13 +119,13 @@ require("@babel/core").transformSync("code", {
 });
 ```
 
-Check out the [babel-core documentation](core.md) to see more configuration options.
+查阅 [babel-core 文档](core.md)，以查看更多配置选项。
 
-## Print effective configs
+## 打印生效配置
 
-You can tell Babel to print effective configs on a given input path
+你可以告知 Babel，为给定的输入路径打印生效的配置
 ```sh
-# *nix or WSL
+# *nix 或 WSL
 BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
 ```
 
@@ -133,12 +133,12 @@ BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
 $env:BABEL_SHOW_CONFIG_FOR = ".\src\myComponent.jsx"; npm start
 ```
 
-`BABEL_SHOW_CONFIG_FOR` accepts both absolute and relative _file_ paths. If it is a relative path, it will be resolved from [`cwd`](options.md#cwd).
+`BABEL_SHOW_CONFIG_FOR` 接收绝对和相对_文件_路径。如果是相对路径，将从 [`cwd`](options.md#cwd) 解析。
 
-Once Babel processes the input file specified by `BABEL_SHOW_CONFIG_FOR`, Babel will print effective configs to the console. Here is an example output:
+当 Babel 处理完由 `BABEL_SHOW_CONFIG_FOR` 指定的输入文件之后，Babel 就会将生效配置打印到控制台。这里是示例输出：
 
 ```
-Babel configs on "/path/to/cwd/src/index.js" (ascending priority):
+Babel configs on "/path/to/cwd/src/index.js" (按优先级升序):
 config /path/to/cwd/babel.config.json
 {
   "sourceType": "script",
@@ -169,7 +169,7 @@ config /path/to/cwd/babel.config.json .overrides[0]
 config /path/to/cwd/.babelrc
 {}
 
-programmatic options from @babel/cli
+@babel/cli 可编程选项
 {
   "sourceFileName": "./src/index.js",
   "presets": [
@@ -183,20 +183,20 @@ programmatic options from @babel/cli
 }
 ```
 
-Babel will print effective config sources ordered by ascending priority. Using the example above, the priority is:
+Babel 将按优先级升序打印生效的配置源。上面示例的优先级为：
 
 ```
-babel.config.json < .babelrc < programmatic options from @babel/cli
+babel.config.json < .babelrc < @babel/cli 可编程选项
 ```
-In other words, `babel.config.json` is overwritten by `.babelrc`, and `.babelrc` is overwritten by programmatic options.
+换句话说，`babel.config.json` 会被 `.babelrc` 覆盖，而 `.babelrc` 被可编程选项覆盖。
 
-For each config source, Babel prints applicable config items (e.g. [`overrides`](options.md#overrides) and [`.env`](options.md#env)) in the order of ascending priority. Generally each config sources has at least one config item -- the root content of configs. If you have configured `overrides` or `env`, Babel will not print them in the root, but will instead output a separate config item titled as `.overrides[index]`, where `index` is the position of the item. This helps determine whether the item is effective on the input and which configs it will override.
+对于每个配置源，Babel 会按优先级升序打印适用的配置项（例如 [`overrides`](options.md#overrides) 和 [`.env`](options.md#env)）。通常，每个配置源都有至少一个配置项 - 所有配置的根路径。如果你配置了 `overrides` 或 `env`，Babel 不会在根路径中打印它们，而是输出一个名为 `.overrides[index]` 的单独配置项，其中 `index` 是项目的位置。这有助于确定该项对输入路径是否生效，以及将覆盖哪些配置。
 
-If your input is ignored by `ignore` or `only`, Babel will print that this file is ignored.
+如果输入路径是通过 `ignore` 或 `only` 来配置忽略，Babel 将打印：该文件被忽略。
 
-### How Babel merges config items
+### Babel 如何合并配置项
 
-For each config items mentioned above, Babel applies `Object.assign` on options except for `plugins` and `presets`, which is concatenated by `Array#concat`. For example
+对于上面提到的每个配置项，Babel 将通过 `Object.assign` 应用于选项（`plugins` 和 `presets` 除外，这些选项由 `Array#concat` 拼接）。例如
 ```js
 const config = {
   plugins: [["plugin-1a", { loose: true }], "plugin-1b"],
@@ -211,19 +211,19 @@ const newConfigItem = {
 }
 
 BabelConfigMerge(config, newConfigItem);
-// returns
+// 返回
 ({
   plugins: [
     ["plugin-1a", { loose: true }],
     "plugin-1b",
     ["plugin-1a", { loose: false }],
     "plugin-2b"
-  ], // new plugins are pushed
+  ], // 推入新的 plugins
   presets: [
     "preset-1a",
     "preset-1a",
     "preset-2b"
-  ], // new presets are pushed
-  sourceType: "module" // sourceType: "script" is overwritten
+  ], // 推入新的 presets
+  sourceType: "module" // sourceType: "script" 被覆盖
 })
 ```
