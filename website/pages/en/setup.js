@@ -26,10 +26,12 @@ const SetupHeader = () => {
   return (
     <div className="page-header text-center">
       <h1>
-        使用 Babel
+        <translate desc="setup page - header">使用 Babel</translate>
       </h1>
       <p>
-        教你如何在使用 Babel 时选择工具
+        <translate desc="setup page - header desc">
+          教你如何在使用 Babel 时选择工具
+        </translate>
       </p>
     </div>
   );
@@ -65,7 +67,9 @@ const SetupOptions = () => {
     <div className="step-setup">
       <h2>
         <span className="step-no">1</span>
-        选择你的工具 (尝试 CLI)
+        <translate desc="setup page - step 1">
+          选择你的工具 (尝试 CLI)
+        </translate>
       </h2>
       {showCase}
     </div>

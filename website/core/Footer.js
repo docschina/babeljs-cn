@@ -34,7 +34,7 @@ class Footer extends React.Component {
                 this.props.language
               )}
             >
-              Videos
+              视频
             </a>
             <a
               href={this.props.config.getPageUrl(
@@ -51,7 +51,7 @@ class Footer extends React.Component {
             >
               Stack Overflow
             </a>
-            <a href="https://babeljs.slack.com/">Slack 通道</a>
+            <a href="https://babeljs.slack.com/">Slack 频道</a>
             <a
               href="https://twitter.com/babeljs"
               rel="noopener noreferrer"
@@ -66,8 +66,8 @@ class Footer extends React.Component {
             <a href="https://github.com/babel">GitHub Org</a>
             <a href="https://github.com/babel/babel">GitHub Repo</a>
             <a href="https://github.com/babel/website">Website Repo</a>
-            <a href="https://old.babeljs.io"> 旧版网址 6.x </a>
-            <a href="http://henryzoo.com/babel.github.io">旧版网址 5.x </a>
+            <a href="https://old.babeljs.io">旧版网址 6.x</a>
+            <a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a>
           </div>
         </section>
       </footer>

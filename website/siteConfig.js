@@ -88,7 +88,7 @@ const siteConfig = {
   title: "Babel 中文文档",
   tagline: "下一代 JavaScript compiler",
   url: "https://babel.docschina.org",
-  v6Url: "https://babel.docschina.org/docs/en/6.26.3/",
+  v6Url: "https://v6.babeljs.io/docs/setup/",
   baseUrl: "/",
   getDocUrl: (doc, language) =>
     `${siteConfig.baseUrl}docs/${language || DEFAULT_LANGUAGE}/${doc}`,
@@ -110,6 +110,7 @@ const siteConfig = {
     { href: "https://opencollective.com/babel", label: "赞助" },
     { page: "team", label: "团队" },
     { href: "https://github.com/babel/babel", label: "GitHub" },
+    // { languages: true }
   ],
   users,
   sponsors,
