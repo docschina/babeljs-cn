@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>FAQ · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Why is the output of `for...of` so verbose and ugly?"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="FAQ · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="## Why is the output of `for...of` so verbose and ugly?"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>通用</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">指南</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/">什么是 Babel？</a></li><li class="navListItem"><a class="navItem" href="/docs/en/usage">使用指南</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration">配置 Babel</a></li><li class="navListItem"><a class="navItem" href="/docs/en/learn">学习 ES2015</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration">升级至 Babel 7</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration-api">升级至 Babel 7 (API)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">通用</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/editors">编辑器</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins">插件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/presets">Presets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/caveats">注意事项</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/faq">FAQ</a></li><li class="navListItem"><a class="navItem" href="/docs/en/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">用法</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/options">选项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/config-files">配置文件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-cli">cli</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-plugin-transform-runtime">transform-runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-register">register</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">presets</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-env">env</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-flow">flow</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-react">react</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-typescript">typescript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">工具</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-parser">parser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-core">core</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-generator">generator</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-code-frame">code-frame</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-helpers">helpers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-runtime">runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-template">template</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-traverse">traverse</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-types">types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/faq.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">FAQ</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="why-is-the-output-of-forof-so-verbose-and-ugly"></a><a href="#why-is-the-output-of-forof-so-verbose-and-ugly" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why is the output of <code>for...of</code> so verbose and ugly?</h2>
+<p>In order to comply with the specification, the iterator's return method must be
+called on errors. An alternative is to enable <a href="/docs/en/babel-plugin-transform-for-of#loose">loose mode</a>
+but please note that there are <strong>many</strong> caveats to be aware of if you enable
+loose mode and that you're willingly choosing not to comply with the spec.</p>
+<p>Please see <a href="https://github.com/google/traceur-compiler/issues/1773">google/traceur-compiler#1773</a> and
+<a href="https://github.com/babel/babel/issues/838">babel/babel#838</a> for more information.</p>
+<h2><a class="anchor" aria-hidden="true" id="why-are-this-and-arguments-being-remapped-in-arrow-functions"></a><a href="#why-are-this-and-arguments-being-remapped-in-arrow-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why are <code>this</code> and <code>arguments</code> being remapped in arrow functions?</h2>
+<p>Arrow functions <strong>are not</strong> synonymous with normal functions. <code>arguments</code> and <code>this</code> inside arrow functions
+reference their <em>outer function</em> for example:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> user = {
+  <span class="hljs-attr">firstName</span>: <span class="hljs-string">"Sebastian"</span>,
+  <span class="hljs-attr">lastName</span>: <span class="hljs-string">"McKenzie"</span>,
+  <span class="hljs-attr">getFullName</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-comment">// whoops! `this` doesn't actually reference `user` here</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.firstName + <span class="hljs-string">" "</span> + <span class="hljs-keyword">this</span>.lastName;
+  },
+  <span class="hljs-comment">// use the method shorthand in objects</span>
+  getFullName2() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.firstName + <span class="hljs-string">" "</span> + <span class="hljs-keyword">this</span>.lastName;
+  }
+};
+</code></pre>
+<p>Please see <a href="https://github.com/babel/babel/issues/842">babel/babel#842</a>, <a href="https://github.com/babel/babel/issues/814">babel/babel#814</a>,
+<a href="https://github.com/babel/babel/issues/733">babel/babel#733</a> and <a href="https://github.com/babel/babel/issues/730">babel/babel#730</a> for
+more information.</p>
+<h2><a class="anchor" aria-hidden="true" id="why-is-this-being-remapped-to-undefined"></a><a href="#why-is-this-being-remapped-to-undefined" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why is <code>this</code> being remapped to <code>undefined</code>?</h2>
+<p>Babel assumes that all input code is an ES2015 module. ES2015 modules are implicitly strict mode so this means
+that top-level <code>this</code> is not <code>window</code> in the browser nor is it <code>exports</code> in node.</p>
+<p>If you don't want this behaviour then you have the option of disabling <code>strict</code> in the <a href="/docs/en/babel-plugin-transform-modules-commonjs#usage">plugin-transform-modules-commonjs</a>.</p>
+<p><strong>PLEASE NOTE:</strong> If you do this you're willingly deviating from the spec and this may cause future
+interop issues.</p>
+<h2><a class="anchor" aria-hidden="true" id="help-i-just-want-to-use-babel-like-it-was-in-5x-everything-is-too-complicated-now"></a><a href="#help-i-just-want-to-use-babel-like-it-was-in-5x-everything-is-too-complicated-now" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Help?! I just want to use Babel like it was in 5.x! Everything is too complicated now!</h2>
+<p>We hear you! Babel 6 requires a tiny bit of configuration in order to get going.
+<a href="/blog/2015/10/29/6.0.0">We think this is for the best</a> and have added
+<a href="/docs/en/plugins#presets">presets</a> to ease this transition.</p>
+<h2><a class="anchor" aria-hidden="true" id="upgrading-from-babel-5x-to-babel-6"></a><a href="#upgrading-from-babel-5x-to-babel-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Upgrading from Babel 5.x to Babel 6</h2>
+<p>At the heart of Babel 6 are <a href="/docs/en/plugins">plugins</a>. What plugins you need completely
+depends on your specific configuration but just add the following <a href="/docs/en/config-files">config file</a> to
+get all the same transforms that were in Babel 5:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"env"</span>, <span class="hljs-string">"react"</span>, <span class="hljs-string">"stage-2"</span>]
+}
+</code></pre>
+<pre><code class="hljs css language-sh">npm install babel-preset-env babel-preset-react babel-preset-stage-2 --save-dev
+</code></pre>
+<p>Also check out our <a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a> blog post.</p>
+<h2><a class="anchor" aria-hidden="true" id="where-did-all-the-docs-go"></a><a href="#where-did-all-the-docs-go" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Where did all the docs go?!</h2>
+<p>Babel 6 removes a lot of the options in favor of <a href="/docs/plugins">plugins</a> so a
+lot of the docs are no longer applicable.</p>
+<p>For every removed option there should be a plugin for it. It's possible we may have missed
+something, if you think this is the case, please
+<a href="https://github.com/babel/babel/issues">open an issue</a>!</p>
+<p>Babel is an open source project and we appreciate any and all contributions we can get.
+Please help out with documentation if you can by submitting a pull request to the
+<a href="https://github.com/babel/babel.github.io">babel.github.io</a> repo.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-do-i-build-babel-from-source"></a><a href="#how-do-i-build-babel-from-source" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How do I build babel from source?</h2>
+<p>See <a href="https://github.com/babel/babel/blob/master/CONTRIBUTING.md#developing">build instructions</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-do-i-contribute-to-babel"></a><a href="#how-do-i-contribute-to-babel" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How do I contribute to Babel?</h2>
+<p>See <a href="https://github.com/babel/babel/blob/master/CONTRIBUTING.md">contributing</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="why-am-i-getting-a-syntax-errorunexpected-token"></a><a href="#why-am-i-getting-a-syntax-errorunexpected-token" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why am I getting a Syntax Error/Unexpected Token?</h2>
+<p>It's most likely the case that you didn't include a plugin/preset that supports that feature. (It's also possible it's a bug in the parser, or that it actually is a syntax error).</p>
+<h2><a class="anchor" aria-hidden="true" id="why-isnt-a-certain-babel-x-package-updated"></a><a href="#why-isnt-a-certain-babel-x-package-updated" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why isn't a certain babel-x package updated?</h2>
+<p>We currently use <a href="https://github.com/lerna/lerna#fixedlocked-mode-default">Lerna's fixed versioning</a> system.</p>
+<p>We have a global version for all packages. When we do a release, the only packages that get updated are the packages that
+actually had changes (we do a <code>git diff</code> on that folder).</p>
+<p>If we only update <code>babel-plugin-transform-exponentiation-operator</code> to 6.x.x, currently we don't publish a new version for all packages since the other dependencies are using <code>^</code>.</p>
+<p>For example, the Babel <a href="https://github.com/babel/babel/releases/tag/v6.6.0">v6.6.0 release</a> doesn't mean all packages are now 6.6.0.</p>
+<blockquote>
+<p>To make sure you are using the latest package versions, you may need to remove <code>node_modules</code> and <code>npm install</code> again.</p>
+</blockquote>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/caveats"><span class="arrow-prev">← </span><span>注意事项</span></a><a class="docs-next button" href="/docs/en/roadmap"><span>Roadmap</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#why-is-the-output-of-forof-so-verbose-and-ugly">Why is the output of <code>for...of</code> so verbose and ugly?</a></li><li><a href="#why-are-this-and-arguments-being-remapped-in-arrow-functions">Why are <code>this</code> and <code>arguments</code> being remapped in arrow functions?</a></li><li><a href="#why-is-this-being-remapped-to-undefined">Why is <code>this</code> being remapped to <code>undefined</code>?</a></li><li><a href="#help-i-just-want-to-use-babel-like-it-was-in-5x-everything-is-too-complicated-now">Help?! I just want to use Babel like it was in 5.x! Everything is too complicated now!</a></li><li><a href="#upgrading-from-babel-5x-to-babel-6">Upgrading from Babel 5.x to Babel 6</a></li><li><a href="#where-did-all-the-docs-go">Where did all the docs go?!</a></li><li><a href="#how-do-i-build-babel-from-source">How do I build babel from source?</a></li><li><a href="#how-do-i-contribute-to-babel">How do I contribute to Babel?</a></li><li><a href="#why-am-i-getting-a-syntax-errorunexpected-token">Why am I getting a Syntax Error/Unexpected Token?</a></li><li><a href="#why-isnt-a-certain-babel-x-package-updated">Why isn't a certain babel-x package updated?</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

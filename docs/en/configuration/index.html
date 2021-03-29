@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>配置 Babel · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Babel 是可配置的！许多其他工具都有类似的配置：ESLint (`.eslintrc`), Prettier (`.prettierrc`)。"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="配置 Babel · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="Babel 是可配置的！许多其他工具都有类似的配置：ESLint (`.eslintrc`), Prettier (`.prettierrc`)。"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>指南</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">指南</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/">什么是 Babel？</a></li><li class="navListItem"><a class="navItem" href="/docs/en/usage">使用指南</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/configuration">配置 Babel</a></li><li class="navListItem"><a class="navItem" href="/docs/en/learn">学习 ES2015</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration">升级至 Babel 7</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration-api">升级至 Babel 7 (API)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">通用</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/editors">编辑器</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins">插件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/presets">Presets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/caveats">注意事项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/faq">FAQ</a></li><li class="navListItem"><a class="navItem" href="/docs/en/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">用法</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/options">选项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/config-files">配置文件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-cli">cli</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-plugin-transform-runtime">transform-runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-register">register</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">presets</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-env">env</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-flow">flow</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-react">react</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-typescript">typescript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">工具</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-parser">parser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-core">core</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-generator">generator</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-code-frame">code-frame</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-helpers">helpers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-runtime">runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-template">template</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-traverse">traverse</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-types">types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/configuration.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">配置 Babel</h1></header><article><div><span><p>Babel 是可配置的！许多其他工具都有类似的配置：ESLint (<code>.eslintrc</code>), Prettier (<code>.prettierrc</code>)。</p>
+<p>所有 Babel API <a href="/docs/en/options">可选项</a> 都可以配置。然而，如果选项中含有 JavaScript，你可能需要使用一个 JavaScript <a href="/docs/en/config-files">配置文件</a>。</p>
+<h2><a class="anchor" aria-hidden="true" id="你的使用场景是什么？"></a><a href="#你的使用场景是什么？" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>你的使用场景是什么？</h2>
+<ul>
+<li>你正在使用一个 monorepo？</li>
+<li>你想要编译 <code>node_modules</code>？</li>
+</ul>
+<blockquote>
+<p><a href="#babelconfigjson"><code>babel.config.json</code></a> 推荐你使用！</p>
+</blockquote>
+<ul>
+<li>配置仅适用于项目的单个部分吗？</li>
+</ul>
+<blockquote>
+<p><a href="#babelrcjson"><code>.babelrc.json</code></a> 推荐你使用！</p>
+</blockquote>
+<ul>
+<li>Guy Fieri 是你的英雄？（译注：Guy Fieri 是明星厨师，这里意思是喜欢根据自己喜好配置）</li>
+</ul>
+<blockquote>
+<p>我们建议使用 <a href="/docs/en/config-files#project-wide-configuration"><code>babel.config.json</code></a> 格式。<a href="https://github.com/babel/babel/blob/master/babel.config.js">Babel 本身正在使用它</a>。</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="babelconfigjson"></a><a href="#babelconfigjson" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>babel.config.json</code></h3>
+<p>在项目的根目录（<code>package.json</code> 所在的位置）中，创建一个名为 <code>babel.config.json</code> 的文件，其中包含以下内容。</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [...],
+  <span class="hljs-attr">"plugins"</span>: [...]
+}
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">api</span>) </span>{
+  api.cache(<span class="hljs-literal">true</span>);
+
+  <span class="hljs-keyword">const</span> presets = [ ... ];
+  <span class="hljs-keyword">const</span> plugins = [ ... ];
+
+  <span class="hljs-keyword">return</span> {
+    presets,
+    plugins
+  };
+}
+</code></pre>
+<p>查阅 <a href="/docs/en/config-files#project-wide-configuration"><code>babel.config.json</code> 文档</a> 以查看更多配置选项。</p>
+<h3><a class="anchor" aria-hidden="true" id="babelrcjson"></a><a href="#babelrcjson" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>.babelrc.json</code></h3>
+<p>在项目中创建一个名为 <code>.babelrc.json</code> 的文件，其中包含以下内容。</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [...],
+  <span class="hljs-attr">"plugins"</span>: [...]
+}
+</code></pre>
+<p>查阅 <a href="/docs/en/config-files#file-relative-configuration">.babelrc 文档</a>，以查看更多配置选项。</p>
+<h3><a class="anchor" aria-hidden="true" id="packagejson"></a><a href="#packagejson" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>package.json</code></h3>
+<p>或者，你可以选择在 package.json 中 <code>babel</code> key 中指定 <a href="#babelrcjson"><code>.babelrc.json</code></a> 配置，如下所示：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"my-package"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+  <span class="hljs-attr">"babel"</span>: {
+    <span class="hljs-attr">"presets"</span>: [ ... ],
+    <span class="hljs-attr">"plugins"</span>: [ ... ],
+  }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="javascript-配置文件"></a><a href="#javascript-配置文件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JavaScript 配置文件</h3>
+<p>还可以使用 JavaScript 编写 <code>babel.config.json</code> 和 <code>.babelrc.json</code> 文件：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> presets = [ ... ];
+<span class="hljs-keyword">const</span> plugins = [ ... ];
+
+<span class="hljs-built_in">module</span>.exports = { presets, plugins };
+</code></pre>
+<p>你可以访问任何 Node.js API，例如基于 process environment 的动态配置：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> presets = [ ... ];
+<span class="hljs-keyword">const</span> plugins = [ ... ];
+
+<span class="hljs-keyword">if</span> (process.env[<span class="hljs-string">"ENV"</span>] === <span class="hljs-string">"prod"</span>) {
+  plugins.push(...);
+}
+
+<span class="hljs-built_in">module</span>.exports = { presets, plugins };
+</code></pre>
+<p>你可以在 <a href="/docs/en/config-files">专用文档</a> 中，阅读有关 JavaScript 配置文件的更多信息。</p>
+<h2><a class="anchor" aria-hidden="true" id="使用-cli-babelcli"></a><a href="#使用-cli-babelcli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 CLI (<code>@babel/cli</code>)</h2>
+<pre><code class="hljs css language-sh">babel --plugins @babel/plugin-transform-arrow-functions script.js
+</code></pre>
+<p>查阅 <a href="/docs/en/babel-cli">babel-cli 文档</a>，以查看更多配置选项。</p>
+<h2><a class="anchor" aria-hidden="true" id="使用-api-babelcore"></a><a href="#使用-api-babelcore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用 API (<code>@babel/core</code>)</h2>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/core"</span>).transformSync(<span class="hljs-string">"code"</span>, {
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-string">"@babel/plugin-transform-arrow-functions"</span>]
+});
+</code></pre>
+<p>查阅 <a href="/docs/en/babel-core">babel-core 文档</a>，以查看更多配置选项。</p>
+<h2><a class="anchor" aria-hidden="true" id="打印生效配置"></a><a href="#打印生效配置" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>打印生效配置</h2>
+<p>你可以告知 Babel，为给定的输入路径打印生效的配置</p>
+<pre><code class="hljs css language-sh"><span class="hljs-comment"># *nix 或 WSL</span>
+BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
+</code></pre>
+<pre><code class="hljs css language-powershell"><span class="hljs-variable">$env:BABEL_SHOW_CONFIG_FOR</span> = <span class="hljs-string">".\src\myComponent.jsx"</span>; npm start
+</code></pre>
+<p><code>BABEL_SHOW_CONFIG_FOR</code> 接收绝对和相对<em>文件</em>路径。如果是相对路径，将从 <a href="/docs/en/options#cwd"><code>cwd</code></a> 解析。</p>
+<p>当 Babel 处理完由 <code>BABEL_SHOW_CONFIG_FOR</code> 指定的输入文件之后，Babel 就会将生效配置打印到控制台。这里是示例输出：</p>
+<pre><code class="hljs">Babel configs <span class="hljs-keyword">on</span> "/path/to/cwd/src/index.js" (按优先级升序):
+config /<span class="hljs-type">path</span>/<span class="hljs-keyword">to</span>/cwd/babel.config.json
+{
+  "sourceType": "script",
+  "plugins": [
+    "@foo/babel-plugin-1"
+  ],
+  "extends": "./my-extended.js"
+}
+
+config /<span class="hljs-type">path</span>/<span class="hljs-keyword">to</span>/cwd/babel.config.json .env["test"]
+{
+  "plugins": [
+    [
+      "@foo/babel-plugin-3",
+      {
+        "noDocumentAll": <span class="hljs-keyword">true</span>
+      },
+    ]
+  ]
+}
+
+config /<span class="hljs-type">path</span>/<span class="hljs-keyword">to</span>/cwd/babel.config.json .overrides[<span class="hljs-number">0</span>]
+{
+  "test": "src/index.js",
+  "sourceMaps": <span class="hljs-keyword">true</span>
+}
+
+config /<span class="hljs-type">path</span>/<span class="hljs-keyword">to</span>/cwd/.babelrc
+{}
+
+@babel/cli 可编程选项
+{
+  "sourceFileName": "./src/index.js",
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "configFile": "./my-config.js",
+  "caller": {
+    "name": "@babel/cli"
+  },
+  "filename": "./src/index.js"
+}
+</code></pre>
+<p>Babel 将按优先级升序打印生效的配置源。上面示例的优先级为：</p>
+<pre><code class="hljs"><span class="hljs-selector-tag">babel</span><span class="hljs-selector-class">.config</span><span class="hljs-selector-class">.json</span> &lt; <span class="hljs-selector-class">.babelrc</span> &lt; <span class="hljs-keyword">@babel</span>/cli 可编程选项
+</code></pre>
+<p>换句话说，<code>babel.config.json</code> 会被 <code>.babelrc</code> 覆盖，而 <code>.babelrc</code> 被可编程选项覆盖。</p>
+<p>对于每个配置源，Babel 会按优先级升序打印适用的配置项（例如 <a href="/docs/en/options#overrides"><code>overrides</code></a> 和 <a href="/docs/en/options#env"><code>.env</code></a>）。通常，每个配置源都有至少一个配置项 - 所有配置的根路径。如果你配置了 <code>overrides</code> 或 <code>env</code>，Babel 不会在根路径中打印它们，而是输出一个名为 <code>.overrides[index]</code> 的单独配置项，其中 <code>index</code> 是项目的位置。这有助于确定该项对输入路径是否生效，以及将覆盖哪些配置。</p>
+<p>如果输入路径是通过 <code>ignore</code> 或 <code>only</code> 来配置忽略，Babel 将打印：该文件被忽略。</p>
+<h3><a class="anchor" aria-hidden="true" id="babel-如何合并配置项"></a><a href="#babel-如何合并配置项" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babel 如何合并配置项</h3>
+<p>对于上面提到的每个配置项，Babel 将通过 <code>Object.assign</code> 应用于选项（<code>plugins</code> 和 <code>presets</code> 除外，这些选项由 <code>Array#concat</code> 拼接）。例如</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> config = {
+  <span class="hljs-attr">plugins</span>: [[<span class="hljs-string">"plugin-1a"</span>, { <span class="hljs-attr">loose</span>: <span class="hljs-literal">true</span> }], <span class="hljs-string">"plugin-1b"</span>],
+  <span class="hljs-attr">presets</span>: [<span class="hljs-string">"preset-1a"</span>],
+  <span class="hljs-attr">sourceType</span>: <span class="hljs-string">"script"</span>
+}
+
+<span class="hljs-keyword">const</span> newConfigItem = {
+  <span class="hljs-attr">plugins</span>: [[<span class="hljs-string">"plugin-1a"</span>, { <span class="hljs-attr">loose</span>: <span class="hljs-literal">false</span> }], <span class="hljs-string">"plugin-2b"</span>],
+  <span class="hljs-attr">presets</span>: [<span class="hljs-string">"preset-1a"</span>, <span class="hljs-string">"preset-2a"</span>],
+  <span class="hljs-attr">sourceType</span>: <span class="hljs-string">"module"</span>
+}
+
+BabelConfigMerge(config, newConfigItem);
+<span class="hljs-comment">// 返回</span>
+({
+  <span class="hljs-attr">plugins</span>: [
+    [<span class="hljs-string">"plugin-1a"</span>, { <span class="hljs-attr">loose</span>: <span class="hljs-literal">true</span> }],
+    <span class="hljs-string">"plugin-1b"</span>,
+    [<span class="hljs-string">"plugin-1a"</span>, { <span class="hljs-attr">loose</span>: <span class="hljs-literal">false</span> }],
+    <span class="hljs-string">"plugin-2b"</span>
+  ], <span class="hljs-comment">// 推入新的 plugins</span>
+  <span class="hljs-attr">presets</span>: [
+    <span class="hljs-string">"preset-1a"</span>,
+    <span class="hljs-string">"preset-1a"</span>,
+    <span class="hljs-string">"preset-2b"</span>
+  ], <span class="hljs-comment">// 推入新的 presets</span>
+  <span class="hljs-attr">sourceType</span>: <span class="hljs-string">"module"</span> <span class="hljs-comment">// sourceType: "script" 被覆盖</span>
+})
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/usage"><span class="arrow-prev">← </span><span>使用指南</span></a><a class="docs-next button" href="/docs/en/learn"><span>学习 ES2015</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#你的使用场景是什么？">你的使用场景是什么？</a><ul class="toc-headings"><li><a href="#babelconfigjson"><code>babel.config.json</code></a></li><li><a href="#babelrcjson"><code>.babelrc.json</code></a></li><li><a href="#packagejson"><code>package.json</code></a></li><li><a href="#javascript-配置文件">JavaScript 配置文件</a></li></ul></li><li><a href="#使用-cli-babelcli">使用 CLI (<code>@babel/cli</code>)</a></li><li><a href="#使用-api-babelcore">使用 API (<code>@babel/core</code>)</a></li><li><a href="#打印生效配置">打印生效配置</a><ul class="toc-headings"><li><a href="#babel-如何合并配置项">Babel 如何合并配置项</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

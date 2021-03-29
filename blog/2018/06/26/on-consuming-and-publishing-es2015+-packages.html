@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>On Consuming (and Publishing) ES2015+ Packages · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="For those of us that need to support older browsers, we run a compiler like Babel over application code. But that&#x27;s not all of the code that we ship to browsers; there&#x27;s also the code in our `node_modules`."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="On Consuming (and Publishing) ES2015+ Packages · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages"/><meta property="og:description" content="For those of us that need to support older browsers, we run a compiler like Babel over application code. But that&#x27;s not all of the code that we ship to browsers; there&#x27;s also the code in our `node_modules`."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></h1><p class="post-meta">June 26, 2018</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/left_pad" target="_blank" rel="noreferrer noopener">Henry Zhu</a></p></div></header><div><span><p>For those of us that need to support older browsers, we run a compiler like Babel over application code. But that's not all of the code that we ship to browsers; there's also the code in our <code>node_modules</code>.</p>
+<p>Can we make compiling our dependencies not just possible, but normal?</p>
+<!--truncate-->
+<p>The ability to compile dependencies is an enabling feature request for the whole ecosystem. Starting with some of the changes we made in Babel v7 to make selective dependency compilation possible, we hope to see it standardized moving forward.</p>
+<h2><a class="anchor" aria-hidden="true" id="assumptions"></a><a href="#assumptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Assumptions</h2>
+<ul>
+<li>We ship to modern browsers that support ES2015+ <a href="https://kangax.github.io/compat-table/es6/">natively</a> (don't have to support IE) or are able to send multiple kinds of bundles (i.e. <a href="https://philipwalton.com/articles/deploying-es2015-code-in-production-today/">by using <code>&lt;script type=&quot;module&quot;&gt;</code> and <code>&lt;script nomodule&gt;</code></a> or ).</li>
+<li>Our dependencies actually publish ES2015+ instead of the current baseline of ES5/ES3.</li>
+<li>The future baseline shouldn't be fixed at ES2015, but is a changing target.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="why"></a><a href="#why" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why</h2>
+<p>Why is compiling dependencies (as opposed to just compiling our own code) desirable in the first place?</p>
+<ul>
+<li>To have the freedom to make the tradeoffs of where code is able to run (vs. the library).</li>
+<li>To ship less code to users, since JavaScript has a <a href="https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e">cost</a>.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="the-ephemeral-javascript-runtime"></a><a href="#the-ephemeral-javascript-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Ephemeral JavaScript Runtime</h2>
+<p>The argument for why compiling dependencies would be helpful is the same for why Babel <a href="https://github.com/babel/babel/pull/3476">eventually</a> introduced <a href="https://babeljs.io/docs/en/next/babel-preset-env.html"><code>@babel/preset-env</code></a>. We saw that developers would eventually want to move past only compiling to ES5.</p>
+<p>Babel used to be <a href="https://babeljs.io/blog/2017/10/05/babel-turns-three"><code>6to5</code></a>, since it only converted from ES2015 (known as ES6 back then) to ES5. Back then, the browser support for ES2015 was almost non-existent, so the idea of a JavaScript compiler was both novel and useful: we could write modern code, and have it work for all of our users.</p>
+<p>But what about the browser runtimes themselves? Because evergreen browsers will eventually catch up to the standard (as they have with ES2015), creating <code>preset-env</code> helps Babel and the community align with both the browsers and TC39 itself. If we only compiled to ES5, no one would ever run native code in the browsers.</p>
+<p>The real difference is realizing that there will <em>always</em> be a sliding window of support:</p>
+<ul>
+<li>Application code (our supported environments)</li>
+<li>Browsers (Chrome, Firefox, Edge, Safari)</li>
+<li>Babel (the abstraction layer)</li>
+<li>TC39/ECMAScript proposals (and Babel implementations)</li>
+</ul>
+<p>Thus, the need isn't just for <code>6to5</code> to be renamed to Babel because it compiles to <code>7to5</code>, but for Babel to change the implicit assumption it only targets ES5. With <code>@babel/preset-env</code>, we are able to write the latest JavaScript and target whichever browser/environment!</p>
+<p>Using Babel and <code>preset-env</code> helps us keep up with that constantly changing sliding window. However, even if we use it, it's currently used only for <em>our application code</em>, and not for our code’s dependencies.</p>
+<h2><a class="anchor" aria-hidden="true" id="who-owns-our-dependencies"></a><a href="#who-owns-our-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Who Owns Our Dependencies?</h2>
+<p>Because we have control over our own code, we are able to take advantage of <code>preset-env</code>: both by writing in ES2015+ and targeting ES2015+ browsers.</p>
+<p>This isn't necessarily the case for our dependencies; in order to get the same benefits as compiling our code we may need to make some changes.</p>
+<p>Is it as straightforward as just running Babel over <code>node_modules</code>?</p>
+<h2><a class="anchor" aria-hidden="true" id="current-complexities-in-compiling-dependencies"></a><a href="#current-complexities-in-compiling-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Current Complexities in Compiling Dependencies</h2>
+<h3><a class="anchor" aria-hidden="true" id="compiler-complexity"></a><a href="#compiler-complexity" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Compiler Complexity</h3>
+<p>Although it shouldn't deter us from making this possible, we should be aware that compiling dependencies does increase the surface area of issues and complexity, especially for Babel itself.</p>
+<ul>
+<li>Compilers are no different than other programs and have bugs.</li>
+<li>Not every dependency needs to be compiled, and compiling more files does mean a slower build.</li>
+<li><code>preset-env</code> itself could have bugs because we use <a href="https://kangax.github.io/compat-table/es6/"><code>compat-table</code></a> for our data vs. <a href="https://github.com/tc39/test262">Test262</a> (the official test suite).</li>
+<li>Browsers themselves can have issues with running native ES2015+ code vs. ES5.</li>
+<li>There is still a question of determining what is &quot;supported&quot;: see <a href="https://github.com/babel/babel-preset-env/issues/54">babel/babel-preset-env#54</a> for an example of an edge case. Does it pass the test just because it parses or has partial support?</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="specific-issues-in-babel-v6"></a><a href="#specific-issues-in-babel-v6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Specific Issues in Babel v6</h4>
+<p>Running a <code>script</code> as a <code>module</code> either causes a <code>SyntaxError</code>, new runtime errors, or unexpected behavior due to the <a href="https://developers.google.com/web/fundamentals/primers/modules#intro">differences in semantics</a> between classic scripts and modules.</p>
+<p>Babel v6 viewed every file as a <code>module</code> and thus in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">&quot;strict mode&quot;</a>.</p>
+<blockquote>
+<p>One could argue this is actually a good thing, since everyone using Babel is opting in to strict mode by default 🙂.</p>
+</blockquote>
+<p>Running Babel with a conventional setup on all our <code>node_modules</code> may cause issues with code that is a <code>script</code> such as a jQuery plugin.</p>
+<p>An example of an issue is how <a href="https://github.com/babel/babel/issues/7636"><code>this</code> gets converted to <code>undefined</code></a>.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Input</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>) </span>{
+  <span class="hljs-comment">// …</span>
+}(<span class="hljs-keyword">this</span>.jQuery));
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Output</span>
+<span class="hljs-meta">"use strict"</span>;
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$</span>) </span>{
+  <span class="hljs-comment">// …</span>
+})(<span class="hljs-literal">undefined</span>.jQuery);
+</code></pre>
+<p>This was <a href="https://github.com/babel/babel/pull/6280">changed in v7</a> so that it won't auto-inject the <code>&quot;use strict&quot;</code> directive unless the source file is a <code>module</code>.</p>
+<p>It was also not in Babel's original scope to compile dependencies: we actually got issue reports that people would accidentally do it, making the build slower. There is a lot of defaults and documentation in the tooling that purposely disable compiling <code>node_modules</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="using-non-standard-syntax"></a><a href="#using-non-standard-syntax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Non-Standard Syntax</h3>
+<p>There are many issues with <em>shipping</em> uncompiled proposal syntax (this post was inspired by <a href="https://twitter.com/dan_abramov/status/1009179550134296577">Dan's concern</a> about this).</p>
+<h4><a class="anchor" aria-hidden="true" id="staging-process"></a><a href="#staging-process" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Staging Process</h4>
+<p>The <a href="https://tc39.github.io/process-document/">TC39 staging process</a> does not always move forward: a proposal can move to any point in the process: even moving backwards from Stage 3 to Stage 2 as was the case with Numeric Separators (<code>1_000</code>),  dropped entirely (<code>Object.observe()</code>, and others we may have forgotten 😁), or just stall like function bind (<code>a::b</code>) or decorators until recently.</p>
+<ul>
+<li>Summary of the Stages: Stage 0 has no criteria and means the proposal is just an idea, Stage 1 is accepting that the problem is worth solving, Stage 2 is about describing a solution in spec text, Stage 3 means the specific solution is thought out, and Stage 4 means that it is ready for inclusion in the spec with tests, multiple browser implementations, and in-the-field experience.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="using-proposals"></a><a href="#using-proposals" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Proposals</h4>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="und" dir="ltr"><a href="https://t.co/femUb4vgxh">pic.twitter.com/femUb4vgxh</a></p>&mdash; Rach Smith 🌈 (@rachsmithtweets) <a href="https://twitter.com/rachsmithtweets/status/892478598765887488?ref_src=twsrc%5Etfw">August 1, 2017</a></blockquote>
+<p>We already recommend that people should be careful when using proposals lower than Stage 3, let alone publishing them.</p>
+<p>But only telling people not to use Stage X goes against the whole purpose of Babel in the first place. A big reason why proposals gain improvements and move forward are because of the feedback the committee gets from real-world usage (whether in production or not) based on using it via Babel.</p>
+<p>There is certainly a balance to be had here: we don't want to scare people away from using new syntax (that is a hard sell 😂), but we also don't want people to get the idea that &quot;once it's in Babel, the syntax is official or immutable&quot;. Ideally people look into the purpose of a proposal and make the tradeoffs for their use case.</p>
+<h4><a class="anchor" aria-hidden="true" id="removing-the-stage-presets-in-v7"></a><a href="#removing-the-stage-presets-in-v7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Removing the Stage Presets in v7</h4>
+<p>Even though one of the most common things people do is use the Stage 0 preset, we plan to remove the stage presets in v7. We thought at first it would be convenient, that people would make their own unofficial ones anyway, or it might help with &quot;JavaScript fatigue&quot;. It seems to cause more of an issue: people continue to copy/paste configs without understanding what goes into a preset in the first place.</p>
+<p>After all, seeing <code>&quot;stage-0&quot;</code> says nothing. My hope is that in making the decision to use proposal plugins explicit, people will have to learn what non-standard syntax they are opting into. More intentionally, this should lead to a better understanding of not just Babel but of JavaScript as a language and its development instead of just its usage.</p>
+<h3><a class="anchor" aria-hidden="true" id="publishing-non-standard-syntax"></a><a href="#publishing-non-standard-syntax" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Publishing Non-standard Syntax</h3>
+<p>As a library author, publishing non-standard syntax is setting our users up for possible inconsistencies, refactoring, and breakage of their projects. Because a TC39 proposal (even at Stage 3) has a possibility of changing, it means we will inevitability have to change the library code. A &quot;new&quot; proposal doesn't mean the idea is fixed or certain but rather that we collectively want to explore the solution space.</p>
+<p>At least if we ship the compiled version, it will still work, and the library maintainer can change the output so that it compiles into code that works the same as before. Shipping the uncompiled version means that anyone consuming a package needs to have a build step to use it and needs to have the same configuration of Babel as us. This is in the same bucket as using TS/JSX/Flow: we wouldn't expect consumers to configure the same compiler environment just because we used them.</p>
+<h3><a class="anchor" aria-hidden="true" id="conflating-javascript-modules-and-es2015"></a><a href="#conflating-javascript-modules-and-es2015" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conflating JavaScript Modules and ES2015+</h3>
+<p>When we write <code>import foo from &quot;foo&quot;</code> or <code>require(&quot;foo&quot;)</code> and <code>foo</code> doesn't have an <code>index.js</code>, it resolves to the <code>main</code> field in the <code>package.json</code> of the module.</p>
+<p>Some tools like Rollup/webpack also read from another field called <code>module</code> (previously <code>jsnext:main</code>). It uses this to instead resolve to the JS Module file.</p>
+<ul>
+<li>An example with <a href="https://github.com/reactjs/redux"><code>redux</code></a></li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// redux package.json</span>
+{
+  ...
+  <span class="hljs-string">"main"</span>: <span class="hljs-string">"lib/redux.js"</span>, <span class="hljs-comment">// ES5 + Common JS</span>
+  <span class="hljs-string">"module"</span>: <span class="hljs-string">"es/redux.js"</span>, <span class="hljs-comment">// ES5 + JS Modules</span>
+}
+</code></pre>
+<p>This was introduced so that users could consume JS Modules (ESM).</p>
+<p>However, the sole intention of this field is ESM, not anything else. The <a href="https://github.com/rollup/rollup/wiki/pkg.module#wait-it-just-means-import-and-export--not-other-future-javascript-features">Rollup docs</a> specify that the <code>module</code> field makes it clear that it's not intended for future JavaScript syntax.</p>
+<p>Despite this warning, package authors invariably conflate the use of ES modules with the JavaScript language level they authored it in.</p>
+<p>As such, we may need another way to signal the language level.</p>
+<h4><a class="anchor" aria-hidden="true" id="non-scalable-solutions"></a><a href="#non-scalable-solutions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Non-scalable Solutions?</h4>
+<p>A common suggestion is for libraries to start publishing ES2015 under another field like <code>es2015</code>, e.g. <code>&quot;es2015&quot;: &quot;es2015/package.mjs&quot;</code>.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// @angular/core package.json</span>
+{
+  <span class="hljs-string">"main"</span>: <span class="hljs-string">"./bundles/core.umd.js"</span>,
+  <span class="hljs-string">"module"</span>: <span class="hljs-string">"./fesm5/core.js"</span>,
+  <span class="hljs-string">"es2015"</span>: <span class="hljs-string">"./fesm2015/core.js"</span>,
+  <span class="hljs-string">"esm5"</span>: <span class="hljs-string">"./esm5/core.js"</span>,
+  <span class="hljs-string">"esm2015"</span>: <span class="hljs-string">"./esm2015/core.js"</span>,
+  <span class="hljs-string">"fesm5"</span>: <span class="hljs-string">"./fesm5/core.js"</span>,
+  <span class="hljs-string">"fesm2015"</span>: <span class="hljs-string">"./fesm2015/core.js"</span>,
+}
+</code></pre>
+<p>This works for ES2015, but it begs the question of what we should do about ES2016? Are we supposed to create a new folder for each year and a new field in <code>package.json</code>? That seems unsustainable, and will continue to produce larger <code>node_modules</code>.</p>
+<blockquote>
+<p>This was an issue with Babel itself: we had intended to continue to publish yearly presets (<code>preset-es2015</code>, <code>preset-es2016</code>..) until we realized that <code>preset-env</code> would remove that need.</p>
+</blockquote>
+<p>Publishing it based on specific environments/syntax would seem to be just as untenable as the amount of combinations only increases (<code>&quot;ie-11-arrow-functions&quot;</code>).</p>
+<p>What about distributing just the source itself? That may have similar problems if we used non-standard syntax as mentioned earlier.</p>
+<p>Having a <code>esnext</code> field may not be entirely helpful either. The &quot;latest&quot; version of JavaScript changes depending on the point in time we authored the code.</p>
+<h3><a class="anchor" aria-hidden="true" id="dependencies-may-not-publish-es2015"></a><a href="#dependencies-may-not-publish-es2015" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dependencies May Not Publish ES2015+</h3>
+<p>This effort will only be standard if it becomes straightforward to apply as a library author. It will be hard to argue for the significance of this change if both new and popular libraries aren't able to ship the latest syntax.</p>
+<p>Due to the complexity and tooling setup, it may be difficult for projects to publish ES2015+/ESM. This is probably the biggest issue to get right, and adding more documentation just isn't enough.</p>
+<p>For Babel, we may need to add some feature requests to <code>@babel/cli</code> to make this easier, and maybe make the <code>babel</code> package do this by default? Or we should integrate better with tools like @developit's <a href="https://github.com/developit/microbundle">microbundle</a>.</p>
+<p>And how do we deal with polyfills (this will be an upcoming post)? What would it look like for a library author (or the user) to not to have to think about polyfills?</p>
+<p>With all that said, how does Babel help with all this?</p>
+<h2><a class="anchor" aria-hidden="true" id="how-babel-v7-helps"></a><a href="#how-babel-v7-helps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How Babel v7 Helps</h2>
+<p>As we've discussed, compiling dependencies in Babel v6 can be pretty painful. Babel v7 will address some of these pain points.</p>
+<p>One issue is around configuration lookup. Babel currently runs per file, so when compiling a file, it tries to find the closest config (<a href="https://babeljs.io/docs/en/next/babelrc"><code>.babelrc</code></a>) to know what to compile against. It keeps looking up the directory tree if it doesn't find it in the current folder.</p>
+<pre><code class="hljs">project
+└── <span class="hljs-selector-class">.babelrc</span> <span class="hljs-comment">// closest config for a.js</span>
+└── <span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.js</span>
+└── node_modules
+    └── package
+        └── <span class="hljs-selector-class">.babelrc</span> <span class="hljs-comment">// closest config for b.js</span>
+        └── <span class="hljs-selector-tag">b</span><span class="hljs-selector-class">.js</span>
+</code></pre>
+<p>We made a <a href="https://github.com/babel/babel/pull/7358">few changes</a>:</p>
+<ul>
+<li>One is to stop lookup at the package boundary (stop when we find a <code>package.json</code>). This makes sure Babel won't try to load a config file outside the app, the most surprising being when it finds one in the home directory.</li>
+<li>If we use a monorepo, we may want to have a <code>.babelrc</code> per-package that extends some other central config.</li>
+<li>Babel itself is a monorepo, so instead we are using the new <code>babel.config.js</code> which allows us to resolve all files to that config (no more lookup).</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="selective-compilation-with-overrides"></a><a href="#selective-compilation-with-overrides" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Selective Compilation with <code>&quot;overrides&quot;</code></h3>
+<p>We added an <a href="https://github.com/babel/babel/pull/7091"><code>&quot;overrides&quot;</code></a> option which allows us to basically create a new config for any set of file paths.</p>
+<blockquote>
+<p>This allows every config object to specify a <code>test</code>/<code>include</code>/<code>exclude</code> field, just like you might do for Webpack. Each item allows an item, or array of items that can be a <code>string</code>, <code>RegExp</code>, or <code>function</code>.</p>
+</blockquote>
+<p>This allows us to have a single config for our whole app: maybe we want to compile our server JavaScript code differently than the client code (as well as compile some package(s) in <code>node_modules</code>).</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// babel.config.js</span>
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">presets</span>: [
+    [<span class="hljs-string">'@babel/preset-env'</span>, { 
+      <span class="hljs-attr">targets</span>: { <span class="hljs-attr">node</span>: <span class="hljs-string">'current'</span> },
+    }],
+  ],
+  <span class="hljs-attr">overrides</span>: [{
+    <span class="hljs-attr">test</span>: [<span class="hljs-string">"./client-code"</span>, <span class="hljs-string">"./node_modules/package-a"</span>],
+    <span class="hljs-attr">presets</span>: [
+      [<span class="hljs-string">'@babel/preset-env'</span>, { 
+        <span class="hljs-attr">targets</span>: { <span class="hljs-string">"chrome"</span>: <span class="hljs-string">"60"</span> } },
+      }],
+    ],
+  }],
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="recommendations-to-discuss"></a><a href="#recommendations-to-discuss" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Recommendations to Discuss</h2>
+<p>We should shift our fixed view of publishing JavaScript to one that keeps up with the latest standard.</p>
+<p>We should continue to publish ES5/CJS under <code>main</code> for backwards compatibility with current tooling but also publish a version compiled down to latest syntax (no experimental proposals) under a new key we can standardize on like <code>main-es</code>. (I don't believe <code>module</code> should be that key since it was intended only for JS Modules).</p>
+<blockquote>
+<p>Maybe we should decide on another key in <code>package.json</code>, maybe <code>&quot;es&quot;</code>? Reminds me of the poll I made for <a href="https://twitter.com/left_pad/status/758429846594850816">babel-preset-latest</a>.</p>
+</blockquote>
+<p>Compiling dependencies isn't just something for one project/company to take advantage of: it requires a push by the whole community to move forward. Even though this effort will be natural, it might require some sort of standardization: we can implement a set of criteria for how libraries can opt-in to publishing ES2015+ and verify this via CI/tooling/npm itself.</p>
+<p>Documentation needs to updated to mention the benefits of compiling <code>node_modules</code>, how to do so for the library authors, and how to consume it in bundlers/compilers.</p>
+<p>And with Babel 7, consumers can more safely use <code>preset-env</code> and opt-in to running on <code>node_modules</code> with new config options like <code>overrides</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="lets-do-this"></a><a href="#lets-do-this" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Let's Do This!</h2>
+<p>Compiling JavaScript shouldn't be just about the specific ES2015/ES5 distinction, whether it's for our app or our dependencies! Hopefully this is an encouraging call to action re-starting conversations around using ES2015+ published dependencies more first-class.</p>
+<p>This post goes into some of the ways Babel should help with this effort, but we'll need everyone's help to change the ecosystem: more education, more opt-in published packages, and better tooling.</p>
+<hr>
+<blockquote>
+<p>Thanks to the <a href="https://twitter.com/left_pad/status/1010280464840617984">many</a> folks who offered to review this post including <a href="https://twitter.com/chrisdarroch">@chrisdarroch</a>, <a href="https://twitter.com/existentialism">@existentialism</a>, <a href="https://twitter.com/mathias">@mathias</a>, <a href="https://twitter.com/betaorbust">@betaorbust</a>, <a href="https://twitter.com/_developit">@_developit</a>, <a href="https://twitter.com/jdalton">@jdalton</a>, <a href="https://twitter.com/bonsaistudio">@bonsaistudio</a>.</p>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#assumptions">Assumptions</a></li><li><a href="#why">Why</a></li><li><a href="#the-ephemeral-javascript-runtime">The Ephemeral JavaScript Runtime</a></li><li><a href="#who-owns-our-dependencies">Who Owns Our Dependencies?</a></li><li><a href="#current-complexities-in-compiling-dependencies">Current Complexities in Compiling Dependencies</a><ul class="toc-headings"><li><a href="#compiler-complexity">Compiler Complexity</a></li><li><a href="#using-non-standard-syntax">Using Non-Standard Syntax</a></li><li><a href="#publishing-non-standard-syntax">Publishing Non-standard Syntax</a></li><li><a href="#conflating-javascript-modules-and-es2015">Conflating JavaScript Modules and ES2015+</a></li><li><a href="#dependencies-may-not-publish-es2015">Dependencies May Not Publish ES2015+</a></li></ul></li><li><a href="#how-babel-v7-helps">How Babel v7 Helps</a><ul class="toc-headings"><li><a href="#selective-compilation-with-overrides">Selective Compilation with <code>&quot;overrides&quot;</code></a></li></ul></li><li><a href="#recommendations-to-discuss">Recommendations to Discuss</a></li><li><a href="#lets-do-this">Let's Do This!</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

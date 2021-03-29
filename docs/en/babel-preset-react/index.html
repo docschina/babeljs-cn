@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>@babel/preset-react · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This preset always includes the following plugins:"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="@babel/preset-react · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="This preset always includes the following plugins:"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>presets</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">指南</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/">什么是 Babel？</a></li><li class="navListItem"><a class="navItem" href="/docs/en/usage">使用指南</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration">配置 Babel</a></li><li class="navListItem"><a class="navItem" href="/docs/en/learn">学习 ES2015</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration">升级至 Babel 7</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration-api">升级至 Babel 7 (API)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">通用</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/editors">编辑器</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins">插件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/presets">Presets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/caveats">注意事项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/faq">FAQ</a></li><li class="navListItem"><a class="navItem" href="/docs/en/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">用法</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/options">选项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/config-files">配置文件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-cli">cli</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-plugin-transform-runtime">transform-runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-register">register</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">presets</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-env">env</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-flow">flow</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/babel-preset-react">react</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-typescript">typescript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">工具</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-parser">parser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-core">core</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-generator">generator</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-code-frame">code-frame</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-helpers">helpers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-runtime">runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-template">template</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-traverse">traverse</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-types">types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/preset-react.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">@babel/preset-react</h1></header><article><div><span><p>This preset always includes the following plugins:</p>
+<ul>
+<li><a href="/docs/en/babel-plugin-syntax-jsx">@babel/plugin-syntax-jsx</a></li>
+<li><a href="/docs/en/babel-plugin-transform-react-jsx">@babel/plugin-transform-react-jsx</a></li>
+<li><a href="/docs/en/babel-plugin-transform-react-display-name">@babel/plugin-transform-react-display-name</a></li>
+</ul>
+<p>And with the <code>development</code> option:</p>
+<p>Classic runtime adds:</p>
+<ul>
+<li><a href="/docs/en/babel-plugin-transform-react-jsx-self">@babel/plugin-transform-react-jsx-self</a></li>
+<li><a href="/docs/en/babel-plugin-transform-react-jsx-source">@babel/plugin-transform-react-jsx-source</a></li>
+</ul>
+<p>Automatic runtime (since <code>v7.9.0</code>) adds the functionality for these plugins automatically when the <code>development</code> option is enabled. If you have automatic runtime enabled, adding <a href="/docs/en/babel-plugin-transform-react-jsx-self">@babel/plugin-transform-react-jsx-self</a> or <a href="/docs/en/babel-plugin-transform-react-jsx-source">@babel/plugin-transform-react-jsx-source</a> will error.</p>
+<blockquote>
+<p>Note: Flow syntax support is no longer enabled in v7. For that, you will need to add the <a href="/docs/en/babel-preset-flow">Flow preset</a>.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+<blockquote>
+<p>You can also check out the React <a href="https://facebook.github.io/react/docs/hello-world.html">Getting Started page</a></p>
+</blockquote>
+<pre><code class="hljs css language-sh">npm install --save-dev @babel/preset-react
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
+<h3><a class="anchor" aria-hidden="true" id="with-a-configuration-file-recommended"></a><a href="#with-a-configuration-file-recommended" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With a configuration file (Recommended)</h3>
+<p>Without options:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"@babel/preset-react"</span>]
+}
+</code></pre>
+<p>With options:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [
+    [
+      <span class="hljs-string">"@babel/preset-react"</span>,
+      {
+        <span class="hljs-attr">"pragma"</span>: <span class="hljs-string">"dom"</span>, <span class="hljs-comment">// default pragma is React.createElement (only in classic runtime)</span>
+        <span class="hljs-attr">"pragmaFrag"</span>: <span class="hljs-string">"DomFrag"</span>, <span class="hljs-comment">// default is React.Fragment (only in classic runtime)</span>
+        <span class="hljs-attr">"throwIfNamespace"</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// defaults to true</span>
+        <span class="hljs-attr">"runtime"</span>: <span class="hljs-string">"classic"</span> <span class="hljs-comment">// defaults to classic</span>
+        <span class="hljs-comment">// "importSource": "custom-jsx-library" // defaults to react (only in automatic runtime)</span>
+      }
+    ]
+  ]
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-cli"></a><a href="#via-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Via CLI</h3>
+<pre><code class="hljs css language-sh">babel --presets @babel/preset-react script.js
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-node-api"></a><a href="#via-node-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Via Node API</h3>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/core"</span>).transformSync(<span class="hljs-string">"code"</span>, {
+  <span class="hljs-attr">presets</span>: [<span class="hljs-string">"@babel/preset-react"</span>],
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="options"></a><a href="#options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Options</h2>
+<h3><a class="anchor" aria-hidden="true" id="both-runtimes"></a><a href="#both-runtimes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Both Runtimes</h3>
+<h4><a class="anchor" aria-hidden="true" id="runtime"></a><a href="#runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>runtime</code></h4>
+<p><code>classic | automatic</code>, defaults to <code>classic</code></p>
+<p>Added in: <code>v7.9.0</code></p>
+<p>Decides which runtime to use.</p>
+<p><code>automatic</code> auto imports the functions that JSX transpiles to. <code>classic</code> does not automatic import anything.</p>
+<h4><a class="anchor" aria-hidden="true" id="development"></a><a href="#development" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>development</code></h4>
+<p><code>boolean</code>, defaults to <code>false</code>.</p>
+<p>This toggles behavior specific to development, such as adding <code>__source</code> and <code>__self</code>.</p>
+<p>This is useful when combined with the <a href="/docs/en/options#env">env option</a> configuration or <a href="/docs/en/config-files#javascript">js config files</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="throwifnamespace"></a><a href="#throwifnamespace" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>throwIfNamespace</code></h4>
+<p><code>boolean</code>, defaults to <code>true</code>.</p>
+<p>Toggles whether or not to throw an error if a XML namespaced tag name is used. For example:</p>
+<pre><code class="hljs">&lt;f:image /&gt;
+</code></pre>
+<p>Though the JSX spec allows this, it is disabled by default since React's JSX does not currently have support for it.</p>
+<h3><a class="anchor" aria-hidden="true" id="react-automatic-runtime"></a><a href="#react-automatic-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React Automatic Runtime</h3>
+<h4><a class="anchor" aria-hidden="true" id="importsource"></a><a href="#importsource" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>importSource</h4>
+<p><code>string</code>, defaults to <code>react</code>.</p>
+<p>Added in: <code>v7.9.0</code></p>
+<p>Replaces the import source when importing functions.</p>
+<h3><a class="anchor" aria-hidden="true" id="react-classic-runtime"></a><a href="#react-classic-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React Classic Runtime</h3>
+<h4><a class="anchor" aria-hidden="true" id="pragma"></a><a href="#pragma" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>pragma</code></h4>
+<p><code>string</code>, defaults to <code>React.createElement</code>.</p>
+<p>Replace the function used when compiling JSX expressions.</p>
+<h4><a class="anchor" aria-hidden="true" id="pragmafrag"></a><a href="#pragmafrag" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>pragmaFrag</code></h4>
+<p><code>string</code>, defaults to <code>React.Fragment</code>.</p>
+<p>Replace the component used when compiling JSX fragments.</p>
+<h4><a class="anchor" aria-hidden="true" id="usebuiltins"></a><a href="#usebuiltins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>useBuiltIns</code></h4>
+<p><code>boolean</code>, defaults to <code>false</code>.</p>
+<p>Will use the native built-in instead of trying to polyfill behavior for any plugins that require one.</p>
+<h4><a class="anchor" aria-hidden="true" id="usespread"></a><a href="#usespread" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>useSpread</code></h4>
+<p><code>boolean</code>, defaults to <code>false</code>.</p>
+<p>Added in: <code>v7.7.0</code></p>
+<p>When spreading props, use inline object with spread elements directly instead of Babel's extend helper or <code>Object.assign</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="babelrcjs"></a><a href="#babelrcjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>.babelrc.js</h3>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">presets</span>: [
+    [
+      <span class="hljs-string">"@babel/preset-react"</span>,
+      {
+        <span class="hljs-attr">development</span>: process.env.BABEL_ENV === <span class="hljs-string">"development"</span>,
+      },
+    ],
+  ],
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="babelrc"></a><a href="#babelrc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>.babelrc</h3>
+<blockquote>
+<p>Note: the <code>env</code> option will likely get deprecated soon</p>
+</blockquote>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"@babel/preset-react"</span>],
+  <span class="hljs-attr">"env"</span>: {
+    <span class="hljs-attr">"development"</span>: {
+      <span class="hljs-attr">"presets"</span>: [[<span class="hljs-string">"@babel/preset-react"</span>, { <span class="hljs-attr">"development"</span>: <span class="hljs-literal">true</span> }]]
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>You can read more about configuring preset options <a href="https://babeljs.io/docs/en/presets#preset-options">here</a></p>
+</blockquote>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/babel-preset-flow"><span class="arrow-prev">← </span><span>flow</span></a><a class="docs-next button" href="/docs/en/babel-preset-typescript"><span>typescript</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a></li><li><a href="#usage">Usage</a><ul class="toc-headings"><li><a href="#with-a-configuration-file-recommended">With a configuration file (Recommended)</a></li><li><a href="#via-cli">Via CLI</a></li><li><a href="#via-node-api">Via Node API</a></li></ul></li><li><a href="#options">Options</a><ul class="toc-headings"><li><a href="#both-runtimes">Both Runtimes</a></li><li><a href="#react-automatic-runtime">React Automatic Runtime</a></li><li><a href="#react-classic-runtime">React Classic Runtime</a></li><li><a href="#babelrcjs">.babelrc.js</a></li><li><a href="#babelrc">.babelrc</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

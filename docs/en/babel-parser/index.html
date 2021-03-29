@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>@babel/parser · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p align=&quot;left&quot;&gt;"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="@babel/parser · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="&lt;p align=&quot;left&quot;&gt;"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>工具</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">指南</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/">什么是 Babel？</a></li><li class="navListItem"><a class="navItem" href="/docs/en/usage">使用指南</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration">配置 Babel</a></li><li class="navListItem"><a class="navItem" href="/docs/en/learn">学习 ES2015</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration">升级至 Babel 7</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration-api">升级至 Babel 7 (API)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">通用</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/editors">编辑器</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins">插件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/presets">Presets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/caveats">注意事项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/faq">FAQ</a></li><li class="navListItem"><a class="navItem" href="/docs/en/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">用法</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/options">选项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/config-files">配置文件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-cli">cli</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-plugin-transform-runtime">transform-runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-register">register</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">presets</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-env">env</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-flow">flow</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-react">react</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-typescript">typescript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">工具</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/babel-parser">parser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-core">core</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-generator">generator</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-code-frame">code-frame</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-helpers">helpers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-runtime">runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-template">template</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-traverse">traverse</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-types">types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/parser.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">@babel/parser</h1></header><article><div><span><p align="left">
+  The Babel parser (previously Babylon) is a JavaScript parser used in <a href="https://github.com/babel/babel">Babel</a>.
+</p>
+<ul>
+<li>The latest ECMAScript version enabled by default (ES2020).</li>
+<li>Comment attachment.</li>
+<li>Support for JSX, Flow, Typescript.</li>
+<li>Support for experimental language proposals (accepting PRs for anything at least <a href="https://github.com/tc39/proposals/blob/master/stage-0-proposals.md">stage-0</a>).</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="credits"></a><a href="#credits" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Credits</h2>
+<p>Heavily based on <a href="https://github.com/marijnh/acorn">acorn</a> and <a href="https://github.com/RReverser/acorn-jsx">acorn-jsx</a>,
+thanks to the awesome work of <a href="https://github.com/RReverser">@RReverser</a> and <a href="https://github.com/marijnh">@marijnh</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="api"></a><a href="#api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>API</h2>
+<h3><a class="anchor" aria-hidden="true" id="babelparserparsecode-options"></a><a href="#babelparserparsecode-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>babelParser.parse(code, [options])</code></h3>
+<h3><a class="anchor" aria-hidden="true" id="babelparserparseexpressioncode-options"></a><a href="#babelparserparseexpressioncode-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>babelParser.parseExpression(code, [options])</code></h3>
+<p><code>parse()</code> parses the provided <code>code</code> as an entire ECMAScript program, while
+<code>parseExpression()</code> tries to parse a single Expression with performance in
+mind. When in doubt, use <code>.parse()</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="options"></a><a href="#options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Options</h3>
+<p><details>
+<summary>History</summary></p>
+<table>
+<thead>
+<tr><th>Version</th><th>Changes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>v7.7.0</code></td><td>Added <code>errorRecovery</code></td></tr>
+<tr><td><code>v7.5.0</code></td><td>Added <code>allowUndeclaredExports</code></td></tr>
+<tr><td><code>v7.2.0</code></td><td>Added <code>createParenthesizedExpressions</code></td></tr>
+</tbody>
+</table>
+<p></details></p>
+<ul>
+<li><p><strong>allowImportExportEverywhere</strong>: By default, <code>import</code> and <code>export</code>
+declarations can only appear at a program's top level. Setting this
+option to <code>true</code> allows them anywhere where a statement is allowed.</p></li>
+<li><p><strong>allowAwaitOutsideFunction</strong>: By default, <code>await</code> use is only allowed
+inside of an async function or, when the <code>topLevelAwait</code> plugin is enabled,
+in the top-level scope of modules. Set this to <code>true</code> to also accept it in the
+top-level scope of scripts. This option is discouraged in favor of
+<code>topLevelAwait</code> plugin.</p></li>
+<li><p><strong>allowReturnOutsideFunction</strong>: By default, a return statement at
+the top level raises an error. Set this to <code>true</code> to accept such
+code.</p></li>
+<li><p><strong>allowSuperOutsideMethod</strong>: By default, <code>super</code> use is not allowed
+outside of class and object methods. Set this to <code>true</code> to accept such
+code.</p></li>
+<li><p><strong>allowUndeclaredExports</strong>: By default, exporting an identifier that was
+not declared in the current module scope will raise an error. While this
+behavior is required by the ECMAScript modules specification, Babel's
+parser cannot anticipate transforms later in the plugin pipeline that
+might insert the appropriate declarations, so it is sometimes important
+to set this option to <code>true</code> to prevent the parser from prematurely
+complaining about undeclared exports that will be added later.</p></li>
+<li><p><strong>createParenthesizedExpressions</strong>: By default, the parser sets <code>extra.parenthesized</code> on the expression nodes. When this option is set to <code>true</code>, <code>ParenthesizedExpression</code> AST nodes are created instead.</p></li>
+<li><p><strong>errorRecovery</strong>: By default, Babel always throws an error when it finds some invalid
+code. When this option is set to <code>true</code>, it will store the parsing error and try to continue
+parsing the invalid input file.
+The resulting AST will have an <code>errors</code> property representing an array of all the parsing errors.
+Note that even when this option is enabled, <code>@babel/parser</code> could throw for unrecoverable errors.</p></li>
+<li><p><strong>plugins</strong>: Array containing the plugins that you want to enable.</p></li>
+<li><p><strong>sourceType</strong>: Indicate the mode the code should be parsed in. Can be
+one of <code>&quot;script&quot;</code>, <code>&quot;module&quot;</code>, or <code>&quot;unambiguous&quot;</code>. Defaults to <code>&quot;script&quot;</code>. <code>&quot;unambiguous&quot;</code> will make @babel/parser attempt to <em>guess</em>, based on the presence of ES6 <code>import</code> or <code>export</code> statements. Files with ES6 <code>import</code>s and <code>export</code>s are considered <code>&quot;module&quot;</code> and are otherwise <code>&quot;script&quot;</code>.</p></li>
+<li><p><strong>sourceFilename</strong>: Correlate output AST nodes with their source filename.  Useful when generating code and source maps from the ASTs of multiple input files.</p></li>
+<li><p><strong>startLine</strong>: By default, the first line of code parsed is treated as line 1. You can provide a line number to alternatively start with. Useful for integration with other source tools.</p></li>
+<li><p><strong>strictMode</strong>: By default, ECMAScript code is parsed as strict only if a
+<code>&quot;use strict&quot;;</code> directive is present or if the parsed file is an ECMAScript
+module. Set this option to <code>true</code> to always parse files in strict mode.</p></li>
+<li><p><strong>ranges</strong>: Adds a <code>range</code> property to each node: <code>[node.start, node.end]</code></p></li>
+<li><p><strong>tokens</strong>: Adds all parsed tokens to a <code>tokens</code> property on the <code>File</code> node</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="output"></a><a href="#output" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Output</h3>
+<p>The Babel parser generates AST according to <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md">Babel AST format</a>.
+It is based on <a href="https://github.com/estree/estree">ESTree spec</a> with the following deviations:</p>
+<ul>
+<li><a href="https://github.com/estree/estree/blob/master/es5.md#literal">Literal</a> token is replaced with <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#stringliteral">StringLiteral</a>, <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#numericliteral">NumericLiteral</a>, <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#bigintliteral">BigIntLiteral</a>, <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#booleanliteral">BooleanLiteral</a>, <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#nullliteral">NullLiteral</a>, <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#regexpliteral">RegExpLiteral</a></li>
+<li><a href="https://github.com/estree/estree/blob/master/es5.md#property">Property</a> token is replaced with <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#objectproperty">ObjectProperty</a> and <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#objectmethod">ObjectMethod</a></li>
+<li><a href="https://github.com/estree/estree/blob/master/es2015.md#methoddefinition">MethodDefinition</a> is replaced with <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#classmethod">ClassMethod</a></li>
+<li><a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#programs">Program</a> and <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#blockstatement">BlockStatement</a> contain additional <code>directives</code> field with <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#directive">Directive</a> and <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#directiveliteral">DirectiveLiteral</a></li>
+<li><a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#classmethod">ClassMethod</a>, <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#objectproperty">ObjectProperty</a>, and <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#objectmethod">ObjectMethod</a> value property's properties in <a href="https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#functionexpression">FunctionExpression</a> is coerced/brought into the main method node.</li>
+<li><a href="https://github.com/estree/estree/blob/master/es2020.md#chainexpression">ChainExpression</a> is replaced with <a href="https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#optionalmemberexpression">OptionalMemberExpression</a> and <a href="https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#optionalcallexpression">OptionalCallExpression</a></li>
+<li><a href="https://github.com/estree/estree/blob/master/es2020.md#importexpression">ImportExpression</a> is replaced with a <a href="https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#callexpression">CallExpression</a> whose <code>callee</code> is an <a href="https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#import">Import</a> node.</li>
+</ul>
+<blockquote>
+<p>There is now an <code>estree</code> plugin which reverts these deviations</p>
+</blockquote>
+<p>AST for JSX code is based on <a href="https://github.com/facebook/jsx/blob/master/AST.md">Facebook JSX AST</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="semver"></a><a href="#semver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Semver</h3>
+<p>The Babel Parser follows semver in most situations. The only thing to note is that some spec-compliancy bug fixes may be released under patch versions.</p>
+<p>For example: We push a fix to early error on something like <a href="https://github.com/babel/babylon/pull/107">#107</a> - multiple default exports per file. That would be considered a bug fix even though it would cause a build to fail.</p>
+<h3><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/parser"</span>).parse(<span class="hljs-string">"code"</span>, {
+  <span class="hljs-comment">// parse in strict mode and allow module declarations</span>
+  <span class="hljs-attr">sourceType</span>: <span class="hljs-string">"module"</span>,
+
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-comment">// enable jsx and flow syntax</span>
+    <span class="hljs-string">"jsx"</span>,
+    <span class="hljs-string">"flow"</span>
+  ]
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="plugins"></a><a href="#plugins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Plugins</h3>
+<h4><a class="anchor" aria-hidden="true" id="miscellaneous"></a><a href="#miscellaneous" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Miscellaneous</h4>
+<table>
+<thead>
+<tr><th>Name</th><th>Code Example</th></tr>
+</thead>
+<tbody>
+<tr><td><code>estree</code> (<a href="https://github.com/estree/estree">repo</a>)</td><td>n/a</td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="language-extensions"></a><a href="#language-extensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Language extensions</h4>
+<p><details>
+<summary>History</summary></p>
+<table>
+<thead>
+<tr><th>Version</th><th>Changes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>v7.6.0</code></td><td>Added <code>v8intrinsic</code></td></tr>
+</tbody>
+</table>
+<p></details></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Code Example</th></tr>
+</thead>
+<tbody>
+<tr><td><code>flow</code> (<a href="https://github.com/facebook/flow">repo</a>)</td><td><code>var a: string = &quot;&quot;;</code></td></tr>
+<tr><td><code>flowComments</code> (<a href="https://flow.org/en/docs/types/comments/">docs</a>)</td><td><code>/*:: type Foo = {...}; */</code></td></tr>
+<tr><td><code>jsx</code> (<a href="https://facebook.github.io/jsx/">repo</a>)</td><td><code>&lt;a attr=&quot;b&quot;&gt;{s}&lt;/a&gt;</code></td></tr>
+<tr><td><code>typescript</code> (<a href="https://github.com/Microsoft/TypeScript">repo</a>)</td><td><code>var a: string = &quot;&quot;;</code></td></tr>
+<tr><td><code>v8intrinsic</code></td><td><code>%DebugPrint(foo);</code></td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="ecmascript-proposalshttpsgithubcombabelproposals"></a><a href="#ecmascript-proposalshttpsgithubcombabelproposals" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ECMAScript <a href="https://github.com/babel/proposals">proposals</a></h4>
+<p><details>
+<summary>History</summary></p>
+<table>
+<thead>
+<tr><th>Version</th><th>Changes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>v7.13.0</code></td><td>Added <code>moduleBlocks</code></td></tr>
+<tr><td><code>v7.12.0</code></td><td>Added <code>classStaticBlock</code>, <code>moduleStringNames</code></td></tr>
+<tr><td><code>v7.11.0</code></td><td>Added <code>decimal</code></td></tr>
+<tr><td><code>v7.10.0</code></td><td>Added <code>privateIn</code></td></tr>
+<tr><td><code>v7.9.0</code></td><td>Added <code>recordAndTuple</code></td></tr>
+<tr><td><code>v7.7.0</code></td><td>Added <code>topLevelAwait</code></td></tr>
+<tr><td><code>v7.4.0</code></td><td>Added <code>partialApplication</code></td></tr>
+<tr><td><code>v7.2.0</code></td><td>Added <code>classPrivateMethods</code></td></tr>
+</tbody>
+</table>
+<p></details></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Code Example</th></tr>
+</thead>
+<tbody>
+<tr><td><code>classProperties</code> (<a href="https://github.com/tc39/proposal-class-public-fields">proposal</a>)</td><td><code>class A { b = 1; }</code></td></tr>
+<tr><td><code>classPrivateProperties</code> (<a href="https://github.com/tc39/proposal-private-fields">proposal</a>)</td><td><code>class A { #b = 1; }</code></td></tr>
+<tr><td><code>classPrivateMethods</code> (<a href="https://github.com/tc39/proposal-private-methods">proposal</a>)</td><td><code>class A { #c() {} }</code></td></tr>
+<tr><td><code>classStaticBlock</code> (<a href="https://github.com/tc39/proposal-class-static-block">proposal</a>)</td><td><code>class A { static {} }</code></td></tr>
+<tr><td><code>decimal</code> (<a href="https://github.com/tc39/proposal-decimal">proposal</a>)</td><td><code>0.3m</code></td></tr>
+<tr><td><code>decorators</code> (<a href="https://github.com/tc39/proposal-decorators">proposal</a>) <br> <code>decorators-legacy</code></td><td><code>@a class A {}</code></td></tr>
+<tr><td><code>doExpressions</code> (<a href="https://github.com/tc39/proposal-do-expressions">proposal</a>)</td><td><code>var a = do { if (true) { 'hi'; } };</code></td></tr>
+<tr><td><code>exportDefaultFrom</code> (<a href="https://github.com/tc39/ecmascript-export-default-from">proposal</a>)</td><td><code>export v from &quot;mod&quot;</code></td></tr>
+<tr><td><code>functionBind</code> (<a href="https://github.com/zenparsing/es-function-bind">proposal</a>)</td><td><code>a::b</code>, <code>::console.log</code></td></tr>
+<tr><td><code>importAssertions</code> (<a href="https://github.com/tc39/proposal-import-assertions">proposal</a>)</td><td><code>import json from &quot;./foo.json&quot; assert { type: &quot;json&quot; };</code></td></tr>
+<tr><td><code>moduleBlocks</code> (<a href="https://github.com/tc39/proposal-js-module-blocks">proposal</a>)</td><td><code>let m = module { export let y = 1; };</code></td></tr>
+<tr><td><code>moduleStringNames</code> (<a href="https://github.com/tc39/ecma262/pull/2154">proposal</a>)</td><td><code>import { &quot;😄&quot; as smile } from &quot;emoji&quot;;</code></td></tr>
+<tr><td><code>partialApplication</code> (<a href="https://github.com/babel/proposals/issues/32">proposal</a>)</td><td><code>f(?, a)</code></td></tr>
+<tr><td><code>pipelineOperator</code> (<a href="https://github.com/babel/proposals/issues/29">proposal</a>)</td><td><code>a |&gt; b</code></td></tr>
+<tr><td><code>privateIn</code> (<a href="https://github.com/tc39/proposal-private-fields-in-in">proposal</a>)</td><td><code>#p in obj</code></td></tr>
+<tr><td><code>recordAndTuple</code> (<a href="https://github.com/tc39/proposal-record-tuple">proposal</a>)</td><td><code>#{x: 1}</code>, <code>#[1, 2]</code></td></tr>
+<tr><td><code>throwExpressions</code> (<a href="https://github.com/babel/proposals/issues/23">proposal</a>)</td><td><code>() =&gt; throw new Error(&quot;&quot;)</code></td></tr>
+<tr><td><code>topLevelAwait</code> (<a href="https://github.com/tc39/proposal-top-level-await/">proposal</a>)</td><td><code>await promise</code> in modules</td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="latest-ecmascript-features"></a><a href="#latest-ecmascript-features" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Latest ECMAScript features</h4>
+<p>The following features are already enabled on the latest version of <code>@babel/parser</code>, and cannot be disabled because they are part of the language.
+You should enable these features only if you are using an older version.</p>
+<table>
+<thead>
+<tr><th>Name</th><th>Code Example</th></tr>
+</thead>
+<tbody>
+<tr><td><code>asyncGenerators</code> (<a href="https://github.com/tc39/proposal-async-iteration">proposal</a>)</td><td><code>async function*() {}</code>, <code>for await (let a of b) {}</code></td></tr>
+<tr><td><code>bigInt</code> (<a href="https://github.com/tc39/proposal-bigint">proposal</a>)</td><td><code>100n</code></td></tr>
+<tr><td><code>dynamicImport</code> (<a href="https://github.com/tc39/proposal-dynamic-import">proposal</a>)</td><td><code>import('./guy').then(a)</code></td></tr>
+<tr><td><code>exportNamespaceFrom</code> (<a href="https://github.com/leebyron/ecmascript-export-ns-from">proposal</a>)</td><td><code>export * as ns from &quot;mod&quot;</code></td></tr>
+<tr><td><code>functionSent</code> (<a href="https://github.com/tc39/proposal-function.sent">proposal</a>)</td><td><code>function.sent</code></td></tr>
+<tr><td><code>logicalAssignment</code> (<a href="https://github.com/tc39/proposal-logical-assignment">proposal</a>)</td><td><code>a &amp;&amp;= b</code></td></tr>
+<tr><td><code>nullishCoalescingOperator</code> (<a href="https://github.com/babel/proposals/issues/14">proposal</a>)</td><td><code>a ?? b</code></td></tr>
+<tr><td><code>numericSeparator</code> (<a href="https://github.com/samuelgoto/proposal-numeric-separator">proposal</a>)</td><td><code>1_000_000</code></td></tr>
+<tr><td><code>objectRestSpread</code> (<a href="https://github.com/tc39/proposal-object-rest-spread">proposal</a>)</td><td><code>var a = { b, ...c };</code></td></tr>
+<tr><td><code>optionalCatchBinding</code> (<a href="https://github.com/babel/proposals/issues/7">proposal</a>)</td><td><code>try {throw 0;} catch{do();}</code></td></tr>
+<tr><td><code>optionalChaining</code> (<a href="https://github.com/tc39/proposal-optional-chaining">proposal</a>)</td><td><code>a?.b</code></td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="plugins-options"></a><a href="#plugins-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Plugins options</h4>
+<blockquote>
+<p>NOTE: When a plugin is specified multiple times, only the first options are considered.</p>
+</blockquote>
+<ul>
+<li><p><code>decorators</code>:</p>
+<ul>
+<li><code>decoratorsBeforeExport</code> (<code>boolean</code>)
+<pre><code class="hljs css language-js"><span class="hljs-comment">// decoratorsBeforeExport: true</span>
+@dec
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> </span>{}
+
+<span class="hljs-comment">// decoratorsBeforeExport: false</span>
+<span class="hljs-keyword">export</span> @dec <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> </span>{}
+</code></pre></li>
+</ul></li>
+<li><p><code>pipelineOperator</code>:</p>
+<ul>
+<li><code>proposal</code> (required, accepted values: <code>minimal</code>, <code>smart</code>, <code>fsharp</code>)
+There are different proposals for the pipeline operator. This option
+allows to choose which one to use.
+See <a href="https://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What's Happening With the Pipeline (|&gt;) Proposal?</a> for more information.</li>
+</ul></li>
+<li><p><code>recordAndtuple</code>:</p>
+<ul>
+<li><code>syntaxType</code> (required, accepted values: <code>hash</code>, <code>bar</code>)
+There are two syntax variants for <code>recordAndTuple</code>. They share exactly same runtime semantics.
+<table>
+<thead>
+<tr><th>SyntaxType</th><th>Record Example</th><th>Tuple Example</th></tr>
+</thead>
+<tbody>
+<tr><td><code>&quot;hash&quot;</code></td><td><code>#{ a: 1 }</code></td><td><code>#[1, 2]</code></td></tr>
+<tr><td><code>&quot;bar&quot;</code></td><td><code>{| a: 1 |}</code></td><td><code>[|1, 2|]</code></td></tr>
+</tbody>
+</table>
+See <a href="https://github.com/tc39/proposal-record-tuple/issues/10">Ergonomics of <code>#{}</code>/<code>#[]</code></a> for more information.</li>
+</ul></li>
+<li><p><code>flow</code>:</p>
+<ul>
+<li><code>all</code> (<code>boolean</code>, default: <code>false</code>)
+Some code has different meaning in Flow and in vanilla JavaScript. For example, <code>foo&lt;T&gt;(x)</code> is parsed as a call expression with a type argument in Flow, but as a comparison (<code>foo &lt; T &gt; x</code>) accordingly to the ECMAScript specification. By default, <code>babel-parser</code> parses those ambiguous constructs as Flow types only if the file starts with a <code>// @flow</code> pragma.
+Set this option to <code>true</code> to always parse files as if <code>// @flow</code> was specified.</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="faq"></a><a href="#faq" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FAQ</h3>
+<h4><a class="anchor" aria-hidden="true" id="will-the-babel-parser-support-a-plugin-system"></a><a href="#will-the-babel-parser-support-a-plugin-system" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Will the Babel parser support a plugin system?</h4>
+<p>Previous issues: <a href="https://github.com/babel/babel/issues/1351">#1351</a>, <a href="https://github.com/babel/babel/issues/6694">#6694</a>.</p>
+<p>We currently aren't willing to commit to supporting the API for plugins or the resulting ecosystem (there is already enough work maintaining Babel's own plugin system). It's not clear how to make that API effective, and it would limit our ability to refactor and optimize the codebase.</p>
+<p>Our current recommendation for those that want to create their own custom syntax is for users to fork the parser.</p>
+<p>To consume your custom parser, you can add a plugin to your <a href="/docs/en/options#plugins">options</a> to call the parser via its npm package name or require it if using JavaScript,</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> parse = <span class="hljs-built_in">require</span>(<span class="hljs-string">"custom-fork-of-babel-parser-on-npm-here"</span>);
+
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">plugins</span>: [{
+    parserOverride(code, opts) {
+      <span class="hljs-keyword">return</span> parse(code, opts);
+    },
+  }]
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/babel-preset-typescript"><span class="arrow-prev">← </span><span>typescript</span></a><a class="docs-next button" href="/docs/en/babel-core"><span>core</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#credits">Credits</a></li><li><a href="#api">API</a><ul class="toc-headings"><li><a href="#babelparserparsecode-options"><code>babelParser.parse(code, [options])</code></a></li><li><a href="#babelparserparseexpressioncode-options"><code>babelParser.parseExpression(code, [options])</code></a></li><li><a href="#options">Options</a></li><li><a href="#output">Output</a></li><li><a href="#semver">Semver</a></li><li><a href="#example">Example</a></li><li><a href="#plugins">Plugins</a></li><li><a href="#faq">FAQ</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

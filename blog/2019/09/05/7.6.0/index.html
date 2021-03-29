@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>7.6.0 Released: Private static accessors and V8 intrinsic syntax · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="We just released a new minor Babel version!"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="7.6.0 Released: Private static accessors and V8 intrinsic syntax · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2019/09/05/7.6.0"/><meta property="og:description" content="We just released a new minor Babel version!"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></h1><p class="post-meta">September 5, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/NicoloRibaudo" target="_blank" rel="noreferrer noopener">Nicolò Ribaudo</a></p></div></header><div><span><p>We just released a new minor Babel version!</p>
+<p>It includes support for static private accessors in classes, and parser support for the V8 intrinsics syntax. We also fixed a bunch of long-standing issues related to TDZ handling, and improved support for do-expressions. You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.6.0">on GitHub</a>.</p>
+<!-- truncate -->
+<p>Thanks to <a href="https://github.com/skyiea">Serhii Muryhin</a>, <a href="https://github.com/epicfaace">Ashwin Ramaswami</a>, <a href="https://github.com/ifsnow">Sungmin Lee</a>, <a href="https://github.com/Sinewyk">Serge Havas</a>, <a href="https://github.com/zaygraveyard">Ziad El Khoury Hanna</a>, <a href="https://github.com/deificx">Even Alander</a>, <a href="https://github.com/banga">Shrey Banga</a>, <a href="https://github.com/dsgkirkby">Dylan Kirkby</a>, <a href="https://github.com/ajaysagar">Ajay Sagar</a>, <a href="https://github.com/AdamRamberg">Adam Ramberg</a>, and <a href="https://github.com/rhyzx">Bin Xin</a> for their first PRs! (And also thanks to <a href="https://github.com/codetriage-readme-bot">Codetriage README Bot</a> and <a href="https://help.github.com/en/articles/configuring-automated-security-fixes">dependabot</a> 🤖)</p>
+<p><a href="https://github.com/bloomberg"><strong>Bloomberg</strong></a> is continuing to sponsor the implementation of new class features in Babel: after giving us a lot of new class features (<a href="https://babeljs.io/blog/2018/09/17/7.1.0#private-static-fields-stage-3">static private fields</a>, <a href="https://babeljs.io/blog/2018/12/03/7.2.0#private-instance-methods-8654-https-githubcom-babel-babel-pull-8654">private instance methods</a>, <a href="https://babeljs.io/blog/2019/01/21/7.3.0#private-instance-accessors-getters-and-setters-9101-https-githubcom-babel-babel-pull-9101">private instance accessors</a>, and <a href="https://babeljs.io/blog/2019/03/19/7.4.0#static-private-methods-9446-https-githubcom-babel-babel-pull-9446">static private methods</a>), they've just implemented static private getters and setters.</p>
+<p>Another big shout out goes to <a href="https://frontendmasters.com/"><strong>Frontend Masters</strong></a> for making two big donations this past month, as well as all <a href="https://opencollective.com/babel#contributors">our other sponsors</a> who allow the Babel team to spend more time on the project!</p>
+<p>If you or your company want to support Babel and the evolution of JavaScript, but aren't sure how, you can donate to us on <a href="https://opencollective.com/babel">OpenCollective</a> and, better yet, work with us on the implementation of <a href="https://github.com/babel/proposals">new ECMAScript proposals</a> directly! As a volunteer-driven project, we rely on the community's support to both fund our efforts in supporting the wide range of JavaScript users and taking ownership of the code. Reach out to Henry at <a href="mailto:henry@babeljs.io">henry@babeljs.io</a> if you'd like to talk more!</p>
+<h2><a class="anchor" aria-hidden="true" id="private-static-accessors-getters-and-setters-10217httpsgithubcombabelbabelpull10217"></a><a href="#private-static-accessors-getters-and-setters-10217httpsgithubcombabelbabelpull10217" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Private static accessors (getters and setters) (<a href="https://github.com/babel/babel/pull/10217">#10217</a>)</h2>
+<pre><code class="hljs css language-javascript="><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Resource</span> </span>{
+  static #loaderInstance = <span class="hljs-literal">null</span>;
+
+  static <span class="hljs-keyword">get</span> #loader() {
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.#loaderInstance) <span class="hljs-keyword">this</span>.#loaderInstance = new Loader();
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.#loaderInstance;
+  }
+
+  status = <span class="hljs-literal">null</span>;
+  
+  <span class="hljs-keyword">constructor</span>(url) {
+    <span class="hljs-keyword">this</span>.status = Resource.#loader.load(url);
+  }
+}
+</code></pre>
+<p>Thanks to <a href="https://github.com/tim-mc">Tim</a> (Bloomberg) for implementing this proposal!</p>
+<p>You can test this new feature by adding <code>@babel/plugin-proposal-private-methods</code> to your config, if you haven't already added it, or by enabling the <code>stage-3</code> preset in the online <a href="https://babeljs.io/repl/build/master#?presets=stage-3">repl</a>.</p>
+<p>Class private features support is finally complete 🎉</p>
+<div style="margin: auto; width: fit-content">
+<table>
+<thead>
+<tr><th>Class Private</th><th><strong>Instance</strong></th><th><strong>Static</strong></th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Fields</strong> <br/> <code>class A { #a = 1 }</code></td><td><a href="https://babeljs.io/blog/2018/08/27/7.0.0#tc39-proposals-https-githubcom-tc39-proposals-support">7.0.0</a></td><td><a href="https://babeljs.io/blog/2018/09/17/7.1.0#private-static-fields-stage-3">7.1.0</a></td></tr>
+<tr><td><strong>Methods</strong> <br/> <code>class A { #a() {} }</code></td><td><a href="https://babeljs.io/blog/2018/12/03/7.2.0#private-instance-methods-8654-https-githubcom-babel-babel-pull-8654">7.2.0</a></td><td><a href="https://babeljs.io/blog/2019/03/19/7.4.0#static-private-methods-9446-https-githubcom-babel-babel-pull-9446">7.4.0</a></td></tr>
+<tr><td><strong>Accessors</strong> <br/> <code>class A { get #a() {} }</code></td><td><a href="https://babeljs.io/blog/2019/01/21/7.3.0#private-instance-accessors-getters-and-setters-9101-https-githubcom-babel-babel-pull-9101">7.3.0</a></td><td>7.6.0</td></tr>
+</tbody>
+</table>
+</div>
+<div style="margin: auto; width: fit-content">
+<p><img src="https://media.giphy.com/media/3KC2jD2QcBOSc/source.gif" alt="It's time to party!"></p>
+</div>
+<h2><a class="anchor" aria-hidden="true" id="v8-intrinsic-runtime-functions-parsing-10148httpsgithubcombabelbabelpull10148"></a><a href="#v8-intrinsic-runtime-functions-parsing-10148httpsgithubcombabelbabelpull10148" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>V8 intrinsic runtime functions parsing (<a href="https://github.com/babel/babel/pull/10148">#10148</a>)</h2>
+<blockquote>
+<p>⚠️ This is a non-standard extension to the language, which can only be used in V8 when enabling the <code>--allow-natives-syntax</code> command-line flag.</p>
+</blockquote>
+<p>V8, the JavaScript engine used by Node.js and Chromium-based browsers, can expose various pieces of internal functionality as JavaScript functions. Although these APIs must not be used in production JavaScript code, these special functions <em>can</em> be useful in testing and debugging scenarios — for example, to understand how your JavaScript values are represented in memory, or to call some ECMAScript specification routines directly.</p>
+<p>These so-called “V8 intrinsics” have a different syntax than normal functions: their name always starts with <code>%</code>. Also, they can only be directly called and never used as normal values (you can't, for example, assign them to another variable).</p>
+<pre><code class="hljs css language-javascript="><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-comment">/* ... */</span> }
+
+<span class="hljs-keyword">const</span> status = %GetOptimizationStatus(fn);
+
+<span class="hljs-keyword">if</span> (status === <span class="hljs-number">2</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The function is not optimized!"</span>);
+}
+</code></pre>
+<p>You can find the whole list of existing V8 intrinsics in <a href="https://github.com/v8/v8/blob/master/src/runtime/runtime.h">V8's source code</a>.</p>
+<p>You can enable this syntax in <code>@babel/parser</code> by using the <code>v8intrinsic</code> plugin:</p>
+<pre><code class="hljs css language-javascript="><span class="hljs-keyword">const</span> { <span class="hljs-keyword">parse</span> } = require(<span class="hljs-string">"@babel/parser"</span>);
+
+<span class="hljs-keyword">parse</span>(code, {
+  plugins: [<span class="hljs-string">"v8intrinsic"</span>]
+})
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="nullish-coalescing-operator--updates-10269httpsgithubcombabelbabelpull10269"></a><a href="#nullish-coalescing-operator--updates-10269httpsgithubcombabelbabelpull10269" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nullish coalescing operator (<code>??</code>) updates (<a href="https://github.com/babel/babel/pull/10269">#10269</a>)</h2>
+<p>The nullish coalescing stage 3 proposal recently got some updates: to avoid confusion over precedence with other logical operators (<code>&amp;&amp;</code> and <code>||</code>), the spec has been changed to disallow mixing them.</p>
+<p>This means that the following expressions are now invalid:</p>
+<pre><code class="hljs css language-javascript=">a ?? b <span class="hljs-string">|| c;</span>
+a <span class="hljs-meta">&amp;&amp; b ?? c;</span>
+</code></pre>
+<p>Instead, you should add parentheses where appropriate:</p>
+<pre><code class="hljs css language-javascript="><span class="hljs-comment">(a ?? b)</span> || c; <span class="hljs-comment">/* or */</span> a ?? <span class="hljs-comment">(b || c)</span>;
+<span class="hljs-comment">(a &amp;&amp; b)</span> ?? c; <span class="hljs-comment">/* or */</span> a &amp;&amp; <span class="hljs-comment">(b ?? c)</span>;
+</code></pre>
+<p>This is similar to how unary minus (<code>-</code>) and the exponentiation operator (<code>**</code>) interact: you can't write <code>-1 ** 2</code>, but you have to choose between <code>(-1) ** 2</code> and <code>-(1 ** 2)</code>.</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#private-static-accessors-getters-and-setters-10217httpsgithubcombabelbabelpull10217">Private static accessors (getters and setters) (<a href="https://github.com/babel/babel/pull/10217">#10217</a>)</a></li><li><a href="#v8-intrinsic-runtime-functions-parsing-10148httpsgithubcombabelbabelpull10148">V8 intrinsic runtime functions parsing (<a href="https://github.com/babel/babel/pull/10148">#10148</a>)</a></li><li><a href="#nullish-coalescing-operator--updates-10269httpsgithubcombabelbabelpull10269">Nullish coalescing operator (<code>??</code>) updates (<a href="https://github.com/babel/babel/pull/10269">#10269</a>)</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

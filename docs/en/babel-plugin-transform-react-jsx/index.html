@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>@babel/plugin-transform-react-jsx · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Example"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="@babel/plugin-transform-react-jsx · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="## Example"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/plugin-transform-react-jsx.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">@babel/plugin-transform-react-jsx</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h2>
+<h3><a class="anchor" aria-hidden="true" id="react-automatic-runtime"></a><a href="#react-automatic-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React Automatic Runtime</h3>
+<p>Automatic runtime is a feature added in <code>v7.9.0</code>. With this runtime enabled, the functions that JSX compiles to will be imported automatically.</p>
+<p><strong>In</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> profile = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"avatar.png"</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{[user.firstName, user.lastName].join(" ")}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+</code></pre>
+<p><strong>Out</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> { jsx <span class="hljs-keyword">as</span> _jsx } <span class="hljs-keyword">from</span> <span class="hljs-string">"react/jsx-runtime"</span>;
+<span class="hljs-keyword">import</span> { jsxs <span class="hljs-keyword">as</span> _jsxs } <span class="hljs-keyword">from</span> <span class="hljs-string">"react/jsx-runtime"</span>;
+
+<span class="hljs-keyword">const</span> profile = _jsxs(<span class="hljs-string">"div"</span>, {
+  <span class="hljs-attr">children</span>: [
+    _jsx(<span class="hljs-string">"img"</span>, {
+      <span class="hljs-attr">src</span>: <span class="hljs-string">"avatar.png"</span>,
+      <span class="hljs-attr">className</span>: <span class="hljs-string">"profile"</span>,
+    }),
+    _jsx(<span class="hljs-string">"h3"</span>, {
+      <span class="hljs-attr">children</span>: [user.firstName, user.lastName].join(<span class="hljs-string">" "</span>),
+    }),
+  ],
+});
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="customizing-the-automatic-runtime-import"></a><a href="#customizing-the-automatic-runtime-import" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customizing the Automatic Runtime Import</h4>
+<p><strong>In</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">/** <span class="hljs-doctag">@jsxImportSource <span class="hljs-variable">custom</span></span>-jsx-library */</span>
+
+<span class="hljs-keyword">const</span> profile = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"avatar.png"</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{[user.firstName, user.lastName].join(" ")}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+</code></pre>
+<p><strong>Out</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> { jsx <span class="hljs-keyword">as</span> _jsx } <span class="hljs-keyword">from</span> <span class="hljs-string">"custom-jsx-library/jsx-runtime"</span>;
+<span class="hljs-keyword">import</span> { jsxs <span class="hljs-keyword">as</span> _jsxs } <span class="hljs-keyword">from</span> <span class="hljs-string">"custom-jsx-library/jsx-runtime"</span>;
+
+<span class="hljs-keyword">const</span> profile = _jsxs(<span class="hljs-string">"div"</span>, {
+  <span class="hljs-attr">children</span>: [
+    _jsx(<span class="hljs-string">"img"</span>, {
+      <span class="hljs-attr">src</span>: <span class="hljs-string">"avatar.png"</span>,
+      <span class="hljs-attr">className</span>: <span class="hljs-string">"profile"</span>,
+    }),
+    _jsx(<span class="hljs-string">"h3"</span>, {
+      <span class="hljs-attr">children</span>: [user.firstName, user.lastName].join(<span class="hljs-string">" "</span>),
+    }),
+  ],
+});
+</code></pre>
+<p><strong>In</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">/** <span class="hljs-doctag">@jsxRuntime </span>classic */</span>
+
+<span class="hljs-keyword">const</span> profile = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"avatar.png"</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{[user.firstName, user.lastName].join(" ")}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+</code></pre>
+<p><strong>Out</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> profile = React.createElement(
+  <span class="hljs-string">"div"</span>,
+  <span class="hljs-literal">null</span>,
+  React.createElement(<span class="hljs-string">"img"</span>, { <span class="hljs-attr">src</span>: <span class="hljs-string">"avatar.png"</span>, <span class="hljs-attr">className</span>: <span class="hljs-string">"profile"</span> }),
+  React.createElement(<span class="hljs-string">"h3"</span>, <span class="hljs-literal">null</span>, [user.firstName, user.lastName].join(<span class="hljs-string">" "</span>))
+);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="react-classic-runtime"></a><a href="#react-classic-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React Classic Runtime</h3>
+<p>If you do not want (or cannot use) auto importing, you can use the classic runtime, which is the default behavior for v7 and prior.</p>
+<p><strong>In</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> profile = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"avatar.png"</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{[user.firstName, user.lastName].join(" ")}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+</code></pre>
+<p><strong>Out</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> profile = React.createElement(
+  <span class="hljs-string">"div"</span>,
+  <span class="hljs-literal">null</span>,
+  React.createElement(<span class="hljs-string">"img"</span>, { <span class="hljs-attr">src</span>: <span class="hljs-string">"avatar.png"</span>, <span class="hljs-attr">className</span>: <span class="hljs-string">"profile"</span> }),
+  React.createElement(<span class="hljs-string">"h3"</span>, <span class="hljs-literal">null</span>, [user.firstName, user.lastName].join(<span class="hljs-string">" "</span>))
+);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="customizing-the-classic-runtime-import"></a><a href="#customizing-the-classic-runtime-import" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customizing the Classic Runtime Import</h4>
+<p><strong>In</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx </span>Preact.h */</span>
+
+<span class="hljs-keyword">import</span> Preact <span class="hljs-keyword">from</span> <span class="hljs-string">"preact"</span>;
+
+<span class="hljs-keyword">const</span> profile = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"avatar.png"</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"profile"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>{[user.firstName, user.lastName].join(" ")}<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+</code></pre>
+<p><strong>Out</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx </span>Preact.h */</span>
+
+<span class="hljs-keyword">import</span> Preact <span class="hljs-keyword">from</span> <span class="hljs-string">"preact"</span>;
+
+<span class="hljs-keyword">const</span> profile = Preact.h(
+  <span class="hljs-string">"div"</span>,
+  <span class="hljs-literal">null</span>,
+  Preact.h(<span class="hljs-string">"img"</span>, { <span class="hljs-attr">src</span>: <span class="hljs-string">"avatar.png"</span>, <span class="hljs-attr">className</span>: <span class="hljs-string">"profile"</span> }),
+  Preact.h(<span class="hljs-string">"h3"</span>, <span class="hljs-literal">null</span>, [user.firstName, user.lastName].join(<span class="hljs-string">" "</span>))
+);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="fragments"></a><a href="#fragments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fragments</h3>
+<p><a href="https://reactjs.org/docs/fragments.html">Fragments</a> are a feature available in React 16.2.0+.</p>
+<h4><a class="anchor" aria-hidden="true" id="react"></a><a href="#react" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React</h4>
+<p><strong>In</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> descriptions = items.map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dt</span>&gt;</span>{item.name}<span class="hljs-tag">&lt;/<span class="hljs-name">dt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dd</span>&gt;</span>{item.value}<span class="hljs-tag">&lt;/<span class="hljs-name">dd</span>&gt;</span>
+  <span class="hljs-tag">&lt;/&gt;</span></span>
+));
+</code></pre>
+<p><strong>Out</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> descriptions = items.map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span>
+  React.createElement(
+    React.Fragment,
+    <span class="hljs-literal">null</span>,
+    React.createElement(<span class="hljs-string">"dt"</span>, <span class="hljs-literal">null</span>, item.name),
+    React.createElement(<span class="hljs-string">"dd"</span>, <span class="hljs-literal">null</span>, item.value)
+  )
+);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="customizing-with-the-classic-runtime"></a><a href="#customizing-with-the-classic-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customizing with the Classic Runtime</h4>
+<p><strong>In</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx </span>Preact.h */</span>
+<span class="hljs-comment">/** <span class="hljs-doctag">@jsxFrag </span>Preact.Fragment */</span>
+
+<span class="hljs-keyword">import</span> Preact <span class="hljs-keyword">from</span> <span class="hljs-string">"preact"</span>;
+
+<span class="hljs-keyword">var</span> descriptions = items.map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dt</span>&gt;</span>{item.name}<span class="hljs-tag">&lt;/<span class="hljs-name">dt</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dd</span>&gt;</span>{item.value}<span class="hljs-tag">&lt;/<span class="hljs-name">dd</span>&gt;</span>
+  <span class="hljs-tag">&lt;/&gt;</span></span>
+));
+</code></pre>
+<p><strong>Out</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx </span>Preact.h */</span>
+<span class="hljs-comment">/** <span class="hljs-doctag">@jsxFrag </span>Preact.Fragment */</span>
+
+<span class="hljs-keyword">import</span> Preact <span class="hljs-keyword">from</span> <span class="hljs-string">"preact"</span>;
+
+<span class="hljs-keyword">var</span> descriptions = items.map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span>
+  Preact.h(
+    Preact.Fragment,
+    <span class="hljs-literal">null</span>,
+    Preact.h(<span class="hljs-string">"dt"</span>, <span class="hljs-literal">null</span>, item.name),
+    Preact.h(<span class="hljs-string">"dd"</span>, <span class="hljs-literal">null</span>, item.value)
+  )
+);
+</code></pre>
+<p>Note that if a custom pragma is specified, then a custom fragment pragma must also be specified if the fragment sytnax <code>&lt;&gt;&lt;/&gt;</code> is used. Otherwise, an error will be thrown.</p>
+<h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+<pre><code class="hljs css language-sh">npm install --save-dev @babel/plugin-transform-react-jsx
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
+<h3><a class="anchor" aria-hidden="true" id="with-a-configuration-file-recommended"></a><a href="#with-a-configuration-file-recommended" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With a configuration file (Recommended)</h3>
+<p>Without options:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"plugins"</span>: [<span class="hljs-string">"@babel/plugin-transform-react-jsx"</span>]
+}
+</code></pre>
+<p>With options:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"plugins"</span>: [
+    [
+      <span class="hljs-string">"@babel/plugin-transform-react-jsx"</span>,
+      {
+        <span class="hljs-attr">"throwIfNamespace"</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// defaults to true</span>
+        <span class="hljs-attr">"runtime"</span>: <span class="hljs-string">"automatic"</span>, <span class="hljs-comment">// defaults to classic</span>
+        <span class="hljs-attr">"importSource"</span>: <span class="hljs-string">"custom-jsx-library"</span> <span class="hljs-comment">// defaults to react</span>
+      }
+    ]
+  ]
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-cli"></a><a href="#via-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Via CLI</h3>
+<pre><code class="hljs css language-sh">babel --plugins @babel/plugin-transform-react-jsx script.js
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-node-api"></a><a href="#via-node-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Via Node API</h3>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/core"</span>).transformSync(<span class="hljs-string">"code"</span>, {
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-string">"@babel/plugin-transform-react-jsx"</span>],
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="options"></a><a href="#options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Options</h2>
+<h3><a class="anchor" aria-hidden="true" id="both-runtimes"></a><a href="#both-runtimes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Both Runtimes</h3>
+<h4><a class="anchor" aria-hidden="true" id="throwifnamespace"></a><a href="#throwifnamespace" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>throwIfNamespace</code></h4>
+<p><code>boolean</code>, defaults to <code>true</code>.</p>
+<p>Toggles whether or not to throw an error if an XML namespaced tag name is used. For example:</p>
+<pre><code class="hljs">&lt;f:image /&gt;
+</code></pre>
+<p>Though the JSX spec allows this, it is disabled by default since React's JSX does not currently have support for it.</p>
+<blockquote>
+<p>You can read more about configuring plugin options <a href="https://babeljs.io/docs/en/plugins#plugin-options">here</a></p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="runtime"></a><a href="#runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>runtime</code></h4>
+<p><code>classic | automatic</code>, defaults to <code>classic</code></p>
+<p>Added in: <code>v7.9.0</code></p>
+<p>Decides which runtime to use.</p>
+<p><code>automatic</code> auto imports the functions that JSX transpiles to. <code>classic</code> does not automatically import anything.</p>
+<h3><a class="anchor" aria-hidden="true" id="react-automatic-runtime-1"></a><a href="#react-automatic-runtime-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React Automatic Runtime</h3>
+<h4><a class="anchor" aria-hidden="true" id="importsource"></a><a href="#importsource" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>importSource</h4>
+<p><code>string</code>, defaults to <code>react</code>.</p>
+<p>Added in: <code>v7.9.0</code></p>
+<p>Replaces the import source when importing functions.</p>
+<h3><a class="anchor" aria-hidden="true" id="react-classic-runtime-1"></a><a href="#react-classic-runtime-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React Classic Runtime</h3>
+<h4><a class="anchor" aria-hidden="true" id="pragma"></a><a href="#pragma" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>pragma</code></h4>
+<p><code>string</code>, defaults to <code>React.createElement</code>.</p>
+<p>Replace the function used when compiling JSX expressions.</p>
+<p>Note that the <code>@jsx React.DOM</code> pragma has been deprecated as of React v0.12</p>
+<h4><a class="anchor" aria-hidden="true" id="pragmafrag"></a><a href="#pragmafrag" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>pragmaFrag</code></h4>
+<p><code>string</code>, defaults to <code>React.Fragment</code>.</p>
+<p>Replace the component used when compiling JSX fragments.</p>
+<h3><a class="anchor" aria-hidden="true" id="usebuiltins"></a><a href="#usebuiltins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>useBuiltIns</code></h3>
+<p><code>boolean</code>, defaults to <code>false</code>.</p>
+<p>When spreading props, use <code>Object.assign</code> directly instead of Babel's extend helper.</p>
+<h3><a class="anchor" aria-hidden="true" id="usespread"></a><a href="#usespread" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>useSpread</code></h3>
+<p><code>boolean</code>, defaults to <code>false</code>.</p>
+<p>When spreading props, use inline object with spread elements directly instead of Babel's extend helper or <code>Object.assign</code>.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#example">Example</a><ul class="toc-headings"><li><a href="#react-automatic-runtime">React Automatic Runtime</a></li><li><a href="#react-classic-runtime">React Classic Runtime</a></li><li><a href="#fragments">Fragments</a></li></ul></li><li><a href="#installation">Installation</a></li><li><a href="#usage">Usage</a><ul class="toc-headings"><li><a href="#with-a-configuration-file-recommended">With a configuration file (Recommended)</a></li><li><a href="#via-cli">Via CLI</a></li><li><a href="#via-node-api">Via Node API</a></li></ul></li><li><a href="#options">Options</a><ul class="toc-headings"><li><a href="#both-runtimes">Both Runtimes</a></li><li><a href="#react-automatic-runtime-1">React Automatic Runtime</a></li><li><a href="#react-classic-runtime-1">React Classic Runtime</a></li><li><a href="#usebuiltins"><code>useBuiltIns</code></a></li><li><a href="#usespread"><code>useSpread</code></a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

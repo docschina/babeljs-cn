@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>@babel/core · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="```javascript"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="@babel/core · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="```javascript"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>工具</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">指南</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/">什么是 Babel？</a></li><li class="navListItem"><a class="navItem" href="/docs/en/usage">使用指南</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration">配置 Babel</a></li><li class="navListItem"><a class="navItem" href="/docs/en/learn">学习 ES2015</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration">升级至 Babel 7</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration-api">升级至 Babel 7 (API)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">通用</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/editors">编辑器</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins">插件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/presets">Presets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/caveats">注意事项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/faq">FAQ</a></li><li class="navListItem"><a class="navItem" href="/docs/en/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">用法</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/options">选项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/config-files">配置文件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-cli">cli</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-plugin-transform-runtime">transform-runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-register">register</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">presets</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-env">env</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-flow">flow</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-react">react</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-typescript">typescript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">工具</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-parser">parser</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/babel-core">core</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-generator">generator</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-code-frame">code-frame</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-helpers">helpers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-runtime">runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-template">template</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-traverse">traverse</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-types">types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/core.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">@babel/core</h1></header><article><div><span><pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> babel = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/core"</span>);
+<span class="hljs-keyword">import</span> { transform } <span class="hljs-keyword">from</span> <span class="hljs-string">"@babel/core"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> babel <span class="hljs-keyword">from</span> <span class="hljs-string">"@babel/core"</span>;
+</code></pre>
+<p>All transformations will use your local <a href="/docs/en/config-files">configuration files</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="transform"></a><a href="#transform" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>transform</h2>
+<blockquote>
+<p>babel.transform(code: string, <a href="#options">options?</a>: Object, callback: Function)</p>
+</blockquote>
+<p>Transforms the passed in <code>code</code>. Calling a callback with an object with the generated code,
+source map, and AST.</p>
+<pre><code class="hljs css language-js">babel.transform(code, options, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, result</span>) </span>{
+  result; <span class="hljs-comment">// =&gt; { code, map, ast }</span>
+});
+</code></pre>
+<p><strong>Example</strong></p>
+<pre><code class="hljs css language-js">babel.transform(<span class="hljs-string">"code();"</span>, options, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, result</span>) </span>{
+  result.code;
+  result.map;
+  result.ast;
+});
+</code></pre>
+<blockquote>
+<p>Compat Note:</p>
+<p>In Babel 6, this method was synchronous and <code>transformSync</code> did not exist. For backward-compatibility, this function will behave synchronously if no callback is given. If you're starting with Babel 7 and need synchronous behavior, please use <code>transformSync</code> since this backward-compatibility will be dropped in Babel 8.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="transformsync"></a><a href="#transformsync" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>transformSync</h2>
+<blockquote>
+<p>babel.transformSync(code: string, <a href="#options">options?</a>: Object)</p>
+</blockquote>
+<p>Transforms the passed in <code>code</code>. Returning an object with the generated code,
+source map, and AST.</p>
+<pre><code class="hljs css language-js">babel.transformSync(code, options) <span class="hljs-comment">// =&gt; { code, map, ast }</span>
+</code></pre>
+<p><strong>Example</strong></p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> result = babel.transformSync(<span class="hljs-string">"code();"</span>, options);
+result.code;
+result.map;
+result.ast;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="transformasync"></a><a href="#transformasync" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>transformAsync</h2>
+<blockquote>
+<p>babel.transformAsync(code: string, <a href="#options">options?</a>: Object)</p>
+</blockquote>
+<p>Transforms the passed in <code>code</code>. Returning an promise for an object with the
+generated code, source map, and AST.</p>
+<pre><code class="hljs css language-js">babel.transformAsync(code, options) <span class="hljs-comment">// =&gt; Promise&lt;{ code, map, ast }&gt;</span>
+</code></pre>
+<p><strong>Example</strong></p>
+<pre><code class="hljs css language-js">babel.transformAsync(<span class="hljs-string">"code();"</span>, options).then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
+  result.code;
+  result.map;
+  result.ast;
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="transformfile"></a><a href="#transformfile" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>transformFile</h2>
+<blockquote>
+<p>babel.transformFile(filename: string, <a href="#options">options?</a>: Object, callback: Function)</p>
+</blockquote>
+<p>Asynchronously transforms the entire contents of a file.</p>
+<pre><code class="hljs css language-js">babel.transformFile(filename, options, callback)
+</code></pre>
+<p><strong>Example</strong></p>
+<pre><code class="hljs css language-js">babel.transformFile(<span class="hljs-string">"filename.js"</span>, options, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, result</span>) </span>{
+  result; <span class="hljs-comment">// =&gt; { code, map, ast }</span>
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="transformfilesync"></a><a href="#transformfilesync" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>transformFileSync</h2>
+<blockquote>
+<p>babel.transformFileSync(filename: string, <a href="#options">options?</a>: Object)</p>
+</blockquote>
+<p>Synchronous version of <code>babel.transformFile</code>. Returns the transformed contents of
+the <code>filename</code>.</p>
+<pre><code class="hljs css language-js">babel.transformFileSync(filename, options) <span class="hljs-comment">// =&gt; { code, map, ast }</span>
+</code></pre>
+<p><strong>Example</strong></p>
+<pre><code class="hljs css language-js">babel.transformFileSync(<span class="hljs-string">"filename.js"</span>, options).code;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="transformfileasync"></a><a href="#transformfileasync" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>transformFileAsync</h2>
+<blockquote>
+<p>babel.transformFileAsync(filename: string, <a href="#options">options?</a>: Object)</p>
+</blockquote>
+<p>Promise version of <code>babel.transformFile</code>. Returns a promise for the transformed
+contents of the <code>filename</code>.</p>
+<pre><code class="hljs css language-js">babel.transformFileAsync(filename, options) <span class="hljs-comment">// =&gt; Promise&lt;{ code, map, ast }&gt;</span>
+</code></pre>
+<p><strong>Example</strong></p>
+<pre><code class="hljs css language-js">babel.transformFileAsync(<span class="hljs-string">"filename.js"</span>, options).then(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
+  result.code;
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="transformfromast"></a><a href="#transformfromast" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>transformFromAst</h2>
+<blockquote>
+<p>babel.transformFromAst(ast: Object, code?: string, <a href="#options">options?</a>: Object, callback: Function): FileNode | null</p>
+</blockquote>
+<p>Given an <a href="https://astexplorer.net/">AST</a>, transform it.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> sourceCode = <span class="hljs-string">"if (true) return;"</span>;
+<span class="hljs-keyword">const</span> parsedAst = babel.parseSync(sourceCode, { <span class="hljs-attr">parserOpts</span>: { <span class="hljs-attr">allowReturnOutsideFunction</span>: <span class="hljs-literal">true</span> } });
+babel.transformFromAst(parsedAst, sourceCode, options, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, result</span>) </span>{
+  <span class="hljs-keyword">const</span> { code, map, ast } = result;
+});
+</code></pre>
+<blockquote>
+<p>Compat Note:</p>
+<p>In Babel 6, this method was synchronous and <code>transformFromAstSync</code> did not exist. For backward-compatibility, this function will behave synchronously if no callback is given. If you're starting with Babel 7 and need synchronous behavior, please use <code>transformFromAstSync</code> since this backward-compatibility will be dropped in Babel 8.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="transformfromastsync"></a><a href="#transformfromastsync" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>transformFromAstSync</h2>
+<blockquote>
+<p>babel.transformFromAstSync(ast: Object, code?: string, <a href="#options">options?</a>: Object)</p>
+</blockquote>
+<p>Given an <a href="https://astexplorer.net/">AST</a>, transform it.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> sourceCode = <span class="hljs-string">"if (true) return;"</span>;
+<span class="hljs-keyword">const</span> parsedAst = babel.parseSync(sourceCode, { <span class="hljs-attr">parserOpts</span>: { <span class="hljs-attr">allowReturnOutsideFunction</span>: <span class="hljs-literal">true</span> } });
+<span class="hljs-keyword">const</span> { code, map, ast } = babel.transformFromAstSync(parsedAst, sourceCode, options);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="transformfromastasync"></a><a href="#transformfromastasync" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>transformFromAstAsync</h2>
+<blockquote>
+<p>babel.transformFromAstAsync(ast: Object, code?: string, <a href="#options">options?</a>: Object)</p>
+</blockquote>
+<p>Given an <a href="https://astexplorer.net/">AST</a>, transform it.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> sourceCode = <span class="hljs-string">"if (true) return;"</span>;
+babel.parseAsync(sourceCode, { <span class="hljs-attr">parserOpts</span>: { <span class="hljs-attr">allowReturnOutsideFunction</span>: <span class="hljs-literal">true</span> } })
+  .then(<span class="hljs-function"><span class="hljs-params">parsedAst</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> babel.transformFromAstAsync(parsedAst, sourceCode, options);
+  })
+  .then(<span class="hljs-function">(<span class="hljs-params">{ code, map, ast }</span>) =&gt;</span> {
+    <span class="hljs-comment">// ...</span>
+  });
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="parse"></a><a href="#parse" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parse</h2>
+<blockquote>
+<p>babel.parse(code: string, <a href="#options">options?</a>: Object, callback: Function)</p>
+</blockquote>
+<p>Given some code, parse it using Babel's standard behavior. Referenced presets and
+plugins will be loaded such that optional syntax plugins are automatically
+enabled.</p>
+<blockquote>
+<p>Compat Note:</p>
+<p>In Babel 7's early betas, this method was synchronous and <code>parseSync</code> did not exist. For backward-compatibility,
+this function will behave synchronously if no callback is given. If you're starting with Babel 7 stable
+and need synchronous behavior, please use <code>parseSync</code> since this backward-compatibility will be dropped in Babel 8.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="parsesync"></a><a href="#parsesync" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseSync</h2>
+<blockquote>
+<p>babel.parseSync(code: string, <a href="#options">options?</a>: Object)</p>
+</blockquote>
+<p>Returns an AST.</p>
+<p>Given some code, parse it using Babel's standard behavior. Referenced presets and
+plugins will be loaded such that optional syntax plugins are automatically
+enabled.</p>
+<h2><a class="anchor" aria-hidden="true" id="parseasync"></a><a href="#parseasync" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseAsync</h2>
+<blockquote>
+<p>babel.parseAsync(code: string, <a href="#options">options?</a>: Object)</p>
+</blockquote>
+<p>Returns a promise for an AST.</p>
+<p>Given some code, parse it using Babel's standard behavior. Referenced presets and
+plugins will be loaded such that optional syntax plugins are automatically
+enabled.</p>
+<h2><a class="anchor" aria-hidden="true" id="advanced-apis"></a><a href="#advanced-apis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Advanced APIs</h2>
+<p>Many systems that wrap Babel like to automatically inject plugins and presets,
+or override options. To accomplish this goal, Babel exposes several functions
+that aid in loading the configuration part-way without transforming.</p>
+<h3><a class="anchor" aria-hidden="true" id="loadoptions"></a><a href="#loadoptions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>loadOptions</h3>
+<blockquote>
+<p>babel.loadOptions(<a href="#options">options?</a>: Object)</p>
+</blockquote>
+<p>Resolve Babel's options fully, resulting in an options object where:</p>
+<ul>
+<li><code>opts.plugins</code> is a full list of <code>Plugin</code> instances.</li>
+<li><code>opts.presets</code> is empty and all presets are flattened into <code>opts</code>.</li>
+<li>It can be safely passed back to Babel. Fields like <a href="/docs/en/options#babelrc"><code>&quot;babelrc&quot;</code></a> have been set to
+<code>false</code> so that later calls to Babel will not make a second attempt to load
+config files.</li>
+</ul>
+<p><code>Plugin</code> instances aren't meant to be manipulated directly, but often
+callers will serialize this <code>opts</code> to JSON to use it as a cache key representing
+the options Babel has received. Caching on this isn't 100% guaranteed to
+invalidate properly, but it is the best we have at the moment.</p>
+<h3><a class="anchor" aria-hidden="true" id="loadpartialconfig"></a><a href="#loadpartialconfig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>loadPartialConfig</h3>
+<blockquote>
+<p>babel.loadPartialConfig(<a href="#options">options?</a>: Object): PartialConfig</p>
+</blockquote>
+<p>To allow systems to easily manipulate and validate a user's config, this function
+resolves the plugins and presets and proceeds no further. The expectation is
+that callers will take the config's <code>.options</code>, manipulate it as they see fit
+and pass it back to Babel again.</p>
+<p>This function accepts one additional option as part of the options object in addition to the standard <a href="#options">options</a>: <code>showIgnoredFiles</code>.
+When set to true, <code>loadPartialConfig</code> always returns a result when a file is ignored, rather than <code>null</code>.
+This is useful in order to allow the caller to access the list of files that influenced this outcome, e.g.
+for watch mode. The caller can determine whether a file was ignored based on the returned <code>fileHandling</code> property.</p>
+<ul>
+<li><code>babelrc: string | void</code> - The path of the <a href="/docs/en/config-files#file-relative-configuration">file-relative configuration</a> file, if there was one.</li>
+<li><code>babelignore: string | void</code> - The path of the <code>.babelignore</code> file, if there was one.</li>
+<li><code>config: string | void</code> - The path of the <a href="/docs/en/config-files#project-wide-configuration">project-wide config file</a> file, if there was one.</li>
+<li><code>options: ValidatedOptions</code> - The partially resolved options, which can be manipulated and passed back to Babel again.
+<ul>
+<li><code>plugins: Array&lt;ConfigItem&gt;</code> - See below.</li>
+<li><code>presets: Array&lt;ConfigItem&gt;</code> - See below.</li>
+<li>It can be safely passed back to Babel. Options like <a href="/docs/en/options#babelrc"><code>&quot;babelrc&quot;</code></a> have been set
+to false so that later calls to Babel will not make a second attempt to
+load config files.</li>
+</ul></li>
+<li><code>hasFilesystemConfig(): boolean</code> - Check if the resolved config loaded any settings from the filesystem.</li>
+<li><code>fileHandling</code> - This is set to <code>&quot;transpile&quot;</code>, <code>&quot;ignored&quot;</code>, or <code>&quot;unsupported&quot;</code> to indicate to the caller what to do with this file.</li>
+<li><code>files</code> - A <code>Set</code> of file paths that were read to build the resulting config, including project wide config files, local config files,
+extended config files, ignore files, etc. Useful for implementing watch mode or cache invalidation.</li>
+</ul>
+<p><a href="#configitem-type"><code>ConfigItem</code></a> instances expose properties to introspect the values, but each
+item should be treated as immutable. If changes are desired, the item should be
+removed from the list and replaced with either a normal Babel config value, or
+with a replacement item created by <code>babel.createConfigItem</code>. See that
+function for information about <code>ConfigItem</code> fields.</p>
+<h3><a class="anchor" aria-hidden="true" id="createconfigitem"></a><a href="#createconfigitem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>createConfigItem</h3>
+<blockquote>
+<p>babel.createConfigItem(value: string | {} | Function | [string | {} | Function, {} | void], { dirname?: string, type?: &quot;preset&quot; | &quot;plugin&quot; }): ConfigItem</p>
+</blockquote>
+<p>Allows build tooling to create and cache config items up front. If this function
+is called multiple times for a given plugin, Babel will call the plugin's function itself
+multiple times. If you have a clear set of expected plugins and presets to
+inject, pre-constructing the config items would be recommended.</p>
+<h3><a class="anchor" aria-hidden="true" id="configitem-type"></a><a href="#configitem-type" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>ConfigItem</code> type</h3>
+<p>Each <code>ConfigItem</code> exposes all of the information Babel knows. The fields are:</p>
+<ul>
+<li><code>value: {} | Function</code> - The resolved value of the plugin.</li>
+<li><code>options: {} | void</code> - The options object passed to the plugin.</li>
+<li><code>dirname: string</code> - The path that the options are relative to.</li>
+<li><code>name: string | void</code> - The name that the user gave the plugin instance, e.g. <code>plugins: [ ['env', {}, 'my-env'] ]</code></li>
+<li><code>file: Object | void</code> - Information about the plugin's file, if Babel knows it.
+<ul>
+<li><code>request: string</code> - The file that the user requested, e.g. <code>&quot;@babel/env&quot;</code></li>
+<li><code>resolved: string</code> - The full path of the resolved file, e.g. <code>&quot;/tmp/node_modules/@babel/preset-env/lib/index.js&quot;</code></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="default_extensions"></a><a href="#default_extensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DEFAULT_EXTENSIONS</h2>
+<blockquote>
+<p>babel.DEFAULT_EXTENSIONS: ReadonlyArray<string></p>
+</blockquote>
+<p>A list of default extensions supported by babel (&quot;.js&quot;, &quot;.jsx&quot;, &quot;.es6&quot;, &quot;.es&quot;, &quot;.mjs&quot;, &quot;cjs&quot;).
+This list is used by @babel/register and @babel/cli to determine which files need transpiling.
+Extending this list isn't possible, however @babel/cli does provide ways to support other extensions with <code>--extensions</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="options"></a><a href="#options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Options</h2>
+<p>See <a href="/docs/en/options">the full option list here</a>.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/babel-parser"><span class="arrow-prev">← </span><span>parser</span></a><a class="docs-next button" href="/docs/en/babel-generator"><span>generator</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#transform">transform</a></li><li><a href="#transformsync">transformSync</a></li><li><a href="#transformasync">transformAsync</a></li><li><a href="#transformfile">transformFile</a></li><li><a href="#transformfilesync">transformFileSync</a></li><li><a href="#transformfileasync">transformFileAsync</a></li><li><a href="#transformfromast">transformFromAst</a></li><li><a href="#transformfromastsync">transformFromAstSync</a></li><li><a href="#transformfromastasync">transformFromAstAsync</a></li><li><a href="#parse">parse</a></li><li><a href="#parsesync">parseSync</a></li><li><a href="#parseasync">parseAsync</a></li><li><a href="#advanced-apis">Advanced APIs</a><ul class="toc-headings"><li><a href="#loadoptions">loadOptions</a></li><li><a href="#loadpartialconfig">loadPartialConfig</a></li><li><a href="#createconfigitem">createConfigItem</a></li><li><a href="#configitem-type"><code>ConfigItem</code> type</a></li></ul></li><li><a href="#default_extensions">DEFAULT_EXTENSIONS</a></li><li><a href="#options">Options</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

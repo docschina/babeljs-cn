@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>What&#x27;s Happening With the Pipeline (|&gt;) Proposal? · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="With the release of [babel@7.0.0-beta52](https://github.com/babel/babel/releases/tag/v7.0.0-beta.52), we introduced a new required configuration flag to `@babel/plugin-proposal-pipeline-operator`, a breaking change for the pipeline operator. To clear up any confusion, let&#x27;s take a look at the pipeline proposal and why we needed to introduce this configuration option."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="What&#x27;s Happening With the Pipeline (|&gt;) Proposal? · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2018/07/19/whats-happening-with-the-pipeline-proposal"/><meta property="og:description" content="With the release of [babel@7.0.0-beta52](https://github.com/babel/babel/releases/tag/v7.0.0-beta.52), we introduced a new required configuration flag to `@babel/plugin-proposal-pipeline-operator`, a breaking change for the pipeline operator. To clear up any confusion, let&#x27;s take a look at the pipeline proposal and why we needed to introduce this configuration option."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></h1><p class="post-meta">July 19, 2018</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/JamesDiGioia" target="_blank" rel="noreferrer noopener">James DiGioia</a></p></div></header><div><span><p>With the release of <a href="https://github.com/babel/babel/releases/tag/v7.0.0-beta.52">babel@7.0.0-beta52</a>, we introduced a new required configuration flag to <code>@babel/plugin-proposal-pipeline-operator</code>, a breaking change for the pipeline operator. To clear up any confusion, let's take a look at the pipeline proposal and why we needed to introduce this configuration option.</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="current-status"></a><a href="#current-status" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Current Status</h2>
+<p>The pipeline operator was originally <a href="https://github.com/babel/babel/pull/3159">introduced</a> by <a href="https://github.com/gilbert">Gilbert Garza</a>, providing a clean syntax for &quot;streamlining chained function calls in a readable, functional manner.&quot; The pipeline operator has roots in a number of languages, including F#, Hack, Elm, Elixir, and others, but there were two major points of contention in introducing the new syntax to JavaScript:</p>
+<ul>
+<li>Whether and how to introduce placeholders</li>
+<li>How to handle async / await in the pipeline</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="placeholders"></a><a href="#placeholders" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Placeholders</h3>
+<p>The first issue was the question of placeholders. This was first raised by <a href="https://github.com/zenparsing">Kevin Smith</a> in <a href="https://github.com/tc39/proposal-pipeline-operator/issues/84">this issue</a>, where he suggested <a href="https://docs.hhvm.com/hack/operators/pipe-operator">Hack-style pipelining</a>. In Hack, a placeholder is required for every right-hand side of the pipeline, as in this example:</p>
+<pre><code class="hljs css language-hack">namespace Hack\UserDocumentation\Operators\Pipe\Examples\MapFilterCountPiped;
+
+<span class="hljs-keyword">function</span> piped<span class="hljs-constructor">_example(<span class="hljs-params">array</span>&lt;<span class="hljs-params">int</span>&gt; $<span class="hljs-params">arr</span>)</span>: <span class="hljs-built_in">int</span> {
+  return $arr<span class="hljs-operator">
+    |&gt; </span>\<span class="hljs-built_in">array</span><span class="hljs-constructor">_map($<span class="hljs-params">x</span> <span class="hljs-operator">==</span>&gt; $<span class="hljs-params">x</span> <span class="hljs-operator">*</span> $<span class="hljs-params">x</span>, $$)</span><span class="hljs-operator">
+    |&gt; </span>\<span class="hljs-built_in">array</span><span class="hljs-constructor">_filter($$, $<span class="hljs-params">x</span> <span class="hljs-operator">==</span>&gt; $<span class="hljs-params">x</span> % 2 <span class="hljs-operator">==</span> 0)</span><span class="hljs-operator">
+    |&gt; </span>\count($$);
+}
+
+var<span class="hljs-constructor">_dump(<span class="hljs-params">piped_example</span>(<span class="hljs-params">range</span>(1, 10)</span>));
+</code></pre>
+<p>We built on this concept, as a placeholder can easily be used in arbitrary expressions, with the placeholder representing the value returned from the previous step. This affords additional flexibility and power within a pipeline step.</p>
+<p>The downside is the complexity involved in introducing a new token. The hash (<code>#</code>) is the current choice, and although this is still open to bikeshedding, any token would potentially have multiple meanings. The hash is also used by the <a href="https://github.com/tc39/proposal-class-fields#private-fields">private fields proposal</a>, and <a href="https://github.com/tc39/proposal-partial-application/issues/21#issuecomment-361092565">all other options are in use in one form or another</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="async--await"></a><a href="#async--await" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Async / Await</h3>
+<p>The initial introduction of the pipeline included this syntax for <code>await</code>:</p>
+<pre><code class="hljs css language-js">x |&gt; <span class="hljs-keyword">await</span> f
+</code></pre>
+<p>which would desugar to</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">await</span> f(x)
+</code></pre>
+<p>Unfortunately, users may expect this alternative desugaring:</p>
+<pre><code class="hljs css language-js">(<span class="hljs-keyword">await</span> f)(x)
+</code></pre>
+<p>While there was pushback on the idea of including async handling in the pipeline at all, committee members expressed concern about a pipeline operator that didn't handle async/await. While there are ways to handle Promise-returning functions without explicit syntax, they are too cumbersome to be useful or require a helper function.</p>
+<h2><a class="anchor" aria-hidden="true" id="proposed-solutions"></a><a href="#proposed-solutions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Proposed Solutions</h2>
+<p>As a result of these discussions, two proposals, along with a base minimal proposal, emerged to resolve them: F# Pipelines and Smart Pipelines. Let's go through how they resolve the problems posed above.</p>
+<h3><a class="anchor" aria-hidden="true" id="minimal-pipelineshttpsgithubcomtc39proposal-pipeline-operator"></a><a href="#minimal-pipelineshttpsgithubcomtc39proposal-pipeline-operator" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/tc39/proposal-pipeline-operator/">Minimal Pipelines</a></h3>
+<p>This proposal covers the basic functionality of the pipeline operator. The minimal proposal bans await, so there's no async handling involved at all, and includes no placeholders. It matches the behavior of the babel plugin before we introduced the configuration and is the current specification in the pipeline operator proposal repository. It functions more as a straw man, to compare the benefits and tradeoffs of other the proposals, and is unlikely to be accepted as-is without lethal defects in both of the alternatives.</p>
+<h3><a class="anchor" aria-hidden="true" id="f-pipelineshttpsgithubcomvaltech-nycproposal-fsharp-pipelines"></a><a href="#f-pipelineshttpsgithubcomvaltech-nycproposal-fsharp-pipelines" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/valtech-nyc/proposal-fsharp-pipelines/">F# Pipelines</a></h3>
+<p>On the question of placeholders, F# Pipelines argue they're not needed. In the base proposal, arrow functions fill the area placeholders fill, requiring less new syntax and building on a syntax developers are already familiar with and have been using since ES2015.</p>
+<p>As currently specced, arrow functions are required to be wrapped in parentheses:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">let</span> person = { <span class="hljs-attr">score</span>: <span class="hljs-number">25</span> };
+
+<span class="hljs-keyword">let</span> newScore = person.score
+  |&gt; double
+  |&gt; (<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> add(<span class="hljs-number">7</span>, _))
+  |&gt; (<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> boundScore(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>, _));
+</code></pre>
+<p>Exploration is underway to determine whether it would be feasible to enable arrow functions to be used without parentheses, as they are a significant syntactical burden.</p>
+<p>On the question of async, F# Pipelines treat <code>await</code> similar to a unary function:</p>
+<pre><code class="hljs css language-js">promise |&gt; <span class="hljs-keyword">await</span>
+</code></pre>
+<p>This would desugar to:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">await</span> promise
+</code></pre>
+<p>and can thus be used in the middle of larger function chains with async:</p>
+<pre><code class="hljs css language-js">promise
+  |&gt; <span class="hljs-keyword">await</span>
+  |&gt; (<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> doubleSay(x, <span class="hljs-string">', '</span>))
+  |&gt; capitalize
+  |&gt; (<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x + <span class="hljs-string">'!'</span>)
+  |&gt; (<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-keyword">new</span> User.Message(x))
+  |&gt; (<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> stream.write(x))
+  |&gt; <span class="hljs-keyword">await</span>
+  |&gt; <span class="hljs-built_in">console</span>.log;
+</code></pre>
+<p>The special casing of <code>await</code> could potentially enable other unary operators to be used similarly (e.g. <code>typeof</code>), but the F# pipelines don't support them initially.</p>
+<h3><a class="anchor" aria-hidden="true" id="smart-pipelineshttpsgithubcomjs-choiproposal-smart-pipelines"></a><a href="#smart-pipelineshttpsgithubcomjs-choiproposal-smart-pipelines" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/js-choi/proposal-smart-pipelines/">Smart Pipelines</a></h3>
+<p>Smart Pipelines takes the idea of the placeholder to its logical conclusion, enabling it to manage partial application as well as arbitrary expressions in a pipeline. The above long chain would be written thus:</p>
+<pre><code class="hljs css language-js">promise
+  |&gt; await #
+  |&gt; doubleSay(#, ', ')
+  |&gt; # || throw new TypeError()
+  |&gt; capitalize
+  |&gt; # + '!'
+  |&gt; new User.Message(#)
+  |&gt; await stream.write(#)
+  |&gt; console.log;
+</code></pre>
+<p>Smart Pipelines have a few rules for the placeholder. If a bare identifier is provided to a step in the pipeline, no token is necessary, called <a href="https://github.com/js-choi/proposal-smart-pipelines/blob/master/readme.md#bare-style">&quot;bare style&quot;</a>:</p>
+<pre><code class="hljs css language-js">x |&gt; a;
+x |&gt; f.b;
+</code></pre>
+<p>Unlike Hack, unary functions don't require a placeholder token.</p>
+<p>For other expressions, a placeholder (called a &quot;lexical topic token&quot;) is required, and the code will throw an early SyntaxError if it is not included in <a href="https://github.com/js-choi/proposal-smart-pipelines/blob/master/readme.md#topic-style">&quot;topic style&quot;</a>:</p>
+<pre><code class="hljs css language-js">10 |&gt; # + 1;
+promise |&gt; await #;
+</code></pre>
+<p>If there are any operators, parentheses (including for method calls), brackets, or anything other than identifiers and dot punctuators, then a topic token is necessary. This avoids footguns and eliminate ambiguity when not using a topic token.</p>
+<p>Smart pipelines thus resolve the issue of async in an integrative way, allowing all possible expressions to be embedded in a pipeline; not only <code>await</code>, but also <code>typeof</code>, <code>yield</code>, and another other operator desired.</p>
+<h2><a class="anchor" aria-hidden="true" id="where-babel-comes-in"></a><a href="#where-babel-comes-in" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Where Babel Comes In</h2>
+<p>Once all three proposals were fleshed out, we realized discussion and debate were unlikely to resolve the inherent tension between them. We decided the best way to make a decision would be with the feedback of developers, using the proposals in real code. Given Babel's role in the community, we decided to introduce all three of the above proposals into the pipeline operator plugin.</p>
+<p>Because these proposals parse slightly differently, support needs to be added to <code>@babel/parser</code> (formerly <code>babylon</code>), and the parser needs to be configured based on which proposal is its current parse target. The pipeline operator plugin itself thus needs the <code>&quot;proposal&quot;</code> option, both to configure babylon as well as its own transformation.</p>
+<p>We were working under a compressed timeline for this, as we needed to introduce any breaking changes to babel, <code>@babel/parser</code>, as well as the pipeline proposal plugin before babel@7 left beta. We also wanted the plugin to be able to eventually default to whichever of the proposals get accepted, so the configuration option becomes obsolete.</p>
+<p>Given these two constraints, we opted to introduce this new configuration option and make it required, forcing users to decide which proposal they want to use in their project. Once a particular proposal gets accepted as the canonical behavior of the pipeline operator, we'll deprecate the <code>&quot;proposal&quot;</code> option and make the default whichever gets accepted, and the rejected proposals will be removed in the following major version.</p>
+<h2><a class="anchor" aria-hidden="true" id="get-involved"></a><a href="#get-involved" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Get Involved</h2>
+<p>If you're interested in getting involved in the pipeline proposal, all the conversations are public and you  find them in the <a href="https://github.com/tc39/proposal-pipeline-operator/">pipeline operator repository</a>. You can also check out the <a href="https://docs.google.com/presentation/d/1eFFRK1wLIazIuK0F6fY974OIDvvWXS890XAMB59PUBA/edit#slide=id.p">presentation from the last TC39 meeting</a>. Lastly, you can find <a href="https://twitter.com/jamesdigioia">James DiGioia</a>, <a href="https://twitter.com/__jschoi">J. S. Choi</a>, or <a href="https://twitter.com/littledan">Daniel Ehrenberg</a> on Twitter.</p>
+<p>But most importantly, once the work is complete, try out the pipeline operator in your own projects! We're also working on adding options to the <a href="https://babeljs.io/repl/">repl</a>, so you'll be able to try out the code there as well. We need feedback and real code in order for this to be useful, so we'd love to hear from you. Tweet us at <a href="https://twitter.com/babeljs">@babeljs</a> to let us know.</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#current-status">Current Status</a><ul class="toc-headings"><li><a href="#placeholders">Placeholders</a></li><li><a href="#async--await">Async / Await</a></li></ul></li><li><a href="#proposed-solutions">Proposed Solutions</a><ul class="toc-headings"><li><a href="#minimal-pipelineshttpsgithubcomtc39proposal-pipeline-operator"><a href="https://github.com/tc39/proposal-pipeline-operator/">Minimal Pipelines</a></a></li><li><a href="#f-pipelineshttpsgithubcomvaltech-nycproposal-fsharp-pipelines"><a href="https://github.com/valtech-nyc/proposal-fsharp-pipelines/">F# Pipelines</a></a></li><li><a href="#smart-pipelineshttpsgithubcomjs-choiproposal-smart-pipelines"><a href="https://github.com/js-choi/proposal-smart-pipelines/">Smart Pipelines</a></a></li></ul></li><li><a href="#where-babel-comes-in">Where Babel Comes In</a></li><li><a href="#get-involved">Get Involved</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

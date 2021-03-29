@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>@babel/plugin-transform-typescript · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This plugin adds support for the syntax used by the [TypeScript programming language][ts]. However, this plugin does not add the ability to type-check the JavaScript passed to it. For that, you will need to install and set up TypeScript."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="@babel/plugin-transform-typescript · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="This plugin adds support for the syntax used by the [TypeScript programming language][ts]. However, this plugin does not add the ability to type-check the JavaScript passed to it. For that, you will need to install and set up TypeScript."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/plugin-transform-typescript.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">@babel/plugin-transform-typescript</h1></header><article><div><span><p>This plugin adds support for the syntax used by the <a href="https://www.typescriptlang.org">TypeScript programming language</a>. However, this plugin does not add the ability to type-check the JavaScript passed to it. For that, you will need to install and set up TypeScript.</p>
+<h2><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h2>
+<p><strong>In</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> x: number = <span class="hljs-number">0</span>;
+</code></pre>
+<p><strong>Out</strong></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> x = <span class="hljs-number">0</span>;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+<pre><code class="hljs css language-sh">npm install --save-dev @babel/plugin-transform-typescript
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
+<h3><a class="anchor" aria-hidden="true" id="with-a-configuration-file-recommended"></a><a href="#with-a-configuration-file-recommended" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With a configuration file (Recommended)</h3>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"plugins"</span>: [<span class="hljs-string">"@babel/plugin-transform-typescript"</span>]
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-cli"></a><a href="#via-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Via CLI</h3>
+<pre><code class="hljs css language-sh">babel --plugins @babel/plugin-transform-typescript script.js
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-node-api"></a><a href="#via-node-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Via Node API</h3>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/core"</span>).transformSync(<span class="hljs-string">"code"</span>, {
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-string">"@babel/plugin-transform-typescript"</span>],
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="options"></a><a href="#options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Options</h2>
+<h3><a class="anchor" aria-hidden="true" id="allowdeclarefields"></a><a href="#allowdeclarefields" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>allowDeclareFields</code></h3>
+<p><code>boolean</code>, defaults to <code>false</code></p>
+<p>Added in <code>v7.7.0</code></p>
+<blockquote>
+<p>NOTE: This will be enabled by default in Babel 8</p>
+</blockquote>
+<p>When enabled, type-only class fields are only removed if they are prefixed with the <code>declare</code> modifier:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>{
+  declare foo: string; <span class="hljs-comment">// Removed</span>
+  bar: string; <span class="hljs-comment">// Initialized to undefined</span>
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="allownamespaces"></a><a href="#allownamespaces" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>allowNamespaces</code></h3>
+<p><code>boolean</code>, defaults to <code>true</code>.</p>
+<p><details>
+<summary>History</summary></p>
+<table>
+<thead>
+<tr><th>Version</th><th>Changes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>v7.5.0</code></td><td>Added <code>allowNamespaces</code>, defaults to <code>false</code></td></tr>
+<tr><td><code>v7.13.0</code></td><td>defaults to <code>true</code></td></tr>
+</tbody>
+</table>
+<p></details></p>
+<p>Enables compilation of TypeScript namespaces.</p>
+<h3><a class="anchor" aria-hidden="true" id="istsx"></a><a href="#istsx" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>isTSX</code></h3>
+<p><code>boolean</code>, defaults to <code>false</code></p>
+<p>Forcibly enables <code>jsx</code> parsing. Otherwise angle brackets will be treated as TypeScript's legacy type assertion <code>var foo = &lt;string&gt;bar;</code>. Also, <code>isTSX: true</code> requires <code>allExtensions: true</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="jsxpragma"></a><a href="#jsxpragma" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>jsxPragma</code></h3>
+<p><code>string</code>, defaults to <code>React</code></p>
+<p>Replace the function used when compiling JSX expressions. This is so that we know that the import is not a type import, and should not be removed.</p>
+<h3><a class="anchor" aria-hidden="true" id="jsxpragmafrag"></a><a href="#jsxpragmafrag" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>jsxPragmaFrag</code></h3>
+<p><code>string</code>, defaults to <code>React.Fragment</code></p>
+<p>Replace the function used when compiling JSX fragment expressions. This is so that we know that the import is not a type import, and should not be removed.</p>
+<h3><a class="anchor" aria-hidden="true" id="onlyremovetypeimports"></a><a href="#onlyremovetypeimports" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>onlyRemoveTypeImports</code></h3>
+<p><code>boolean</code>, defaults to <code>false</code></p>
+<p>Added in: <code>v7.9.0</code></p>
+<p>When set to <code>true</code>, the transform will only remove <a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#type-only-imports-exports">type-only imports</a> (introduced in TypeScript 3.8). This should only be used if you are using TypeScript &gt;= 3.8.</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>{
+  declare foo: string; <span class="hljs-comment">// Removed</span>
+  bar: string; <span class="hljs-comment">// Initialized to undefined</span>
+  prop?: string; <span class="hljs-comment">// Initialized to undefined</span>
+  prop1!: string <span class="hljs-comment">// Initialized to undefined</span>
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="typescript-compiler-options"></a><a href="#typescript-compiler-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript Compiler Options</h2>
+<p>The official TypeScript compiler has many <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">options</a> for configuring how it
+compiles and type checks. While many don't apply, some behaviors might be useful and their
+equivalents in Babel can be enabled by some configuration options or plugins.</p>
+<ul>
+<li><p><code>--alwaysStrict</code>
+You can use the <code>strictMode</code> <a href="https://babeljs.io/docs/en/babel-parser#options">parser option</a>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">parserOpts</span>: { <span class="hljs-attr">strictMode</span>: <span class="hljs-literal">true</span> },
+};
+</code></pre></li>
+<li><p><code>--downlevelIteration</code>
+You can use the <code>@babel/plugin-transform-for-of</code> plugin. If you are using <code>@babel/preset-env</code>, <code>for...of</code> is already transpiled using iterators when it isn't supported by your compilation target(s).</p></li>
+<li><p><code>--emitDecoratorMetadata</code>
+This option isn't supported by an official Babel package since it is a TypeScript-specific addition and not part of the decorators proposal.
+If you rely on this feature, you can use the community plugin <a href="https://github.com/leonardfactory/babel-plugin-transform-typescript-metadata#readme">babel-plugin-transform-typescript-metadata</a>.</p></li>
+<li><p><code>--esModuleInterop</code>
+This is the default behavior of Babel when transpiling ECMAScript modules.</p></li>
+<li><p><code>--experimentalDecorators</code>
+This option enables support for the &quot;legacy&quot; decorator proposal. You can enable it in Babel using the <code>@babel/plugin-proposal-decorators</code> plugin, but please be aware, there are some minor differences.</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">plugins</span>: [[<span class="hljs-string">"@babel/plugin-proposal-decorators"</span>, { <span class="hljs-attr">legacy</span>: <span class="hljs-literal">true</span> }]],
+};
+</code></pre></li>
+<li><p><code>--importHelpers</code>
+This is the equivalent of the <code>@babel/plugin-transform-runtime</code> package.</p></li>
+<li><p><code>---importsNotUsedAsValues</code>
+You can use the <code>onlyRemoveTypeImports</code> option to replicate this behavior. <code>onlyRemoveTypeImports: true</code> is equivalent to <code>importsNotUsedAsValues: preserve</code>, while <code>onlyRemoveTypeImports: false</code> is equivalent to <code>importsNotUsedAsValues: remove</code>. There is no equivalent for <code>importsNotUsedAsValues: error</code>.</p></li>
+<li><p><code>--inlineSourceMap</code>
+You can set the <a href="https://babeljs.io/docs/en/options#sourcemaps"><code>sourceMaps: &quot;inline&quot;</code></a> option in your <code>babel.config.json</code> file.</p></li>
+<li><p><code>--isolatedModules</code>
+This is the default Babel behavior, and it can't be turned off because Babel doesn't support cross-file analysis.</p></li>
+<li><p><code>--jsx</code>
+JSX support is provided using another plugin.
+If you want your output to contains JSX code (i.e. <code>--jsx preserve</code>), you need the <code>@babel/plugin-syntax-jsx</code> plugin; if you want to transpile it to standard JavaScript (i.e. <code>--jsx react</code> or <code>--jsx react-native</code>), you should use the <code>@babel/plugin-transform-react-jsx</code> plugin.</p></li>
+<li><p><code>--jsxFactory</code>
+It can be customized using the <a href="https://babeljs.io/docs/en/babel-plugin-transform-react-jsx#pragma"><code>pragma</code> option</a> of the <code>@babel/plugin-transform-react-jsx</code> package. You also need to set the <code>jsxPragma</code> option of this plugin.</p></li>
+<li><p><code>--module</code>, <code>-m</code>
+If you are using a bundler (Webpack or Rollup), this option is set automatically.
+If you are using <code>@babel/preset-env</code>, you can use the <a href="https://babeljs.io/docs/en/babel-preset-env#modules"><code>modules</code> option</a>; otherwise you can load the specific plugin.</p>
+<table>
+<thead>
+<tr><th style="text-align:center"><strong><code>--module</code> value</strong></th><th style="text-align:center"><strong><code>@babel/preset-env</code>'s <code>modules</code></strong></th><th style="text-align:center"><strong>Single plugin</strong></th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center"><code>None</code></td><td style="text-align:center"><code>false</code></td><td style="text-align:center">/</td></tr>
+<tr><td style="text-align:center"><code>CommonJS</code></td><td style="text-align:center"><code>&quot;commonjs&quot;</code> or <code>&quot;cjs&quot;</code></td><td style="text-align:center"><code>@babel/plugin-transform-modules-commonjs</code></td></tr>
+<tr><td style="text-align:center"><code>AMD</code></td><td style="text-align:center"><code>&quot;amd&quot;</code></td><td style="text-align:center"><code>@babel/plugin-transform-modules-amd</code></td></tr>
+<tr><td style="text-align:center"><code>System</code></td><td style="text-align:center"><code>&quot;systemjs&quot;</code></td><td style="text-align:center"><code>@babel/plugin-transform-modules-systemjs</code></td></tr>
+<tr><td style="text-align:center"><code>UMD</code></td><td style="text-align:center"><code>&quot;umd&quot;</code></td><td style="text-align:center"><code>@babel/plugin-transform-modules-umd</code></td></tr>
+<tr><td style="text-align:center"><code>ES6</code> or <code>ES2015</code></td><td style="text-align:center"><code>false</code></td><td style="text-align:center">/</td></tr>
+</tbody>
+</table>
+</li>
+<li><p><code>--outDir</code>
+When using <code>@babel/cli</code>, you can set the <a href="https://babeljs.io/docs/en/babel-cli#compile-directories"><code>--out-dir</code> option</a>.</p></li>
+<li><p><code>--outFile</code>
+Babel doesn't support concatenating output files: you should use a bundler (like Webpack, Rollup or Parcel) for that.
+When using <code>@babel/cli</code>, you can compile a single file using the <a href="https://babeljs.io/docs/en/babel-cli#compile-files"><code>--out-file</code> option</a>.</p></li>
+<li><p><code>--sourceMap</code>
+You can use the top-level <a href="https://babeljs.io/docs/en/options#sourcemaps"><code>sourceMaps: true</code> option</a>.</p></li>
+<li><p><code>--target</code>
+Babel doesn't support targeting a specific version of the language, but you can choose which engines you want to target using <a href="https://babeljs.io/docs/en/babel-preset-env"><code>@babel/preset-env</code></a>.
+If you prefer, you can enable <a href="https://babeljs.io/docs/en/plugins">individual plugins</a> for every ECMAScript feature.</p></li>
+<li><p><code>--useDefineForClassFields</code>
+You can use the <code>onlyRemoveTypeImports</code> option to replicate this behavior.</p></li>
+<li><p><code>--watch</code>, <code>-w</code>
+When using <code>@babel/cli</code>, you can specify the <a href="https://babeljs.io/docs/en/babel-cli#compile-files"><code>--watch</code> option</a>.</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="caveats"></a><a href="#caveats" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Caveats</h2>
+<p>Because there are features of the TypeScript language which rely on the full type-system to be available to make changes at runtime. This section of caveats is quite long, however, it's worth noting that a few of these features are only found in older TypeScript codebases and have modern JavaScript equivalents which you are probably already using.</p>
+<ol>
+<li><p>Since Babel does not type-check, code which is syntactically correct, but would fail the TypeScript type-checking may successfully get transformed, and often in unexpected or invalid ways.</p></li>
+<li><p>This plugin does not support <a href="https://www.typescriptlang.org/docs/handbook/enums.html#const-enums"><code>const enum</code></a>s because those require type information to compile.</p>
+<p><strong>Workarounds</strong>:</p>
+<ul>
+<li>Use the plugin <a href="https://www.npmjs.com/package/babel-plugin-const-enum">babel-plugin-const-enum</a>.</li>
+<li>Remove the <code>const</code>, which makes it available at runtime.</li>
+</ul></li>
+<li><p>This plugin does not support <a href="https://www.typescriptlang.org/docs/handbook/modules.html#export--and-import--require"><code>export =</code></a> and <a href="https://www.typescriptlang.org/docs/handbook/modules.html#export--and-import--require"><code>import =</code></a>, because those cannot be compiled to ES.next. These are a TypeScript only form of <code>import</code>/<code>export</code>.</p>
+<p><strong>Workarounds</strong>:</p>
+<ul>
+<li>Use the plugin <a href="https://www.npmjs.com/package/babel-plugin-replace-ts-export-assignment">babel-plugin-replace-ts-export-assignment</a> to transform <code>export =</code>.</li>
+<li>Convert to using <code>export default</code> and <code>export const</code>, and <code>import x, {y} from &quot;z&quot;</code>.</li>
+</ul></li>
+<li><p>Changes to your <code>tsconfig.json</code> are not reflected in babel. The build process will always behave as though <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html"><code>isolatedModules</code></a> is turned on, there are Babel-native alternative ways to set a lot of the <a href="#typescript-compiler-options"><code>tsconfig.json</code> options</a> however.</p></li>
+<li><p><strong>Q</strong>: Why doesn't Babel allow export of a <code>var</code> or <code>let</code>?</p>
+<p><strong>A</strong>: The TypeScript compiler dynamically changes how these variables are used depending on whether or not the value is mutated. Ultimately, this depends on a type-model and is outside the scope of Babel. A best-effort implementation would transform context-dependent usages of the variable to always use the <code>Namespace.Value</code> version instead of <code>Value</code>, in case it was mutated outside of the current file. Allowing <code>var</code> or <code>let</code> from Babel (as the transform is not-yet-written) is therefore is more likely than not to present itself as a bug when used as-if it was not <code>const</code>.</p></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="impartial-namespace-support"></a><a href="#impartial-namespace-support" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Impartial Namespace Support</h3>
+<p>If you have existing code which uses the TypeScript-only <a href="https://www.typescriptlang.org/docs/handbook/namespaces.html">namespace</a> features. Babel supports a subset of TypeScript's namespace features. If you are considering writing new code which uses namespace, using the ES2015 <code>import</code>/<code>export</code> is recommended instead. It's <a href="https://github.com/microsoft/TypeScript/issues/30994#issuecomment-484150549">not going away</a>, but there are modern alternatives.</p>
+<ul>
+<li><p>Type-only <code>namespace</code>s should be marked with <code>declare</code> and will subsequently be safely removed.</p></li>
+<li><p><code>export</code>ing a variable using <code>var</code> or <code>let</code> in a <code>namespace</code> will result in an error: <em>&quot;Namespaces exporting non-const are not supported by Babel. Change to const or ...&quot;</em></p>
+<p><strong>Workaround</strong>: Use <code>const</code>. If some form of mutation is required, explicitly use an object with internal mutability.</p></li>
+<li><p><code>namespace</code>s will not share their scope. In TypeScript, it is valid to refer to contextual items that a <code>namespace</code> extends without qualifying them, and the compiler will add the qualifier. In Babel, there is no type-model, and it is impossible to dynamically change references to match the established type of the parent object.</p>
+<p>Consider this code:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">namespace</span> N {
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> V = <span class="hljs-number">1</span>;
+}
+<span class="hljs-keyword">namespace</span> N {
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> W = V;
+}
+</code></pre>
+<p>The TypeScript compiler compiles it to something like this:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> N = {};
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">N</span>) </span>{
+  N.V = <span class="hljs-number">1</span>;
+})(N);
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">N</span>) </span>{
+  N.W = N.V;
+})(N);
+</code></pre>
+<p>While Babel will transform it to something like this:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> N;
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_N</span>) </span>{
+  <span class="hljs-keyword">const</span> V = (_N = <span class="hljs-number">1</span>);
+})(N || (N = {}));
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_N</span>) </span>{
+  <span class="hljs-keyword">const</span> W = V;
+})(N || (N = {}));
+</code></pre>
+<p>As Babel doesn't understand the type of <code>N</code>, the reference to <code>V</code> will be <code>undefined</code> resulting in an error.</p>
+<p><strong>Workaround</strong>: Explicitly refer to values not in the same namespace definition, even if they would be in the scope according to TypeScript. Examples:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">namespace</span> N {
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> V = <span class="hljs-number">1</span>;
+}
+<span class="hljs-keyword">namespace</span> N {
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> W = N.V;
+}
+</code></pre>
+<p>Or:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">namespace</span> N {
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> V = <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> W = V;
+}
+</code></pre></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#example">Example</a></li><li><a href="#installation">Installation</a></li><li><a href="#usage">Usage</a><ul class="toc-headings"><li><a href="#with-a-configuration-file-recommended">With a configuration file (Recommended)</a></li><li><a href="#via-cli">Via CLI</a></li><li><a href="#via-node-api">Via Node API</a></li></ul></li><li><a href="#options">Options</a><ul class="toc-headings"><li><a href="#allowdeclarefields"><code>allowDeclareFields</code></a></li><li><a href="#allownamespaces"><code>allowNamespaces</code></a></li><li><a href="#istsx"><code>isTSX</code></a></li><li><a href="#jsxpragma"><code>jsxPragma</code></a></li><li><a href="#jsxpragmafrag"><code>jsxPragmaFrag</code></a></li><li><a href="#onlyremovetypeimports"><code>onlyRemoveTypeImports</code></a></li></ul></li><li><a href="#typescript-compiler-options">TypeScript Compiler Options</a></li><li><a href="#caveats">Caveats</a><ul class="toc-headings"><li><a href="#impartial-namespace-support">Impartial Namespace Support</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>@babel/plugin-transform-runtime · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="A plugin that enables the re-use of Babel&#x27;s injected helper code to save on codesize."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="@babel/plugin-transform-runtime · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="A plugin that enables the re-use of Babel&#x27;s injected helper code to save on codesize."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>用法</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">指南</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/">什么是 Babel？</a></li><li class="navListItem"><a class="navItem" href="/docs/en/usage">使用指南</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration">配置 Babel</a></li><li class="navListItem"><a class="navItem" href="/docs/en/learn">学习 ES2015</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration">升级至 Babel 7</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration-api">升级至 Babel 7 (API)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">通用</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/editors">编辑器</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins">插件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/presets">Presets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/caveats">注意事项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/faq">FAQ</a></li><li class="navListItem"><a class="navItem" href="/docs/en/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">用法</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/options">选项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/config-files">配置文件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-cli">cli</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-polyfill">polyfill</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/babel-plugin-transform-runtime">transform-runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-register">register</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">presets</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-env">env</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-flow">flow</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-react">react</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-typescript">typescript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">工具</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-parser">parser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-core">core</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-generator">generator</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-code-frame">code-frame</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-helpers">helpers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-runtime">runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-template">template</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-traverse">traverse</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-types">types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/plugin-transform-runtime.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">@babel/plugin-transform-runtime</h1></header><article><div><span><p>A plugin that enables the re-use of Babel's injected helper code to save on codesize.</p>
+<blockquote>
+<p>NOTE: Instance methods such as <code>&quot;foobar&quot;.includes(&quot;foo&quot;)</code> will only work with <code>core-js@3</code>. If you need to polyfill them, you can directly import <code>&quot;core-js&quot;</code> or use <code>@babel/preset-env</code>'s <code>useBuiltIns</code> option.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+<p>Install it as development dependency.</p>
+<pre><code class="hljs css language-sh">npm install --save-dev @babel/plugin-transform-runtime
+</code></pre>
+<p>and <a href="/docs/en/babel-runtime"><code>@babel/runtime</code></a> as a production dependency (since it's for the &quot;runtime&quot;).</p>
+<pre><code class="hljs css language-sh">npm install --save @babel/runtime
+</code></pre>
+<p>The transformation plugin is typically used only in development, but the runtime itself will be depended on by your deployed code. See the examples below for more details.</p>
+<h2><a class="anchor" aria-hidden="true" id="why"></a><a href="#why" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why?</h2>
+<p>Babel uses very small helpers for common functions such as <code>_extend</code>. By default this will be added to every file that requires it. This duplication is sometimes unnecessary, especially when your application is spread out over multiple files.</p>
+<p>This is where the <code>@babel/plugin-transform-runtime</code> plugin comes in: all of the helpers will reference the module <code>@babel/runtime</code> to avoid duplication across your compiled output. The runtime will be compiled into your build.</p>
+<p>Another purpose of this transformer is to create a sandboxed environment for your code. If you directly import <a href="https://github.com/zloirock/core-js">core-js</a> or <a href="/docs/en/babel-polyfill">@babel/polyfill</a> and the built-ins it provides such as <code>Promise</code>, <code>Set</code> and <code>Map</code>, those will pollute the global scope. While this might be ok for an app or a command line tool, it becomes a problem if your code is a library which you intend to publish for others to use or if you can't exactly control the environment in which your code will run.</p>
+<p>The transformer will alias these built-ins to <code>core-js</code> so you can use them seamlessly without having to require the polyfill.</p>
+<p>See the <a href="#technical-details">technical details</a> section for more information on how this works and the types of transformations that occur.</p>
+<h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
+<h3><a class="anchor" aria-hidden="true" id="with-a-configuration-file-recommended"></a><a href="#with-a-configuration-file-recommended" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>With a configuration file (Recommended)</h3>
+<p>Without options:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"plugins"</span>: [<span class="hljs-string">"@babel/plugin-transform-runtime"</span>]
+}
+</code></pre>
+<p>With options (and their defaults):</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"plugins"</span>: [
+    [
+      <span class="hljs-string">"@babel/plugin-transform-runtime"</span>,
+      {
+        <span class="hljs-attr">"absoluteRuntime"</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">"corejs"</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">"helpers"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">"regenerator"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">"version"</span>: <span class="hljs-string">"7.0.0-beta.0"</span>
+      }
+    ]
+  ]
+}
+</code></pre>
+<p>The plugin defaults to assuming that all polyfillable APIs will be provided by the user. Otherwise the <a href="#corejs"><code>corejs</code></a> option needs to be specified.</p>
+<h3><a class="anchor" aria-hidden="true" id="via-cli"></a><a href="#via-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Via CLI</h3>
+<pre><code class="hljs css language-sh">babel --plugins @babel/plugin-transform-runtime script.js
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="via-node-api"></a><a href="#via-node-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Via Node API</h3>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/core"</span>).transformSync(<span class="hljs-string">"code"</span>, {
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-string">"@babel/plugin-transform-runtime"</span>],
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="options"></a><a href="#options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Options</h2>
+<h3><a class="anchor" aria-hidden="true" id="corejs"></a><a href="#corejs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>corejs</code></h3>
+<p><code>false</code>, <code>2</code>, <code>3</code> or <code>{ version: 2 | 3, proposals: boolean }</code>, defaults to <code>false</code>.</p>
+<p>e.g. <code>['@babel/plugin-transform-runtime', { corejs: 3 }],</code></p>
+<p><details>
+<summary>History</summary></p>
+<table>
+<thead>
+<tr><th>Version</th><th>Changes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>v7.4.0</code></td><td>Supports <code>{ proposals: boolean }</code></td></tr>
+</tbody>
+</table>
+<p></details></p>
+<p>Specifying a number will rewrite the helpers that need polyfillable APIs to reference helpers from that (major) version of <code>core-js</code> instead
+Please note that <code>corejs: 2</code> only supports global variables (e.g. <code>Promise</code>) and static properties (e.g. <code>Array.from</code>), while <code>corejs: 3</code> also supports instance properties (e.g. <code>[].includes</code>).</p>
+<p>By default, <code>@babel/plugin-transform-runtime</code> doesn't polyfill proposals. If you are using <code>corejs: 3</code>, you can opt into this by enabling using the <code>proposals: true</code> option.</p>
+<p>This option requires changing the dependency used to provide the necessary runtime helpers:</p>
+<table>
+<thead>
+<tr><th><code>corejs</code> option</th><th>Install command</th></tr>
+</thead>
+<tbody>
+<tr><td><code>false</code></td><td><code>npm install --save @babel/runtime</code></td></tr>
+<tr><td><code>2</code></td><td><code>npm install --save @babel/runtime-corejs2</code></td></tr>
+<tr><td><code>3</code></td><td><code>npm install --save @babel/runtime-corejs3</code></td></tr>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="helpers"></a><a href="#helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>helpers</code></h3>
+<p><code>boolean</code>, defaults to <code>true</code>.</p>
+<p>Toggles whether or not inlined Babel helpers (<code>classCallCheck</code>, <code>extends</code>, etc.) are replaced with calls to <code>moduleName</code>.</p>
+<p>For more information, see <a href="#helper-aliasing">Helper aliasing</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="polyfill"></a><a href="#polyfill" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>polyfill</code></h3>
+<blockquote>
+<p>This option was removed in v7 by just making it the default.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="regenerator"></a><a href="#regenerator" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>regenerator</code></h3>
+<p><code>boolean</code>, defaults to <code>true</code>.</p>
+<p>Toggles whether or not generator functions are transformed to use a regenerator runtime that does not pollute the global scope.</p>
+<p>For more information, see <a href="#regenerator-aliasing">Regenerator aliasing</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="usebuiltins"></a><a href="#usebuiltins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>useBuiltIns</code></h3>
+<blockquote>
+<p>This option was removed in v7 by just making it the default.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="useesmodules"></a><a href="#useesmodules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>useESModules</code></h3>
+<blockquote>
+<p>⚠️ This option has been deprecated: starting from version <code>7.13.0</code>, <code>@babel/runtime</code>'s <code>package.json</code> uses <code>&quot;exports&quot;</code> option to automatically choose between CJS and ESM helpers.</p>
+</blockquote>
+<p><code>boolean</code>, defaults to <code>false</code>.</p>
+<p><details>
+<summary>History</summary></p>
+<table>
+<thead>
+<tr><th>Version</th><th>Changes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>v7.13.0</code></td><td>This option has been deprecated</td></tr>
+</tbody>
+</table>
+<p></details></p>
+<p>When enabled, the transform will use helpers that do not get run through
+<code>@babel/plugin-transform-modules-commonjs</code>. This allows for smaller builds in module
+systems like webpack, since it doesn't need to preserve commonjs semantics.</p>
+<p>For example, here is the <code>classCallCheck</code> helper with <code>useESModules</code> disabled:</p>
+<pre><code class="hljs css language-js">exports.__esModule = <span class="hljs-literal">true</span>;
+
+exports.default = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">instance, Constructor</span>) </span>{
+  <span class="hljs-keyword">if</span> (!(instance <span class="hljs-keyword">instanceof</span> Constructor)) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">"Cannot call a class as a function"</span>);
+  }
+};
+</code></pre>
+<p>And, with it enabled:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">instance, Constructor</span>) </span>{
+  <span class="hljs-keyword">if</span> (!(instance <span class="hljs-keyword">instanceof</span> Constructor)) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">"Cannot call a class as a function"</span>);
+  }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="absoluteruntime"></a><a href="#absoluteruntime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>absoluteRuntime</code></h3>
+<p><code>boolean</code> or <code>string</code>, defaults to <code>false</code>.</p>
+<p>This allows users to run <code>transform-runtime</code> broadly across a whole project. By default, <code>transform-runtime</code> imports from <code>@babel/runtime/foo</code> directly, but that only works if <code>@babel/runtime</code> is in the <code>node_modules</code> of the file that is being compiled. This can be problematic for nested <code>node_modules</code>, npm-linked modules, or CLIs that reside outside the user's project, among other cases. To avoid worrying about how the runtime module's location is resolved, this allows users to resolve the runtime once up front, and then insert absolute paths to the runtime into the output code.</p>
+<p>Using absolute paths is not desirable if files are compiled for use at a later time, but in contexts where a file is compiled and then immediately consumed, they can be quite helpful.</p>
+<blockquote>
+<p>You can read more about configuring plugin options <a href="https://babeljs.io/docs/en/plugins#plugin-options">here</a></p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="version"></a><a href="#version" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>version</code></h3>
+<p>By default transform-runtime assumes that <code>@babel/runtime@7.0.0</code> is installed. If you have later versions of
+<code>@babel/runtime</code> (or their corejs counterparts e.g. <code>@babel/runtime-corejs3</code>) installed or listed as a dependency, transform-runtime can use more advanced features.</p>
+<p>For example if you depend on <code>@babel/runtime-corejs2@7.7.4</code> you can transpile your code with</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"plugins"</span>: [
+    [
+      <span class="hljs-string">"@babel/plugin-transform-runtime"</span>,
+      {
+        <span class="hljs-attr">"absoluteRuntime"</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">"corejs"</span>: <span class="hljs-number">2</span>,
+        <span class="hljs-attr">"version"</span>: <span class="hljs-string">"^7.7.4"</span>
+      }
+    ]
+  ]
+}
+</code></pre>
+<p>which results in a smaller bundle size.</p>
+<h2><a class="anchor" aria-hidden="true" id="technical-details"></a><a href="#technical-details" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Technical details</h2>
+<p>The <code>transform-runtime</code> transformer plugin does three things:</p>
+<ul>
+<li>Automatically requires <code>@babel/runtime/regenerator</code> when you use generators/async functions (toggleable with the <code>regenerator</code> option).</li>
+<li>Can use <code>core-js</code> for helpers if necessary instead of assuming it will be polyfilled by the user (toggleable with the <code>corejs</code> option)</li>
+<li>Automatically removes the inline Babel helpers and uses the module <code>@babel/runtime/helpers</code> instead (toggleable with the <code>helpers</code> option).</li>
+</ul>
+<p>What does this actually mean though? Basically, you can use built-ins such as <code>Promise</code>, <code>Set</code>, <code>Symbol</code>, etc., as well use all the Babel features that require a polyfill seamlessly, without global pollution, making it extremely suitable for libraries.</p>
+<p>Make sure you include <code>@babel/runtime</code> as a dependency.</p>
+<h3><a class="anchor" aria-hidden="true" id="regenerator-aliasing"></a><a href="#regenerator-aliasing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Regenerator aliasing</h3>
+<p>Whenever you use a generator function or async function:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{}
+</code></pre>
+<p>the following is generated:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-meta">"use strict"</span>;
+
+<span class="hljs-keyword">var</span> _marked = [foo].map(regeneratorRuntime.mark);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> regeneratorRuntime.wrap(
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo$</span>(<span class="hljs-params">_context</span>) </span>{
+      <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">switch</span> ((_context.prev = _context.next)) {
+          <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+          <span class="hljs-keyword">case</span> <span class="hljs-string">"end"</span>:
+            <span class="hljs-keyword">return</span> _context.stop();
+        }
+      }
+    },
+    _marked[<span class="hljs-number">0</span>],
+    <span class="hljs-keyword">this</span>
+  );
+}
+</code></pre>
+<p>This isn't ideal since it relies on the regenerator runtime being included, which
+pollutes the global scope.</p>
+<p>With the <code>runtime</code> transformer, however, it is compiled to:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-meta">"use strict"</span>;
+
+<span class="hljs-keyword">var</span> _regenerator = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/runtime/regenerator"</span>);
+
+<span class="hljs-keyword">var</span> _regenerator2 = _interopRequireDefault(_regenerator);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_interopRequireDefault</span>(<span class="hljs-params">obj</span>) </span>{
+  <span class="hljs-keyword">return</span> obj &amp;&amp; obj.__esModule ? obj : { <span class="hljs-attr">default</span>: obj };
+}
+
+<span class="hljs-keyword">var</span> _marked = [foo].map(_regenerator2.default.mark);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> _regenerator2.default.wrap(
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo$</span>(<span class="hljs-params">_context</span>) </span>{
+      <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">switch</span> ((_context.prev = _context.next)) {
+          <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+          <span class="hljs-keyword">case</span> <span class="hljs-string">"end"</span>:
+            <span class="hljs-keyword">return</span> _context.stop();
+        }
+      }
+    },
+    _marked[<span class="hljs-number">0</span>],
+    <span class="hljs-keyword">this</span>
+  );
+}
+</code></pre>
+<p>This means that you can use the regenerator runtime without polluting your current environment.</p>
+<h3><a class="anchor" aria-hidden="true" id="core-js-aliasing"></a><a href="#core-js-aliasing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>core-js</code> aliasing</h3>
+<p>Sometimes you may want to use new built-ins such as <code>Map</code>, <code>Set</code>, <code>Promise</code> etc. Your only way
+to use these is usually to include a globally polluting polyfill.</p>
+<p>This is with the <code>corejs</code> option.</p>
+<p>The plugin transforms the following:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> sym = <span class="hljs-built_in">Symbol</span>();
+
+<span class="hljs-keyword">var</span> promise = <span class="hljs-built_in">Promise</span>.resolve();
+
+<span class="hljs-keyword">var</span> check = arr.includes(<span class="hljs-string">"yeah!"</span>);
+
+<span class="hljs-built_in">console</span>.log(arr[<span class="hljs-built_in">Symbol</span>.iterator]());
+</code></pre>
+<p>into the following:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> _getIterator <span class="hljs-keyword">from</span> <span class="hljs-string">"@babel/runtime-corejs3/core-js/get-iterator"</span>;
+<span class="hljs-keyword">import</span> _includesInstanceProperty <span class="hljs-keyword">from</span> <span class="hljs-string">"@babel/runtime-corejs3/core-js-stable/instance/includes"</span>;
+<span class="hljs-keyword">import</span> _Promise <span class="hljs-keyword">from</span> <span class="hljs-string">"@babel/runtime-corejs3/core-js-stable/promise"</span>;
+<span class="hljs-keyword">import</span> _Symbol <span class="hljs-keyword">from</span> <span class="hljs-string">"@babel/runtime-corejs3/core-js-stable/symbol"</span>;
+
+<span class="hljs-keyword">var</span> sym = _Symbol();
+
+<span class="hljs-keyword">var</span> promise = _Promise.resolve();
+
+<span class="hljs-keyword">var</span> check = _includesInstanceProperty(arr).call(arr, <span class="hljs-string">"yeah!"</span>);
+
+<span class="hljs-built_in">console</span>.log(_getIterator(arr));
+</code></pre>
+<p>This means is that you can seamlessly use these native built-ins and methods
+without worrying about where they come from.</p>
+<p><strong>NOTE:</strong> Instance methods such as <code>&quot;foobar&quot;.includes(&quot;foo&quot;)</code> will only work when using <code>corejs: 3</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="helper-aliasing"></a><a href="#helper-aliasing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Helper aliasing</h3>
+<p>Usually Babel will place helpers at the top of your file to do common tasks to avoid
+duplicating the code around in the current file. Sometimes these helpers can get a
+little bulky and add unnecessary duplication across files. The <code>runtime</code>
+transformer replaces all the helper calls to a module.</p>
+<p>That means that the following code:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>{}
+</code></pre>
+<p>usually turns into:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-meta">"use strict"</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_classCallCheck</span>(<span class="hljs-params">instance, Constructor</span>) </span>{
+  <span class="hljs-keyword">if</span> (!(instance <span class="hljs-keyword">instanceof</span> Constructor)) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">"Cannot call a class as a function"</span>);
+  }
+}
+
+<span class="hljs-keyword">var</span> Person = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>{
+  _classCallCheck(<span class="hljs-keyword">this</span>, Person);
+};
+</code></pre>
+<p>the <code>runtime</code> transformer however turns this into:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-meta">"use strict"</span>;
+
+<span class="hljs-keyword">var</span> _classCallCheck2 = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/runtime/helpers/classCallCheck"</span>);
+
+<span class="hljs-keyword">var</span> _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_interopRequireDefault</span>(<span class="hljs-params">obj</span>) </span>{
+  <span class="hljs-keyword">return</span> obj &amp;&amp; obj.__esModule ? obj : { <span class="hljs-attr">default</span>: obj };
+}
+
+<span class="hljs-keyword">var</span> Person = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>{
+  (<span class="hljs-number">0</span>, _classCallCheck3.default)(<span class="hljs-keyword">this</span>, Person);
+};
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/babel-polyfill"><span class="arrow-prev">← </span><span>polyfill</span></a><a class="docs-next button" href="/docs/en/babel-register"><span>register</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a></li><li><a href="#why">Why?</a></li><li><a href="#usage">Usage</a><ul class="toc-headings"><li><a href="#with-a-configuration-file-recommended">With a configuration file (Recommended)</a></li><li><a href="#via-cli">Via CLI</a></li><li><a href="#via-node-api">Via Node API</a></li></ul></li><li><a href="#options">Options</a><ul class="toc-headings"><li><a href="#corejs"><code>corejs</code></a></li><li><a href="#helpers"><code>helpers</code></a></li><li><a href="#polyfill"><code>polyfill</code></a></li><li><a href="#regenerator"><code>regenerator</code></a></li><li><a href="#usebuiltins"><code>useBuiltIns</code></a></li><li><a href="#useesmodules"><code>useESModules</code></a></li><li><a href="#absoluteruntime"><code>absoluteRuntime</code></a></li><li><a href="#version"><code>version</code></a></li></ul></li><li><a href="#technical-details">Technical details</a><ul class="toc-headings"><li><a href="#regenerator-aliasing">Regenerator aliasing</a></li><li><a href="#core-js-aliasing"><code>core-js</code> aliasing</a></li><li><a href="#helper-aliasing">Helper aliasing</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

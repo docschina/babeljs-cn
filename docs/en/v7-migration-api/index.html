@@ -1,0 +1,402 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>升级至 Babel 7 (API) · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Refer users to this document when upgrading to Babel 7."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="升级至 Babel 7 (API) · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="Refer users to this document when upgrading to Babel 7."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>指南</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">指南</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/">什么是 Babel？</a></li><li class="navListItem"><a class="navItem" href="/docs/en/usage">使用指南</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration">配置 Babel</a></li><li class="navListItem"><a class="navItem" href="/docs/en/learn">学习 ES2015</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration">升级至 Babel 7</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/v7-migration-api">升级至 Babel 7 (API)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">通用</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/editors">编辑器</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins">插件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/presets">Presets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/caveats">注意事项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/faq">FAQ</a></li><li class="navListItem"><a class="navItem" href="/docs/en/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">用法</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/options">选项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/config-files">配置文件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-cli">cli</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-plugin-transform-runtime">transform-runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-register">register</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">presets</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-env">env</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-flow">flow</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-react">react</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-typescript">typescript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">工具</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-parser">parser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-core">core</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-generator">generator</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-code-frame">code-frame</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-helpers">helpers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-runtime">runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-template">template</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-traverse">traverse</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-types">types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/v7-migration-api.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">升级至 Babel 7 (API)</h1></header><article><div><span><p>Refer users to this document when upgrading to Babel 7.</p>
+<!--truncate-->
+<blockquote>
+<p>Also check out the <a href="/docs/en/v7-migration">v7-migration guide</a> for other user-level changes.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="all-babel-packages"></a><a href="#all-babel-packages" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>All Babel packages</h2>
+<h3><a class="anchor" aria-hidden="true" id="nodejs-support"></a><a href="#nodejs-support" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>NodeJS support</h3>
+<p><img src="https://img.shields.io/badge/level%20of%20awesomeness%3F-high-red.svg" alt="high"></p>
+<p>Support for Node.js 0.10 and 0.12 has been dropped as both of this versions are out of maintenance.</p>
+<h3><a class="anchor" aria-hidden="true" id="export-changes"></a><a href="#export-changes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Export changes</h3>
+<p><img src="https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg" alt="medium"></p>
+<p>Dropped use of <code>add-module-exports</code> plugin on Babel packages.
+This had to be used earlier to prevent a breaking change with our exports.
+If you import a Babel package in a library you may need to use <code>.default</code> when using <code>require</code> rather than <code>import</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="babelcore"></a><a href="#babelcore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>@babel/core</code></h2>
+<p>Changed <code>ast</code> to be false by default for performance (most tools aren't using it) <a href="https://github.com/babel/babel/pull/7436/commits/8e3e6e0a8838607c5a01ba4232c4d3ff8dee5db0">babel/babel#7436</a>.</p>
+<p>The publicly exposed but undocumented <code>Pipeline</code> class has been removed. Best to use the transformation methods exposed from <code>@babel/core</code> directly <a href="https://github.com/babel/babel/pull/5376">babel/babel#5376</a>.</p>
+<p>The <code>babel.util.*</code> helper methods have been removed, and <code>util.EXTENSIONS</code> has been moved to <code>babel.DEFAULT_EXTENSIONS</code> <a href="https://github.com/babel/babel/pull/5487">babel/babel#5487</a>.</p>
+<p>Calls to <code>babel.transform</code> or any other transform function may return <code>null</code> if the file matched an <code>ignore</code> pattern or failed to match an <code>only</code> pattern <a href="https://github.com/babel/babel/pull/5487">babel/babel#5487</a>.</p>
+<p>The <code>opts.basename</code> option exposed on <code>state.file.opts</code> has been removed. If you need it, best to build it from <code>opts.filename</code> yourself <a href="https://github.com/babel/babel/pull/5467">babel/babel#5467</a>.</p>
+<p>Removed <code>resolveModuleSource</code>. We recommend using <code>babel-plugin-module-resolver@3</code>'s 'resolvePath' options <a href="https://github.com/babel/babel/pull/6343">babel/babel#6343</a></p>
+<p>Removed <code>babel.analyse</code> because it was just an alias for <code>babel.transform</code></p>
+<p>Removed <code>path.mark()</code> since we didn't use it and it can be implemented in your own plugin.</p>
+<p>Removed <code>babel.metadata</code> since the generated plugin metadata is always included in the output result.</p>
+<p>Removed <code>path.hub.file.addImport</code>. You can use the <code>@babel/helper-module-imports</code> module instead.</p>
+<pre><code class="hljs css language-diff"><span class="hljs-addition">+  import { addDefault } from "@babel/helper-module-imports";</span>
+function importModule(pkgStore, name, path) {
+<span class="hljs-deletion">-  return path.hub.file.addImport(resolvePath(pkgStore, name, path), 'default', name);</span>
+<span class="hljs-addition">+  return addDefault(path, resolvePath(pkgStore, name, path), { nameHint: name });</span>
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="config-changes"></a><a href="#config-changes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Config changes</h3>
+<p>We've made some major changes to way config lookup works:</p>
+<blockquote>
+<p>By default when searching for <code>.babelrc</code> files for a given file, stop at <code>package.json</code>.</p>
+</blockquote>
+<p>For any particular file, Babel v6 keeps looking up the directory hierarchy until it finds a config file.
+This means your project might break because it uses a config file found outside the package root like in
+the home directory.</p>
+<blockquote>
+<p>Adds support for a <code>babel.config.js</code> file along the lines of what Webpack does</p>
+</blockquote>
+<p>Because this would break how a monorepo works (including Babel itself), we are introducing a new config file,
+that basically removes the hierarchical nature of configs.</p>
+<p>Included is a <code>root</code> option that defaults to the current working directory for it to find the file.
+It is also not loaded relatively so it will handle symlinking correctly, whereas before you may have had
+hard-code the paths in webpack before.</p>
+<p>Check the <code>babel.config.js</code> docs for more info: <a href="/docs/en/config-files#project-wide-configuration">project-wide configuration</a></p>
+<p>This file combined with the new <a href="/docs/en/options#overrides"><code>overrides</code></a> property and <code>env</code> lets you have a single config file
+that can work for all the files in a project vs. multiple config files per folder.</p>
+<p>We also exclude <code>node_modules</code> by default and only look in the root unless you opt-in to setting
+an array of the <code>.babelrcRoots</code> option such as <code>&quot;babelrcRoots&quot;: [&quot;.&quot;, &quot;node_modules/pkgA&quot;]</code></p>
+<h2><a class="anchor" aria-hidden="true" id="asserting-babel-version-7450httpsgithubcombabelbabelpull7450"></a><a href="#asserting-babel-version-7450httpsgithubcombabelbabelpull7450" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Asserting Babel version <a href="https://github.com/babel/babel/pull/7450">#7450</a></h2>
+<p>Plugins can check that it's loaded with a certain version of Babel.
+The API will expose an <code>assertVersion</code> method, where you can pass in semver.</p>
+<p>The declare helper is used to keep backwards compat with v6.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { declare } <span class="hljs-keyword">from</span> <span class="hljs-string">"@babel/helper-plugin-utils"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> declare(<span class="hljs-function"><span class="hljs-params">api</span> =&gt;</span> {
+  api.assertVersion(<span class="hljs-number">7</span>);
+  <span class="hljs-comment">// ...</span>
+});
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="babel-pluginspresets"></a><a href="#babel-pluginspresets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babel plugins/presets</h2>
+<p>It currently takes it as the first parameter the <code>babel</code> object, and plugin/preset options, and the <code>dirname</code></p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">api, options, dirname</span>) </span>{};
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="babel-parser-known-as-babylon"></a><a href="#babel-parser-known-as-babylon" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>babel-parser</code> (known as Babylon)</h2>
+<blockquote>
+<p>Removed the <code>*</code> plugin option <a href="https://github.com/babel/babylon/pull/301">#301</a> <img src="https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg" alt="low"></p>
+</blockquote>
+<p>This was first added in v6.14.1 (Nov 17, 2016) so it's unlikely anyone was using this.</p>
+<p>This catch-all option was removed; instead you should specifically decide which plugins you want to activate.</p>
+<p>We thought it would be a good idea for tools so they wouldn't have to constantly update their config but it also means we can't easily make a breaking change.</p>
+<p>Before:</p>
+<pre><code class="hljs css language-js">babelParser.parse(code, {
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-string">"*"</span>],
+});
+</code></pre>
+<p>You can get the old behavior using:</p>
+<pre><code class="hljs css language-js">babelParser.parse(code, {
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-string">"asyncGenerators"</span>,
+    <span class="hljs-string">"classProperties"</span>,
+    <span class="hljs-string">"decorators"</span>,
+    <span class="hljs-string">"doExpressions"</span>,
+    <span class="hljs-string">"dynamicImport"</span>,
+    <span class="hljs-string">"exportExtensions"</span>,
+    <span class="hljs-string">"flow"</span>,
+    <span class="hljs-string">"functionBind"</span>,
+    <span class="hljs-string">"functionSent"</span>,
+    <span class="hljs-string">"jsx"</span>,
+    <span class="hljs-string">"objectRestSpread"</span>,
+  ],
+});
+</code></pre>
+<p>See Babylon's <a href="/docs/en/babel-parser#plugins">plugin options</a>.</p>
+<blockquote>
+<p>Renamed <code>decorators</code> plugin to <code>decorators-legacy</code> <img src="https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg" alt="medium"></p>
+</blockquote>
+<p>It has been renamed to align with the <code>legacy</code> option of <code>@babel/plugin-proposal-decorators</code>. A new <code>decorators</code> plugin has been implemented, which implements the new decorators proposal.</p>
+<p>The two versions of the proposals have different syntaxes, so it is highly recommended to use <code>decorators-legacy</code> until the new semantics are implemented by Babel.</p>
+<blockquote>
+<p>Removed <code>classConstructorCall</code> plugin <a href="https://github.com/babel/babylon/pull/291">#291</a> <img src="https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg" alt="low"></p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="babeltraverse"></a><a href="#babeltraverse" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>@babel/traverse</code></h2>
+<blockquote>
+<p>Remove support for flow bindings <a href="https://github.com/babel/babel/pull/6528">babel/babel#6528</a></p>
+</blockquote>
+<p>The reason behind this change is that <code>declare var foo</code> doesn't introduce a new local binding, but it represents a global one.</p>
+<blockquote>
+<p><code>getFunctionParent</code> will no longer return <code>Program</code>, please use <code>getProgramParent</code> instead <a href="https://github.com/babel/babel/pull/5923">#5923</a>. <img src="https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg" alt="low"></p>
+</blockquote>
+<p>It doesn't make sense that a function named <code>getFunctionParent</code> also returns the Program, so that was removed.</p>
+<p>To get the equivalent behavior, you'll need to make a change like</p>
+<pre><code class="hljs css language-diff"><span class="hljs-deletion">- path.scope.getFunctionParent()</span>
+<span class="hljs-addition">+ path.scope.getFunctionParent() || path.scope.getProgramParent()</span>
+</code></pre>
+<blockquote>
+<p>Path replacement/removal APIs now return an array of new paths <img src="https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg" alt="low"></p>
+</blockquote>
+<p>For instance, using <code>Path#insertBefore</code>, or <code>Path#replaceWith</code> will now always return an array of the newly inserted/replaced paths.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> node = t.nullLiteral();
+<span class="hljs-keyword">const</span> [replaced] = path.replaceWith(node);
+replace.node === node; <span class="hljs-comment">// =&gt; true</span>
+</code></pre>
+<p>This is especially useful when inserting several nodes into some higher-up scope, since you can immediately call the <code>Path</code> APIs on the node's new <code>Path</code>.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> parent = path.findParent(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-comment">/* some selection criteria */</span>);
+<span class="hljs-keyword">const</span> helperPaths = path.unshiftContainer(<span class="hljs-string">"body"</span>, helpers);
+<span class="hljs-comment">// helperPaths can now be referenced, manipulated, etc.</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="ast-changes"></a><a href="#ast-changes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>AST changes</h2>
+<h3><a class="anchor" aria-hidden="true" id="add-interpreterdirective-node-7928httpsgithubcombabelbabelpull7928"></a><a href="#add-interpreterdirective-node-7928httpsgithubcombabelbabelpull7928" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add <code>InterpreterDirective</code> Node <a href="https://github.com/babel/babel/pull/7928">#7928</a></h3>
+<p>Babylon already parses &quot;shebangs&quot; (<code>#!env node</code>) but put's in a comment in the <code>Program</code> node.
+Now we are just creating an actual node for it.</p>
+<p>Add a new <code>interpreter</code> field to the <code>Program</code> node.</p>
+<pre><code class="hljs css language-js">extend interface Program {
+  <span class="hljs-attr">interpreter</span>: InterpreterDirective;
+}
+</code></pre>
+<p>Add the <code>InterpreterDirective</code> Node</p>
+<pre><code class="hljs css language-js">interface InterpreterDirective &lt;: Node {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">"InterpreterDirective"</span>;
+    value: string;
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="jsx-and-ts-node-builders-from-babeltypes-package-renamed"></a><a href="#jsx-and-ts-node-builders-from-babeltypes-package-renamed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JSX* and TS* node builders (from @babel/types package) renamed</h3>
+<p>The case has been changed: <code>jsx</code> and <code>ts</code> are now in lowercase.</p>
+<pre><code class="hljs css language-diff"><span class="hljs-deletion">- t.jSXIdentifier()</span>
+<span class="hljs-addition">+ t.jsxIdentifier()</span>
+</code></pre>
+<p>In general, we have differentiated the node types with <code>TypeAnnotation</code> for Flow and <code>TSTypeAnnotation</code> for TypeScript so for the shared type nodes, TypeScript has a <code>TS</code> prefix.</p>
+<h3><a class="anchor" aria-hidden="true" id="expression-field-removed-from-arrowfunctionexpression"></a><a href="#expression-field-removed-from-arrowfunctionexpression" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>.expression</code> field removed from <code>ArrowFunctionExpression</code></h3>
+<p>The <code>expression</code> field was removed to eliminate two different sources of truth and needing plugins to manually keep them in sync. You can now simply check whether the function body is a <code>BlockStatement</code> or not:</p>
+<pre><code class="hljs css language-diff">  return {
+    visitor: {
+      ArrowFunctionExpression({ node }) {
+<span class="hljs-deletion">-       if (node.expression) {</span>
+<span class="hljs-addition">+       if (node.body.type !== "BlockStatement") {</span>
+          // () =&gt; foo;
+        }
+      }
+    }
+  };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="tokens-removed"></a><a href="#tokens-removed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tokens removed</h3>
+<p>In previous versions <code>tokens</code> were always attached to the AST on the top-level. In the latest version of <code>@babel/parser</code> we removed this behavior and made it disabled by default to improve the performance of the parser. All usages in babel itself have been removed and <code>@babel/generator</code> is not using the tokens anymore for pretty printing.</p>
+<p>If your babel plugin uses <code>tokens</code> at the moment, evaluate if it is still necessary and try to remove the usage if possible. If your plugin really depends on getting tokens you can reactivate it but please only consider this if there is no other way as this will hurt users performance.</p>
+<p>To activate you need to set the <code>tokens</code> option of babylon to true. You can do this directly from your plugin.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    manipulateOptions(opts, parserOpts) {
+      parserOpts.tokens = <span class="hljs-literal">true</span>;
+    },
+    ...
+  };
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="renamed"></a><a href="#renamed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Renamed</h3>
+<p>The following nodes have been renamed:</p>
+<table>
+<thead>
+<tr><th>Name 6.x</th><th>Name 7.x</th><th>Example</th><th>PR</th></tr>
+</thead>
+<tbody>
+<tr><td>ExistentialTypeParam</td><td>ExistsTypeAnnotation</td><td><code>type A = B&lt;*&gt;;</code></td><td><a href="https://github.com/babel/babylon/pull/322">#322</a></td></tr>
+<tr><td>NumericLiteralTypeAnnotation</td><td>NumberLiteralTypeAnnotation</td><td><code>type T = 0;</code></td><td><a href="https://github.com/babel/babylon/pull/332">#332</a></td></tr>
+</tbody>
+</table>
+<p>Besides the AST-Nodes also all the corresponding functions in <code>@babel/types</code> have been renamed.</p>
+<pre><code class="hljs css language-diff"> import * as t from "@babel/types";
+
+ return {
+<span class="hljs-deletion">-  ExistentialTypeParam(path) {</span>
+<span class="hljs-deletion">-    const parent = path.findParent((path) =&gt; path.isExistentialTypeParam());</span>
+<span class="hljs-deletion">-    t.isExistentialTypeParam(parent);</span>
+<span class="hljs-addition">+  ExistsTypeAnnotation(path) {</span>
+<span class="hljs-addition">+    const parent = path.findParent((path) =&gt; path.isExistsTypeAnnotation());</span>
+<span class="hljs-addition">+    t.isExistsTypeAnnotation(parent);</span>
+
+<span class="hljs-deletion">-    return t.existentialTypeParam();</span>
+<span class="hljs-addition">+    return t.existsTypeAnnotation();</span>
+   },
+<span class="hljs-deletion">-  NumericLiteralTypeAnnotation(path) {</span>
+<span class="hljs-deletion">-    const parent = path.findParent((path) =&gt; path.isNumericLiteralTypeAnnotation());</span>
+<span class="hljs-deletion">-    t.isNumericLiteralTypeAnnotation(parent);</span>
+<span class="hljs-addition">+  NumberLiteralTypeAnnotation(path) {</span>
+<span class="hljs-addition">+    const parent = path.findParent((path) =&gt; path.isNumberLiteralTypeAnnotation());</span>
+<span class="hljs-addition">+    t.isNumberLiteralTypeAnnotation(parent);</span>
+
+<span class="hljs-deletion">-    return t.numericLiteralTypeAnnotation();</span>
+<span class="hljs-addition">+    return t.numberLiteralTypeAnnotation();</span>
+   }
+ };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="replaced"></a><a href="#replaced" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Replaced</h3>
+<p>On the following AST-Nodes the value of the field <code>variance</code> has been changed from a simple string value to be its own AST-Node called <code>Variance</code>. <a href="https://github.com/babel/babylon/pull/333">#333</a></p>
+<p>The field is only available when enabling the <code>flow</code> plugin in babylon.</p>
+<ul>
+<li>ObjectProperty</li>
+<li>ObjectMethod</li>
+<li>AssignmentProperty</li>
+<li>ClassMethod</li>
+<li>ClassProperty</li>
+<li>Property</li>
+</ul>
+<p>The type of the new <code>Variance</code> node looks like this:</p>
+<pre><code class="hljs css language-js">type VarianceNode = {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">"Variance"</span>,
+  <span class="hljs-attr">kind</span>: <span class="hljs-string">"plus"</span> | <span class="hljs-string">"minus"</span>,
+};
+</code></pre>
+<pre><code class="hljs css language-diff"> return {
+   Property({ node }) {
+<span class="hljs-deletion">-    if (node.variance === "plus") {</span>
+<span class="hljs-addition">+    if (node.variance.kind === "plus") {</span>
+       ...
+<span class="hljs-deletion">-    } else if (node.variance === "minus") {</span>
+<span class="hljs-addition">+    } else if (node.variance.kind === "minus") {</span>
+       ...
+     }
+   }
+ };
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="location-changes"></a><a href="#location-changes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Location changes</h3>
+<p>The location info of <code>ObjectTypeIndexer</code> has been changed to not include semicolons. This was done to align with the flow-parser and have the same location information. <a href="https://github.com/babel/babylon/pull/228">#228</a></p>
+<p>Example:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> a: { [a: number]: string };
+</code></pre>
+<pre><code class="hljs css language-diff"> {
+   "type": "ObjectTypeIndexer",
+   "start": 9,
+<span class="hljs-deletion">-  "end": 29,</span>
+<span class="hljs-addition">+  "end": 28,</span>
+   "loc": {
+     "start": {
+       "line": 1,
+       "column": 9,
+     },
+     "end": {
+       "line": 1,
+<span class="hljs-deletion">-      "column": 29</span>
+<span class="hljs-addition">+      "column": 28</span>
+     }
+   }
+ }
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="removal"></a><a href="#removal" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Removal</h3>
+<h4><a class="anchor" aria-hidden="true" id="forawaitstatement"></a><a href="#forawaitstatement" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ForAwaitStatement</h4>
+<p>The AST-Node <code>ForAwaitStatement</code> has been removed and is replace with the field <code>await</code> in the <code>ForOfStatement</code> node <a href="https://github.com/babel/babylon/pull/349">#349</a></p>
+<pre><code class="hljs css language-diff"> interface ForOfStatement &lt;: ForInStatement {
+   type: "ForOfStatement";
+<span class="hljs-addition">+  await: boolean;</span>
+ }
+</code></pre>
+<pre><code class="hljs css language-diff"> return {
+<span class="hljs-deletion">-  ForAwaitStatement(path) {</span>
+<span class="hljs-deletion">-    ...</span>
+<span class="hljs-addition">+  ForOfStatement(path) {</span>
+<span class="hljs-addition">+    if (path.node.await) {</span>
+<span class="hljs-addition">+      ...</span>
+<span class="hljs-addition">+    }</span>
+   }
+ };
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="restproperty--spreadproperty"></a><a href="#restproperty--spreadproperty" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RestProperty &amp; SpreadProperty</h4>
+<p>The two AST-Nodes <code>RestProperty</code> and <code>SpreadProperty</code> have been removed in favor of reusing <code>RestElement</code> and <code>SpreadElement</code> <a href="https://github.com/babel/babylon/pull/384">#384</a></p>
+<pre><code class="hljs css language-diff"> return {
+   SpreadElement(path) {
+<span class="hljs-deletion">-    ...</span>
+<span class="hljs-deletion">-  },</span>
+<span class="hljs-deletion">-  SpreadProperty(path) {</span>
+<span class="hljs-deletion">-    ...</span>
+<span class="hljs-addition">+    if (path.parentPath.isObjectExpression()) {</span>
+<span class="hljs-addition">+      ...</span>
+<span class="hljs-addition">+    } else if (path.parentPath.isArrayExpression()) {</span>
+<span class="hljs-addition">+      ...</span>
+<span class="hljs-addition">+    }</span>
+   },
+   RestElement(path) {
+<span class="hljs-deletion">-    ...</span>
+<span class="hljs-deletion">-  },</span>
+<span class="hljs-deletion">-  RestProperty(path) {</span>
+<span class="hljs-deletion">-    ...</span>
+<span class="hljs-addition">+    if (path.parentPath.isObjectPattern()) {</span>
+<span class="hljs-addition">+      ...</span>
+<span class="hljs-addition">+    } else if (path.parentPath.isArrayPattern()) {</span>
+<span class="hljs-addition">+      ...</span>
+<span class="hljs-addition">+    }</span>
+   }
+ };
+</code></pre>
+<p>See our <a href="https://github.com/babel/babel/pull/5317">upgrade PR for Babel</a> and the <a href="https://github.com/babel/babylon/blob/7.0/ast/spec.md">Babylon AST spec</a> for more information.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/v7-migration"><span class="arrow-prev">← </span><span>升级至 Babel 7</span></a><a class="docs-next button" href="/docs/en/editors"><span>编辑器</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#all-babel-packages">All Babel packages</a><ul class="toc-headings"><li><a href="#nodejs-support">NodeJS support</a></li><li><a href="#export-changes">Export changes</a></li></ul></li><li><a href="#babelcore"><code>@babel/core</code></a><ul class="toc-headings"><li><a href="#config-changes">Config changes</a></li></ul></li><li><a href="#asserting-babel-version-7450httpsgithubcombabelbabelpull7450">Asserting Babel version <a href="https://github.com/babel/babel/pull/7450">#7450</a></a></li><li><a href="#babel-pluginspresets">Babel plugins/presets</a></li><li><a href="#babel-parser-known-as-babylon"><code>babel-parser</code> (known as Babylon)</a></li><li><a href="#babeltraverse"><code>@babel/traverse</code></a></li><li><a href="#ast-changes">AST changes</a><ul class="toc-headings"><li><a href="#add-interpreterdirective-node-7928httpsgithubcombabelbabelpull7928">Add <code>InterpreterDirective</code> Node <a href="https://github.com/babel/babel/pull/7928">#7928</a></a></li><li><a href="#jsx-and-ts-node-builders-from-babeltypes-package-renamed">JSX* and TS* node builders (from @babel/types package) renamed</a></li><li><a href="#expression-field-removed-from-arrowfunctionexpression"><code>.expression</code> field removed from <code>ArrowFunctionExpression</code></a></li><li><a href="#tokens-removed">Tokens removed</a></li><li><a href="#renamed">Renamed</a></li><li><a href="#replaced">Replaced</a></li><li><a href="#location-changes">Location changes</a></li><li><a href="#removal">Removal</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

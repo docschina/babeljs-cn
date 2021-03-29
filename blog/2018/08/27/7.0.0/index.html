@@ -1,0 +1,407 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Babel 7 发布 · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="历经 2 年，4k 多次提交，50 多个预发布版本以及大量社区援助，我们很高兴地宣布发布 Babel 7。自 Babel 6 发布以来，已经过了将近[三年的时间](https://babeljs.io/blog/2015/10/29/6.0.0)！发布期间有许多要进行的迁移工作，因此请在发布第一周与我们联系。Babel 7 是更新巨大的版本：我们使它编译更快，并创建了升级工具，支持 JS 配置，支持配置 &quot;overrides&quot;，更多 size/minification 的选项，支持 JSX 片段，支持 TypeScript，支持新提案等等！"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Babel 7 发布 · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2018/08/27/7.0.0"/><meta property="og:description" content="历经 2 年，4k 多次提交，50 多个预发布版本以及大量社区援助，我们很高兴地宣布发布 Babel 7。自 Babel 6 发布以来，已经过了将近[三年的时间](https://babeljs.io/blog/2015/10/29/6.0.0)！发布期间有许多要进行的迁移工作，因此请在发布第一周与我们联系。Babel 7 是更新巨大的版本：我们使它编译更快，并创建了升级工具，支持 JS 配置，支持配置 &quot;overrides&quot;，更多 size/minification 的选项，支持 JSX 片段，支持 TypeScript，支持新提案等等！"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></h1><p class="post-meta">August 27, 2018</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/left_pad" target="_blank" rel="noreferrer noopener">Henry Zhu</a></p></div></header><div><span><p>历经 2 年，4k 多次提交，50 多个预发布版本以及大量社区援助，我们很高兴地宣布发布 Babel 7。自 Babel 6 发布以来，已经过了将近<a href="https://babeljs.io/blog/2015/10/29/6.0.0">三年的时间</a>！发布期间有许多要进行的迁移工作，因此请在发布第一周与我们联系。Babel 7 是更新巨大的版本：我们使它编译更快，并创建了升级工具，支持 JS 配置，支持配置 &quot;overrides&quot;，更多 size/minification 的选项，支持 JSX 片段，支持 TypeScript，支持新提案等等！</p>
+<!-- truncate -->
+<blockquote>
+<p>如果你欣赏我们在 Babel 上所做的工作，你可以在 <a href="https://opencollective.com/babel">Open Collective</a> 上赞助 Babel，也可在 <a href="https://www.patreon.com/henryzhu">Patreon</a> 上支持我，或者也可加入到 Babel 的维护行列中。Babel 项目是集合 javascript 社区成员力量的集体成果，我们向他们表示衷心的感谢！</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="进行中！"></a><a href="#进行中！" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进行中！🎉</h2>
+<p>软件永远都不是完美的，但我们准备发布的版本已经在生产环境中实验了一段时间！<a href="https://www.npmjs.com/package/@babel/core"><code>@babel/core</code></a> 已经达到每月 510 万次的下载量，因为它在类似于 <a href="https://zeit.co/blog/next6">Next.js 6</a>，<a href="https://medium.com/the-vue-point/vue-cli-3-0-is-here-c42bebe28fbb">vue-cli 3.0</a>，<a href="https://facebook.github.io/react-native/blog/2018/07/04/releasing-react-native-056">React Native 0.56</a>，甚至是 <a href="https://github.com/Automattic/wp-calypso">WordPress 的前端</a> 中都被广泛使用 🙂！</p>
+<h2><a class="anchor" aria-hidden="true" id="babel-担任的角色"></a><a href="#babel-担任的角色" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babel 担任的角色</h2>
+<p>我想再次介绍下过去几年中 Babel 在 JavaScript 生态系统中所担任的<a href="https://www.youtube.com/watch?v=fntd0sPMOtQ">角色</a>，以此展开本文的叙述。</p>
+<p>起初，JavaScript 与服务器语言不同，它没有办法保证对每个用户都有相同的支持，因为用户可能使用支持程度不同的浏览器（尤其是旧版本的 Internet Explorer）。如果开发人员想要使用新语法（例如 <code>class A {}</code>），旧浏览器上的用户只会因为 <code>SyntaxError</code> 的错误而出现屏幕空白的情况。</p>
+<p>Babel 为开发人员提供了一种使用最新 JavaScript 语法的方式，同时使得他们不必担心如何进行向后兼容，如（<code>class A {}</code> 转译成 <code>var A = function A() {}</code>）。</p>
+<p>由于它能转译 JavaScript 代码，它还可用于实现新的功能：因此它已成为帮助 <a href="https://github.com/tc39">TC39</a>（制订 JavaScript 语法的委员会）获得有关 JavaScript 提案意见反馈的桥梁，并让社区对语言的未来发展发表自己的见解。</p>
+<p>Babel 如今已成为 JavaScript 开发的基础。<a href="https://github.com/babel/babel/network/dependents">GitHub 目前有超过 130 万个仓库依赖 Babel</a>，<a href="https://www.npmjs.com/package/babel-core">每月 npm 下载量达 1700 万次</a>，还拥有<a href="http://babeljs.io/users">数百个用户</a>，其中包括许多主要框架（React，Vue，Ember，Polymer）以及著名公司（Facebook，Netflix，Airbnb）等。它已成为 JavaScript 开发的基础，许多人甚至不知道它正在被使用。即使你自己没有使用它，但你的依赖很可能正在使用 Babel。</p>
+<h2><a class="anchor" aria-hidden="true" id="核心开发"></a><a href="#核心开发" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>核心开发</h2>
+<p>Babel 不仅影响着语言本身的未来，也对社区和生态系统产生巨大了影响。尽管承担着这么巨大的责任，可 Babel 也仅仅是一个由几名志愿者组成的社区驱动项目。</p>
+<p>去年，团队里的一些伙伴才在线下相见：</p>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The original <a href="https://twitter.com/babeljs?ref_src=twsrc%5Etfw">@babeljs</a> team, at last together. From left to right: <a href="https://twitter.com/left_pad?ref_src=twsrc%5Etfw">@left_pad</a>, <a href="https://twitter.com/jamiebuilds?ref_src=twsrc%5Etfw">@jamiebuilds</a>, <a href="https://twitter.com/sebmck?ref_src=twsrc%5Etfw">@sebmck</a>, yours truly, and <a href="https://twitter.com/loganfsmyth?ref_src=twsrc%5Etfw">@loganfsmyth</a> <a href="https://t.co/XfPj6OhZfA">pic.twitter.com/XfPj6OhZfA</a></p>&mdash; Amjad Masad (@amasad) <a href="https://twitter.com/amasad/status/991903859999031298?ref_src=twsrc%5Etfw">May 3, 2018</a></blockquote>
+<p>尽管这只是一个公告帖，但我想借此机会告诉大家这个项目的状态。</p>
+<p>我在 6.0 版本发布前几个月加入，当时 Babel 拥有很多争议和反对意见。那些争议导致现有维护人员精疲力竭（包括 <a href="https://twitter.com/sebmck">Sebastian</a>，Babel 的创作者），我们中的一些人选择了离开。</p>
+<p>像许多维护者一样，我们偶然发现了 Babel 所担任这个角色。我们中的许多人没有对编译器的工作原理或如何维护开源项目进行过正式培训。更具讽刺的是，我甚至故意避免攻读大学的计算机科学专业，因为我不想上编译器或任何底层课程，因为它似乎显得无趣且非常困难。然而，我发现自己被工具，linter，Babel 和 JavaScript 语言所吸引。</p>
+<p>我想鼓励大家研究一下你所依赖的开源项目并支持它们（如果可能的话，还有时间和资金方面的支持）。</p>
+<p>许多维护者也并不是他们所从事工作方面的专家；并且工作中还有许多工作要进行。你必须拥有好奇心和谦虚心，这两者都是作为维护者的重要属性。我的愿望是项目拥有美好的未来，而不是我们所有人都在<a href="https://twitter.com/TheLarkInn/status/990790109799870469">完成&quot;任务&quot;</a>。</p>
+<p>Babel 不是一家公司，也不像 Facebook 这样级别大公司的开源团队。只有少数<a href="https://babeljs.io/team">志愿者</a>在 Babel 工作，而我也只是最近几个月<a href="https://twitter.com/left_pad/status/969793227862790144">离职后</a>，并且成为迄今为止唯一一位全职的开源工作者。但人们可以来去匆匆，生活在这种“爱好”之外，抚养家庭，做不同的事，换不同的工作或寻找不同的工作等。我们是否竭尽所能来维持那些对我们工作来说至关重要的事，还是说我们让基金会慢慢感到失望？我们如何保证开源项目的受欢迎且应用广泛，并且有明确的界限？我们可以学习<a href="https://github.com/nayafia/awesome-maintainers">其他维护者的经验</a>？</p>
+<p>虽然软件已明确开源，但我们真的可以认为它处于健康状态而不考虑其背后的<a href="https://nolanlawson.com/2017/03/05/what-it-feels-like-to-be-an-open-source-maintainer/">维护者</a>吗？</p>
+<h2><a class="anchor" aria-hidden="true" id="babelsponsorseverything"></a><a href="#babelsponsorseverything" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>#BabelSponsorsEverything</h2>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Tips 4 <a href="https://twitter.com/babeljs?ref_src=twsrc%5Etfw">@babeljs</a> at <a href="https://twitter.com/ReactRally?ref_src=twsrc%5Etfw">@ReactRally</a> <a href="https://twitter.com/hashtag/BabelSponsorsEverything?src=hash&amp;ref_src=twsrc%5Etfw">#BabelSponsorsEverything</a> <a href="https://t.co/WCxefMOC8V">pic.twitter.com/WCxefMOC8V</a></p>&mdash; Harry Wolff (@hswolff) <a href="https://twitter.com/hswolff/status/1030557108830273536?ref_src=twsrc%5Etfw">August 17, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>开源的可持续性就像提供了一个资金储备池（offering basket）一样。想要证明开源项目为成千上万的人和公司提供价值并不难，但我们并没有关注到那些愿意参与开源工作中少数人的价值。你可以选择很多<a href="https://github.com/nayafia/lemonade-stand">方式</a>来支持开源，但它们并非万能，不一定适用于每个项目或人员。</p>
+<hr>
+<p>现在让我们来看看 Babel 的变化！！</p>
+<h2><a class="anchor" aria-hidden="true" id="重大突破性变化"></a><a href="#重大突破性变化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>重大突破性变化</h2>
+<blockquote>
+<p>一切变化都记录在我们的<a href="http://babeljs.io/docs/en/next/v7-migration">迁移指南</a>中。使用我们新的 <a href="https://github.com/babel/babel-upgrade"><code>babel-upgrade</code></a> 工具可以自动完成许多更改，也可以以后添加。</p>
+</blockquote>
+<ul>
+<li>删除对不进行维护的 Node 版本的支持：0.10，0.12，4，5(<a href="http://babeljs.io/blog/2017/09/12/planning-for-7.0#drop-support-for-unmaintained-node-versions-010-012-5-4315-https-githubcom-babel-babel-issues-4315">详情</a>)</li>
+<li>通过使用 &quot;scoped&quot; 包将 babel 移动到 <code>@babel</code> 的命名空间中(<a href="http://babeljs.io/blog/2017/12/27/nearing-the-7.0-release#renames-scoped-packages-babel-x">详情</a>)。这有助于区分官方依赖包，因此 <code>babel-core</code> 变为 <code>@babel/core</code> 。</li>
+<li>删除（并停止发布）任何年度 preset（<code>preset-es2015</code> 等）(<a href="http://babeljs.io/blog/2017/12/27/nearing-the-7.0-release#deprecated-yearly-presets-eg-babel-preset-es20xx">详情</a>)。 <a href="https://babeljs.io/docs/en/next/babel-preset-env.html"><code>@babel/preset-env</code></a> 取代了对这些内容的需求，因为它包含了所有年度所添加内容以及针对特定浏览器集兼容的能力。</li>
+<li>同时删除 <a href="https://tc39.github.io/process-document/">&quot;Stage&quot;</a> 等 presets (<code>@babel/preset-stage-0</code> 等) 转而选择使用单独的提案插件。同样，默认情况下从 <code>@babel/polyfill</code> 删除提案。(<a href="https://github.com/babel/babel/pull/8440">详情</a>)请阅读整篇<a href="https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets">文章</a>以获取更多相关信息。</li>
+<li>些许包进行重命名：任意 TC39 提案的插件现在都是 <code>-proposal</code> ，而不是 <code>-transform</code> (<a href="http://babeljs.io/blog/2017/12/27/nearing-the-7.0-release#renames-proposal">详情</a>)。 因此，<code>@babel/plugin-transform-class-properties</code> 变为 <code>@babel/plugin-proposal-class-properties</code>。</li>
+<li>为某些面向用户的依赖包引入 <code>@babel/core</code> 的 <code>peerDependency</code> (例如 <code>babel-loader</code>，<code>@babel/cli</code> 等) (<a href="http://babeljs.io/blog/2017/12/27/nearing-the-7.0-release#peer-dependencies-integrations">详情</a>)</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="babel-upgrade"></a><a href="#babel-upgrade" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>babel-upgrade</code></h2>
+<p><a href="https://github.com/babel/babel-upgrade"><code>babel-upgrade</code></a> 是我们开始尝试自动进行升级更新的新工具：目前只适用于 <code>package.json</code> 和 <code>.babelrc</code> 的配置文件。</p>
+<p>我们建议直接在 git 的仓库中运行 <code>npx babel-upgrade</code>，或者你可以使用 <code>npm i babel-upgrade -g</code> 进行全局安装。</p>
+<p>如果你想修改该文件，你可以传递 <code>--write</code> 和 <code>--install</code> 进行。</p>
+<pre><code class="hljs css language-sh">npx babel-upgrade --write --install
+</code></pre>
+<p>你可以通过编写 issues 或提交 PRs 来帮助每个人过渡到 Babel 7！未来的规划是，我们会将此工具用于所有重大的版本更新，并会为项目中的 PR 创建机器人。</p>
+<h2><a class="anchor" aria-hidden="true" id="javascript-配置文件"></a><a href="#javascript-配置文件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JavaScript 配置文件</h2>
+<p>我们正在引进<a href="https://babeljs.io/docs/en/next/babelconfigjs.html"><code>babel.config.js</code></a>。它不是必须的也不是 <code>.babelrc</code> 的替代品，但是在一些特殊情况会很有用处。</p>
+<p><code>*.js</code> 配置文件在 JavaScript 生态系统中相当常见，ESLint 和 Webpack 分别允许在 <code>.eslintrc.js</code> 和 <code>webpack.config.js</code> 中进行配置。</p>
+<p>以下是在生产环境中使用插件进行编译的情况（你可以在 <code>.babelrc</code> 文件中的 <code>&quot;env&quot;</code> 选项中进行操作）：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> env = process.env.NODE_ENV;
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">plugins</span>: [
+    env === <span class="hljs-string">"production"</span> &amp;&amp; <span class="hljs-string">"babel-plugin-that-is-cool"</span>
+  ].filter(<span class="hljs-built_in">Boolean</span>)
+};
+</code></pre>
+<p>与 <code>.babelrc</code> 相比，<code>babel.config.js</code> 有着不同的配置解决。它始终会解析该文件中的配置，而不是最初 Babel 从每个文件向上查找，直到找到配置为止。这样就可以利用发布的下一个功能，<code>overrides</code>。</p>
+<h2><a class="anchor" aria-hidden="true" id="选择性的配置-overrides"></a><a href="#选择性的配置-overrides" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>选择性的配置 <code>overrides</code></h2>
+<p>最近我发表了一篇关于发布 ES2015+ packages 以及 consuming/compiling 的<a href="https://babeljs.io/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">帖子</a>。</p>
+<p>其中有<a href="https://babeljs.io/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages#selective-compilation-with-overrides">一节</a>介绍在 Babel 的配置中新的关键字 <code>overrides</code> ，它允许为每个 glob 指定不同的配置。</p>
+<pre><code class="hljs css language-javascript=">module.exports = {
+<span class="hljs-symbol">  presets:</span> [
+    <span class="hljs-comment">// 默认配置...</span>
+  ],
+<span class="hljs-symbol">  overrides:</span> [{
+<span class="hljs-symbol">    test:</span> [<span class="hljs-string">"./node_modules"</span>],
+<span class="hljs-symbol">    presets:</span> [
+      <span class="hljs-comment">// 配置 node_modules</span>
+    ],
+  }, {
+<span class="hljs-symbol">    test:</span> [<span class="hljs-string">"./tests"</span>],
+<span class="hljs-symbol">    presets:</span> [
+      <span class="hljs-comment">// 配置测试</span>
+    ],
+  }]
+};
+</code></pre>
+<p>这允许应用程序对其测试，客户端代码及服务器代码进行不同编译配置，不需要再为每个文件夹创建一个新的 <code>.babelrc</code> 文件。</p>
+<h2><a class="anchor" aria-hidden="true" id="速度-"></a><a href="#速度-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>速度 🏎</h2>
+<p>Babel 自身<a href="https://twitter.com/left_pad/status/927554660508028929">更快</a>所以它应该花费更少的时间进行构建！我们做了大量更改对代码进行优化并<a href="https://twitter.com/bmeurer/status/924346958810107904">接受</a> 来自<a href="https://twitter.com/v8js">v8</a>团队的<a href="https://twitter.com/rauchg/status/924349334346276864">补丁</a>。我们很高兴与许多其他优秀的 JavaScript 工具一起成为<a href="https://github.com/v8/web-tooling-benchmark">Web Tooling Benchmark</a>的一部分。</p>
+<h3><a class="anchor" aria-hidden="true" id="output-选项"></a><a href="#output-选项" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Output 选项</h3>
+<p>Babel 一段时间以来一直支持 <a href="https://babel.docschina.org/docs/en/plugins#%E6%8F%92%E4%BB%B6%E9%80%89%E9%A1%B9">preset 和 plugin 的选项</a>。回顾一下，你能够将插件放在一个数组中，并将一个 options 对象传递给该插件：</p>
+<pre><code class="hljs css language-diff">{
+  "plugins": [
+<span class="hljs-deletion">-   "pluginA",</span>
+<span class="hljs-addition">+   ["pluginA", {</span>
+<span class="hljs-addition">+     // 配置选项...</span>
+<span class="hljs-addition">+   }],</span>
+  ]
+}
+</code></pre>
+<p>我们对一些插件的 <code>loose</code> 选项进行了一些更改，并为其他插件添加了一些新选项！注意，在使用这些选项时，你应该清楚你在做什么，因为这是一个非规范行为。当你关掉编译去使用原生语法时，这可能会成为一个问题。如果使用的话，这些选项最好在一个库中进行使用。</p>
+<ul>
+<li>对于类, <code>class A {}</code> 将不包括 <code>classCallCheck</code> helper.</li>
+</ul>
+<pre><code class="hljs css language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>{}
+</code></pre>
+<pre><code class="hljs css language-diff">var A = function A() {
+<span class="hljs-deletion">-  _classCallCheck(this, A);</span>
+};
+</code></pre>
+<ul>
+<li>如果每次使用 <code>for-of</code> 循环都只是一个数组，那么有一个新选项： <code>[&quot;transform-for-of&quot;, { &quot;assumeArray&quot;: true }]</code></li>
+</ul>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">let</span> elm;
+<span class="hljs-keyword">for</span> (elm <span class="hljs-keyword">of</span> array) {
+  <span class="hljs-built_in">console</span>.log(elm);
+}
+</code></pre>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">let</span> elm;
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> _i = <span class="hljs-number">0</span>, _array = array; _i &lt; _array.length; _i++) {
+  elm = _array[_i];
+  <span class="hljs-built_in">console</span>.log(elm);
+}
+</code></pre>
+<ul>
+<li>在 <code>loose</code> 模式下移除了 <code>preset-env</code> 中的 <code>transform-typeof-symbol</code> 插件。<a href="https://github.com/babel/babel/pull/6831">#6831</a></li>
+</ul>
+<p>我们发现很多库已经这样做了，所以我们决定设为默认行为。</p>
+<p>请注意，默认行为是尽可能符合规范，以便关闭 Babel 时或使用 <code>preset-env</code> 时是无缝衔接的，而允许较小的输出仅仅是为了节省字节空间（每个项目都可以进行权衡）。我们计划开发更好的文档和工具，以使其易于使用。</p>
+<h3><a class="anchor" aria-hidden="true" id="pure-注入支持"></a><a href="#pure-注入支持" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>&quot;Pure&quot; 注入支持</h3>
+<p><a href="https://github.com/babel/babel/pull/6209">#6209</a>之后，转换后的 ES6 类将使用 <code>/*#__PURE__*/</code> 进行注释。这允许给像 <a href="https://github.com/mishoo/UglifyJS2"><code>Uglify</code></a> 和 <a href="https://github.com/babel/minify"><code>babel-minify</code></a> 这样的 minfiers 在删除无用代码时提供提示。这些注释也会被添加到其他辅助函数中。</p>
+<pre><code class="hljs css language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> </span>{
+  m() {}
+}
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> C =
+<span class="hljs-comment">/*#__PURE__*/</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// ...</span>
+}();
+</code></pre>
+<p>如此得知，minifier 的提示和优化可能会有更多的机会！</p>
+<h2><a class="anchor" aria-hidden="true" id="语法"></a><a href="#语法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>语法</h2>
+<h3><a class="anchor" aria-hidden="true" id="tc39-提案httpsgithubcomtc39proposals-支持"></a><a href="#tc39-提案httpsgithubcomtc39proposals-支持" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/tc39/proposals">TC39 提案</a> 支持</h3>
+<p>我想再次重申下<a href="https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets">我们已经移除了 Stage presets</a>，转而要求用户明确地选择性的加入低于 Stage 4 的提案。</p>
+<p>令人担忧的是，我们会自动选择还未定案或预期不会改变的语法。但事实并非如此，特别是对于 Stage 0 和 Stage 1 的提案。这篇<a href="https://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">文章</a>解释了一些新想法背后的思考。</p>
+<p>以下是一个关于 Babel 支持新语法的小清单（请记住，此功能集是一个可能会增加/删除/停止的变更项）以及在 v7 中添加的功能：</p>
+<ul>
+<li>ES2018: <a href="https://babeljs.io/docs/en/babel-plugin-proposal-object-rest-spread">Object Rest Spread</a> (<code>var a = { b, ...c }</code>)</li>
+<li>ES2018 (new): <a href="https://babeljs.io/docs/en/babel-plugin-proposal-unicode-property-regex">Unicode 属性正则表达式</a></li>
+<li>ES2018 (new): <a href="https://babeljs.io/docs/en/babel-plugin-proposal-json-strings">JSON 超集</a></li>
+<li>ES2015 (new): <a href="https://babeljs.io/docs/en/babel-plugin-transform-new-target"><code>new.target</code></a></li>
+<li>Stage 3 (new): <a href="https://babeljs.io/docs/en/babel-plugin-proposal-class-properties">类私有实例字段</a> (<code>class A { #b = 2 }</code>)</li>
+<li>Stage 3 (WIP): <a href="https://github.com/babel/babel/issues/8052">静态类字段，私有静态方法（Static Class Fields, Private Static Methods）</a> (<code>class A { static #a() {} }</code>)</li>
+<li>Stage 3 (new): <a href="https://babeljs.io/docs/en/babel-plugin-proposal-optional-catch-binding">可选 Catch 绑定（Numeric Seperators）</a> <code>try { throw 0 } catch { do() }</code></li>
+<li>Stage 3 (new): <a href="https://babeljs.io/docs/en/babel-plugin-syntax-bigint">BigInt</a>（仅限语法）</li>
+<li>Stage 3: <a href="https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import">动态引入（Numeric Seperators）</a> (<code>import(&quot;a&quot;)</code>)</li>
+<li>Stage 2 (new): <a href="https://babeljs.io/docs/en/babel-plugin-syntax-import-meta"><code>import.meta</code></a>（仅限语法）(<code>import.meta.url</code>)</li>
+<li>Stage 2 (new): <a href="https://babeljs.io/docs/en/babel-plugin-proposal-numeric-separator">数字分隔符（Numeric Seperators）</a> (<code>1_000</code>)</li>
+<li>Stage 2 (new): <a href="https://babeljs.io/docs/en/babel-plugin-proposal-function-sent"><code>function.sent</code></a></li>
+<li>Stage 2: <a href="https://babeljs.io/docs/en/babel-plugin-proposal-export-namespace-from"><code>export-namespace-from</code></a> (<code>export * as ns from 'mod'</code>)，从 <code>export-extensions</code> 拆分</li>
+<li>Stage 2: 装饰器，请查看以下有关我们进度的最新信息!</li>
+<li>Stage 1: <a href="https://babeljs.io/docs/en/babel-plugin-proposal-export-default-from"><code>export-default-from</code></a> (<code>export v from 'mod'</code>)，从 <code>export-extensions</code> 拆分</li>
+<li>Stage 1 (new): <a href="https://babeljs.io/docs/en/babel-plugin-proposal-optional-chaining">可选连接符（Optional Chaining）</a> (<code>a?.b</code>)</li>
+<li>Stage 1 (new): <a href="https://babeljs.io/docs/en/babel-plugin-proposal-logical-assignment-operators">逻辑分配运算符（Logical Assignment Operators）</a> (<code>a &amp;&amp;= b; a ||= b</code>)</li>
+<li>Stage 1 (new): <a href="https://babeljs.io/docs/en/babel-plugin-proposal-nullish-coalescing-operator">Nullish Coalescing Operator</a> (<code>a ?? b</code>)</li>
+<li>Stage 1 (new): <a href="https://babeljs.io/docs/en/babel-plugin-proposal-pipeline-operator">管道操作符（Pipeline Operator）</a> (<code>a |&gt; b</code>)</li>
+<li>Stage 1 (new): <a href="https://babeljs.io/docs/en/babel-plugin-proposal-throw-expressions">Throw 表达式</a> (<code>() =&gt; throw new Error(&quot;a&quot;)</code>)</li>
+</ul>
+<blockquote>
+<p>任何人都很难跟踪所有提案，因此我们尝试在 <a href="https://github.com/babel/proposals/">babel/proposals</a> 中做到这一点。</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="typescript-支持-babelpreset-typescript"></a><a href="#typescript-支持-babelpreset-typescript" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript 支持 (<code>@babel/preset-typescript</code>)</h3>
+<p>我们与 <a href="https://github.com/Microsoft/TypeScript">TypeScript</a> 团队合作，让 Babel 使用 <code>@babel/preset-typescript</code> 解析/转换类型语法，类似于我们使用 <code>@babel/preset-flow</code> 处理<a href="https://flow.org/">Flow</a>的方式。</p>
+<blockquote>
+<p>有关更多详细信息，请查看 TypeScript 团队的这篇<a href="https://blogs.msdn.microsoft.com/typescript/2018/08/27/typescript-and-babel-7/">文章</a>!</p>
+</blockquote>
+<p>使用前 (带有 types):</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">interface</span> Person {
+  firstName: <span class="hljs-built_in">string</span>;
+  lastName: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greeter</span>(<span class="hljs-params">person : Person</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, "</span> + person.firstName + <span class="hljs-string">" "</span> + person.lastName;
+}
+</code></pre>
+<p>使用后 (移除 types):</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greeter</span>(<span class="hljs-params">person</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, "</span> + person.firstName + <span class="hljs-string">" "</span> + person.lastName;
+}
+</code></pre>
+<p>Flow 和 Typescript 都是使 JavaScript 用户能够利用渐进类型的工具，我们希望在 Babel 中同时启用它们。我们计划继续与 FB 和 Microsoft 的团队（不包括整个社区）密切合作，以保持兼容性并支持新功能。</p>
+<blockquote>
+<p>这种集成是相当超前的，因此可能不完全支持某些语法。我们非常期待您的帮助，为其<a href="https://github.com/babel/babel/labels/area:%20typescript?page=2&amp;q=is%3Aopen+label%3A%22area%3A+typescript%22">提出 issues 并发起 PR（如果可能的话）</a>!</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="jsx-片段支持-"></a><a href="#jsx-片段支持-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JSX 片段支持 (<code>&lt;&gt;</code>)</h3>
+<p>正如 <a href="https://reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html">React 博客</a>中所提到的，从 Beta.31 开始，JSX 片段已支持。</p>
+<pre><code class="hljs css language-jsx">render() {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">ChildA</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">ChildB</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+}
+
+<span class="hljs-comment">// 输出 👇</span>
+
+render() {
+  <span class="hljs-keyword">return</span> React.createElement(
+    React.Fragment,
+    <span class="hljs-literal">null</span>,
+    React.createElement(ChildA, <span class="hljs-literal">null</span>),
+    React.createElement(ChildB, <span class="hljs-literal">null</span>)
+  );
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="babel-辅助函数的变化"></a><a href="#babel-辅助函数的变化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babel 辅助函数的变化</h2>
+<blockquote>
+<p><a href="https://github.com/babel/babel-upgrade/pull/71">babel-upgrade PR</a>正在进行中</p>
+</blockquote>
+<p><code>@babel/runtime</code> 已经被分为 <code>@babel/runtime</code> 和 <code>@babel/runtime-corejs2</code>(<a href="https://github.com/babel/babel/pull/8266">PR</a>)。前者仅包含 Babel 的辅助函数，后者包含前者和所有 polyfill 函数（例如：<code>Symbol</code>，<code>Promise</code>）。</p>
+<p>Babel 可能需要将某些函数注入到可重用的代码中。我们只是将这些&quot;辅助函数&quot;称为模块之间共享的函数。</p>
+<p>关于这方面的例子是编译一个 <code>class</code>（没有打开 <code>loose</code> 模式）：</p>
+<p>从规范的角度来说你需要通过 <code>new Person()</code> 来调用一个类，但是如果它被编译成一个函数，你可以在技术上只做 <code>Person()</code>，所以我们添加了一个运行时检查。</p>
+<pre><code class="hljs css language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>{}
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_classCallCheck</span>(<span class="hljs-params">instance, Constructor</span>) </span>{ <span class="hljs-keyword">if</span> (!(instance <span class="hljs-keyword">instanceof</span> Constructor)) { <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">"Cannot call a class as a function"</span>); } }
+
+<span class="hljs-keyword">var</span> Person = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>{
+  _classCallCheck(<span class="hljs-keyword">this</span>, Person);
+};
+</code></pre>
+<p>使用 <code>@babel/plugin-transform-runtime</code> 和 <code>@babel/runtime</code>（作为依赖项），Babel 可以提取单个函数，只需要模块化函数就可以实现更小输出，代码如下：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> _classCallCheck = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/runtime/helpers/classCallCheck"</span>);
+
+<span class="hljs-keyword">var</span> Person = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>{
+  _classCallCheck(<span class="hljs-keyword">this</span>, Person);
+};
+</code></pre>
+<p><code>external-helpers</code> 和 <code>rollup-plugin-babel</code> 也可以这样做。我们正在研究未来如何自动执行此操作。请留意不久后关于 Babel's helpers 的独立文章。</p>
+<h2><a class="anchor" aria-hidden="true" id="自动-polyfill-试验"></a><a href="#自动-polyfill-试验" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自动 Polyfill (试验)</h2>
+<p>对于不支持某些功能（例如：<code>Promise</code>，<code>Symbol</code>）的环境中，为了启用这些功能添加 Polyfills 是必要的。在区分 Babel 到底是作为编译器（转换语法）还是 polyfill （实现内置 functions/objects）时，这同样很重要的。</p>
+<p>只需引入涵盖所有的 <code>@babel/polyfill</code> 就足够了：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> <span class="hljs-string">"@babel/polyfill"</span>;
+</code></pre>
+<p>但是它包含完整的 polyfill，如果某些功能浏览器已经支持，你可能不需要全部引入。这与 <code>@babel/preset-env</code> 试图用语法解决的问题相同，所以我们将它应用于 polyfill 中。选项 <code>useBuiltins: &quot;entry&quot;</code> 通过将原始 import 拆分成按需 import 来解决该问题。</p>
+<p>我们可以仅 import 代码中所用到的 polyfill，这样实现会更佳。选项 <code>&quot;useBuiltIns: &quot;usage&quot;</code> 是我们第一次尝试这样做（<a href="https://babeljs.io/docs/en/babel-preset-env#usebuiltins">相关文档</a>）。</p>
+<p>它将遍历每个文件，如果&quot;用到&quot;了某个 polyfill，它会在文件的顶部注入一个 import 。 例如：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/es6.promise"</span>;
+<span class="hljs-keyword">var</span> a = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>();
+</code></pre>
+<p>推论并不完美，因此可能存在误报。</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/es7.array.includes"</span>;
+a.includes <span class="hljs-comment">// 假设 a 是一个 []</span>
+</code></pre>
+<p>关于这方面的其他想法是，如果你可以依赖服务端（或者阅读 <a href="https://twitter.com/kentcdodds">Kent C. Dodds</a> 如何在<a href="https://blog.kentcdodds.com/polyfill-as-needed-with-polyfill-service-35f0ff306a26">在 Paypal 上构建服务</a>）的话，可以尝试使用<a href="https://polyfill.io">polyfill.io</a>。</p>
+<h2><a class="anchor" aria-hidden="true" id="其他"></a><a href="#其他" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>其他</h2>
+<h3><a class="anchor" aria-hidden="true" id="babel-宏（macros）-"></a><a href="#babel-宏（macros）-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babel 宏（Macros） 🎣</h3>
+<p>Babel 最好的部分之一是该工具的可插拔性。多年来，Babel 从仅仅是一个 &quot;6to5&quot; 的编译器，变为代码转译<em>平台</em>，为用户和开发者提供了一系列出色的优化方案。Babel 已经为特定的库和用例开发了大量的 <a href="https://www.npmjs.com/search?q=keywords%3Ababel%20plugin">Babel 插件</a>以提高库的 API 的性能和能力，不然它们将无法实现（某些库完全被删除，导致根本没有运行时）。</p>
+<p>遗憾的是，将这些插件添加到代码库需要更改配置（某些工具如 <a href="https://github.com/facebook/create-react-app">create-react-app</a> 不允许这样做）这增加了代码的复杂性，因为开发人员必须知道 Babel 插件在文件上做了什么。这些问题已被 <a href="https://twitter.com/kentcdodds">Kent C. Dodds</a> 解决！(<a href="https://github.com/kentcdodds/babel-plugin-macros">babel-plugin-macros</a>)</p>
+<p>一旦安装了 <code>babel-plugin-macros</code> 并将其<a href="https://github.com/kentcdodds/babel-plugin-macros/blob/master/other/docs/user.md">添加到你的配置中</a>（<code>create-react-app</code> v2 中已经包含），你就不需要操心在你的配置中使用任何 Macros。此外，为特定的应用程序或部分代码编写<a href="https://github.com/kentcdodds/babel-plugin-macros/blob/master/other/docs/author.md">自定义的转换</a>也会更加容易。</p>
+<p>在我们的文章<a href="https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros">&quot;使用 babel-plugin-macros 零配置代码转换&quot;</a>中了解更多有关 <code>babel-plugin-macros</code> 信息。</p>
+<h3><a class="anchor" aria-hidden="true" id="模块定位"></a><a href="#模块定位" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>模块定位</h3>
+<p>Babel 一直试图平衡转译后代码体积的大小及兼容性问题，并提供给 JavaScript 的作者。在 Babel 7 中，配置 Babel 以支持<a href="https://github.com/kristoferbaxter/preset-env-modules">模块/非模块模式</a>会变得更加容易。</p>
+<p>值得注意的是，部分流行的 Web 框架 (<a href="https://cli.vuejs.org/guide/browser-compatibility.html#modern-mode">1</a>，<a href="https://github.com/developit/preact-cli/pull/583">2</a>) 的 CLI 工具已经在利用这些支持，这使得 Babel 转译后的应用程序向用户发送的 JavaScript 减少了大约 20％ 。</p>
+<h3><a class="anchor" aria-hidden="true" id="调用者的元数据和更好的默认值"></a><a href="#调用者的元数据和更好的默认值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>调用者的元数据和更好的默认值</h3>
+<p>我们在 <code>@babel/core</code> 中添加了一个 <a href="https://github.com/babel/babel/pull/8485"><code>caller</code> 选项</a>，因此我们的工具可以将元数据传递给 presets/plugins 。 例如：<code>babel-loader</code> 可以添加<a href="https://github.com/babel/babel-loader/pull/660">这样</a>的内容，以便 <code>preset-env</code> 可以自动禁用模块的转换（与 <code>rollup</code> 相同）：</p>
+<pre><code class="hljs css language-js">babel.transform(<span class="hljs-string">"code;"</span>, {
+  filename,
+  <span class="hljs-attr">presets</span>: [<span class="hljs-string">"@babel/preset-env"</span>],
+  <span class="hljs-attr">caller</span>: {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"babel-loader"</span>,
+    <span class="hljs-attr">supportsStaticESM</span>: <span class="hljs-literal">true</span>,
+  },
+});
+</code></pre>
+<p>更令人兴奋的是这种方式使得工具能够提供更好的默认值以及更少的配置！对于 webpack/rollup 来说：我们可以自动延迟使用他们的模块转换，而并非 Babel（与 <code>import(&quot;a&quot;)</code> 相同）。查找更多的工具，以便将来利用这一点！</p>
+<h3><a class="anchor" aria-hidden="true" id="class-c-extends-htmlelement-"></a><a href="#class-c-extends-htmlelement-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>class C extends HTMLElement {}</code></h3>
+<blockquote>
+<p>我们最古老的 issues 之一就是本节的标题 (<a href="https://github.com/babel/babel/pull/7020">详情</a>)</p>
+</blockquote>
+<p>Babel 总是会警告说它不支持扩展原生对象（<code>Array</code>, <code>Error</code> 等），但是现在它可以了！在这方面我们遇到了很多的问题；🎉 你应该像 <a href="https://twitter.com/WebReflection/status/940724280035303430">Andrea</a> 一样庆祝！</p>
+<p>这个更改时针对 class 插件进行的，如果你使用了 <code>preset-env</code> ，那么则默认开启了该特性。</p>
+<h3><a class="anchor" aria-hidden="true" id="网站变更-"></a><a href="#网站变更-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>网站变更 🌏</h3>
+<p>我们的网站从 <a href="https://jekyllrb.com/">Jekyll</a> 搬到了 <a href="https://docusaurus.io/">Docusaurus</a> !</p>
+<p>我们还使用 <a href="https://crowdin.com/project/babeljs">Crowdin</a> 为 Babel 官网建立了<a href="https://github.com/babel/website/issues/1619">翻译</a>功能，而 Babel 7 的翻译，将成为我们更好的起点。</p>
+<h4><a class="anchor" aria-hidden="true" id="repl"></a><a href="#repl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>REPL</h4>
+<p><img src="https://i.imgur.com/j0qOllj.png" alt=""></p>
+<p>我们将 <a href="https://babeljs.io/repl">REPL</a> 重写为 <a href="https://github.com/babel/website/tree/master/js/repl">React 组件</a>，并且已经与 Ives 合作，更好地与 <a href="https://codesandbox.io/">CodeSandbox</a> 集成。这允许在 REPL 中可以使用 npm 安装任何插件或 preset ，并且能从 <a href="https://github.com/CompuIves/codesandbox-client">CodeSandbox</a> 获得的任何更新。</p>
+<p>我们再次参加了 <a href="https://railsgirlssummerofcode.org/">Rails Girls Summer of Code</a>！这次，<a href="https://twitter.com/MarinaGJCho">Gyujin</a> 和 <a href="https://twitter.com/sujinleeme">Sujin</a> 长期以来一直在做整合 <a href="https://twitter.com/heisenbugger">Boopathi</a> 的 <a href="https://github.com/babel/babel-time-travel">babel-time-travel</a> 到 REPL 中的工作，现在已可以试用！</p>
+<p>在这里有很多机会让 Babel，AST 和其他工具更好地协同工作！</p>
+<h3><a class="anchor" aria-hidden="true" id="我们有一首歌-"></a><a href="#我们有一首歌-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>我们有一首歌 🎶</h3>
+<blockquote>
+<p>哈利路亚 — 赞美 Babel</p>
+</blockquote>
+<p>有一天 <a href="https://twitter.com/angustweets">Angus</a> 给我们传了一首我觉得很棒的<a href="https://medium.com/@angustweets/hallelujah-in-praise-of-babel-977020010fad">歌</a>，为什么不把它作为我们的 &quot;官方&quot; 歌？<a href="https://twitter.com/swyx">Shawn</a>在<a href="https://www.youtube.com/watch?v=40abpedBKK8">这里</a> 做了一个精彩的封面。</p>
+<p>你可以在我们库中的 <a href="https://github.com/babel/babel/blob/master/SONG.md">SONG.md</a> 中找到它。我们希望看到其他项目也能跟进此事！</p>
+<h2><a class="anchor" aria-hidden="true" id="未来"></a><a href="#未来" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>未来?</h2>
+<ul>
+<li>Babel 本质上与它编译的内容——JavaScript 联系在一起。 只要有新的提案/工作，那就有事情可做。这包括在语法变得&quot;稳定&quot;之前花费时间/精力实现和维护该语法。我们关心整个过程：升级路径，新功能的教育，标准/语言设计的教学，易用性以及与其他项目的集成。
+<ul>
+<li>相关：在 <a href="https://twitter.com/NicoloRibaudo">Nicolò</a> 的帮助下，我们几乎完成了在 Babel 中实施<a href="https://github.com/babel/babel/pull/7976">新装饰器的提案</a>。这是一个漫长的旅程（它花了<a href="https://github.com/babel/babel/pull/6107#issue-135801160">一年多的时间</a>!），因为新的提案与之前完全不同，而且要比旧的更强大，已基本完成🎉。你可以期待它在下一个次要版本中发布，同时还会有一篇文章将详细解释这些变化。</li>
+<li><a href="https://twitter.com/heisenbugger">Boopathi</a> 一直在努力维护 <a href="https://github.com/babel/minify"><code>babel-minify</code></a>，所以我们将为此做一个1.0！</li>
+<li>整体工作中有许多新功能：插件排序，更好的验证/错误机制，提升速度，重新思考 loose/spec 选项，缓存，异步使用 Babel，从 CI 构建自身，冒烟测试（smoke tests）以及运行 test262 等。查阅此 <a href="http://babeljs.io/docs/en/roadmap">roadmap</a> 文档以获取更多可能的想法！</li>
+</ul></li>
+</ul>
+<p>我们没有秘密计划：我们正竭尽全力为这个社区服务。</p>
+<h2><a class="anchor" aria-hidden="true" id="开源是一面镜子"></a><a href="#开源是一面镜子" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>开源是一面镜子</h2>
+<p>如果我们有足够的时间和资源来完成所有这些想法并且做得很好，我会很高兴。但正如当前版本中所展示的那样，事情需要比预期更久的时间！</p>
+<p>为什么这些版本需要这么长时间呢？是来自我们自身和用户的功能蠕变吗？还是因为我们不理解如何在所有可能的事情中添加或修复的事务中确定优先级吗？还是说在决定结束之前解决了大量容易的问题或者基本的问题？又或者说在 GitHub，Slack，Twitter 上帮助别人从而导致分心？我们只估计我们自己的时间，了解这些问题的复杂性，但作为过度使用的志愿者是不是显得很糟糕？</p>
+<p>或者我们只是对自己设定了太高的期望，或者是否过度关注其他人的压力去满足他们的需求而伤害了自己？我只能将它描述为恐惧，当看到来自某人的消息时，想知道为什么某些东西还没有发布，而另一个人则问为什么这个 bug 还没有修复。我也想把它赶出来并完成它，但是我也想要认真对待它。</p>
+<p>我上周在 React Rally 的演讲中尝试<a href="https://twitter.com/left_pad/status/1032348719931432961">表达</a>了一些这方面的想法和挣扎：<a href="https://www.youtube.com/watch?v=h0sfFX7WH1c">看着镜（开源）中的自己</a>，希望你借此机会倾听。我问自己的问题：对于维护者倦怠，持续焦虑和不切实际的期望造成的不可避免的循环，我能为此做些什么？</p>
+<p>像生活中的大部分情况一样，我们所做的事情反映了我们的品格，并向我们展示了我们真实的面貌。我们采取行动本身就可以改变我们，无论好坏。如果我们要认真对待我们的工作，我们就应该保持彼此对这些习惯的责任感，这些习惯似乎深深植根于我们的文化中：即时满足，指标、权利与感恩方面的成功以及过度工作产生的自豪感。</p>
+<p>尽管如此，努力实现这一版本还是非常值得的。</p>
+<h2><a class="anchor" aria-hidden="true" id="感谢"></a><a href="#感谢" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>感谢</h2>
+<p>这真的是一个真正令人兴奋的版本，不仅通过回顾我们已经完成和启用的东西，而且更多的是了解在过去的一年中为了实现它花费了多少时间和心血。很难相信在此过程中发生的机遇和经历：与来自世界各地的公司互动和帮助，在我访问过的任何城市都能找到朋友，并坦诚地讲述团队共同努力过程中令人难以置信的经历。</p>
+<p>就我个人而言，我从来没有真正把我的精力投入到像如此规模的任何事情中，我要感谢这么多人一路上帮助我们。特别是 <a href="https://twitter.com/loganfsmyth">Logan Smyth</a>，他花了很长时间来改变核心的工作方式，并且总是业余时间在 Slack 中解决问题，同时也是自由职业者，还有 <a href="https://twitter.com/existentialism">Brian Ng</a> ，他也很努力地维护 Babel 以及审查我的所有博客帖子和会谈。<a href="https://twitter.com/TschinderDaniel">Daniel Tschinder</a>，<a href="https://twitter.com/svensauleau">Sven Sauleau</a>，<a href="https://twitter.com/NicoloRibaudo">Nicolò Ribaudo</a> 和 <a href="https://github.com/jridgewell">Justin Ridgewell</a> 都在帮助这个版本成为可能和愉快工作气氛方面都发挥了重要作用。</p>
+<p>向 Slack，Twitter 以及 GitHub 上的所有项目中的所有社区成员致敬，他们还必须了解我们正在为用户所做的工作。我要衷心地感谢我在 <a href="https://www.behance.net/">Behance</a>/<a href="https://www.adobe.com/">Adobe</a> 的朋友们，在我决定全职工作之前，为我提供了将近一年半的时间让我为 Babel 兼职（以及在我在那里的整个过程中帮助测试生产模式下的 Babel 7）。非常感谢我们的 Open Collective 的所有赞助商，特别是 <a href="https://babeljs.io/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Trivago</a> 和 <a href="https://handshake.org/">Handshake</a>。感谢我们的朋友和家人的所有爱和支持。</p>
+<p>我们都很辛苦，但以这种方式服务确实是一种荣幸，所以我们希望你喜欢这一次发布！</p>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#进行中！">进行中！🎉</a></li><li><a href="#babel-担任的角色">Babel 担任的角色</a></li><li><a href="#核心开发">核心开发</a></li><li><a href="#babelsponsorseverything">#BabelSponsorsEverything</a></li><li><a href="#重大突破性变化">重大突破性变化</a></li><li><a href="#babel-upgrade"><code>babel-upgrade</code></a></li><li><a href="#javascript-配置文件">JavaScript 配置文件</a></li><li><a href="#选择性的配置-overrides">选择性的配置 <code>overrides</code></a></li><li><a href="#速度-">速度 🏎</a><ul class="toc-headings"><li><a href="#output-选项">Output 选项</a></li><li><a href="#pure-注入支持">&quot;Pure&quot; 注入支持</a></li></ul></li><li><a href="#语法">语法</a><ul class="toc-headings"><li><a href="#tc39-提案httpsgithubcomtc39proposals-支持"><a href="https://github.com/tc39/proposals">TC39 提案</a> 支持</a></li><li><a href="#typescript-支持-babelpreset-typescript">TypeScript 支持 (<code>@babel/preset-typescript</code>)</a></li><li><a href="#jsx-片段支持-">JSX 片段支持 (<code>&lt;&gt;</code>)</a></li></ul></li><li><a href="#babel-辅助函数的变化">Babel 辅助函数的变化</a></li><li><a href="#自动-polyfill-试验">自动 Polyfill (试验)</a></li><li><a href="#其他">其他</a><ul class="toc-headings"><li><a href="#babel-宏（macros）-">Babel 宏（Macros） 🎣</a></li><li><a href="#模块定位">模块定位</a></li><li><a href="#调用者的元数据和更好的默认值">调用者的元数据和更好的默认值</a></li><li><a href="#class-c-extends-htmlelement-"><code>class C extends HTMLElement {}</code></a></li><li><a href="#网站变更-">网站变更 🌏</a></li><li><a href="#我们有一首歌-">我们有一首歌 🎶</a></li></ul></li><li><a href="#未来">未来?</a></li><li><a href="#开源是一面镜子">开源是一面镜子</a></li><li><a href="#感谢">感谢</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

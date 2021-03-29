@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Zero-config code transformation with babel-plugin-macros · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Babel started out as a transpiler to let you write the latest version of the ECMAScript specification but ship to environments that don&#x27;t implement those features yet. But it has become much more than that. [&quot;Compilers are the New Frameworks&quot;](https://tomdale.net/2017/09/compilers-are-the-new-frameworks/) says [Tom Dale](https://twitter.com/tomdale) and I could not agree more. We&#x27;re seeing more and more compile-time optimizations for libraries and frameworks. I&#x27;m not talking about syntax extensions to the language, but simple code transformations that enable patterns that would be difficult to accomplish otherwise."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Zero-config code transformation with babel-plugin-macros · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2017/09/11/zero-config-with-babel-macros"/><meta property="og:description" content="Babel started out as a transpiler to let you write the latest version of the ECMAScript specification but ship to environments that don&#x27;t implement those features yet. But it has become much more than that. [&quot;Compilers are the New Frameworks&quot;](https://tomdale.net/2017/09/compilers-are-the-new-frameworks/) says [Tom Dale](https://twitter.com/tomdale) and I could not agree more. We&#x27;re seeing more and more compile-time optimizations for libraries and frameworks. I&#x27;m not talking about syntax extensions to the language, but simple code transformations that enable patterns that would be difficult to accomplish otherwise."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></h1><p class="post-meta">September 11, 2017</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/kentcdodds" target="_blank" rel="noreferrer noopener">Kent C. Dodds</a></p></div></header><div><span><p>Babel started out as a transpiler to let you write the latest version of the ECMAScript specification but ship to environments that don't implement those features yet. But it has become much more than that. <a href="https://tomdale.net/2017/09/compilers-are-the-new-frameworks/">&quot;Compilers are the New Frameworks&quot;</a> says <a href="https://twitter.com/tomdale">Tom Dale</a> and I could not agree more. We're seeing more and more compile-time optimizations for libraries and frameworks. I'm not talking about syntax extensions to the language, but simple code transformations that enable patterns that would be difficult to accomplish otherwise.</p>
+<!--truncate-->
+<p>One of my favorite things about compiler plugins is that you can use them to optimize the user experience and developer experience at the same time. (Read more about <a href="https://kentcdodds.com/blog/how-writing-custom-babel-and-eslint-plugins-can-increase-productivity-and-improve-user-experience">&quot;How writing custom Babel &amp; ESLint plugins can increase productivity &amp; improve user experience&quot;</a>).</p>
+<p>I have a few problems with Babel plugins though:</p>
+<ol>
+<li>They can lead to confusion because when looking at code in a project, you might not know that there's a plugin transforming that code.</li>
+<li>They have to be globally configured or configured out-of-band (in a <code>.babelrc</code> or webpack config).</li>
+<li>They can conflict in very confusing ways due to the fact that all babel plugins run simultaneously (on a single walk of Babel's AST).</li>
+</ol>
+<p>These problems could be solved if we could import Babel plugins and apply them directly to our code. This would mean the transformation is more explicit, we wouldn't need to add them to configuration, and ordering can happen in the order the plugins are imported. Wouldn't that be cool!?!?</p>
+<h2><a class="anchor" aria-hidden="true" id="introducing-babel-plugin-macroshttpsgithubcomkentcdoddsbabel-plugin-macros-"></a><a href="#introducing-babel-plugin-macroshttpsgithubcomkentcdoddsbabel-plugin-macros-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Introducing <a href="https://github.com/kentcdodds/babel-plugin-macros"><code>babel-plugin-macros</code></a> 🎣</h2>
+<p>Guess what! A tool like this exists! <code>babel-plugin-macros</code> is a new Babel plugin that allows you to do exactly what we're talking about. It's a &quot;new&quot; approach to code transformation. It enables you to have zero-config, importable code transformations. <a href="https://github.com/threepointone/babel-plugin-macros">The idea</a> came from <a href="https://twitter.com/threepointone">Sunil Pai</a> and caught my attention in <a href="https://github.com/facebookincubator/create-react-app/issues/2730">this create-react-app issue</a>.</p>
+<p>So what does it look like? Whelp! There are already a few <code>babel-plugin-macros</code> packages out there you can try today!</p>
+<p>Here's a real-world example of using <a href="https://github.com/kentcdodds/preval.macro"><code>preval.macro</code></a> to inline an SVG in <a href="https://github.com/kentcdodds/glamorous-website">a universal application</a> built with <a href="https://github.com/zeit/next.js">Next.js</a>:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// search.js</span>
+<span class="hljs-comment">// this file runs in the browser</span>
+<span class="hljs-keyword">import</span> preval <span class="hljs-keyword">from</span> <span class="hljs-string">'preval.macro'</span>
+<span class="hljs-keyword">import</span> glamorous <span class="hljs-keyword">from</span> <span class="hljs-string">'glamorous'</span>
+
+<span class="hljs-keyword">const</span> base64SearchSVG = preval.require(<span class="hljs-string">'./search-svg'</span>)
+<span class="hljs-comment">// this will be transpiled to something like:</span>
+<span class="hljs-comment">// const base65SearchSVG = 'PD94bWwgdmVyc2lv...etc...')</span>
+
+<span class="hljs-keyword">const</span> SearchBox = glamorous.input(<span class="hljs-string">'algolia_searchbox'</span>, props =&gt; ({
+  <span class="hljs-attr">backgroundImage</span>: <span class="hljs-string">`url("data:image/svg+xml;base64,<span class="hljs-subst">${base64SearchSVG}</span>")`</span>,
+  <span class="hljs-comment">// ...</span>
+}))
+
+
+<span class="hljs-comment">// search-svg.js</span>
+<span class="hljs-comment">// this file runs at build-time only</span>
+<span class="hljs-comment">// because it's required using preval.require function, which is a macro!</span>
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+
+<span class="hljs-keyword">const</span> svgPath = path.join(__dirname, <span class="hljs-string">'svgs/search.svg'</span>)
+<span class="hljs-keyword">const</span> svgString = fs.readFileSync(svgPath, <span class="hljs-string">'utf8'</span>)
+<span class="hljs-keyword">const</span> base64String = <span class="hljs-keyword">new</span> Buffer(svgString).toString(<span class="hljs-string">'base64'</span>)
+
+<span class="hljs-built_in">module</span>.exports = base64String
+</code></pre>
+<p>What's cool about this? Well, the alternative would look exactly like the example above except:</p>
+<ol>
+<li>It's less explicit because there would be no <code>import preval from 'preval.macro'</code> in the source code.</li>
+<li>Have to add <code>babel-plugin-preval</code> to your babel configuration.</li>
+<li>Need to update your ESLint config to allow for the <code>preval</code> variable as a global.</li>
+<li>If you misconfigured <code>babel-plugin-preval</code> you'd get a cryptic <strong>runtime</strong> error like: <code>Uncaught ReferenceError: preval is not defined</code>.</li>
+</ol>
+<p>By using <code>preval.macro</code> with <code>babel-plugin-macros</code>, we don't have any of those problems because:</p>
+<ol>
+<li>The import is there and used explicitly.</li>
+<li><code>babel-plugin-macros</code> needs to be added to your config, but only once, then you can use all the macros you'd like (even local macros!)</li>
+<li>No need to update ESLint config because it's explicit.</li>
+<li>If you misconfigure <code>babel-plugin-macros</code> then you'll get <a href="https://github.com/kentcdodds/babel-plugin-macros/blob/f7c9881ee22b19b3c53c93711af6a42895ba1c71/src/__tests__/__snapshots__/index.js.snap#L100">a much more friendly <strong>compile time</strong> error message</a> that indicates what the actual problem is pointing you to documentation.</li>
+</ol>
+<p><strong>So what is it really? The TL;DR is that <code>babel-plugin-macros</code> is a simpler way to write and use Babel transforms.</strong></p>
+<p>There are already several <a href="https://www.npmjs.com/browse/keyword/babel-plugin-macros">published <code>babel-plugin-macros</code></a> you can use, including <a href="https://github.com/kentcdodds/preval.macro"><code>preval.macro</code></a>, <a href="https://github.com/kentcdodds/codegen.macro"><code>codegen.macro</code></a>, <a href="https://github.com/dralletje/idx.macro"><code>idx.macro</code></a>, <a href="https://github.com/emotion-js/emotion/blob/master/docs/babel.md#babel-macros"><code>emotion/macro</code></a>, <a href="https://github.com/vinhlh/tagged-translations#via-babel-macros"><code>tagged-translations/macro</code></a>, <a href="https://github.com/mattphillips/babel-plugin-console#macros"><code>babel-plugin-console/scope.macro</code></a>, and <a href="https://github.com/threepointone/glamor/pull/312"><code>glamor</code> 🔜</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="another-example"></a><a href="#another-example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Another example</h3>
+<p><code>babel-plugin-macros</code> is a way to have no config for non-syntax babel plugins. So many existing babel plugins could be implemented as a macro. Here's another example of <a href="https://github.com/mattphillips/babel-plugin-console"><code>babel-plugin-console</code></a> which exposes <a href="https://github.com/mattphillips/babel-plugin-console/blob/master/README.md#macros">a macro version of itself</a>:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> scope <span class="hljs-keyword">from</span> <span class="hljs-string">'babel-plugin-console/scope.macro'</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add100</span>(<span class="hljs-params">a</span>) </span>{
+  <span class="hljs-keyword">const</span> oneHundred = <span class="hljs-number">100</span>
+  scope(<span class="hljs-string">'Add 100 to another number'</span>)
+  <span class="hljs-keyword">return</span> add(a, oneHundred)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a + b;
+}
+</code></pre>
+<p>Now, when that code is run, the <code>scope</code> function does some pretty nifty things:</p>
+<p><strong>Browser:</strong></p>
+<p><img src="https://github.com/mattphillips/babel-plugin-console/raw/53536cba919d5be49d4f66d957769c07ca7a4207/assets/add100-chrome.gif" alt="Browser console scoping add100"></p>
+<p><strong>Node:</strong></p>
+<p><img alt="Node console scoping add100" src="https://github.com/mattphillips/babel-plugin-console/raw/53536cba919d5be49d4f66d957769c07ca7a4207/assets/add100-node.png" width="372"></p>
+<p>Cool right? And using it is just like using any other dependency, except it has all the benefits mentioned above.</p>
+<h2><a class="anchor" aria-hidden="true" id="conclusion"></a><a href="#conclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h2>
+<p>I think we've only begun to scratch the surface of what <code>babel-plugin-macros</code> can do. I'm hoping that we can land it in <a href="https://github.com/facebookincubator/create-react-app/issues/2730">create-react-app</a> so folks using <code>create-react-app</code> can have even more power with zero configuration. I'm really excited to see more Babel plugins expose a <code>macro</code> in addition to the existing plugin functionality they already have. I can't wait to see folks create macros that are specific to their project needs.</p>
+<p><strong>Creating a macros is even easier than a regular Babel plugin</strong>, but it does require a bit of knowledge around ASTs and Babel. If this is new to you, there are <a href="https://kentcdodds.com/talks/#writing-custom-babel-and-eslint-plugins-with-asts">a</a>, <a href="https://github.com/thejameskyle/babel-handbook">few</a>, <a href="https://kentcdodds.com/workshops/#code-transformation-and-linting">resources</a> for you 😀</p>
+<p>Good luck to you all! 👋</p>
+<p>P.S. I should mention that language macros are not a new concept at all. Being able to teach a language new tricks has been around for a very long time. In fact, there's already <a href="http://sweetjs.org/">such a tool for JavaScript</a> and even <a href="https://github.com/codemix/babel-plugin-macros">one implemented as a Babel plugin already</a>. <code>babel-plugin-macros</code> takes a slightly different approach however. While macros have often been associated with defining new syntax for a language, that's not the goal of <code>babel-plugin-macros</code> at all. In the case of <code>babel-plugin-macros</code> it's more about code transformations.</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#introducing-babel-plugin-macroshttpsgithubcomkentcdoddsbabel-plugin-macros-">Introducing <a href="https://github.com/kentcdodds/babel-plugin-macros"><code>babel-plugin-macros</code></a> 🎣</a><ul class="toc-headings"><li><a href="#another-example">Another example</a></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

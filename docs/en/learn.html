@@ -1,0 +1,768 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>学习 ES2015 · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;blockquote class=&quot;babel-callout babel-callout-info&quot;&gt;"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="学习 ES2015 · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="&lt;blockquote class=&quot;babel-callout babel-callout-info&quot;&gt;"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>指南</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">指南</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/">什么是 Babel？</a></li><li class="navListItem"><a class="navItem" href="/docs/en/usage">使用指南</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration">配置 Babel</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/learn">学习 ES2015</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration">升级至 Babel 7</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration-api">升级至 Babel 7 (API)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">通用</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/editors">编辑器</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins">插件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/presets">Presets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/caveats">注意事项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/faq">FAQ</a></li><li class="navListItem"><a class="navItem" href="/docs/en/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">用法</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/options">选项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/config-files">配置文件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-cli">cli</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-plugin-transform-runtime">transform-runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-register">register</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">presets</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-env">env</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-flow">flow</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-react">react</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-typescript">typescript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">工具</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-parser">parser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-core">core</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-generator">generator</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-code-frame">code-frame</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-helpers">helpers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-runtime">runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-template">template</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-traverse">traverse</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-types">types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/learn.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">学习 ES2015</h1></header><article><div><span><blockquote class="babel-callout babel-callout-info">
+  <h3>es6features</h3>
+  <p>
+    This document was originally taken from Luke Hoban's excellent
+    <a href="https://git.io/es6features">es6features</a> repo. Go give it a star
+    on GitHub!
+  </p>
+</blockquote>
+<blockquote class="babel-callout babel-callout-info">
+  <h4>REPL</h4>
+  <p>
+    Be sure to try these features out in the online
+    <a href="/repl">REPL</a>.
+  </p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="introduction"></a><a href="#introduction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Introduction</h2>
+<blockquote>
+<p>ECMAScript 2015 is an ECMAScript standard that was ratified in June 2015.</p>
+</blockquote>
+<p>ES2015 is a significant update to the language, and the first major update to the language since ES5 was standardized in 2009. Implementation of these features in major JavaScript engines is <a href="https://kangax.github.io/es5-compat-table/es6/">underway now</a>.</p>
+<p>See the <a href="http://www.ecma-international.org/ecma-262/6.0/index.html">ES2015 standard</a>
+for full specification of the ECMAScript 2015 language.</p>
+<h2><a class="anchor" aria-hidden="true" id="ecmascript-2015-features"></a><a href="#ecmascript-2015-features" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ECMAScript 2015 Features</h2>
+<!-- To not break some existing links to here, just in case. -->
+<a id="arrows"></a>
+<h3><a class="anchor" aria-hidden="true" id="arrows-and-lexical-this"></a><a href="#arrows-and-lexical-this" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arrows and Lexical This</h3>
+<p>Arrows are a function shorthand using the <code>=&gt;</code> syntax.  They are syntactically
+similar to the related feature in C#, Java 8 and CoffeeScript.  They support
+both expression and statement bodies.  Unlike functions, arrows share the same
+lexical <code>this</code> as their surrounding code. If an arrow is inside another function,
+it shares the &quot;arguments&quot; variable of its parent function.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Expression bodies</span>
+<span class="hljs-keyword">var</span> odds = evens.map(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v + <span class="hljs-number">1</span>);
+<span class="hljs-keyword">var</span> nums = evens.map(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> v + i);
+
+<span class="hljs-comment">// Statement bodies</span>
+nums.forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (v % <span class="hljs-number">5</span> === <span class="hljs-number">0</span>)
+    fives.push(v);
+});
+
+<span class="hljs-comment">// Lexical this</span>
+<span class="hljs-keyword">var</span> bob = {
+  <span class="hljs-attr">_name</span>: <span class="hljs-string">"Bob"</span>,
+  <span class="hljs-attr">_friends</span>: [],
+  printFriends() {
+    <span class="hljs-keyword">this</span>._friends.forEach(<span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span>
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>._name + <span class="hljs-string">" knows "</span> + f));
+  }
+};
+
+<span class="hljs-comment">// Lexical arguments</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">let</span> example = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">let</span> numbers = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> number <span class="hljs-keyword">of</span> <span class="hljs-built_in">arguments</span>) {
+      numbers.push(number * number);
+    }
+
+    <span class="hljs-keyword">return</span> numbers;
+  };
+
+  <span class="hljs-keyword">return</span> example();
+}
+
+square(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7.5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">11.5</span>, <span class="hljs-number">21</span>); <span class="hljs-comment">// returns: [4, 16, 56.25, 64, 132.25, 441]</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="classes"></a><a href="#classes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Classes</h3>
+<p>ES2015 classes are syntactic sugar over the prototype-based OO pattern.  Having a
+single convenient declarative form makes class patterns easier to use, and
+encourages interoperability.  Classes support prototype-based inheritance, super
+calls, instance and static methods and constructors.</p>
+<pre><code class="hljs css language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SkinnedMesh</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">THREE</span>.<span class="hljs-title">Mesh</span> </span>{
+  <span class="hljs-keyword">constructor</span>(geometry, materials) {
+    <span class="hljs-keyword">super</span>(geometry, materials);
+
+    <span class="hljs-keyword">this</span>.idMatrix = SkinnedMesh.defaultMatrix();
+    <span class="hljs-keyword">this</span>.bones = [];
+    <span class="hljs-keyword">this</span>.boneMatrices = [];
+    <span class="hljs-comment">//...</span>
+  }
+  update(camera) {
+    <span class="hljs-comment">//...</span>
+    <span class="hljs-keyword">super</span>.update();
+  }
+  <span class="hljs-keyword">static</span> defaultMatrix() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> THREE.Matrix4();
+  }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="enhanced-object-literals"></a><a href="#enhanced-object-literals" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enhanced Object Literals</h3>
+<p>Object literals are extended to support setting the prototype at construction,
+shorthand for <code>foo: foo</code> assignments, defining methods and making super calls.
+Together, these also bring object literals and class declarations closer
+together, and let object-based design benefit from some of the same
+conveniences.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-comment">// Sets the prototype. "__proto__" or '__proto__' would also work.</span>
+    <span class="hljs-attr">__proto__</span>: theProtoObj,
+    <span class="hljs-comment">// Computed property name does not set prototype or trigger early error for</span>
+    <span class="hljs-comment">// duplicate __proto__ properties.</span>
+    [<span class="hljs-string">'__proto__'</span>]: somethingElse,
+    <span class="hljs-comment">// Shorthand for ‘handler: handler’</span>
+    handler,
+    <span class="hljs-comment">// Methods</span>
+    toString() {
+     <span class="hljs-comment">// Super calls</span>
+     <span class="hljs-keyword">return</span> <span class="hljs-string">"d "</span> + <span class="hljs-keyword">super</span>.toString();
+    },
+    <span class="hljs-comment">// Computed (dynamic) property names</span>
+    [ <span class="hljs-string">"prop_"</span> + <span class="hljs-function">(<span class="hljs-params">(</span>) =&gt;</span> <span class="hljs-number">42</span>)() ]: <span class="hljs-number">42</span>
+};
+</code></pre>
+<blockquote class="babel-callout babel-callout-warning">
+  <p>
+    The <code>__proto__</code> property requires native support, and was deprecated in previous ECMAScript versions. Most engines now support the property, but <a href="https://kangax.github.io/compat-table/es6/#__proto___in_object_literals">some do not</a>. Also, note that only <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-additional-ecmascript-features-for-web-browsers">web browsers</a> are required to implement it, as it's in <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-object.prototype.__proto__">Annex B</a>. It is available in Node.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="template-strings"></a><a href="#template-strings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Template Strings</h3>
+<p>Template strings provide syntactic sugar for constructing strings. This is
+similar to string interpolation features in Perl, Python and more. Optionally, a
+tag can be added to allow the string construction to be customized, avoiding
+injection attacks or constructing higher level data structures from string
+contents.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Basic literal string creation</span>
+<span class="hljs-string">`This is a pretty little template string.`</span>
+
+<span class="hljs-comment">// Multiline strings</span>
+<span class="hljs-string">`In ES5 this is
+ not legal.`</span>
+
+<span class="hljs-comment">// Interpolate variable bindings</span>
+<span class="hljs-keyword">var</span> name = <span class="hljs-string">"Bob"</span>, time = <span class="hljs-string">"today"</span>;
+<span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>, how are you <span class="hljs-subst">${time}</span>?`</span>
+
+<span class="hljs-comment">// Unescaped template strings</span>
+<span class="hljs-built_in">String</span>.raw<span class="hljs-string">`In ES5 "\n" is a line-feed.`</span>
+
+<span class="hljs-comment">// Construct an HTTP request prefix is used to interpret the replacements and construction</span>
+GET<span class="hljs-string">`http://foo.org/bar?a=<span class="hljs-subst">${a}</span>&amp;b=<span class="hljs-subst">${b}</span>
+    Content-Type: application/json
+    X-Credentials: <span class="hljs-subst">${credentials}</span>
+    { "foo": <span class="hljs-subst">${foo}</span>,
+      "bar": <span class="hljs-subst">${bar}</span>}`</span>(myOnReadyStateChangeHandler);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="destructuring"></a><a href="#destructuring" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Destructuring</h3>
+<p>Destructuring allows binding using pattern matching, with support for matching
+arrays and objects.  Destructuring is fail-soft, similar to standard object
+lookup <code>foo[&quot;bar&quot;]</code>, producing <code>undefined</code> values when not found.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// list matching</span>
+<span class="hljs-keyword">var</span> [a, ,b] = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];
+a === <span class="hljs-number">1</span>;
+b === <span class="hljs-number">3</span>;
+
+<span class="hljs-comment">// object matching</span>
+<span class="hljs-keyword">var</span> { <span class="hljs-attr">op</span>: a, <span class="hljs-attr">lhs</span>: { <span class="hljs-attr">op</span>: b }, <span class="hljs-attr">rhs</span>: c }
+       = getASTNode()
+
+<span class="hljs-comment">// object matching shorthand</span>
+<span class="hljs-comment">// binds `op`, `lhs` and `rhs` in scope</span>
+<span class="hljs-keyword">var</span> {op, lhs, rhs} = getASTNode()
+
+<span class="hljs-comment">// Can be used in parameter position</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">g</span>(<span class="hljs-params">{name: x}</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(x);
+}
+g({<span class="hljs-attr">name</span>: <span class="hljs-number">5</span>})
+
+<span class="hljs-comment">// Fail-soft destructuring</span>
+<span class="hljs-keyword">var</span> [a] = [];
+a === <span class="hljs-literal">undefined</span>;
+
+<span class="hljs-comment">// Fail-soft destructuring with defaults</span>
+<span class="hljs-keyword">var</span> [a = <span class="hljs-number">1</span>] = [];
+a === <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">// Destructuring + defaults arguments</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">r</span>(<span class="hljs-params">{x, y, w = <span class="hljs-number">10</span>, h = <span class="hljs-number">10</span>}</span>) </span>{
+  <span class="hljs-keyword">return</span> x + y + w + h;
+}
+r({<span class="hljs-attr">x</span>:<span class="hljs-number">1</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">2</span>}) === <span class="hljs-number">23</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="default--rest--spread"></a><a href="#default--rest--spread" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Default + Rest + Spread</h3>
+<p>Callee-evaluated default parameter values. Turn an array into consecutive
+arguments in a function call. Bind trailing parameters to an array. Rest
+replaces the need for <code>arguments</code> and addresses common cases more directly.</p>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x, y=<span class="hljs-number">12</span></span>) </span>{
+  <span class="hljs-comment">// y is 12 if not passed (or passed as undefined)</span>
+  <span class="hljs-keyword">return</span> x + y;
+}
+f(<span class="hljs-number">3</span>) == <span class="hljs-number">15</span>
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x, ...y</span>) </span>{
+  <span class="hljs-comment">// y is an Array</span>
+  <span class="hljs-keyword">return</span> x * y.length;
+}
+f(<span class="hljs-number">3</span>, <span class="hljs-string">"hello"</span>, <span class="hljs-literal">true</span>) == <span class="hljs-number">6</span>
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x, y, z</span>) </span>{
+  <span class="hljs-keyword">return</span> x + y + z;
+}
+<span class="hljs-comment">// Pass each elem of array as argument</span>
+f(...[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]) == <span class="hljs-number">6</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="let--const"></a><a href="#let--const" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Let + Const</h3>
+<p>Block-scoped binding constructs. <code>let</code> is the new <code>var</code>. <code>const</code> is
+single-assignment. Static restrictions prevent use before assignment.</p>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"></span>) </span>{
+  {
+    <span class="hljs-keyword">let</span> x;
+    {
+      <span class="hljs-comment">// this is ok since it's a block scoped name</span>
+      <span class="hljs-keyword">const</span> x = <span class="hljs-string">"sneaky"</span>;
+      <span class="hljs-comment">// error, was just defined with `const` above</span>
+      x = <span class="hljs-string">"foo"</span>;
+    }
+    <span class="hljs-comment">// this is ok since it was declared with `let`</span>
+    x = <span class="hljs-string">"bar"</span>;
+    <span class="hljs-comment">// error, already declared above in this block</span>
+    <span class="hljs-keyword">let</span> x = <span class="hljs-string">"inner"</span>;
+  }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="iterators--forof"></a><a href="#iterators--forof" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Iterators + For..Of</h3>
+<p>Iterator objects enable custom iteration like CLR IEnumerable or Java
+Iterable. Generalize <code>for..in</code> to custom iterator-based iteration with
+<code>for..of</code>. Don’t require realizing an array, enabling lazy design patterns like
+LINQ.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">let</span> fibonacci = {
+  [<span class="hljs-built_in">Symbol</span>.iterator]() {
+    <span class="hljs-keyword">let</span> pre = <span class="hljs-number">0</span>, cur = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> {
+      next() {
+        [pre, cur] = [cur, pre + cur];
+        <span class="hljs-keyword">return</span> { <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">value</span>: cur }
+      }
+    }
+  }
+}
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> n <span class="hljs-keyword">of</span> fibonacci) {
+  <span class="hljs-comment">// truncate the sequence at 1000</span>
+  <span class="hljs-keyword">if</span> (n &gt; <span class="hljs-number">1000</span>)
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-built_in">console</span>.log(n);
+}
+</code></pre>
+<p>Iteration is based on these duck-typed interfaces (using
+<a href="https://www.typescriptlang.org/">TypeScript</a> type syntax for exposition only):</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> IteratorResult {
+  done: <span class="hljs-built_in">boolean</span>;
+  value: <span class="hljs-built_in">any</span>;
+}
+<span class="hljs-keyword">interface</span> Iterator {
+  next(): IteratorResult;
+}
+<span class="hljs-keyword">interface</span> Iterable {
+  [Symbol.iterator](): Iterator
+}
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <h4>Support via polyfill</h4>
+  <p>
+    In order to use Iterators you must include the Babel <a href="/docs/usage/polyfill">polyfill</a>.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="generators"></a><a href="#generators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generators</h3>
+<p>Generators simplify iterator-authoring using <code>function*</code> and <code>yield</code>. A function
+declared as function* returns a Generator instance. Generators are subtypes of
+iterators which include additional <code>next</code> and <code>throw</code>. These enable values to
+flow back into the generator, so <code>yield</code> is an expression form which returns a
+value (or throws).</p>
+<p>Note: Can also be used to enable ‘await’-like async programming, see also ES7 <code>await</code> <a href="https://github.com/lukehoban/ecmascript-asyncawait">proposal</a>.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> fibonacci = {
+  [<span class="hljs-built_in">Symbol</span>.iterator]: <span class="hljs-function"><span class="hljs-keyword">function</span>*(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> pre = <span class="hljs-number">0</span>, cur = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> (;;) {
+      <span class="hljs-keyword">var</span> temp = pre;
+      pre = cur;
+      cur += temp;
+      <span class="hljs-keyword">yield</span> cur;
+    }
+  }
+}
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> n <span class="hljs-keyword">of</span> fibonacci) {
+  <span class="hljs-comment">// truncate the sequence at 1000</span>
+  <span class="hljs-keyword">if</span> (n &gt; <span class="hljs-number">1000</span>)
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-built_in">console</span>.log(n);
+}
+</code></pre>
+<p>The generator interface is (using <a href="https://www.typescriptlang.org/">TypeScript</a> type
+syntax for exposition only):</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">interface</span> Generator <span class="hljs-keyword">extends</span> Iterator {
+    next(value?: <span class="hljs-built_in">any</span>): IteratorResult;
+    <span class="hljs-keyword">throw</span>(exception: <span class="hljs-built_in">any</span>);
+}
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <h4>Support via polyfill</h4>
+  <p>
+    In order to use Generators you must include the Babel <a href="/docs/usage/polyfill">polyfill</a>.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="comprehensions"></a><a href="#comprehensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Comprehensions</h3>
+<p>Removed in Babel 6.0</p>
+<h3><a class="anchor" aria-hidden="true" id="unicode"></a><a href="#unicode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Unicode</h3>
+<p>Non-breaking additions to support full Unicode, including new unicode literal
+form in strings and new RegExp <code>u</code> mode to handle code points, as well as new
+APIs to process strings at the 21bit code points level.  These additions support
+building global apps in JavaScript.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// same as ES5.1</span>
+<span class="hljs-string">"𠮷"</span>.length == <span class="hljs-number">2</span>
+
+<span class="hljs-comment">// new RegExp behaviour, opt-in ‘u’</span>
+<span class="hljs-string">"𠮷"</span>.match(<span class="hljs-regexp">/./u</span>)[<span class="hljs-number">0</span>].length == <span class="hljs-number">2</span>
+
+<span class="hljs-comment">// new form</span>
+<span class="hljs-string">"\u{20BB7}"</span> == <span class="hljs-string">"𠮷"</span>
+<span class="hljs-string">"𠮷"</span> == <span class="hljs-string">"\uD842\uDFB7"</span>
+
+<span class="hljs-comment">// new String ops</span>
+<span class="hljs-string">"𠮷"</span>.codePointAt(<span class="hljs-number">0</span>) == <span class="hljs-number">0x20BB7</span>
+
+<span class="hljs-comment">// for-of iterates code points</span>
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> c <span class="hljs-keyword">of</span> <span class="hljs-string">"𠮷"</span>) {
+  <span class="hljs-built_in">console</span>.log(c);
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="modules"></a><a href="#modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Modules</h3>
+<p>Language-level support for modules for component definition. Codifies patterns
+from popular JavaScript module loaders (AMD, CommonJS). Runtime behaviour
+defined by a host-defined default loader. Implicitly async model – no code
+executes until requested modules are available and processed.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// lib/math.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">x, y</span>) </span>{
+  <span class="hljs-keyword">return</span> x + y;
+}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> pi = <span class="hljs-number">3.141593</span>;
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// app.js</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> math <span class="hljs-keyword">from</span> <span class="hljs-string">"lib/math"</span>;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"2π = "</span> + math.sum(math.pi, math.pi));
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// otherApp.js</span>
+<span class="hljs-keyword">import</span> {sum, pi} <span class="hljs-keyword">from</span> <span class="hljs-string">"lib/math"</span>;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"2π = "</span> + sum(pi, pi));
+</code></pre>
+<p>Some additional features include <code>export default</code> and <code>export *</code>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// lib/mathplusplus.js</span>
+<span class="hljs-keyword">export</span> * <span class="hljs-keyword">from</span> <span class="hljs-string">"lib/math"</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> e = <span class="hljs-number">2.71828182846</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.exp(x);
+}
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// app.js</span>
+<span class="hljs-keyword">import</span> exp, {pi, e} <span class="hljs-keyword">from</span> <span class="hljs-string">"lib/mathplusplus"</span>;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"e^π = "</span> + exp(pi));
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <h4>Module Formatters</h4>
+  <p>
+    Babel can transpile ES2015 Modules to several different formats including
+    Common.js, AMD, System, and UMD. You can even create your own. For more
+    details see the <a href="/docs/plugins/">modules docs</a>.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="module-loaders"></a><a href="#module-loaders" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Module Loaders</h3>
+<blockquote class="babel-callout babel-callout-warning">
+  <h4>Not part of ES2015</h4>
+  <p>
+    This is left as implementation-defined within the ECMAScript 2015 specification. The eventual standard will be in WHATWG's <a href="https://whatwg.github.io/loader/">Loader specification</a>, but that is currently a work in progress. What is below is from a previous ES2015 draft.
+  </p>
+</blockquote>
+<p>Module loaders support:</p>
+<ul>
+<li>Dynamic loading</li>
+<li>State isolation</li>
+<li>Global namespace isolation</li>
+<li>Compilation hooks</li>
+<li>Nested virtualization</li>
+</ul>
+<p>The default module loader can be configured, and new loaders can be constructed
+to evaluate and load code in isolated or constrained contexts.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Dynamic loading – ‘System’ is default loader</span>
+System.import(<span class="hljs-string">"lib/math"</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">m</span>) </span>{
+  alert(<span class="hljs-string">"2π = "</span> + m.sum(m.pi, m.pi));
+});
+
+<span class="hljs-comment">// Create execution sandboxes – new Loaders</span>
+<span class="hljs-keyword">var</span> loader = <span class="hljs-keyword">new</span> Loader({
+  <span class="hljs-attr">global</span>: fixup(<span class="hljs-built_in">window</span>) <span class="hljs-comment">// replace ‘console.log’</span>
+});
+loader.eval(<span class="hljs-string">"console.log(\"hello world!\");"</span>);
+
+<span class="hljs-comment">// Directly manipulate module cache</span>
+System.get(<span class="hljs-string">"jquery"</span>);
+System.set(<span class="hljs-string">"jquery"</span>, Module({<span class="hljs-attr">$</span>: $})); <span class="hljs-comment">// WARNING: not yet finalized</span>
+</code></pre>
+<blockquote class="babel-callout babel-callout-warning">
+  <h4>Additional polyfill needed</h4>
+  <p>
+    Since Babel defaults to using common.js modules, it does not include the
+    polyfill for the module loader API. Get it
+    <a href="https://github.com/ModuleLoader/es6-module-loader">here</a>.
+  </p>
+</blockquote>
+<blockquote class="babel-callout babel-callout-info">
+  <h4>Using Module Loader</h4>
+  <p>
+    In order to use this, you'll need to tell Babel to use the
+    <code>system</code> module formatter. Also be sure to check out
+    <a href="https://github.com/systemjs/systemjs">System.js</a>
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="map--set--weakmap--weakset"></a><a href="#map--set--weakmap--weakset" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map + Set + WeakMap + WeakSet</h3>
+<p>Efficient data structures for common algorithms.  WeakMaps provides leak-free
+object-key’d side tables.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Sets</span>
+<span class="hljs-keyword">var</span> s = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
+s.add(<span class="hljs-string">"hello"</span>).add(<span class="hljs-string">"goodbye"</span>).add(<span class="hljs-string">"hello"</span>);
+s.size === <span class="hljs-number">2</span>;
+s.has(<span class="hljs-string">"hello"</span>) === <span class="hljs-literal">true</span>;
+
+<span class="hljs-comment">// Maps</span>
+<span class="hljs-keyword">var</span> m = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+m.set(<span class="hljs-string">"hello"</span>, <span class="hljs-number">42</span>);
+m.set(s, <span class="hljs-number">34</span>);
+m.get(s) == <span class="hljs-number">34</span>;
+
+<span class="hljs-comment">// Weak Maps</span>
+<span class="hljs-keyword">var</span> wm = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
+wm.set(s, { <span class="hljs-attr">extra</span>: <span class="hljs-number">42</span> });
+wm.size === <span class="hljs-literal">undefined</span>
+
+<span class="hljs-comment">// Weak Sets</span>
+<span class="hljs-keyword">var</span> ws = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakSet</span>();
+ws.add({ <span class="hljs-attr">data</span>: <span class="hljs-number">42</span> });
+<span class="hljs-comment">// Because the added object has no other references, it will not be held in the set</span>
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <h4>Support via polyfill</h4>
+  <p>
+    In order to support Maps, Sets, WeakMaps, and WeakSets in all environments you must include the Babel <a href="/docs/usage/polyfill">polyfill</a>.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="proxies"></a><a href="#proxies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Proxies</h3>
+<p>Proxies enable creation of objects with the full range of behaviors available to
+host objects.  Can be used for interception, object virtualization,
+logging/profiling, etc.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Proxying a normal object</span>
+<span class="hljs-keyword">var</span> target = {};
+<span class="hljs-keyword">var</span> handler = {
+  <span class="hljs-attr">get</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">receiver, name</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello, <span class="hljs-subst">${name}</span>!`</span>;
+  }
+};
+
+<span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target, handler);
+p.world === <span class="hljs-string">"Hello, world!"</span>;
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// Proxying a function object</span>
+<span class="hljs-keyword">var</span> target = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"I am the target"</span>; };
+<span class="hljs-keyword">var</span> handler = {
+  <span class="hljs-attr">apply</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">receiver, ...args</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"I am the proxy"</span>;
+  }
+};
+
+<span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target, handler);
+p() === <span class="hljs-string">"I am the proxy"</span>;
+</code></pre>
+<p>There are traps available for all of the runtime-level meta-operations:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> handler =
+{
+  <span class="hljs-comment">// target.prop</span>
+  <span class="hljs-attr">get</span>: ...,
+  <span class="hljs-comment">// target.prop = value</span>
+  <span class="hljs-attr">set</span>: ...,
+  <span class="hljs-comment">// 'prop' in target</span>
+  <span class="hljs-attr">has</span>: ...,
+  <span class="hljs-comment">// delete target.prop</span>
+  <span class="hljs-attr">deleteProperty</span>: ...,
+  <span class="hljs-comment">// target(...args)</span>
+  <span class="hljs-attr">apply</span>: ...,
+  <span class="hljs-comment">// new target(...args)</span>
+  <span class="hljs-attr">construct</span>: ...,
+  <span class="hljs-comment">// Object.getOwnPropertyDescriptor(target, 'prop')</span>
+  <span class="hljs-attr">getOwnPropertyDescriptor</span>: ...,
+  <span class="hljs-comment">// Object.defineProperty(target, 'prop', descriptor)</span>
+  <span class="hljs-attr">defineProperty</span>: ...,
+  <span class="hljs-comment">// Object.getPrototypeOf(target), Reflect.getPrototypeOf(target),</span>
+  <span class="hljs-comment">// target.__proto__, object.isPrototypeOf(target), object instanceof target</span>
+  <span class="hljs-attr">getPrototypeOf</span>: ...,
+  <span class="hljs-comment">// Object.setPrototypeOf(target), Reflect.setPrototypeOf(target)</span>
+  <span class="hljs-attr">setPrototypeOf</span>: ...,
+  <span class="hljs-comment">// for (let i in target) {}</span>
+  <span class="hljs-attr">enumerate</span>: ...,
+  <span class="hljs-comment">// Object.keys(target)</span>
+  <span class="hljs-attr">ownKeys</span>: ...,
+  <span class="hljs-comment">// Object.preventExtensions(target)</span>
+  <span class="hljs-attr">preventExtensions</span>: ...,
+  <span class="hljs-comment">// Object.isExtensible(target)</span>
+  <span class="hljs-attr">isExtensible</span> :...
+}
+</code></pre>
+<blockquote class="babel-callout babel-callout-danger">
+  <h4>Unsupported feature</h4>
+  <p>
+    Due to the limitations of ES5, Proxies cannot be transpiled or polyfilled. See support in <a href="https://kangax.github.io/compat-table/es6/#test-Proxy">various JavaScript engines</a>.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="symbols"></a><a href="#symbols" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Symbols</h3>
+<p>Symbols enable access control for object state. Symbols allow properties to be
+keyed by either <code>string</code> (as in ES5) or <code>symbol</code>. Symbols are a new primitive
+type. Optional <code>name</code> parameter used in debugging - but is not part of identity.
+Symbols are unique (like gensym), but not private since they are exposed via
+reflection features like <code>Object.getOwnPropertySymbols</code>.</p>
+<pre><code class="hljs css language-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+
+  <span class="hljs-comment">// module scoped symbol</span>
+  <span class="hljs-keyword">var</span> key = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">"key"</span>);
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyClass</span>(<span class="hljs-params">privateData</span>) </span>{
+    <span class="hljs-keyword">this</span>[key] = privateData;
+  }
+
+  MyClass.prototype = {
+    <span class="hljs-attr">doStuff</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      ... this[key] ...
+    }
+  };
+
+  <span class="hljs-comment">// Limited support from Babel, full support requires native implementation.</span>
+  <span class="hljs-keyword">typeof</span> key === <span class="hljs-string">"symbol"</span>
+})();
+
+<span class="hljs-keyword">var</span> c = <span class="hljs-keyword">new</span> MyClass(<span class="hljs-string">"hello"</span>)
+c[<span class="hljs-string">"key"</span>] === <span class="hljs-literal">undefined</span>
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <h4>Limited support via polyfill</h4>
+  <p>
+    Limited support requires the Babel <a href="/docs/usage/polyfill">polyfill</a>. Due to language limitations, some features can't be transpiled or polyfilled. See core.js's <a href="https://github.com/zloirock/core-js#caveats-when-using-symbol-polyfill">caveats section</a> for more details.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="subclassable-built-ins"></a><a href="#subclassable-built-ins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Subclassable Built-ins</h3>
+<p>In ES2015, built-ins like <code>Array</code>, <code>Date</code> and DOM <code>Element</code>s can be subclassed.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// User code of Array subclass</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyArray</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Array</span> </span>{
+    <span class="hljs-keyword">constructor</span>(...args) { <span class="hljs-keyword">super</span>(...args); }
+}
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> MyArray();
+arr[<span class="hljs-number">1</span>] = <span class="hljs-number">12</span>;
+arr.length == <span class="hljs-number">2</span>
+</code></pre>
+<blockquote class="babel-callout babel-callout-warning">
+  <h4>Partial support</h4>
+  <p>
+    Built-in subclassability should be evaluated on a case-by-case basis as classes such as <code>HTMLElement</code> <strong>can</strong> be subclassed while many such as <code>Date</code>, <code>Array</code> and <code>Error</code> <strong>cannot</strong> be due to ES5 engine limitations.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="math--number--string--object-apis"></a><a href="#math--number--string--object-apis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Math + Number + String + Object APIs</h3>
+<p>Many new library additions, including core Math libraries, Array conversion
+helpers, and Object.assign for copying.</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">Number</span>.EPSILON
+<span class="hljs-built_in">Number</span>.isInteger(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// false</span>
+<span class="hljs-built_in">Number</span>.isNaN(<span class="hljs-string">"NaN"</span>) <span class="hljs-comment">// false</span>
+
+<span class="hljs-built_in">Math</span>.acosh(<span class="hljs-number">3</span>) <span class="hljs-comment">// 1.762747174039086</span>
+<span class="hljs-built_in">Math</span>.hypot(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// 5</span>
+<span class="hljs-built_in">Math</span>.imul(<span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">32</span>) - <span class="hljs-number">1</span>, <span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span>, <span class="hljs-number">32</span>) - <span class="hljs-number">2</span>) <span class="hljs-comment">// 2</span>
+
+<span class="hljs-string">"abcde"</span>.includes(<span class="hljs-string">"cd"</span>) <span class="hljs-comment">// true</span>
+<span class="hljs-string">"abc"</span>.repeat(<span class="hljs-number">3</span>) <span class="hljs-comment">// "abcabcabc"</span>
+
+<span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">"*"</span>)) <span class="hljs-comment">// Returns a real Array</span>
+<span class="hljs-built_in">Array</span>.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// Similar to new Array(...), but without special one-arg behavior</span>
+[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>].fill(<span class="hljs-number">7</span>, <span class="hljs-number">1</span>) <span class="hljs-comment">// [0,7,7]</span>
+[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].findIndex(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x == <span class="hljs-number">2</span>) <span class="hljs-comment">// 1</span>
+[<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>].entries() <span class="hljs-comment">// iterator [0, "a"], [1,"b"], [2,"c"]</span>
+[<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>].keys() <span class="hljs-comment">// iterator 0, 1, 2</span>
+[<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>].values() <span class="hljs-comment">// iterator "a", "b", "c"</span>
+
+<span class="hljs-built_in">Object</span>.assign(Point, { <span class="hljs-attr">origin</span>: <span class="hljs-keyword">new</span> Point(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>) })
+</code></pre>
+<blockquote class="babel-callout babel-callout-warning">
+  <h4>Limited support from polyfill</h4>
+  <p>
+    Most of these APIs are supported by the Babel <a href="/docs/usage/polyfill">polyfill</a>. However, certain
+    features are omitted for various reasons (e.g.
+    <code>String.prototype.normalize</code> needs a lot of additional code to
+    support). You can find more polyfills
+    <a href="https://github.com/addyosmani/es6-tools#polyfills">here</a>.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="binary-and-octal-literals"></a><a href="#binary-and-octal-literals" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Binary and Octal Literals</h3>
+<p>Two new numeric literal forms are added for binary (<code>b</code>) and octal (<code>o</code>).</p>
+<pre><code class="hljs css language-js"><span class="hljs-number">0b111110111</span> === <span class="hljs-number">503</span> <span class="hljs-comment">// true</span>
+<span class="hljs-number">0o767</span> === <span class="hljs-number">503</span> <span class="hljs-comment">// true</span>
+</code></pre>
+<blockquote class="babel-callout babel-callout-warning">
+  <h4>Only supports literal form</h4>
+  <p>
+    Babel is only able to transform <code>0o767</code> and not
+    <code>Number("0o767")</code>.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="promises"></a><a href="#promises" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Promises</h3>
+<p>Promises are a library for asynchronous programming. Promises are a first class
+representation of a value that may be made available in the future. Promises are
+used in many existing JavaScript libraries.</p>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">timeout</span>(<span class="hljs-params">duration = <span class="hljs-number">0</span></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+        setTimeout(resolve, duration);
+    })
+}
+
+<span class="hljs-keyword">var</span> p = timeout(<span class="hljs-number">1000</span>).then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> timeout(<span class="hljs-number">2000</span>);
+}).then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"hmm"</span>);
+}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.all([timeout(<span class="hljs-number">100</span>), timeout(<span class="hljs-number">200</span>)]);
+})
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <h4>Support via polyfill</h4>
+  <p>
+    In order to support Promises you must include the Babel <a href="/docs/usage/polyfill">polyfill</a>.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="reflect-api"></a><a href="#reflect-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reflect API</h3>
+<p>Full reflection API exposing the runtime-level meta-operations on objects. This
+is effectively the inverse of the Proxy API, and allows making calls
+corresponding to the same meta-operations as the proxy traps. Especially useful
+for implementing proxies.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> O = {<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>};
+<span class="hljs-built_in">Object</span>.defineProperty(O, <span class="hljs-string">'b'</span>, {<span class="hljs-attr">value</span>: <span class="hljs-number">2</span>});
+O[<span class="hljs-built_in">Symbol</span>(<span class="hljs-string">'c'</span>)] = <span class="hljs-number">3</span>;
+
+<span class="hljs-built_in">Reflect</span>.ownKeys(O); <span class="hljs-comment">// ['a', 'b', Symbol(c)]</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">C</span>(<span class="hljs-params">a, b</span>)</span>{
+  <span class="hljs-keyword">this</span>.c = a + b;
+}
+<span class="hljs-keyword">var</span> instance = <span class="hljs-built_in">Reflect</span>.construct(C, [<span class="hljs-number">20</span>, <span class="hljs-number">22</span>]);
+instance.c; <span class="hljs-comment">// 42</span>
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <h4>Support via polyfill</h4>
+  <p>
+    In order to use the Reflect API you must include the Babel <a href="/docs/usage/polyfill">polyfill</a>.
+  </p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="tail-calls"></a><a href="#tail-calls" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tail Calls</h3>
+<p>Calls in tail-position are guaranteed to not grow the stack unboundedly. Makes
+recursive algorithms safe in the face of unbounded inputs.</p>
+<pre><code class="hljs css language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorial</span>(<span class="hljs-params">n, acc = <span class="hljs-number">1</span></span>) </span>{
+    <span class="hljs-string">"use strict"</span>;
+    <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> acc;
+    <span class="hljs-keyword">return</span> factorial(n - <span class="hljs-number">1</span>, n * acc);
+}
+
+<span class="hljs-comment">// Stack overflow in most implementations today,</span>
+<span class="hljs-comment">// but safe on arbitrary inputs in ES2015</span>
+factorial(<span class="hljs-number">100000</span>)
+</code></pre>
+<blockquote class="babel-callout babel-callout-warning">
+  <h4>Temporarily Removed in Babel 6</h4>
+  <p>
+    Only explicit self referencing tail recursion was supported due to the
+    complexity and performance impact of supporting tail calls globally.
+    Removed due to other bugs and will be re-implemented.
+  </p>
+</blockquote>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/configuration"><span class="arrow-prev">← </span><span>配置 Babel</span></a><a class="docs-next button" href="/docs/en/v7-migration"><span>升级至 Babel 7</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#introduction">Introduction</a></li><li><a href="#ecmascript-2015-features">ECMAScript 2015 Features</a><ul class="toc-headings"><li><a href="#arrows-and-lexical-this">Arrows and Lexical This</a></li><li><a href="#classes">Classes</a></li><li><a href="#enhanced-object-literals">Enhanced Object Literals</a></li><li><a href="#template-strings">Template Strings</a></li><li><a href="#destructuring">Destructuring</a></li><li><a href="#default--rest--spread">Default + Rest + Spread</a></li><li><a href="#let--const">Let + Const</a></li><li><a href="#iterators--forof">Iterators + For..Of</a></li><li><a href="#generators">Generators</a></li><li><a href="#comprehensions">Comprehensions</a></li><li><a href="#unicode">Unicode</a></li><li><a href="#modules">Modules</a></li><li><a href="#module-loaders">Module Loaders</a></li><li><a href="#map--set--weakmap--weakset">Map + Set + WeakMap + WeakSet</a></li><li><a href="#proxies">Proxies</a></li><li><a href="#symbols">Symbols</a></li><li><a href="#subclassable-built-ins">Subclassable Built-ins</a></li><li><a href="#math--number--string--object-apis">Math + Number + String + Object APIs</a></li><li><a href="#binary-and-octal-literals">Binary and Octal Literals</a></li><li><a href="#promises">Promises</a></li><li><a href="#reflect-api">Reflect API</a></li><li><a href="#tail-calls">Tail Calls</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

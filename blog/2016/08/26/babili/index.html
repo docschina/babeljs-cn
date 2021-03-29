@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Babili (babel-minify) · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="We released [Babili](https://github.com/babel/babili) as beta (0.0.1) a few days ago under an MIT license!"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Babili (babel-minify) · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2016/08/26/babili"/><meta property="og:description" content="We released [Babili](https://github.com/babel/babili) as beta (0.0.1) a few days ago under an MIT license!"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2016/08/26/babili">Babili (babel-minify)</a></h1><p class="post-meta">August 26, 2016</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/left_pad" target="_blank" rel="noreferrer noopener">Henry Zhu</a></p></div></header><div><span><p>We released <a href="https://github.com/babel/babili">Babili</a> as beta (0.0.1) a few days ago under an MIT license!</p>
+<blockquote>
+<p>Try it out in the Babel <a href="http://babeljs.io/repl/#?babili=true&amp;evaluate=false">REPL</a> and report any bugs or potential optimizations we can make! There's also a <a href="https://babeljs.slack.com/messages/minify/">#minify</a> slack room!</p>
+</blockquote>
+<!--truncate-->
+<p>There are a lot of (valid) questions about why a new minifier is a good idea, so this post should help with that.</p>
+<p>TL;DR: Babili can accept ES2015+ input, while current minifiers are mostly limited to ES5, requiring code to be transpiled before minification. This is becoming unnecessary as people begin to ship ES2015 to clients. Babili is also modular/flexible (being a <a href="http://babeljs.io/docs/plugins/#presets">Babel preset</a> means it supports user plugins) and can be used as a preset or CLI tool. Babili will also be able to make ES2015+ specific optimizations.</p>
+<h2><a class="anchor" aria-hidden="true" id="pronunciation"></a><a href="#pronunciation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pronunciation</h2>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># sounds like "bah billy" or "Babadi" (from DBZ)</span>
+say Babili
+</code></pre>
+<p>Babili is Babylon in Akkadian.</p>
+<blockquote>
+<p>If you can't remember the name, babel-minify works too (made <a href="https://github.com/babel/babili/issues/124">an issue</a> for the name).</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="why-minify"></a><a href="#why-minify" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why minify?</h2>
+<p>At a basic level, <a href="https://en.wikipedia.org/wiki/Minification_(programming)">minification</a> removes unnecessary characters from a program without changing its functionality -- things like comments, whitespace, newlines, and extra parentheses. Advanced minification may transform programs into smaller equivalents and remove redundant/unreachable code.</p>
+<p>Minification is primarily useful for decreasing the size of the JavaScript payload sent from the server to the client: users will download less code to use your website. Advanced minification can also result in shorter parse time (less code to parse) and in some cases faster runtime (e.g. advanced optimizations like function inlining).</p>
+<h2><a class="anchor" aria-hidden="true" id="current-minifiers"></a><a href="#current-minifiers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Current minifiers</h2>
+<p>Tools such as <a href="https://github.com/mishoo/UglifyJS2">Uglify</a> don't currently support targeting the latest version of ECMAScript (<a href="https://github.com/mishoo/UglifyJS2/issues/448">not yet</a>: <a href="https://github.com/mishoo/UglifyJS2/tree/harmony">harmony branch</a>).</p>
+<p>We currently use tools like Babel to compile ES2015 code down to ES5 code to support older browsers. Then we use something like Uglify to cut down on the bundle size.</p>
+<p>As browsers implement more ES2015 features and we drop support for older browser versions, there is a sliding window of the version of ECMAScript you write in and the target ECMAScript version you minify to. However since Uglify cannot parse ES2015+, you would still have to compile down to ES5 anyway.</p>
+<h2><a class="anchor" aria-hidden="true" id="babili"></a><a href="#babili" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babili</h2>
+<p>That's where Babili comes in.</p>
+<p>Babili is ES2015+ aware because it is built using the Babel toolchain.
+It is written as a set of Babel plugins, consumable with the <a href="https://github.com/babel/babili/tree/master/packages/babel-preset-babili"><code>babili</code> preset</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h2>
+<p>Say we're targeting the latest versions of Chrome, Firefox, Edge, and Safari -- all of which support <a href="http://babeljs.io/learn-es2015/#classes">ES2015 classes</a>. Then, compiling ES2015 classes to a constructor function and prototype methods (ES5) results in more code (and potentially loses any optimizations browsers might have for classes).</p>
+<pre><code class="hljs css language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mangler</span> </span>{
+  <span class="hljs-keyword">constructor</span>(program) {
+    <span class="hljs-keyword">this</span>.program = program;
+  }
+}
+<span class="hljs-comment">// need this since otherwise Mangler isn't used</span>
+<span class="hljs-keyword">new</span> Mangler();
+</code></pre>
+<p>Before, we might run Babel to transpile <a href="http://babeljs.io/docs/plugins/transform-es2015-classes">the class into a function</a> and run Uglify on the compiled code to send to the browser.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// ES2015 code -&gt; Babel -&gt; Uglify/Babili -&gt; Minified ES5 Code</span>
+<span class="hljs-keyword">var</span> a=<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params">b</span>)</span>{_classCallCheck(<span class="hljs-keyword">this</span>,a),<span class="hljs-keyword">this</span>.program=b};a();
+</code></pre>
+<p>With Babili, you can just run the minifier which works on ES2015 code.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// ES2015 code -&gt; Babili -&gt; Minified ES2015 Code</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">a</span></span>{<span class="hljs-keyword">constructor</span>(b){<span class="hljs-keyword">this</span>.program=b}}<span class="hljs-keyword">new</span> a;
+</code></pre>
+<p>Also it's important to note that this isn't specific to ES2015. Because Babel updates as ECMAScript updates (with <a href="http://babeljs.io/docs/plugins/#official-presets">ES2015, ES2016, and now ES2017</a>) and follows the proposal process for experimental features (with our <a href="http://babeljs.io/docs/plugins/#stage-x-experimental-presets">stage-x presets</a>), the minifier should be able to output whatever version of ECMAScript that is supported.</p>
+<p>In the future, we might make use of the ES2015+ syntax information we have at compile time (e.g. we know that given function is an arrow function or that a given binding is block-scoped etc) to do advanced optimizations. And we can make use of the knowledge that we're targeting an ES2015+ environment in creative ways.</p>
+<p>We're just getting started so let us know if you have any ideas!</p>
+<h3><a class="anchor" aria-hidden="true" id="some-of-the-pluginshttpsgithubcombabelbabiliplugins-in-babel-preset-babili"></a><a href="#some-of-the-pluginshttpsgithubcombabelbabiliplugins-in-babel-preset-babili" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/babel/babili#plugins-in-babel-preset-babili">Some of the Plugins</a></h3>
+<p>To give an idea of some of the transforms:</p>
+<p><a href="https://github.com/babel/babili/tree/master/packages/babel-plugin-minify-constant-folding">babel-plugin-minify-constant-folding</a>:</p>
+<p>Tries to evaluate expressions and inline the result. For now only deals with numbers and strings.</p>
+<pre><code class="hljs css language-js"><span class="hljs-number">2</span> * <span class="hljs-number">3</span>;
+<span class="hljs-string">"b"</span> + a + <span class="hljs-string">"c"</span> + <span class="hljs-string">"d"</span> + g + z + <span class="hljs-string">"f"</span> + <span class="hljs-string">"h"</span> + <span class="hljs-string">"z"</span>
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-number">6</span>;
+<span class="hljs-string">"b"</span> + a + <span class="hljs-string">"cd"</span> + g + z + <span class="hljs-string">"fhz"</span>;
+</code></pre>
+<p><a href="https://github.com/babel/babili/tree/master/packages/babel-plugin-minify-mangle-names">babel-plugin-minify-mangle-names</a>:</p>
+<p>Context- and scope- aware variable renaming.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> globalVariableName = <span class="hljs-number">42</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> longLocalVariableName = <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">if</span> (longLocalVariableName) {
+    <span class="hljs-built_in">console</span>.log(longLocalVariableName);
+  }
+}
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> globalVariableName = <span class="hljs-number">42</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">if</span> (a) {
+    <span class="hljs-built_in">console</span>.log(a);
+  }
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
+<h3><a class="anchor" aria-hidden="true" id="babel-preset"></a><a href="#babel-preset" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babel Preset</h3>
+<p>If you already use Babel, you can just add the <a href="https://github.com/babel/babili#babel-preset"><code>babili</code></a> preset (<code>babel-preset-babili</code>) to your config.</p>
+<p>You will want to enable this only in production, so use the <a href="http://babeljs.io/docs/usage/babelrc/#env-option">env option</a> which uses either <code>process.env.BABEL_ENV</code> or <code>process.env.NODE_ENV</code></p>
+<pre><code class="hljs css language-bash">$ npm install babel-preset-babili --save-dev
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// previous .babelrc</span>
+{ <span class="hljs-string">"presets"</span>: [<span class="hljs-string">"es2015"</span>] }
+<span class="hljs-comment">// .babelrc</span>
+{
+  <span class="hljs-string">"presets"</span>: [<span class="hljs-string">"es2015"</span>],
+  <span class="hljs-string">"env"</span>: {
+    <span class="hljs-string">"production"</span>: {
+      <span class="hljs-string">"presets"</span>: [<span class="hljs-string">"babili"</span>]
+    }
+  }
+}
+</code></pre>
+<p>One issue with using Babili as a preset is that then Babili would only run per-file rather than on the whole bundle. Minification usually happens after bundling as with the &quot;UglifyJsPlugin&quot; in webpack. However, running it after bundling
+would lose the speed benefits (needs to be measured) of doing the transpiling/minification in the same step. Again, this is something we need to think about: how to integrate or pass more information to the bundler.</p>
+<h3><a class="anchor" aria-hidden="true" id="babili-cli"></a><a href="#babili-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babili CLI</h3>
+<p>If you don't use Babel, you can use our standalone CLI tool <a href="https://github.com/babel/babili#cli"><code>babili</code></a>. (Currently it's just a wrapper for <code>babel-cli</code> + the preset). You could run this after transpiling (or not) in place of Uglify.</p>
+<pre><code class="hljs css language-bash">$ npm install babili --save-dev
+</code></pre>
+<pre><code class="hljs css language-bash">$ babili src -d lib
+<span class="hljs-comment"># equivalent to</span>
+<span class="hljs-comment"># babel src -d lib --presets=babili --no-babelrc</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="webpack"></a><a href="#webpack" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Webpack</h3>
+<p>You can just use the preset with <a href="https://github.com/babel/babel-loader"><code>babel-loader</code></a>.</p>
+<pre><code class="hljs css language-bash">$ npm install babel-core babel-loader babel-preset-babili
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>: {
+  <span class="hljs-attr">loaders</span>: [
+    {
+      <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.js$/</span>,
+      <span class="hljs-attr">loader</span>: <span class="hljs-string">'babel'</span>,
+      <span class="hljs-attr">query</span>: {
+        <span class="hljs-attr">presets</span>: [<span class="hljs-string">'babili'</span>]
+      }
+    }
+  ]
+}
+</code></pre>
+<p>Or use it separately with the <a href="https://github.com/boopathi/babili-webpack-plugin">babili-webpack-plugin</a> (made by <a href="https://github.com/boopathi/">@boopathi</a>, who also works on Babili).</p>
+<pre><code class="hljs css language-bash">$ npm install babili-webpack-plugin --save-dev
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// webpack.config.js</span>
+<span class="hljs-keyword">const</span> BabiliPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">"babili-webpack-plugin"</span>);
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">entry</span>: <span class="hljs-comment">//...,</span>
+  output: <span class="hljs-comment">//...,</span>
+  plugins: [
+    <span class="hljs-keyword">new</span> BabiliPlugin(options)
+  ]
+}
+</code></pre>
+<p>We want to have a better story with integration with Webpack/bundlers in the near future! Also check out <a href="https://github.com/babel/babili/issues/100">#100</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="proscons"></a><a href="#proscons" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pros/Cons</h2>
+<p><strong>Uglify Pros</strong></p>
+<ul>
+<li><p>No change to existing tooling if you are already minifying.</p></li>
+<li><p>Battle-tested/production ready (it's been around for years and has wide adoption (we are all using it)!</p></li>
+<li><p>It's super fast and outputs small code already.</p></li>
+</ul>
+<p><strong>Uglify Cons</strong></p>
+<ul>
+<li><p>Custom parser/tooling, so it's difficult to output/minify ES2015+ and make changes.</p></li>
+<li><p>Not modular, and currently no way to create own plugins/minification strategies outside of core.</p></li>
+</ul>
+<p><strong>Babili Pros:</strong></p>
+<ul>
+<li><p>ES2015+ aware (nothing special needs to be done because we can use the babylon parser) and Babel will update as standards/browsers update.</p></li>
+<li><p>Uses the existing Babel toolchain, can consume as a Babel preset or standalone.</p></li>
+<li><p>Potential for custom smart transforms for React/Flow, etc.</p></li>
+<li><p>Could use Flow/Typescript annotations to enable advanced minification.</p></li>
+<li><p>Each minification step can be split into its own plugin, and there’s plenty of options for customization. This makes it easier to contribute and to find/submit issues for specific problems. It also means that people can independently create their own experimental plugins before upstreaming them into core.</p>
+<ul>
+<li>For example: <a href="https://github.com/babel/babili/tree/master/packages/babel-plugin-transform-minify-booleans">this</a> just turns <code>true</code> into <code>!0</code> which is straightforward to write.</li>
+</ul></li>
+<li><p>Should be an easy transition if people are familiar with transpiling with Babel already.</p></li>
+</ul>
+<p><strong>Babili Cons:</strong></p>
+<ul>
+<li><p>We released it early, so there aren't many users yet. Early adopters will have to deal with a tool that isn't as battle-tested as Uglify at first.</p></li>
+<li><p>Right now, the performance is worse/size is worse than Uglify on our benchmark tests. However, this is something we'll be focusing on improving.</p></li>
+</ul>
+<p>TL;DR: Babili should be able to keep up with the ECMAScript standard as new features get added as well as target the environments you need to support. It has a lot of potential: it may not be as production-ready as Uglify at the moment since it was just released but as we continue to optimize with more users it should be more than capable.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-to-help"></a><a href="#how-to-help" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to Help</h2>
+<p><a href="https://twitter.com/amasad">Amjad</a> had been working on this project for a while but we decided to release it earlier as a beta to allow the community to test it out and both contribute through reporting bugs and patches.</p>
+<p>It's still early days for this project so there's a lot to help out with! Our next priority is to make Babili more stable/robust for a 1.0.0 release.</p>
+<p>We will be working to get it as fast and produce code sizes as small as Uglify/<a href="https://github.com/google/closure-compiler">Closure Compiler</a> in simple mode.</p>
+<ul>
+<li><strong>Testing on more codebases</strong>: This will help everyone greatly. Because a minifier runs on all code it has potential for a lot of edge cases/bugs not covered in our basic unit tests. Hopefully we can setup a way to report issues easily; now that the <a href="https://babeljs.io/repl/">repl</a> supports the minifier it should be easier to reproduce/link bugs. In the future we want options to enable specific plugins so we can pinpoint minimal reproduction steps.</li>
+<li><strong>Project infrastructure/maintenance</strong>: We want to create more robust benchmarking, setup integration tests on popular open source projects (run the minifier, and then run all the project's unit tests).</li>
+<li><strong>Check the output</strong>: If something can be more simplified, it should be straightforward to create an issue and suggest a new transformation to an existing plugin or create a new one. We have the benefit of being modular so anyone can also make their own plugins and then we can figure out whether to include them in the core preset.</li>
+</ul>
+<p>Huge thanks to <a href="https://github.com/amasad">Amjad (@amasad)</a> for starting this project and Facebook for allowing us to release this under the Babel organization as an MIT licensed project! <a href="https://github.com/kittens">Sebastian (@kittens)</a> was obviously a big part of this given this wouldn't have been possible without Babel. Also thanks to <a href="https://github.com/thejameskyle">James (@thejameskyle)</a>, <a href="https://github.com/kangax">Juriy (@kangax)</a> for helping see this through to release! Also want to give a shoutout to <a href="https://github.com/boopathi">Boopathi (@boopathi)</a> who we invited to help us out after seeing the work on his own <a href="https://github.com/boopathi/babel-minify">babel-minify</a> project!</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#pronunciation">Pronunciation</a></li><li><a href="#why-minify">Why minify?</a></li><li><a href="#current-minifiers">Current minifiers</a></li><li><a href="#babili">Babili</a></li><li><a href="#example">Example</a><ul class="toc-headings"><li><a href="#some-of-the-pluginshttpsgithubcombabelbabiliplugins-in-babel-preset-babili"><a href="https://github.com/babel/babili#plugins-in-babel-preset-babili">Some of the Plugins</a></a></li></ul></li><li><a href="#usage">Usage</a><ul class="toc-headings"><li><a href="#babel-preset">Babel Preset</a></li><li><a href="#babili-cli">Babili CLI</a></li><li><a href="#webpack">Webpack</a></li></ul></li><li><a href="#proscons">Pros/Cons</a></li><li><a href="#how-to-help">How to Help</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

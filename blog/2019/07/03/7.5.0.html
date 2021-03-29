@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>7.5.0 Released: dynamic import and F# pipelines · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Today we are releasing Babel 7.5.0!"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="7.5.0 Released: dynamic import and F# pipelines · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2019/07/03/7.5.0"/><meta property="og:description" content="Today we are releasing Babel 7.5.0!"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></h1><p class="post-meta">July 3, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/NicoloRibaudo" target="_blank" rel="noreferrer noopener">Nicolò Ribaudo</a></p></div></header><div><span><p>Today we are releasing Babel 7.5.0!</p>
+<p>This release includes improved support for a few ECMAScript proposals: the F# variant of the Stage 1 pipeline operator and an official plugin for the Stage 4 dynamic <code>import()</code> proposal (along with <code>preset-env</code> support).
+It also has support for TypeScript <code>namespace</code>s (experimental) and for Browserslist's <code>default</code> query in <code>preset-env</code>.</p>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.5.0">on GitHub</a>.</p>
+<!-- truncate -->
+<p>Thanks to <a href="https://github.com/Wolvereness">Wesley Wolfe</a>, <a href="https://github.com/mrtnzlml">Martin Zlámal</a>, <a href="https://github.com/phated">Blaine Bublitz</a>, <a href="https://github.com/Letladi">Letladi Sebesho</a>, <a href="https://github.com/darkyndy">Paul Comanici</a>, <a href="https://github.com/lidoravitan">Lidor Avitan</a>, <a href="https://github.com/sormy">Artem Butusov</a>, <a href="https://github.com/ChlorideCull">Sebastian Johansson</a>, and <a href="https://github.com/minho42">Min ho Kim</a> for their first PRs!</p>
+<p>We are always looking for help, especially with triaging issues, reviewing pull requests and helping people on Slack. We are experimenting with the new <a href="https://github.blog/changelog/2019-05-23-triage-and-maintain-roles-beta/">triage</a> role implemented by GitHub, and we want to recognize people from the community who will stand up and help us! 😉</p>
+<p>A fantastic example of this are the newest additions to the Babel organization: <a href="https://github.com/tanhauhau">Tan Li Hau</a>, who has been a great help in triaging issues and fixing bugs, and <a href="https://twitter.com/thiagoarrais">Thiago Arrais</a>, who helped in implementing the pipeline operator!</p>
+<p>In other news, we just <a href="https://twitter.com/left_pad/status/1146069623940558849">announced</a> the start of our own podcast! If you missed it, please check out our <a href="https://babeljs.io/blog/2019/07/02/the-babel-podcast">post</a> from yesterday!</p>
+<p>Our work has made been possible also by our sponsors. We want to thank both <a href="https://discordapp.com/">Discord</a> and <a href="https://clay.global">clay</a> for becoming Silver Sponsors on <a href="https://opencollective.com/babel">OpenCollective</a>, as well as <a href="https://linkedin.com">Linkedin</a> for becoming a Silver Sponsor of Henry on GitHub!</p>
+<p><img src="https://handshake.org/images/landing/logo-dark.svg" alt=""></p>
+<p>Special thanks go to <a href="https://handshake.org">Handshake</a>, a decentralized, permissionless naming protocol compatible with DNS, for donating $100,000 last year! As a part of their FOSS Community Grant, they pledged $10.2M to various open source communities like Apache, Debian, EFF, and Babel.</p>
+<p>If you or your company want to support Babel and the evolution of JavaScript, but aren't sure how, you can sponsor us on <a href="https://opencollective.com/babel">Open Collective</a> and, better yet, work with us on the implementation of <a href="https://github.com/babel/proposals">new ECMAScript proposals</a> directly! As a volunteer-driven project, we rely on the community's support to both fund our efforts in supporting the wide range of JavaScript users and taking ownership of the code. Reach out to Henry at <a href="mailto:henry@babeljs.io">henry@babeljs.io</a> if you'd like to talk more!</p>
+<h2><a class="anchor" aria-hidden="true" id="f-pipeline-operator-9450httpsgithubcombabelbabelpull9450-and-9984httpsgithubcombabelbabelpull9984"></a><a href="#f-pipeline-operator-9450httpsgithubcombabelbabelpull9450-and-9984httpsgithubcombabelbabelpull9984" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>F# pipeline operator (<a href="https://github.com/babel/babel/pull/9450">#9450</a> and <a href="https://github.com/babel/babel/pull/9984">#9984</a>)</h2>
+<blockquote>
+<p>⚠️ The pipeline operator proposal is still at Stage 1, and thus its specification is still being defined.</p>
+</blockquote>
+<p>This <a href="https://github.com/tc39/proposal-pipeline-operator">proposal</a> has a few variants that are being thought out. By testing this plugin, you can help the proposal authors gather feedback about how pipelines could work. But also note that refactoring will be required if the semantics change throughout the proposal process (and they will).</p>
+<p>Since version 7.3.0, Babel has supported the <a href="https://github.com/tc39/proposal-pipeline-operator/wiki#proposal-4-smart-mix">Smart variant</a> of the pipeline operator proposal, and the <a href="https://github.com/tc39/proposal-pipeline-operator/wiki#proposal0-original-minimal-proposal">&quot;minimal&quot; variant</a> since 7.0.0-beta.</p>
+<p>Thanks to the joint efforts of <a href="https://twitter.com/thiagoarrais">Thiago Arrais</a> and <a href="https://twitter.com/JamesDiGioia">James DiGioia</a>, you can now also test the <a href="https://github.com/tc39/proposal-pipeline-operator/wiki#proposal-1-f-sharp-style-only-with-await">&quot;# variant</a>! If you have thoughts or comments about this specific proposal variant, you can reach out to <a href="https://twitter.com/JamesDiGioia">James</a>.</p>
+<p>How is the F# variant different from the Smart one? Instead of having the concept of &quot;topic references&quot; (<code>#</code>), arrow functions are used instead. This has the advantage of being more similar to current JavaScript, at the cost of a slightly less concise syntax.</p>
+<table class="danger-force-code-no-wrap">
+  <thead>
+    <tr>
+      <th>Current JavaScript</th>
+      <th>F# pipeline</th>
+      <th>Smart pipeline</th>
+    </tr>
+  </thead>
+  <tr>
+<!-- DO NOT indent this table, or the code won't be highlighted -->
+<td>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">let</span> newScore = boundScore(
+  <span class="hljs-number">0</span>,
+  <span class="hljs-number">100</span>,
+  add(<span class="hljs-number">7</span>, double(person.score))  
+);
+</code></pre>
+</td>
+<td>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">let</span> newScore = person.score
+  |&gt; double
+  |&gt; <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> add(<span class="hljs-number">7</span>, n)
+  |&gt; <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> boundScore(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>, n);
+
+</code></pre>
+</td>
+<td>
+<pre><code class="hljs css language-js">let newScore = person.score
+  |&gt; double
+  |&gt; add(7, #)
+  |&gt; boundScore(0, 100, #);     
+
+</code></pre>
+</td>
+</tr>
+</table>
+<p>Although the two proposals aren't dependent on one another or being developed as a single proposal, you can use F# pipelines alongside with partial application (supported since Babel 7.4.0):</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">let</span> newScore = person.score
+  |&gt; double
+  |&gt; add(<span class="hljs-number">7</span>, ?)
+  |&gt; boundScore(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>, ?);
+</code></pre>
+<p>Note that, while it may look the same as the &quot;Smart&quot; pipeline variant, the partial application proposal only supports <code>?</code> in function call parameters. This means that, for example, <code>person |&gt; #.score</code> is a valid &quot;Smart&quot; pipeline whose F# equivalent must use an arrow function: <code>person |&gt; p =&gt; p.score</code>.</p>
+<p>The F# pipeline operator is also different regarding how <code>await</code> is handled:</p>
+<table class="danger-force-code-no-wrap">
+  <thead>
+    <tr>
+      <th>Current JavaScript</th>
+      <th>F# pipeline</th>
+      <th>Smart pipeline</th>
+    </tr>
+  </thead>
+  <tr>
+<!-- DO NOT indent this table, or the code won't be highlighted -->
+<td>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">let</span> id = (
+  <span class="hljs-keyword">await</span> (
+    <span class="hljs-keyword">await</span> fetch(url)     
+  ).json()
+).ID;
+</code></pre>
+</td>
+<td>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">let</span> newScore = fetch(url)
+  |&gt; <span class="hljs-keyword">await</span>
+  |&gt; <span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> r.json()
+  |&gt; <span class="hljs-keyword">await</span>
+  |&gt; <span class="hljs-function"><span class="hljs-params">obj</span> =&gt;</span> obj.ID;
+</code></pre>
+</td>
+<td>
+<pre><code class="hljs css language-js">let newScore = fetch(url)
+  |&gt; await #
+  |&gt; #.json()
+  |&gt; await #
+  |&gt; #.ID;
+</code></pre>
+</td>
+</tr>
+</table>
+<p>If you want to test this new proposal variant, you can add <code>@babel/plugin-proposal-pipeline-operator</code> to your Babel configuration:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">plugins</span>: [
+    [<span class="hljs-string">"@babel/proposal-pipeline-operator"</span>, { <span class="hljs-attr">proposal</span>: <span class="hljs-string">"fsharp"</span> }]
+  ]
+};
+</code></pre>
+<p>You can also try it out in the <a href="https://babeljs.io/repl/version/%5E7.5.0#?presets=stage-1">repl</a>, by enabling the &quot;Stage 1&quot; preset.</p>
+<h2><a class="anchor" aria-hidden="true" id="dynamic-import-9552httpsgithubcombabelbabelpull9552-and-10109httpsgithubcombabelbabelpull10109"></a><a href="#dynamic-import-9552httpsgithubcombabelbabelpull9552-and-10109httpsgithubcombabelbabelpull10109" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dynamic import (<a href="https://github.com/babel/babel/pull/9552">#9552</a> and <a href="https://github.com/babel/babel/pull/10109">#10109</a>)</h2>
+<p>Although Babel has had support for parsing dynamic imports <code>import(source)</code> for a long time, there hasn't been a consistent way of transforming it.</p>
+<ul>
+<li>If you used <code>webpack</code> or <code>rollup</code>, you would only include <code>@babel/plugin-syntax-dynamic-import</code> and not transform it with Babel</li>
+<li>If you used Node, you could use the <a href="https://github.com/airbnb/babel-plugin-dynamic-import-node/"><code>babel-plugin-dynamic-import-node</code></a> plugin to transform it</li>
+<li>If you used SystemJS, <code>@babel/plugin-transform-modules-systemjs</code> in conjunction with <code>@babel/plugin-syntax-dynamic-import</code> transformed it without explicitly enabling a transform plugin for <code>import()</code></li>
+</ul>
+<p>Since the dynamic import proposal has been recently merged into the main specification, we have decided to unify these use-cases under a single entry point: <code>@babel/plugin-proposal-dynamic-import</code>. This plugin must be used alongside one of the module transform plugins because Babel needs to know which module loading system you are targeting. When targeting CommonJS, it internally delegates to <a href="https://github.com/airbnb/babel-plugin-dynamic-import-node/"><code>babel-plugin-dynamic-import-node</code></a>.</p>
+<p>For example, this is a valid configuration:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-string">"@babel/plugin-proposal-dynamic-import"</span>,
+    <span class="hljs-string">"@babel/plugin-transform-modules-amd"</span>
+  ]
+};
+</code></pre>
+<p>While this isn't:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-string">"@babel/plugin-proposal-dynamic-import"</span>
+  ]
+};
+</code></pre>
+<p>If you want to only allow parsing of <code>import()</code> expressions without transforming them, you can just include the <code>@babel/plugin-syntax-dynamic-import</code> package.</p>
+<p>If you are using <code>@babel/preset-env</code>, dynamic import support will be enabled by default. You don't need to worry about <code>webpack</code> or <code>rollup</code> support, since both <code>babel-loader</code> and <code>rollup-plugin-babel</code> automatically disable the Babel transform to allow the bundler to handle it correctly.</p>
+<h2><a class="anchor" aria-hidden="true" id="defaults-browserslist-query-in-babelpreset-env-8897httpsgithubcombabelbabelpull8897"></a><a href="#defaults-browserslist-query-in-babelpreset-env-8897httpsgithubcombabelbabelpull8897" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>defaults</code> browserslist query in <code>@babel/preset-env</code> (<a href="https://github.com/babel/babel/pull/8897">#8897</a>)</h2>
+<p>When <code>@babel/preset-env</code> is not passed any targets, it runs every syntax transform on your code (emulating the now deprecated <code>babel-preset-latest</code>).</p>
+<p>To support this behavior, we had to work around the fact that Browserslist itself has <a href="https://browserl.ist/?q=defaults">default choices</a>. This caused <code>@babel/preset-env</code> to not allow usage of the <code>default</code> query.</p>
+<p><code>@babel/preset-env</code> now supports the <code>defaults</code> query when passing targets directly to the preset:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">presets</span>: [
+    [<span class="hljs-string">"@babel/preset-env"</span>, {
+      <span class="hljs-attr">targets</span>: { <span class="hljs-attr">browsers</span>: <span class="hljs-string">"defaults"</span> }
+    }]
+  ]
+};
+</code></pre>
+<p>You can also set it using a <code>.browserslistrc</code> file, which is also used by other tools like <a href="https://github.com/postcss/autoprefixer">Autoprefixer</a> or <a href="https://stylelint.io/">Stylelint</a>.</p>
+<p>The default behavior of <code>@babel/preset-env</code> is still to compile everything, but we might switch it in Babel 8 to use this <code>defaults</code> query.</p>
+<h2><a class="anchor" aria-hidden="true" id="experimental-typescript-namespaces-support-9785httpsgithubcombabelbabelpull9785"></a><a href="#experimental-typescript-namespaces-support-9785httpsgithubcombabelbabelpull9785" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Experimental TypeScript <code>namespaces</code> support (<a href="https://github.com/babel/babel/pull/9785">#9785</a>)</h2>
+<p>Until now, <a href="https://www.typescriptlang.org/docs/handbook/namespaces.html">namespaces</a> were the second biggest TypeScript feature not supported by Babel (the first one is type-checking! 😛). Thanks to the work done by community member <a href="https://twitter.com/wolvereness">Wesley Wolfe</a>, you can now enable <em>experimental</em> support for them in the TypeScript plugin, using the <code>allowNamespaces</code> option of <code>@babel/plugin-transform-typescript</code>:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">plugins</span>: [
+    [<span class="hljs-string">"@babel/plugin-transform-typescript"</span>, {
+      <span class="hljs-attr">allowNamespaces</span>: <span class="hljs-literal">true</span>
+    }]
+  ]
+}
+</code></pre>
+<p>Then, you can use namespaces in your code:</p>
+<pre><code class="hljs css language-javascript">namespace Validation {
+  <span class="hljs-keyword">const</span> lettersRegexp = <span class="hljs-regexp">/^[A-Za-z]+$/</span>;
+  <span class="hljs-keyword">const</span> numberRegexp = <span class="hljs-regexp">/^[0-9]+$/</span>;
+
+  <span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LettersOnlyValidator</span> </span>{
+    isAcceptable(s: string) {
+      <span class="hljs-keyword">return</span> lettersRegexp.test(s);
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<h3><a class="anchor" aria-hidden="true" id="️-warning-️"></a><a href="#️-warning-️" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>⚠️ Warning ⚠️</h3>
+<p>When TypeScript support was initially added to Babel, <code>namespaces</code> were not included since they require type information that only a full TypeScript compiler and type-checker can provide. For this reason, this current (experimental) support has some limitations:</p>
+<ul>
+<li>Namespaces can only export immutable bindings</li>
+<li>When merging multiple namespaces with the same name, their scope isn't shared</li>
+</ul>
+<p>You can find the full list of caveats in the <code>@babel/plugin-transform-typescript</code> <a href="https://babeljs.io/docs/en/babel-plugin-transform-typescript#caveats">documentation</a>.</p>
+</blockquote>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#f-pipeline-operator-9450httpsgithubcombabelbabelpull9450-and-9984httpsgithubcombabelbabelpull9984">F# pipeline operator (<a href="https://github.com/babel/babel/pull/9450">#9450</a> and <a href="https://github.com/babel/babel/pull/9984">#9984</a>)</a></li><li><a href="#dynamic-import-9552httpsgithubcombabelbabelpull9552-and-10109httpsgithubcombabelbabelpull10109">Dynamic import (<a href="https://github.com/babel/babel/pull/9552">#9552</a> and <a href="https://github.com/babel/babel/pull/10109">#10109</a>)</a></li><li><a href="#defaults-browserslist-query-in-babelpreset-env-8897httpsgithubcombabelbabelpull8897"><code>defaults</code> browserslist query in <code>@babel/preset-env</code> (<a href="https://github.com/babel/babel/pull/8897">#8897</a>)</a></li><li><a href="#experimental-typescript-namespaces-support-9785httpsgithubcombabelbabelpull9785">Experimental TypeScript <code>namespaces</code> support (<a href="https://github.com/babel/babel/pull/9785">#9785</a>)</a><ul class="toc-headings"><li><a href="#️-warning-️">⚠️ Warning ⚠️</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

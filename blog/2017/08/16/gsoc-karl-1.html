@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Contributing to Babel: Three Lessons to Remember · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Getting to work your way around a new code base always poses its challenges, and Babel was no exception."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Contributing to Babel: Three Lessons to Remember · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2017/08/16/gsoc-karl-1"/><meta property="og:description" content="Getting to work your way around a new code base always poses its challenges, and Babel was no exception."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></h1><p class="post-meta">August 16, 2017</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/qantas94heavy" target="_blank" rel="noreferrer noopener">Karl Cheng</a></p></div></header><div><span><p>Getting to work your way around a new code base always poses its challenges, and Babel was no exception.</p>
+<p>I’ve been working with Babel as part of the Google Summer of Code 2017 program, working to update Babel transforms and the Babylon parser to accommodate changes to specifications and implementing new features.</p>
+<p>Here’s a few things I’ve learnt from my adventures so far.</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="1-yes-communication-is-important"></a><a href="#1-yes-communication-is-important" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Yes, communication is important</h2>
+<p>To start off with getting to know the codebase better, I combed through the open issues list on Babel and found a relatively easy one (<a href="https://github.com/babel/babel/issues/5728">issue #5728</a>) to deal with.</p>
+<p>Just to make sure I knew what I was doing, I fired a quick question on the thread:</p>
+<p><img class="img-responsive" alt="My question asking for clarification" src="/blog/assets/2017-08-16-gsoc-karl-1/question.png"></p>
+<p>After getting clarification, I set off to change the plugin to not throw &quot;runtime&quot; errors during transpilation, but only when the code is actually being run. One incriminating piece of code stuck out:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> violation <span class="hljs-keyword">of</span> (binding.constantViolations: <span class="hljs-built_in">Array</span>)) {
+  <span class="hljs-keyword">throw</span> violation.buildCodeFrameError(messages.get(<span class="hljs-string">"readOnly"</span>, name));
+}
+</code></pre>
+<p>Now what needed to be done here was to actually insert a <code>throw</code> statement into the generated code, which didn’t prove to be too difficult. However, there were still a few cases where runtime errors were being thrown elsewhere from code that wasn’t directly related to this file.</p>
+<p>Wanting to go and explore other parts of the Babel code base, I put that down for me to get on with later.</p>
+<p>Not too long after, I received a, well, interesting update on the issue… Wait what?</p>
+<p><img class="img-responsive" alt="Someone else had claimed the issue." src="/blog/assets/2017-08-16-gsoc-karl-1/update.png"></p>
+<p>I never actually said I was working on fixing the issue, but assumed that posting would have implied I was going to work on it.</p>
+<p>Oops.</p>
+<h2><a class="anchor" aria-hidden="true" id="2-where-snapshot-testing-falls-short"></a><a href="#2-where-snapshot-testing-falls-short" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Where snapshot testing falls short</h2>
+<p>After setting off for another hunt, I stumbled across <a href="https://github.com/babel/babel/issues/5656">issue #5656</a>:</p>
+<blockquote>
+<h3><a class="anchor" aria-hidden="true" id="arguments-deoptimized-when-shadowed-in-nested-function"></a><a href="#arguments-deoptimized-when-shadowed-in-nested-function" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arguments deoptimized when shadowed in nested function</h3>
+<p>This is a feature request (I think). Arguments are not optimized if an inner function shadows the name with a parameter (or rest parameters in my case).</p>
+<h4><a class="anchor" aria-hidden="true" id="input-code"></a><a href="#input-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Input code</h4>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> log = <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(...args);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test_opt</span>(<span class="hljs-params">...args</span>) </span>{
+  log(...args);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test_deopt</span>(<span class="hljs-params">...args</span>) </span>{
+  <span class="hljs-keyword">const</span> fn = <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> log(...args);
+  fn(...args);
+}
+</code></pre>
+<p>...</p>
+<h4><a class="anchor" aria-hidden="true" id="expected-vs-current-behavior"></a><a href="#expected-vs-current-behavior" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Expected vs. Current Behavior</h4>
+<p>I’d expect the code to be optimizable to use .apply( thisArg, arguments ) throughout.
+However, in test_deopt the outer ...args gets copied just to be passed into the inner fn.
+I can verify that the problem disappears if I rename either the ...args of test_deopt or of the fn arrow function.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="whats-going-on-here"></a><a href="#whats-going-on-here" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What’s going on here?</h3>
+<p>Now what was happening was that this code would generate the following:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> log = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> _console;
+
+  <span class="hljs-keyword">return</span> (_console = <span class="hljs-built_in">console</span>).log.apply(_console, <span class="hljs-built_in">arguments</span>);
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test_opt</span>(<span class="hljs-params"></span>) </span>{
+  log.apply(<span class="hljs-literal">undefined</span>, <span class="hljs-built_in">arguments</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test_deopt</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> _len = <span class="hljs-built_in">arguments</span>.length, args = <span class="hljs-built_in">Array</span>(_len), _key = <span class="hljs-number">0</span>; _key &lt; _len; _key++) { <span class="hljs-comment">// unnecessary loop</span>
+    args[_key] = <span class="hljs-built_in">arguments</span>[_key];
+  }
+
+  <span class="hljs-keyword">var</span> fn = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> log.apply(<span class="hljs-literal">undefined</span>, <span class="hljs-built_in">arguments</span>);
+  };
+  fn.apply(<span class="hljs-literal">undefined</span>, args);
+}
+</code></pre>
+<p>See that <code>for</code> section there? Usually this is needed as the arguments object isn’t a real array — for example, if you tried to run <code>arguments.slice()</code>, it would fail miserably.
+However, in this case it’s only being passed to <code>Function.prototype.apply</code>. Surprisingly enough, Babel already bothers to optimize this specific case, like in the <code>test_opt</code> example above.</p>
+<h3><a class="anchor" aria-hidden="true" id="trying-to-fix-it"></a><a href="#trying-to-fix-it" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Trying to fix it</h3>
+<p>So what did I do? Adding the problem file as a new test case, I tried to see if I could get the output to reflect what I wanted.</p>
+<p><img class="img-responsive" alt="Test failure of modified code" src="/blog/assets/2017-08-16-gsoc-karl-1/babel-test.png"></p>
+<p>“Why’s the test failing? Surely if I change it a little it will solve itself.”</p>
+<p>Despite spamming <code>make test-only</code> and modifying the transforms of referenced identifiers within the code, any change just resulted in a different bunch of tests failing instead.</p>
+<h3><a class="anchor" aria-hidden="true" id="the-chromium-debugger-is-fun"></a><a href="#the-chromium-debugger-is-fun" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Chromium debugger is “fun”</h3>
+<p>Miserable, annoyed and confused, I bothered to fire up the Node.js inspector to step through what was going on.</p>
+<p><img class="img-responsive" alt="Using the Chromium debugger" src="/blog/assets/2017-08-16-gsoc-karl-1/debugger-cropped.png"></p>
+<p>After returning to my computer from a drink break, I’m gladly greeted to my hard disk light thrashing around and a practically hung computer.</p>
+<p><img class="img-responsive" alt="Chromium process using more than 3GB of memory" src="/blog/assets/2017-08-16-gsoc-karl-1/chromium-task-manager.png"></p>
+<p>Holding my computer together with judicious applications of <kbd>Alt</kbd> + <kbd>SysRq</kbd> + <kbd>F</kbd>, I managed to work through the flow of things¹ and figure out how exactly the code worked.</p>
+<p>Even through all that, I still couldn’t see any reason why it was deciding to remove this “necessary” (so I thought) code that was being removed with my original fix.</p>
+<h3><a class="anchor" aria-hidden="true" id="the-actual-problem"></a><a href="#the-actual-problem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The actual problem?</h3>
+<p>See the error shown above? That entire code in green wasn’t meant to be there, even though it was “expected”.</p>
+<p>Basically: the test was broken. <em>Great.</em> :/</p>
+<p><a href="https://github.com/babel/babel/pull/5721">The actual fix</a> involved creating a <code>referencesRest</code> function to make sure that the spread operator was actually being applied to the original parameter, rather than a variable in another scope masking the variable.</p>
+<blockquote>
+<p>¹: Turns out that adding a large folder to the DevTools workspace would leak memory until causing an OOM (<a href="https://github.com/babel/babel/issues/5656#issuecomment-300139737">bug I filed for this</a>).</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="so-why-do-we-use-snapshot-testing-then"></a><a href="#so-why-do-we-use-snapshot-testing-then" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>So why do we use snapshot testing then?!</h3>
+<p>Well first off, it's far easier to create tests when all you need to do is ask Babel to run your test case to generate your expected file. This presents to us a low time cost option while protecting against a significant proportion of potential errors.</p>
+<p>Also, especially with the type of program Babel is, it would be far harder to test for in other ways. For example, we could check for specific nodes of the AST, but this takes far longer to write and is also prone to non-obvious breakage when your code attempts to change the way the transform is done.</p>
+<p>So, all in all, a few lessons here:</p>
+<ol>
+<li>Make sure your tests are right in the first place—don't be complacent!</li>
+<li>Yes, the debugger is actually useful in seeing what goes on.</li>
+<li>Sometimes things take time to work out—if you’re getting nowhere, take a break or work on something else.</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="3-team-meetings"></a><a href="#3-team-meetings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. Team meetings!</h2>
+<p>I know this kinda stretches the notion of an “issue”, but anyway :)</p>
+<p>When you’re working on a project with a bunch of other people, it’s always useful to catch up with one another and discuss areas which we need to work on.</p>
+<p>So how exactly do we go about doing that?!</p>
+<p><em>Ugh, meetings.</em></p>
+<p>When you have a bunch of people spread across the world, finding ways to communicate is never easy, but regardless we would have to make do with our attempts at this feat.</p>
+<h3><a class="anchor" aria-hidden="true" id="time-zones"></a><a href="#time-zones" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Time zones</h3>
+<p>When you’re dealing with a open source project spanning all across the globe, picking an appropriate hour quickly turns a rather involved exercise in bikeshedding.</p>
+<p><img class="img-responsive" alt="World map of people who’ve attended our meetings" src="/blog/assets/2017-08-16-gsoc-karl-1/world-map.png"></p>
+<p>Even with the vast spread between each of us, it seemed like we could just about manage to finally get something together.</p>
+<p><img class="img-responsive" alt="Time zones discussed in 31 May 2017 meeting" src="/blog/assets/2017-08-16-gsoc-karl-1/time-zone-list.png"></p>
+<p>Alas, this was not to last. Eventually, we ended up having to switch between two times every other week to accommodate other users (13:00 and 16:00 UTC), which meant that I was only able to attend once a fortnight.</p>
+<p>Despite this, we’ve managed to make significant progress with coordinating fixes to various parts that make up key changes to Babel, including support for TypeScript, changes to the order in which transform plugins run, as well as keeping up to date with changes from TC39.</p>
+<h2><a class="anchor" aria-hidden="true" id="where-to-next"></a><a href="#where-to-next" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Where to next?</h2>
+<p>We’re continuing to polish up Babel 7 for general consumption, with <a href="https://babeljs.io/blog/2017/03/01/upgrade-to-babel-7">a number of new features</a> coming along with that.</p>
+<p>I’m working with a bunch of others to get support for updated <a href="https://github.com/tc39/proposal-class-fields">Class Fields</a> specification proposal included into Babel so that people can test it out and provide feedback.</p>
+<p>Also, while I’m at it, I’d like to thank all of the Babel mentors and contributors for helping me out with peer reviews and providing guidance with proposals, all the way from first contact to today.</p>
+<hr>
+<p>Looking to find out more about Babel? Hit up our <a href="https://github.com/babel/babel/blob/master/CONTRIBUTING.md">contributing page</a> and join the <a href="https://slack.babeljs.io">Slack community</a>!</p>
+<h2><a class="anchor" aria-hidden="true" id="more-about-karl"></a><a href="#more-about-karl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>More about Karl</h2>
+<p>Karl Cheng is a <a href="https://summerofcode.withgoogle.com/organizations/5842528113786880/#6600055503978496">GSoC 2017</a> student hailing from Sydney, Australia. Find out more about him on GitHub (<a href="https://github.com/Qantas94Heavy">Qantas94Heavy</a>) and Twitter (<a href="https://twitter.com/Qantas94Heavy">@Qantas94Heavy</a>)!</p>
+<p>Please check out our first post on <a href="https://babeljs.io/blog/2017/08/09/babel-and-summer-of-code">Summer of Code</a> for more info!</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1-yes-communication-is-important">1. Yes, communication is important</a></li><li><a href="#2-where-snapshot-testing-falls-short">2. Where snapshot testing falls short</a><ul class="toc-headings"><li><a href="#arguments-deoptimized-when-shadowed-in-nested-function">Arguments deoptimized when shadowed in nested function</a></li><li><a href="#whats-going-on-here">What’s going on here?</a></li><li><a href="#trying-to-fix-it">Trying to fix it</a></li><li><a href="#the-chromium-debugger-is-fun">The Chromium debugger is “fun”</a></li><li><a href="#the-actual-problem">The actual problem?</a></li><li><a href="#so-why-do-we-use-snapshot-testing-then">So why do we use snapshot testing then?!</a></li></ul></li><li><a href="#3-team-meetings">3. Team meetings!</a><ul class="toc-headings"><li><a href="#time-zones">Time zones</a></li></ul></li><li><a href="#where-to-next">Where to next?</a></li><li><a href="#more-about-karl">More about Karl</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

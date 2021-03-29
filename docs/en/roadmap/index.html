@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Babel Roadmap · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Ecosystem"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Babel Roadmap · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="## Ecosystem"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>通用</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">指南</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/">什么是 Babel？</a></li><li class="navListItem"><a class="navItem" href="/docs/en/usage">使用指南</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration">配置 Babel</a></li><li class="navListItem"><a class="navItem" href="/docs/en/learn">学习 ES2015</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration">升级至 Babel 7</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration-api">升级至 Babel 7 (API)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">通用</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/editors">编辑器</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins">插件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/presets">Presets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/caveats">注意事项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/faq">FAQ</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">用法</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/options">选项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/config-files">配置文件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-cli">cli</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-plugin-transform-runtime">transform-runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-register">register</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">presets</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-env">env</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-flow">flow</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-react">react</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-typescript">typescript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">工具</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-parser">parser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-core">core</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-generator">generator</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-code-frame">code-frame</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-helpers">helpers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-runtime">runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-template">template</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-traverse">traverse</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-types">types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/roadmap.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Babel Roadmap</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="ecosystem"></a><a href="#ecosystem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ecosystem</h2>
+<h3><a class="anchor" aria-hidden="true" id="test-against-test262"></a><a href="#test-against-test262" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test Against <code>test262</code></h3>
+<blockquote>
+<p>The parser already does this, but we don't do it for transforms.</p>
+</blockquote>
+<p>We should run against <code>test262</code> (the JavaScript test suite). This is made easier with <a href="https://github.com/bterlson/test262-harness">test262-harness</a>. In addition, it would be great to have it run in <a href="https://test262.report/">test262-report</a>, as <a href="https://bocoup.com/blog/announcing-test262-report">announced</a> by Bocoup.</p>
+<p>This will give us a few things:</p>
+<ul>
+<li>Better confidence in Babel's output. More tests/coverage is better for catching regressions and finding spec bugs worth working on.</li>
+<li>Can use these to help do a reverse test against any kind of &quot;loose&quot; mode. We can purposely fail a test when that option intends to not adhere to the spec.</li>
+<li>Can use this new data instead of <code>compat-table</code> for <code>@babel/preset-env</code>.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="polyfill-behavior"></a><a href="#polyfill-behavior" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Polyfill behavior</h3>
+<blockquote>
+<p>This is regarding <a href="https://github.com/babel/babel/tree/main/packages/babel-preset-env#usebuiltins-usage">https://github.com/babel/babel/tree/main/packages/babel-preset-env#usebuiltins-usage</a></p>
+</blockquote>
+<ul>
+<li>[ ] Allow any substitute polyfill instead of <code>core-js</code>. You should be able to override anything (custom <code>Promise</code>, etc)</li>
+<li>[ ] Make <code>&quot;usage&quot;</code> option the default after it is stable.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="buildpublish-workflow"></a><a href="#buildpublish-workflow" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Build/publish workflow</h3>
+<ul>
+<li>Guide on compiling/publishing ES2015+, .mjs, etc: <a href="https://twitter.com/philwalton/status/908082461799616512">https://twitter.com/philwalton/status/908082461799616512</a></li>
+<li>Support multi-build/folder outputs based on ES version/browser/engines?</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="codemods-for-tc39-proposals"></a><a href="#codemods-for-tc39-proposals" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Codemods for TC39 Proposals</h3>
+<blockquote>
+<p>Lebab/others are already used to convert from ES5 -&gt; ESNext, so incorporate it into Babel itself.</p>
+</blockquote>
+<ul>
+<li>Refactor <a href="https://github.com/lebab/lebab/issues/138">Lebab</a> as Babel transforms (can keep the cli since it's a separate tool)
+<ul>
+<li>Usecase: ES3 -&gt; ES6+ (on source code)</li>
+<li>Usecase: Remove usage of dropped proposals</li>
+<li>Usecase: Auto upgrade to the latest version of a proposal spec (if possible)</li>
+<li>Can we somehow combine forces in: babel-codemod/jscodeshift/lebab, prettier/recast/babel-generator? I really don't want to update all of these: new syntax equals re-writing the printer in all of these places separately/out of sync.</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="increasing-the-quality-of-community-plugins"></a><a href="#increasing-the-quality-of-community-plugins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Increasing the quality of community plugins</h2>
+<ul>
+<li>Work with the community to create guides on how to write plugins or understand ASTs, etc</li>
+<li>Analysis of API's/syntax used (Google BigQuery)</li>
+<li>Have #blessed/sanctioned/curated packages according to some standard
+<ul>
+<li>Can use for smoke tests</li>
+<li>Official testing package</li>
+<li>Certain level of coverage, downloads, etc</li>
+<li>Create a scoped namespace on github/npm for these? like webpack-contrib</li>
+<li>Can enforce linting rules on apis?</li>
+<li>Makes ecosystem changes easier if can notify and upgrade these plugins beforehand</li>
+<li>Create a set of standard tests to verify against (handles all syntax)</li>
+<li>Documented/tested set of options</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="astexplorer"></a><a href="#astexplorer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ASTExplorer</h3>
+<ul>
+<li>allow custom version of babel-standalone (same as REPL to allow per PR tests)</li>
+<li>integrate with repl? (both are in react)</li>
+<li>auto publish a plugin to npm?</li>
+<li>create tests?</li>
+<li>hook into codesandbox?</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="feature"></a><a href="#feature" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Feature</h2>
+<h3><a class="anchor" aria-hidden="true" id="performance-table-for-es6-used-in-babel-preset-env-under-new-option-eg-perf"></a><a href="#performance-table-for-es6-used-in-babel-preset-env-under-new-option-eg-perf" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Performance table for ES6+ (used in babel-preset-env under new option e.g <code>perf</code>)</h3>
+<blockquote>
+<p>Add a new option in <code>preset-env</code>: will continue to compile if the native support is <em>slower</em>. Can setup a threshold, may need to compare against the size difference.</p>
+</blockquote>
+<ul>
+<li>Use <a href="https://github.com/kpdecker/six-speed">six-speed</a> repo as a base, needs to apply for ES6 and proposals</li>
+<li>Need continued maintenance</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="compiled-output-stats"></a><a href="#compiled-output-stats" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Compiled Output Stats</h3>
+<blockquote>
+<p><a href="https://github.com/babel/babel/issues/5340">#5340</a> Can show the code size before and after compiling to give a sense of compiled output. Could create suggestions like using &quot;loose&quot; mode or not compiling, etc.</p>
+</blockquote>
+<ul>
+<li>The <a href="https://twitter.com/existentialism/status/948940160653291520">REPL</a> just added a before/after code-size</li>
+<li>Maybe difficult to do per transform</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="async-transforms"></a><a href="#async-transforms" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Async Transforms</h3>
+<p>Support having async plugins. Will require it to be opt-in and for all other plugins to be async.</p>
+<h3><a class="anchor" aria-hidden="true" id="plugin-ordering"></a><a href="#plugin-ordering" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Plugin Ordering</h3>
+<ul>
+<li>Add <code>before</code>/<code>after</code> keys for plugins so they can specify order.</li>
+<li>Possibly implement related plugins in the same &quot;plugin&quot; but just expose a flag out to the end-user.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="babel-helpers-shared-code"></a><a href="#babel-helpers-shared-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babel Helpers (shared code)</h3>
+<ul>
+<li>loader should handle these automatically like rollup</li>
+<li>allow 3rd party helpers?  <a href="https://github.com/babel/babel/issues/6487">https://github.com/babel/babel/issues/6487</a></li>
+<li>allow compilation of helpers (write in esnext?) <a href="https://github.com/babel/babel/issues/5876">https://github.com/babel/babel/issues/5876</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="repurpose-babel--create-babel-init"></a><a href="#repurpose-babel--create-babel-init" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Repurpose <code>babel</code> / create <code>babel-init</code></h2>
+<blockquote>
+<p>We can re-use the <code>babel</code> package for a more simplified <em>0 config™</em> version</p>
+</blockquote>
+<p>Not sure what this looks like but had this idea for a really long time and didn't really get anywhere - the cli version could just be <a href="https://github.com/developit/microbundle">https://github.com/developit/microbundle</a> for libs? Maybe webpack/parcel would have it covered for apps?</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="generalinfra"></a><a href="#generalinfra" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>General/Infra</h2>
+<h3><a class="anchor" aria-hidden="true" id="smoke-tests"></a><a href="#smoke-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Smoke Tests</h3>
+<ul>
+<li>Babel itself <a href="https://github.com/babel/babel/issues/6134">https://github.com/babel/babel/issues/6134</a></li>
+<li>Important community plugins (<code>babel-plugin-instanbul</code>, css-in-js)</li>
+<li><code>babel-core</code> integrations (wrappers like <code>babel-loader</code>, test frameworks, etc)</li>
+<li>Libraries (<code>(p)react</code>, <code>redux</code>, <code>vue</code>)</li>
+<li>Tools that use individual packages (<code>debugger.html</code>, <code>prepack</code>)</li>
+<li>OSS Apps (<code>nylas-mail</code>)</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="better-debuggability"></a><a href="#better-debuggability" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Better Debuggability</h3>
+<ul>
+<li>Query config for data for other tools</li>
+<li><code>babel --settings</code></li>
+<li>Validate config better</li>
+<li>Create/expand on new tools like <a href="https://github.com/boopathi/babel-time-travel">https://github.com/boopathi/babel-time-travel</a></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="websitedocs"></a><a href="#websitedocs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Website/Docs</h4>
+<ul>
+<li>Translations</li>
+<li>Real documentation on APIs</li>
+<li>Up to date babel-handbook/merge into rehauled website</li>
+<li>Link to common errors pages</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="better-repl"></a><a href="#better-repl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Better REPL</h4>
+<ul>
+<li>Dropdown examples/examples of syntax from github?</li>
+<li>Import any package from npm (can give test examples for 3rd party plugins, debugging issues)</li>
+<li>Run any plugin from npm</li>
+<li>Create a plugin from the repl (can we merge it with ASTExplorer/codesandbox?), even publish, run from URL?</li>
+<li>Import/Export a config file</li>
+<li>Combine ^ with the ability to run the version of Babel in a PR/master.</li>
+<li>Use plugin's tests in the repo as &quot;examples&quot; for docs.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="babel-bot"></a><a href="#babel-bot" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>babel-bot</code></h3>
+<blockquote>
+<p><a href="https://github.com/babel/babel-bot/issues/43">#43</a> Rewrite it with <a href="https://github.com/probot/probot">probot</a></p>
+</blockquote>
+<p>A bot is really useful to do github/maintainer activities automatically.</p>
+<p>We haven't updated this in a long time due to Andrew being busy and not setting up the automatic infra on AWS. Switching will make updating actually real so we can add some new features which would save some headache.</p>
+<p>References: <a href="https://github.com/eslint/eslint-github-bot">https://github.com/eslint/eslint-github-bot</a>, <a href="https://github.com/open-bot/open-bot">https://github.com/open-bot/open-bot</a></p>
+<h3><a class="anchor" aria-hidden="true" id="expanded-maintainer-guide"></a><a href="#expanded-maintainer-guide" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Expanded Maintainer Guide</h3>
+<blockquote>
+<p>Better onboarding/contributing guide</p>
+</blockquote>
+<ul>
+<li>Guide to different aspects of contributing with real examples to issues/PRs</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="maintainerssustainability"></a><a href="#maintainerssustainability" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Maintainers/Sustainability</h3>
+<ul>
+<li>Promote Open Collective, talking with companies about office hours, sponsorship, contracting?</li>
+<li>Mentoring: Google Summer of Code/Rails Girls Summer of Code were great but was hard to keep up with volunteers and I felt like we could be doing a lot more with full time help.</li>
+<li>Maybe doing local meetups on contributing, or livestreaming development/maintenance work?</li>
+<li>Should focus on bringing in maintainers that will lower the burden, not increase it even if there is upfront work</li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="big-wishlist-might-be-out-of-scopecomplexecosystem"></a><a href="#big-wishlist-might-be-out-of-scopecomplexecosystem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Big Wishlist (might be out of scope/complex/ecosystem)</h2>
+<ul>
+<li>Should Babel operate multi-file/take in a dep graph?</li>
+<li>Should Babel use type info (from other things like ts/flow/runtime info)</li>
+<li>AST
+<ul>
+<li>Can we just move back to acorn + estree?</li>
+<li>Should we switch to shift?</li>
+<li>What about binary ast?</li>
+<li>immutable? <a href="https://github.com/babel/babel/issues/4130#issuecomment-245411113">https://github.com/babel/babel/issues/4130#issuecomment-245411113</a></li>
+</ul></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/faq"><span class="arrow-prev">← </span><span>FAQ</span></a><a class="docs-next button" href="/docs/en/options"><span>选项</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ecosystem">Ecosystem</a><ul class="toc-headings"><li><a href="#test-against-test262">Test Against <code>test262</code></a></li><li><a href="#polyfill-behavior">Polyfill behavior</a></li><li><a href="#buildpublish-workflow">Build/publish workflow</a></li><li><a href="#codemods-for-tc39-proposals">Codemods for TC39 Proposals</a></li></ul></li><li><a href="#increasing-the-quality-of-community-plugins">Increasing the quality of community plugins</a><ul class="toc-headings"><li><a href="#astexplorer">ASTExplorer</a></li></ul></li><li><a href="#feature">Feature</a><ul class="toc-headings"><li><a href="#performance-table-for-es6-used-in-babel-preset-env-under-new-option-eg-perf">Performance table for ES6+ (used in babel-preset-env under new option e.g <code>perf</code>)</a></li><li><a href="#compiled-output-stats">Compiled Output Stats</a></li><li><a href="#async-transforms">Async Transforms</a></li><li><a href="#plugin-ordering">Plugin Ordering</a></li><li><a href="#babel-helpers-shared-code">Babel Helpers (shared code)</a></li></ul></li><li><a href="#repurpose-babel--create-babel-init">Repurpose <code>babel</code> / create <code>babel-init</code></a></li><li><a href="#generalinfra">General/Infra</a><ul class="toc-headings"><li><a href="#smoke-tests">Smoke Tests</a></li><li><a href="#better-debuggability">Better Debuggability</a></li><li><a href="#babel-bot"><code>babel-bot</code></a></li><li><a href="#expanded-maintainer-guide">Expanded Maintainer Guide</a></li><li><a href="#maintainerssustainability">Maintainers/Sustainability</a></li></ul></li><li><a href="#big-wishlist-might-be-out-of-scopecomplexecosystem">Big Wishlist (might be out of scope/complex/ecosystem)</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

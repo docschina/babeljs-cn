@@ -1,0 +1,343 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>7.4.0 Released: core-js 3, static private methods and partial application · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Today we are releasing Babel 7.4.0!"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="7.4.0 Released: core-js 3, static private methods and partial application · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2019/03/19/7.4.0"/><meta property="og:description" content="Today we are releasing Babel 7.4.0!"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></h1><p class="post-meta">March 19, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/NicoloRibaudo" target="_blank" rel="noreferrer noopener">Nicolò Ribaudo</a></p></div></header><div><span><p>Today we are releasing Babel 7.4.0!</p>
+<p>This release includes support for <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-3-4-rc">TypeScript 3.4</a>, the proposal for partial application in function calls, and static private methods.</p>
+<p>We added support for meaningful parenthesized expressions in <code>@babel/parser</code>, and also made it more spec compliant than <em>ever</em>!</p>
+<p>Last but not least, both <code>@babel/preset-env</code> and <code>@babel/transform-runtime</code> now support <code>core-js@3</code>, and <code>@babel/template</code> has some sweet new syntax!</p>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.4.0">on GitHub</a>.</p>
+<!-- truncate -->
+<hr>
+<p>Special thanks to all the new Babel contributors 😊. Since we started generating release changelogs using GitHub actions we hadn't had the chance to thank them in each release, but since Babel 7.3.3 they have been a lot of people!</p>
+<ul>
+<li>Babel 7.3.3: <a href="https://github.com/Alec321">@Alec321</a>, <a href="https://github.com/mhcgrq">@mhcgrq</a>, <a href="https://github.com/ilyalesik">@ilyalesik</a>, <a href="https://github.com/yifei-fu">@yifei-fu</a></li>
+<li>Babel 7.3.4: <a href="https://github.com/elevatebart">@elevatebart</a>, <a href="https://github.com/ian-craig">@ian</a>, <a href="https://github.com/imjacobclark">@imjacobclark</a>, <a href="https://github.com/irohitb">@irohitb</a></li>
+<li>Babel 7.4.0: <a href="https://github.com/AmirS">@AmirS</a>, <a href="https://github.com/agoldis">@agoldis</a>, <a href="https://github.com/byara">@byara</a>, <a href="https://github.com/echenley">@echenley</a>, <a href="https://github.com/tanohzana">@tanohzana</a>, <a href="https://github.com/matt-tingen">@matt</a>, <a href="https://github.com/penielse">@penielse</a>, <a href="https://github.com/pnowak">@pnowak</a></li>
+</ul>
+<p>Many features in this release have been developed in collaboration with our sponsors. <a href="https://github.com/bloomberg"><strong>Bloomberg</strong></a> has contributed support for a new kind of private element in every release since 7.0 (<a href="https://babeljs.io/blog/2018/09/17/7.1.0#private-static-fields-stage-3">7.1</a>, <a href="https://babeljs.io/blog/2018/12/03/7.2.0#private-instance-methods-8654-https-githubcom-babel-babel-pull-8654">7.2</a>, <a href="https://babeljs.io/blog/2019/01/21/7.3.0#private-instance-accessors-getters-and-setters-9101-https-githubcom-babel-babel-pull-9101">7.3</a>), and they've now implemented static private methods! This leaves only static private getters and setters remaining.</p>
+<p>Similarly, <a href="https://github.com/trivago"><strong>Trivago</strong></a> (a Base Support Sponsor on <a href="https://opencollective.com/babel">OpenCollective</a>) took over the implementation of the partial application plugin.</p>
+<p>Over the last month, we have been experimenting with working more directly with companies on various features/optimizations that would benefit the community: <a href="https://github.com/runkitdev"><strong>RunKit</strong></a> has been sponsoring <a href="https://github.com/nicolo-ribaudo">Nicolò</a> to implement placeholder support in <code>@babel/template</code>.</p>
+<p>When managing a big open source project, not everything is code: we need to manage servers, continuous integration, social media accounts and... a lot of passwords! We really appreciate <a href="https://github.com/1Password/"><strong>1Password</strong></a> for accepting us into their <a href="https://github.com/1Password/1password-teams-open-source">open source support program</a> and providing us a free 1Password Teams account!</p>
+<p>If you or your company want to support Babel and the evolution of JavaScript, but aren't sure how, you can donate to us on <a href="https://opencollective.com/babel">OpenCollective</a> and, better yet, work with us on the implementation of <a href="https://github.com/babel/proposals">new ECMAScript proposals</a> directly! As a volunteer-driven project, we rely on the community's support to both fund our efforts in supporting the wide range of JavaScript users and taking ownership of the code. Reach out to Henry at <a href="mailto:henry@babeljs.io">henry@babeljs.io</a> if you'd like to talk more!</p>
+<h2><a class="anchor" aria-hidden="true" id="core-js-3-7646httpsgithubcombabelbabelpull7646"></a><a href="#core-js-3-7646httpsgithubcombabelbabelpull7646" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>core-js</code> 3 (<a href="https://github.com/babel/babel/pull/7646">#7646</a>)</h2>
+<p>We've received lots of kudos for our work on <code>@babel/preset-env</code>, but much of that should really go to the awesome work done by <a href="https://github.com/zloirock">Denis</a>. He maintains <code>core-js</code> which provides all the polyfills loaded by <code>@babel/polyfill</code>, <code>@babel/runtime</code> and <code>@babel/preset-env</code>.</p>
+<p><code>core-js@3</code> was just released, and includes a lot of new features: you can read about them at <a href="https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md">&quot;core-js@3, babel and a look into the future&quot;</a>. Other than all the new proposals, it makes it possible to polyfill transform <strong>instance</strong> methods using <code>@babel/plugin-transform-runtime</code> so that they can be used in old browsers without polluting the global environment:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// 'foo' could be either a string or an array, or a custom object</span>
+foo.includes(<span class="hljs-string">"a"</span>);
+
+<span class="hljs-comment">// ⮕</span>
+
+<span class="hljs-keyword">import</span> _includesInstanceProperty <span class="hljs-keyword">from</span> <span class="hljs-string">"@babel/runtime-corejs3/core-js-stable/instance/includes"</span>;
+
+_includesInstanceProperty(foo).call(foo, <span class="hljs-string">"a"</span>);
+</code></pre>
+<p><code>@babel/preset-env</code> and <code>@babel/plugin-transform-runtime</code> now support polyfilling proposals: you just need to use <code>corejs: { version: 3, proposals: true }</code> instead of <code>corejs: 3</code> in your configuration. Keep in mind that ECMAScript proposals are inherently unstable, and could change in <code>core-js@4</code>!</p>
+<p>Previously, <code>@babel/preset-env</code> relied entirely on <code>compat-table</code> data for determining which polyfills needed to be loaded for a particular environment. <code>core-js@3</code> introduces its own compatibility data set with an exhaustive test suite that should result in much more accurate polyfilling!</p>
+<h3><a class="anchor" aria-hidden="true" id="migration-from-core-js2"></a><a href="#migration-from-core-js2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Migration from <code>core-js@2</code></h3>
+<p>Since versions <code>2</code> and <code>3</code> of <code>core-js</code> are incompatible with each other (we don't want to break your code!), it isn't enabled by default.</p>
+<ul>
+<li><p>If you are using <code>@babel/preset-env</code>, you need to enable the <code>corejs: 3</code> option:</p>
+<pre><code class="hljs css language-javascript">presets: [
+  [<span class="hljs-string">"@babel/preset-env"</span>, {
+    <span class="hljs-attr">useBuiltIns</span>: <span class="hljs-string">"usage"</span>, <span class="hljs-comment">// or "entry"</span>
+    <span class="hljs-attr">corejs</span>: <span class="hljs-number">3</span>,
+  }]
+]
+</code></pre>
+<p>Don't forget to update your installed version of <code>core-js</code>!</p>
+<pre><code class="hljs">npm install --save core-<span class="hljs-symbol">js@</span><span class="hljs-number">3</span>
+</code></pre>
+<p>When using <code>core-js</code> 3, the <code>useBuiltIns: &quot;entry&quot;</code> option not only transforms <code>import &quot;core-js&quot;</code> imports, but also <code>regenerator-runtime/runtime</code> and all the nested <code>core-js</code> entry points.</p>
+<p>For example, when targeting Chrome 72, it will apply this transformation:</p>
+<p><details>
+<summary>Input</summary></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/es"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/proposals/set-methods"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/features/set/map"</span>;
+</code></pre>
+<p></details>
+<details>
+<summary>Output</summary></p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/es.array.unscopables.flat"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/es.array.unscopables.flat-map"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/es.object.from-entries"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/esnext.set.difference"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/esnext.set.intersection"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/esnext.set.is-disjoint-from"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/esnext.set.is-subset-of"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/esnext.set.is-superset-of"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/esnext.set.map"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/esnext.set.symmetric-difference"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/esnext.set.union"</span>;
+</code></pre>
+<p></details></p>
+<p>Unlike when using <code>core-js</code> 2, it doesn't transform <code>@babel/polyfill</code> imports because when used directly that package loads version 2 of <code>core-js</code>.</p></li>
+<li><p>If you are using <code>@babel/plugin-transform-runtime</code>, you need to use the <code>corejs: 3</code> option:</p>
+<pre><code class="hljs css language-javascript">plugins: [
+  [<span class="hljs-string">"@babel/transform-runtime"</span>, {
+    <span class="hljs-attr">corejs</span>: <span class="hljs-number">3</span>,
+  }]
+]
+</code></pre>
+<p>You can remove <code>@babel/runtime-corejs2</code>, but you need to install <code>@babel/runtime-corejs3</code>!</p>
+<pre><code class="hljs"><span class="hljs-built_in">npm</span> remove @babel/runtime-corejs2
+<span class="hljs-built_in">npm</span> install --save @babel/runtime-corejs3
+</code></pre></li>
+<li><p><code>@babel/polyfill</code> isn't a plugin or preset, but a runtime package: if we added an option to switch between <code>core-js@2</code> and <code>core-js@3</code>, both the package versions would need to be included in your bundle. For this reason, we decided to deprecate it: you now should load <code>core-js</code> for polyfills, and <code>regenerator-runtime/runtime</code> if you are transforming generators:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// before</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">"@babel/polyfill"</span>;
+
+<span class="hljs-comment">// after</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/stable"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"regenerator-runtime/runtime"</span>;
+</code></pre>
+<p>This gives you the ability to load any version you want, and to update those two package independently.</p>
+<p>In case you are interested, you should check the old source of <code>@babel/polyfill</code> for <code>core-js@2</code>:  <a href="https://github.com/babel/babel/blob/cf4bd8bb8d7e9feb7de8d97ef0eabcdc7499fce2/packages/babel-polyfill/src/index.js">packages/babel-polyfill/src/index.js</a>.</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="partial-application-9343httpsgithubcombabelbabelpull9343-and-9474httpsgithubcombabelbabelpull9474"></a><a href="#partial-application-9343httpsgithubcombabelbabelpull9343-and-9474httpsgithubcombabelbabelpull9474" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Partial Application (<a href="https://github.com/babel/babel/pull/9343">#9343</a> and <a href="https://github.com/babel/babel/pull/9474">#9474</a>)</h2>
+<p>This release includes both <code>@babel/parser</code> and transform support for the <a href="https://github.com/tc39/proposal-partial-application">partial application proposal</a>, which is currently at Stage 1 (last presented in July 2018). All the implementation work has been done by <a href="https://github.com/byara">Behrang Yarahmadi</a>, sponsored by Trivago.</p>
+<p>This new feature allows you to bind some arguments and the <code>this</code> receiver function, similarly to the existing <code>Function#bind</code> method but with fewer limitations.</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> half = divide(?, <span class="hljs-number">2</span>); <span class="hljs-comment">// half = num =&gt; divide(num, 3)</span>
+half(<span class="hljs-number">6</span>); <span class="hljs-comment">// 3</span>
+
+
+element.addEventListener(
+  <span class="hljs-string">"click"</span>,
+  <span class="hljs-comment">// handleEvent will be called with the correct "this".</span>
+  <span class="hljs-keyword">this</span>.handleEvent(<span class="hljs-string">"click"</span>, ?) <span class="hljs-comment">// e =&gt; this.handleEvent("click", e)</span>
+);
+</code></pre>
+<p>It is also really useful in conjunction with the pipeline operator proposal (especially when using the &quot;minimal&quot; or &quot;F-sharp&quot; variants), since it makes it possible to avoid a lot of arrow functions:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">let</span> newScore = player.score
+  |&gt; add(?, <span class="hljs-number">7</span>)
+  |&gt; clamp(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>, ?);
+
+<span class="hljs-comment">// Without this proposal:</span>
+<span class="hljs-keyword">let</span> newScore = player.score
+  |&gt; (<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> add(_, <span class="hljs-number">7</span>))
+  |&gt; (<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> clamp(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>, _));
+</code></pre>
+<p>You can test it by adding <code>@babel/plugin-proposal-partial-application</code> to your config, or by enabling the <code>stage 1</code> preset in the online <a href="https://babeljs.io/repl/build/master#?presets=stage-1">repl</a>!</p>
+<blockquote>
+<p>ℹ️ NOTE: Although the proposal's readme also describes partial application for tagged template literals, it has not been implemented because <a href="https://github.com/babel/babel/pull/9343#issuecomment-457307782">it will likely be removed</a>.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="static-private-methods-9446httpsgithubcombabelbabelpull9446"></a><a href="#static-private-methods-9446httpsgithubcombabelbabelpull9446" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Static private methods (<a href="https://github.com/babel/babel/pull/9446">#9446</a>)</h2>
+<pre><code class="hljs css language-javascript">class Person {
+  static #is(obj) {
+    return obj instanceof Person;
+  }
+
+  constructor(name) {
+    if (Person.#is(name)) {
+      throw "It is already a person!";
+    }
+  }
+}
+</code></pre>
+<p>Thanks again to <a href="https://github.com/tim-mc">Tim</a> (Bloomberg) for implementing this proposal!</p>
+<p>If you already use instance private methods you can use this new feature without any additional configuration, otherwise you need to add <code>@babel/plugin-proposal-private-methods</code> to your plugins list. When using the online <a href="https://babeljs.io/repl/build/master#?presets=stage-3">repl</a> it is enabled by the <code>stage-3</code> preset.</p>
+<p>Class private features support is only one step away from being complete! 😄</p>
+<div style="margin: auto; width: fit-content">
+<table>
+<thead>
+<tr><th>Class Private</th><th><strong>Instance</strong></th><th><strong>Static</strong></th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Fields</strong> <br/> <code>class A { #a = 1 }</code></td><td><a href="https://babeljs.io/blog/2018/08/27/7.0.0#tc39-proposals-https-githubcom-tc39-proposals-support">7.0.0</a></td><td><a href="https://babeljs.io/blog/2018/09/17/7.1.0#private-static-fields-stage-3">7.1.0</a></td></tr>
+<tr><td><strong>Methods</strong> <br/> <code>class A { #a() {} }</code></td><td><a href="https://babeljs.io/blog/2018/12/03/7.2.0#private-instance-methods-8654-https-githubcom-babel-babel-pull-8654">7.2.0</a></td><td>7.4.0</td></tr>
+<tr><td><strong>Accessors</strong> <br/> <code>class A { get #a() {} }</code></td><td><a href="https://babeljs.io/blog/2019/01/21/7.3.0#private-instance-accessors-getters-and-setters-9101-https-githubcom-babel-babel-pull-9101">7.3.0</a></td><td>:heavy_multiplication_x:</td></tr>
+</tbody>
+</table>
+</div>
+<h2><a class="anchor" aria-hidden="true" id="typescript-34-rc-support-9529httpsgithubcombabelbabelpull9529-and-9534httpsgithubcombabelbabelpull9534"></a><a href="#typescript-34-rc-support-9529httpsgithubcombabelbabelpull9529-and-9534httpsgithubcombabelbabelpull9534" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript 3.4 RC support (<a href="https://github.com/babel/babel/pull/9529">#9529</a> and <a href="https://github.com/babel/babel/pull/9534">#9534</a>)</h2>
+<p>TypeScript 3.4 RC was <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-3-4-rc/">released</a> a few days ago, and thanks to <a href="https://github.com/tanhauhau">Tan Li Hau</a> it is already supported by Babel!</p>
+<p>There are two new features for type annotations: <code>const</code> contexts, which mark an object as &quot;deeply frozen&quot;, and the <code>readonly</code> modifier for arrays and tuples.</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> student = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">"Joe Blogs"</span>,
+  <span class="hljs-attr">marks</span>: [<span class="hljs-number">25</span>, <span class="hljs-number">23</span>, <span class="hljs-number">30</span>]
+} <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>;
+
+<span class="hljs-keyword">const</span> vowels: readonly string[] = [<span class="hljs-string">"a"</span>, <span class="hljs-string">"e"</span>, <span class="hljs-string">"i"</span>, <span class="hljs-string">"o"</span>, <span class="hljs-string">"u"</span>];
+</code></pre>
+<p>Keep in mind that TypeScript 3.4 RC is not a stable release, so you should wait until TypeScript 3.4 is officially released: you can subscribe to the <a href="https://devblogs.microsoft.com/typescript/">TypeScript blog</a> to be notified when it will be available. 🙂</p>
+<h2><a class="anchor" aria-hidden="true" id="parenthesized-expressions-8025httpsgithubcombabelbabelissues8025"></a><a href="#parenthesized-expressions-8025httpsgithubcombabelbabelissues8025" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parenthesized expressions (<a href="https://github.com/babel/babel/issues/8025">#8025</a>)</h2>
+<p>Parentheses are not usually meaningful for JavaScript compilers or code generators: they are only &quot;hints&quot; used to tell the parser that some nodes have different precedence from the default one:</p>
+<div style="margin: auto; width: fit-content">
+<table>
+<thead>
+<tr><th><strong>Code</strong></th><th style="text-align:center"><code>1 + 2 * 3</code> / <code>1 + (2 * 3)</code></th><th style="text-align:center"><code>(1 + 2) * 3</code></th></tr>
+</thead>
+<tbody>
+<tr><td><strong>AST structure</strong></td><td style="text-align:center"><img src="https://i.imgur.com/pcfIRPq.jpg" alt=""></td><td style="text-align:center"><img src="https://i.imgur.com/1CXk8BZ.jpg" alt=""></td></tr>
+</tbody>
+</table>
+</div>
+<p>When the AST has been generated, the precedence of operations is determined by the tree structure and not by the original parentheses: for this reason Babel did not track them.</p>
+<p>When printing an AST, <code>@babel/generator</code> has no knowledge about the original formatting and only generates parentheses where needed.</p>
+<p>There are some situations where this causes problems for users. For example, when using Google Closure Compiler, parentheses are used to mark <a href="https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler#type-casting">type cast expressions</a>:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">/** <span class="hljs-doctag">@type <span class="hljs-type">{!MyType}</span> </span>*/</span> (valueExpression)
+</code></pre>
+<p>We already had a <code>ParenthesizedExpression</code> node to represent parentheses, but it was never generated by <code>@babel/parser</code> and it could only be injected by custom plugins. Thanks to the work of <a href="https://github.com/arv">Erik Arvidsson</a>, you can now use the <code>createParenthesizedExpressions</code> <a href="https://babeljs.io/docs/en/options#parseropts">parser option</a> to automatically track them!</p>
+<div style="margin: auto; width: fit-content">
+<table>
+<thead>
+<tr><th><strong>Code</strong></th><th style="text-align:center"><code>1 + (2 * 3)</code></th><th style="text-align:center"><code>(1 + 2) * 3</code></th></tr>
+</thead>
+<tbody>
+<tr><td><strong>AST structure</strong></td><td style="text-align:center"><img src="https://i.imgur.com/1uMC81f.jpg" alt=""></td><td style="text-align:center"><img src="https://i.imgur.com/mT7sk7P.jpg" alt=""></td></tr>
+</tbody>
+</table>
+</div>
+<h2><a class="anchor" aria-hidden="true" id="babelparser-spec-compliancy"></a><a href="#babelparser-spec-compliancy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>@babel/parser</code> spec compliancy</h2>
+<p><a href="https://github.com/danez">Daniel</a> is making <code>@babel/parser</code> more and more compliant to the ECMAScript specification: it is now passing 98.97% of the tests in the <a href="https://github.com/tc39/test262">Test262</a> suite. 😎</p>
+<p>This release makes <code>@babel/parser</code> aware of JavaScript's scoping rules: it now knows which variables are declared, if there are conflicts, whether they are hoisted or not, and if a specific syntactic construct is allowed in the context where it is found.</p>
+<p>All of these invalid examples are now correctly reported as errors, avoiding the need to manually disallow them in every tool that uses <code>@babel/parser</code> under the hood:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">let</span> a, a; <span class="hljs-comment">// Duplicate declaration 💥</span>
+
+<span class="hljs-keyword">if</span> (foo) {
+  <span class="hljs-keyword">if</span> (bar) { <span class="hljs-keyword">var</span> b }
+  <span class="hljs-keyword">let</span> b; <span class="hljs-comment">// Duplicate declaration, again 💥</span>
+}
+
+<span class="hljs-keyword">export</span> { Foo }; <span class="hljs-comment">// Error, Foo is not declared ❓</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> </span>{
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">super</span>(); <span class="hljs-comment">// Super in a non-derived class 🤔</span>
+  }
+  
+  method(d, d) {} <span class="hljs-comment">// Duplicate parameter 💥</span>
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="code-placeholders-9364httpsgithubcombabelbabelpull9364"></a><a href="#code-placeholders-9364httpsgithubcombabelbabelpull9364" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Code placeholders (<a href="https://github.com/babel/babel/pull/9364">#9364</a>)</h2>
+<p>Code is not always meant to be directly written by humans: what if some code needs to be generated, maybe using a predefined template?</p>
+<p>Template files are often used to generate HTML code, either using a language like PHP or a template engine like Handlebars:</p>
+<pre><code class="hljs css language-htmlmixed"><span class="xml"><span class="hljs-comment">&lt;!-- PHP --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?</span>= $title <span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?</span>= $body <span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Handlebars --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span></span><span class="hljs-template-variable">{{ title }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span></span><span class="hljs-template-variable">{{ body }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+</span></code></pre>
+<p>If you have ever developed a Babel plugin, you might have used <code>@babel/template</code>: it is a utility which allows you to do the same thing, but generating JavaScript code:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> buildAssign = template<span class="hljs-string">`
+  var NAME = VALUE;
+`</span>;
+
+<span class="hljs-keyword">const</span> result = buildAssign({
+  <span class="hljs-attr">NAME</span>: varName,
+  <span class="hljs-attr">VALUE</span>: varValue,
+});
+</code></pre>
+<p>Until now, <code>@babel/template</code> used uppercase identifier as &quot;placeholders&quot;, which then needed to be replaced. While this approach worked well in most cases, it also had some caveats:</p>
+<ul>
+<li>by default, every uppercase identifier was marked as a placeholder and <code>@babel/template</code> would threw an error if it was not replaced.</li>
+<li>it was not possible to put a placeholder where an identifier is not allowed, for example in place of a function body or an exported declaration.</li>
+</ul>
+<p>To solve these problems, we introduced a new syntactic element, which can replace any node: <code>%%placeholder_name%%</code>.</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> buildLazyFn = template<span class="hljs-string">`
+  function %%name%%(%%params%%) {
+    return function () %%body%%;
+  }
+`</span>;
+
+<span class="hljs-keyword">const</span> result = buildLazyFn({
+  <span class="hljs-attr">name</span>: functionName,
+  <span class="hljs-attr">params</span>: functionParams,
+  <span class="hljs-attr">body</span>: functionBody,
+});
+</code></pre>
+<p>This feature has being sponsored by <a href="https://stripe.com">Stripe</a> (via <a href="https://runkit.com">Runkit</a>). We have been experimenting with new ways of sponsoring Babel, and for the first time a company directly sponsored the implementation of a feature by paying a member of the team to work on it. If your company wants to sponsor the implementation of an ECMAScript proposal, or a general improvement to Babel, please contact us!</p>
+<hr>
+<p><a href="https://twitter.com/search?q=https%3A%2F%2Fbabeljs.io%2Fblog%2F2019%2F03%2F19%2F7.4.0">Discuss on Twitter</a></p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#core-js-3-7646httpsgithubcombabelbabelpull7646"><code>core-js</code> 3 (<a href="https://github.com/babel/babel/pull/7646">#7646</a>)</a><ul class="toc-headings"><li><a href="#migration-from-core-js2">Migration from <code>core-js@2</code></a></li></ul></li><li><a href="#partial-application-9343httpsgithubcombabelbabelpull9343-and-9474httpsgithubcombabelbabelpull9474">Partial Application (<a href="https://github.com/babel/babel/pull/9343">#9343</a> and <a href="https://github.com/babel/babel/pull/9474">#9474</a>)</a></li><li><a href="#static-private-methods-9446httpsgithubcombabelbabelpull9446">Static private methods (<a href="https://github.com/babel/babel/pull/9446">#9446</a>)</a></li><li><a href="#typescript-34-rc-support-9529httpsgithubcombabelbabelpull9529-and-9534httpsgithubcombabelbabelpull9534">TypeScript 3.4 RC support (<a href="https://github.com/babel/babel/pull/9529">#9529</a> and <a href="https://github.com/babel/babel/pull/9534">#9534</a>)</a></li><li><a href="#parenthesized-expressions-8025httpsgithubcombabelbabelissues8025">Parenthesized expressions (<a href="https://github.com/babel/babel/issues/8025">#8025</a>)</a></li><li><a href="#babelparser-spec-compliancy"><code>@babel/parser</code> spec compliancy</a></li><li><a href="#code-placeholders-9364httpsgithubcombabelbabelpull9364">Code placeholders (<a href="https://github.com/babel/babel/pull/9364">#9364</a>)</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

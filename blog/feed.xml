@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Babel 中文文档 Blog</title>
+        <link>https://babel.docschina.org/blog</link>
+        <description>The best place to stay up-to-date with the latest Babel 中文文档 news and events.</description>
+        <lastBuildDate>Mon, 22 Feb 2021 06:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <image>
+            <title>Babel 中文文档 Blog</title>
+            <url>https://babel.docschina.org/img/babel.svg</url>
+            <link>https://babel.docschina.org/blog</link>
+        </image>
+        <item>
+            <title><![CDATA[7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets]]></title>
+            <link>https://babel.docschina.org/blog/2021/02/22/7.13.0.html</link>
+            <guid>https://babel.docschina.org/blog/2021/02/22/7.13.0.html</guid>
+            <pubDate>Mon, 22 Feb 2021 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We just published Babel 7.13.0, the first minor release of 2021!</p>
+<p>This release includes some important features to <code>@babel/core</code>: a <code>targets</code> option (similar to <code>@babel/preset-env</code>'s one) that can be shared across different plugins, an <code>assumptions</code> option to precisely tune your configuration to produce a smaller compilation output, and support for plugins and presets written using native ECMAScript modules.</p>
+<p>Babel now supports transforming the <a href="https://github.com/tc39/proposal-record-tuple">Records and Tuples</a> ECMAScript proposal, which brings immutable data structures and structural equality to JavaScript, and parsing the <a href="https://github.com/tc39/proposal-js-module-blocks">Module Blocks</a> proposal.</p>
+<p>Additionally, we added support for some new Flow and TypeScript features.</p>
+<p>You can read the full changelog on <a href="https://github.com/babel/babel/releases/tag/v7.13.0">GitHub</a>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks]]></title>
+            <link>https://babel.docschina.org/blog/2020/10/15/7.12.0.html</link>
+            <guid>https://babel.docschina.org/blog/2020/10/15/7.12.0.html</guid>
+            <pubDate>Thu, 15 Oct 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We just published a new minor version of Babel!</p>
+<p>This release includes support for the new TypeScript 4.1 beta features: <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-4-1-beta/#template-literal-types">template literal types</a> and <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-4-1-beta/#key-remapping-mapped-types">key remapping in mapped types</a>.</p>
+<p>Additionally, we implemented two new ECMAScript proposals: <a href="https://github.com/tc39/proposal-class-static-block">class static blocks</a> and <a href="https://github.com/tc39/ecma262/pull/2154">imports and exports with string names</a>.</p>
+<p>Lastly, we renamed <code>@babel/plugin-syntax-module-attributes</code> (and the corresponding parser plugin <code>moduleAttributes</code>) to <code>@babel/plugin-syntax-import-assertions</code> (and <code>importAssertions</code>), to match the recent <a href="https://github.com/tc39/proposal-import-assertions">proposal</a> updates. The old plugin will work until Babel 8, but it's deprecated now.</p>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.12.0">on GitHub</a>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`]]></title>
+            <link>https://babel.docschina.org/blog/2020/07/30/7.11.0.html</link>
+            <guid>https://babel.docschina.org/blog/2020/07/30/7.11.0.html</guid>
+            <pubDate>Thu, 30 Jul 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We just released a new minor version of Babel!</p>
+<p>This 7.11 release includes:</p>
+<ul>
+<li><code>preset-env</code> support for Logical Assignments (<code>??=</code>), Numeric Separators (<code>1_2</code>) and Namespace re-exports (<code>export * as ns from ...</code>)</li>
+<li>TypeScript 4.0 support</li>
+<li>Parser support for the Stage-1 <a href="https://github.com/tc39/proposal-decimal">Decimal proposal</a> (<code>7.11m</code>)</li>
+<li>An environment flag to print the resolved Babel configuration for a given file (<code>BABEL_SHOW_CONFIG_FOR</code>)</li>
+</ul>
+<p>In addition to this, we are now releasing the successor of <code>babel-eslint</code>: <code>@babel/eslint-parser</code>!</p>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.11.0">on GitHub</a>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[The State of babel-eslint]]></title>
+            <link>https://babel.docschina.org/blog/2020/07/13/the-state-of-babel-eslint.html</link>
+            <guid>https://babel.docschina.org/blog/2020/07/13/the-state-of-babel-eslint.html</guid>
+            <pubDate>Mon, 13 Jul 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p><code>babel-eslint</code> is moved to <code>@babel/eslint-parser</code>!</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.10.0 Released: Class Fields in preset-env, '#private in' checks and better React tree-shaking]]></title>
+            <link>https://babel.docschina.org/blog/2020/05/25/7.10.0.html</link>
+            <guid>https://babel.docschina.org/blog/2020/05/25/7.10.0.html</guid>
+            <pubDate>Mon, 25 May 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We just released a new minor version of Babel!</p>
+<p>This 7.10 release includes:</p>
+<ul>
+<li>Full support for the new Stage 1 proposal, <code>#prop in obj</code> checks for private fields <a href="https://github.com/tc39/proposal-private-fields-in-in">proposal</a>.</li>
+<li><code>@babel/preset-env</code> now compiles ES2015-style Unicode escapes (<code>\u{Babe1}</code>) to the equivalent legacy syntax (<code>\uDAAA\uDFE1</code>).</li>
+<li>Two improvements to the <a href="https://github.com/tc39/proposal-optional-chaining">Optional Chaining</a> operator (<code>?.</code>)</li>
+<li>Parser support for the new Stage 1 <a href="https://github.com/tc39/proposal-module-attributes">Module Attributes proposal</a> (<code>import a from &quot;./a.json&quot; with type: &quot;json&quot;</code>).</li>
+<li>Better tree-shaking support for React code (i.e. <code>React.memo</code>)!</li>
+<li>Setting up <a href="https://github.com/babel/rfcs">RFCs</a> repo and <a href="https://github.com/babel/babel/discussions">GitHub Discussions</a> pages!</li>
+</ul>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.10.0">on GitHub</a>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform]]></title>
+            <link>https://babel.docschina.org/blog/2020/03/16/7.9.0.html</link>
+            <guid>https://babel.docschina.org/blog/2020/03/16/7.9.0.html</guid>
+            <pubDate>Mon, 16 Mar 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>While preparing the Babel 8.0.0 <a href="https://github.com/babel/babel/issues/10746">release</a> (in the next months), we just finished working on a new minor release which includes updates related to <code>@babel/preset-env</code>, TypeScript 3.8, Flow, and JSX!</p>
+<p>A few months ago, <a href="https://twitter.com/_developit">Jason Miller</a> started working on <a href="https://github.com/babel/preset-modules"><code>@babel/preset-modules</code></a>: an experiment to greatly reduce bundle sizes when using the <a href="https://css-tricks.com/differential-serving/"><code>module</code>/<code>nomodule</code> pattern</a>. We are excited to announce that its functionality has now been merged into <code>@babel/preset-env</code>! This means that its optimizations can be applied to all <code>preset-env</code> targets values, without a separate preset.</p>
+<p><em>Note: These optimizations will be enabled by default in Babel 8. They can be manually enabled in Babel 7.9 by passing in the option <code>{ bugfixes: true }</code> to <code>preset-env</code>.</em></p>
+<p>This release also has full support for <a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html">TypeScript 3.8</a>, which introduced explicit type-only imports and exports (i.e. <code>export type { foo }</code>), and for <a href="https://github.com/facebook/flow/blob/master/Changelog.md#01201">Flow 0.120</a>, which introduced the <code>declare</code> modifier for class fields (i.e. <code>class C { declare foo: string }</code>).</p>
+<p>We also worked with the React team to provide a new <a href="https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md">JSX transform</a>, which will make it possible for React and React-like libraries to further optimize the creation of JSX elements with the addition of the <code>jsx</code> function vs. <code>React.createElement</code>.</p>
+<p>Lastly, <code>@babel/parser</code> now supports an additional ECMAScript proposal: <a href="https://github.com/tc39/proposal-record-tuple">Record &amp; Tuple</a>. Please note that this is only parser support, and the transforms are still being worked on.</p>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.9.0">on GitHub</a>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements]]></title>
+            <link>https://babel.docschina.org/blog/2020/01/11/7.8.0.html</link>
+            <guid>https://babel.docschina.org/blog/2020/01/11/7.8.0.html</guid>
+            <pubDate>Sat, 11 Jan 2020 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>This is the first release of the year! 🎉</p>
+<p>Babel 7.8.0 supports the new <a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">ECMAScript 2020</a> features by default: you don't need to enable individual plugins for nullish coalescing (<code>??</code>), optional chaining (<code>?.</code>) and dynamic <code>import()</code> anymore with preset-env.</p>
+<p>We also finished aligning our different configuration files with the formats natively supported by Node.js, a process that we started in the <a href="https://babeljs.io/blog/2019/11/05/7.7.0#new-configuration-file-extensions-10501-https-githubcom-babel-babel-pull-10501-10599-https-githubcom-babel-babel-pull-10599">7.7.0 release</a>.</p>
+<p>Lastly, Babel's CLI now supports two new options: <code>--out-file-extension</code> and <code>--copy-ignored</code>.</p>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.8.0">on GitHub</a>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Babel's Funding Plans]]></title>
+            <link>https://babel.docschina.org/blog/2019/11/08/babels-funding-plans.html</link>
+            <guid>https://babel.docschina.org/blog/2019/11/08/babels-funding-plans.html</guid>
+            <pubDate>Fri, 08 Nov 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>One of the greatest strengths of open source software is that it is open and free for anyone to contribute. This also leads to one of its greatest challenges, which is to support consistent, sustainable maintenance.</p>
+<p>Babel isn't a company. As mentioned in the <a href="https://babeljs.io/blog/2018/08/27/7.0.0#maintainers-are-people">7.0.0 post</a>, the all-volunteer Babel team (sans Henry) has been doing its best to steward the project and handle all the expectations of the community. We're glad that we have continued to make releases, but even keeping up-to-date with reported issues is difficult to manage, let alone our integrations with other tools, new proposals, and effect on the greater ecosystem.</p>
+<p>In March 2018, Henry <a href="https://www.henryzoo.com/leaving-behance/">left his job</a> to start <a href="https://www.henryzoo.com/in-pursuit-of-open-source-part-1/">working on securing more funding for Babel</a>. After a lot of work and support from the community, the team was able to fund Henry as a full-time maintainer.</p>
+<p>This has been a big win for the team, but we're finding that it is not enough.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.7.0 Released: Error recovery and TypeScript 3.7]]></title>
+            <link>https://babel.docschina.org/blog/2019/11/05/7.7.0.html</link>
+            <guid>https://babel.docschina.org/blog/2019/11/05/7.7.0.html</guid>
+            <pubDate>Tue, 05 Nov 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Today we are releasing Babel 7.7.0!</p>
+<p>This release includes new parser features like top-level await (<code>await x()</code>, <a href="https://github.com/tc39/proposal-top-level-await">Stage 3</a>) and Flow <code>enum</code> declarations (<a href="https://github.com/gkz/enums">Flow proposal</a>). And now, <code>@babel/parser</code> has the option of recovering from certain syntax errors!</p>
+<p>We've also added support for <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-3-7-rc/">TypeScript 3.7</a>: Babel can parse and transform private class fields with type annotations, public class fields annotations defined using the <code>declare</code> keyword, type assertion function signatures and template literals in <code>enum</code> declarations.</p>
+<p>Babel now understands three new configuration files: <code>babel.config.json</code>, <code>babel.config.cjs</code> and <code>.babelrc.cjs</code>, which behave the same as <code>babel.config.js</code> and <code>.babelrc.js</code> files.</p>
+<p>Lastly, Babel 7.7.0 uses 20% less memory than 7.6.0.</p>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.7.0">on GitHub</a>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.6.0 Released: Private static accessors and V8 intrinsic syntax]]></title>
+            <link>https://babel.docschina.org/blog/2019/09/05/7.6.0.html</link>
+            <guid>https://babel.docschina.org/blog/2019/09/05/7.6.0.html</guid>
+            <pubDate>Thu, 05 Sep 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We just released a new minor Babel version!</p>
+<p>It includes support for static private accessors in classes, and parser support for the V8 intrinsics syntax. We also fixed a bunch of long-standing issues related to TDZ handling, and improved support for do-expressions. You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.6.0">on GitHub</a>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.5.0 Released: dynamic import and F# pipelines]]></title>
+            <link>https://babel.docschina.org/blog/2019/07/03/7.5.0.html</link>
+            <guid>https://babel.docschina.org/blog/2019/07/03/7.5.0.html</guid>
+            <pubDate>Wed, 03 Jul 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Today we are releasing Babel 7.5.0!</p>
+<p>This release includes improved support for a few ECMAScript proposals: the F# variant of the Stage 1 pipeline operator and an official plugin for the Stage 4 dynamic <code>import()</code> proposal (along with <code>preset-env</code> support).
+It also has support for TypeScript <code>namespace</code>s (experimental) and for Browserslist's <code>default</code> query in <code>preset-env</code>.</p>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.5.0">on GitHub</a>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[The Babel Podcast]]></title>
+            <link>https://babel.docschina.org/blog/2019/07/02/the-babel-podcast.html</link>
+            <guid>https://babel.docschina.org/blog/2019/07/02/the-babel-podcast.html</guid>
+            <pubDate>Tue, 02 Jul 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Today we're announcing the <a href="https://podcast.babeljs.io">The Babel Podcast</a>!</p>
+<blockquote>
+<p>You probably use Babel, directly or as a dependency. But do you ever wonder who works on it? Henry Zhu chats with other members of the team, TC39, and the JS community about the future of JavaScript and how it's all maintained. Please join us in babbling about Babel (and everything else)!</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="subscribe-with-apple-httpspodcastsapplecomuspodcastthe-babel-podcastid1470143101--googlehttpswwwgooglecompodcastsfeedahr0chm6ly9mzwvkcy50cmfuc2lzdg9ylmztl3rozs1iywjlbc1wb2rjyxn0--spotifyhttpsopenspotifycomshow3tk8x8agckeeqetnjvzyaz--rsshttpsfeedstransistorfmthe-babel-podcast"></a><a href="#subscribe-with-apple-httpspodcastsapplecomuspodcastthe-babel-podcastid1470143101--googlehttpswwwgooglecompodcastsfeedahr0chm6ly9mzwvkcy50cmfuc2lzdg9ylmztl3rozs1iywjlbc1wb2rjyxn0--spotifyhttpsopenspotifycomshow3tk8x8agckeeqetnjvzyaz--rsshttpsfeedstransistorfmthe-babel-podcast" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Subscribe with: <a href="https://podcasts.apple.com/us/podcast/the-babel-podcast/id1470143101">Apple</a> | <a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkcy50cmFuc2lzdG9yLmZtL3RoZS1iYWJlbC1wb2RjYXN0">Google</a> | <a href="https://open.spotify.com/show/3TK8x8AGckeEQEtnJVZYAz">Spotify</a> | <a href="https://feeds.transistor.fm/the-babel-podcast">RSS</a></h3>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.4.0 Released: core-js 3, static private methods and partial application]]></title>
+            <link>https://babel.docschina.org/blog/2019/03/19/7.4.0.html</link>
+            <guid>https://babel.docschina.org/blog/2019/03/19/7.4.0.html</guid>
+            <pubDate>Tue, 19 Mar 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Today we are releasing Babel 7.4.0!</p>
+<p>This release includes support for <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-3-4-rc">TypeScript 3.4</a>, the proposal for partial application in function calls, and static private methods.</p>
+<p>We added support for meaningful parenthesized expressions in <code>@babel/parser</code>, and also made it more spec compliant than <em>ever</em>!</p>
+<p>Last but not least, both <code>@babel/preset-env</code> and <code>@babel/transform-runtime</code> now support <code>core-js@3</code>, and <code>@babel/template</code> has some sweet new syntax!</p>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.4.0">on GitHub</a>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines]]></title>
+            <link>https://babel.docschina.org/blog/2019/01/21/7.3.0.html</link>
+            <guid>https://babel.docschina.org/blog/2019/01/21/7.3.0.html</guid>
+            <pubDate>Mon, 21 Jan 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>After over 80 commits, the latest Babel minor release is here!</p>
+<p>This release includes support for named capturing groups in regular expressions, private instance accessors, the smart pipeline operator and a bunch of improvements to TypeScript parsing. You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.3.0">on GitHub</a>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.2.0 发布：私有实例方法（Private Instance Methods）]]></title>
+            <link>https://babel.docschina.org/blog/2018/12/03/7.2.0.html</link>
+            <guid>https://babel.docschina.org/blog/2018/12/03/7.2.0.html</guid>
+            <pubDate>Mon, 03 Dec 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>我们刚刚新发布了 Babel 的小版本。</p>
+<p>此版本中包含对私有实例方法的支持以及一系列与 Flow 和 TypeScript 类型相关的错误修复。你可以在 <a href="https://github.com/babel/babel/releases/tag/v7.2.0">Github 上</a>阅读整个日志。</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[在 Babel 中支持 TC39 标准的装饰器]]></title>
+            <link>https://babel.docschina.org/blog/2018/09/17/decorators.html</link>
+            <guid>https://babel.docschina.org/blog/2018/09/17/decorators.html</guid>
+            <pubDate>Mon, 17 Sep 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Babel 7.1.0 最终支持了新的装饰器提案：你可以使用 <a href="https://babel.docschina.org/docs/en/babel-plugin-proposal-decorators"><code>@babel/plugin-proposal-decorators</code></a> 插件来提前尝试此功能 🎉。</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[7.1.0 Released: Decorators, Private Static Fields]]></title>
+            <link>https://babel.docschina.org/blog/2018/09/17/7.1.0.html</link>
+            <guid>https://babel.docschina.org/blog/2018/09/17/7.1.0.html</guid>
+            <pubDate>Mon, 17 Sep 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>There's already another release! 7.1.0 includes support for Stage 2 Decorators and adds support for Stage 3 Private Static Fields as well as some various bug fixes.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Babel 7 发布]]></title>
+            <link>https://babel.docschina.org/blog/2018/08/27/7.0.0.html</link>
+            <guid>https://babel.docschina.org/blog/2018/08/27/7.0.0.html</guid>
+            <pubDate>Mon, 27 Aug 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>历经 2 年，4k 多次提交，50 多个预发布版本以及大量社区援助，我们很高兴地宣布发布 Babel 7。自 Babel 6 发布以来，已经过了将近<a href="https://babeljs.io/blog/2015/10/29/6.0.0">三年的时间</a>！发布期间有许多要进行的迁移工作，因此请在发布第一周与我们联系。Babel 7 是更新巨大的版本：我们使它编译更快，并创建了升级工具，支持 JS 配置，支持配置 &quot;overrides&quot;，更多 size/minification 的选项，支持 JSX 片段，支持 TypeScript，支持新提案等等！</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Removing Babel's Stage Presets]]></title>
+            <link>https://babel.docschina.org/blog/2018/07/27/removing-babels-stage-presets.html</link>
+            <guid>https://babel.docschina.org/blog/2018/07/27/removing-babels-stage-presets.html</guid>
+            <pubDate>Fri, 27 Jul 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Moving forward with v7, we've decided it's best to stop publishing the Stage presets in Babel (e.g. <code>@babel/preset-stage-0</code>).</p>
+<p>We didn't make this decision lightly and wanted to show the context behind the interplay between TC39, Babel, and the community.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[What's Happening With the Pipeline (|>) Proposal?]]></title>
+            <link>https://babel.docschina.org/blog/2018/07/19/whats-happening-with-the-pipeline-proposal.html</link>
+            <guid>https://babel.docschina.org/blog/2018/07/19/whats-happening-with-the-pipeline-proposal.html</guid>
+            <pubDate>Thu, 19 Jul 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>With the release of <a href="https://github.com/babel/babel/releases/tag/v7.0.0-beta.52">babel@7.0.0-beta52</a>, we introduced a new required configuration flag to <code>@babel/plugin-proposal-pipeline-operator</code>, a breaking change for the pipeline operator. To clear up any confusion, let's take a look at the pipeline proposal and why we needed to introduce this configuration option.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Announcing Babel's New Partnership with trivago!]]></title>
+            <link>https://babel.docschina.org/blog/2018/07/16/announcing-babels-new-partnership-with-trivago.html</link>
+            <guid>https://babel.docschina.org/blog/2018/07/16/announcing-babels-new-partnership-with-trivago.html</guid>
+            <pubDate>Mon, 16 Jul 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We are happy to announce a new partnership with <a href="https://www.trivago.com/">trivago</a>, the hotel search website.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[On Consuming (and Publishing) ES2015+ Packages]]></title>
+            <link>https://babel.docschina.org/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages.html</link>
+            <guid>https://babel.docschina.org/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages.html</guid>
+            <pubDate>Tue, 26 Jun 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>For those of us that need to support older browsers, we run a compiler like Babel over application code. But that's not all of the code that we ship to browsers; there's also the code in our <code>node_modules</code>.</p>
+<p>Can we make compiling our dependencies not just possible, but normal?</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Nearing the 7.0 Release]]></title>
+            <link>https://babel.docschina.org/blog/2017/12/27/nearing-the-7.0-release.html</link>
+            <guid>https://babel.docschina.org/blog/2017/12/27/nearing-the-7.0-release.html</guid>
+            <pubDate>Wed, 27 Dec 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<blockquote>
+<p>Check out <a href="https://babeljs.io/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a> for the last updates throughout the 7.0 pre-releases. If something isn't clear in this post let me know!</p>
+</blockquote>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Babel Turns Three]]></title>
+            <link>https://babel.docschina.org/blog/2017/10/05/babel-turns-three.html</link>
+            <guid>https://babel.docschina.org/blog/2017/10/05/babel-turns-three.html</guid>
+            <pubDate>Thu, 05 Oct 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<blockquote>
+<p>Happy Birthday Babel! 🎂 (Sept 28)</p>
+</blockquote>
+<p>Babel has really come a long way since <a href="https://github.com/kittens">Sebastian</a> started the project only 3 years ago! A while back it was renamed from <a href="https://babeljs.io/blog/2015/02/15/not-born-to-die">6to5 to Babel</a>; for good reason as it has significantly contributed to the use of ES2015+ by <a href="https://babeljs.io/users">many companies</a>, libraries, and developers alike.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Planning for 7.0]]></title>
+            <link>https://babel.docschina.org/blog/2017/09/12/planning-for-7.0.html</link>
+            <guid>https://babel.docschina.org/blog/2017/09/12/planning-for-7.0.html</guid>
+            <pubDate>Tue, 12 Sep 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>If you didn't know already, we're planning on releasing a 7.0 version soon 🙌 ! Work on it actually started back in February, when I just wanted to make a release to drop Node 0.10/0.12 support and remove babel-runtime and various other code. And since then, we've done releases up to <code>alpha.20</code>.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Zero-config code transformation with babel-plugin-macros]]></title>
+            <link>https://babel.docschina.org/blog/2017/09/11/zero-config-with-babel-macros.html</link>
+            <guid>https://babel.docschina.org/blog/2017/09/11/zero-config-with-babel-macros.html</guid>
+            <pubDate>Mon, 11 Sep 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Babel started out as a transpiler to let you write the latest version of the ECMAScript specification but ship to environments that don't implement those features yet. But it has become much more than that. <a href="https://tomdale.net/2017/09/compilers-are-the-new-frameworks/">&quot;Compilers are the New Frameworks&quot;</a> says <a href="https://twitter.com/tomdale">Tom Dale</a> and I could not agree more. We're seeing more and more compile-time optimizations for libraries and frameworks. I'm not talking about syntax extensions to the language, but simple code transformations that enable patterns that would be difficult to accomplish otherwise.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Contributing to Babel: Three Lessons to Remember]]></title>
+            <link>https://babel.docschina.org/blog/2017/08/16/gsoc-karl-1.html</link>
+            <guid>https://babel.docschina.org/blog/2017/08/16/gsoc-karl-1.html</guid>
+            <pubDate>Wed, 16 Aug 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Getting to work your way around a new code base always poses its challenges, and Babel was no exception.</p>
+<p>I’ve been working with Babel as part of the Google Summer of Code 2017 program, working to update Babel transforms and the Babylon parser to accommodate changes to specifications and implementing new features.</p>
+<p>Here’s a few things I’ve learnt from my adventures so far.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews]]></title>
+            <link>https://babel.docschina.org/blog/2017/08/11/gsoc-peey-1.html</link>
+            <guid>https://babel.docschina.org/blog/2017/08/11/gsoc-peey-1.html</guid>
+            <pubDate>Fri, 11 Aug 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We landed the <a href="https://github.com/babel/babylon/pull/587">parser support</a> for
+<a href="https://tc39.github.io/proposal-decorators/">the stage-2 decorators spec</a> last
+week at Babylon — the parser for Babel. If you don’t know what a decorator is,
+the gist of it is that a decorator gives some concise syntax to affect the
+definition of a class or a class method which you decorate.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Babel and Summer of Code 2017]]></title>
+            <link>https://babel.docschina.org/blog/2017/08/09/babel-and-summer-of-code.html</link>
+            <guid>https://babel.docschina.org/blog/2017/08/09/babel-and-summer-of-code.html</guid>
+            <pubDate>Wed, 09 Aug 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>For the first time, Babel is participating in <em>Summer of Code</em>!
+Although we forgot to make an announcement post earlier, here's our progress update 😊</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Upgrade to Babel 7 (moved)]]></title>
+            <link>https://babel.docschina.org/blog/2017/03/01/upgrade-to-babel-7.html</link>
+            <guid>https://babel.docschina.org/blog/2017/03/01/upgrade-to-babel-7.html</guid>
+            <pubDate>Wed, 01 Mar 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We are moving the migration guide to a docs page instead of a blog post!</p> <h2><a class="anchor" aria-hidden="true" id="check-out-v7-migrationhttpsbabeljsiodocsennextv7-migration"></a><a href="#check-out-v7-migrationhttpsbabeljsiodocsennextv7-migration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Check out <a href="https://babeljs.io/docs/en/next/v7-migration">v7-migration</a>!</h2> ]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Upgrade to Babel 7 for Tool Authors (WIP)]]></title>
+            <link>https://babel.docschina.org/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors.html</link>
+            <guid>https://babel.docschina.org/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors.html</guid>
+            <pubDate>Wed, 01 Mar 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We are moving the migration guide to a docs page instead of a blog post!</p> <h2><a class="anchor" aria-hidden="true" id="check-out-v7-migration-apihttpsbabeljsiodocsennextv7-migration-api"></a><a href="#check-out-v7-migration-apihttpsbabeljsiodocsennextv7-migration-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Check out <a href="https://babeljs.io/docs/en/next/v7-migration-api">v7-migration-api</a>!</h2> <p>Refer users to this document for those that create tools that depend on Babel (such as Babel plugins).</p> ]]></description>
+        </item>
+        <item>
+            <title><![CDATA[6.23.0 Released]]></title>
+            <link>https://babel.docschina.org/blog/2017/02/13/6.23.0.html</link>
+            <guid>https://babel.docschina.org/blog/2017/02/13/6.23.0.html</guid>
+            <pubDate>Mon, 13 Feb 2017 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>In this release: multiple improvements to the <code>react-constant-elements</code> plugin by <a href="https://github.com/STRML">@STRML</a>, some codegen optimizations, and lots of bug fixes! Thanks to <a href="https://github.com/loganfsmyth">@loganfsmyth</a> for the release + reviews!</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[The State of Babel]]></title>
+            <link>https://babel.docschina.org/blog/2016/12/07/the-state-of-babel.html</link>
+            <guid>https://babel.docschina.org/blog/2016/12/07/the-state-of-babel.html</guid>
+            <pubDate>Wed, 07 Dec 2016 06:00:00 GMT</pubDate>
+            <description><![CDATA[<ul>
+<li><a href="https://babeljs.io/blog/2016/12/07/the-state-of-babel#some-history">Some History</a></li>
+<li><a href="https://babeljs.io/blog/2016/12/07/the-state-of-babel#current-status">Current Status</a></li>
+<li><a href="https://babeljs.io/blog/2016/12/07/the-state-of-babel#the-future">The Future</a></li>
+<li><a href="https://babeljs.io/blog/2016/12/07/the-state-of-babel#community">Community</a></li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[6.19.0 Released]]></title>
+            <link>https://babel.docschina.org/blog/2016/11/16/6.19.0.html</link>
+            <guid>https://babel.docschina.org/blog/2016/11/16/6.19.0.html</guid>
+            <pubDate>Wed, 16 Nov 2016 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p><code>object-rest-spread</code> works standalone and a few new plugin options APIs were added!</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[6.18.0 Released]]></title>
+            <link>https://babel.docschina.org/blog/2016/10/24/6.18.0.html</link>
+            <guid>https://babel.docschina.org/blog/2016/10/24/6.18.0.html</guid>
+            <pubDate>Mon, 24 Oct 2016 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>More flow updates, and lots of fixes!</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[6.16.0 Released]]></title>
+            <link>https://babel.docschina.org/blog/2016/09/28/6.16.0.html</link>
+            <guid>https://babel.docschina.org/blog/2016/09/28/6.16.0.html</guid>
+            <pubDate>Wed, 28 Sep 2016 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p style="text-align:center">
+Happy Birthday Babel 🎂 !
+</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Babili (babel-minify)]]></title>
+            <link>https://babel.docschina.org/blog/2016/08/26/babili.html</link>
+            <guid>https://babel.docschina.org/blog/2016/08/26/babili.html</guid>
+            <pubDate>Fri, 26 Aug 2016 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We released <a href="https://github.com/babel/babili">Babili</a> as beta (0.0.1) a few days ago under an MIT license!</p>
+<blockquote>
+<p>Try it out in the Babel <a href="http://babeljs.io/repl/#?babili=true&amp;evaluate=false">REPL</a> and report any bugs or potential optimizations we can make! There's also a <a href="https://babeljs.slack.com/messages/minify/">#minify</a> slack room!</p>
+</blockquote>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[6.14.0 Released]]></title>
+            <link>https://babel.docschina.org/blog/2016/08/24/6.14.0.html</link>
+            <guid>https://babel.docschina.org/blog/2016/08/24/6.14.0.html</guid>
+            <pubDate>Wed, 24 Aug 2016 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>A new <code>es2017</code>, <code>latest</code> preset, and lots of fixes in this release.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Babel Doctor]]></title>
+            <link>https://babel.docschina.org/blog/2015/11/03/babel-doctor.html</link>
+            <guid>https://babel.docschina.org/blog/2015/11/03/babel-doctor.html</guid>
+            <pubDate>Tue, 03 Nov 2015 06:00:00 GMT</pubDate>
+            <description><![CDATA[<blockquote>
+<p>Babel Doctor is <s>heavily inspired</s> ripped from the awesome
+<a href="https://github.com/yeoman/doctor">Yeoman Doctor</a> by
+<a href="https://github.com/sindresorhus">Sindre Sorhus</a>.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>babel-doctor has been removed as of v6.18.0 of <code>babel-cli</code>. If anyone needs it we will bring it back as a standalone npm module called <code>babel-doctor</code>.</p>
+</blockquote>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Setting up Babel 6]]></title>
+            <link>https://babel.docschina.org/blog/2015/10/31/setting-up-babel-6.html</link>
+            <guid>https://babel.docschina.org/blog/2015/10/31/setting-up-babel-6.html</guid>
+            <pubDate>Sat, 31 Oct 2015 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Babel 6 is fresh off the press and we’re still getting a lot sorted out. In the past two days we've seen more activity on GitHub and Slack than ever before. Everyone who has been helping out has been doing a great job.</p>
+<p>However, the documentation is still lacking at this point, I’m currently going through and creating an entirely new “Getting Started” section of the site.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[6.0.0 Released]]></title>
+            <link>https://babel.docschina.org/blog/2015/10/29/6.0.0.html</link>
+            <guid>https://babel.docschina.org/blog/2015/10/29/6.0.0.html</guid>
+            <pubDate>Thu, 29 Oct 2015 06:00:00 GMT</pubDate>
+            <description><![CDATA[<blockquote>
+<p><strong>NOTE:</strong> Not all integrations have been updated yet. This is a very disruptive major
+so please bear with us as we smooth out the edges.</p>
+</blockquote>
+<p>It’s hard to believe it’s been a year since the Babel project started, but there was a birthday cake, so it must be real!</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[React on ES6+]]></title>
+            <link>https://babel.docschina.org/blog/2015/07/07/react-on-es6-plus.html</link>
+            <guid>https://babel.docschina.org/blog/2015/07/07/react-on-es6-plus.html</guid>
+            <pubDate>Tue, 07 Jul 2015 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>While redesigning <a href="https://instagram.com/instagram/">Instagram Web</a> from the inside out this year, we enjoyed using a number of ES6+ features to write our React components. Allow me to highlight some of the ways that these new language features can change the way you write a React app, making it easier and more fun than ever.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Function Bind Syntax]]></title>
+            <link>https://babel.docschina.org/blog/2015/05/14/function-bind.html</link>
+            <guid>https://babel.docschina.org/blog/2015/05/14/function-bind.html</guid>
+            <pubDate>Thu, 14 May 2015 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Babel 5.4 was just released and with it comes support for a new
+<a href="https://github.com/zenparsing/es-function-bind">experimental ES7 syntax</a>
+proposed by Kevin Smith (<a href="https://github.com/zenparsing">@zenparsing</a>) and
+implemented in Babel by Ingvar Stepanyan
+(<a href="https://github.com/RReverser">@RReverser</a>).</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[5.0.0 Released]]></title>
+            <link>https://babel.docschina.org/blog/2015/03/31/5.0.0.html</link>
+            <guid>https://babel.docschina.org/blog/2015/03/31/5.0.0.html</guid>
+            <pubDate>Tue, 31 Mar 2015 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>In the past few months Babel has been welcomed into several major communities
+such as Node, React, Ember, Backbone, Angular, Rails, and many others. We
+launched the <a href="/users">Users page</a> only a few weeks ago and it's really cool to
+see everyone that is using it. Companies like CloudFlare, Netflix, Mozilla, and
+Yahoo!. Projects like Ghost, Atom, Mapbox, and so many more.</p>
+<p>We've seen tons of blog posts, talks, events, courses all about ES6+ using
+Babel, and official Babel tools have been downloaded nearly 2 million times.</p>
+<p>Today we are making by far the largest release of Babel ever.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Babel 喜爱 React]]></title>
+            <link>https://babel.docschina.org/blog/2015/02/23/babel-loves-react.html</link>
+            <guid>https://babel.docschina.org/blog/2015/02/23/babel-loves-react.html</guid>
+            <pubDate>Mon, 23 Feb 2015 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>令人惊讶的事情之一就是 Babel
+支持开箱即用的 JSX。</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[并非出生而逐渐走向灭亡]]></title>
+            <link>https://babel.docschina.org/blog/2015/02/15/not-born-to-die.html</link>
+            <guid>https://babel.docschina.org/blog/2015/02/15/not-born-to-die.html</guid>
+            <pubDate>Sun, 15 Feb 2015 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>我想从 6to5 最新重大事件发生后都开始写博客文章。虽然还没有发生重大事件，不过这几天的时间，6to5 和 6to5-core 已经被下载<strong>五十万次</strong>，并且在一个月时间内将会超过<strong>一百万次</strong>。</p>
+<p>过去，对于 6to5 在 JavaScript 社区中的所处角色存在一些混淆，这在很大程度上是由于它的名称产生的误解导致。</p>
+<p>但是 6to5 并非出生而逐渐走向灭亡。</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[2to3]]></title>
+            <link>https://babel.docschina.org/blog/2015/01/27/2to3.html</link>
+            <guid>https://babel.docschina.org/blog/2015/01/27/2to3.html</guid>
+            <pubDate>Tue, 27 Jan 2015 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>过去几周，我们看到 6to5 项目有很多动态；每天在世界各个角落都有成千上万的人在下载。在过去一个月中，已经关闭 200 多个 issue。从 2.0 发布以来，已经有 867 次 commit(提交)、60 个 minor(次要版本) 和 patch(补丁版本) 发布。它的下载量是 npm 下载量最多的 packages 中的前 1％，仅在上个月就有近 100k 的下载量。</p>
+<p>今天我们将发布 3.0。</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[6to5 + esnext]]></title>
+            <link>https://babel.docschina.org/blog/2015/01/12/6to5-esnext.html</link>
+            <guid>https://babel.docschina.org/blog/2015/01/12/6to5-esnext.html</guid>
+            <pubDate>Mon, 12 Jan 2015 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>过去几个月令人兴奋的是 6to5。我们已经从一个教育项目，演变为在 npm 上有 10 万次下载量，已经有 1,800 次提交和 155 次发布，我们现在支持每个主要的 JavaScript 构建系统，最近我们成为了 Sprockets 4.0 的默认构建工具。最重要的是，我们的全新网站和文档收到了成千上万的页面访问量，并且已被包括 JavaScript Weekly 在内的多家出版物推荐。</p>
+]]></description>
+        </item>
+    </channel>
+</rss>

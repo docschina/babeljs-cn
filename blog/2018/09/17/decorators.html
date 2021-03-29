@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>在 Babel 中支持 TC39 标准的装饰器 · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Babel 7.1.0 最终支持了新的装饰器提案：你可以使用 [`@babel/plugin-proposal-decorators`](https://babel.docschina.org/docs/en/babel-plugin-proposal-decorators) 插件来提前尝试此功能 🎉。"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="在 Babel 中支持 TC39 标准的装饰器 · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2018/09/17/decorators"/><meta property="og:description" content="Babel 7.1.0 最终支持了新的装饰器提案：你可以使用 [`@babel/plugin-proposal-decorators`](https://babel.docschina.org/docs/en/babel-plugin-proposal-decorators) 插件来提前尝试此功能 🎉。"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></h1><p class="post-meta">September 17, 2018</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/NicoloRibaudo" target="_blank" rel="noreferrer noopener">Nicolò Ribaudo</a></p></div></header><div><span><p>Babel 7.1.0 最终支持了新的装饰器提案：你可以使用 <a href="https://babel.docschina.org/docs/en/babel-plugin-proposal-decorators"><code>@babel/plugin-proposal-decorators</code></a> 插件来提前尝试此功能 🎉。</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="相关历史"></a><a href="#相关历史" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>相关历史</h2>
+<p>三年多以前，<a href="https://github.com/wycats">Yehuda Katz</a> <a href="https://github.com/wycats/javascript-decorators/blob/696232bbd997618d603d6577848d635872f25c43/README.md">首先提出</a>了装饰器的概念。TypeScript 在 <a href="https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#typescript-15">1.5 版本</a>（2015）中发布了对装饰器的支持以及许多 ES6 的相关特性。
+一些主流框架，如 Angular 和 MobX 等开始使用它们来增加开发者体验：这使得装饰器非常受欢迎，并给社区带来了一种已经稳定的错觉。</p>
+<p>Babel 第一次实现装饰器是在 <a href="https://github.com/babel/babel/blob/master/.github/CHANGELOG-v5.md#500">v5 版本中</a>，但由于该提案仍在不断变化，则在 Babel v6 中移除了它们。<a href="https://github.com/loganfsmyth">Logan Smyth</a> 创建了一个非官方的插件(<a href="https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy"><code>babel-plugin-transform-decorators-legacy</code></a>)，它延用了 Babel 5 中装饰器的行为；在 Babel 7 的 alpha 版本发布期间该库被移至 Babel 官方的仓库中。当时该插件仍使用旧的装饰器语法，因为新提案尚未明确。</p>
+<p>自那时起，<a href="https://github.com/littledan">Daniel Ehrenberg</a>、<a href="https://github.com/bterlson">Brian Terlson</a> 以及 <a href="https://github.com/wycats">Yehuda Katz</a> 就一起成为了该提案的共同作者，该提案几乎已被完全重写。当然并非一切事情都已确定，因为至今尚未出现符合规范的实现方式。</p>
+<p>Babel 7.0.0 为 <code>@babel/plugin-proposal-decorators</code> 插件引入了新的标识：<code>legacy</code> 选项，其唯一有效值为 <code>true</code>。这种突破性变更是必要的，它为提案从第一阶段到当前阶段平稳过渡作铺垫。</p>
+<p>在 Babel 7.1.0 中，我们引入了对这个新提案的支持，并且当 <code>@babel/plugin-proposal-decorators</code> 插件被使用时，默认启用。而在 Babel 7.0.0 中如果我们不设置 <code>legacy: true</code> 选项，默认情况下就不能使用该语义（相当于 <code>legacy: false</code>）。</p>
+<p>新提案同时支持使用装饰器实现私有字段（private fields）和私有方法（private methods）。我们尚未在 Babel 中实现此功能（在每个 class 中使用装饰器或私有元素），但我们会很快去出现它。</p>
+<h2><a class="anchor" aria-hidden="true" id="新提案有何变化？"></a><a href="#新提案有何变化？" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>新提案有何变化？</h2>
+<p>尽管新提案看起来与旧提案非常相似，但还是有几个重要的差异使得它们互不兼容。</p>
+<h3><a class="anchor" aria-hidden="true" id="语法"></a><a href="#语法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>语法</h3>
+<p>旧提案允许任何有效的左表达式（字面量，函数，类表达式，new 表达式以及函数调用等）用作装饰器主体。有效代码如下所示：</p>
+<pre><code class="hljs css language-javascript="><span class="hljs-selector-tag">class</span> <span class="hljs-selector-tag">MyClass</span> {
+  <span class="hljs-variable">@getDecorators</span>().methods[name]
+  foo() {}
+
+  <span class="hljs-variable">@decorator</span>
+  [bar]() {}
+}
+</code></pre>
+<p>该语法存在问题：<code>[...]</code> 符号在装饰器内被用作属性访问及定义计算名称。为了防止这种歧义出现，新提案只允许通过点属性访问（<code>foo.bar</code>）可以选择在参数末尾使用（<code>foo.bar()</code>）。如果需要使用很复杂的表达式，可以将它们包裹在括号内：</p>
+<pre><code class="hljs css language-javascript="><span class="hljs-selector-tag">class</span> <span class="hljs-selector-tag">MyClass</span> {
+  <span class="hljs-variable">@decorator</span>
+  <span class="hljs-variable">@dec</span>(arg1, arg2)
+  <span class="hljs-variable">@namespace</span>.decorator
+  @(complex ? <span class="hljs-attribute">dec1 </span>: dec2)
+  method() {}
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="对象装饰器"></a><a href="#对象装饰器" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>对象装饰器</h3>
+<p>旧提案允许除类和类元素装饰器以外的对象成员使用装饰器：</p>
+<pre><code class="hljs css language-javascript="><span class="hljs-keyword">const</span> myObj = {
+  <span class="hljs-symbol">@dec1</span> foo: <span class="hljs-number">3</span>,
+  <span class="hljs-symbol">@dec2</span> bar() {},
+}<span class="hljs-comment">;</span>
+</code></pre>
+<p>由于与当前对象字面量语义的某些不兼容性，它们已从提案中被移除。如果你的代码中使用了它们，请继续关注，因为它们可能会在后续提案中被重新引入。（<a href="https://github.com/tc39/proposal-decorators/issues/119">tc39/proposal-decorators#119</a>）</p>
+<h3><a class="anchor" aria-hidden="true" id="装饰器函数相关参数"></a><a href="#装饰器函数相关参数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>装饰器函数相关参数</h3>
+<p>新提案提出的第三个重要变化与传递给装饰器函数参数相关。</p>
+<p>在提案的第一个版本中，类元素装饰器接收的参数分别为目标类（或对象），key 以及属性描述符 - 与传递给 <code>Object.defineProperty</code> 的形式类似。类装饰器将目标构造函数（constructor）作为唯一参数。</p>
+<p>新的装饰器提案更加强大：元素装饰器会接收一个对象，该对象除更改属性描述符外，还允许更改 key 值，可以赋值（<code>static</code>，<code>prototype</code> 或者 <code>own</code>），以及元素的类型（<code>field</code> 或 <code>method</code>）。它们还可以创建其他属性并在装饰类上定义运行函数（<em>完成器</em>）。</p>
+<p>类装饰器接收一个包含类描述符的对象，使得类在创建之前修改它们成为可能。</p>
+<h3><a class="anchor" aria-hidden="true" id="升级"></a><a href="#升级" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>升级</h3>
+<p>鉴于这些不兼容性问题，新提案中不可能使用现有的装饰器：这将使得迁移变得缓慢，因为现有库（MobX，Angular等）无法在不引入这些突破性变化的情况下进行升级。
+为解决此问题，我们发布了实用工具包，它将装饰器包装在你的代码当中。运行后，
+你可以安心的更改你的 Babel 配置以便使用新提案 🎉。</p>
+<p>使用如下命令来升级你的文件：</p>
+<pre><code class="hljs css language-shell=">npx wrap-legacy-decorators src/<span class="hljs-keyword">file</span>-<span class="hljs-keyword">with</span>-decorators.js --decorators-before-<span class="hljs-keyword">export</span> --<span class="hljs-keyword">write</span>
+</code></pre>
+<p>如果你的代码仅在 Node 中运行，或者你会使用 webpack 或 rollup 构建你的代码，则需要使用外部依赖项（external dependency），避免在每个文件中注入包装函数：</p>
+<pre><code class="hljs css language-shell=">npm install --save decorators-compat
+npx wrap-legacy-decorators src/<span class="hljs-keyword">file</span>-<span class="hljs-keyword">with</span>-decorators.js --decorators-before-<span class="hljs-keyword">export</span> --<span class="hljs-keyword">external</span>-helpers --<span class="hljs-keyword">write</span>
+</code></pre>
+<p>欲了解更多信息，请参阅<a href="https://github.com/nicolo-ribaudo/legacy-decorators-migration-utility">工具包（package）相关文档</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="开放问题"></a><a href="#开放问题" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>开放问题</h2>
+<p>并非所有内容都已确定：装饰器是一个非常强大的功能，想要将装饰器定义为最好的表现形式，是相当复杂的。</p>
+<h3><a class="anchor" aria-hidden="true" id="导出类exported-class装饰器如何放置？"></a><a href="#导出类exported-class装饰器如何放置？" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>导出类(exported class)装饰器如何放置？</h3>
+<blockquote>
+<p><a href="https://github.com/tc39/proposal-decorators/issues/69">tc39/proposal-decorators#69</a></p>
+</blockquote>
+<p>该问题在装饰器提案中反复被问到：装饰器应该放置在关键字 export 前还是关键字 export 后？</p>
+<pre><code class="hljs css language-javascript="><span class="hljs-keyword">export</span> <span class="hljs-meta">@decorator</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{}
+
+<span class="hljs-comment">// 或者</span>
+
+<span class="hljs-meta">@decorator</span>
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{}
+</code></pre>
+<p>根本问题是 <code>export</code> 关键字是否是类声明的一部分，或者它是否是一个&quot;包装器&quot;。第一种情况下，它应该在装饰器<em>之后</em>，因为装饰器出现在声明的起始位置；第二种情况下，它应该在装饰器<em>之前</em>，因为装饰器是类声明的一部分。</p>
+<h3><a class="anchor" aria-hidden="true" id="如何让装饰器与私有元素安全地交互？"></a><a href="#如何让装饰器与私有元素安全地交互？" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>如何让装饰器与私有元素安全地交互？</h3>
+<blockquote>
+<p><a href="https://github.com/tc39/proposal-decorators/issues/129">tc39/proposal-decorators#129</a>, <a href="https://github.com/tc39/proposal-decorators/issues/133">tc39/proposal-decorators#133</a></p>
+</blockquote>
+<p>装饰器引发了一个重要的安全隐患：如果装饰私有元素，那么私有名称（可以视为私有元素的 &quot;key&quot;）可能会被泄露。有不同的安全级别需要考虑：</p>
+<ol>
+<li>装饰器有意外泄露私有名称的风险。恶意代码不应该以任何方式从其他装饰器中&quot;窃取&quot;私有名称。</li>
+<li>只有直接应用于私有元素的装饰器才被视为可信任：类装饰器是不是不应该读写私有元素？</li>
+<li><em>高度隐私</em> (class fields 提案的目标之一) 意味着私有元素只能从类内部访问：是否需要让任何装饰器都可以访问私有名称？是否应该只装饰公共元素？</li>
+</ol>
+<p>这些问题需要在解决之前进一步讨论，这正是 Babel 所存在的意义。</p>
+<h2><a class="anchor" aria-hidden="true" id="babel-的作用"></a><a href="#babel-的作用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babel 的作用</h2>
+<p>遵循 <a href="http://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What's Happening With the Pipeline (|&gt;) Proposal?</a> 文章中的走向，随着 Babel 7 的发布，我们开始利用我们在 JS 生态系统中的地位，通过让开发人员能够测试提案的不同变体，根据他们给出的反馈来帮助提案的作者完善提案。</p>
+<p>出于这样的角度，随着 <code>@babel/plugin-proposal-decorators</code> 的更新，我们引入了新的选项：<code>decoratorsBeforeExport</code>，它允许用户尝试使用 <code>export @decorator class C {}</code> 和 <code>@decorator export default class</code>。</p>
+<p>我们还将采用一个选项来定制装饰器私有元素的隐私约束。使用该选项是必要的，直到 TC39 人员对它们做出选择，由此就可以让默认行为指定为最终提案中的内容。</p>
+<p>如果你直接使用 (<a href="https://babeljs.io/docs/en/next/babel-parser.html"><code>@babel/parser</code></a>，之前的 <code>babylon</code>)，你可以在 7.0.0 版本中使用 <code>decoratorsBeforeExport</code> 选项：</p>
+<pre><code class="hljs css language-javascript="><span class="hljs-string">const</span> <span class="hljs-string">ast</span> <span class="hljs-string">=</span> <span class="hljs-string">babylon.parse(code,</span> <span class="hljs-string">{</span>
+  <span class="hljs-attr">plugins:</span> <span class="hljs-string">[</span>
+    <span class="hljs-string">["decorators",</span> <span class="hljs-string">{</span> <span class="hljs-attr">decoratorsBeforeExport:</span> <span class="hljs-literal">true</span> <span class="hljs-string">}]</span>
+  <span class="hljs-string">]</span>
+<span class="hljs-string">})</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="用法"></a><a href="#用法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>用法</h3>
+<p>用于 Babel 本身:</p>
+<pre><code class="hljs css language-sh">npm install @babel/plugin-proposal-decorators --save-dev
+</code></pre>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"plugins"</span>: [<span class="hljs-string">"@babel/plugin-proposal-decorators"</span>, { <span class="hljs-attr">"decoratorsBeforeExport"</span>: <span class="hljs-literal">true</span> }]
+}
+</code></pre>
+<p>查阅 <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators"><code>@babel/plugin-proposal-decorators</code></a> 文档以获取更多相关选项。</p>
+<h2><a class="anchor" aria-hidden="true" id="你的作用"></a><a href="#你的作用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>你的作用</h2>
+<p>作为 JavaScript 开发者，你可以帮助规划改语言的未来。你可以为装饰器考虑各种语义环境同时进行测试，并向提案的作者提出反馈。我们需要知道你在真实项目环境中是如何使用它们的！你还可以通过阅读<a href="https://github.com/tc39/proposal-decorators">提案仓库</a>中的 issues 讨论及会议记录来找出为什么最终做出这样的设计决策。</p>
+<p>如果想立即尝试装饰器，可以使用我们的 <a href="https://babeljs.io/repl/build/master">repl</a> 配置不同的 preset 选项进行试用！</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#相关历史">相关历史</a></li><li><a href="#新提案有何变化？">新提案有何变化？</a><ul class="toc-headings"><li><a href="#语法">语法</a></li><li><a href="#对象装饰器">对象装饰器</a></li><li><a href="#装饰器函数相关参数">装饰器函数相关参数</a></li><li><a href="#升级">升级</a></li></ul></li><li><a href="#开放问题">开放问题</a><ul class="toc-headings"><li><a href="#导出类exported-class装饰器如何放置？">导出类(exported class)装饰器如何放置？</a></li><li><a href="#如何让装饰器与私有元素安全地交互？">如何让装饰器与私有元素安全地交互？</a></li></ul></li><li><a href="#babel-的作用">Babel 的作用</a><ul class="toc-headings"><li><a href="#用法">用法</a></li></ul></li><li><a href="#你的作用">你的作用</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

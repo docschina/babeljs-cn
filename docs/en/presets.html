@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Presets · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Don&#x27;t want to assemble your own set of plugins? No problem! Presets can act as an array of Babel plugins or even a sharable [`options`](/docs/en/options) config."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Presets · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="Don&#x27;t want to assemble your own set of plugins? No problem! Presets can act as an array of Babel plugins or even a sharable [`options`](/docs/en/options) config."/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>通用</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">指南</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/">什么是 Babel？</a></li><li class="navListItem"><a class="navItem" href="/docs/en/usage">使用指南</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration">配置 Babel</a></li><li class="navListItem"><a class="navItem" href="/docs/en/learn">学习 ES2015</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration">升级至 Babel 7</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration-api">升级至 Babel 7 (API)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">通用</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/editors">编辑器</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins">插件</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/presets">Presets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/caveats">注意事项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/faq">FAQ</a></li><li class="navListItem"><a class="navItem" href="/docs/en/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">用法</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/options">选项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/config-files">配置文件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-cli">cli</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-plugin-transform-runtime">transform-runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-register">register</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">presets</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-env">env</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-flow">flow</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-react">react</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-typescript">typescript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">工具</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-parser">parser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-core">core</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-generator">generator</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-code-frame">code-frame</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-helpers">helpers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-runtime">runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-template">template</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-traverse">traverse</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-types">types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/presets.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Presets</h1></header><article><div><span><p>Don't want to assemble your own set of plugins? No problem! Presets can act as an array of Babel plugins or even a sharable <a href="/docs/en/options"><code>options</code></a> config.</p>
+<h2><a class="anchor" aria-hidden="true" id="official-presets"></a><a href="#official-presets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Official Presets</h2>
+<p>We've assembled some for common environments:</p>
+<ul>
+<li><a href="/docs/en/babel-preset-env">@babel/preset-env</a></li>
+<li><a href="/docs/en/babel-preset-flow">@babel/preset-flow</a></li>
+<li><a href="/docs/en/babel-preset-react">@babel/preset-react</a></li>
+<li><a href="/docs/en/babel-preset-typescript">@babel/preset-typescript</a></li>
+</ul>
+<blockquote>
+<p>Many other community maintained presets are available <a href="https://www.npmjs.com/search?q=babel-preset">on npm</a>!</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="stage-x-experimental-presets"></a><a href="#stage-x-experimental-presets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Stage-X (Experimental Presets)</h2>
+<p>Any transforms in stage-x presets are changes to the language that haven't been approved to be part of a release of JavaScript (such as ES6/ES2015).</p>
+<blockquote class="babel-callout babel-callout-danger">
+  <h4>Subject to change</h4>
+  <p>
+    These proposals are subject to change so <strong><em>use with extreme caution</em></strong>, especially for anything pre stage-3. We plan to update stage-x presets when proposals change after each TC39 meeting when possible.
+  </p>
+</blockquote>
+<p>The <a href="https://github.com/tc39">TC39</a> categorizes proposals into the following stages:</p>
+<ul>
+<li><a href="/docs/en/babel-preset-stage-0">Stage 0</a> - Strawman: just an idea, possible Babel plugin.</li>
+<li><a href="/docs/en/babel-preset-stage-1">Stage 1</a> - Proposal: this is worth working on.</li>
+<li><a href="/docs/en/babel-preset-stage-2">Stage 2</a> - Draft: initial spec.</li>
+<li><a href="/docs/en/babel-preset-stage-3">Stage 3</a> - Candidate: complete spec and initial browser implementations.</li>
+<li>Stage 4 - Finished: will be added to the next yearly release.</li>
+</ul>
+<p>For more information, be sure to check out the <a href="https://github.com/tc39/proposals">current TC39 proposals</a> and its <a href="https://tc39.github.io/process-document">process document</a>.</p>
+<p>The TC39 stage process is also explained in detail across a few posts by Yehuda Katz (@wycatz) over at <a href="https://thefeedbackloop.xyz">thefeedbackloop.xyz</a>: <a href="https://thefeedbackloop.xyz/tc39-a-process-sketch-stages-0-and-1/">Stage 0 and 1</a>, <a href="https://thefeedbackloop.xyz/tc39-process-sketch-stage-2/">Stage 2</a>, <a href="https://thefeedbackloop.xyz/tc39-process-sketch-stage-3/">Stage 3</a></p>
+<h2><a class="anchor" aria-hidden="true" id="creating-a-preset"></a><a href="#creating-a-preset" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating a Preset</h2>
+<p>To make your own preset, you just need to export a config.</p>
+<blockquote>
+<p>It could just return an array of plugins..</p>
+</blockquote>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">plugins</span>: [
+      <span class="hljs-string">"pluginA"</span>,
+      <span class="hljs-string">"pluginB"</span>,
+      <span class="hljs-string">"pluginC"</span>,
+    ]
+  };
+}
+</code></pre>
+<blockquote>
+<p>Presets can contain other presets, and plugins with options.</p>
+</blockquote>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+  <span class="hljs-attr">presets</span>: [
+    <span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/preset-env"</span>),
+  ],
+  <span class="hljs-attr">plugins</span>: [
+    [<span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/plugin-proposal-class-properties"</span>), { <span class="hljs-attr">loose</span>: <span class="hljs-literal">true</span> }],
+    <span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/plugin-proposal-object-rest-spread"</span>),
+  ],
+});
+</code></pre>
+<p>For more info, check out the <a href="https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/user-handbook.md#making-your-own-preset">babel handbook</a> section on presets.</p>
+<h2><a class="anchor" aria-hidden="true" id="preset-paths"></a><a href="#preset-paths" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preset Paths</h2>
+<p>If the preset is on npm, you can pass in the name of the preset and babel will check that it's installed in <code>node_modules</code></p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"babel-preset-myPreset"</span>]
+}
+</code></pre>
+<p>You can also specify an relative/absolute path to your presets.</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"./myProject/myPreset"</span>]
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="preset-shorthand"></a><a href="#preset-shorthand" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preset Shorthand</h3>
+<p>If the name of the package is prefixed with <code>babel-preset-</code>, you can use a shorthand:</p>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-string">"presets"</span>: [
+    <span class="hljs-string">"myPreset"</span>,
+    <span class="hljs-string">"babel-preset-myPreset"</span> <span class="hljs-comment">// equivalent</span>
+  ]
+}
+</code></pre>
+<p>This also works with scoped packages:</p>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-string">"presets"</span>: [
+    <span class="hljs-string">"@org/babel-preset-name"</span>,
+    <span class="hljs-string">"@org/name"</span> <span class="hljs-comment">// equivalent</span>
+  ]
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="preset-ordering"></a><a href="#preset-ordering" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preset Ordering</h2>
+<p>Preset ordering is reversed (last to first).</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [
+    <span class="hljs-string">"a"</span>,
+    <span class="hljs-string">"b"</span>,
+    <span class="hljs-string">"c"</span>
+  ]
+}
+</code></pre>
+<p>Will run in the following order: <code>c</code>, <code>b</code>, then <code>a</code>.</p>
+<p>This was mostly for ensuring backwards compatibility, since most users listed &quot;es2015&quot; before &quot;stage-0&quot;.</p>
+<h2><a class="anchor" aria-hidden="true" id="preset-options"></a><a href="#preset-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preset Options</h2>
+<p>Both plugins and presets can have options specified by wrapping the name and an options object in an array inside your config.</p>
+<p>For specifying no options, these are all equivalent:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [
+    <span class="hljs-string">"presetA"</span>,
+    [<span class="hljs-string">"presetA"</span>],
+    [<span class="hljs-string">"presetA"</span>, {}],
+  ]
+}
+</code></pre>
+<p>To specify an option, pass an object with the keys as the option names.</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [
+    [<span class="hljs-string">"@babel/preset-env"</span>, {
+      <span class="hljs-attr">"loose"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"modules"</span>: <span class="hljs-literal">false</span>
+    }]
+  ]
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/plugins"><span class="arrow-prev">← </span><span>插件</span></a><a class="docs-next button" href="/docs/en/caveats"><span>注意事项</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#official-presets">Official Presets</a></li><li><a href="#stage-x-experimental-presets">Stage-X (Experimental Presets)</a></li><li><a href="#creating-a-preset">Creating a Preset</a></li><li><a href="#preset-paths">Preset Paths</a><ul class="toc-headings"><li><a href="#preset-shorthand">Preset Shorthand</a></li></ul></li><li><a href="#preset-ordering">Preset Ordering</a></li><li><a href="#preset-options">Preset Options</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

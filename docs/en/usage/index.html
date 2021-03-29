@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>使用指南 · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="无论你是“终端用户”还是基于 Babel 自身构建一个集成工具的用户，Babel 工具链中都有很多工具可以让你轻松使用 Babel。这里简要介绍下这些工具，你可以在文档的“用法”部分中阅读有关它们的更多信息。"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="使用指南 · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="无论你是“终端用户”还是基于 Babel 自身构建一个集成工具的用户，Babel 工具链中都有很多工具可以让你轻松使用 Babel。这里简要介绍下这些工具，你可以在文档的“用法”部分中阅读有关它们的更多信息。"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>指南</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">指南</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/">什么是 Babel？</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/usage">使用指南</a></li><li class="navListItem"><a class="navItem" href="/docs/en/configuration">配置 Babel</a></li><li class="navListItem"><a class="navItem" href="/docs/en/learn">学习 ES2015</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration">升级至 Babel 7</a></li><li class="navListItem"><a class="navItem" href="/docs/en/v7-migration-api">升级至 Babel 7 (API)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">通用</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/editors">编辑器</a></li><li class="navListItem"><a class="navItem" href="/docs/en/plugins">插件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/presets">Presets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/caveats">注意事项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/faq">FAQ</a></li><li class="navListItem"><a class="navItem" href="/docs/en/roadmap">Roadmap</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">用法</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/options">选项</a></li><li class="navListItem"><a class="navItem" href="/docs/en/config-files">配置文件</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-cli">cli</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-polyfill">polyfill</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-plugin-transform-runtime">transform-runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-register">register</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">presets</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-env">env</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-flow">flow</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-react">react</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-preset-typescript">typescript</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">工具</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/babel-parser">parser</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-core">core</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-generator">generator</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-code-frame">code-frame</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-helpers">helpers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-runtime">runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-template">template</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-traverse">traverse</a></li><li class="navListItem"><a class="navItem" href="/docs/en/babel-types">types</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/babel/website/blob/master/docs/usage.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">使用指南</h1></header><article><div><span><p>无论你是“终端用户”还是基于 Babel 自身构建一个集成工具的用户，Babel 工具链中都有很多工具可以让你轻松使用 Babel。这里简要介绍下这些工具，你可以在文档的“用法”部分中阅读有关它们的更多信息。</p>
+<blockquote>
+<p>如果你正在使用框架，不同框架配置 Babel 的方式可能会有所不同，实际上有些框架已经为你配置。具体的配置方法请查看 <a href="/setup.html">交互式设置指南</a>。</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="概览"></a><a href="#概览" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>概览</h2>
+<p>本文将向你展示如何将使用 ES2015+ 语法的 JavaScript 应用程序代码编译为适用于当前浏览器的代码。这将涉及转换新语法和 polyfill 缺失的功能。</p>
+<p>整个设置过程包括：</p>
+<ol>
+<li><p>运行这些命令以安装 packages:</p>
+<pre><code class="hljs css language-sh">npm install --save-dev @babel/core @babel/cli @babel/preset-env
+npm install --save @babel/polyfill
+</code></pre></li>
+<li><p>使用以下内容在项目的根目录中创建名为 <code>babel.config.json</code> (需要 <code>v7.8.0</code> 及以上版本) 的配置文件：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [
+    [
+      <span class="hljs-string">"@babel/env"</span>,
+      {
+        <span class="hljs-attr">"targets"</span>: {
+          <span class="hljs-attr">"edge"</span>: <span class="hljs-string">"17"</span>,
+          <span class="hljs-attr">"firefox"</span>: <span class="hljs-string">"60"</span>,
+          <span class="hljs-attr">"chrome"</span>: <span class="hljs-string">"67"</span>,
+          <span class="hljs-attr">"safari"</span>: <span class="hljs-string">"11.1"</span>
+        },
+        <span class="hljs-attr">"useBuiltIns"</span>: <span class="hljs-string">"usage"</span>,
+        <span class="hljs-attr">"corejs"</span>: <span class="hljs-string">"3.6.5"</span>
+      }
+    ]
+  ]
+}
+</code></pre></li>
+</ol>
+<blockquote>
+<p>上面的浏览器列表只是一个随意的例子。你必须根据想要支持的浏览器进行调整。更多 <code>@babel/preset-env</code> 选项，请查看 <a href="/docs/en/babel-preset-env">这里</a>。</p>
+</blockquote>
+<p>或者使用 <code>babel.config.js</code>，如果你在使用旧版本 Babel</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> presets = [
+  [
+    <span class="hljs-string">"@babel/env"</span>,
+    {
+      <span class="hljs-attr">targets</span>: {
+        <span class="hljs-attr">edge</span>: <span class="hljs-string">"17"</span>,
+        <span class="hljs-attr">firefox</span>: <span class="hljs-string">"60"</span>,
+        <span class="hljs-attr">chrome</span>: <span class="hljs-string">"67"</span>,
+        <span class="hljs-attr">safari</span>: <span class="hljs-string">"11.1"</span>,
+      },
+      <span class="hljs-attr">useBuiltIns</span>: <span class="hljs-string">"usage"</span>,
+      <span class="hljs-attr">corejs</span>: <span class="hljs-string">"3.6.4"</span>,
+    },
+  ],
+];
+
+<span class="hljs-built_in">module</span>.exports = { presets };
+</code></pre>
+<ol start="3">
+<li><p>运行此命令将所有代码从 <code>src</code> 目录编译到 <code>lib</code>：</p>
+<pre><code class="hljs css language-sh">./node_modules/.bin/babel src --out-dir lib
+</code></pre>
+<blockquote>
+<p>你可以通过 npm@5.2.0 附带的 npm package runner，用 <code>npx babel</code> 替换 <code>./node_modules/.bin/babel</code> 来缩短该命令。</p>
+</blockquote></li>
+</ol>
+<p>请继续阅读，了解其工作原理的逐步说明以及对所使用的每种工具的介绍。</p>
+<h2><a class="anchor" aria-hidden="true" id="cli-的基本用法"></a><a href="#cli-的基本用法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CLI 的基本用法</h2>
+<p>你需要的所有 Babel 模块都将作为单独的 npm 包发布，其范围为 <code>@babel</code>（自版本 7 开始）。这种模块化设计允许每种工具都针对特定用例设计。下面我们来看看 <code>@babel/core</code> 和 <code>@babel/cli</code>。</p>
+<h3><a class="anchor" aria-hidden="true" id="核心库"></a><a href="#核心库" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>核心库</h3>
+<p>Babel 的核心功能容纳于 <a href="/docs/en/babel-core">@babel/core</a> 模块。通过以下命令安装后：</p>
+<pre><code class="hljs css language-sh">npm install --save-dev @babel/core
+</code></pre>
+<p>你可以直接在 JavaScript 中 <code>require</code> 它并像下面这样使用它：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> babel = <span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/core"</span>);
+
+babel.transformSync(<span class="hljs-string">"code"</span>, optionsObject);
+</code></pre>
+<p>但作为终端用户，你可能需要安装其他工具，并且通过此工具提供的接口来使用 <code>@babel/core</code>，这样更容易与你的开发过程集成。即便其中的大部分选项可以通过其他工具进行设置，你可能还是需要查看 Babel 文档页面来了解这些选项。</p>
+<h3><a class="anchor" aria-hidden="true" id="cli-工具"></a><a href="#cli-工具" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CLI 工具</h3>
+<p><a href="/docs/en/babel-cli">@babel/cli</a> 是一个允许你在终端使用 babel 的工具。这是安装命令和基本用法示例：</p>
+<pre><code class="hljs css language-sh">npm install --save-dev @babel/core @babel/cli
+
+./node_modules/.bin/babel src --out-dir lib
+</code></pre>
+<p>它解析 <code>src</code> 目录中的所有 JavaScript 文件，使用我们设置的转换规则,并将转换后每个文件输出到 <code>lib</code> 目录。由于我们还没有设置转换规则，这里输出代码将与输入保持一致（不保留确切的代码样式）。我们可以指定我们想要的转换规则，通过把它们作为选项传给 CLI。</p>
+<p>我们使用上面的 <code>--out-dir</code> 选项。你可以通过使用 <code>--help</code> 运行它来查看 cli 工具接收的其余选项。但对我们来说最重要的是 <code>--plugins</code> 和 <code>--presets</code>。</p>
+<h2><a class="anchor" aria-hidden="true" id="plugins--presets"></a><a href="#plugins--presets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>plugins &amp; presets</h2>
+<p>转换规则会体现为插件的形式，插件是小型 JavaScript 程序，它指示 Babel 如何进行代码转换。你甚至可以编写自己的插件，来应用你想要的任何转换规则。想要将 ES2015+ 语法转换为 ES5，我们可以依赖类似 <code>@babel/plugin-transform-arrow-functions</code> 这样的官方插件，如：</p>
+<pre><code class="hljs css language-sh">npm install --save-dev @babel/plugin-transform-arrow-functions
+
+./node_modules/.bin/babel src --out-dir lib --plugins=@babel/plugin-transform-arrow-functions
+</code></pre>
+<p>现在代码中的所有箭头函数都将被转换为 ES5 兼容的函数表达式：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> fn = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">// 转为</span>
+
+<span class="hljs-keyword">var</span> fn = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+};
+</code></pre>
+<p>这是一个好的开始！如果代码中还有其他 ES2015+ 功能也需要转换。我们可以使用一个 &quot;preset&quot;，其中包含着一组预先设定的插件，而不是逐一添加我们想要的所有插件。</p>
+<p>就像使用 plugins 一样，你也可以创建自己的 preset，分享你需要的任何插件组合。在这个例子中，我们使用了 <code>env</code> preset。</p>
+<pre><code class="hljs css language-sh">npm install --save-dev @babel/preset-env
+
+./node_modules/.bin/babel src --out-dir lib --presets=@babel/env
+</code></pre>
+<p>没有任何配置，这个 preset 包括支持现代 JavaScript（ES2015，ES2016 等）的所有插件。然而 presets 也可以接收配置选项。相比从终端传入 cli 和 preset 选项，我们还可以使用另一种方式传入选项：通过配置文件。</p>
+<h2><a class="anchor" aria-hidden="true" id="配置文件"></a><a href="#配置文件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>配置文件</h2>
+<blockquote>
+<p>根据你的需要，可以使用几种不同形式的配置文件。请务必阅读有关如何 <a href="/docs/en/configuration">配置 Babel</a> 的深入指南以获取更多信息。</p>
+</blockquote>
+<p>现在，让我们创建一个名为 <code>babel.config.json</code> (需要 <code>v7.8.0</code> 及以上) 的文件，其中包含以下内容：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [
+    [
+      <span class="hljs-string">"@babel/env"</span>,
+      {
+        <span class="hljs-attr">"targets"</span>: {
+          <span class="hljs-attr">"edge"</span>: <span class="hljs-string">"17"</span>,
+          <span class="hljs-attr">"firefox"</span>: <span class="hljs-string">"60"</span>,
+          <span class="hljs-attr">"chrome"</span>: <span class="hljs-string">"67"</span>,
+          <span class="hljs-attr">"safari"</span>: <span class="hljs-string">"11.1"</span>
+        }
+      }
+    ]
+  ]
+}
+</code></pre>
+<p>现在 <code>env</code> preset 只会为目标浏览器中没有的功能加载转换插件。上面已经介绍过所有语法。接下来我们看看 polyfills。</p>
+<h2><a class="anchor" aria-hidden="true" id="polyfill"></a><a href="#polyfill" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>polyfill</h2>
+<blockquote>
+<p>🚨 自 Babel 7.4.0 起，此 package 已被弃用，你可以直接引入 <code>core-js/stable</code>（用于 polyfill ECMAScript 新特性）以及 <code>regenerator-runtime/runtime</code> (被用于转译 generator 函数)：</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/stable"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"regenerator-runtime/runtime"</span>;
+</code></pre>
+</blockquote>
+<p><a href="/docs/en/babel-polyfill">@babel/polyfill</a> 模块包括 <a href="https://github.com/zloirock/core-js">core-js</a> 和一个自定义 <a href="https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js">regenerator runtime</a>，用于模拟完整的 ES2015+ 环境。</p>
+<p>这意味着你可以使用像 <code>Promise</code> 或 <code>WeakMap</code> 这样的新内置函数，像 <code>Array.from</code> 或 <code>Object.assign</code> 这样的静态方法，像 <code>Array.prototype.includes</code> 这样的实例方法，以及（提供 regenerator 插件后可以使用） generator 函数。为了做到这一点，polyfill 会在全局作用域和类似 <code>String</code> 这样的内置对象的原型对象上添加对象或方法。</p>
+<p>对于 library/tool 作者来说，这可能显得多余。如果你不需要像 <code>Array.prototype.includes</code> 这样的实例方法，可以使用 <a href="/docs/en/babel-plugin-transform-runtime">transform runtime</a> 插件，来避免 <code>@babel/polyfill</code> 污染全局作用域。</p>
+<p>更进一步，如果你明确知道需要 polyfill 的那些功能，可以直接从 <a href="https://github.com/zloirock/core-js#commonjs">core-js</a> 中引用。</p>
+<p>由于我们正在构建一个应用程序，我们可以只安装 <code>@babel/polyfill</code>:</p>
+<pre><code class="hljs css language-sh">npm install --save @babel/polyfill
+</code></pre>
+<blockquote>
+<p>注意：使用 <code>--save</code> 选项，而不是 <code>--save-dev</code>，这是因为 polyfill 需要在运行时中在源代码之前执行。</p>
+</blockquote>
+<p>幸运的是，对于我们来说，我们使用的是 <code>env</code> preset，其中有一个 <code>&quot;useBuiltIns&quot;</code> 选项，当设置为 <code>&quot;usage&quot;</code> 时，实际上针对最后一个版本的浏览器应用优化，只会包含你需要的 polyfill。使用此新选项，配置更改如下：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [
+    [
+      <span class="hljs-string">"@babel/env"</span>,
+      {
+        <span class="hljs-attr">"targets"</span>: {
+          <span class="hljs-attr">"edge"</span>: <span class="hljs-string">"17"</span>,
+          <span class="hljs-attr">"firefox"</span>: <span class="hljs-string">"60"</span>,
+          <span class="hljs-attr">"chrome"</span>: <span class="hljs-string">"67"</span>,
+          <span class="hljs-attr">"safari"</span>: <span class="hljs-string">"11.1"</span>
+        },
+        <span class="hljs-attr">"useBuiltIns"</span>: <span class="hljs-string">"usage"</span>
+      }
+    ]
+  ]
+}
+</code></pre>
+<p>Babel 将检查你的所有代码，以查找目标环境中缺少的功能，并仅包含所需的 polyfill。例如这段代码：</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">Promise</span>.resolve().finally();
+</code></pre>
+<p>会变成这样（因为 Edge 17 没有 <code>Promise.prototype.finally</code>）：</p>
+<pre><code class="hljs css language-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">"core-js/modules/es.promise.finally"</span>);
+
+<span class="hljs-built_in">Promise</span>.resolve().finally();
+</code></pre>
+<p>如果没有将 <code>env</code> preset 的 <code>&quot;useBuiltIns&quot;</code> 选项的设置为 <code>&quot;usage&quot;</code> ，我们必须在入口起点的其他代码之前先完整 polyfill <em>一次</em>。</p>
+<h2><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h2>
+<p>我们使用 <code>@babel/cli</code> 从终端运行 Babel，<code>@babel/polyfill</code> 用于 polyfill 所有新的 JavaScript 功能，<code>env</code> preset 只包含我们使用的功能的转换规则，polyfills 用于填充目标浏览器中缺少的功能。</p>
+<p>有关使用构建系统设置 Babel，以及 IDE 等更多信息，请查看 <a href="/setup.html">交互式设置指南</a>。</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/index"><span class="arrow-prev">← </span><span>什么是 Babel？</span></a><a class="docs-next button" href="/docs/en/configuration"><span>配置 Babel</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#概览">概览</a></li><li><a href="#cli-的基本用法">CLI 的基本用法</a><ul class="toc-headings"><li><a href="#核心库">核心库</a></li><li><a href="#cli-工具">CLI 工具</a></li></ul></li><li><a href="#plugins--presets">plugins &amp; presets</a></li><li><a href="#配置文件">配置文件</a></li><li><a href="#polyfill">polyfill</a></li><li><a href="#总结">总结</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

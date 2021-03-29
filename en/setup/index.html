@@ -1,0 +1,791 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Babel 中文文档 · 下一代 JavaScript compiler</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="下一代 JavaScript compiler"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Babel 中文文档 · 下一代 JavaScript compiler"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/"/><meta property="og:description" content="下一代 JavaScript compiler"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class="siteNavItemActive"><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class=""><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="mainContainer"><div class="page-header text-center"><h1>使用 Babel</h1><p>教你如何在使用 Babel 时选择工具</p></div><div class="container paddingBottom"><div class="wrapper"><div class="step"><div class="step-setup"><h2><span class="step-no">1</span>选择你的工具 (尝试 CLI)</h2><div class="tools-group"><h5>原型</h5><a data-title="browser" href="#installation" class="tools-button">在浏览器中</a></div><div class="tools-group"><h5>Babel 内置插件</h5><a data-title="babel_cli" href="#installation" class="tools-button">CLI</a><a data-title="babel_register" href="#installation" class="tools-button">Require hook</a></div><div class="tools-group"><h5>构建系统</h5><a data-title="broccoli" href="#installation" class="tools-button">Broccoli</a><a data-title="browserify" href="#installation" class="tools-button">Browserify</a><a data-title="brunch" href="#installation" class="tools-button">Brunch</a><a data-title="duo" href="#installation" class="tools-button">Duo</a><a data-title="grunt" href="#installation" class="tools-button">Grunt</a><a data-title="gulp" href="#installation" class="tools-button">Gulp</a><a data-title="jspm" href="#installation" class="tools-button">jspm</a><a data-title="make" href="#installation" class="tools-button">Make</a><a data-title="msbuild" href="#installation" class="tools-button">MSBuild</a><a data-title="requirejs" href="#installation" class="tools-button">RequireJS</a><a data-title="rollup" href="#installation" class="tools-button">Rollup</a><a data-title="sprockets" href="#installation" class="tools-button">Sprockets</a><a data-title="webpack" href="#installation" class="tools-button">Webpack</a><a data-title="start" href="#installation" class="tools-button">Start</a></div><div class="tools-group"><h5>框架</h5><a data-title="ember" href="#installation" class="tools-button">Ember</a><a data-title="meteor" href="#installation" class="tools-button">Meteor</a><a data-title="rails" href="#installation" class="tools-button">Rails</a><a data-title="sails" href="#installation" class="tools-button">Sails</a></div><div class="tools-group"><h5>测试框架</h5><a data-title="ava" href="#installation" class="tools-button">AVA</a><a data-title="jasmine" href="#installation" class="tools-button">Jasmine</a><a data-title="jest" href="#installation" class="tools-button">Jest</a><a data-title="karma" href="#installation" class="tools-button">Karma</a><a data-title="lab" href="#installation" class="tools-button">Lab</a><a data-title="mocha" href="#installation" class="tools-button">Mocha</a></div><div class="tools-group"><h5>公用</h5><a data-title="connect" href="#installation" class="tools-button">Connect</a><a data-title="nodemon" href="#installation" class="tools-button">Nodemon</a></div><div class="tools-group"><h5>编程语言 APIs</h5><a data-title="dotnet" href="#installation" class="tools-button">C# / .NET</a><a data-title="node" href="#installation" class="tools-button">Node</a><a data-title="ruby" href="#installation" class="tools-button">Ruby</a></div><div class="tools-group"><h5>模板引擎</h5><a data-title="pug" href="#installation" class="tools-button">Pug</a></div><div class="tools-group"><h5>编辑器和 IDEs</h5><a data-title="webstorm" href="#installation" class="tools-button">WebStorm</a></div><div class="tools-group"><h5>调试工具</h5><a data-title="babel_node_debug" href="#installation" class="tools-button">Node Inspector</a></div></div><div class="step-hidden step-setup"><h2 id="installation"><span class="step-no">2</span>安装</h2><div class="items" data-title="ava"><div><span><pre><code class="hljs css language-sh">npm install --save-dev @ava/babel
+</code></pre>
+</span></div></div><div class="items" data-title="babel_cli"><div><span><p>虽然你 <em>可以</em> 在你的机器上全局安装 Babel CLI, 但根据单个项目进行<strong>本地</strong>安装会更好一些。</p>
+<p>这样做有两个主要的原因：</p>
+<ol>
+<li>同一机器上的不同的项目可以依赖不同版本的 Babel, 这允许你一次更新一个项目。</li>
+<li>这意味着在你的工作环境中没有隐含的依赖项。它将使你的项目更方便移植、更易于安装。</li>
+</ol>
+<p>我们可以通过以下命令本地安装 Babel CLI:</p>
+<pre><code class="hljs css language-sh">npm install --save-dev @babel/core @babel/cli
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    <strong>注意：</strong> 如果你没有一个 <code>package.json</code>,
+    在安装之前请新建一个。这可以保证
+    <code>npx</code> 命令产生合适的交互。
+  </p>
+</blockquote>
+<p>在完成安装之后，你的 <code>package.json</code> 文件应该包括：</p>
+<pre><code class="hljs css language-diff">{
+  "devDependencies": {
+<span class="hljs-addition">+   "@babel/cli": "^7.0.0",</span>
+<span class="hljs-addition">+   "@babel/core": "^7.0.0"</span>
+  }
+}
+</code></pre>
+</span></div></div><div class="items" data-title="babel_node_debug"><div><span><pre><code class="hljs css language-sh">npm install -g babel-node-debug
+</code></pre>
+</span></div></div><div class="items" data-title="babel_register"><div><span><pre><code class="hljs css language-sh">npm install @babel/register
+</code></pre>
+</span></div></div><div class="items" data-title="broccoli"><div><span><pre><code class="hljs css language-sh">npm install --save-dev broccoli-babel-transpiler
+</code></pre>
+</span></div></div><div class="items" data-title="browser"><div><span><blockquote class="babel-callout babel-callout-warning">
+  <p>
+    在浏览器中编译的用例非常有限，
+    因此如果你在生产环境下工作，你应该在服务端预编译脚本。
+    请查看 <a href="/docs/setup/#build-systems">配置构建系统</a>
+    了解更多信息。
+  </p>
+</blockquote>
+<p>你可以使用 <code>@babel/babel-standalone</code> 作为 Babel 的预编译版本，或者你自己在 Babel 基础之上运行一个 bundler。请查看下面的使用部分，了解如何将其用作脚本。</p>
+<p>你还可以使用更多在线工具对脚本进行原型化:</p>
+<ul>
+<li><a href="https://babel.docschina.org/repl">Babel 官方提供的 REPL</a></li>
+<li><a href="https://codesandbox.io/s/babel-repl-custom-plugin-7s08o?file=/src/index.js">CodeSandbox</a></li>
+</ul>
+<p>运行 Babel 于在线编辑器上:</p>
+<ul>
+<li><a href="https://jsfiddle.net/fh5whLfd/">JSFiddle</a></li>
+<li><a href="http://jsbin.com/rokimopuse/edit?html,js,console,output">JSBin</a></li>
+<li><a href="http://codepen.io/anon/pen/dOGgeO">Codepen</a></li>
+<li><a href="https://jsitor.com/P1Br0ZbSF">JSitor</a></li>
+</ul>
+</span></div></div><div class="items" data-title="browserify"><div><span><pre><code class="hljs css language-sh">npm install --save-dev babelify @babel/core
+</code></pre>
+</span></div></div><div class="items" data-title="brunch"><div><span><pre><code class="hljs css language-sh">npm install --save-dev babel-brunch
+</code></pre>
+</span></div></div><div class="items" data-title="connect"><div><span><pre><code class="hljs css language-sh">npm install babel-connect
+</code></pre>
+</span></div></div><div class="items" data-title="dotnet"><div><span><p>.NET 对于 Babel 的支持由 <a href="http://reactjs.net/">ReactJS.NET</a> 项目提供。核心库可以通过 NuGet 安装：</p>
+<pre><code class="hljs">Install-<span class="hljs-keyword">Package</span> <span class="hljs-title">React.Core</span>
+</code></pre>
+</span></div></div><div class="items" data-title="duo"><div><span><pre><code class="hljs css language-sh">npm install --save-dev duo-babel
+</code></pre>
+</span></div></div><div class="items" data-title="ember"><div><span><pre><code class="hljs css language-sh">ember install ember-cli-babel
+</code></pre>
+</span></div></div><div class="items" data-title="fly"><div></div></div><div class="items" data-title="gobble"><div></div></div><div class="items" data-title="grunt"><div><span><pre><code class="hljs css language-sh">npm install --save-dev grunt-babel @babel/core
+</code></pre>
+</span></div></div><div class="items" data-title="gulp"><div><span><pre><code class="hljs css language-sh"><span class="hljs-comment"># Babel 7</span>
+npm install --save-dev gulp-babel @babel/core
+</code></pre>
+</span></div></div><div class="items" data-title="jasmine"><div><span><pre><code class="hljs css language-sh">npm install --save-dev @babel/register @babel/core
+</code></pre>
+</span></div></div><div class="items" data-title="jest"><div><span><p><code>babel-jest</code> is now automatically loaded by Jest and fully integrated. This step is only required if you are using <code>babel-jest</code> to transform TypeScript files.</p>
+<pre><code class="hljs css language-sh">npm install --save-dev babel-jest
+</code></pre>
+</span></div></div><div class="items" data-title="jspm"><div><span><p>运行 <code>jspm init -p</code> 时选择 <code>babel</code> 作为编译器，或者用以下命令将现有的工程切换到 Babel 中：</p>
+<pre><code class="hljs css language-sh">jspm dl-loader --babel
+</code></pre>
+<blockquote class="babel-callout babel-callout-warning">
+  <p>
+    The jspm package management CLI has been deprecated as of June 2020. See <a href="https://github.com/jspm/jspm-cli">jspm repo</a> for more details.
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="karma"><div><span><pre><code class="hljs css language-sh">npm install --save-dev karma-babel-preprocessor @babel/core
+</code></pre>
+</span></div></div><div class="items" data-title="lab"><div><span><pre><code class="hljs css language-sh">npm install --save-dev lab-babel
+</code></pre>
+</span></div></div><div class="items" data-title="make"><div><span><p>在<em>多数</em> Unix 系统中已经预装过。 Windows 系统可以从 <a href="https://github.com/bmatzelle/gow">gow</a> 获取。</p>
+</span></div></div><div class="items" data-title="metalsmith"><div><span><pre><code class="hljs css language-sh">npm install metalsmith-babel
+</code></pre>
+</span></div></div><div class="items" data-title="meteor"><div><span><p>As of Meteor 1.2, the <code>ecmascript</code> package is installed by default for all
+new apps.</p>
+<pre><code class="hljs css language-sh">meteor add ecmascript
+</code></pre>
+</span></div></div><div class="items" data-title="mocha"><div><span><pre><code class="hljs css language-sh">npm install --save-dev @babel/register @babel/core
+</code></pre>
+</span></div></div><div class="items" data-title="msbuild"><div><span><p><a href="http://reactjs.net/">ReactJS.NET</a> 项目提供 ASP.NET 4.x 以上 Babel 支持。通过 NuGet 安装 MSBuild 任务：</p>
+<pre><code class="hljs">Install-<span class="hljs-keyword">Package</span> <span class="hljs-title">React.MSBuild</span>
+</code></pre>
+</span></div></div><div class="items" data-title="node"><div><span><pre><code class="hljs css language-sh">npm install --save-dev @babel/core
+</code></pre>
+</span></div></div><div class="items" data-title="nodemon"><div><span><pre><code class="hljs css language-sh">npm install @babel/core @babel/node --save-dev
+</code></pre>
+</span></div></div><div class="items" data-title="pug"><div><span><p><code>jstransformer-babel</code> supports Babel 6 only.</p>
+<pre><code class="hljs css language-sh">npm install jstransformer-babel
+</code></pre>
+</span></div></div><div class="items" data-title="rails"><div><span><p><a href="https://github.com/rails/webpacker">webpacker</a> is the new default
+javascript compiler for Rails 6. It comes with built-in support for transpiling
+with babel. To use it in earlier versions of Rails:</p>
+<pre><code class="hljs css language-rb"><span class="hljs-comment"># Gemfile</span>
+gem <span class="hljs-string">'webpacker'</span>
+</code></pre>
+<pre><code class="hljs css language-sh">bundle install
+bundle <span class="hljs-built_in">exec</span> rails webpacker:install
+</code></pre>
+</span></div></div><div class="items" data-title="requirejs"><div><span><pre><code class="hljs css language-sh">npm install --save-dev requirejs-babel @babel/standalone babel-plugin-module-resolver-standalone
+</code></pre>
+</span></div></div><div class="items" data-title="rollup"><div><span><pre><code class="hljs css language-sh">npm install --save-dev rollup
+</code></pre>
+<pre><code class="hljs css language-sh">npm install --save-dev @rollup/plugin-babel
+</code></pre>
+</span></div></div><div class="items" data-title="ruby"><div><span><pre><code class="hljs css language-sh">gem install babel-transpiler
+</code></pre>
+</span></div></div><div class="items" data-title="sails"><div><span><pre><code class="hljs css language-sh">npm install --save-dev sails-hook-babel
+</code></pre>
+</span></div></div><div class="items" data-title="sprockets"><div><span><pre><code class="hljs css language-rb"><span class="hljs-comment"># Gemfile</span>
+gem <span class="hljs-string">"sprockets"</span>
+gem <span class="hljs-string">"sprockets-bumble_d"</span>
+</code></pre>
+<pre><code class="hljs css language-sh">bundle install
+npm install --save @babel/core @babel/plugin-external-helpers @babel/plugin-transform-modules-umd @babel/preset-env
+</code></pre>
+</span></div></div><div class="items" data-title="start"><div><span><pre><code class="hljs css language-sh">npm install -D start-babel
+</code></pre>
+</span></div></div><div class="items" data-title="webpack"><div><span><pre><code class="hljs css language-sh">npm install --save-dev babel-loader @babel/core
+</code></pre>
+</span></div></div><div class="items" data-title="webstorm"><div><span><pre><code class="hljs css language-sh">npm install --save-dev @babel/cli
+</code></pre>
+</span></div></div></div><div class="step-hidden step-setup"><h2 id=""><span class="step-no">3</span>用法</h2><div class="items" data-title="ava"><div><span><p>Enable Babel support either in <code>package.json</code> or <code>ava.config.*</code></p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"ava"</span>: {
+    <span class="hljs-attr">"babel"</span>: <span class="hljs-literal">true</span>
+  }
+}
+</code></pre>
+<p>请注意，AVA <em>总是</em> 在转译你的插件时会添加一些自定义的 Babel 插件，请看 <a href="https://github.com/avajs/ava/blob/master/docs/03-assertions.md#enhanced-assertion-messages">标注</a>。</p>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    想要了解更多信息，请参阅 <a href="https://github.com/avajs/babel">@ava/babel 仓库</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="babel_cli"><div><span><p>我们将把我们的指令放在本地版本的 <strong>npm 脚本</strong>中，而不是直接通过命令行来运行 Babel.</p>
+<p>简单的在你的 <code>package.json</code> 中添加一个 <code>&quot;scripts&quot;</code> 属性并将 babel 命令放在它的 <code>build</code> 属性中。</p>
+<pre><code class="hljs css language-diff">  {
+    "name": "my-project",
+    "version": "1.0.0",
+<span class="hljs-addition">+   "scripts": {</span>
+<span class="hljs-addition">+     "build": "babel src -d lib"</span>
+<span class="hljs-addition">+   },</span>
+    "devDependencies": {
+      "@babel/cli": "^7.0.0"
+    }
+  }
+</code></pre>
+<p>现在从我们的终端可以运行以下命令：</p>
+<pre><code class="hljs css language-sh">npm run build
+</code></pre>
+<p>这会按照和之前一样的方式来运行 Babel 并将输出放在 <code>lib</code> 目录下，唯一不同在于我们现在使用了一个本地拷贝。</p>
+<p>另外，你可以在 <code>node_modules</code> 中引用 <code>babel</code> 命令。</p>
+<pre><code class="hljs css language-sh">./node_modules/.bin/babel src -d lib
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    了解完整 Babel CLI 文档请看
+    <a href="/docs/usage/cli/">使用文档</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="babel_node_debug"><div><span><pre><code class="hljs css language-sh">babel-node-debug path/to/script.js
+</code></pre>
+<p>或者使用这个命令：</p>
+<pre><code class="hljs css language-sh">bode-debug path/to/script.js
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/crabdude/babel-node-debug">crabdude/babel-node-debug 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="babel_register"><div><span><p>使用它你需要在应用程序的<strong>入口起点</strong>顶部引入 Babel 。</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/register"</span>);
+</code></pre>
+<p>如果你在应用程序中使用 ES6 的 <code>import</code> 语法，
+你则需要在<strong>入口起点</strong>的顶部引入 Babel ，以确保它优先加载:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">"@babel/register"</span>;
+</code></pre>
+<p>所有以 <code>.es6</code>， <code>.es</code>， <code>.jsx</code> 和 <code>.js</code> 扩展名为后缀的文件都能被 Babel 转译。 特殊的 polyfill 自然也需要引入特殊的 <a href="/docs/usage/polyfill/">polyfill</a> 。</p>
+<blockquote class="babel-callout babel-callout-warning">
+  <h4>不适合在库中使用</h4>
+  <p>
+    Require hook 会自动钩住<strong>所有</strong>节点需要的钩子。这将污染全局作用域，引发未知冲突。正因如此，它不适合在库中使用，但你如果正在编写一个应用程序，那么使用它就完全没问题。
+  </p>
+</blockquote>
+<blockquote class="babel-callout babel-callout-warning">
+  <h4>不适合用于生产环境下</h4>
+  <p>
+    Require hook 主要推荐用于简单的情况下。
+  </p>
+</blockquote>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    关于 Babel Require hook 的完整文档，请查看<a href="/docs/usage/require/">usage docs</a>.
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="broccoli"><div><span><pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> babelTranspiler = <span class="hljs-built_in">require</span>(<span class="hljs-string">"broccoli-babel-transpiler"</span>);
+<span class="hljs-keyword">var</span> scriptTree = babelTranspiler(inputTree, options);
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/broccoli-babel-transpiler">babel/broccoli-babel-transpiler 项目</a>.
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="browser"><div><span><p><h4>使用 @babel/standalone</h4></p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"output"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- 加载 Babel --&gt;</span>
+<span class="hljs-comment">&lt;!-- &lt;script src="https://unpkg.com/babel-standalone@6/babel.min.js"&gt;&lt;/script&gt; --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/@babel/standalone/babel.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- 你的脚本代码 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/babel"</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">const</span> getMessage = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">"Hello World"</span>;
+<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'output'</span>).innerHTML = getMessage();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    See <a href="/docs/babel-standalone">docs</a> for full documentation on <code>@babel/standalone</code>.
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="browserify"><div><span><h4><a class="anchor" aria-hidden="true" id="通过-cli-使用"></a><a href="#通过-cli-使用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>通过 CLI 使用</h4>
+<pre><code class="hljs css language-sh">browserify script.js -t babelify --outfile bundle.js
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="通过-node-api-使用"></a><a href="#通过-node-api-使用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>通过 Node API 使用</h4>
+<pre><code class="hljs css language-js">browserify({ <span class="hljs-attr">debug</span>: <span class="hljs-literal">true</span> })
+  .transform(babelify);
+</code></pre>
+<p>或者一个更完整的例子:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">"fs"</span>);
+<span class="hljs-keyword">var</span> browserify = <span class="hljs-built_in">require</span>(<span class="hljs-string">"browserify"</span>);
+<span class="hljs-keyword">var</span> babelify = <span class="hljs-built_in">require</span>(<span class="hljs-string">"babelify"</span>);
+
+browserify({ <span class="hljs-attr">debug</span>: <span class="hljs-literal">true</span> })
+  .transform(babelify)
+  .require(<span class="hljs-string">"./script.js"</span>, { <span class="hljs-attr">entry</span>: <span class="hljs-literal">true</span> })
+  .bundle()
+  .on(<span class="hljs-string">"error"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Error: "</span> + err.message); })
+  .pipe(fs.createWriteStream(<span class="hljs-string">"bundle.js"</span>));
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="传递选项"></a><a href="#传递选项" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>传递选项</h4>
+<p><strong>CLI</strong></p>
+<pre><code class="hljs css language-sh">browserify -d -e script.js -t [ babelify --comments <span class="hljs-literal">false</span> ]
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="node-api"></a><a href="#node-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Node API</h5>
+<pre><code class="hljs css language-js">browserify().transform(babelify.configure({
+  <span class="hljs-attr">comments</span>: <span class="hljs-literal">false</span>
+}))
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="packagejson"></a><a href="#packagejson" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>package.json</h5>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"transform"</span>: [[<span class="hljs-string">"babelify"</span>, { <span class="hljs-attr">"comments"</span>: <span class="hljs-literal">false</span> }]]
+}
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/babelify">babel/babelify 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="brunch"><div><span><p>就是这些！在你的 brunch 配置文件(例如: <code>brunch-config.coffee</code>)中设置 babel 选项，已经被内部处理的 <code>filename</code> 和 <code>sourceMap</code> 除外。</p>
+<pre><code class="hljs css language-coffee">plugins:
+  babel:
+    whitelist: [<span class="hljs-string">"arrowFunctions"</span>]
+    format:
+      semicolons: <span class="hljs-literal">false</span>
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/babel-brunch">babel/babel-brunch 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="connect"><div><span><pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> babelMiddleware = <span class="hljs-built_in">require</span>(<span class="hljs-string">"babel-connect"</span>);
+
+app.use(babelMiddleware({
+  <span class="hljs-attr">options</span>: {
+    <span class="hljs-comment">// 转译文件使用到的选项</span>
+  },
+  <span class="hljs-attr">src</span>: <span class="hljs-string">"assets"</span>,
+  <span class="hljs-attr">dest</span>: <span class="hljs-string">"cache"</span>
+}));
+
+app.use(connect.static(<span class="hljs-string">"cache"</span>));
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/babel-connect">babel/babel-connect 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="dotnet"><div><span><pre><code class="hljs css language-csharp"><span class="hljs-keyword">var</span> babel = ReactEnvironment.Current.Babel;
+<span class="hljs-comment">// 转译一个文件</span>
+<span class="hljs-comment">// 如果你也想要 source map, 那么可以使用 `TransformFileWithSourceMap`.</span>
+<span class="hljs-keyword">var</span> result = babel.TransformFile(<span class="hljs-string">"foo.js"</span>);
+<span class="hljs-comment">// 转译一段代码</span>
+<span class="hljs-keyword">var</span> result = babel.Transform(<span class="hljs-string">"class Foo { }"</span>);
+
+</code></pre>
+</span></div></div><div class="items" data-title="duo"><div><span><h4><a class="anchor" aria-hidden="true" id="通过-cli"></a><a href="#通过-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>通过 CLI</h4>
+<pre><code class="hljs css language-sh">duo --use duo-babel
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="通过-node-api"></a><a href="#通过-node-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>通过 Node API</h4>
+<pre><code class="hljs css language-js">Duo(root)
+  .entry(entry)
+  .use(babel)
+  .run(fn);
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/duo-babel">babel/duo-babel 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="ember"><div><span><p>就是它了！</p>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/ember-cli-babel">babel/ember-cli-babel 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="fly"><div><span><pre><code class="hljs css language-js">  <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">text</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">this</span>
+      .source(<span class="hljs-string">"src/**/*.js"</span>)
+      .babel({ <span class="hljs-attr">presets</span>: [<span class="hljs-string">"env"</span>] })
+      .target(<span class="hljs-string">"dist/"</span>)
+  }
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/flyjs/fly-babel">flyjs/fly-babel 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="gobble"><div><span><pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> gobble = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gobble"</span>);
+<span class="hljs-built_in">module</span>.exports = gobble(<span class="hljs-string">"src"</span>).transform(<span class="hljs-string">"babel"</span>, options);
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/gobble-babel">babel/gobble-babel 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="grunt"><div><span><pre><code class="hljs css language-js">grunt.initConfig({
+  <span class="hljs-attr">babel</span>: {
+    <span class="hljs-attr">options</span>: {
+      <span class="hljs-attr">sourceMap</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">presets</span>: [<span class="hljs-string">"@babel/preset-env"</span>],
+    },
+    <span class="hljs-attr">dist</span>: {
+      <span class="hljs-attr">files</span>: {
+        <span class="hljs-string">"dist/app.js"</span>: <span class="hljs-string">"src/app.js"</span>,
+      },
+    },
+  },
+});
+
+grunt.loadNpmTasks(<span class="hljs-string">'grunt-babel'</span>);
+
+grunt.registerTask(<span class="hljs-string">"default"</span>, [<span class="hljs-string">"babel"</span>]);
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/grunt-babel">babel/grunt-babel 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="gulp"><div><span><pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gulp"</span>);
+<span class="hljs-keyword">var</span> babel = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gulp-babel"</span>);
+
+gulp.task(<span class="hljs-string">"default"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> gulp.src(<span class="hljs-string">"src/app.js"</span>)
+    .pipe(babel({
+      <span class="hljs-attr">presets</span>: [<span class="hljs-string">"@babel/preset-env"</span>]
+    }))
+    .pipe(gulp.dest(<span class="hljs-string">"dist"</span>));
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="和-source-maps-一起使用"></a><a href="#和-source-maps-一起使用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>和 source maps 一起使用</h3>
+<p>像这样使用 <a href="https://github.com/floridoo/gulp-sourcemaps">gulp-sourcemaps</a>:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gulp"</span>);
+<span class="hljs-keyword">var</span> sourcemaps = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gulp-sourcemaps"</span>);
+<span class="hljs-keyword">var</span> babel = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gulp-babel"</span>);
+<span class="hljs-keyword">var</span> concat = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gulp-concat"</span>);
+
+gulp.task(<span class="hljs-string">"default"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> gulp.src(<span class="hljs-string">"src/**/*.js"</span>)
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(concat(<span class="hljs-string">"all.js"</span>))
+    .pipe(sourcemaps.write(<span class="hljs-string">"."</span>))
+    .pipe(gulp.dest(<span class="hljs-string">"dist"</span>));
+});
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/gulp-babel">babel/gulp-babel 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="jasmine"><div><span><p>在你的 <code>spec/support/jasmine.json</code> 文件中作出如下变化：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"helpers"</span>: [
+    <span class="hljs-string">"../node_modules/@babel/register/lib/node.js"</span>
+  ]
+}
+</code></pre>
+<p>这个文件在你通过 <code>jasmine init</code> 命令建立一个项目生成。Note that the file paths in <code>helpers</code> option are relative to <code>spec_dir</code>, not to project root path.</p>
+<p>Create a <code>babel.config.json</code> in your project root:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"@babel/preset-env"</span>]
+}
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/piecioshka/test-jasmine-babel">piecioshka/test-jasmine-babel 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="jest"><div><span><p>在你的 <code>package.json</code> 文件中作出如下变化：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"jest"</span>
+  },
+  <span class="hljs-attr">"jest"</span>: {
+    <span class="hljs-attr">"transform"</span>: {
+      <span class="hljs-attr">"^.+\\.[t|j]sx?$"</span>: <span class="hljs-string">"babel-jest"</span>
+    }
+  }
+}
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/facebook/jest/tree/master/packages/babel-jest">babel/babel-jest 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="jspm"><div><span><p>当你在任何源代码中使用 <code>import</code> 或者 <code>export</code> 模块语法时 Babel 会自动启用。</p>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    对 JSX 的支持现在被 jspm 禁用。在 jspm 配置文件 `babelOptions` 中添加 `"blacklist": []` 可以重新启用它。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="karma"><div><span><pre><code class="hljs css language-js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">config</span>) </span>{
+  config.set({
+    <span class="hljs-attr">files</span>: [
+      <span class="hljs-string">"src/**/*.js"</span>,
+      <span class="hljs-string">"test/**/*.js"</span>
+    ],
+    <span class="hljs-attr">preprocessors</span>: {
+      <span class="hljs-string">"src/**/*.js"</span>: [<span class="hljs-string">"babel"</span>],
+      <span class="hljs-string">"test/**/*.js"</span>: [<span class="hljs-string">"babel"</span>]
+    },
+    <span class="hljs-string">"babelPreprocessor"</span>: {
+      <span class="hljs-comment">// options go here</span>
+      <span class="hljs-attr">options</span>: {
+        <span class="hljs-attr">presets</span>: [<span class="hljs-string">"@babel/preset-env"</span>],
+        <span class="hljs-attr">sourceMap</span>: <span class="hljs-string">"inline"</span>
+      },
+    }
+  });
+};
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/karma-babel-preprocessor">babel/karma-babel-preprocessor 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="lab"><div><span><p>当使用 <a href="https://www.npmjs.com/package/lab"><code>lab</code></a> 运行测试时，三个自古转译器为 <a href="https://www.npmjs.com/package/lab-babel"><code>lab-babel</code></a>:</p>
+<pre><code class="hljs css language-sh">lab -T node_modules/lab-babel
+</code></pre>
+</span></div></div><div class="items" data-title="make"><div><span><pre><code class="hljs css language-make">SRC = $(wildcard src/*.js)
+LIB = $(<span class="hljs-symbol">SRC:</span>src/%.js=<span class="hljs-class"><span class="hljs-keyword">lib</span>/%.<span class="hljs-title">js</span>)</span>
+
+<span class="hljs-class"><span class="hljs-keyword">lib</span>: $(<span class="hljs-title">LIB</span>)</span>
+<span class="hljs-class"><span class="hljs-keyword">lib</span>/%.<span class="hljs-title">js</span>: <span class="hljs-title">src</span>/%.<span class="hljs-title">js</span> <span class="hljs-title">babel</span>.<span class="hljs-title">config</span>.<span class="hljs-title">json</span></span>
+  mkdir -p $(@D)
+  babel $&lt; -o $@
+</code></pre>
+<pre><code class="hljs css language-sh">make
+</code></pre>
+</span></div></div><div class="items" data-title="metalsmith"><div><span><h4><a class="anchor" aria-hidden="true" id="clihttpsgithubcomsegmentiometalsmithcli"></a><a href="#clihttpsgithubcomsegmentiometalsmithcli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/segmentio/metalsmith#cli">CLI</a></h4>
+<p>在你的 <code>metalsmith.json</code> 中添加 <code>metalsmith-babel</code>.</p>
+<pre><code class="hljs css language-javascript">{
+  <span class="hljs-string">"plugins"</span>: {
+    <span class="hljs-string">"metalsmith-babel"</span>: {
+      <span class="hljs-comment">// babel 选项</span>
+      <span class="hljs-string">"presets"</span>: [<span class="hljs-string">"@babel/preset-env"</span>]
+    }
+  }
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="apihttpsgithubcomsegmentiometalsmithapi"></a><a href="#apihttpsgithubcomsegmentiometalsmithapi" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/segmentio/metalsmith#api">API</a></h4>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">var</span> Metalsmith = <span class="hljs-built_in">require</span>(<span class="hljs-string">"metalsmith"</span>);
+<span class="hljs-keyword">var</span> babel = <span class="hljs-built_in">require</span>(<span class="hljs-string">"metalsmith-babel"</span>);
+
+<span class="hljs-keyword">new</span> Metalsmith(<span class="hljs-string">"./source"</span>)
+  .use(babel({
+    <span class="hljs-comment">/* babel 选项 */</span>
+    <span class="hljs-attr">presets</span>: [<span class="hljs-string">"@babel/preset-env"</span>]
+  }))
+  .build(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, files</span>) </span>{
+    <span class="hljs-keyword">if</span> (err) {
+      <span class="hljs-keyword">throw</span> err;
+    }
+
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Completed."</span>);
+  });
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/metalsmith-babel">babel/metalsmith-babel 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="meteor"><div><span><p>就是它了！任何以 <code>.js</code> 为扩展名的文件均会通过 Babel 被自动转译。</p>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <code>ecmascript</code>
+    <a href="https://github.com/meteor/meteor/blob/master/packages/ecmascript/README.md">README.md</a>.
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="mocha"><div><span><h4><a class="anchor" aria-hidden="true" id="mocha-8"></a><a href="#mocha-8" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mocha 8</h4>
+<p>在你的 <code>package.json</code> 文件中做如下变化：</p>
+<p>Create <code>.mocharc.yaml</code> in your project root:</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">require:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">'@babel/register'</span>
+</code></pre>
+<p>有些特性需要一个 polyfill:</p>
+<pre><code class="hljs css language-sh"><span class="hljs-comment"># Polyfills for builtin methods</span>
+npm install --save core-js
+<span class="hljs-comment"># Polyfills for generator function</span>
+npm install --save regenerator-runtime
+</code></pre>
+<p>Add import polyfills <em>before</em> <code>@babel/register</code>.</p>
+<pre><code class="hljs css language-yaml"><span class="hljs-attr">require:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">'core-js'</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">'regenerator-runtime'</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">'@babel/register'</span>
+</code></pre>
+<p>Create <code>babel.config.json</code> in your project root:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"@babel/preset-env"</span>]
+}
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <code>babel</code>
+    <a href="https://github.com/mochajs/mocha-examples/tree/master/packages/babel">mocha-examples</a>.
+  </p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="mocha-3"></a><a href="#mocha-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mocha 3</h4>
+<p><code>--compilers</code> is deprecated as of Mocha v4.0.0. See <a href="https://github.com/mochajs/mocha/wiki/compilers-deprecation">further explanation and workarounds</a>.</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"mocha --compilers js:@babel/register"</span>
+  }
+}
+</code></pre>
+<p>通过 polyfill:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"mocha --require babel-polyfill --compilers js:@babel/register"</span>
+  }
+}
+</code></pre>
+</span></div></div><div class="items" data-title="msbuild"><div><span><p>在你的 MSBuild 脚本中都任务:</p>
+<pre><code class="hljs css language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">UsingTask</span> <span class="hljs-attr">AssemblyFile</span>=<span class="hljs-string">"packages\React.MSBuild.2.1.0\React.MSBuild.dll"</span> <span class="hljs-attr">TaskName</span>=<span class="hljs-string">"TransformBabel"</span> /&gt;</span>
+</code></pre>
+<p>使用如下代码:</p>
+<pre><code class="hljs css language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">TransformBabel</span> <span class="hljs-attr">SourceDir</span>=<span class="hljs-string">"$(MSBuildProjectDirectory)"</span> <span class="hljs-attr">TargetDir</span>=<span class="hljs-string">""</span> /&gt;</span>
+</code></pre>
+<p>这样操作将会改变文件夹中每一个 <code>.js</code> 和 <code>.jsx</code> 文件，并同时对应生成一个 <code>.generated.js</code> 文件。</p>
+<p>查看 <a href="http://reactjs.net/guides/msbuild.html">guide</a> 获取更多信息。</p>
+</span></div></div><div class="items" data-title="node"><div><span><pre><code class="hljs css language-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"@babel/core"</span>).transform(<span class="hljs-string">"code"</span>, {
+  <span class="hljs-attr">presets</span>: [<span class="hljs-string">"@babel/preset-env"</span>],
+});
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    关于 Babel 的完整 API 文档请查阅<a href="/docs/usage/api/">使用文档</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="nodemon"><div><span><p>在你的 <code>package.json</code> 文件做出如下改动：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"babel-node"</span>: <span class="hljs-string">"babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'"</span>
+  }
+}
+</code></pre>
+<p>然后通过以下命令调用你的脚本：</p>
+<pre><code class="hljs css language-sh">nodemon --<span class="hljs-built_in">exec</span> npm run babel-node -- path/to/script.js
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="参数警告"></a><a href="#参数警告" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参数警告</h4>
+<p>使用 babel-node 调用 nodemon 时如果忘记使用双短划线，可能会导致错误地分析参数。 使用npm-scripts 来防止这一点。 如果您选择跳过使用 npm-scripts 脚本，它可以表示为：</p>
+<pre><code class="hljs css language-sh">nodemon --<span class="hljs-built_in">exec</span> babel-node --presets=@babel/preset-env --ignore=<span class="hljs-string">'foo\|bar\|baz'</span> -- path/to/script.js
+</code></pre>
+</span></div></div><div class="items" data-title="pug"><div><span><p>现在你可以在你的 pug 模板中使用 ES6, 如下所示：</p>
+<pre><code class="hljs css language-pug">script
+  :babel
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hello World !!!"</span>);
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>{
+      <span class="hljs-keyword">constructor</span>(name) {
+        <span class="hljs-keyword">this</span>.name = name;
+      }
+      sayName(){
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Hello, my name is <span class="hljs-subst">${<span class="hljs-keyword">this</span>.name}</span>`</span>);
+      }
+    }
+    <span class="hljs-keyword">var</span> person = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">"Apoxx"</span>);
+    person.sayName();
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/jstransformers/jstransformer-babel">jstransformers/jstransformer-babel 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="rails"><div><span><p>That's it!</p>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/rails/webpacker">rails/webpacker repo</a>.
+  </p>
+</blockquote>
+<p>Alternatively, if you need babel to transpile javascript that's processed
+through <a href="https://github.com/rails/sprockets">sprockets</a>, refer to the
+setup instructions for
+<a href="#installation" onclick="event.preventDefault(); document.querySelector('.tools-button[data-title=sprockets]').click()">integrating babel with sprockets</a>.</p>
+</span></div></div><div class="items" data-title="requirejs"><div><span><p>在配置中添加以下路径:</p>
+<pre><code class="hljs css language-js">paths: {
+    <span class="hljs-attr">es6</span>: <span class="hljs-string">'...node_modules/requirejs-babel/es6'</span>,
+    <span class="hljs-attr">babel</span>: <span class="hljs-string">'...node_modules/@babel/standalone/babel.min'</span>,
+    <span class="hljs-string">'babel-plugin-module-resolver'</span>: <span class="hljs-string">'...node_modules/babel-plugin-module-resolver-standalone/index'</span>
+  }
+</code></pre>
+<p>接下来，通过 <code>es6!</code> 加插件名引用文件:</p>
+<pre><code class="hljs css language-js">define([<span class="hljs-string">"es6!your-es6-module"</span>], <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">module</span>) </span>{
+  <span class="hljs-comment">// ...</span>
+});
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/mikach/requirejs-babel">mikach/requirejs-babel 项目</a>.
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="rollup"><div><span><pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> babel <span class="hljs-keyword">from</span> <span class="hljs-string">'@rollup/plugin-babel'</span>;
+
+<span class="hljs-keyword">const</span> config = {
+  <span class="hljs-attr">input</span>: <span class="hljs-string">'src/index.js'</span>,
+  <span class="hljs-attr">output</span>: {
+    <span class="hljs-attr">dir</span>: <span class="hljs-string">'output'</span>,
+    <span class="hljs-attr">format</span>: <span class="hljs-string">'esm'</span>
+  },
+  <span class="hljs-attr">plugins</span>: [babel({ <span class="hljs-attr">babelHelpers</span>: <span class="hljs-string">'bundled'</span> })]
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> config;
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/rollup/rollup">rollup</a> 和 <a href="https://github.com/rollup/plugins/tree/master/packages/babel">@rollup/plugin-babel</a> 项目.
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="ruby"><div><span><pre><code class="hljs css language-ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'babel/transpiler'</span>
+Babel::Transpiler.transform File.read(<span class="hljs-string">"foo.es6"</span>)
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/ruby-babel-transpiler">babel/ruby-babel-transpiler 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="sails"><div><span><p>就是它了！</p>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/sane/sails-hook-babel">artificialio/sails-hook-babel 仓库</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="sprockets"><div><span><pre><code class="hljs css language-rb"><span class="hljs-comment"># config/application.rb</span>
+extend Sprockets::BumbleD::DSL
+
+configure_sprockets_bumble_d <span class="hljs-keyword">do</span> <span class="hljs-params">|config|</span>
+  config.babel_config_version = <span class="hljs-number">1</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    For more information see the <a href="https://github.com/rmacklin/sprockets-bumble_d">rmacklin/sprockets-bumble_d repo</a>.
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="start"><div><span><pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> Start <span class="hljs-keyword">from</span> <span class="hljs-string">'start'</span>;
+<span class="hljs-keyword">import</span> reporter <span class="hljs-keyword">from</span> <span class="hljs-string">'start-pretty-reporter'</span>;
+<span class="hljs-keyword">import</span> files <span class="hljs-keyword">from</span> <span class="hljs-string">'start-files'</span>;
+<span class="hljs-keyword">import</span> read <span class="hljs-keyword">from</span> <span class="hljs-string">'start-read'</span>;
+<span class="hljs-keyword">import</span> babel <span class="hljs-keyword">from</span> <span class="hljs-string">'start-babel'</span>;
+<span class="hljs-keyword">import</span> write <span class="hljs-keyword">from</span> <span class="hljs-string">'start-write'</span>;
+
+<span class="hljs-keyword">const</span> start = Start(reporter());
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">build</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> start(
+    files(<span class="hljs-string">'lib/**/*.js'</span>),
+    read(),
+    babel({ <span class="hljs-attr">sourceMaps</span>: <span class="hljs-literal">true</span> }),
+    write(<span class="hljs-string">'build/'</span>)
+  );
+}
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/start-runner/babel">start-runner/babel 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="webpack"><div><span><h4><a class="anchor" aria-hidden="true" id="通过-config-方式"></a><a href="#通过-config-方式" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>通过 config 方式</h4>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-attr">module</span>: {
+    <span class="hljs-attr">rules</span>: [
+      {
+        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.m?js$/</span>,
+        <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>,
+        <span class="hljs-attr">use</span>: {
+          <span class="hljs-attr">loader</span>: <span class="hljs-string">"babel-loader"</span>,
+          <span class="hljs-attr">options</span>: {
+            <span class="hljs-attr">presets</span>: [<span class="hljs-string">'@babel/preset-env'</span>]
+          }
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 <a href="https://github.com/babel/babel-loader">babel/babel-loader 项目</a>。
+  </p>
+</blockquote>
+</span></div></div><div class="items" data-title="webstorm"><div><span><p>在 <strong>首选项 - 工具 - 文件观察</strong> 中，单击 <strong>+</strong> 按钮并从列表中选择 Babel 文件观察。</p>
+<p>指定 Babel 可执行的文件路径，然后单击确定。</p>
+<p>默认情况下，所有带有 <code>.js</code> 扩展名的文件都会在更改后自动与 Babel 一起编译。 生成的 ES5 文件和 source maps 将保存在原始文件旁。</p>
+<p>最后，在 <strong>语言和框架 - JavaScript - JavaScript</strong> 语言版本中，选择 ECMAScript 6.</p>
+<blockquote class="babel-callout babel-callout-info">
+  <p>
+    欲了解更多信息，请参阅 WebStorm 博客中的<a href="https://blog.jetbrains.com/webstorm/2015/05/ecmascript-6-in-webstorm-transpiling#babelfilewatcher">博文</a>。
+  </p>
+</blockquote>
+</span></div></div></div><div class="step-hidden step-setup"><h2><span class="step-no">4</span>创建 <code>babel.config.json</code> 配置文件</h2><div><span><p>非常棒！虽然已经配置好了 Babel ，但并没有让它真正<em>生效</em>。在项目的根目录中创建一个 <a href="/docs/usage#configuration">babel.config.json</a> 文件并启用一些 <a href="/docs/presets">presets</a>。</p>
+<p>首先，你可以使用转换 ES2015+ 的 <a href="/docs/plugins/preset-env">env preset</a>。</p>
+<pre><code class="hljs css language-shell">npm install @babel/preset-env --save-dev
+</code></pre>
+<p>
+  为了让 preset 生效，你需要像下面这样定义你的 <code>babel.config.json</code> 文件：
+</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"@babel/preset-env"</span>]
+}
+</code></pre>
+</span></div></div></div></div></div><script src="/scripts/tools.js?t=14b5bfcddf9ada44319443a0d8f59e19"></script></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

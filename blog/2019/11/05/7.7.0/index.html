@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>7.7.0 Released: Error recovery and TypeScript 3.7 · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Today we are releasing Babel 7.7.0!"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="7.7.0 Released: Error recovery and TypeScript 3.7 · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2019/11/05/7.7.0"/><meta property="og:description" content="Today we are releasing Babel 7.7.0!"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></h1><p class="post-meta">November 5, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/NicoloRibaudo" target="_blank" rel="noreferrer noopener">Nicolò Ribaudo</a></p></div></header><div><span><p>Today we are releasing Babel 7.7.0!</p>
+<p>This release includes new parser features like top-level await (<code>await x()</code>, <a href="https://github.com/tc39/proposal-top-level-await">Stage 3</a>) and Flow <code>enum</code> declarations (<a href="https://github.com/gkz/enums">Flow proposal</a>). And now, <code>@babel/parser</code> has the option of recovering from certain syntax errors!</p>
+<p>We've also added support for <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-3-7-rc/">TypeScript 3.7</a>: Babel can parse and transform private class fields with type annotations, public class fields annotations defined using the <code>declare</code> keyword, type assertion function signatures and template literals in <code>enum</code> declarations.</p>
+<p>Babel now understands three new configuration files: <code>babel.config.json</code>, <code>babel.config.cjs</code> and <code>.babelrc.cjs</code>, which behave the same as <code>babel.config.js</code> and <code>.babelrc.js</code> files.</p>
+<p>Lastly, Babel 7.7.0 uses 20% less memory than 7.6.0.</p>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.7.0">on GitHub</a>.</p>
+<!-- truncate -->
+<hr>
+<p>Shoutout to <a href="https://github.com/alejo90">Alejandro Sánchez</a>, <a href="https://github.com/pzuraq">Chris Garrett</a>, <a href="https://github.com/chris-peng-1244">彭驰</a>, <a href="https://github.com/DanArthurGallagher">Daniel Arthur Gallagher</a>, <a href="https://twitter.com/ExE_Boss">ExE-Boss</a>, <a href="https://github.com/t0lkman">Eugene Myunster</a>, <a href="https://github.com/thorn0">Georgii Dolzhykov</a>, <a href="https://twitter.com/gera2ld">Gerald</a>, <a href="https://github.com/LinusU">Linus Unnebäck</a>, <a href="https://github.com/dentrado">Martin Forsgren</a>, <a href="https://github.com/mwhitworth">Matthew Whitworth</a>, <a href="https://github.com/MicahZoltu">Micah Zoltu</a>, <a href="https://github.com/m-ahmadi">Mohammad Ahmadi</a> and <a href="https://github.com/samMeow">Samuel Kwok</a> for their first PRs!</p>
+<p>This release has also been made possible thanks to collaboration with teams of other open source projects: thanks to <a href="https://twitter.com/devongovett">Devon Govett</a> (<a href="https://parceljs.org/">Parcel</a>) for implementing support for <code>babel.config.json</code> files, and to <a href="https://twitter.com/gkzahariev">George Zahariev</a> (<a href="https://flow.org/">Flow</a>) for adding Flow <code>enum</code> declarations to <code>@babel/parser</code>!</p>
+<p>Another special thanks goes to <a href="https://www.techatbloomberg.com/">Bloomberg</a> for organizing an Open Source Hackaton to encourage their engineers to give back to the community! In particular, <a href="https://twitter.com/r_ricard">Robin Ricard</a> and <a href="https://twitter.com/jbhoosreddy">Jaideep Bhoosreddy</a> who are actively working on automating the testing of Babel transforms against the <a href="https://github.com/tc39/test262">Test262 suite</a>.</p>
+<p>If you or your company want to support Babel and the evolution of JavaScript, but aren't sure how, you can donate to us on <a href="https://opencollective.com/babel">OpenCollective</a> and, better yet, work with us on the implementation of <a href="https://github.com/babel/proposals">new ECMAScript proposals</a> directly! As a volunteer-driven project, we rely on the community's support to both fund our efforts in supporting the wide range of JavaScript users and taking ownership of the code. Reach out to Henry at <a href="mailto:henry@babeljs.io">henry@babeljs.io</a> if you'd like to talk more!</p>
+<h2><a class="anchor" aria-hidden="true" id="top-level-await-parsing-10449httpsgithubcombabelbabelpull10449"></a><a href="#top-level-await-parsing-10449httpsgithubcombabelbabelpull10449" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Top-level <code>await</code> parsing (<a href="https://github.com/babel/babel/pull/10449">#10449</a>)</h2>
+<p>The top-level <code>await</code> <a href="https://github.com/tc39/proposal-top-level-await">proposal</a> allows you to <code>await</code> promises in modules as if they were wrapped in a big async function. This is useful, for example, to conditionally load a dependency or to perform app initialization:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// Dynamic dependency path</span>
+<span class="hljs-keyword">const</span> strings = <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">`./i18n/<span class="hljs-subst">${navigator.language}</span>.mjs`</span>);
+
+<span class="hljs-comment">// Resource initialization</span>
+<span class="hljs-keyword">const</span> connection = <span class="hljs-keyword">await</span> dbConnector();
+</code></pre>
+<p><code>@babel/parser</code> has supported using <code>await</code> outside of async functions via the <code>allowAwaitOutsideFunction</code> option since version 7.0.0.</p>
+<p>Version 7.7.0 introduces a new <code>topLevelAwait</code> parser plugin, which has a few key differences:</p>
+<ul>
+<li>It only allows top-level <code>await</code> inside modules and not inside scripts, as the proposal mandates. This is needed because synchronous script-based module systems (like CommonJS) cannot support an async dependency.</li>
+<li>It allows to detect the correct <code>sourceType</code> when <code>sourceType: &quot;unambiguous&quot;</code> is used. Note that, since <code>await</code> is a valid identifier in scripts, many constructs which may seem unambiguously modules are actually ambiguous and Babel will parse them as scripts.
+For example, <code>await -1</code> could either be an await expression which waits for <code>-1</code>, or a difference between <code>await</code> and <code>1</code>.</li>
+</ul>
+<p>If you are using <code>@babel/parser</code> directly, you can enable the <code>topLevelAwait</code> plugin:</p>
+<pre><code class="hljs css language-javascript">parser.parse(inputCode, {
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-string">"topLevelAwait"</span>]
+});
+</code></pre>
+<p>We also created the <code>@babel/plugin-syntax-top-level-await</code> package, which you can add to your Babel configuration:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// babel.config.js</span>
+
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-string">"@babel/plugin-syntax-top-level-await"</span>
+  ]
+}
+</code></pre>
+<p>Please note that usage of top-level <code>await</code> assumes support within your module bundler. Babel itself isn't doing transformations: if you are using Rollup you can enable the <a href="https://rollupjs.org/guide/en/#experimentaltoplevelawait"><code>experimentalTopLevelAwait</code></a> option, and webpack 5 supports the <a href="https://github.com/webpack/webpack/releases/tag/v5.0.0-alpha.15"><code>experiments.topLevelAwait</code></a> option.</p>
+<p>Starting from this release, <code>@babel/preset-env</code> will automatically enable <code>@babel/plugin-syntax-top-level-await</code> if the <code>caller</code> supports it. <em>Note</em>: <code>babel-loader</code> and <code>rollup-plugin-babel</code> don't yet tell Babel that they support this syntax, but we are working on it with the respective maintainers.</p>
+<h2><a class="anchor" aria-hidden="true" id="parser-error-recovery-10363httpsgithubcombabelbabelpull10363"></a><a href="#parser-error-recovery-10363httpsgithubcombabelbabelpull10363" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parser error recovery (<a href="https://github.com/babel/babel/pull/10363">#10363</a>)</h2>
+<p>Like many other JavaScript parsers, <code>@babel/parser</code> throws an error whenever some invalid syntax is encountered. This behavior works well for Babel, since in order to transform a JavaScript program to another program we must first be sure that the input is valid.</p>
+<p>Given Babel's popularity, there are many other tools relying on <code>@babel/parser</code>: above all <code>babel-eslint</code> and Prettier. For both these tools, a parser which bails out on the first error is suboptimal.</p>
+<p>Consider this code, which is invalid because of the duplicated <code>__proto__</code> property:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">let</span> a = {
+  <span class="hljs-attr">__proto__</span>: x,
+  <span class="hljs-attr">__proto__</span>: y
+}
+
+<span class="hljs-keyword">let</span> a = <span class="hljs-number">2</span>;
+</code></pre>
+<p>The current workflow with ESLint and Prettier is the following:</p>
+<ol>
+<li>Prettier can't format the file</li>
+<li>ESLint reports an <code>Redefinition of __proto__ property</code> parser error</li>
+<li>You remove the second <code>__proto__</code> property</li>
+<li>Prettier can't format the file</li>
+<li>ESLint reports an <code>Identifier 'a' has already been declared</code> error</li>
+<li>You remove the second <code>let</code> keyword</li>
+<li>Prettier formats the file</li>
+</ol>
+<p>Wouldn't it better if it was more like this?</p>
+<ol>
+<li>Prettier formats the file</li>
+<li>ESLint reports two errors: <code>Redefinition of __proto__ property</code> and <code>Identifier 'a' has already been declared</code></li>
+<li>You remove the second <code>__proto__</code> property and the second <code>let</code> keyword</li>
+</ol>
+<p>In this release, we are adding a new option to <code>@babel/parser</code>: <code>errorRecovery</code>. When it is set to true, the resulting AST will have an <code>errors</code> property containing all the errors which <code>@babel/parser</code> was able to recover from:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> input = <span class="hljs-string">`
+let a = {
+  __proto__: x,
+  __proto__: y
+}
+  
+let a = 2;
+`</span>;
+
+parser.parse(input); <span class="hljs-comment">// Throws "Redefinition of __proto__ property"</span>
+
+<span class="hljs-keyword">const</span> ast = parser.parse(input, { <span class="hljs-attr">errorRecovery</span>: <span class="hljs-literal">true</span> });
+ast.errors == [
+  <span class="hljs-built_in">SyntaxError</span>: <span class="hljs-string">"Redefinition of __proto__ property"</span>,
+  <span class="hljs-attr">SyntaxError</span>: <span class="hljs-string">"Identifier 'a' has already been declared"</span>,
+];
+</code></pre>
+<p><code>@babel/parser</code> can still throw as not every error is currently recoverable. We'll continue to improve these cases!</p>
+<h2><a class="anchor" aria-hidden="true" id="new-configuration-file-extensions-10501httpsgithubcombabelbabelpull10501-10599httpsgithubcombabelbabelpull10599"></a><a href="#new-configuration-file-extensions-10501httpsgithubcombabelbabelpull10501-10599httpsgithubcombabelbabelpull10599" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>New configuration file extensions (<a href="https://github.com/babel/babel/pull/10501">#10501</a>, <a href="https://github.com/babel/babel/pull/10599">#10599</a>)</h2>
+<p>Babel 6 only supported a single configuration file: <code>.babelrc</code>, whose contents must be specified using JSON.</p>
+<p>Babel 7 changed the meaning of <code>.babelrc</code>s and introduced two new configuration files: <code>babel.config.js</code> and <code>.babelrc.js</code> (you can read about the difference between them in the <a href="https://babeljs.io/docs/en/config-files">docs</a>). We added configuration files with JavaScript to allow defining your own logic when enabling/disabling plugins/options.</p>
+<p>However a big benefit of JSON files is easier <em>cacheability</em>. The same JavaScript file can produce different values when called two times, while a JSON file is guaranteed to always evaluate to the same object. Also, JSON configurations are easily serializable, while it's not possible to serialize JavaScript values like functions or JavaScript objects with implicit data or relationships.</p>
+<p>Note that Babel also caches transforms when using JavaScript-based configurations, but the config file must be evaluated (in order to know if the cache is still valid) and the cache <a href="https://babeljs.io/docs/en/config-files#apicache">manually configured</a>.</p>
+<p>For these reasons, Babel 7.7.0 introduces support for a new configuration file: <code>babel.config.json</code>, whose behavior is the same as <code>babel.config.js</code>.</p>
+<p>We also added support for two different configuration files: <code>babel.config.cjs</code> and <code>.babelrc.cjs</code>, which must be used when using node's <a href="https://nodejs.org/api/esm.html#esm_code_package_json_code_code_type_code_field"><code>&quot;type&quot;: &quot;module&quot;</code></a> option in <code>package.json</code> (because Babel doesn't support ECMAScript modules in config files). Apart from this <code>&quot;type&quot;: &quot;module&quot;</code> difference, they behave exactly like <code>babel.config.js</code> and <code>.babelrc.js</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="typescript-37-10543httpsgithubcombabelbabelpull10543-10545httpsgithubcombabelbabelpull10545"></a><a href="#typescript-37-10543httpsgithubcombabelbabelpull10543-10545httpsgithubcombabelbabelpull10545" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript 3.7 (<a href="https://github.com/babel/babel/pull/10543">#10543</a>, <a href="https://github.com/babel/babel/pull/10545">#10545</a>)</h2>
+<p><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-3-7-rc">TypeScript 3.7 RC</a> includes support for optional chaining, nullish coalescing operator, assertion functions, type-only field declarations and many more type-related features.</p>
+<p>Optional chaining (<code>a?.b</code>) and nullish coalescing (<code>a ?? b</code>) have been supported in Babel since 7.0.0 via <code>@babel/plugin-proposal-optional-chaining</code> and <code>@babel/plugin-proposal-nullish-coalescing-operator</code>.</p>
+<p>In Babel 7.7.0, you can now use assertion functions and <code>declare</code> in class fields:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assertString</span>(<span class="hljs-params">x</span>): <span class="hljs-title">assert</span> <span class="hljs-title">x</span> <span class="hljs-title">is</span> <span class="hljs-title">string</span> </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x !== <span class="hljs-string">"string"</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"It must be a string!"</span>);
+}
+
+<span class="hljs-keyword">class</span> Developer <span class="hljs-keyword">extends</span> Person {
+  <span class="hljs-keyword">declare</span> usingBabel: <span class="hljs-built_in">boolean</span>;
+}
+</code></pre>
+<p>To avoid breaking changes, we introduced support for <code>declare</code> in class fields behind a flag: <code>&quot;allowDeclareFields&quot;</code>, supported by both <code>@babel/plugin-transform-typescript</code> and <code>@babel/preset-typescript</code>. This will likely become default behavior, so it is recommended that you migrate your config to use it:</p>
+<pre><code class="hljs css language-jsonld">{
+  <span class="hljs-attr">"presets"</span>: [
+    [<span class="hljs-string">"@babel/preset-typescript"</span>, {
+      <span class="hljs-attr">"allowDeclareFields"</span>: <span class="hljs-literal">true</span>
+    }]
+  ]
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="use-object-spread-in-compiled-jsx-10572httpsgithubcombabelbabelpull10572"></a><a href="#use-object-spread-in-compiled-jsx-10572httpsgithubcombabelbabelpull10572" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use object spread in compiled JSX (<a href="https://github.com/babel/babel/pull/10572">#10572</a>)</h2>
+<p>When using spread properties in JSX elements, Babel injects a runtime helper by default:</p>
+<pre><code class="hljs css language-jsx">&lt;a x {...y} /&gt;
+
+<span class="hljs-comment">// 🡇 🡇 🡇</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_extends</span>(<span class="hljs-params"></span>) </span>{ _extends = <span class="hljs-built_in">Object</span>.assign || <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">target</span>) </span>{ <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-built_in">arguments</span>.length; i++) { <span class="hljs-keyword">var</span> source = <span class="hljs-built_in">arguments</span>[i]; <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> source) { <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } <span class="hljs-keyword">return</span> target; }; <span class="hljs-keyword">return</span> _extends.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>); }
+
+React.createElement(<span class="hljs-string">"a"</span>, _extends({
+  <span class="hljs-attr">x</span>: <span class="hljs-literal">true</span>
+}, y));
+</code></pre>
+<p>In 2016, as support for native ES6 improved, we added the <code>useBuiltIns</code> option to <code>@babel/plugin-transform-react-jsx</code> which allowed the compiled output to directly use <code>Object.assign</code> and removed excess code:</p>
+<pre><code class="hljs css language-jsx">&lt;a x {...y} /&gt;
+
+<span class="hljs-comment">// 🡇 🡇 🡇</span>
+
+React.createElement(<span class="hljs-string">"a"</span>, <span class="hljs-built_in">Object</span>.assign({
+  <span class="hljs-attr">x</span>: <span class="hljs-literal">true</span>
+}, y));
+</code></pre>
+<p>However given the native support for object spread, it allows us to produce even more optimized code:</p>
+<pre><code class="hljs css language-jsx">&lt;a x {...y} /&gt;
+
+<span class="hljs-comment">// 🡇 🡇 🡇</span>
+
+React.createElement(<span class="hljs-string">"a"</span>, { <span class="hljs-attr">x</span>: <span class="hljs-literal">true</span>, ...y });
+</code></pre>
+<p>You can enable it using the <code>useSpread</code> option with either <code>@babel/preset-react</code> or <code>@babel/plugin-transform-react-jsx</code>:</p>
+<pre><code class="hljs css language-jsonld">{
+  presets: [
+    [<span class="hljs-string">"@babel/react"</span>, { useSpread: <span class="hljs-literal">true</span> }]
+  ]
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="memory-usage-improvements-10480httpsgithubcombabelbabelpull10480"></a><a href="#memory-usage-improvements-10480httpsgithubcombabelbabelpull10480" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Memory usage improvements (<a href="https://github.com/babel/babel/pull/10480">#10480</a>)</h2>
+<p>Since the beginning, we have been making efforts (<a href="https://github.com/babel/babel/pull/433">#433</a>, <a href="https://github.com/babel/babel/pull/3475">#3475</a>, <a href="https://github.com/babel/babel/pull/7028">#7028</a>, etc.) to improve performance. Babel 7.7.0 now uses 20% less memory, and transforms large files 8% faster when compared to 7.6.0.</p>
+<p>In order to achieve these results, we optimized different operations done during the lifetime <code>NodePath</code> objects (used to wrap every AST node):</p>
+<ol>
+<li><p>We now avoid initializing some rarely used object properties until they are needed, allowing us to avoid an <code>Object.create(null)</code> allocation for almost every AST node.</p></li>
+<li><p>We reduced bookkeeping workload for every single node visit, by replacing a few uncommon properties with getters so that <code>@babel/traverse</code> can skip updating them.</p></li>
+<li><p>We optimized memory usage by compressing several boolean properties used to represent the status of a node traversal (i.e. skipped, stopped or removed) into a <a href="https://en.wikipedia.org/wiki/Bit_array">bit array</a>.</p></li>
+</ol>
+<p>All these improvements add up to the following difference in transform performance and memory usage:</p>
+<table>
+<thead>
+<tr><th style="text-align:center">Performance</th><th style="text-align:center">Memory usage</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center"><img src="https://i.imgur.com/bs3DoOX.png" alt=""></td><td style="text-align:center"><img src="https://i.imgur.com/n1bQSj1.png" alt=""></td></tr>
+</tbody>
+</table>
+<p>You can also checkout the <a href="https://docs.google.com/spreadsheets/d/1lFUKviJwJP83SulEG7tHoaHO4bvxPt1u2UrEySrPAXc/edit?usp=sharing">raw data</a> of the charts above. If you want to read more about this topic, you can read <a href="https://hackmd.io/@VQ5Lhi9URomRC0KamZdyvw/ryuUaFGwS">Jùnliàng's detailed write-up</a> about the changes he made to get those improvements!</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#top-level-await-parsing-10449httpsgithubcombabelbabelpull10449">Top-level <code>await</code> parsing (<a href="https://github.com/babel/babel/pull/10449">#10449</a>)</a></li><li><a href="#parser-error-recovery-10363httpsgithubcombabelbabelpull10363">Parser error recovery (<a href="https://github.com/babel/babel/pull/10363">#10363</a>)</a></li><li><a href="#new-configuration-file-extensions-10501httpsgithubcombabelbabelpull10501-10599httpsgithubcombabelbabelpull10599">New configuration file extensions (<a href="https://github.com/babel/babel/pull/10501">#10501</a>, <a href="https://github.com/babel/babel/pull/10599">#10599</a>)</a></li><li><a href="#typescript-37-10543httpsgithubcombabelbabelpull10543-10545httpsgithubcombabelbabelpull10545">TypeScript 3.7 (<a href="https://github.com/babel/babel/pull/10543">#10543</a>, <a href="https://github.com/babel/babel/pull/10545">#10545</a>)</a></li><li><a href="#use-object-spread-in-compiled-jsx-10572httpsgithubcombabelbabelpull10572">Use object spread in compiled JSX (<a href="https://github.com/babel/babel/pull/10572">#10572</a>)</a></li><li><a href="#memory-usage-improvements-10480httpsgithubcombabelbabelpull10480">Memory usage improvements (<a href="https://github.com/babel/babel/pull/10480">#10480</a>)</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

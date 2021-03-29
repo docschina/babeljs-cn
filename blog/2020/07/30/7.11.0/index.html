@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint` · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="We just released a new minor version of Babel!"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint` · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2020/07/30/7.11.0"/><meta property="og:description" content="We just released a new minor version of Babel!"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></h1><p class="post-meta">July 30, 2020</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/JLHwung" target="_blank" rel="noreferrer noopener">Huáng Jùnliàng</a></p></div></header><div><span><p>We just released a new minor version of Babel!</p>
+<p>This 7.11 release includes:</p>
+<ul>
+<li><code>preset-env</code> support for Logical Assignments (<code>??=</code>), Numeric Separators (<code>1_2</code>) and Namespace re-exports (<code>export * as ns from ...</code>)</li>
+<li>TypeScript 4.0 support</li>
+<li>Parser support for the Stage-1 <a href="https://github.com/tc39/proposal-decimal">Decimal proposal</a> (<code>7.11m</code>)</li>
+<li>An environment flag to print the resolved Babel configuration for a given file (<code>BABEL_SHOW_CONFIG_FOR</code>)</li>
+</ul>
+<p>In addition to this, we are now releasing the successor of <code>babel-eslint</code>: <code>@babel/eslint-parser</code>!</p>
+<p>You can read the whole changelog <a href="https://github.com/babel/babel/releases/tag/v7.11.0">on GitHub</a>.</p>
+<!-- truncate -->
+<p>Also if you have any questions or something you want to discuss, we've enabled <a href="https://github.com/babel/babel/discussions">GitHub Discussions</a> on our repository!</p>
+<p>If you or your company want to support Babel and the evolution of JavaScript, but aren't sure how, you can donate to us on our <a href="https://opencollective.com/babel">Open Collective</a> and, better yet, work with us on the implementation of <a href="https://github.com/babel/proposals">new ECMAScript proposals</a> directly! As a volunteer-driven project, we rely on the community's support to fund our efforts in supporting the wide range of JavaScript users. Reach out at <a href="mailto:team@babeljs.io">team@babeljs.io</a> if you'd like to discuss more!</p>
+<h2><a class="anchor" aria-hidden="true" id="ecmascript-2021-support-11864httpsgithubcombabelbabelpull11864"></a><a href="#ecmascript-2021-support-11864httpsgithubcombabelbabelpull11864" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ECMAScript 2021 support (<a href="https://github.com/babel/babel/pull/11864">#11864</a>)</h2>
+<p>During the last <a href="https://github.com/tc39/agendas/blob/master/2020/09.md">meeting</a>, TC39 moved both the logical assignment and numeric separator proposals to Stage 4! Babel already had support these proposals via the <code>@babel/plugin-proposal-logical-assignment-operators</code> and <code>@babel/plugin-proposal-numeric-separators</code> plugins. They are now included in <code>@babel/preset-env</code> and compiled based on your targets, like any other ECMAScript feature.</p>
+<h3><a class="anchor" aria-hidden="true" id="logical-assignmenthttpsbabeljsiodocsenbabel-plugin-proposal-logical-assignment-operators"></a><a href="#logical-assignmenthttpsbabeljsiodocsenbabel-plugin-proposal-logical-assignment-operators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://babeljs.io/docs/en/babel-plugin-proposal-logical-assignment-operators">Logical Assignment</a></h3>
+<p>Logical assignment offers a shorthand notation combining logical operators and assignment expression:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">this</span>.disabled ??= <span class="hljs-literal">false</span>;
+<span class="hljs-keyword">this</span>.disabled ?? (<span class="hljs-keyword">this</span>.disabled = <span class="hljs-literal">false</span>);
+
+clicked &amp;&amp;= !isDoubleClicked();
+clicked = clicked &amp;&amp; !isDoubleClicked();
+
+hasDups ||= (prev === cur);
+<span class="hljs-keyword">if</span> (!hasDup) hasDups = (prev === cur);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="numeric-separatorhttpsbabeljsiodocsenbabel-plugin-proposal-numeric-separator"></a><a href="#numeric-separatorhttpsbabeljsiodocsenbabel-plugin-proposal-numeric-separator" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://babeljs.io/docs/en/babel-plugin-proposal-numeric-separator">Numeric Separator</a></h3>
+<p>The numeric separator (<code>_</code>) is a character you can insert between digits in numeric literals to help with visual separation:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-number">1</span>_000_000_000
+<span class="hljs-number">0.000</span>_000_000_1
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="export-namespace-fromhttpsbabeljsiodocsenbabel-plugin-proposal-export-namespace-from-11849httpsgithubcombabelbabelpull11849"></a><a href="#export-namespace-fromhttpsbabeljsiodocsenbabel-plugin-proposal-export-namespace-from-11849httpsgithubcombabelbabelpull11849" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://babeljs.io/docs/en/babel-plugin-proposal-export-namespace-from">Export namespace from</a> (<a href="https://github.com/babel/babel/pull/11849">#11849</a>)</h3>
+<p>An imported module can be re-exported as a new namespace:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">export</span> * <span class="hljs-keyword">as</span> ns <span class="hljs-keyword">from</span> <span class="hljs-string">"mod"</span>;
+</code></pre>
+<blockquote>
+<p>ℹ️ This was already included in ECMAScript 2020, but it wasn't supported by <code>@babel/preset-env</code> yet</p>
+</blockquote>
+<p>Since version 7.11, <code>@babel/preset-env</code> skips <code>@babel/plugin-proposal-export-namespace-from</code> if the <code>caller</code> supports it: this can leave <code>export * as ns</code> as-is to be directly processed by the bundlers. <em>Note</em>: <code>babel-loader</code> and <code>@rollup/plugin-babel</code> don't yet tell Babel they supports this syntax, but we are working on it with the relevant maintainers.</p>
+<p>If <code>{ modules: false }</code> is set, Babel will assume that the transpiled code will be run in engines that have native ESM support. <code>export * as ns</code> will be compiled based on <code>targets</code>, like any other ECMAScript feature.</p>
+<p>If you intend to bundle the transpiled code, please remove <code>{ modules: false }</code> option. By default <code>preset-env</code> will determine the module transforms from <code>caller</code> data passed from <code>babel-loader</code> and <code>@rollup/plugin-babel</code>.</p>
+<pre><code class="hljs css language-diff">{
+  "presets": [
+    ["@babel/env", {
+      "targets": ["defaults"],
+<span class="hljs-deletion">-     "modules": false,</span>
+    }]
+}
+</code></pre>
+<p>If you provide a different value for the <code>modules</code> option, <code>export * as ns</code> will always be transformed.</p>
+<hr>
+<p>If you were directly using any of</p>
+<ul>
+<li><code>@babel/plugin-proposal-export-namespace-from</code></li>
+<li><code>@babel/plugin-proposal-logical-assignment-operators</code></li>
+<li><code>@babel/plugin-proposal-numeric-separators</code></li>
+</ul>
+<p>you can remove them from your config as they will be included by default:</p>
+<pre><code class="hljs css language-diff">{
+  "presets": [
+    ["@babel/env", { "targets": ["defaults"] }]
+  ],
+  "plugins": [
+<span class="hljs-deletion">-   "@babel/plugin-proposal-export-namespace-from",</span>
+<span class="hljs-deletion">-   "@babel/plugin-proposal-logical-assignment-operators",</span>
+<span class="hljs-deletion">-   "@babel/plugin-proposal-numeric-separators"</span>
+  ]
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="typescript-40-support-11760httpsgithubcombabelbabelpull11760"></a><a href="#typescript-40-support-11760httpsgithubcombabelbabelpull11760" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TypeScript 4.0 support (<a href="https://github.com/babel/babel/pull/11760">#11760</a>)</h2>
+<p>TypeScript 4.0 introduces several <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-4-0-beta/">new features</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="variadic-tuple-types"></a><a href="#variadic-tuple-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Variadic Tuple Types</h3>
+<p>You can now specify generic spreads in tuple types, and the spreads can be at any location:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> Arr = readonly <span class="hljs-built_in">any</span>[];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">collect</span>&lt;<span class="hljs-title">L</span> <span class="hljs-title">extends</span> <span class="hljs-title">Arr</span>, <span class="hljs-title">M</span> <span class="hljs-title">extends</span> <span class="hljs-title">Arr</span>&gt;(<span class="hljs-params">b: <span class="hljs-built_in">boolean</span>, l: L, m: M</span>): [<span class="hljs-title">boolean</span>, ...<span class="hljs-title">L</span>, ...<span class="hljs-title">M</span>] </span>{
+  <span class="hljs-keyword">return</span> [b, ...l, ...m];
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="labeled-tuple-elements"></a><a href="#labeled-tuple-elements" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Labeled Tuple Elements</h3>
+<p>Tuple elements can now be labeled:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">type</span> Log = [failed: <span class="hljs-built_in">boolean</span>, reason?: <span class="hljs-built_in">Error</span>, ...stacks?: <span class="hljs-built_in">string</span>[]]
+<span class="hljs-comment">// same as</span>
+<span class="hljs-keyword">type</span> Log = [<span class="hljs-built_in">boolean</span>, <span class="hljs-built_in">Error</span>?, <span class="hljs-built_in">string</span>[]?];
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="unknown-on-catch-clause-bindings"></a><a href="#unknown-on-catch-clause-bindings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>unknown</code> on <code>catch</code> Clause Bindings</h3>
+<p>You can specify <code>unknown</code> type of <code>catch</code> clause variables:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">try</span> {
+  <span class="hljs-comment">// ...</span>
+} <span class="hljs-keyword">catch</span> (e: unknown) {
+  <span class="hljs-comment">// type error! Error() only accepts string | undefined</span>
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(e);
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> e === <span class="hljs-string">"string"</span>) {
+    <span class="hljs-comment">// e is a string</span>
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(e);
+  }
+}
+</code></pre>
+<p>Note that only <code>unknown</code> and <code>any</code> are currently allowed in catch binding type annotations. <code>@babel/parser</code> does not enforce this check because neither type aliases (<code>type ANY = any</code>) nor intersections (<code>any | unknown</code>) are not evaluated at compile-time.</p>
+<p>Starting from Babel 7.11, you can use these new features without any config changes. For more information, please checkout <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-4-0-beta">TypeScript 4.0 Announcement</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="decimal-literal-parser-support-11640httpsgithubcombabelbabelpull11640"></a><a href="#decimal-literal-parser-support-11640httpsgithubcombabelbabelpull11640" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Decimal Literal parser support (<a href="https://github.com/babel/babel/pull/11640">#11640</a>)</h2>
+<p>The <a href="https://github.com/tc39/proposal-decimal">Decimal Literal Proposal</a> (Stage 1) provides a notation for decimal numbers, analogous to BigInt and integers.</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-number">0.1</span>m + <span class="hljs-number">0.2</span>m === <span class="hljs-number">0.3</span>m; <span class="hljs-comment">// true</span>
+</code></pre>
+<p>Babel now supports parsing these literals: you can add <code>@babel/plugin-syntax-decimal</code> plugin to your Babel config or, if you use <code>@babel/parser</code> directly, you can enable the <code>decimal</code> plugin. Babel doesn't provide polyfill implementations for decimals.</p>
+<h2><a class="anchor" aria-hidden="true" id="print-config-11588httpsgithubcombabelbabelpull11588"></a><a href="#print-config-11588httpsgithubcombabelbabelpull11588" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Print config (<a href="https://github.com/babel/babel/pull/11588">#11588</a>)</h2>
+<p>Babel can be configured in a number of ways (programmatically and via JSON/JavaScript configs). This flexibility, however, does not come for free: it can be difficult to understand what are the applicable config files within your project and how Babel merges these configs. You may also indirectly use Babel and the config is generated by a package residing within your node_modules. All these use cases show the need for a way to output config information to help debug any compilation problems.</p>
+<p>Babel 7.11 offers an environment variable for this purpose:</p>
+<pre><code class="hljs css language-sh"><span class="hljs-comment"># *nix or WSL</span>
+BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
+</code></pre>
+<pre><code class="hljs css language-powershell"><span class="hljs-variable">$env:BABEL_SHOW_CONFIG_FOR</span> = <span class="hljs-string">".\src\myComponent.jsx"</span>; npm start
+</code></pre>
+<p>will print the effective config applied on <code>src/myComponent.jsx</code>.</p>
+<p>Checkout <a href="docs/en/configuration.md#print-effective-configs">configuration</a> for the detailed usage and example output.</p>
+<h2><a class="anchor" aria-hidden="true" id="babeleslint-parser-10709httpsgithubcombabelbabelissues10709"></a><a href="#babeleslint-parser-10709httpsgithubcombabelbabelissues10709" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>@babel/eslint-parser</code> (<a href="https://github.com/babel/babel/issues/10709">#10709</a>)</h2>
+<p><code>babel-eslint</code> has been moved to the Babel monorepo under a new name: <code>@babel/eslint-parser</code>. It offers better integration between Babel and ESLint, and features complete ES2020 support. In the <a href="2020-07-13-the-state-of-babel-eslint.md">State of <code>babel-eslint</code></a> blog post, Kai has added more about the state of <code>@babel/eslint-parser</code>.</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ecmascript-2021-support-11864httpsgithubcombabelbabelpull11864">ECMAScript 2021 support (<a href="https://github.com/babel/babel/pull/11864">#11864</a>)</a><ul class="toc-headings"><li><a href="#logical-assignmenthttpsbabeljsiodocsenbabel-plugin-proposal-logical-assignment-operators"><a href="https://babeljs.io/docs/en/babel-plugin-proposal-logical-assignment-operators">Logical Assignment</a></a></li><li><a href="#numeric-separatorhttpsbabeljsiodocsenbabel-plugin-proposal-numeric-separator"><a href="https://babeljs.io/docs/en/babel-plugin-proposal-numeric-separator">Numeric Separator</a></a></li><li><a href="#export-namespace-fromhttpsbabeljsiodocsenbabel-plugin-proposal-export-namespace-from-11849httpsgithubcombabelbabelpull11849"><a href="https://babeljs.io/docs/en/babel-plugin-proposal-export-namespace-from">Export namespace from</a> (<a href="https://github.com/babel/babel/pull/11849">#11849</a>)</a></li></ul></li><li><a href="#typescript-40-support-11760httpsgithubcombabelbabelpull11760">TypeScript 4.0 support (<a href="https://github.com/babel/babel/pull/11760">#11760</a>)</a><ul class="toc-headings"><li><a href="#variadic-tuple-types">Variadic Tuple Types</a></li><li><a href="#labeled-tuple-elements">Labeled Tuple Elements</a></li><li><a href="#unknown-on-catch-clause-bindings"><code>unknown</code> on <code>catch</code> Clause Bindings</a></li></ul></li><li><a href="#decimal-literal-parser-support-11640httpsgithubcombabelbabelpull11640">Decimal Literal parser support (<a href="https://github.com/babel/babel/pull/11640">#11640</a>)</a></li><li><a href="#print-config-11588httpsgithubcombabelbabelpull11588">Print config (<a href="https://github.com/babel/babel/pull/11588">#11588</a>)</a></li><li><a href="#babeleslint-parser-10709httpsgithubcombabelbabelissues10709"><code>@babel/eslint-parser</code> (<a href="https://github.com/babel/babel/issues/10709">#10709</a>)</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

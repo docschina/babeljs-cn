@@ -1,0 +1,555 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>The State of Babel · Babel 中文文档</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- [Some History](https://babeljs.io/blog/2016/12/07/the-state-of-babel#some-history)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="The State of Babel · Babel 中文文档"/><meta property="og:type" content="website"/><meta property="og:url" content="https://babel.docschina.org/blog/2016/12/07/the-state-of-babel"/><meta property="og:description" content="- [Some History](https://babeljs.io/blog/2016/12/07/the-state-of-babel#some-history)"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/><link rel="alternate" type="application/atom+xml" href="https://babel.docschina.org/blog/atom.xml" title="Babel 中文文档 Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://babel.docschina.org/blog/feed.xml" title="Babel 中文文档 Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-114990275-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/hmt.js" defer=""></script><script type="text/javascript" src="https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js" defer=""></script><script type="text/javascript" src="/js/code-blocks-buttons.js" defer=""></script><script type="text/javascript" src="/scripts/repl-page-hacks.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/babel.svg" alt="Babel 中文文档"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="https://docschina.org/" target="_self">印记中文</a></li><li class=""><a href="/docs/en/" target="_self">文档</a></li><li class=""><a href="/setup" target="_self">配置</a></li><li class=""><a href="/repl" target="_self">试用</a></li><li class=""><a href="/videos" target="_self">视频</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">博客</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://opencollective.com/babel" target="_self">赞助</a></li><li class=""><a href="/team" target="_self">团队</a></li><li class=""><a href="https://github.com/babel/babel" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>All Blog Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">All Blog Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/02/22/7.13.0">7.13.0 Released: Records and Tuples, granular compiler assumptions, and top-level targets</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/10/15/7.12.0">7.12.0 Released: TypeScript 4.1, strings as import/export names, and class static blocks</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/30/7.11.0">7.11.0 Released: ECMAScript 2021 support in preset-env, TypeScript 4.0 support, printing config and the future of `babel-eslint`</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/07/13/the-state-of-babel-eslint">The State of babel-eslint</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/05/25/7.10.0">7.10.0 Released: Class Fields in preset-env, &#x27;#private in&#x27; checks and better React tree-shaking</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/03/16/7.9.0">7.9.0 Released: Smaller preset-env output, Typescript 3.8 support and a new JSX transform</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/01/11/7.8.0">7.8.0 Released: ECMAScript 2020, .mjs configuration files and @babel/cli improvements</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/08/babels-funding-plans">Babel&#x27;s Funding Plans</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/11/05/7.7.0">7.7.0 Released: Error recovery and TypeScript 3.7</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/09/05/7.6.0">7.6.0 Released: Private static accessors and V8 intrinsic syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/03/7.5.0">7.5.0 Released: dynamic import and F# pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/07/02/the-babel-podcast">The Babel Podcast</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/03/19/7.4.0">7.4.0 Released: core-js 3, static private methods and partial application</a></li><li class="navListItem"><a class="navItem" href="/blog/2019/01/21/7.3.0">7.3.0 Released: Named capturing groups, private instance accessors and smart pipelines</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/12/03/7.2.0">7.2.0 发布：私有实例方法（Private Instance Methods）</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/decorators">在 Babel 中支持 TC39 标准的装饰器</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/09/17/7.1.0">7.1.0 Released: Decorators, Private Static Fields</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/08/27/7.0.0">Babel 7 发布</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/27/removing-babels-stage-presets">Removing Babel&#x27;s Stage Presets</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/19/whats-happening-with-the-pipeline-proposal">What&#x27;s Happening With the Pipeline (|&gt;) Proposal?</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/07/16/announcing-babels-new-partnership-with-trivago">Announcing Babel&#x27;s New Partnership with trivago!</a></li><li class="navListItem"><a class="navItem" href="/blog/2018/06/26/on-consuming-and-publishing-es2015+-packages">On Consuming (and Publishing) ES2015+ Packages</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/12/27/nearing-the-7.0-release">Nearing the 7.0 Release</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/05/babel-turns-three">Babel Turns Three</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/12/planning-for-7.0">Planning for 7.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/09/11/zero-config-with-babel-macros">Zero-config code transformation with babel-plugin-macros</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/16/gsoc-karl-1">Contributing to Babel: Three Lessons to Remember</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/11/gsoc-peey-1">Personal Experiences at Babel #1 — A PR with Unusually High Number of Reviews</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/08/09/babel-and-summer-of-code">Babel and Summer of Code 2017</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7">Upgrade to Babel 7 (moved)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/03/01/upgrade-to-babel-7-for-tool-authors">Upgrade to Babel 7 for Tool Authors (WIP)</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/02/13/6.23.0">6.23.0 Released</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/11/16/6.19.0">6.19.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/10/24/6.18.0">6.18.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/09/28/6.16.0">6.16.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/26/babili">Babili (babel-minify)</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/24/6.14.0">6.14.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/11/03/babel-doctor">Babel Doctor</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/31/setting-up-babel-6">Setting up Babel 6</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/10/29/6.0.0">6.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/07/07/react-on-es6-plus">React on ES6+</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/05/14/function-bind">Function Bind Syntax</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/03/31/5.0.0">5.0.0 Released</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/23/babel-loves-react">Babel 喜爱 React</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/02/15/not-born-to-die">并非出生而逐渐走向灭亡</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/27/2to3">2to3</a></li><li class="navListItem"><a class="navItem" href="/blog/2015/01/12/6to5-esnext">6to5 + esnext</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2016/12/07/the-state-of-babel">The State of Babel</a></h1><p class="post-meta">December 7, 2016</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/left_pad" target="_blank" rel="noreferrer noopener">Henry Zhu</a></p></div></header><div><span><ul>
+<li><a href="https://babeljs.io/blog/2016/12/07/the-state-of-babel#some-history">Some History</a></li>
+<li><a href="https://babeljs.io/blog/2016/12/07/the-state-of-babel#current-status">Current Status</a></li>
+<li><a href="https://babeljs.io/blog/2016/12/07/the-state-of-babel#the-future">The Future</a></li>
+<li><a href="https://babeljs.io/blog/2016/12/07/the-state-of-babel#community">Community</a></li>
+</ul>
+<!--truncate-->
+<blockquote>
+<p>Previous issues: <a href="https://github.com/babel/babel/issues/4130">Babel Roadmap #4130</a>, <a href="https://github.com/babel/babel/issues/2168">6.0 #2168</a></p>
+</blockquote>
+<p>Please check out the <a href="https://babeljs.io/blog/2016/12/07/the-state-of-babel#community">Community</a> section if nothing else.</p>
+<blockquote>
+<p>Also published as part of <a href="https://twitter.com/kosamari">Mariko Kosaka's</a> 2016 <a href="http://web.advent.today/">Web Advent Calendar</a>!</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="some-history"></a><a href="#some-history" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Some History</h2>
+<p><a href="https://github.com/kittens">Sebastian</a> created &quot;6to5&quot; in September of 2014. Interestingly enough, he made it to scratch an itch he had with understanding programming languages and how they work. You might have assumed whoever created the project already knew how compilers worked and understood JavaScript perfectly... but you would be wrong! Check out his post for a great read of his story: <a href="https://medium.com/@sebmck/2015-in-review-51ac7035e272#.jdoo279bl">~2015 in Review</a>.</p>
+<p>6to5 did exactly that: easily turn ES6 code into ES5 code. When 6to5 became Babel as mentioned in <a href="https://babeljs.io/blog/2015/02/15/not-born-to-die">Not Born to Die</a>, it became a platform: a suite of tools designed to create the next generation of JavaScript tooling. No longer did it just compile ES6 to ES5, it allowed developers to build tools on top of it.</p>
+<p>Here are some of our milestones:</p>
+<ul>
+<li>In <a href="https://babeljs.io/blog/2015/03/31/5.0.0">5.0.0</a>, Babel aligned more with the <a href="https://tc39.github.io/process-document/">TC39 process</a> by introducing <code>stages</code>, added a <code>.babelrc</code> config option, and created a plugin system for custom transforms.</li>
+<li>In <a href="https://babeljs.io/blog/2015/10/29/6.0.0">6.0.0</a>, Babel became modular (a pretty controversial idea at the time). This was a huge change that led to opt-in functionality (no defaults) and the concept of <code>Presets</code> and Plugin Options.
+<ul>
+<li>As mentioned in his article, Sebastian joined Facebook in July 2015 and worked on the entire development of Babel 6 on company time.</li>
+</ul></li>
+<li><a href="https://github.com/babel/babel/blob/master/CHANGELOG.md#638-6313">6.3.13</a> Sebastian extracted our <a href="https://github.com/babel/babel/blob/master/doc/design/monorepo.md">monorepo</a> build/publish tools into what is now <a href="https://github.com/lerna/lerna">Lerna</a>. (What's funny is <a href="https://github.com/thejameskyle">James</a> rewrote it 3 times and I had to review everything)
+<ul>
+<li>After this was around when both Sebastian and James got burned out on Babel, and a few contributors stepped up.</li>
+<li>We struggled to find direction and deal with the bugs/requests coming in but we got a lot of stuff done!</li>
+</ul></li>
+<li><a href="https://github.com/babel/babel/releases/tag/v6.13.0">6.13.0</a> finally added <a href="http://babeljs.io/docs/plugins/#plugin-preset-options">Preset Options</a>.</li>
+<li><a href="http://babeljs.io/blog/2016/08/24/6.14.0">6.14.0</a> added a <a href="http://babeljs.io/docs/plugins/preset-latest/">latest-preset</a> that keeps up to date with the yearly JavaScript specification.</li>
+<li><a href="http://babeljs.io/blog/2016/09/28/6.16.0">6.16.0</a> allowed changing out the parser or code-generator.</li>
+<li>In August, we released <a href="https://babeljs.io/blog/2016/08/30/babili">Babili, a minifier based on Babel</a>.</li>
+<li>In September, we released the first version of <a href="https://github.com/babel/babel-preset-env">babel-preset-env</a> (read on for details).</li>
+<li>After a year on <a href="https://twitter.com/sebmck/status/667097915605708804">Phabricator</a>, we moved back to to <a href="https://twitter.com/left_pad/status/773619871074648064">GitHub issues</a> thanks solely to <a href="https://github.com/danez">@danez</a> and his amazing (and underappreciated) work.</li>
+</ul>
+<blockquote>
+<p>If you're using Babel, let us know with a <a href="https://github.com/babel/babel.github.io/pulls?utf8=%E2%9C%93&amp;q=is%3Apr+is%3Aclosed+%22New+User%3A%22">PR</a> to our <a href="http://babeljs.io/users/">users page</a>!</p>
+</blockquote>
+<p>Now <code>babel-core</code> is downloaded over 5 million times per month and almost 60 million times total and used at huge companies like Facebook/Netflix/Airbnb and other OSS projects like React/Yarn.</p>
+<p>Thanks everyone for your continued support! We want to continue acting as the foundation of the JavaScript toolchain: compilation, linting, minification, codemods, code coverage, etc.</p>
+<h2><a class="anchor" aria-hidden="true" id="current-status"></a><a href="#current-status" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Current Status</h2>
+<p>If you're interested in helping out please check out the issues linked below!</p>
+<h3><a class="anchor" aria-hidden="true" id="maintaining-babel-plugins-for-each-proposal-in-tc39httpsgithubcomtc39proposals-starting-from-stage-0"></a><a href="#maintaining-babel-plugins-for-each-proposal-in-tc39httpsgithubcomtc39proposals-starting-from-stage-0" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Maintaining Babel plugins <a href="https://github.com/tc39/proposals">for each proposal in TC39</a> starting from Stage 0</h3>
+<p><a href="https://github.com/tc39">TC39</a> stands for Ecma International, Technical Committee 39: it's the committee that makes JavaScript.</p>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/b0rk">@b0rk</a> Short answers:<br><br>Who&#39;s there? Engine implementers, developers, a handful of academics and theorists, and <a href="https://twitter.com/BrendanEich">@BrendanEich</a>.</p>&mdash; Yehuda Katz (@wycats) <a href="https://twitter.com/wycats/status/803821500394598401">November 30, 2016</a></blockquote>
+<p>Babel uses <a href="http://babeljs.io/docs/plugins/#stage-x-experimental-presets-">TC39's concept of stages</a> to categorize its experimental plugins. Users should be able to easily use features before they are all implemented in browsers in <a href="https://tc39.github.io/process-document/">stage 4 of the TC39 process</a>.</p>
+<p>Babel is fundamental in the process given its place in the ecosystem: it is significantly easier for a developer to update a <code>.babelrc</code> file than a browser flag and much faster to write a Babel plugin than to implement the feature natively in the browser. This is the core of Babel.</p>
+<p>But the proposals process involves significant iteration: proposals can change in syntax or even get dropped. Because TC39 meets every 2 months, plugins should be updated as least as often as each change in stage so that users can be in sync.</p>
+<blockquote>
+<p>Early feedback to the proposal champion and committee is extremely valuable although it is recommended to use Stage 0/1/2 features with caution.
+Although companies like Facebook take advantage of these kinds of features, they have created codemods to allow easy change.</p>
+</blockquote>
+<hr>
+<p>There isn't enough time or resources to maintain each plugin, especially when there are spec updates.</p>
+<ul>
+<li>Some transforms are simply out of date such as decorators. Logan had to port the previous spec <a href="https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy">babel-plugin-transform-decorators-legacy</a> for Babel 6 and we haven't had anyone able to rewrite it for the updated spec.</li>
+<li><a href="https://github.com/babel/babel/pull/3473">babel/babel#3473 - Async iteration proposal</a> wasn't merged for so long because we just didn't have time to review it. By the time it was merged it had already moved
+from stage 2 to stage 3.</li>
+</ul>
+<hr>
+<p>Next we're going to be working with:</p>
+<ul>
+<li><a href="https://github.com/littledan">Daniel Ehrenberg</a> on <a href="https://github.com/tc39/proposal-private-fields">Private Fields (Stage 2)</a></li>
+<li><a href="https://github.com/wycats">Yehuda Katz</a> on <a href="http://tc39.github.io/proposal-decorators/">Class and Property Decorators (Stage 2)</a></li>
+<li><a href="https://mathiasbynens.be/">Mathias Bynens</a> on <a href="https://github.com/tc39/proposal-regexp-unicode-property-escapes">Unicode Property Escapes in Regular Expressions (Stage 2)</a> via <a href="https://github.com/babel/babel/pull/3683">babel/babel#3683</a></li>
+</ul>
+<p>Relevant Issues:</p>
+<ul>
+<li>Should we create a codemod for Stage X proposals at the same time as creating the actual transform?</li>
+<li><a href="https://github.com/babel/babel/issues/4408">Private Fields</a></li>
+<li><a href="https://github.com/babel/babel/issues/2645">Decorators Proposal</a></li>
+</ul>
+<blockquote>
+<p>Check out <a href="https://thefeedbackloop.xyz/tc39-november-2016-day-1/">thefeedbackloop.xyz</a> for more info on TC39!</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="maintaining-other-ecosystem-plugins-jsxflow"></a><a href="#maintaining-other-ecosystem-plugins-jsxflow" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Maintaining other ecosystem plugins: JSX/Flow</h3>
+<p>Babel is vital to the <a href="https://reactjs.org">React</a> and <a href="https://flowtype.org/">Flow</a> ecosystems, and we work closely with the relevant teams at Facebook.</p>
+<ul>
+<li><a href="https://babeljs.io/docs/plugins/#react">React plugins</a>, <a href="https://babeljs.io/docs/plugins/preset-react/">React preset</a>
+<ul>
+<li>These cover the main <code>JSX</code> transform, development plugins, and optimizations.</li>
+</ul></li>
+<li><a href="https://babeljs.io/docs/plugins/transform-flow-strip-types">Flow plugin</a></li>
+</ul>
+<p>Relevant Issue Labels:</p>
+<ul>
+<li><a href="https://github.com/babel/babel/issues?utf8=%E2%9C%93&amp;q=is%3Aissue%20is%3Aopen%20label%3A%22react%22%20">babel/babel: React issues</a></li>
+<li><a href="https://github.com/facebook/react/labels/Component%3A%20Optimizing%20Compiler">facebook/react: Optimizing Compiler</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="babel-preset-envhttpsgithubcombabelbabel-preset-env-autoprefixer-for-babel"></a><a href="#babel-preset-envhttpsgithubcombabelbabel-preset-env-autoprefixer-for-babel" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/babel/babel-preset-env">babel-preset-env</a> (&quot;autoprefixer&quot; for Babel)</h3>
+<p>JavaScript compilation is a moving target: There are yearly updates to the spec, browser vendors are constantly updating to that spec, and users may drop support for earlier browsers. At first glance, there doesn't seem to be a fixed target for what we should compile our JavaScript down to.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/588473/19214029/58deebce-8d48-11e6-9004-ee3fbcb75d8b.png" alt=""></p>
+<blockquote>
+<p>The <a href="https://github.com/kangax/">compat-table</a> is updated constantly and is used for this preset.</p>
+</blockquote>
+<p>This is where <code>babel-preset-env</code> comes in: it's a Babel preset that automatically determines the correct Babel plugins to use based on the provided environments.</p>
+<p>Its goal is both simplicity in use and efficiency in output: you only need to worry about your target environments to be able to take advantage of native code. The preset decides for you the required plugins.</p>
+<h4><a class="anchor" aria-hidden="true" id="some-example-configs"></a><a href="#some-example-configs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Some example configs</h4>
+<p>Targeting Chrome 55 + last 2 versions of other browsers via <a href="https://github.com/ai/browserslist">browserslist</a></p>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-string">"presets"</span>: [
+    [<span class="hljs-string">"env"</span>, {
+      <span class="hljs-string">"targets"</span>: {
+        <span class="hljs-string">"chrome"</span>: <span class="hljs-number">55</span>,
+        <span class="hljs-string">"browsers"</span>: [<span class="hljs-string">"last 2 versions"</span>]
+      }
+    }]
+  ]
+}
+</code></pre>
+<p>Targeting the current Node.js version (uses <code>process.versions.node</code>)</p>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-string">"presets"</span>: [
+    [<span class="hljs-string">"env"</span>, {
+      <span class="hljs-string">"targets"</span>: {
+        <span class="hljs-string">"node"</span>: <span class="hljs-string">"current"</span>
+      }
+    }]
+  ]
+}
+</code></pre>
+<p>Chrome 55 <code>useBuiltIns</code> + webpack 2</p>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-string">"presets"</span>: [
+    [<span class="hljs-string">"env"</span>, {
+      <span class="hljs-string">"targets"</span>: {
+        <span class="hljs-string">"chrome"</span>: <span class="hljs-number">55</span>
+      },
+      <span class="hljs-string">"modules"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-string">"useBuiltIns"</span>: <span class="hljs-literal">true</span>
+    }]
+  ]
+}
+</code></pre>
+<p><strong>In</strong></p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> <span class="hljs-string">"babel-polyfill"</span>;
+</code></pre>
+<p><strong>Out (different based on environment)</strong></p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/es7.string.pad-start"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"core-js/modules/es7.string.pad-end"</span>;
+</code></pre>
+<p>Relevant Issues:</p>
+<ul>
+<li>Next big feature: apply the same idea of preset-env to polyfills as well <a href="https://github.com/babel/babel-preset-env/issues/20">babel/babel-preset-env#20</a> with corresponding PR in <a href="https://github.com/babel/babel-preset-env/pull/56">babel/babel-preset-env#56</a>.</li>
+<li><a href="https://github.com/babel/babel-preset-env/issues/26">Using browserslist</a> and <a href="https://github.com/babel/babel-preset-env/pull/51">PR</a></li>
+<li><a href="https://github.com/ai/browserslist/issues/75">&quot;Node.js versions support&quot; in Browserslist</a></li>
+<li><a href="https://github.com/kangax/compat-table/issues/711">Publish runnable tests &amp; browser data to npm</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="linting-via-babel-eslinthttpsgithubcombabelbabel-eslint"></a><a href="#linting-via-babel-eslinthttpsgithubcombabelbabel-eslint" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linting via <a href="https://github.com/babel/babel-eslint">babel-eslint</a></h3>
+<p><img class="img-responsive" alt="example of eslint" src="/blog/assets/2016-12-07-the-state-of-babel/eslint.png"></p>
+<p>ESLint doesn't support new language features until they reach Stage 4 of the proposals process. For this reason we maintain <a href="https://github.com/babel/babel-eslint">babel-eslint</a> (a custom ESLint parser) so you can continue to lint JavaScript with experimental syntax.</p>
+<p>This project was one of the hardest projects to work on: because it is just a compatibility layer between Babel and ESLint there is inherently a constant need for updates when either projects update and a high risk of unexpected changes due to monkey-patching. It was unfortunate to get issues like <a href="https://github.com/babel/babel-eslint/issues/243">babel/babel-eslint#243</a> or <a href="https://github.com/babel/babel-eslint/issues/267">babel/babel-eslint#267</a>.</p>
+<p>To that end, we'd like to lessen the maintenance burden of this project by improving our scope and traversal interop with ESLint. It might even be interesting to be able to write ESLint rules using babel APIs or vice versa?</p>
+<p>Relevant Issues:</p>
+<ul>
+<li><a href="https://github.com/babel/babel/issues/1829">Previous Linting APIs Discussion</a></li>
+<li><a href="https://github.com/babel/babel-eslint/issues/62">Running smoke tests on ESLint</a></li>
+<li><a href="https://github.com/babel/babel-eslint/issues/88">babel/babel-eslint#88</a> is still relevant now</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="minification"></a><a href="#minification" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Minification</h3>
+<p><a href="https://github.com/babel/babili">Babili</a> is our new Babel-powered minifier, enabling you to produce minified code while targeting the latest browsers.</p>
+<p><strong>In</strong></p>
+<pre><code class="hljs css language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mangler</span> </span>{
+  <span class="hljs-keyword">constructor</span>(program) {
+    <span class="hljs-keyword">this</span>.program = program;
+  }
+}
+<span class="hljs-keyword">new</span> Mangler();
+</code></pre>
+<p><strong>Out</strong></p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// ES2015 code -&gt; Babili -&gt; Minified ES2015 Code</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">a</span></span>{<span class="hljs-keyword">constructor</span>(b){<span class="hljs-keyword">this</span>.program=b}}<span class="hljs-keyword">new</span> a;
+</code></pre>
+<p>Check out our <a href="http://babeljs.io/blog/2016/08/30/babili">blog post</a> for more info.</p>
+<p>Since it was recently released, we're looking for some new contributors! There's a lot of small bugs and things that could be improved for those looking for a new project to help out with!</p>
+<h3><a class="anchor" aria-hidden="true" id="codemods--refactoring--eslint---fix"></a><a href="#codemods--refactoring--eslint---fix" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Codemods / Refactoring / <code>eslint --fix</code></h3>
+<p>A <code>codemod</code> is a tool-assisted code modification; a fancy find-and-replace.</p>
+<p>If you wanted to change <code>merge({})</code> to <code>Object.assign({})</code> (and maybe later <a href="https://github.com/sebmarkbage/ecmascript-rest-spread">object rest</a>) you might do a regex replace. But you don't want to replace the other parts of the code that also might be called <code>merge</code> such as imports/exports, strings, comments, and local variables. To do it safely you'll want something more powerful that only changes the specific code you need.</p>
+<p>Although Babel already handles transforming code into other code, it doesn't really care about the styling of the input code as a compiler. After using Babel with its default options to do a codemod, <code>git diff</code> looks really messy.</p>
+<p>Enter <a href="https://github.com/benjamn/recast">Recast</a>: a tool that preserves the formatting of unmodified code while also pretty-printing any new AST nodes.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/588473/16584612/04a82078-428b-11e6-9f79-a665eef848ea.gif" alt="recast"></p>
+<blockquote>
+<p>In the screenshot above, the top-left pane is the input code and the bottom-right pane is the output code after the babel plugin is run. In this case it's preserving the whitespace of the input code when possible.</p>
+</blockquote>
+<p>By passing in <a href="https://github.com/benjamn/recast">Recast</a> in the options, Babel can power the future of codemods.</p>
+<p><code>.babelrc</code></p>
+<pre><code class="hljs css language-js">{
+  <span class="hljs-string">"parserOpts"</span>: {
+    <span class="hljs-string">"parser"</span>: <span class="hljs-string">"recast"</span>
+  },
+  <span class="hljs-string">"generatorOpts"</span>: {
+    <span class="hljs-string">"generator"</span>: <span class="hljs-string">"recast"</span>
+  }
+}
+</code></pre>
+<p>Run the relevant Babel transform(s) on the source code and overwrite it:</p>
+<pre><code class="hljs css language-sh">babel src -d src
+</code></pre>
+<p>This feature was just made possible so we're looking forward to making it easier to use and seeing the transformations it can enable. Check out the <a href="https://babeljs.io/blog/2016/09/28/6.16.0#-new-feature">6.16.0 blog post</a> for more info!</p>
+<p>Other relevant projects: <a href="https://github.com/facebook/jscodeshift">JSCodeshift</a>, <a href="https://github.com/cpojer/js-codemod">js-codemod</a>, <a href="https://github.com/lebab/lebab">Lebab</a>.</p>
+<p>Relevant Issues:</p>
+<ul>
+<li><a href="https://github.com/lebab/lebab/issues/138">Rewriting Lebab as a Babel transformer</a></li>
+<li><a href="https://github.com/facebook/jscodeshift/issues/168">Babel integration with jscodeshift</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="code-coverage--instrumentation"></a><a href="#code-coverage--instrumentation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Code Coverage / Instrumentation</h3>
+<p><img src="https://istanbul.js.org/assets/browser.png" alt=""></p>
+<p>We want to support tools like <a href="https://github.com/istanbuljs/nyc">nyc</a> and <a href="https://github.com/istanbuljs/babel-plugin-istanbul">babel-plugin-istanbul</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="plugin-ecosystem"></a><a href="#plugin-ecosystem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Plugin Ecosystem</h3>
+<p>Thanks to our vibrant community, new plugins are constantly being created: whether it be a new way to write your <a href="https://github.com/zeit/styled-jsx">css in jsx</a> or <a href="https://github.com/speedskater/babel-plugin-rewire">rewire your tests</a>.</p>
+<blockquote>
+<p>Currently there are &gt; 1200 <a href="https://www.npmjs.com/search?q=babel-plugin-">babel-plugins on npm</a>.</p>
+</blockquote>
+<p>We've had some interesting discussions on how we can grow and support the plugin ecosystem. We could try to watch all the repos but that is obviously overwhelming.</p>
+<p>It might be interesting to create some bots to automate a few tasks: create specific Babel plugins/ESLint rules for babel-plugins, write codemods to update API changes, and integrate plugins into our smoke test.</p>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/jaredforsyth">@jaredforsyth</a> <a href="https://twitter.com/reactjs">@reactjs</a> My five minute POC ☺️ <a href="https://t.co/v74UFHsSJG">https://t.co/v74UFHsSJG</a> <a href="https://t.co/B3YwVWkH5g">pic.twitter.com/B3YwVWkH5g</a></p>&mdash; Henry Zhu (@left_pad) <a href="https://twitter.com/left_pad/status/805971589430968320">December 6, 2016</a></blockquote>
+<ul>
+<li>Should we create a newsletter for new/useful plugins?</li>
+<li>How can we teach people about plugins and how to write them?</li>
+<li>How can we make <a href="http://astexplorer.net/">ASTExplorer</a> better?</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="documentation-this-website"></a><a href="#documentation-this-website" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Documentation (this website!)</h3>
+<p>Docs contributions have definitely been lacking in the <a href="https://github.com/babel/babel.github.io/graphs/contributors">last year</a>.</p>
+<p>However just recently we've done a lot of awesome stuff:</p>
+<ul>
+<li><a href="https://github.com/Daniel15">@Daniel15</a> has been maintaining <a href="https://github.com/babel/babel-standalone">babel-standalone</a> which we use in the REPL and has some automation when new releases get out.</li>
+<li><a href="https://github.com/maxiloc">@maxiloc</a> added search functionality via Algolia via <a href="https://github.com/babel/babel.github.io/pull/977">#977</a></li>
+</ul>
+<p>We've also added new collaborators:</p>
+<ul>
+<li><a href="https://github.com/STRML">@STRML</a>: Added Discourse to all github pages via <a href="https://github.com/babel/babel.github.io/pull/875">#875</a></li>
+<li><a href="https://github.com/xtuc">@xtuc</a>: Added support for reading the README from the babel repo so we don't have to sync 2 copies of docs via <a href="https://github.com/babel/babel.github.io/pull/990">#990</a></li>
+<li><a href="https://github.com/fredericmarx">@fredericmarx</a>: Added support for a copy to clipboard button for code snippets via <a href="https://github.com/babel/babel.github.io/pull/998">#998</a></li>
+<li><a href="https://github.com/seedofjoy">@seedofjoy</a>: Added a resize ability for the REPL via <a href="https://github.com/babel/babel.github.io/pull/1003">#1003</a></li>
+</ul>
+<p>Some Ideas</p>
+<ul>
+<li>All plugins should have examples. Can also embed <a href="https://runkit.com/home">RunKit</a> or the REPL.</li>
+<li>Update FAQ with common errors</li>
+<li>API docs / make <a href="https://github.com/thejameskyle/babel-handbook">babel-handbook</a> better</li>
+</ul>
+<p>Relevant Issues:</p>
+<ul>
+<li><a href="https://github.com/babel/babel.github.io/issues/930">Reorganizing the docs layout</a></li>
+<li><a href="https://github.com/babel/babel.github.io/issues/831">Showcase community plugins</a></li>
+<li><a href="https://github.com/babel/babel.github.io/issues/27">Adding a resources page</a></li>
+<li><a href="https://github.com/babel/babel.github.io/issues/994">Learn ES2015: teach others about ES2015+</a></li>
+<li><a href="https://github.com/babel/babel.github.io/issues/59">REPL: adding example dropdowns</a></li>
+<li><a href="https://github.com/babel/babel.github.io/issues/92">REPL: supporting all options</a></li>
+<li><a href="https://github.com/babel/babel.github.io/issues/858">REPL: allow the REPL to import any community plugin from npm</a></li>
+<li><a href="https://github.com/fkling/astexplorer/issues/70">REPL: Use ASTexplorer</a></li>
+<li><a href="https://github.com/fkling/astexplorer/issues/166">ASTexplorer: Real Time collaboration</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="the-future"></a><a href="#the-future" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Future</h2>
+<blockquote>
+<p>NOTE: Everything below can be changed or dropped. Some might be already in the works and others are just suggestions that need a proper discussion/champion.</p>
+</blockquote>
+<blockquote>
+<p>Priority should be determined on what the community needs: not because it would be nice to have.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="plugin-api-changeshttpsgithubcombabelnotesblobmaster20162016-08august-01mdpotential-api-changes-for-traversal"></a><a href="#plugin-api-changeshttpsgithubcombabelnotesblobmaster20162016-08august-01mdpotential-api-changes-for-traversal" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><a href="https://github.com/babel/notes/blob/master/2016/2016-08/august-01.md#potential-api-changes-for-traversal">Plugin API Changes</a></h3>
+<p>There is a lot of confusion around how plugins/presets interact regarding ordering. This results in bugs and issues with the config which require users to place plugins before/after others in a non-intuitive way.</p>
+<p>We’re currently discussing API changes that could reduce the confusion. However, since this is a fundamental change to the core of Babel, it might take a while to figure out the best approach.</p>
+<h3><a class="anchor" aria-hidden="true" id="versioning"></a><a href="#versioning" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Versioning</h3>
+<p>Since Babel 6 we've used a <a href="https://github.com/lerna/lerna#how-it-works">&quot;fixed&quot; mode of versioning</a> via Lerna. This is what allows us to release multiple packages at the same time all under the same version (if that package changes). This is nice because you don't have to manually set a version for each package but everything moves together. The only time this could cause an error is when one on the packages makes a breaking change: then every package also will bump major versions.</p>
+<p>This is explained more in <a href="https://github.com/babel/notes/blob/master/2016/2016-07/july-31.md#future-of-babels-release-process-and-its-ecosystem">babel/notes</a> but we still need to figure out the best plan of action for the project.</p>
+<p>What happens when we need to update a Stage 0 spec to Stage 1 and it's a breaking change to the parser? Are we just going to bump the major version, wait to batch some changes up, or figure out how to do it via multiple versions of plugins?</p>
+<p><a href="https://github.com/babel/babel/issues/4950">Discussion Issue</a></p>
+<h4><a class="anchor" aria-hidden="true" id="changing-the-mindset-around-stage-x-presets"></a><a href="#changing-the-mindset-around-stage-x-presets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Changing the Mindset Around Stage X Presets</h4>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">My rule of thumb on how I decide what future features to transpile:<br>&quot;Could I reasonably codemod this if it changes?&quot;<br>Don&#39;t do it otherwise.</p>&mdash; Kent C. Dodds (@kentcdodds) <a href="https://twitter.com/kentcdodds/status/803815749416456196">November 30, 2016</a></blockquote>
+<p>Relevant Issues:</p>
+<ul>
+<li><a href="https://github.com/babel/babel/issues/4914">Should we rename the stage x presets to explain more that they are &quot;experimental&quot;</a></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="speed"></a><a href="#speed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Speed</h4>
+<p>Performance is a feature! Other things can be more of a priority at times (bug fixes, spec compliancy, etc) but it's still important in a few different aspects.</p>
+<ul>
+<li>How can we reduce the size/time of install, especially for a project with multiple packages? (this is helped by <a href="https://yarnpkg.com">yarn</a>)</li>
+<li>How can we parse faster?</li>
+<li>How can we make faster plugins (and measure them individually)?</li>
+<li>How can we generate the transformed code faster?</li>
+<li>How can we generate code that runs fast in the browser (<a href="https://fhinkel.github.io/six-speed/">https://fhinkel.github.io/six-speed/</a>)?</li>
+</ul>
+<p>If you to read the compiled output and see issues, then report it and ask for help in making a PR!</p>
+<p>Previous Issues:</p>
+<ul>
+<li><a href="https://github.com/babel/babel/issues/1486">Speeeeed</a></li>
+<li><a href="https://github.com/babel/babel/pull/3283">Amazing PR to improve babel-generator by @gzzhanghao</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="possible-typescript-support"></a><a href="#possible-typescript-support" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Possible TypeScript Support?</h3>
+<p>Maybe Babel could learn to understand TypeScript syntax (like we do with Flow)? We could add a plugin to strip TypeScript types for better interop.</p>
+<p>This would mean parsing TypeScript specific syntax and stripping it out. However TypeScript does have non-type syntax, so for things like <code>enum</code> we will would have to discuss more.</p>
+<h3><a class="anchor" aria-hidden="true" id="use-type-information"></a><a href="#use-type-information" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use Type Information?</h3>
+<p>Integrate with a type system such as Flow/TypeScript to make optimizations. This just means that Babel should be able to gain the knowledge through those tools that an identifier <code>arr</code> is actually an <code>Array</code> or not.</p>
+<blockquote>
+<p>There are a few plugins that actually do type checking: <a href="https://github.com/codemix/babel-plugin-typecheck">babel-plugin-typecheck</a> and <a href="https://github.com/gcanti/babel-plugin-tcomb">babel-plugin-tcomb</a></p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/babel/babel/issues/653">Previous Issue</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="taking-in-a-dependency-graph--operate-multi-file"></a><a href="#taking-in-a-dependency-graph--operate-multi-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Taking in a Dependency Graph / Operate Multi-file?</h3>
+<p>Then we could integrate with other tools like Webpack better. This would allow cross file transformations or whole codebase optimizations. The main reason for this would be for the minifier (being able to remove properties based on checking the usage across the whole application) or for example providing errors for missing/invalid import/exports.</p>
+<ul>
+<li><a href="https://github.com/babel/babel/issues/4949">Discussion Issue</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="parser-errors"></a><a href="#parser-errors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parser Errors</h3>
+<p>Better error messages from the parser like in <a href="http://elm-lang.org/blog/compiler-errors-for-humans">Compiler Errors for Humans</a>.</p>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">babel-eslint@7.1.1: now adds the code frame when there&#39;s a parser error! <a href="https://t.co/yoxRpGXq5E">pic.twitter.com/yoxRpGXq5E</a></p>&mdash; Henry Zhu (@left_pad) <a href="https://twitter.com/left_pad/status/799388723896946692">November 17, 2016</a></blockquote>
+<blockquote>
+<p>It is obvious that we all want to see helpful errors!</p>
+</blockquote>
+<p>We can do better inference/guessing on user intention to prevent vague errors. Let us know in what cases that happens!</p>
+<p>Relevant Issues:</p>
+<ul>
+<li><a href="https://github.com/babel/babylon/pull/125">#125 Better message when using <code>await</code> in a non-async function</a></li>
+<li><a href="https://github.com/babel/babylon/issues/169">#169 Better message for a syntax error when a plugin isn't enabled</a></li>
+<li><a href="https://github.com/babel/babylon/issues/212">#212 Better message for using super when not using a non-object method</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="babel-init"></a><a href="#babel-init" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>babel-init</code></h3>
+<p>Basically a way to set up Babel more easily like <a href="https://github.com/facebookincubator/create-react-app">create-react-app</a> does.</p>
+<ul>
+<li>Set up a <code>.babelrc</code> from scratch, prompt with questions</li>
+</ul>
+<p>Possible Idea:</p>
+<ul>
+<li>Ask about target environments (browsers, node) and pass to <code>babel-preset-env</code></li>
+<li>Ask about experimental features (add specific plugins)</li>
+<li>Update the <code>babel</code> npm package to do something again: Make it the default/opt-in/opinionated <code>babel</code> that Babel 5 was. It can default to using <code>env</code> and say the <code>latest 2 browsers</code> (without any config).</li>
+</ul>
+<p>Relevant Issues:</p>
+<ul>
+<li><a href="https://github.com/babel/babel/issues/3977">CLI (babel init) command</a></li>
+<li><a href="https://github.com/babel/babel/issues/4951">Repurpose <code>babel</code> npm package</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="run-tc39test262httpsgithubcomtc39test262"></a><a href="#run-tc39test262httpsgithubcomtc39test262" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Run <a href="https://github.com/tc39/test262">tc39/test262</a></h3>
+<blockquote>
+<p>test262 tests conformance to the continually maintained draft future ECMAScript standard found at <a href="http://tc39.github.io/ecma262/">tc39.github.io/ecma262</a>, together with any Stage 3 or later TC39 proposals. It is maintained by Tom Care (<a href="https://github.com/tcare">@tcare</a>) with significant contributions from many in the ECMAScript community.</p>
+</blockquote>
+<p>Running the official spec tests against Babel can make sure we comply to the spec or at least know when we don't. We'll want to figure out how to do filtering on things we can't compile (proxy, TCO, etc) and set up an easy way to check failing tests and file issues and PRs for them.</p>
+<p>Relevant Issues:</p>
+<ul>
+<li><a href="https://github.com/kangax/compat-table/issues/830">Adding test262 to compat-table</a></li>
+<li><a href="https://github.com/bakkot/test262-web-runner/">Running test262 on the web</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="smokeintegration-tests"></a><a href="#smokeintegration-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Smoke/Integration Tests</h3>
+<p>It would be useful to either have a reverse <a href="https://greenkeeper.io">Greenkeeper</a> or to run tests with master branch of Babel so that we can catch any major regressions before any release (node has the <a href="https://github.com/nodejs/citgm">citgm project</a> for this). In theory we would want to take the biggest open source projects that use Babel and run their tests.</p>
+<p><a href="https://github.com/motiz88/babel-smoke-tests">motiz88/babel-smoke-tests</a> is a good start! It would also be great if there's already something like this out there!</p>
+<h3><a class="anchor" aria-hidden="true" id="program-analysis"></a><a href="#program-analysis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Program Analysis</h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Program_slicing">Program Slicing</a></li>
+</ul>
+<p>There was a great talk by <a href="https://twitter.com/inconshreveable">Alan Shreve</a> called <a href="https://www.youtube.com/watch?v=dSqLt8BgbRQ">&quot;Idealized Commit Logs: Code Simplification via Program Slicing&quot;</a> which inspired @kentcdodds to try it out in JavaScript via <a href="http://slides.com/kentcdodds/faster-javascript#/">slice-js</a>.</p>
+<p>The general idea is that we have a lot of tools to help us write code but not a lot for helping us understand/read code. You can think of code-slicing as a form of targeted dead-code elimination.</p>
+<p><img src="https://s3.amazonaws.com/media-p.slid.es/uploads/55780/images/3189688/Screen_Shot_2016-11-02_at_11.46.25_PM.png" alt="slice-js"></p>
+<p>A program slice basically cuts away from the source code the code that isn't used for a test case that you run. If there are lots of if statements and loops that aren't run during your usecase then it won't show up in the program slice.</p>
+<ul>
+<li>Semantic (AST aware) Grepping tool?</li>
+</ul>
+<p>Similar to <a href="http://www.graspjs.com/">graspjs</a>, I think it would be interesting to be able to do a find-replace with the input being an AST. It would allow us to create other analysis tools: the ability to find all IIFE's in our code, the number of times a method is called, or even how many Classes we have in our codebase.</p>
+<h3><a class="anchor" aria-hidden="true" id="babel---settings"></a><a href="#babel---settings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>babel --settings</code></h3>
+<p>This command would print out all info (also when erroring). It would also include performance metrics on how long each plugin takes.</p>
+<ul>
+<li><a href="https://github.com/babel/babel/issues/2960">Discussion Issue</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="parser-unity"></a><a href="#parser-unity" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parser Unity</h3>
+<p>There have also been some discussions around parser/AST unity, in <a href="https://github.com/TheLarkInn/js-parser-discussions">TheLarkInn/js-parser-discussions</a> and previously with <a href="https://github.com/estree/estree">ESTree</a>.</p>
+<p>Unfortunately with Babel 6, we have &quot;forked&quot; and have a few differences in <a href="https://github.com/babel/babylon#output">our AST</a> than ESTree. Babel aims to support stage x features while other parsers may only want to support stage 4 features. We all might prioritize certain things more than others regarding spec compliancy, performance, stage x features, error messages, extensibility, releases, etc. However it's important for us to be open to breaking changes that may lead to better interop and a better community.</p>
+<h3><a class="anchor" aria-hidden="true" id="sweetjs-interop"></a><a href="#sweetjs-interop" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sweet.js Interop?</h3>
+<p>Previous <a href="https://github.com/babel/babel/issues/568#issuecomment-71716260">issue</a>. Maybe we can just figure out how to have better interop instead?</p>
+<h3><a class="anchor" aria-hidden="true" id="nodejs-support"></a><a href="#nodejs-support" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Node.js Support</h3>
+<p>Should we drop support according to the EOL of Node.js versions? How long should we wait to do this in general?</p>
+<ul>
+<li><p>Do we want to continue to support our users who haven't updated yet?</p></li>
+<li><p>There are certain transforms/PRs that are blocked by this, due to tools that have also dropped older versions.</p></li>
+<li><p>Many other build-time projects like ESLint have done so already.</p></li>
+<li><p>Are we going to make a major version just for this or plan out other changes in addition?</p></li>
+<li><p><a href="https://github.com/babel/babel/issues/4315">Discussion Issue</a></p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="babel-5-to-6-transition--upgrade-paths"></a><a href="#babel-5-to-6-transition--upgrade-paths" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Babel 5 to 6 transition / Upgrade Paths</h3>
+<p>Babel 6 was really difficult for the community to upgrade to. The initial release was a bit rushed. Although we did have a <a href="http://babeljs.io/blog/2015/10/29/6.0.0">6.0 release post</a>, a <a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6">setup guide</a> soon after, a even a <a href="http://babeljs.io/blog/2015/11/03/babel-doctor">tool (now deprecated)</a> to help with the transition it was still difficult for users to understand the changes.</p>
+<p>There are still <a href="https://libraries.io/npm/babel-core/usage">a good amount of users on Babel 5</a> that we don't want to leave behind. What can we do to help them upgrade? What steps do we need to take in the future to make sure the same thing doesn't happen with a Babel 7? Are there other projects/communities we should be reaching out to and helping?</p>
+<p>Relevant Issues:</p>
+<ul>
+<li><a href="https://github.com/ember-cli/ember-cli/issues/5015">ember-cli Babel 6.0 Issue</a> needs help!</li>
+<li>Any others?</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="what-else"></a><a href="#what-else" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What else?</h3>
+<p>Anything else not already brought up here? Please send us a tweet <a href="https://twitter.com/babeljs">@babeljs</a>, a message on our slack (join at <a href="https://slack.babeljs.io">https://slack.babeljs.io/</a>, comment on this post, or create an discussion issue in our repo!)</p>
+<p>Are there projects or communities we should partner with more? How can we make the contributing experience more welcome? What can we do to make the development process more transparent?</p>
+<h2><a class="anchor" aria-hidden="true" id="community"></a><a href="#community" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Community</h2>
+<p>Old Issues:</p>
+<ul>
+<li><a href="https://github.com/babel/babel/issues/1347">Call for Contributors!</a></li>
+<li><a href="https://github.com/babel/babel/issues/1888">Being Prepared for Getting Hit by a Bus</a></li>
+</ul>
+<p>You might think that as <a href="https://npm-stat.com/charts.html?package=babel-core&amp;from=2015-02-07&amp;to=2016-12-07">a project gets more widely used</a> that more people show up to help out. But like most OSS projects that aren't backed by a company, there is a constant issue with maintenance and sustainability; people get burned out, move on to other cool projects, or get busy with work/family/etc.</p>
+<p>Like James describes in <a href="https://medium.com/@thejameskyle/dear-javascript-7e14ffcae36c">Dear JavaScript</a>, the current Babel team is pretty small.</p>
+<blockquote>
+<p>Babel isn't a company, a special team at Facebook, or corporate-funded OSS project. It's a community-driven effort currently held up by a few people and we want that to grow.</p>
+</blockquote>
+<p>So if you're interested in contributing to a tool you use, we're hoping this could be the one!</p>
+<h3><a class="anchor" aria-hidden="true" id="what-issues-should-i-look-at-or-contribute-to"></a><a href="#what-issues-should-i-look-at-or-contribute-to" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What issues should I look at or contribute to?</h3>
+<p>Many of our projects have both <a href="https://github.com/babel/babel/labels/beginner-friendly"><code>beginner-friendly</code></a> and <a href="https://github.com/babel/babel/labels/help-wanted"><code>help-wanted</code></a> labels. You can also check out <a href="https://github.com/babel/babel/labels/discussion"><code>discussion</code></a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="team"></a><a href="#team" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Team</h3>
+<p>Our core team is:</p>
+<ul>
+<li><a href="https://github.com/hzoo">Henry Zhu, @hzoo</a></li>
+<li><a href="https://github.com/loganfsmyth">Logan Smyth, @loganfsmyth</a></li>
+<li><a href="https://github.com/danez">Daniel Tschinder, @danez</a></li>
+</ul>
+<p>And just in the last 3 months a lot more collaborators:</p>
+<ul>
+<li><a href="https://github.com/motiz88">Moti Zilberman, @motiz88</a></li>
+<li><a href="https://github.com/danharper">Dan Harper, @danharper</a></li>
+<li><a href="https://github.com/kaicataldo">Kai Cataldo, @kaicataldo</a></li>
+<li><a href="https://github.com/DrewML">Andrew Levine, @drewml</a></li>
+<li><a href="https://github.com/existentialism">Brian Ng, @existentialism</a></li>
+<li><a href="https://github.com/Jessidhia">Jessica Franco, @Jessidhia</a></li>
+</ul>
+<p>Babili core team:</p>
+<ul>
+<li><a href="https://github.com/kangax">Juriy Zaytsev, @kangax</a></li>
+<li><a href="https://github.com/boopathi">Boopathi Rajaa, @boopathi</a></li>
+</ul>
+<p>As mentioned above we have a lot of website collaborators:</p>
+<ul>
+<li><a href="https://github.com/daniel15">Daniel Lo Nigro, @daniel15</a></li>
+<li><a href="https://github.com/STRML">Samuel Reed, @STRML</a></li>
+<li><a href="https://github.com/xtuc">Sven SAULEAU, @xtuc</a></li>
+<li><a href="https://github.com/fredericmarx">Frederic Marx, @fredericmarx</a></li>
+<li><a href="https://github.com/seedofjoy">Igor Mozharovsky, @seedofjoy</a></li>
+</ul>
+<p>Inactive but still a resource:</p>
+<ul>
+<li><a href="https://github.com/kittens">Sebastian McKenzie, @kittens</a> - Yarn</li>
+<li><a href="https://github.com/thejameskyle">James Kyle, @thejameskyle</a> - Flow/Yarn</li>
+<li><a href="https://github.com/amasad">Amjad Masad, @amasad</a> - <a href="https://repl.it/">repl.it</a></li>
+<li><a href="https://github.com/jmm">Jesse McCarthy, @jmm</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="how-can-i-contact-the-team"></a><a href="#how-can-i-contact-the-team" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How can I contact the team?</h3>
+<h4><a class="anchor" aria-hidden="true" id="github"></a><a href="#github" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GitHub</h4>
+<p>For bug reports/PRs you can check our <a href="https://github.com/babel/">repositories</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="twitter"></a><a href="#twitter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Twitter</h4>
+<p>You can ping us on Twitter with <a href="https://twitter.com/babeljs">@babeljs</a> - or mention us individually.</p>
+<p>I myself joined Twitter to be able to talk with users and help out. Being able to post new features and changelogs is really useful and can help give us feedback!</p>
+<h4><a class="anchor" aria-hidden="true" id="slack"></a><a href="#slack" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Slack</h4>
+<p>We have a relatively active community on there!</p>
+<p>You'll find a lot of awesome community members willing to help such as <a href="https://github.com/ljharb">Jordan Harband, @ljharb</a>, <a href="https://github.com/Jessidhia">Jessica Franco, @Jessidhia</a>, <a href="https://github.com/taion">Jimmy Jia, @taion</a>, <a href="https://github.com/zloirock">Denis Pushkarev, @zloirock</a> and more!</p>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">If you haven&#39;t joined our slack yet: please join at <a href="https://t.co/h3m7l9jkrg">https://t.co/h3m7l9jkrg</a>. Check out development/plugins to see what&#39;s up! <a href="https://t.co/f1CKaV8G6G">pic.twitter.com/f1CKaV8G6G</a></p>&mdash; Babel (@babeljs) <a href="https://twitter.com/babeljs/status/793223871080136705">October 31, 2016</a></blockquote>
+<p>If you just have questions join <a href="https://babeljs.slack.com/messages/discussion/">#discussion</a> and if you want to help or listen in check out <a href="https://babeljs.slack.com/messages/development/">#development</a>.</p>
+<p>We try not to discuss in private if there's no need to: I myself usually post the issues/PRs I'm working on for people to review and talk about.</p>
+<h4><a class="anchor" aria-hidden="true" id="other"></a><a href="#other" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other</h4>
+<p>How else can we interact with the community? Should we go and start meetups, go to conferences, or manage hackathons?</p>
+<p>How can we make Babel sustainable? Should we setup a <a href="https://opencollective.com/opensource">Open Collective</a> or seek a foundation? Should we pay for a <a href="https://medium.com/open-collective/wanted-a-product-manager-for-open-source-projects-bf19bcd680f5#.awwsg684n">project manager</a>?</p>
+<p>Let us know your thoughts! What do you want out of Babel?</p>
+<hr>
+<blockquote>
+<p>See typos/issues? Please send a PR or comment on <a href="https://github.com/babel/babel.github.io/pull/1014">babel/babel.github.io#1014</a></p>
+</blockquote>
+<p>If anything we want to let you know that many of us got our start with Babel in order to learn JavaScript rather than helping because we already knew it. Personally, I knew nothing about compilers and had just learned what ES6 was when I found the project. I got here because of a tiny bit of curiosity and <a href="https://medium.com/@hzoo/ossthanks-some-thoughts-d0267706c2c6#.lcga2ggrw">some encouragement from a lot of people</a>. I want to carry that forward and hope that we can all succeed together.</p>
+<p>Thanks so much for reading!</p>
+<p>Henry Zhu (<a href="https://github.com/hzoo">@hzoo</a>) (<a href="https://twitter.com/left_pad">@left_pad</a>)</p>
+<blockquote>
+<p>Thanks to way too many folks for their review and thoughts: @DrewML, @mrjoelkemp, @kentcdodds, @existentialism, @jdalton, @gaearon, @nolanlawson, @jayphelps, @montogeek, @TheLarkInn, @jasonLaster, @benjamn, @addyosmani, @Daniel15, @loganfsmyth, @gr2m, @mathiasbynens, @chicoxyzzy, @bvaughn, @bcoe.</p>
+</blockquote>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#some-history">Some History</a></li><li><a href="#current-status">Current Status</a><ul class="toc-headings"><li><a href="#maintaining-babel-plugins-for-each-proposal-in-tc39httpsgithubcomtc39proposals-starting-from-stage-0">Maintaining Babel plugins <a href="https://github.com/tc39/proposals">for each proposal in TC39</a> starting from Stage 0</a></li><li><a href="#maintaining-other-ecosystem-plugins-jsxflow">Maintaining other ecosystem plugins: JSX/Flow</a></li><li><a href="#babel-preset-envhttpsgithubcombabelbabel-preset-env-autoprefixer-for-babel"><a href="https://github.com/babel/babel-preset-env">babel-preset-env</a> (&quot;autoprefixer&quot; for Babel)</a></li><li><a href="#linting-via-babel-eslinthttpsgithubcombabelbabel-eslint">Linting via <a href="https://github.com/babel/babel-eslint">babel-eslint</a></a></li><li><a href="#minification">Minification</a></li><li><a href="#codemods--refactoring--eslint---fix">Codemods / Refactoring / <code>eslint --fix</code></a></li><li><a href="#code-coverage--instrumentation">Code Coverage / Instrumentation</a></li><li><a href="#plugin-ecosystem">Plugin Ecosystem</a></li><li><a href="#documentation-this-website">Documentation (this website!)</a></li></ul></li><li><a href="#the-future">The Future</a><ul class="toc-headings"><li><a href="#plugin-api-changeshttpsgithubcombabelnotesblobmaster20162016-08august-01mdpotential-api-changes-for-traversal"><a href="https://github.com/babel/notes/blob/master/2016/2016-08/august-01.md#potential-api-changes-for-traversal">Plugin API Changes</a></a></li><li><a href="#versioning">Versioning</a></li><li><a href="#possible-typescript-support">Possible TypeScript Support?</a></li><li><a href="#use-type-information">Use Type Information?</a></li><li><a href="#taking-in-a-dependency-graph--operate-multi-file">Taking in a Dependency Graph / Operate Multi-file?</a></li><li><a href="#parser-errors">Parser Errors</a></li><li><a href="#babel-init"><code>babel-init</code></a></li><li><a href="#run-tc39test262httpsgithubcomtc39test262">Run <a href="https://github.com/tc39/test262">tc39/test262</a></a></li><li><a href="#smokeintegration-tests">Smoke/Integration Tests</a></li><li><a href="#program-analysis">Program Analysis</a></li><li><a href="#babel---settings"><code>babel --settings</code></a></li><li><a href="#parser-unity">Parser Unity</a></li><li><a href="#sweetjs-interop">Sweet.js Interop?</a></li><li><a href="#nodejs-support">Node.js Support</a></li><li><a href="#babel-5-to-6-transition--upgrade-paths">Babel 5 to 6 transition / Upgrade Paths</a></li><li><a href="#what-else">What else?</a></li></ul></li><li><a href="#community">Community</a><ul class="toc-headings"><li><a href="#what-issues-should-i-look-at-or-contribute-to">What issues should I look at or contribute to?</a></li><li><a href="#team">Team</a></li><li><a href="#how-can-i-contact-the-team">How can I contact the team?</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/babel.svg" alt="Babel 中文文档" width="66" height="58"/></a><div><h5>文档</h5><a href="/docs/en/learn.html">学习 ES2015</a></div><div><h5>社区</h5><a href="/en/videos.html">视频</a><a href="/en/users.html">用户</a><a href="http://stackoverflow.com/questions/tagged/babeljs" rel="noopener noreferrer" target="_blank">Stack Overflow</a><a href="https://babeljs.slack.com/">Slack 频道</a><a href="https://twitter.com/babeljs" rel="noopener noreferrer" target="_blank">Twitter</a></div><div><h5>更多</h5><a href="/blog">博客</a><a href="https://github.com/babel">GitHub Org</a><a href="https://github.com/babel/babel">GitHub Repo</a><a href="https://github.com/babel/website">Website Repo</a><a href="https://old.babeljs.io">旧版网址 6.x</a><a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'c774535d6e962c2bca4c05c5068f39f4',
+                indexName: 'babeljs_cn',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
