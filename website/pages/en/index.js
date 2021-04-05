@@ -94,6 +94,9 @@ const SponsorTier = props => {
   );
   return (
     <div>
+      <h3>{props.title}</h3>
+      <div>are currently pledging {props.amount} per month</div>
+      <br />
       <ul className={`sponsors-tier tier-${props.tier}`}>
         {tierSponsors.map((sponsor, i) => (
           <li key={i}>
@@ -121,6 +124,7 @@ const SponsorTier = props => {
 
 const OpenCollectiveSponsors = () => {
   const ocButton = {
+<<<<<<< HEAD
       title: "成为赞助商",
       link: "https://opencollective.com/babel",
     },
@@ -129,26 +133,38 @@ const OpenCollectiveSponsors = () => {
       link: "https://www.patreon.com/join/henryzhu",
     };
 
+=======
+    title: "Become a sponsor",
+    link: "https://opencollective.com/babel",
+  };
+>>>>>>> f891e9389f86ff97f623b72ab5bcfdec339fdcc2
   return (
     <div className="container paddingBottom">
       <div className="wrapper productShowcaseSection">
         <div className="sponsor-tiers" id="sponsors">
-          <h3>Open Collective Sponsors</h3>
+          {/* <h3>Current Sponsors</h3> */}
           <SponsorTier
             type="opencollective"
             title="Base Support Sponsors"
             tier="base-support-sponsor"
+            amount="$2000 or more"
           />
           <SponsorTier
             type="opencollective"
+<<<<<<< HEAD
             title="金牌赞助（Open Collective）"
+=======
+            title="Gold Sponsors"
+>>>>>>> f891e9389f86ff97f623b72ab5bcfdec339fdcc2
             tier="gold-sponsors"
+            amount="$1000 to $2000"
           />
           <SponsorTier
             type="opencollective"
-            title="Silver Sponsors (Open Collective)"
+            title="Silver Sponsors"
             tier="silver-sponsors"
             button={ocButton}
+            amount="$500 to $1000"
           />
         </div>
       </div>
@@ -182,28 +198,22 @@ const Hero = ({ language }) => (
 
       <div className="hero__announcement">
         <span>
+<<<<<<< HEAD
           <strong>Babel 7.12 发布！</strong> 请阅读我们的{" "}
           <a href="blog/2021/02/22/7.13.0">博客公告</a> 以及{" "}
           <a href="https://github.com/babel/babel/releases/tag/v7.13.0">changelog</a> 了解更多详情！
+=======
+          <strong>Babel 7.13 is released!</strong> Please read our{" "}
+          <a href="blog/2021/02/22/7.13.0">blog post</a> for highlights and{" "}
+          <a href="https://github.com/babel/babel/releases/tag/v7.13.0">
+            changelog
+          </a>{" "}
+          for more details!
+>>>>>>> f891e9389f86ff97f623b72ab5bcfdec339fdcc2
         </span>
       </div>
 
       <MiniRepl language={language} />
-
-      <h3>Special Sponsor</h3>
-
-      <div className="sponsors-tier" style={{ margin: "10px 0" }}>
-        <a href="https://www.handshake.org" title="Handshake" target="_blank">
-          <img
-            src="https://handshake.org/images/landing/logo-light.svg"
-            alt="Sponsored by Handshake"
-            style={{ width: 180 }}
-          />
-          <div style={{ color: "#b7b8b7" }}>
-            Decentralized certificate authority and naming
-          </div>
-        </a>
-      </div>
     </div>
   </div>
 );

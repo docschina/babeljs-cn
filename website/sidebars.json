@@ -1,5 +1,6 @@
 {
   "docs": {
+<<<<<<< HEAD
     "指南": [
       "index",
       "usage",
@@ -31,11 +32,29 @@
       "babel-preset-typescript"
     ],
     "工具": [
+=======
+    "Guides": ["index", "usage", "configuration", "learn", "v7-migration"],
+    "Config Reference": ["config-files", "options", "presets", "plugins"],
+    "Presets": [
+      "babel-preset-env",
+      "babel-preset-react",
+      "babel-preset-typescript",
+      "babel-preset-flow"
+    ],
+    "Misc": ["editors", "caveats", "faq"],
+    "Integration Packages": [
+      "babel-cli",
+      "babel-polyfill",
+      "babel-plugin-transform-runtime",
+      "babel-register",
+      "babel-standalone"
+    ],
+    "Tooling Packages": [
+>>>>>>> f891e9389f86ff97f623b72ab5bcfdec339fdcc2
       "babel-parser",
       "babel-core",
       "babel-generator",
       "babel-code-frame",
-      "babel-helpers",
       "babel-runtime",
       "babel-template",
       "babel-traverse",
@@ -43,5 +62,3 @@
     ]
   }
 }
-
-
