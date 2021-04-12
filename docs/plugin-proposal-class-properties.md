@@ -1,7 +1,7 @@
 ---
 id: babel-plugin-proposal-class-properties
 title: @babel/plugin-proposal-class-properties
-sidebar_label: proposal-class-properties
+sidebar_label: class-properties
 ---
 
 ## 示例
@@ -9,6 +9,7 @@ sidebar_label: proposal-class-properties
 以下展示了一个包含 4 个属性的类，它们将会被转译。
 
 ```js
+<<<<<<< HEAD
   class Bork {
     // 属性初始化器语法
     instanceProperty = "bork";
@@ -34,7 +35,33 @@ sidebar_label: proposal-class-properties
   // 类上包含静态函数
   console.log(Bork.staticFunction()); // > "babelIsCool"
 ```
+=======
+class Bork {
+  //Property initializer syntax
+  instanceProperty = "bork";
+  boundFunction = () => {
+    return this.instanceProperty;
+  };
 
+  //Static class properties
+  static staticProperty = "babelIsCool";
+  static staticFunction = function() {
+    return Bork.staticProperty;
+  };
+}
+
+let myBork = new Bork();
+
+//Property initializers are not on the prototype.
+console.log(myBork.__proto__.boundFunction); // > undefined
+>>>>>>> 24588d64b8032b653ce959171865cdd87d6a29dc
+
+//Bound functions are bound to the class instance.
+console.log(myBork.boundFunction.call(undefined)); // > "bork"
+
+//Static function exists on the class.
+console.log(Bork.staticFunction()); // > "babelIsCool"
+```
 
 ## 安装
 
@@ -58,9 +85,7 @@ npm install --save-dev @babel/plugin-proposal-class-properties
 
 ```json
 {
-  "plugins": [
-    ["@babel/plugin-proposal-class-properties", { "loose": true }]
-  ]
+  "plugins": [["@babel/plugin-proposal-class-properties", { "loose": true }]]
 }
 ```
 
@@ -74,7 +99,7 @@ babel --plugins @babel/plugin-proposal-class-properties script.js
 
 ```javascript
 require("@babel/core").transformSync("code", {
-  plugins: ["@babel/plugin-proposal-class-properties"]
+  plugins: ["@babel/plugin-proposal-class-properties"],
 });
 ```
 
@@ -91,13 +116,13 @@ require("@babel/core").transformSync("code", {
 #### 示例
 
 ```js
-  class Bork {
-    static a = 'foo';
-    static b;
+class Bork {
+  static a = "foo";
+  static b;
 
-    x = 'bar';
-    y;
-  }
+  x = "bar";
+  y;
+}
 ```
 
 如果没有使用选项 `{ "loose": true }`，上面的代码将使用 `Object.defineProperty`，被编译为如下代码：
@@ -109,13 +134,13 @@ var Bork = function Bork() {
     configurable: true,
     enumerable: true,
     writable: true,
-    value: 'bar'
+    value: "bar",
   });
   Object.defineProperty(this, "y", {
     configurable: true,
     enumerable: true,
     writable: true,
-    value: void 0
+    value: void 0,
   });
 };
 
@@ -123,13 +148,13 @@ Object.defineProperty(Bork, "a", {
   configurable: true,
   enumerable: true,
   writable: true,
-  value: 'foo'
+  value: "foo",
 });
 Object.defineProperty(Bork, "b", {
   configurable: true,
   enumerable: true,
   writable: true,
-  value: void 0
+  value: void 0,
 });
 ```
 
@@ -138,11 +163,11 @@ Object.defineProperty(Bork, "b", {
 ```js
 var Bork = function Bork() {
   babelHelpers.classCallCheck(this, Bork);
-  this.x = 'bar';
+  this.x = "bar";
   this.y = void 0;
 };
 
-Bork.a = 'foo';
+Bork.a = "foo";
 Bork.b = void 0;
 ```
 
@@ -150,5 +175,10 @@ Bork.b = void 0;
 
 ## 参考
 
+<<<<<<< HEAD
 * [提案：公共与私有实例的 fields](https://github.com/tc39/proposal-class-fields)
 * [提案：静态 class 特性](https://github.com/tc39/proposal-static-class-features)
+=======
+- [Proposal: Public and private instance fields](https://github.com/tc39/proposal-class-fields)
+- [Proposal: Static class features](https://github.com/tc39/proposal-static-class-features)
+>>>>>>> 24588d64b8032b653ce959171865cdd87d6a29dc

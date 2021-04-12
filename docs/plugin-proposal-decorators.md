@@ -1,7 +1,7 @@
 ---
 id: babel-plugin-proposal-decorators
 title: @babel/plugin-proposal-decorators
-sidebar_label: proposal-decorators
+sidebar_label: decorators
 ---
 
 ## 示例
@@ -12,10 +12,10 @@ sidebar_label: proposal-decorators
 
 ```js
 @annotation
-class MyClass { }
+class MyClass {}
 
 function annotation(target) {
-   target.annotated = true;
+  target.annotated = true;
 }
 ```
 
@@ -23,12 +23,12 @@ function annotation(target) {
 
 ```js
 @isTestable(true)
-class MyClass { }
+class MyClass {}
 
 function isTestable(value) {
-   return function decorator(target) {
-      target.isTestable = value;
-   }
+  return function decorator(target) {
+    target.isTestable = value;
+  };
 }
 ```
 
@@ -37,14 +37,14 @@ function isTestable(value) {
 ```js
 class C {
   @enumerable(false)
-  method() { }
+  method() {}
 }
 
 function enumerable(value) {
-  return function (target, key, descriptor) {
-     descriptor.enumerable = value;
-     return descriptor;
-  }
+  return function(target, key, descriptor) {
+    descriptor.enumerable = value;
+    return descriptor;
+  };
 }
 ```
 
@@ -74,7 +74,7 @@ babel --plugins @babel/plugin-proposal-decorators script.js
 
 ```javascript
 require("@babel/core").transformSync("code", {
-  plugins: ["@babel/plugin-proposal-decorators"]
+  plugins: ["@babel/plugin-proposal-decorators"],
 });
 ```
 
@@ -112,7 +112,11 @@ export class Foo {}
 
 #### 注意：`@babel/plugin-proposal-class-properties` 的兼容性问题
 
+<<<<<<< HEAD
 如果你手动引用了插件 `@babel/plugin-proposal-class-properties` 并使用了它，请确保在引用 `@babel/plugin-proposal-class-properties` 之前引用 `@babel/plugin-proposal-decorators`。
+=======
+If you are including your plugins manually and using `@babel/plugin-proposal-class-properties`, make sure that `@babel/plugin-proposal-decorators` comes _before_ `@babel/plugin-proposal-class-properties`.
+>>>>>>> 24588d64b8032b653ce959171865cdd87d6a29dc
 
 当使用 `legacy: true` 模式时，必须在 `loose` 模式下使用 `@babel/plugin-proposal-class-properties` 来支持 `@babel/plugin-proposal-decorators`。
 
@@ -142,13 +146,19 @@ export class Foo {}
 {
   "plugins": [
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    ["@babel/plugin-proposal-class-properties", { "loose" : true }]
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
   ]
 }
 ```
 
 > 你可以通过[该链接](https://babeljs.io/docs/en/plugins#plugin-options)了解更多插件配置选项。
 
+<<<<<<< HEAD
 ## 参考
 
 * [提案：JavaScript 装饰器](https://github.com/wycats/javascript-decorators/blob/master/README.md)
+=======
+## References
+
+- [Proposal: JavaScript Decorators](https://github.com/wycats/javascript-decorators/blob/master/README.md)
+>>>>>>> 24588d64b8032b653ce959171865cdd87d6a29dc
