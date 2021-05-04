@@ -69,23 +69,13 @@ const GetStarted = ({ language }) => {
       }}
     >
       <p>
-        了解更多关于 Babel 的信息{""}
+        想了解更多关于 Babel 的信息，请阅读{" "}
         <a href={siteConfig.getDocUrl("index.html", language)}>
           入门指南
-        </a>{""}
-        或者翻阅{""}
-        <a href={siteConfig.getPageUrl("videos.html", language)}>视频</a>
+        </a>{" "}
+        或者翻阅{" "}
+        <a href={siteConfig.getPageUrl("videos.html", language)}>视频</a>{" "}
         了解更多关于 Babel 的故事
-      </p>
-      <p>
-        我们只是一个小的
-        <a href={siteConfig.getPageUrl("team.html", language)}>志愿者团体</a>{""}
-        在社区的赞助下，业余时间维护这个项目。
-        如果 Babel 在你工作中使你受益颇丰，可以成为
-        <a href="https://github.com/babel/babel/blob/master/CONTRIBUTING.md">
-          贡献者
-        </a>{""}
-        或者也可以<a href="https://opencollective.com/babel">赞助</a>我们！
       </p>
     </div>
   );
