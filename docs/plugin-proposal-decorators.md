@@ -1,7 +1,7 @@
 ---
 id: babel-plugin-proposal-decorators
 title: @babel/plugin-proposal-decorators
-sidebar_label: proposal-decorators
+sidebar_label: decorators
 ---
 
 ## 示例
@@ -12,10 +12,10 @@ sidebar_label: proposal-decorators
 
 ```js
 @annotation
-class MyClass { }
+class MyClass {}
 
 function annotation(target) {
-   target.annotated = true;
+  target.annotated = true;
 }
 ```
 
@@ -23,12 +23,12 @@ function annotation(target) {
 
 ```js
 @isTestable(true)
-class MyClass { }
+class MyClass {}
 
 function isTestable(value) {
-   return function decorator(target) {
-      target.isTestable = value;
-   }
+  return function decorator(target) {
+    target.isTestable = value;
+  };
 }
 ```
 
@@ -37,14 +37,14 @@ function isTestable(value) {
 ```js
 class C {
   @enumerable(false)
-  method() { }
+  method() {}
 }
 
 function enumerable(value) {
-  return function (target, key, descriptor) {
-     descriptor.enumerable = value;
-     return descriptor;
-  }
+  return function(target, key, descriptor) {
+    descriptor.enumerable = value;
+    return descriptor;
+  };
 }
 ```
 
@@ -74,7 +74,7 @@ babel --plugins @babel/plugin-proposal-decorators script.js
 
 ```javascript
 require("@babel/core").transformSync("code", {
-  plugins: ["@babel/plugin-proposal-decorators"]
+  plugins: ["@babel/plugin-proposal-decorators"],
 });
 ```
 
@@ -86,8 +86,8 @@ require("@babel/core").transformSync("code", {
 
 <details>
   <summary>History</summary>
-| Version | Changes |
-| --- | --- |
+| Version  | Changes                                                                        |
+| -------- | ------------------------------------------------------------------------------ |
 | `v7.2.0` | `decoratorsBeforeExport` must be specified. Before that it defaults to `false` |
 </details>
 
@@ -142,7 +142,7 @@ export class Foo {}
 {
   "plugins": [
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    ["@babel/plugin-proposal-class-properties", { "loose" : true }]
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
   ]
 }
 ```

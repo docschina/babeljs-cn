@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-proposal-class-properties
 title: @babel/plugin-proposal-class-properties
-sidebar_label: proposal-class-properties
+sidebar_label: class-properties
 ---
+
+> **提示**: `@babel/preset-env` 包含此插件
 
 ## 示例
 
@@ -35,7 +37,6 @@ sidebar_label: proposal-class-properties
   console.log(Bork.staticFunction()); // > "babelIsCool"
 ```
 
-
 ## 安装
 
 ```sh
@@ -58,9 +59,7 @@ npm install --save-dev @babel/plugin-proposal-class-properties
 
 ```json
 {
-  "plugins": [
-    ["@babel/plugin-proposal-class-properties", { "loose": true }]
-  ]
+  "plugins": [["@babel/plugin-proposal-class-properties", { "loose": true }]]
 }
 ```
 
@@ -74,7 +73,7 @@ babel --plugins @babel/plugin-proposal-class-properties script.js
 
 ```javascript
 require("@babel/core").transformSync("code", {
-  plugins: ["@babel/plugin-proposal-class-properties"]
+  plugins: ["@babel/plugin-proposal-class-properties"],
 });
 ```
 
@@ -91,13 +90,13 @@ require("@babel/core").transformSync("code", {
 #### 示例
 
 ```js
-  class Bork {
-    static a = 'foo';
-    static b;
+class Bork {
+  static a = "foo";
+  static b;
 
-    x = 'bar';
-    y;
-  }
+  x = "bar";
+  y;
+}
 ```
 
 如果没有使用选项 `{ "loose": true }`，上面的代码将使用 `Object.defineProperty`，被编译为如下代码：
@@ -109,13 +108,13 @@ var Bork = function Bork() {
     configurable: true,
     enumerable: true,
     writable: true,
-    value: 'bar'
+    value: "bar",
   });
   Object.defineProperty(this, "y", {
     configurable: true,
     enumerable: true,
     writable: true,
-    value: void 0
+    value: void 0,
   });
 };
 
@@ -123,13 +122,13 @@ Object.defineProperty(Bork, "a", {
   configurable: true,
   enumerable: true,
   writable: true,
-  value: 'foo'
+  value: "foo",
 });
 Object.defineProperty(Bork, "b", {
   configurable: true,
   enumerable: true,
   writable: true,
-  value: void 0
+  value: void 0,
 });
 ```
 
@@ -138,11 +137,11 @@ Object.defineProperty(Bork, "b", {
 ```js
 var Bork = function Bork() {
   babelHelpers.classCallCheck(this, Bork);
-  this.x = 'bar';
+  this.x = "bar";
   this.y = void 0;
 };
 
-Bork.a = 'foo';
+Bork.a = "foo";
 Bork.b = void 0;
 ```
 

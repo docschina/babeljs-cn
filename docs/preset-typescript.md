@@ -1,7 +1,6 @@
 ---
 id: babel-preset-typescript
 title: @babel/preset-typescript
-sidebar_label: typescript
 ---
 
 This preset is recommended if you use [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html), a typed superset of JavaScript. It includes the following plugins:
@@ -14,7 +13,7 @@ This preset is recommended if you use [TypeScript](https://www.typescriptlang.or
 
 **In**
 
-```javascript
+```typescript
 const x: number = 0;
 ```
 
@@ -98,7 +97,7 @@ Added in: `v7.7.0`
 
 When enabled, type-only class fields are only removed if they are prefixed with the `declare` modifier:
 
-```javascript
+```typescript
 class A {
   declare foo: string; // Removed
   bar: string; // Initialized to undefined

@@ -3,7 +3,7 @@ title: "升级至 Babel 7"
 id: v7-migration
 ---
 
-Refer users to this document when upgrading to Babel 7.
+Refer users to this document when upgrading to Babel 7. Check [here](v7-migration-api.md) for API/integration changes.
 
 <!--truncate-->
 
