@@ -77,7 +77,6 @@ const GetStarted = ({ language }) => {
         <a href={siteConfig.getPageUrl("videos.html", language)}>视频</a>
         了解更多关于 Babel 的故事
       </p>
-<<<<<<< HEAD
       <p>
         我们只是一个小的
         <a href={siteConfig.getPageUrl("team.html", language)}>志愿者</a>{" "}
@@ -88,8 +87,6 @@ const GetStarted = ({ language }) => {
         </a>{" "}
         或者也可以<a href="https://opencollective.com/babel">赞助</a>我们！
       </p>
-=======
->>>>>>> 9e4e28cf56f5a85d708205225694f544d30940c5
     </div>
   );
 };
@@ -134,130 +131,110 @@ const SponsorTier = props => {
   );
 };
 
-<<<<<<< HEAD
 const OpenCollectiveSponsors = () => {
   const ocButton = {
-      title: "成为赞助商",
-      link: "https://opencollective.com/babel",
-    },
+    title: "成为赞助商",
+    link: "https://opencollective.com/babel",
+  },
     patreonButton = {
       title: "成为赞助人",
       link: "https://www.patreon.com/join/henryzhu",
     };
-=======
-const ocButton = {
-  title: "Become a sponsor",
-  link: "https://opencollective.com/babel",
-};
->>>>>>> 9e4e28cf56f5a85d708205225694f544d30940c5
 
-const OpenCollectiveSponsors = ({ language }) => {
-  return (
-    <div className="container paddingBottom">
-      <div className="wrapper productShowcaseSection">
-        <h3>Current Sponsors</h3>
-        <p>
-          We&apos;re a small group of{" "}
-          <a href={siteConfig.getPageUrl("team.html", language)}>volunteers</a>{" "}
+  const OpenCollectiveSponsors = ({ language }) => {
+    return (
+      <div className="container paddingBottom">
+        <div className="wrapper productShowcaseSection">
+          <h3>Current Sponsors</h3>
+          <p>
+            We&apos;re a small group of{" "}
+            <a href={siteConfig.getPageUrl("team.html", language)}>volunteers</a>{" "}
           that spend their free time maintaining this project, funded by the
           community. If Babel has benefited you in your work, becoming a{" "}
-          <a href="https://github.com/babel/babel/blob/master/CONTRIBUTING.md">
-            contributor
+            <a href="https://github.com/babel/babel/blob/master/CONTRIBUTING.md">
+              contributor
           </a>{" "}
           or <a href="https://opencollective.com/babel">sponsoring</a> might
           just be a great way to give back!
         </p>
-        <div className="sponsor-tiers" id="sponsors">
-          <SponsorTier
-            type="opencollective"
-            title="Base Support"
-            tier="base-support-sponsors"
-            min={2000}
-          />
-          <SponsorTier
-            type="opencollective"
-<<<<<<< HEAD
-            title="金牌赞助（Open Collective）"
-=======
-            title="Gold"
->>>>>>> 9e4e28cf56f5a85d708205225694f544d30940c5
-            tier="gold-sponsors"
-            min={1000}
-            max={2000}
-          />
-          <SponsorTier
-            type="opencollective"
-            title="Silver"
-            tier="silver-sponsors"
-            min={500}
-            max={1000}
-          />
+          <div className="sponsor-tiers" id="sponsors">
+            <SponsorTier
+              type="opencollective"
+              title="Base Support"
+              tier="base-support-sponsors"
+              min={2000}
+            />
+            <SponsorTier
+              type="opencollective"
+              title="金牌赞助（Open Collective）"
+              tier="gold-sponsors"
+              min={1000}
+              max={2000}
+            />
+            <SponsorTier
+              type="opencollective"
+              title="Silver"
+              tier="silver-sponsors"
+              min={500}
+              max={1000}
+            />
+          </div>
         </div>
       </div>
+    );
+  };
+
+  const HomeContainer = props => (
+    <div
+      className="container"
+      style={{ backgroundColor: "#f6f6f6", paddingBottom: 20 }}
+    >
+      <div className="wrapper">
+        <div className="gridBlock">{props.children}</div>
+      </div>
     </div>
   );
-};
 
-const HomeContainer = props => (
-  <div
-    className="container"
-    style={{ backgroundColor: "#f6f6f6", paddingBottom: 20 }}
-  >
-    <div className="wrapper">
-      <div className="gridBlock">{props.children}</div>
-    </div>
-  </div>
-);
+  const Hero = ({ language }) => (
+    <div className="hero">
+      <a href="https://teespring.com/babel-christmas?pr=FLAVORTOWN">
+        <div className="homepage-banner">获取 Babel 的假日服饰👕</div>
+      </a>
+      <div className="hero__container">
+        <h1>
+          <translate>Babel 是一个 JavaScript compiler。</translate>
+        </h1>
+        <p>
+          <translate>现在就开始使用下一代 JavaScript 语法吧。</translate>
+        </p>
 
-const Hero = ({ language }) => (
-  <div className="hero">
-    <a href="https://teespring.com/babel-christmas?pr=FLAVORTOWN">
-      <div className="homepage-banner">获取 Babel 的假日服饰👕</div>
-    </a>
-    <div className="hero__container">
-      <h1>
-        <translate>Babel 是一个 JavaScript compiler。</translate>
-      </h1>
-      <p>
-        <translate>现在就开始使用下一代 JavaScript 语法吧。</translate>
-      </p>
-
-      <div className="hero__announcement">
-        <span>
-<<<<<<< HEAD
-          <strong>Babel 7.12 发布！</strong> 请阅读我们的{" "}
-          <a href="blog/2021/02/22/7.13.0">博客公告</a> 以及{" "}
-          <a href="https://github.com/babel/babel/releases/tag/v7.13.0">changelog</a> 了解更多详情！
-=======
-          <strong>Babel 7.13 is released!</strong> Please read our{" "}
-          <a href="blog/2021/02/22/7.13.0">blog post</a> for highlights and{" "}
-          <a href="https://github.com/babel/babel/releases/tag/v7.13.0">
-            changelog
-          </a>{" "}
-          for more details!
->>>>>>> 9e4e28cf56f5a85d708205225694f544d30940c5
+        <div className="hero__announcement">
+          <span>
+            <strong>Babel 7.13 发布！</strong> 请阅读我们的{" "}
+            <a href="blog/2021/02/22/7.13.0">博客公告</a> 以及{" "}
+            <a href="https://github.com/babel/babel/releases/tag/v7.13.0">changelog</a> 了解更多详情！
         </span>
-      </div>
+        </div>
 
-      <DummyMiniRepl />
-      <MiniRepl language={language} />
-    </div>
-  </div>
-);
-
-const Index = ({ language }) => {
-  return (
-    <div>
-      <Hero language={language} />
-
-      <div className="mainContainer" style={{ padding: 0 }}>
-        <HomeContainer>
-          <GetStarted language={language} />
-        </HomeContainer>
-        <OpenCollectiveSponsors language={language} />
+        <DummyMiniRepl />
+        <MiniRepl language={language} />
       </div>
     </div>
   );
-};
 
-module.exports = Index;
+  const Index = ({ language }) => {
+    return (
+      <div>
+        <Hero language={language} />
+
+        <div className="mainContainer" style={{ padding: 0 }}>
+          <HomeContainer>
+            <GetStarted language={language} />
+          </HomeContainer>
+          <OpenCollectiveSponsors language={language} />
+        </div>
+      </div>
+    );
+  };
+
+  module.exports = Index;

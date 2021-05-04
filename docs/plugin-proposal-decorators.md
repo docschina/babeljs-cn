@@ -86,8 +86,8 @@ require("@babel/core").transformSync("code", {
 
 <details>
   <summary>History</summary>
-| Version | Changes |
-| --- | --- |
+| Version  | Changes                                                                        |
+| -------- | ------------------------------------------------------------------------------ |
 | `v7.2.0` | `decoratorsBeforeExport` must be specified. Before that it defaults to `false` |
 </details>
 
@@ -112,11 +112,7 @@ export class Foo {}
 
 #### 注意：`@babel/plugin-proposal-class-properties` 的兼容性问题
 
-<<<<<<< HEAD
 如果你手动引用了插件 `@babel/plugin-proposal-class-properties` 并使用了它，请确保在引用 `@babel/plugin-proposal-class-properties` 之前引用 `@babel/plugin-proposal-decorators`。
-=======
-If you are including your plugins manually and using `@babel/plugin-proposal-class-properties`, make sure that `@babel/plugin-proposal-decorators` comes _before_ `@babel/plugin-proposal-class-properties`.
->>>>>>> 9e4e28cf56f5a85d708205225694f544d30940c5
 
 当使用 `legacy: true` 模式时，必须在 `loose` 模式下使用 `@babel/plugin-proposal-class-properties` 来支持 `@babel/plugin-proposal-decorators`。
 
@@ -153,12 +149,6 @@ If you are including your plugins manually and using `@babel/plugin-proposal-cla
 
 > 你可以通过[该链接](https://babeljs.io/docs/en/plugins#plugin-options)了解更多插件配置选项。
 
-<<<<<<< HEAD
 ## 参考
 
 * [提案：JavaScript 装饰器](https://github.com/wycats/javascript-decorators/blob/master/README.md)
-=======
-## References
-
-- [Proposal: JavaScript Decorators](https://github.com/wycats/javascript-decorators/blob/master/README.md)
->>>>>>> 9e4e28cf56f5a85d708205225694f544d30940c5

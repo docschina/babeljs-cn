@@ -5,19 +5,11 @@ title: 什么是 Babel？
 
 ## Babel 是一个 JavaScript compiler
 
-<<<<<<< HEAD
 Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中，将 ECMAScript 2015+ 代码转换为 JavaScript 向后兼容版本的代码。以下是 Babel 可以做的主要事情：
 - 转换语法
-- Polyfill 目标环境中缺少的功能（通过 [@babel/polyfill](polyfill.md)）
+- Polyfill 目标环境中缺少的功能（通过如 [core-js](https://github.com/zloirock/core-js) 的第三方 `polyfill`）
 - 源代码转换(codemods)
 - 以及更多！（查看 [视频](/videos.html)）
-=======
-Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments. Here are the main things Babel can do for you:
-- Transform syntax
-- Polyfill features that are missing in your target environment (through a third-party polyfill such as [core-js](https://github.com/zloirock/core-js))
-- Source code transformations (codemods)
-- And more! (check out these [videos](/videos.html) for inspiration)
->>>>>>> 9e4e28cf56f5a85d708205225694f544d30940c5
 
 ```js
 // Babel 输入：ES2015 箭头函数

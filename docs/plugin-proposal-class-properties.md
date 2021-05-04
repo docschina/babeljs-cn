@@ -4,18 +4,13 @@ title: @babel/plugin-proposal-class-properties
 sidebar_label: class-properties
 ---
 
-<<<<<<< HEAD
-## 示例
-=======
-> **NOTE**: This plugin is included in `@babel/preset-env`
+> **提示**: `@babel/preset-env` 包含此插件
 
-## Example
->>>>>>> 9e4e28cf56f5a85d708205225694f544d30940c5
+## 示例
 
 以下展示了一个包含 4 个属性的类，它们将会被转译。
 
 ```js
-<<<<<<< HEAD
   class Bork {
     // 属性初始化器语法
     instanceProperty = "bork";
@@ -40,33 +35,6 @@ sidebar_label: class-properties
 
   // 类上包含静态函数
   console.log(Bork.staticFunction()); // > "babelIsCool"
-```
-=======
-class Bork {
-  //Property initializer syntax
-  instanceProperty = "bork";
-  boundFunction = () => {
-    return this.instanceProperty;
-  };
-
-  //Static class properties
-  static staticProperty = "babelIsCool";
-  static staticFunction = function() {
-    return Bork.staticProperty;
-  };
-}
-
-let myBork = new Bork();
->>>>>>> 9e4e28cf56f5a85d708205225694f544d30940c5
-
-//Property initializers are not on the prototype.
-console.log(myBork.__proto__.boundFunction); // > undefined
-
-//Bound functions are bound to the class instance.
-console.log(myBork.boundFunction.call(undefined)); // > "bork"
-
-//Static function exists on the class.
-console.log(Bork.staticFunction()); // > "babelIsCool"
 ```
 
 ## 安装
@@ -181,10 +149,5 @@ Bork.b = void 0;
 
 ## 参考
 
-<<<<<<< HEAD
 * [提案：公共与私有实例的 fields](https://github.com/tc39/proposal-class-fields)
 * [提案：静态 class 特性](https://github.com/tc39/proposal-static-class-features)
-=======
-- [Proposal: Public and private instance fields](https://github.com/tc39/proposal-class-fields)
-- [Proposal: Static class features](https://github.com/tc39/proposal-static-class-features)
->>>>>>> 9e4e28cf56f5a85d708205225694f544d30940c5
