@@ -1,8 +1,14 @@
 ---
 id: babel-plugin-transform-modules-umd
 title: @babel/plugin-transform-modules-umd
-sidebar_label: transform-modules-umd
+sidebar_label: UMD
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env` under the `modules` option
+
+This plugin transforms ES2015 modules to [UMD](https://github.com/umdjs/umd). Note that only the _syntax_ of import/export statements (`import "./mod.js"`) is transformed, as Babel is unaware of different resolution algorithms between implementations of ES2015 modules and UMD.
+
+⚠️ This plugin does not support dynamic import (`import('./lazy.js')`).
 
 ## Example
 
@@ -15,23 +21,23 @@ export default 42;
 **Out**
 
 ```javascript
-(function (global, factory) {
+(function(global, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
   } else if (typeof exports !== "undefined") {
     factory(exports);
   } else {
     var mod = {
-      exports: {}
+      exports: {},
     };
     factory(mod.exports);
     global.actual = mod.exports;
   }
-})(this, function (exports) {
+})(this, function(exports) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
-    value: true
+    value: true,
   });
 
   exports.default = 42;
@@ -46,9 +52,7 @@ npm install --save-dev @babel/plugin-transform-modules-umd
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -57,17 +61,20 @@ npm install --save-dev @babel/plugin-transform-modules-umd
 ```
 
 You can also override the names of particular libraries when this module is
-running in the browser.  For example the `es6-promise` library exposes itself
+running in the browser. For example the `es6-promise` library exposes itself
 as `global.Promise` rather than `global.es6Promise`. This can be accommodated by:
 
 ```json
 {
   "plugins": [
-    ["@babel/plugin-transform-modules-umd", {
-      "globals": {
-        "es6-promise": "Promise"
+    [
+      "@babel/plugin-transform-modules-umd",
+      {
+        "globals": {
+          "es6-promise": "Promise"
+        }
       }
-    }]
+    ]
   ]
 }
 ```
@@ -135,12 +142,12 @@ remove these limitations, you can set the `exactGlobals` option to `true`.
 Doing this instructs the plugin to:
 
 1. always use the full import string instead of the basename when generating
-the global names
+   the global names
 2. skip passing `globals` overrides to the `toIdentifier` function. Instead,
-they are used exactly as written, so you will get errors if you do not use
-valid identifiers or valid uncomputed (dot) member expressions.
+   they are used exactly as written, so you will get errors if you do not use
+   valid identifiers or valid uncomputed (dot) member expressions.
 3. allow the exported global name to be overridden via the `globals` map. Any
-override must again be a valid identifier or valid member expression.
+   override must again be a valid identifier or valid member expression.
 
 Thus, if you set `exactGlobals` to `true` and do not pass any overrides, the
 first example of:
@@ -171,7 +178,7 @@ And if you set the plugin options to:
 then it'll transpile to:
 
 ```js
-factory(global.fooBAR, global.mylib.fooBar)
+factory(global.fooBAR, global.mylib.fooBar);
 ```
 
 Finally, with the plugin options set to:
@@ -180,12 +187,15 @@ Finally, with the plugin options set to:
 {
   "plugins": [
     "@babel/plugin-external-helpers",
-    ["@babel/plugin-transform-modules-umd", {
-      "globals": {
-        "my/custom/module/name": "My.Custom.Module.Name"
-      },
-      "exactGlobals": true
-    }]
+    [
+      "@babel/plugin-transform-modules-umd",
+      {
+        "globals": {
+          "my/custom/module/name": "My.Custom.Module.Name"
+        },
+        "exactGlobals": true
+      }
+    ]
   ],
   "moduleId": "my/custom/module/name"
 }
@@ -210,8 +220,7 @@ babel --plugins @babel/plugin-transform-modules-umd script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-modules-umd"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-modules-umd"],
 });
 ```
-

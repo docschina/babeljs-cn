@@ -1,9 +1,10 @@
 ---
 id: babel-plugin-proposal-optional-catch-binding
 title: @babel/plugin-proposal-optional-catch-binding
-sidebar_label: proposal-optional-catch-binding
+sidebar_label: optional-catch-binding
 ---
 
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Examples
 
@@ -11,7 +12,7 @@ sidebar_label: proposal-optional-catch-binding
 try {
   throw 0;
 } catch {
-  doSomethingWhichDoesntCareAboutTheValueThrown();
+  doSomethingWhichDoesNotCareAboutTheValueThrown();
 }
 ```
 
@@ -19,12 +20,11 @@ try {
 try {
   throw 0;
 } catch {
-  doSomethingWhichDoesntCareAboutTheValueThrown();
+  doSomethingWhichDoesNotCareAboutTheValueThrown();
 } finally {
   doSomeCleanup();
 }
 ```
-
 
 ## Installation
 
@@ -34,9 +34,7 @@ npm install --save-dev @babel/plugin-proposal-optional-catch-binding
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -53,11 +51,11 @@ babel --plugins @babel/plugin-proposal-optional-catch-binding script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-proposal-optional-catch-binding"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-proposal-optional-catch-binding"],
 });
 ```
 
 ## References
-- [Proposal: Optional Catch Binding for ECMAScript](https://github.com/babel/proposals/issues/7)
 
+- [Proposal: Optional Catch Binding for ECMAScript](https://github.com/babel/proposals/issues/7)

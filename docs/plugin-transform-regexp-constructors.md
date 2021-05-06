@@ -1,7 +1,7 @@
 ---
 id: babel-plugin-transform-regexp-constructors
 title: babel-plugin-transform-regexp-constructors
-sidebar_label: transform-regexp-constructors
+sidebar_label: regexp-constructors
 ---
 
 ## Example
@@ -9,14 +9,14 @@ sidebar_label: transform-regexp-constructors
 **In**
 
 ```javascript
-const foo = 'ab+';
-var a = new RegExp(foo+'c', 'i');
+const foo = "ab+";
+var a = new RegExp(foo + "c", "i");
 ```
 
 **Out**
 
 ```javascript
-const foo = 'ab+';
+const foo = "ab+";
 var a = /ab+c/i;
 ```
 
@@ -28,9 +28,7 @@ npm install babel-plugin-transform-regexp-constructors --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -47,8 +45,7 @@ babel --plugins transform-regexp-constructors script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["transform-regexp-constructors"]
+require("@babel/core").transformSync("code", {
+  plugins: ["transform-regexp-constructors"],
 });
 ```
-

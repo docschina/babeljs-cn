@@ -1,9 +1,10 @@
 ---
 id: babel-plugin-proposal-optional-chaining
 title: @babel/plugin-proposal-optional-chaining
-sidebar_label: proposal-optional-chaining
+sidebar_label: optional-chaining
 ---
 
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Example
 
@@ -24,7 +25,10 @@ const safe = obj?.qux?.baz; // undefined
 
 // Optional chaining and normal chaining can be intermixed
 obj?.foo.bar?.baz; // Only access `foo` if `obj` exists, and `baz` if
-                   // `bar` exists
+// `bar` exists
+
+// Example usage with bracket notation:
+obj?.["foo"]?.bar?.baz; // 42
 ```
 
 ### Calling deeply nested functions
@@ -83,6 +87,20 @@ new Test?.(); // test instance
 new exists?.(); // undefined
 ```
 
+### Deleting deeply nested properties
+
+Added in: `v7.8.0`
+
+```js
+const obj = {
+  foo: {
+    bar: {},
+  },
+};
+
+const ret = delete obj?.foo?.bar?.baz; // true
+```
+
 ## Installation
 
 ```sh
@@ -91,9 +109,7 @@ npm install --save-dev @babel/plugin-proposal-optional-chaining
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -110,8 +126,8 @@ babel --plugins @babel/plugin-proposal-optional-chaining script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-proposal-optional-chaining"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-proposal-optional-chaining"],
 });
 ```
 
@@ -145,7 +161,8 @@ Out (`loose === false`)
 foo === null || foo === void 0 ? void 0 : foo.bar;
 ```
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+
 ## References
 
-* [Proposal: Optional Chaining](https://github.com/tc39/proposal-optional-chaining)
-
+- [Proposal: Optional Chaining](https://github.com/tc39/proposal-optional-chaining)

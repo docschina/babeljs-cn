@@ -3,7 +3,7 @@ title: "升级至 Babel 7"
 id: v7-migration
 ---
 
-Refer users to this document when upgrading to Babel 7.
+Refer users to this document when upgrading to Babel 7. Check [here](v7-migration-api.md) for API/integration changes.
 
 <!--truncate-->
 
@@ -11,7 +11,7 @@ Because not every breaking change will affect every project, we've sorted the se
 
 ## All of Babel
 
-> Support for Node.js 0.10, 0.12, 4 and 5 has been dropped [#5025](https://github.com/babel/babel/pull/5025), [#5041](https://github.com/babel/babel/pull/5041), [#7755](https://github.com/babel/babel/pull/7755), [#5186](https://github.com/babel/babel/pull/5186) ![high](https://img.shields.io/badge/level%20of%20awesomeness%3F-high-red.svg)
+> Support for Node.js 0.10, 0.12, 4 and 5 has been dropped [#5025](https://github.com/babel/babel/pull/5025), [#5041](https://github.com/babel/babel/pull/5041), [#7755](https://github.com/babel/babel/pull/7755), [#5186](https://github.com/babel/babel/pull/5186)
 
 We highly encourage you to use a newer version of Node.js (LTS v8) since the previous versions are not maintained.
 See [nodejs/LTS](https://github.com/nodejs/LTS) for more information.
@@ -22,7 +22,7 @@ This just means Babel _itself_ won't run on older versions of Node. It can still
 
 For more info, read our [6.x vs 7.x comparison](config-files.md#6x-vs-7x-babelrc-loading).
 
-Babel has had issues previously with handling `node_modules`, symlinks, and monorepos. We've made some changes to account for this: Babel will stop lookup at the `package.json` boundary instead of looking up the chain. For monorepo's we have added a new `babel.config.js` file that centralizes our config across all the packages (alternatively you could make a config per package). In 7.1, we've introduced a [`rootMode`](options.md#rootmode) option for further lookup if necessary.
+Babel has had issues previously with handling `node_modules`, symlinks, and monorepos. We've made some changes to account for this: Babel will stop lookup at the `package.json` boundary instead of looking up the chain. For monorepos we have added a new `babel.config.js` file that centralizes our config across all the packages (alternatively you could make a config per package). In 7.1, we've introduced a [`rootMode`](options.md#rootmode) option for further lookup if necessary.
 
 ## [Yearly Preset Deprecations](/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
 
@@ -38,7 +38,7 @@ These presets should be substituted with the "env" preset.
 
 ## [Stage Preset Deprecations](https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets)
 
-We are removing the stage presets in favor of explicit proposal usage. Can check the [stage-0 README](https://github.com/babel/babel/tree/master/packages/babel-preset-stage-0#babelpreset-stage-0) for more migration steps.
+We are removing the stage presets in favor of explicit proposal usage. Can check the [stage-0 README](https://github.com/babel/babel/tree/755ec192e22c6b6e00782e4810366d0166fdbebd/packages/babel-preset-stage-0#babelpreset-stage-0) for more migration steps.
 
 To do this automatically you can run [`npx babel-upgrade`](https://github.com/babel/babel-upgrade) (PR added [here](https://github.com/babel/babel-upgrade/pull/69)).
 
@@ -60,7 +60,11 @@ If you want to use proposals, you will need to import these independently. You s
 e.g.
 
 ```js
-import "core-js/fn/array/flatMap";
+// for core-js v2:
+import "core-js/fn/array/flat-map";
+
+// for core-js v3:
+import "core-js/features/array/flat-map";
 ```
 
 Below is a list of Stage < 3 proposal polyfills in `core-js` v2.
@@ -157,7 +161,7 @@ You can still use the shorthand version of a package name (remove the `preset-` 
 
 ### Scoped Packages
 
-The most important change is finally switching all packages to [scoped packages](/blog/2017/12/27/nearing-the-7.0-release.html#renames-scoped-packages-babel-x) (the folder names in the [monorepo](https://github.com/babel/babel/tree/master/packages) are not changed but the name in its `package.json` is).
+The most important change is finally switching all packages to [scoped packages](/blog/2017/12/27/nearing-the-7.0-release.html#renames-scoped-packages-babel-x) (the folder names in the [monorepo](https://github.com/babel/babel/tree/main/packages) are not changed but the name in its `package.json` is).
 
 This means there will be no more issues with accidental/intentional name squatting, a clear separation from community plugins, and a simpler naming convention.
 
@@ -195,7 +199,7 @@ Some of the plugins had `-es3-` or `-es2015-` in the names, but these were unnec
 
 ## `"use strict"` and `this` in CommonJS
 
-Babel 6's transformations for ES6 modules ran indiscriminantly on whatever files it was told to process, never taking into account if the file actually had ES6 imports/exports in them. This had the effect of rewriting file-scoped references to `this` to be `undefined` and inserting `"use strict"` at the top of all CommonJS modules that were processed by Babel.
+Babel 6's transformations for ES6 modules ran indiscriminately on whatever files it was told to process, never taking into account if the file actually had ES6 imports/exports in them. This had the effect of rewriting file-scoped references to `this` to be `undefined` and inserting `"use strict"` at the top of all CommonJS modules that were processed by Babel.
 
 ```js
 // input.js
@@ -230,7 +234,7 @@ If you were relying on Babel to inject `"use strict"` into all of your CommonJS 
 
 ## Separation of the React and Flow presets
 
-`babel-preset-react` has always included the flow plugin. This has caused a lot of issues with users that accidently use `flow` syntax unintentionally due to a typo, or adding it in without typechecking with `flow` itself, resulting in errors.
+`babel-preset-react` has always included the flow plugin. This has caused a lot of issues with users that accidentally use `flow` syntax unintentionally due to a typo, or adding it in without typechecking with `flow` itself, resulting in errors.
 
 This issue was compounded when we decided to support TypeScript. If you wanted to use the React and TypeScript presets, we would have to figure out a way to turn on/off the syntax, automatically, via file type or the directive. In the end, it was easier to separate the presets entirely.
 
@@ -271,7 +275,7 @@ In Babel 7, values are resolved consistently either relative to the config file 
 For `presets` and `plugins` values, this change means that the CLI will behave nicely in cases such as
 
 ```bash
-babel --presets @babel/preset-es2015 ../file.js
+babel --presets @babel/preset-env ../file.js
 ```
 
 Assuming your `node_modules` folder is in `.`, in Babel 6 this would fail because the preset could not be found.
@@ -598,8 +602,8 @@ npm install --save-dev @babel/register
 Upgrading with Mocha:
 
 ```diff
-- mocha --compilers js:babel-core/register
-+ mocha --compilers js:@babel/register
+- mocha --require babel-core/register
++ mocha --require @babel/register
 ```
 
 `@babel/register` will also now only compile files in the current working directly (was done to fix issues with symlinking).

@@ -1,7 +1,6 @@
 ---
 id: babel-cli
 title: @babel/cli
-sidebar_label: cli
 ---
 
 Babel comes with a built-in CLI which can be used to compile files from the command line.
@@ -16,9 +15,9 @@ to install it **locally** project by project.
 There are two primary reasons for this.
 
 1. Different projects on the same machine can depend on different versions of
-     Babel allowing you to update them individually.
+   Babel allowing you to update them individually.
 2. Not having an implicit dependency on the environment you are working in
-     makes your project far more portable and easier to setup.
+   makes your project far more portable and easier to setup.
 
 We can install Babel CLI locally by running:
 
@@ -41,11 +40,11 @@ After that finishes installing, your `package.json` file should include:
 
 ## Usage
 
-```sh
-babel script.js
-```
+> **Note:** Please install `@babel/cli` and `@babel/core` first before `npx babel`, otherwise `npx` will install out-of-dated `babel` 6.x. Other than [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b), you can also drop it inside of an [npm run script](https://docs.npmjs.com/cli/run-script) or you may instead execute with the relative path instead. `./node_modules/.bin/babel`
 
-> **Note:** These instructions use the excellent [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) command to run the locally installed executables. You can drop it inside of an [npm run script](https://docs.npmjs.com/cli/run-script) or you may instead execute with the relative path instead. `./node_modules/.bin/babel`
+```sh
+npx babel script.js
+```
 
 ### Compile Files
 
@@ -113,6 +112,20 @@ Copy files that will not be compiled
 npx babel src --out-dir lib --copy-files
 ```
 
+If you don't want to copy ignored JavaScript files:
+
+<details>
+  <summary>History</summary>
+| Version | Changes |
+| --- | --- |
+| v7.8.0 | Added `--copy-ignored` |
+| v7.8.4 | Change `copyeIgnored` option default to `true`, it can be disabled by `--no-copy-ignored` |
+</details>
+
+```sh
+npx babel src --out-dir lib --copy-files --no-copy-ignored
+```
+
 ### Piping Files
 
 Pipe a file in via stdin and output it to `script-compiled.js`
@@ -131,19 +144,37 @@ npx babel script.js --out-file script-compiled.js --plugins=@babel/proposal-clas
 
 ### Using Presets
 
-Use the `--presets` option to specify plugins to use in compilation
+Use the `--presets` option to specify presets to use in compilation
 
 ```sh
 npx babel script.js --out-file script-compiled.js --presets=@babel/preset-env,@babel/flow
 ```
 
-### Ignoring .babelrc
+### Ignoring .babelrc.json or .babelrc
 
-Ignore the configuration from the project's `.babelrc` file and use the cli options e.g. for a custom build
+Ignore the configuration from the project's `.babelrc` or `.babelrc.json` file and use the cli options e.g. for a custom build
 
 ```sh
-npx babel --no-babelrc script.js --out-file script-compiled.js --presets=es2015,react
+npx babel --no-babelrc script.js --out-file script-compiled.js --presets=@babel/preset-env,@babel/preset-react
 ```
+
+### Custom config path
+
+```sh
+npx babel --config-file /path/to/my/babel.config.json --out-dir dist ./src
+```
+
+### Set File Extensions
+
+Added in: `v7.8.0`
+
+By default, Babel will override the extension of the transpiled file and use `.js` instead.
+
+To preserve the original file extension you can pass the `--keep-file-extension`.
+
+You can also control what file extension is used with `--out-file-extension .example-extension` e.g. `babel src/ lib/ --out-file-extension .mjs`.
+
+Note that `--keep-file-extension` and `--out-file-extension` cannot be used together.
 
 ### Advanced Usage
 

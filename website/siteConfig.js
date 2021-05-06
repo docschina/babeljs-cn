@@ -18,7 +18,7 @@ function findMarkDownSync(startPath) {
   });
   return result;
 }
-const toolsMD = findMarkDownSync("../docs/tools/");
+const toolsMD = findMarkDownSync("./data/tools/");
 
 function loadMD(fsPath) {
   return fs.readFileSync(path.join(__dirname, fsPath), "utf8");
@@ -35,26 +35,17 @@ const users = loadYaml("./data/users.yml").map(user => ({
   image: `/img/users/${user.logo}`,
 }));
 
-const sponsorsManual = loadYaml("./data/sponsors.yml").map(sponsor => ({
+const sponsorsManual = (loadYaml("./data/sponsors.yml") || []).map(sponsor => ({
   ...sponsor,
-  image: `/img/sponsors/${sponsor.logo}`,
+  image: sponsor.image || path.join("/img/sponsors/", sponsor.logo),
 }));
 const sponsorsDownloaded = require(path.join(__dirname, "/data/sponsors.json"));
 
 const sponsors = [
   ...sponsorsManual,
   ...sponsorsDownloaded
-    // filter out Handshake for special tier
-    .filter(sponsor => sponsor.id !== 19490)
+    .filter(sponsor => sponsor.slug !== "github-sponsors")
     .map(sponsor => {
-      // temporary fix for coinbase and webflow
-      let tier = sponsor.tier;
-      if (sponsor.id == 12671) {
-        tier = "gold-sponsors";
-      } else if (sponsor.id == 5954) {
-        tier = "silver-sponsors";
-      }
-
       let website = sponsor.website;
       if (typeof website == "string") {
         website = url.parse(website).protocol ? website : `http://${website}`;
@@ -66,11 +57,14 @@ const sponsors = [
 
       return {
         type: "opencollective",
-        tier,
+        tier: sponsor.tier,
         name: sponsor.name,
         url: website,
         image: sponsor.avatar || "/img/user.svg",
         description: sponsor.description,
+        monthly: sponsor.monthlyDonations,
+        yearly: sponsor.yearlyDonations,
+        total: sponsor.totalDonations,
       };
     }),
 ];
@@ -79,7 +73,7 @@ const sponsors = [
 const videos = require(path.join(__dirname, "/data/videos.js"));
 const team = loadYaml("./data/team.yml");
 const tools = loadYaml("./data/tools.yml");
-const setupBabelrc = loadMD("../docs/tools/setup.md");
+const setupBabelrc = loadMD("./data/tools/setup.md");
 
 toolsMD.forEach(tool => {
   tool.install = loadMD(`${tool.path}/install.md`);
@@ -93,9 +87,10 @@ const GITHUB_URL = "https://github.com/babel/website";
 const siteConfig = {
   useEnglishUrl: true,
   editUrl: `${GITHUB_URL}/blob/master/docs/`,
-  title: "Babel",
-  tagline: "下一代 JavaScript 编译器",
+  title: "Babel 中文文档",
+  tagline: "下一代 JavaScript compiler",
   url: "https://babel.docschina.org",
+  v6Url: "https://v6.babeljs.io/docs/setup/",
   baseUrl: "/",
   getDocUrl: (doc, language) =>
     `${siteConfig.baseUrl}docs/${language || DEFAULT_LANGUAGE}/${doc}`,
@@ -117,6 +112,7 @@ const siteConfig = {
     { href: "https://opencollective.com/babel", label: "赞助" },
     { page: "team", label: "团队" },
     { href: "https://github.com/babel/babel", label: "GitHub" },
+    // { languages: true }
   ],
   users,
   sponsors,
@@ -141,6 +137,10 @@ const siteConfig = {
   },
   scripts: [
     {
+      src: "/scripts/hmt.js",
+      defer: true
+    },
+    {
       src: "https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js",
       defer: true,
     },
@@ -163,9 +163,14 @@ const siteConfig = {
   onPageNav: "separate",
   gaTrackingId: "UA-114990275-1",
   cleanUrl: true,
-  enableUpdateTime: true,
+  // These two options make the build insanely slow
+  enableUpdateBy: false,
+  enableUpdateTime: false,
+  // ----
+  scrollToTop: true,
   // markdownPlugins: [],
-  // cname
+  // cname,
+  // docsSideNavCollapsible: true,
 };
 
 module.exports = siteConfig;

@@ -1,8 +1,12 @@
 ---
 id: babel-plugin-transform-modules-amd
 title: @babel/plugin-transform-modules-amd
-sidebar_label: transform-modules-amd
+sidebar_label: AMD
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env` under the `modules` option
+
+This plugin transforms ECMAScript modules to [AMD](https://github.com/amdjs/amdjs-api/blob/master/AMD.md). Note that only the _syntax_ of import/export statements (`import "./mod.js"`) and import expressions (`import('./mod.js')`) is transformed, as Babel is unaware of the different resolution algorithms between implementations of ECMAScript modules and AMD.
 
 ## Example
 
@@ -15,11 +19,11 @@ export default 42;
 **Out**
 
 ```javascript
-define(["exports"], function (exports) {
+define(["exports"], function(exports) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
-    value: true
+    value: true,
   });
 
   exports.default = 42;
@@ -34,9 +38,7 @@ npm install --save-dev @babel/plugin-transform-modules-amd
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -53,12 +55,11 @@ babel --plugins @babel/plugin-transform-modules-amd script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-modules-amd"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-modules-amd"],
 });
 ```
 
 ### Options
 
 See options for `@babel/plugin-transform-modules-commonjs`.
-

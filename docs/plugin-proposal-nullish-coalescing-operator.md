@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-proposal-nullish-coalescing-operator
 title: @babel/plugin-proposal-nullish-coalescing-operator
-sidebar_label: proposal-nullish-coalescing-operator
+sidebar_label: nullish-coalescing-operator
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Example
 
@@ -17,7 +19,10 @@ var foo = object.foo ?? "default";
 ```javascript
 var _object$foo;
 
-var foo = (_object$foo = object.foo) !== null && _object$foo !== void 0 ? _object$foo : "default";
+var foo =
+  (_object$foo = object.foo) !== null && _object$foo !== void 0
+    ? _object$foo
+    : "default";
 ```
 
 > **NOTE:** We cannot use `!= null` here because `document.all == null` and
@@ -31,9 +36,7 @@ npm install --save-dev @babel/plugin-proposal-nullish-coalescing-operator
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -50,8 +53,8 @@ babel --plugins @babel/plugin-proposal-nullish-coalescing-operator script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-proposal-nullish-coalescing-operator"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-proposal-nullish-coalescing-operator"],
 });
 ```
 
@@ -81,7 +84,8 @@ var _object$foo;
 var foo = (_object$foo = object.foo) != null ? _object$foo : "default";
 ```
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+
 ## References
 
-* [Proposal: Nullish Coalescing](https://github.com/tc39-transfer/proposal-nullish-coalescing)
-
+- [Proposal: Nullish Coalescing](https://github.com/tc39-transfer/proposal-nullish-coalescing)

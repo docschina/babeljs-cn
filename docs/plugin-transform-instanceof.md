@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-transform-instanceof
 title: @babel/plugin-transform-instanceof
-sidebar_label: transform-instanceof
+sidebar_label: instanceof
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Example
 
@@ -16,7 +18,11 @@ foo instanceof Bar;
 
 ```javascript
 function _instanceof(left, right) {
-  if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
+  if (
+    right != null &&
+    typeof Symbol !== "undefined" &&
+    right[Symbol.hasInstance]
+  ) {
     return right[Symbol.hasInstance](left);
   } else {
     return left instanceof right;
@@ -34,9 +40,7 @@ npm install --save-dev @babel/plugin-transform-instanceof
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -53,13 +57,12 @@ babel --plugins @babel/plugin-transform-instanceof script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-instanceof"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-instanceof"],
 });
 ```
 
 ## References
 
-* [ES6 Spec: InstanceOf Operator Semantics](https://www.ecma-international.org/ecma-262/6.0/#sec-instanceofoperator)
-* [MDN: Symbol.hasInstance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/hasInstance)
-
+- [ES6 Spec: InstanceOf Operator Semantics](https://www.ecma-international.org/ecma-262/6.0/#sec-instanceofoperator)
+- [MDN: Symbol.hasInstance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/hasInstance)

@@ -1,17 +1,19 @@
 ---
 id: babel-plugin-transform-spread
 title: @babel/plugin-transform-spread
-sidebar_label: transform-spread
+sidebar_label: spread
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Example
 
 **In**
 
 ```js
-var a = ['a', 'b', 'c'];
+var a = ["a", "b", "c"];
 
-var b = [...a, 'foo'];
+var b = [...a, "foo"];
 
 var c = foo(...a);
 ```
@@ -19,9 +21,9 @@ var c = foo(...a);
 **Out**
 
 ```js
-var a = ['a', 'b', 'c'];
+var a = ["a", "b", "c"];
 
-var b = a.concat(['foo']);
+var b = a.concat(["foo"]);
 
 var c = foo.apply(void 0, a);
 ```
@@ -34,9 +36,7 @@ npm install --save-dev @babel/plugin-transform-spread
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -51,9 +51,12 @@ With options:
 ```json
 {
   "plugins": [
-    ["@babel/plugin-transform-spread", {
-      "loose": true
-    }]
+    [
+      "@babel/plugin-transform-spread",
+      {
+        "loose": true
+      }
+    ]
   ]
 }
 ```
@@ -67,8 +70,8 @@ babel --plugins @babel/plugin-transform-spread script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-spread"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-spread"],
 });
 ```
 
@@ -80,7 +83,24 @@ require("@babel/core").transform("code", {
 
 In loose mode, **all** iterables are assumed to be arrays.
 
+Loose mode preserves "holes" when spreading an array (for example, `[ ...Array(2) ]` produces `[ (hole), (hole) ]`). Set loose to `false` to avoid this behaviour.
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+
+### `allowArrayLike`
+
+`boolean`, defaults to `false`
+
+Added in: `v7.10.0`
+
+This option allows spreading array-like objects as if they were arrays.
+
+An array-like object is an object with a `length` property: for example, `{ 0: "a", 1: "b", length: 2 }`. Note that, like real arrays, array-like objects can have "holes": `{ 1: "a", length: 3 }` is equivalent to `[ (hole), "a", (hole) ]`.
+
+While it is _not_ spec-compliant to spread array-like objects as if they were arrays, there are many objects that would be _iterables_ in modern browsers with `Symbol.iterator` support. Some notable examples are the DOM collections, like `document.querySelectorAll("img.big")`, which are the main use case for this option.
+
+Please note that Babel allows spreading `arguments` in old engines even if this option is disabled, because it's defined as _iterable_ in the ECMAScript specification.
+
 ## References
 
-* [MDN: Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
-
+- [MDN: Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)

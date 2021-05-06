@@ -1,7 +1,7 @@
 ---
 id: babel-plugin-transform-inline-consecutive-adds
 title: @babel/plugin-transform-inline-consecutive-adds
-sidebar_label: transform-inline-consecutive-adds
+sidebar_label: inline-consecutive-adds
 ---
 
 ## Example
@@ -43,9 +43,7 @@ npm install babel-plugin-transform-inline-consecutive-adds --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -62,8 +60,7 @@ babel --plugins transform-inline-consecutive-adds script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["transform-inline-consecutive-adds"]
+require("@babel/core").transformSync("code", {
+  plugins: ["transform-inline-consecutive-adds"],
 });
 ```
-

@@ -7,13 +7,17 @@
 
 ### Setup
 
+Node: Check that Node is installed with version 10.19.0 and up. You can check this with node -v.
+
+Yarn: Make sure that Yarn 1 is installed with version >= 1.19.0.
+
 ```bash
 $ git clone git@github.com:babel/website.git
 $ cd website
 $ yarn && yarn bootstrap
 ```
 
-- Just run `npm start` next time (check the package.json for scripts).
+- Just run `yarn start` next time (check the package.json for scripts).
 
 ### Contributing to the website
 
@@ -24,9 +28,9 @@ You might want to make yourself familiar with [docusaurus](https://docusaurus.io
 #### Versioned docs
 
 - `/docs` - the files in here are responsible for the "next" version at https://babeljs.io/docs/en/next.
-- `/website/versioned_docs/version-7.1.0` - these are the docs for the currently published version at https://babeljs.io/docs/en
+- `/website/versioned_docs/version-*` - these are the docs for the past versions, the latest one being the currently published version at https://babeljs.io/docs/en
 
-To make a fix to the published site you must edit the corresponding markdown file at both folders.
+After making your changes to the markdown files in the `/docs` folder, a git hook script will suggest files from the past versions folders that you might also need to apply your changes to.
 
 #### Looking for support?
 

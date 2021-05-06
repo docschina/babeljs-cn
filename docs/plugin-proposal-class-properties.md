@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-proposal-class-properties
 title: @babel/plugin-proposal-class-properties
-sidebar_label: proposal-class-properties
+sidebar_label: class-properties
 ---
+
+> **提示**: `@babel/preset-env` 包含此插件
 
 ## 示例
 
@@ -35,7 +37,6 @@ sidebar_label: proposal-class-properties
   console.log(Bork.staticFunction()); // > "babelIsCool"
 ```
 
-
 ## 安装
 
 ```sh
@@ -44,9 +45,7 @@ npm install --save-dev @babel/plugin-proposal-class-properties
 
 ## 用法
 
-### 通过 `.babelrc` 使用（推荐）
-
-**.babelrc**
+### 使用配置文件（推荐）
 
 未使用选项：
 
@@ -60,9 +59,7 @@ npm install --save-dev @babel/plugin-proposal-class-properties
 
 ```json
 {
-  "plugins": [
-    ["@babel/plugin-proposal-class-properties", { "loose": true }]
-  ]
+  "plugins": [["@babel/plugin-proposal-class-properties", { "loose": true }]]
 }
 ```
 
@@ -75,8 +72,8 @@ babel --plugins @babel/plugin-proposal-class-properties script.js
 ### 通过 Node API 使用
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-proposal-class-properties"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-proposal-class-properties"],
 });
 ```
 
@@ -93,13 +90,13 @@ require("@babel/core").transform("code", {
 #### 示例
 
 ```js
-  class Bork {
-    static a = 'foo';
-    static b;
+class Bork {
+  static a = "foo";
+  static b;
 
-    x = 'bar';
-    y;
-  }
+  x = "bar";
+  y;
+}
 ```
 
 如果没有使用选项 `{ "loose": true }`，上面的代码将使用 `Object.defineProperty`，被编译为如下代码：
@@ -111,13 +108,13 @@ var Bork = function Bork() {
     configurable: true,
     enumerable: true,
     writable: true,
-    value: 'bar'
+    value: "bar",
   });
   Object.defineProperty(this, "y", {
     configurable: true,
     enumerable: true,
     writable: true,
-    value: void 0
+    value: void 0,
   });
 };
 
@@ -125,13 +122,13 @@ Object.defineProperty(Bork, "a", {
   configurable: true,
   enumerable: true,
   writable: true,
-  value: 'foo'
+  value: "foo",
 });
 Object.defineProperty(Bork, "b", {
   configurable: true,
   enumerable: true,
   writable: true,
-  value: void 0
+  value: void 0,
 });
 ```
 
@@ -140,15 +137,17 @@ Object.defineProperty(Bork, "b", {
 ```js
 var Bork = function Bork() {
   babelHelpers.classCallCheck(this, Bork);
-  this.x = 'bar';
+  this.x = "bar";
   this.y = void 0;
 };
 
-Bork.a = 'foo';
+Bork.a = "foo";
 Bork.b = void 0;
 ```
 
+> 你可以通过[该链接](https://babeljs.io/docs/en/plugins#plugin-options)了解更多插件配置选项。
+
 ## 参考
 
-* [提案：ES Class Fields & Static Properties](https://github.com/jeffmo/es-class-static-properties-and-fields)
-
+* [提案：公共与私有实例的 fields](https://github.com/tc39/proposal-class-fields)
+* [提案：静态 class 特性](https://github.com/tc39/proposal-static-class-features)

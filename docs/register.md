@@ -1,7 +1,6 @@
 ---
 id: babel-register
 title: @babel/register
-sidebar_label: register
 ---
 
 One of the ways you can use Babel is through the require hook. The require hook
@@ -71,7 +70,7 @@ require("@babel/register")({
     // File paths that **do not** return true are not compiled
     function(filepath) {
       return filepath === "/path/to/es6-file.js";
-    }
+    },
   ],
 
   // Setting this will remove the currently hooked extensions of `.es6`, `.es`, `.jsx`, `.mjs`
@@ -85,7 +84,8 @@ require("@babel/register")({
 
 You can pass in all other [options](options.md) as well, including `plugins` and `presets`.
 Note that [config files](config-files.md) will also be loaded and the programmatic
-config will be merged over top of the file config options.
+config will be merged over top of the file config options. `@babel/register` does not support
+`ignore` and `only` in config files.
 
 ## Environment variables
 
@@ -142,3 +142,5 @@ require("./my-plugin");
 Because it is your own code that triggered the load, and not the logic within
 `@babel/register` itself, this should successfully compile any plugin/preset
 that loads synchronously.
+
+**Note:** `@babel/register` does _not_ support compiling native Node.js ES modules on the fly, since currently there is no stable API for intercepting ES modules loading.

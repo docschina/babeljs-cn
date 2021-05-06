@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-transform-property-mutators
 title: @babel/plugin-transform-property-mutators
-sidebar_label: transform-property-mutators
+sidebar_label: property-mutators
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Example
 
@@ -15,25 +17,28 @@ var foo = {
   },
   set bar(value) {
     this._bar = value;
-  }
+  },
 };
 ```
 
 **Out**
 
 ```javascript
-var foo = Object.defineProperties({}, {
-  bar: {
-    get: function () {
-      return this._bar;
+var foo = Object.defineProperties(
+  {},
+  {
+    bar: {
+      get: function() {
+        return this._bar;
+      },
+      set: function(value) {
+        this._bar = value;
+      },
+      configurable: true,
+      enumerable: true,
     },
-    set: function (value) {
-      this._bar = value;
-    },
-    configurable: true,
-    enumerable: true
   }
-});
+);
 ```
 
 ## Installation
@@ -44,9 +49,7 @@ npm install --save-dev @babel/plugin-transform-property-mutators
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -63,8 +66,7 @@ babel --plugins @babel/plugin-transform-property-mutators script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-property-mutators"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-property-mutators"],
 });
 ```
-

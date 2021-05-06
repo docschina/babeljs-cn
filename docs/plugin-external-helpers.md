@@ -10,9 +10,7 @@ npm install --save-dev @babel/plugin-external-helpers
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -29,7 +27,7 @@ babel --plugins @babel/plugin-external-helpers script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-external-helpers"]
 });
 ```

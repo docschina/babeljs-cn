@@ -32,3 +32,21 @@ export function joinListEnglish(list: string[]): string {
   if (list.length === 1) return list[0];
   return `${list.slice(0, -1).join(", ")} and ${list[list.length - 1]}`;
 }
+
+export function preferDarkColorScheme(): boolean {
+  return (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme:dark)").matches
+  );
+}
+
+export function compareVersions(a: string, b: string): 1 | 0 | -1 {
+  const aParts = a.split(".");
+  const bParts = b.split(".");
+
+  for (let i = 0; i < 3; i++) {
+    if (+aParts[i] > +bParts[i]) return 1;
+    if (+aParts[i] < +bParts[i]) return -1;
+  }
+  return 0;
+}

@@ -82,7 +82,7 @@ square(2, 4, 7.5, 8, 11.5, 21); // returns: [4, 16, 56.25, 64, 132.25, 441]
 
 ### Classes
 
-ES2015 classes are a simple sugar over the prototype-based OO pattern.  Having a
+ES2015 classes are syntactic sugar over the prototype-based OO pattern.  Having a
 single convenient declarative form makes class patterns easier to use, and
 encourages interoperability.  Classes support prototype-based inheritance, super
 calls, instance and static methods and constructors.
@@ -293,7 +293,7 @@ for (var n of fibonacci) {
 ```
 
 Iteration is based on these duck-typed interfaces (using
-[TypeScript](http://typescriptlang.org) type syntax for exposition only):
+[TypeScript](https://www.typescriptlang.org/) type syntax for exposition only):
 
 ```ts
 interface IteratorResult {
@@ -346,7 +346,7 @@ for (var n of fibonacci) {
 }
 ```
 
-The generator interface is (using [TypeScript](http://typescriptlang.org) type
+The generator interface is (using [TypeScript](https://www.typescriptlang.org/) type
 syntax for exposition only):
 
 ```ts
@@ -382,7 +382,8 @@ building global apps in JavaScript.
 "𠮷".match(/./u)[0].length == 2
 
 // new form
-"\u{20BB7}" == "𠮷" == "\uD842\uDFB7"
+"\u{20BB7}" == "𠮷"
+"𠮷" == "\uD842\uDFB7"
 
 // new String ops
 "𠮷".codePointAt(0) == 0x20BB7

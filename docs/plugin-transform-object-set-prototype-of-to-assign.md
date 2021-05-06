@@ -1,7 +1,7 @@
 ---
 id: babel-plugin-transform-object-set-prototype-of-to-assign
 title: @babel/plugin-transform-object-set-prototype-of-to-assign
-sidebar_label: transform-object-set-prototype-of-to-assign
+sidebar_label: object-set-prototype-of-to-assign
 ---
 
 **NOTE:** There are some caveats when using this plugin, see the [`@babel/plugin-transform-proto-to-assign`](plugin-transform-proto-to-assign.md) docs for more information.
@@ -30,9 +30,7 @@ npm install --save-dev @babel/plugin-transform-object-set-prototype-of-to-assign
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -49,7 +47,7 @@ babel --plugins @babel/plugin-transform-object-set-prototype-of-to-assign script
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-object-set-prototype-of-to-assign"],
 });
 ```

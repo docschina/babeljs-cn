@@ -63,9 +63,7 @@ npm install babel-plugin-minify-constant-folding --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -82,7 +80,7 @@ babel --plugins minify-constant-folding script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   plugins: ["minify-constant-folding"]
 });
 ```
@@ -91,3 +89,4 @@ require("@babel/core").transform("code", {
 
 + `tdz` - Account for TDZ (Temporal Dead Zone)
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

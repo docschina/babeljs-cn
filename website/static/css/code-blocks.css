@@ -13,6 +13,10 @@ pre {
   box-shadow: 0px 0 rgba(50, 51, 48, 0.07), 0px 0 rgba(50, 51, 48, 0.07);
 }
 
+.danger-force-code-no-wrap .hljs {
+  white-space: pre;
+}
+
 .hljs::before {
   content: "";
   background: #fbf4d0;
@@ -56,13 +60,18 @@ pre {
   content: "JSON5";
 }
 
+.hljs.language-powershell::before {
+  content: "PowerShell";
+}
+
 .hljs.language-sh::before,
 .hljs.language-shell::before,
 .hljs.language-bash::before {
   content: "Shell";
 }
 
-.hljs.language-ts::before {
+.hljs.language-ts::before,
+.hljs.language-typescript::before {
   content: "TypeScript";
 }
 

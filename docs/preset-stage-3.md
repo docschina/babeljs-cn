@@ -27,9 +27,7 @@ npm install --save-dev @babel/preset-stage-3
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -46,7 +44,7 @@ babel script.js --presets @babel/preset-stage-3
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   presets: ["@babel/preset-stage-3"]
 });
 ```
@@ -64,6 +62,8 @@ Enable "loose" transformations for any plugins in this preset that allow them.
 `boolean`, defaults to `false`.
 
 Will use the native built-in instead of trying to polyfill behavior for any plugins that require one.
+
+> You can read more about configuring preset options [here](https://babeljs.io/docs/en/presets#preset-options)
 
 ## References
 

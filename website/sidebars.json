@@ -1,46 +1,26 @@
 {
   "docs": {
-    "Guides": [
-      "index",
-      "usage",
-      "configuration",
-      "learn",
-      "v7-migration",
-      "v7-migration-api"
+    "指南": ["index", "usage", "configuration", "learn", "v7-migration"],
+    "用法": ["config-files", "options", "presets", "plugins"],
+    "Presets": [
+      "babel-preset-env",
+      "babel-preset-react",
+      "babel-preset-typescript",
+      "babel-preset-flow"
     ],
-    "General": [
-      "editors",
-      "plugins",
-      "presets",
-      "caveats",
-      "faq",
-      "roadmap"
-    ],
-    "Usage": [
-      "options",
-      "config-files",
+    "通用": ["editors", "caveats", "faq"],
+    "Integration Packages": [
       "babel-cli",
       "babel-polyfill",
       "babel-plugin-transform-runtime",
-      "babel-register"
+      "babel-register",
+      "babel-standalone"
     ],
-    "Presets": [
-      "babel-preset-env",
-      "babel-preset-stage-0",
-      "babel-preset-stage-1",
-      "babel-preset-stage-2",
-      "babel-preset-stage-3",
-      "babel-preset-flow",
-      "babel-preset-react",
-      "babel-preset-minify",
-      "babel-preset-typescript"
-    ],
-    "Tooling": [
+    "工具": [
       "babel-parser",
       "babel-core",
       "babel-generator",
       "babel-code-frame",
-      "babel-helpers",
       "babel-runtime",
       "babel-template",
       "babel-traverse",
@@ -48,5 +28,3 @@
     ]
   }
 }
-
-

@@ -85,7 +85,7 @@ let newScore = person.score
   |> (_ => boundScore(0, 100, _));
 ```
 
-Exploration is underway to determine whether it would be feasible to enable arrow functions to be used without parentheses, as they are a signficant syntactical burden.
+Exploration is underway to determine whether it would be feasible to enable arrow functions to be used without parentheses, as they are a significant syntactical burden.
 
 On the question of async, F# Pipelines treat `await` similar to a unary function:
 
@@ -117,7 +117,7 @@ The special casing of `await` could potentially enable other unary operators to 
 
 ### [Smart Pipelines](https://github.com/js-choi/proposal-smart-pipelines/)
 
-Smart Pipelines takes the idea of the placeholder to its logical conclusion, enabling it to manage partial application as well as arbitary expressions in a pipeline. The above long chain would be written thus:
+Smart Pipelines takes the idea of the placeholder to its logical conclusion, enabling it to manage partial application as well as arbitrary expressions in a pipeline. The above long chain would be written thus:
 
 ```js
 promise
@@ -149,7 +149,7 @@ promise |> await #;
 
 If there are any operators, parentheses (including for method calls), brackets, or anything other than identifiers and dot punctuators, then a topic token is necessary. This avoids footguns and eliminate ambiguity when not using a topic token.
 
-Smart pipelines thus resolve the issue of async in an integrative way, allowing all possible expressions to be emedded in a pipeline; not only `await`, but also `typeof`, `yield`, and another other operator desired.
+Smart pipelines thus resolve the issue of async in an integrative way, allowing all possible expressions to be embedded in a pipeline; not only `await`, but also `typeof`, `yield`, and another other operator desired.
 
 ## Where Babel Comes In
 

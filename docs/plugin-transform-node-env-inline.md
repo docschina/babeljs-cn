@@ -1,9 +1,8 @@
 ---
 id: babel-plugin-transform-node-env-inline
 title: babel-plugin-transform-node-env-inline
-sidebar_label: transform-node-env-inline
+sidebar_label: node-env-inline
 ---
-
 
 ## Example
 
@@ -33,9 +32,7 @@ npm install babel-plugin-transform-node-env-inline --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -52,8 +49,7 @@ babel --plugins transform-node-env-inline script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["transform-node-env-inline"]
+require("@babel/core").transformSync("code", {
+  plugins: ["transform-node-env-inline"],
 });
 ```
-

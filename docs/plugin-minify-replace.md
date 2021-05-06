@@ -50,9 +50,7 @@ npm install babel-plugin-minify-replace --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 // without options
@@ -87,7 +85,7 @@ babel --plugins minify-replace script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   plugins: ["minify-replace"]
 });
 ```

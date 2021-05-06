@@ -36,9 +36,7 @@ npm install babel-plugin-minify-type-constructors --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -55,7 +53,7 @@ babel --plugins minify-type-constructors script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   plugins: ["minify-type-constructors"]
 });
 ```
@@ -68,3 +66,4 @@ require("@babel/core").transform("code", {
 + `object` — prevent plugin from minifying objects
 + `string` — prevent plugin from minifying strings
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

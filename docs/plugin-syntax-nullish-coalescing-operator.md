@@ -16,9 +16,7 @@ npm install --save-dev @babel/plugin-syntax-nullish-coalescing-operator
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -35,7 +33,7 @@ babel --plugins @babel/plugin-syntax-nullish-coalescing-operator script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-syntax-nullish-coalescing-operator"]
 });
 ```

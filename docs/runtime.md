@@ -1,10 +1,9 @@
 ---
 id: babel-runtime
 title: @babel/runtime
-sidebar_label: runtime
 ---
 
-`@babel/runtime` is a library that contain's Babel modular runtime helpers and a version of `regenerator-runtime`.
+`@babel/runtime` is a library that contains Babel modular runtime helpers and a version of `regenerator-runtime`.
 
 ## Installation
 
@@ -20,7 +19,7 @@ This is meant to be used as a runtime `dependency` along with the Babel plugin [
 
 ## Why
 
-Sometimes Babel may inject some code in the output that is the same and thus can be potentially re-used.
+Sometimes Babel may inject some code in the output that is the same across files, and thus can be potentially re-used.
 
 For example, with the class transform (without loose mode):
 

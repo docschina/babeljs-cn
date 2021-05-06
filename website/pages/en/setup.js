@@ -1,4 +1,7 @@
 const React = require("react");
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
 
 const CompLibrary = require("../../core/CompLibrary.js");
 const translate = require("../../server/translate.js").translate;
@@ -8,14 +11,27 @@ const siteConfig = require(process.cwd() + "/siteConfig.js");
 const setupBabelrc = siteConfig.setupBabelrc;
 const toolsMD = siteConfig.toolsMD;
 
+function checksumTools() {
+  const str = fs.readFileSync(
+    path.join(process.cwd(), "static/scripts/tools.js"),
+    "utf8"
+  );
+  return crypto
+    .createHash("md5")
+    .update(str, "utf8")
+    .digest("hex");
+}
+
 const SetupHeader = () => {
   return (
     <div className="page-header text-center">
       <h1>
-        使用 Babel
+        <translate desc="setup page - header">使用 Babel</translate>
       </h1>
       <p>
-        教你如何在使用 Babel 时选择工具
+        <translate desc="setup page - header desc">
+          教你如何在使用 Babel 时选择工具
+        </translate>
       </p>
     </div>
   );
@@ -51,7 +67,9 @@ const SetupOptions = () => {
     <div className="step-setup">
       <h2>
         <span className="step-no">1</span>
-        选择你的工具 (尝试 CLI)
+        <translate desc="setup page - step 1">
+          选择你的工具 (尝试 CLI)
+        </translate>
       </h2>
       {showCase}
     </div>
@@ -84,9 +102,9 @@ const StepFour = () => {
     <div className="step-hidden step-setup">
       <h2>
         <span className="step-no">4</span>
-        {"创建"}
-        <code>.babelrc</code>
-        {" 配置文件"}
+        <translate desc="setup page - step 4 one">创建</translate>{" "}
+        <code>babel.config.json</code>{" "}
+        <translate desc="setup page - step 4 two">配置文件</translate>
       </h2>
       <MarkdownBlock>{setupBabelrc}</MarkdownBlock>
     </div>
@@ -111,12 +129,13 @@ class Setup extends React.Component {
     super(props);
   }
   render() {
-    const time = new Date().getTime();
     return (
       <div className="mainContainer">
         <SetupHeader />
         <SetupContent />
-        <script src={`${siteConfig.baseUrl}scripts/tools.js?t=${time}`} />
+        <script
+          src={`${siteConfig.baseUrl}scripts/tools.js?t=${checksumTools()}`}
+        />
       </div>
     );
   }

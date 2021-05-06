@@ -22,7 +22,7 @@ async function sendRequest(repo: ?string, uri: string): Promise<Object> {
 export async function loadBuildArtifacts(
   repo: ?string,
   regExp: RegExp,
-  build: number,
+  build: number | string,
   cb: (url: string, error?: string) => Promise<any> // eslint-disable-line no-unused-vars
 ): Promise<string> {
   try {
@@ -30,7 +30,7 @@ export async function loadBuildArtifacts(
     const artifacts = response.filter(x => regExp.test(x.path));
     if (!artifacts || artifacts.length === 0) {
       throw new Error(
-        `Could not find valid babel-standalone artifact in build #${build}`
+        `Could not find valid @babel/standalone artifact in build #${build}`
       );
     }
     return artifacts[0].url;
@@ -41,17 +41,20 @@ export async function loadBuildArtifacts(
 
 export async function loadLatestBuildNumberForBranch(
   repo: ?string,
-  branch: string
+  branch: string,
+  jobName: string,
+  limit: number = 30
 ): Promise<number> {
   try {
     const response = await sendRequest(
       repo,
-      `tree/${branch}?limit=1&filter=successful`
+      `tree/${branch}?limit=${limit}&filter=successful`
     );
-    if (!response || !response.length) {
-      throw new Error("No builds found");
-    }
-    return response[0].build_num;
+    if (!response) throw new Error("No builds found");
+
+    const build = response.find(build => build.workflows.job_name === jobName);
+    if (!build) throw new Error(`No builds found (${jobName})`);
+    return build.build_num;
   } catch (ex) {
     throw new Error(
       `Could not load latest Babel build on ${branch}: ${ex.message}`

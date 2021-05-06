@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-transform-typeof-symbol
 title: @babel/plugin-transform-typeof-symbol
-sidebar_label: transform-typeof-symbol
+sidebar_label: typeof-symbol
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Example
 
@@ -15,7 +17,7 @@ typeof Symbol() === "symbol";
 **Out**
 
 ```javascript
-var _typeof = function (obj) {
+var _typeof = function(obj) {
   return obj && obj.constructor === Symbol ? "symbol" : typeof obj;
 };
 
@@ -30,9 +32,7 @@ npm install --save-dev @babel/plugin-transform-typeof-symbol
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -49,8 +49,7 @@ babel --plugins @babel/plugin-transform-typeof-symbol script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-typeof-symbol"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-typeof-symbol"],
 });
 ```
-

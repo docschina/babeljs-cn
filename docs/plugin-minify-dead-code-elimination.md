@@ -38,9 +38,7 @@ npm install babel-plugin-minify-dead-code-elimination --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 // without options
@@ -63,7 +61,7 @@ babel --plugins minify-dead-code-elimination script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   plugins: ["minify-dead-code-elimination"]
 });
 ```
@@ -75,3 +73,4 @@ require("@babel/core").transform("code", {
 + `keepClassName` - prevent plugin from removing class name. Useful for code depending on `cls.name`
 + `tdz` - Account for TDZ (Temporal Dead Zone)
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

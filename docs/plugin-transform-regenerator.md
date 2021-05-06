@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-transform-regenerator
 title: @babel/plugin-transform-regenerator
-sidebar_label: transform-regenerator
+sidebar_label: regenerator
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Example
 
@@ -20,19 +22,23 @@ function* a() {
 var _marked = [a].map(regeneratorRuntime.mark);
 
 function a() {
-  return regeneratorRuntime.wrap(function a$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          _context.next = 2;
-          return 1;
+  return regeneratorRuntime.wrap(
+    function a$(_context) {
+      while (1) {
+        switch ((_context.prev = _context.next)) {
+          case 0:
+            _context.next = 2;
+            return 1;
 
-        case 2:
-        case "end":
-          return _context.stop();
+          case 2:
+          case "end":
+            return _context.stop();
+        }
       }
-    }
-  }, _marked[0], this);
+    },
+    _marked[0],
+    this
+  );
 }
 ```
 
@@ -44,7 +50,7 @@ npm install --save-dev @babel/plugin-transform-regenerator
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -56,20 +62,23 @@ Without options:
 
 With options:
 
-|name|default value|
-|---|---|
-|asyncGenerators|true|
-|generators|true|
-|async|true|
+| name            | default value |
+| --------------- | ------------- |
+| asyncGenerators | true          |
+| generators      | true          |
+| async           | true          |
 
 ```json
 {
   "plugins": [
-    ["@babel/plugin-transform-regenerator", {
-      "asyncGenerators": false,
-      "generators": false,
-      "async": false
-    }]
+    [
+      "@babel/plugin-transform-regenerator",
+      {
+        "asyncGenerators": false,
+        "generators": false,
+        "async": false
+      }
+    ]
   ]
 }
 ```
@@ -83,8 +92,7 @@ babel --plugins @babel/plugin-transform-regenerator script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-regenerator"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-regenerator"],
 });
 ```
-

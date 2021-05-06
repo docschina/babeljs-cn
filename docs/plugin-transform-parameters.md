@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-transform-parameters
 title: @babel/plugin-transform-parameters
-sidebar_label: transform-parameters
+sidebar_label: parameters
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 This plugin transforms ES2015 parameters to ES5, this includes:
 
@@ -58,9 +60,7 @@ not supported in your environment then you'll need the
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -77,7 +77,7 @@ babel --plugins @babel/plugin-transform-parameters script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-parameters"],
 });
 ```
@@ -101,3 +101,5 @@ bar1.length; // 0
 function bar1(arg1 = 1) {}
 bar1.length; // 1
 ```
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

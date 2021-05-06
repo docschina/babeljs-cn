@@ -1,38 +1,31 @@
 // @flow
 import camelCase from "lodash.camelcase";
-import type {
-  PluginConfig,
-  MultiPackagesConfig,
-  ReplState,
-  EnvFeatures,
-} from "./types";
+import type { PluginConfig, MultiPackagesConfig, ReplState } from "./types";
 
 const normalizePluginName = pluginName =>
   `_babel_${camelCase(`plugin-${pluginName}`)}`;
 
 const babelConfig: PluginConfig = {
   label: "Babel",
-  package: "babel-standalone",
-  version: "6",
+  package: "@babel/standalone",
+  version: "^7.0.0",
   baseUrl: "https://unpkg.com",
   instanceName: "Babel",
 };
 
 const envPresetConfig: PluginConfig = {
   label: "Env Preset",
-  package: "babel-preset-env-standalone",
-  version: "1.6.2",
+  package: "@babel/preset-env-standalone",
+  version: "^7.0.0",
   baseUrl: "https://unpkg.com",
-  versionKey: "envVersion",
   instanceName: "babelPresetEnv",
 };
 
-/* Some of stage-3 plugins've been added to babel-standalone gradually. For example,
-  proposal-async-generator-functions wasn't available before 7.0.0-beta.36 was released.
-  Also, using this flow, we can handle not registered yet stage-3 plugins in the future.
-*/
-const stage3Plugins: Array<PluginConfig> = [
-  "proposal-async-generator-functions",
+/* Some of stage-3 plugins have been added to @babel/standalone gradually. If a new
+ * shippedProposal is added, add it to this list.
+ */
+const shippedProposalsPackages: Array<PluginConfig> = [
+  // "proposal-async-generator-functions",
   // "proposal-object-rest-spread",
   // "proposal-optional-catch-binding",
   // "proposal-unicode-property-regex",
@@ -41,7 +34,6 @@ const stage3Plugins: Array<PluginConfig> = [
   return {
     label: pluginName,
     package: packageName,
-    version: "7.0.0-beta.34",
     baseUrl: "https://bundle.run",
     instanceName: normalizePluginName(pluginName),
   };
@@ -50,22 +42,13 @@ const stage3Plugins: Array<PluginConfig> = [
 const shippedProposalsConfig: MultiPackagesConfig = {
   baseUrl: "https://bundle.run",
   label: "Shipped Proposals",
-  packages: stage3Plugins,
+  packages: shippedProposalsPackages,
   package: "",
-  version: "7",
-};
-
-const envPresetFeaturesSupport: EnvFeatures = {
-  debug: [0, 1],
-  builtInsUsage: [2, 7],
-  forceAllTransforms: [2, 7],
-  shippedProposals: [2, 7],
-  stringifiedVersion: [2, 7],
 };
 
 const envPresetDefaults = {
   browsers: {
-    placeholder: "> 2%, ie 11, safari > 9",
+    placeholder: "defaults, not ie 11, not ie_mob 11",
   },
   electron: {
     min: 0.3,
@@ -74,39 +57,36 @@ const envPresetDefaults = {
   },
   node: {
     min: 0.1,
-    default: "8.9",
+    default: "10.13",
     step: 0.1,
   },
   builtIns: {
     default: "usage",
   },
+  corejs: {
+    default: "3.6",
+  },
 };
 
 const runtimePolyfillConfig: PluginConfig = {
   label: "Runtime Polyfill",
-  package: "babel-polyfill",
-  version: "6",
+  package: "@babel/polyfill",
+  version: "7",
 };
 
 const pluginConfigs: Array<PluginConfig> = [
   {
     baseUrl: "https://unpkg.com",
-    label: "Minify",
-    package: "babili-standalone", // TODO Switch to babel-minify-standalone
-    version: "0",
-  },
-  {
-    baseUrl: "https://unpkg.com",
     label: "Prettify",
     package: "prettier",
-    version: "1.13.0",
-    files: ["standalone.js", "parser-babylon.js"],
+    version: "2",
+    files: ["standalone.js", "parser-babel.js"],
   },
 ];
 
 const replDefaults: ReplState = {
-  babili: false,
-  browsers: "",
+  browsers: "defaults, not ie 11, not ie_mob 11",
+  bugfixes: true,
   build: "",
   builtIns: false,
   spec: false,
@@ -128,16 +108,17 @@ const replDefaults: ReplState = {
     compiledSize: 0,
     rawSize: 0,
   },
-  presets: "es2015,react,stage-2",
+  presets: "react,stage-2,env",
   prettier: false,
   showSidebar: true,
   shippedProposals: false,
   targets: "",
   version: "",
-  envVersion: "",
+  reactRuntime: "classic",
   decoratorsLegacy: false,
   decoratorsBeforeExport: false,
   pipelineProposal: "minimal",
+  externalPlugins: "",
 };
 
 export {
@@ -145,7 +126,6 @@ export {
   envPresetConfig,
   shippedProposalsConfig,
   envPresetDefaults,
-  envPresetFeaturesSupport,
   pluginConfigs,
   runtimePolyfillConfig,
   replDefaults,

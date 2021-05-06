@@ -1,7 +1,7 @@
 ---
 id: babel-plugin-transform-simplify-comparison-operators
 title: babel-plugin-transform-simplify-comparison-operators
-sidebar_label: transform-simplify-comparison-operators
+sidebar_label: simplify-comparison-operators
 ---
 
 ## Example
@@ -26,9 +26,7 @@ npm install babel-plugin-transform-simplify-comparison-operators --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -45,8 +43,7 @@ babel --plugins transform-simplify-comparison-operators script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["transform-simplify-comparison-operators"]
+require("@babel/core").transformSync("code", {
+  plugins: ["transform-simplify-comparison-operators"],
 });
 ```
-

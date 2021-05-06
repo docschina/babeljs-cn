@@ -6,7 +6,7 @@ const Container = CompLibrary.Container;
 const CWD = process.cwd();
 
 const siteConfig = require(CWD + "/siteConfig.js");
-const versions = require(CWD + "/versions.json");
+const versions = require(CWD + "/past-versions.json");
 
 class Versions extends React.Component {
   render() {
@@ -43,6 +43,11 @@ class Versions extends React.Component {
                       Release Notes
                     </a>
                   </td>
+                  <td>
+                    <a href={`${siteConfig.baseUrl}${latestVersion}`}>
+                      Blog Post
+                    </a>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -73,44 +78,62 @@ class Versions extends React.Component {
                 </tr>
               </tbody>
             </table>
-            {versions &&
-              versions.length > 1 && (
-                <div>
-                  <a name="archive" />
-                  <h3>Past Versions</h3>
-                  <table className="versions">
-                    <tbody>
-                      {versions.map(
-                        version =>
-                          version !== latestVersion && (
-                            <tr>
-                              <th>{version}</th>
-                              <td>
-                                <a
-                                  href={
-                                    siteConfig.baseUrl +
-                                    "docs/" +
-                                    language +
-                                    "/" +
-                                    version +
-                                    "/index.html"
-                                  }
-                                >
-                                  Documentation
-                                </a>
-                              </td>
-                              <td>
-                                <a href={`${repoUrl}/releases/tag/v${version}`}>
-                                  Release Notes
-                                </a>
-                              </td>
-                            </tr>
-                          )
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              )}
+            {versions && versions.length > 1 && (
+              <div>
+                <a name="archive" />
+                <h3>Past Versions</h3>
+                <table className="versions">
+                  <tbody>
+                    {versions.map(
+                      version =>
+                        version !== latestVersion && (
+                          <tr key={version}>
+                            <th>{version}</th>
+                            <td>
+                              <a
+                                href={
+                                  siteConfig.baseUrl +
+                                  "docs/" +
+                                  language +
+                                  "/" +
+                                  version +
+                                  "/index.html"
+                                }
+                              >
+                                Documentation
+                              </a>
+                            </td>
+                            <td>
+                              <a href={`${repoUrl}/releases/tag/v${version}`}>
+                                Release Notes
+                              </a>
+                            </td>
+                            <td>
+                              <a href={`${siteConfig.baseUrl}${version}`}>
+                                Blog Post
+                              </a>
+                            </td>
+                          </tr>
+                        )
+                    )}
+                    <tr>
+                      <th>6.26.3</th>
+                      <td>
+                        <a href={siteConfig.v6Url}>Documentation</a>
+                      </td>
+                      <td>
+                        <a href={`${repoUrl}/releases/tag/v6.26.3`}>
+                          Release Notes
+                        </a>
+                      </td>
+                      <td>
+                        <a href={`${siteConfig.baseUrl}6.23.0`}>Blog Post</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </Container>
       </div>

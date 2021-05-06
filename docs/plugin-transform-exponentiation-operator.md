@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-transform-exponentiation-operator
 title: @babel/plugin-transform-exponentiation-operator
-sidebar_label: transform-exponentiation-operator
+sidebar_label: exponentiation-operator
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Example
 
@@ -30,9 +32,7 @@ npm install --save-dev @babel/plugin-transform-exponentiation-operator
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -49,13 +49,12 @@ babel --plugins @babel/plugin-transform-exponentiation-operator script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-exponentiation-operator"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-exponentiation-operator"],
 });
 ```
 
 ## References
 
-* [Spec: Exponentiation Operator](https://tc39.github.io/ecma262/#sec-exp-operator)
-* [Proposal: Exponentiation Operator](https://github.com/rwaldron/exponentiation-operator)
-
+- [Spec: Exponentiation Operator](https://tc39.github.io/ecma262/#sec-exp-operator)
+- [Proposal: Exponentiation Operator](https://github.com/rwaldron/exponentiation-operator)

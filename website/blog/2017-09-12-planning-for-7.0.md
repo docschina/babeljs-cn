@@ -81,7 +81,7 @@ Naturally, we will take the opportunity to be as spec compliant as possible (wit
 
 ### Stage 3: Class Properties (from Stage 2)
 
-> [`babel-plugin-transform-class-properties`](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-class-properties): the default behavior is now what was previously the "spec" option, which uses `Object.defineProperty` instead of simple assignment.
+> [`babel-plugin-transform-class-properties`](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-class-properties): the default behavior is now what was previously the "spec" option, which uses `Object.defineProperty` instead of simple assignment.
 
 > This currently has the effect of breaking the [legacy decorators plugin](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy) (which we made the "transform-decorators" plugin in 7.0) if you try to decorate a class property. You'll need to use the `loose` option to be compatible with the version of decorators in the transform until we release the Stage 2 decorators plugin.
 
@@ -132,7 +132,7 @@ Bork.a = 'foo';
 
 ### Stage 3: Object Rest Spread (from Stage 2)
 
-> [`babel-plugin-transform-object-rest-spread`](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-object-rest-spread): And now the plugin handles non-string keys (ex: Number/Symbol)
+> [`babel-plugin-transform-object-rest-spread`](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-object-rest-spread): And now the plugin handles non-string keys (ex: Number/Symbol)
 
 Input
 
@@ -157,7 +157,7 @@ var { ...[ y ] } = obj;
 
 ### Stage 3: Optional Catch Binding (new)
 
-> [`babel-plugin-transform-optional-catch-binding`](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-optional-catch-binding): allow developers to use try/catch without creating an unused binding.
+> [`babel-plugin-transform-optional-catch-binding`](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-optional-catch-binding): allow developers to use try/catch without creating an unused binding.
 
 Input
 
@@ -165,7 +165,7 @@ Input
 try {
   throw 0;
 } catch {
-  doSomethingWhichDoesntCareAboutTheValueThrown();
+  doSomethingWhichDoesNotCareAboutTheValueThrown();
 }
 ```
 
@@ -175,7 +175,7 @@ Output
 try {
   throw 0;
 } catch (_unused) {
-  doSomethingWhichDoesntCareAboutTheValueThrown();
+  doSomethingWhichDoesNotCareAboutTheValueThrown();
 }
 ```
 
@@ -215,7 +215,7 @@ babelCheckBinaryExpressions(new BigInt("50000"), new BigInt("60"), "+");
 
 ### Stage 3: Dynamic Import (from Stage 2)
 
-> [`babel-plugin-syntax-dynamic-import`](https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-dynamic-import): You only need to parse the syntax since tools like Webpack can handle the transformation in place of Babel.
+> [`babel-plugin-syntax-dynamic-import`](https://github.com/babel/babel/tree/main/packages/babel-plugin-syntax-dynamic-import): You only need to parse the syntax since tools like Webpack can handle the transformation in place of Babel.
 > There is also a [plugin for Node](https://github.com/airbnb/babel-plugin-dynamic-import-node)
 
 Input
@@ -234,9 +234,9 @@ Input
 const size = import.meta.scriptElement.dataset.size || 300;
 ```
 
-### Stage 2: Numeric Seperators (new)
+### Stage 2: Numeric Separators (new)
 
-> [`babel-plugin-transform-numeric-separator`](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-numeric-separator): make numeric literals more readable by creating a visual separation (a `_`) between groups of digits.
+> [`babel-plugin-transform-numeric-separator`](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-numeric-separator): make numeric literals more readable by creating a visual separation (a `_`) between groups of digits.
 
 Input
 
@@ -256,7 +256,7 @@ Output
 
 ### Stage 2: Decorators (from Stage 1), still WIP
 
-> [`babel-plugin-transform-decorators`](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-decorators): [#6107](https://github.com/babel/babel/pull/6107)
+> [`babel-plugin-transform-decorators`](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-decorators): [#6107](https://github.com/babel/babel/pull/6107)
 
 Disallowed
 
@@ -340,7 +340,7 @@ let generator = _skipFirstGeneratorNext(function* () {
 
 ### Stage 2: export-ns-from
 
-> [`babel-plugin-transform-export-namespace`](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-export-namespace): a shorthand to import/reexport a namespace. Split out from the old `transform-export-extensions` which combined this proposal with another
+> [`babel-plugin-transform-export-namespace`](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-export-namespace): a shorthand to import/reexport a namespace. Split out from the old `transform-export-extensions` which combined this proposal with another
 
 
 Input
@@ -358,7 +358,7 @@ export {ns};
 
 ### Stage 1: export-default-from
 
-> [`babel-plugin-transform-export-default`](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-export-default): a shorthand to import/reexport something. Split out from the old `transform-export-extensions` which combined this proposal with another
+> [`babel-plugin-transform-export-default`](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-export-default): a shorthand to import/reexport something. Split out from the old `transform-export-extensions` which combined this proposal with another
 
 
 Input
@@ -376,7 +376,7 @@ export { _v as v };
 
 ### Stage 1: Optional Chaining (new)
 
-> [`babel-plugin-transform-optional-chaining`](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-optional-chaining): the operator (`?.`) allows you to handle properties of deeply nested objects without worrying about undefined intermediate objects.
+> [`babel-plugin-transform-optional-chaining`](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-optional-chaining): the operator (`?.`) allows you to handle properties of deeply nested objects without worrying about undefined intermediate objects.
 
 Input
 
@@ -393,7 +393,7 @@ var _a;
 
 ### ES2015: `new.target`
 
-> [`babel-plugin-transform-new-target`](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-new-target): we never got around to implementing `new.target` support earlier, so now there is a plugin for it that will be included in the ES2015/env presets.
+> [`babel-plugin-transform-new-target`](https://github.com/babel/babel/tree/main/packages/babel-plugin-transform-new-target): we never got around to implementing `new.target` support earlier, so now there is a plugin for it that will be included in the ES2015/env presets.
 
 Example
 
@@ -492,7 +492,7 @@ We're working on a guide for how to setup TypeScript and Babel with the TypeScri
 
 ### "Pure" Annotation in specific transforms for minifiers
 
-After [#6209](https://github.com/babel/babel/pull/6209), ES6 classes that are transpiled will have a `/*#__PURE__*/` comment that minfiers like Uglify and babel-minify can use for dead code elimination. These annotations may expand to our helper functions as well.
+After [#6209](https://github.com/babel/babel/pull/6209), ES6 classes that are transpiled will have a `/*#__PURE__*/` comment that minifiers like Uglify and babel-minify can use for dead code elimination. These annotations may expand to our helper functions as well.
 
 Input
 
@@ -655,7 +655,7 @@ Can we combine/replace these packages and have an easier, default experience?
 
 We want the community to upgrade and provide their feedback/reports. There will probably be a lot of initial activity which can be overwhelming so please be patient with us. We'd appreciate the help in helping triage, write docs/upgrade guides/tips, and codemods to help others upgrade more seamlessly. Because Babel touches a lot of the JavaScript ecosystem, it may not be as simple as simply updating one package because it could depend on other community Babel plugins on npm. We're not going to just wait around for a month and hope people upgrade, there's a lot of work to be done to make this happen without half the community still staying on 6.x next year. I'd not like to leave projects (and people) behind. So let us know what we can do to help, and I'd ask that you'd do the same for us and the rest of the community.
 
-## Project Sustainibility
+## Project Sustainability
 
 Shoutout to my team at [Behance](https://www.behance.net) for allowing me to work on Babel part-time at work; we're still basically the only company working to sustain Babel in any capacity on work time. I'm really glad to be able to support the project at work instead of only after work/weekends, and hope this can be the case for more maintainers in the future. (I hope we've been a good example of how companies can support the open source projects they use and not necessarily "own").
 
@@ -671,4 +671,4 @@ Follow our meeting notes/discussions on [babel/notes](https://github.com/babel/n
 
 ## Thanks!
 
-I'm hopeful that we can do the official release soon, but I'd like to mention that open source is sustained by consistent, day-to-day maintenance and not just a hyped-up release cycle where we just leave everyone else in the dust and move on so it may take a little longer as we wait to fixup bugs and upgrade the ecoystem.
+I'm hopeful that we can do the official release soon, but I'd like to mention that open source is sustained by consistent, day-to-day maintenance and not just a hyped-up release cycle where we just leave everyone else in the dust and move on so it may take a little longer as we wait to fixup bugs and upgrade the ecosystem.

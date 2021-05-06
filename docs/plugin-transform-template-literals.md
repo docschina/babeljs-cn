@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-transform-template-literals
 title: @babel/plugin-transform-template-literals
-sidebar_label: transform-template-literals
+sidebar_label: template-literals
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Example
 
@@ -26,9 +28,7 @@ npm install --save-dev @babel/plugin-transform-template-literals
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -43,9 +43,12 @@ With options:
 ```json
 {
   "plugins": [
-    ["@babel/plugin-transform-template-literals", {
-      "loose": true
-    }]
+    [
+      "@babel/plugin-transform-template-literals",
+      {
+        "loose": true
+      }
+    ]
   ]
 }
 ```
@@ -59,8 +62,8 @@ babel --plugins @babel/plugin-transform-template-literals script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-template-literals"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-template-literals"],
 });
 ```
 
@@ -86,3 +89,4 @@ When `false` or not set, all template literal expressions and quasis are combine
 "foo" + bar;
 ```
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

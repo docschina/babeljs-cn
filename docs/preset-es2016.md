@@ -15,9 +15,7 @@ npm install --save-dev @babel/preset-es2016
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -34,7 +32,7 @@ babel script.js --presets @babel/preset-es2016
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   presets: ["@babel/preset-es2016"]
 });
 ```

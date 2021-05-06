@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-transform-shorthand-properties
 title: @babel/plugin-transform-shorthand-properties
-sidebar_label: transform-shorthand-properties
+sidebar_label: shorthand-properties
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Example
 
@@ -24,7 +26,7 @@ var o = { a: a, b: b, c: c };
 var cat = {
   getName() {
     return name;
-  }
+  },
 };
 ```
 
@@ -32,9 +34,9 @@ var cat = {
 
 ```js
 var cat = {
-  getName: function () {
+  getName: function() {
     return name;
-  }
+  },
 };
 ```
 
@@ -46,9 +48,7 @@ npm install --save-dev @babel/plugin-transform-shorthand-properties
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -65,8 +65,7 @@ babel --plugins @babel/plugin-transform-shorthand-properties script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-shorthand-properties"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-shorthand-properties"],
 });
 ```
-

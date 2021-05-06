@@ -1,8 +1,10 @@
 ---
 id: babel-plugin-transform-unicode-regex
 title: @babel/plugin-transform-unicode-regex
-sidebar_label: transform-unicode-regex
+sidebar_label: unicode-regex
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Example
 
@@ -17,7 +19,9 @@ var match = string.match(/foo(.)bar/u);
 
 ```js
 var string = "foo💩bar";
-var match = string.match(/foo((?:[\0-\t\x0B\f\x0E-\u2027\u202A-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]))bar/);
+var match = string.match(
+  /foo((?:[\0-\t\x0B\f\x0E-\u2027\u202A-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]))bar/
+);
 ```
 
 ## Installation
@@ -28,9 +32,7 @@ npm install --save-dev @babel/plugin-transform-unicode-regex
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -47,8 +49,7 @@ babel --plugins @babel/plugin-transform-unicode-regex script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-unicode-regex"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-unicode-regex"],
 });
 ```
-

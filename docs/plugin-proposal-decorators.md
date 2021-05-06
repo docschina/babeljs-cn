@@ -1,7 +1,7 @@
 ---
 id: babel-plugin-proposal-decorators
 title: @babel/plugin-proposal-decorators
-sidebar_label: proposal-decorators
+sidebar_label: decorators
 ---
 
 ## 示例
@@ -12,10 +12,10 @@ sidebar_label: proposal-decorators
 
 ```js
 @annotation
-class MyClass { }
+class MyClass {}
 
 function annotation(target) {
-   target.annotated = true;
+  target.annotated = true;
 }
 ```
 
@@ -23,12 +23,12 @@ function annotation(target) {
 
 ```js
 @isTestable(true)
-class MyClass { }
+class MyClass {}
 
 function isTestable(value) {
-   return function decorator(target) {
-      target.isTestable = value;
-   }
+  return function decorator(target) {
+    target.isTestable = value;
+  };
 }
 ```
 
@@ -37,14 +37,14 @@ function isTestable(value) {
 ```js
 class C {
   @enumerable(false)
-  method() { }
+  method() {}
 }
 
 function enumerable(value) {
-  return function (target, key, descriptor) {
-     descriptor.enumerable = value;
-     return descriptor;
-  }
+  return function(target, key, descriptor) {
+    descriptor.enumerable = value;
+    return descriptor;
+  };
 }
 ```
 
@@ -56,7 +56,7 @@ npm install --save-dev @babel/plugin-proposal-decorators
 
 ## 用法
 
-在 .babelrc 文件中添加插件依赖：
+### 使用配置文件（推荐）
 
 ```json
 {
@@ -73,8 +73,8 @@ babel --plugins @babel/plugin-proposal-decorators script.js
 ### 通过 Node API 使用
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-proposal-decorators"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-proposal-decorators"],
 });
 ```
 
@@ -83,6 +83,13 @@ require("@babel/core").transform("code", {
 ### `decoratorsBeforeExport`
 
 `boolean`
+
+<details>
+  <summary>History</summary>
+| Version  | Changes                                                                        |
+| -------- | ------------------------------------------------------------------------------ |
+| `v7.2.0` | `decoratorsBeforeExport` must be specified. Before that it defaults to `false` |
+</details>
 
 ```js
 // decoratorsBeforeExport: false
@@ -135,12 +142,13 @@ export class Foo {}
 {
   "plugins": [
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    ["@babel/plugin-proposal-class-properties", { "loose" : true }]
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
   ]
 }
 ```
 
+> 你可以通过[该链接](https://babeljs.io/docs/en/plugins#plugin-options)了解更多插件配置选项。
+
 ## 参考
 
 * [提案：JavaScript 装饰器](https://github.com/wycats/javascript-decorators/blob/master/README.md)
-

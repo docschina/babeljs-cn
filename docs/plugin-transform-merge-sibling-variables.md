@@ -1,7 +1,7 @@
 ---
 id: babel-plugin-transform-merge-sibling-variables
 title: babel-plugin-transform-merge-sibling-variables
-sidebar_label: transform-merge-sibling-variables
+sidebar_label: merge-sibling-variables
 ---
 
 ## Example
@@ -23,7 +23,7 @@ for (var x = 0; x < 10; x++) {}
 
 ```javascript
 var foo = "bar",
-    bar = "foo";
+  bar = "foo";
 foobar();
 
 for (var i = 0, x = 0; x < 10; x++) {}
@@ -37,9 +37,7 @@ npm install babel-plugin-transform-merge-sibling-variables --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -56,8 +54,7 @@ babel --plugins transform-merge-sibling-variables script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["transform-merge-sibling-variables"]
+require("@babel/core").transformSync("code", {
+  plugins: ["transform-merge-sibling-variables"],
 });
 ```
-

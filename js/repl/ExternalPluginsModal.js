@@ -1,4 +1,5 @@
 // @flow
+import algoliasearch from "algoliasearch/lite";
 import { css } from "emotion";
 import React from "react";
 import {
@@ -7,16 +8,16 @@ import {
   InstantSearch,
   Pagination,
   PoweredBy,
-} from "react-instantsearch/es/dom";
+} from "react-instantsearch-dom";
 import SearchBox from "./ExternalPluginsSearchBox";
 import Modal from "./Modal";
 import { colors, media } from "./styles";
+import type { BabelPlugin } from "./types";
 
-const config = {
-  apiKey: "1f0cc4b7da241f62651b85531d788fbd",
-  appId: "OFCNCOG2CU",
-  indexName: "npm-search",
-};
+const searchClient = algoliasearch(
+  "OFCNCOG2CU",
+  "1f0cc4b7da241f62651b85531d788fbd"
+);
 
 type SearchHit = {
   description: string,
@@ -37,21 +38,12 @@ type RenderHitProps = {
 type Props = {
   onClose: () => void,
   onPluginSelect: any, // TODO
-  plugins: Array<string>,
-};
-
-type State = {
+  plugins: Array<BabelPlugin>,
   officialOnly: boolean,
+  handleOfficialOnlyToggle: boolean => void,
 };
 
-export default class ExternalPluginsModal extends React.Component<
-  Props,
-  State
-> {
-  state = {
-    officialOnly: false,
-  };
-
+export default class ExternalPluginsModal extends React.Component<Props> {
   _input: ?HTMLInputElement;
 
   componentDidMount() {
@@ -63,12 +55,6 @@ export default class ExternalPluginsModal extends React.Component<
   handleSelectPlugin = (hit: SearchHit) => {
     this.props.onPluginSelect(hit);
     this.props.onClose();
-  };
-
-  handleOfficialOnlyToggle = () => {
-    this.setState(({ officialOnly }) => ({
-      officialOnly: !officialOnly,
-    }));
   };
 
   renderHit = ({ hit }: RenderHitProps) => {
@@ -96,8 +82,7 @@ export default class ExternalPluginsModal extends React.Component<
   };
 
   render() {
-    const { onClose, plugins } = this.props;
-    const { officialOnly } = this.state;
+    const { onClose, plugins, officialOnly } = this.props;
 
     let filters = "computedKeywords:babel-plugin";
 
@@ -106,17 +91,13 @@ export default class ExternalPluginsModal extends React.Component<
     }
 
     if (plugins.length) {
-      plugins.forEach(p => (filters += ` AND NOT objectID:${p}`));
+      plugins.forEach(p => (filters += ` AND NOT objectID:${p.name}`));
     }
 
     return (
       <Modal onClose={onClose}>
         <div className={styles.modalContent}>
-          <InstantSearch
-            apiKey={config.apiKey}
-            appId={config.appId}
-            indexName={config.indexName}
-          >
+          <InstantSearch indexName="npm-search" searchClient={searchClient}>
             <Configure
               hitsPerPage={5}
               attributesToRetrieve={["name", "version", "description", "owner"]}
@@ -128,13 +109,13 @@ export default class ExternalPluginsModal extends React.Component<
               <label>
                 <input
                   checked={officialOnly}
-                  onChange={this.handleOfficialOnlyToggle}
+                  onChange={this.props.handleOfficialOnlyToggle}
                   type="checkbox"
                 />
                 Only official plugins
               </label>
             </div>
-            <Pagination />
+            <Pagination showFirst={false} showLast={false} />
             <Hits hitComponent={this.renderHit} />
             <div className={styles.modalFooter}>
               <PoweredBy />
@@ -181,6 +162,7 @@ const styles = {
       display: inline-block;
       border-radius: 4px;
       font-size: 0.875rem;
+      margin-top: 0;
       padding: 3px;
       text-align: center;
       transition: all 0.3s ease;
@@ -198,6 +180,12 @@ const styles = {
       a {
         color: ${colors.inverseBackgroundDark};
       }
+    }
+
+    .ais-Hits-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
   `,
   modalFooter: css`
@@ -234,9 +222,9 @@ const styles = {
     label {
       align-items: center;
       display: flex;
-      flex: 0 0 165px;
+      flex: 0 0 180px;
       font-size: 0.875rem;
-      padding-left: 1rem;
+      padding: 0 1rem;
       user-select: none;
 
       input {

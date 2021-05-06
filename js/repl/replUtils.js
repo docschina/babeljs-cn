@@ -3,11 +3,10 @@
 import { envPresetDefaults, replDefaults } from "./PluginConfig";
 import StorageService from "./StorageService";
 import UriUtils from "./UriUtils";
-import { envPresetFeaturesSupport } from "./PluginConfig";
 
 import type {
-  BabelPresetEnvResult,
   BabelState,
+  BabelPlugin,
   EnvState,
   EnvConfig,
   PresetsOptions,
@@ -37,7 +36,15 @@ export const envConfigToTargetsString = (envConfig: EnvConfig): string => {
 //  Repl state stored in Local storage
 const loadPersistedState = (): ReplState => {
   const storageState = StorageService.get("replState");
-  return { ...replDefaults, ...storageState };
+  return {
+    ...replDefaults,
+    ...storageState,
+    // HACK: We don't want to load the Babel version from the
+    // localStorage, otherwise users will use an old version
+    // unless they manually "update" it explicitly loading a
+    // new one via https://babeljs.io/repl/version/7.3.0
+    version: "",
+  };
 };
 
 //  Repl state in query string
@@ -76,7 +83,6 @@ export const persistedStateToEnvState = (
     ...persistedStateToBabelState(persistedState, config),
     isLoading: isEnabled,
     isEnabled,
-    version: persistedState.envVersion,
   };
 };
 
@@ -125,6 +131,7 @@ export const persistedStateToPresetsOptions = (
       !persistedState.decoratorsLegacy &&
       !!persistedState.decoratorsBeforeExport,
     pipelineProposal: persistedState.pipelineProposal || "minimal",
+    reactRuntime: persistedState.reactRuntime || "classic",
   };
 };
 
@@ -146,9 +153,11 @@ export const persistedStateToEnvConfig = (
     isBuiltInsEnabled: !!persistedState.builtIns,
     isSpecEnabled: !!persistedState.spec,
     isLooseEnabled: !!persistedState.loose,
+    isBugfixesEnabled: !!persistedState.bugfixes,
     node: envPresetDefaults.node.default,
-    version: persistedState.envVersion,
+    version: persistedState.version,
     builtIns: envPresetDefaults.builtIns.default,
+    corejs: envPresetDefaults.corejs.default,
   };
 
   decodeURIComponent(persistedState.targets)
@@ -183,49 +192,17 @@ export const persistedStateToEnvConfig = (
   return envConfig;
 };
 
-export const getDebugInfoFromEnvResult = (
-  result: BabelPresetEnvResult
-): string => {
-  const debugInfo = [];
-
-  if (result.modulePlugin) {
-    debugInfo.push(`Using modules transform:\n  ${result.modulePlugin}`);
+export const persistedStateToExternalPluginsState = (
+  persistedState: ReplState
+): Array<BabelPlugin> => {
+  const { externalPlugins } = persistedState;
+  if (!externalPlugins) {
+    return [];
   }
-
-  const targetNames = Object.keys(result.targets);
-  if (targetNames.length) {
-    debugInfo.push(
-      "Using targets:\n" +
-        targetNames.map(name => `• ${name}: ${result.targets[name]}`).join("\n")
-    );
-  }
-
-  if (result.transformationsWithTargets.length) {
-    debugInfo.push(
-      "Using plugins:\n" +
-        result.transformationsWithTargets
-          .map(item => `• ${item.name}`)
-          .join("\n")
-    );
-  }
-
-  // This property will only be set if we compiled with useBuiltIns=true
-  if (result.polyfillsWithTargets && result.polyfillsWithTargets.length) {
-    debugInfo.push(
-      "Using polyfills:\n" +
-        result.polyfillsWithTargets.map(item => `• ${item.name}`).join("\n")
-    );
-  }
-
-  return debugInfo.join("\n\n");
-};
-
-export const isEnvFeatureSupported = (
-  version: ?string,
-  feature: string
-): boolean => {
-  if (!version) return false;
-  const parsedVersion = parseInt(version);
-  const [min, max] = envPresetFeaturesSupport[feature];
-  return parsedVersion >= min && parsedVersion <= max;
+  return externalPlugins.split(",").map(plugin => {
+    const separator = plugin.lastIndexOf("@");
+    const name = plugin.slice(0, separator);
+    const version = plugin.slice(separator + 1);
+    return { name, version };
+  });
 };

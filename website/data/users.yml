@@ -4,7 +4,7 @@
   pinned: true
 - name: CloudFlare
   url: https://cloudflare.com/
-  logo: cloudflare.png
+  logo: cloudflare.svg
   pinned: true
 - name: Netflix
   url: https://www.netflix.com/
@@ -677,3 +677,21 @@
 - name: Taskade
   url: https://taskade.com
   logo: taskade-logo.svg
+- name: Skype
+  url: https://www.skype.com
+  logo: skype-logo.svg
+- name: SwissDev Jobs
+  url: https://swissdevjobs.ch
+  logo: swissdev-java-jobs-logo.svg
+- name: BroadbandUK
+  url: https://broadbandspeedtest.org.uk
+  logo: broadbanduk.svg
+- name: Toptal
+  url: https://www.toptal.com
+  logo: toptal.svg
+- name: Rubrik
+  url: https://www.rubrik.com
+  logo: rubrik.svg
+- name: BlueHive
+  url: https://www.bluehive.com
+  logo: bluehive.svg

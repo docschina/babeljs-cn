@@ -28,9 +28,8 @@ npm install babel-plugin-minify-builtins --save-dev
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
+### With a configuration file (Recommended)
 
-**.babelrc**
 
 ```json
 {
@@ -47,7 +46,7 @@ babel --plugins minify-builtins script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
+require("@babel/core").transformSync("code", {
   plugins: ["minify-builtins"]
 });
 ```
@@ -56,3 +55,4 @@ require("@babel/core").transform("code", {
 
 + `tdz` - Account for TDZ (Temporal Dead Zone)
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

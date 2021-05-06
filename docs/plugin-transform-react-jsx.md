@@ -1,69 +1,173 @@
 ---
 id: babel-plugin-transform-react-jsx
 title: @babel/plugin-transform-react-jsx
-sidebar_label: transform-react-jsx
+sidebar_label: React Plugin
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-react`
 
 ## Example
 
-### React
+### React Automatic Runtime
+
+Automatic runtime is a feature added in `v7.9.0`. With this runtime enabled, the functions that JSX compiles to will be imported automatically.
 
 **In**
 
 ```javascript
-var profile = <div>
-  <img src="avatar.png" className="profile" />
-  <h3>{[user.firstName, user.lastName].join(' ')}</h3>
-</div>;
+const profile = (
+  <div>
+    <img src="avatar.png" className="profile" />
+    <h3>{[user.firstName, user.lastName].join(" ")}</h3>
+  </div>
+);
 ```
 
 **Out**
 
 ```javascript
-var profile = React.createElement("div", null,
+import { jsx as _jsx } from "react/jsx-runtime";
+import { jsxs as _jsxs } from "react/jsx-runtime";
+
+const profile = _jsxs("div", {
+  children: [
+    _jsx("img", {
+      src: "avatar.png",
+      className: "profile",
+    }),
+    _jsx("h3", {
+      children: [user.firstName, user.lastName].join(" "),
+    }),
+  ],
+});
+```
+
+#### Customizing the Automatic Runtime Import
+
+**In**
+
+```javascript
+/** @jsxImportSource custom-jsx-library */
+
+const profile = (
+  <div>
+    <img src="avatar.png" className="profile" />
+    <h3>{[user.firstName, user.lastName].join(" ")}</h3>
+  </div>
+);
+```
+
+**Out**
+
+```javascript
+import { jsx as _jsx } from "custom-jsx-library/jsx-runtime";
+import { jsxs as _jsxs } from "custom-jsx-library/jsx-runtime";
+
+const profile = _jsxs("div", {
+  children: [
+    _jsx("img", {
+      src: "avatar.png",
+      className: "profile",
+    }),
+    _jsx("h3", {
+      children: [user.firstName, user.lastName].join(" "),
+    }),
+  ],
+});
+```
+
+**In**
+
+```javascript
+/** @jsxRuntime classic */
+
+const profile = (
+  <div>
+    <img src="avatar.png" className="profile" />
+    <h3>{[user.firstName, user.lastName].join(" ")}</h3>
+  </div>
+);
+```
+
+**Out**
+
+```javascript
+const profile = React.createElement(
+  "div",
+  null,
   React.createElement("img", { src: "avatar.png", className: "profile" }),
   React.createElement("h3", null, [user.firstName, user.lastName].join(" "))
 );
 ```
 
-### Custom
+### React Classic Runtime
+
+If you do not want (or cannot use) auto importing, you can use the classic runtime, which is the default behavior for v7 and prior.
 
 **In**
 
 ```javascript
-/** @jsx dom */
-
-var { dom } = require("deku");
-
-var profile = <div>
-  <img src="avatar.png" className="profile" />
-  <h3>{[user.firstName, user.lastName].join(' ')}</h3>
-</div>;
+const profile = (
+  <div>
+    <img src="avatar.png" className="profile" />
+    <h3>{[user.firstName, user.lastName].join(" ")}</h3>
+  </div>
+);
 ```
 
 **Out**
 
 ```javascript
-/** @jsx dom */
+const profile = React.createElement(
+  "div",
+  null,
+  React.createElement("img", { src: "avatar.png", className: "profile" }),
+  React.createElement("h3", null, [user.firstName, user.lastName].join(" "))
+);
+```
 
-var dom = require("deku").dom;
+#### Customizing the Classic Runtime Import
 
-var profile = dom("div", null,
-  dom("img", { src: "avatar.png", className: "profile" }),
-  dom("h3", null, [user.firstName, user.lastName].join(" "))
+**In**
+
+```javascript
+/** @jsx Preact.h */
+
+import Preact from "preact";
+
+const profile = (
+  <div>
+    <img src="avatar.png" className="profile" />
+    <h3>{[user.firstName, user.lastName].join(" ")}</h3>
+  </div>
+);
+```
+
+**Out**
+
+```javascript
+/** @jsx Preact.h */
+
+import Preact from "preact";
+
+const profile = Preact.h(
+  "div",
+  null,
+  Preact.h("img", { src: "avatar.png", className: "profile" }),
+  Preact.h("h3", null, [user.firstName, user.lastName].join(" "))
 );
 ```
 
 ### Fragments
 
-Fragments are a feature available in React 16.2.0+.
+[Fragments](https://reactjs.org/docs/fragments.html) are a feature available in React 16.2.0+.
 
 #### React
 
 **In**
 
 ```javascript
-var descriptions = items.map(item => (
+const descriptions = items.map(item => (
   <>
     <dt>{item.name}</dt>
     <dd>{item.value}</dd>
@@ -74,23 +178,25 @@ var descriptions = items.map(item => (
 **Out**
 
 ```javascript
-var descriptions = items.map(item => React.createElement(
-  React.Fragment,
-  null,
-  React.createElement("dt", null, item.name),
-  React.createElement("dd", null, item.value)
-));
+const descriptions = items.map(item =>
+  React.createElement(
+    React.Fragment,
+    null,
+    React.createElement("dt", null, item.name),
+    React.createElement("dd", null, item.value)
+  )
+);
 ```
 
-#### Custom
+#### Customizing with the Classic Runtime
 
 **In**
 
 ```javascript
-/** @jsx dom */
-/** @jsxFrag DomFrag */
+/** @jsx Preact.h */
+/** @jsxFrag Preact.Fragment */
 
-var { dom, DomFrag } = require("deku"); // DomFrag is fictional!
+import Preact from "preact";
 
 var descriptions = items.map(item => (
   <>
@@ -103,20 +209,22 @@ var descriptions = items.map(item => (
 **Out**
 
 ```javascript
-/** @jsx dom */
-/** @jsxFrag DomFrag */
+/** @jsx Preact.h */
+/** @jsxFrag Preact.Fragment */
 
-var { dom, DomFrag } = require("deku"); // DomFrag is fictional!
+import Preact from "preact";
 
-var descriptions = items.map(item => dom(
-  DomFrag,
-  null,
-  dom("dt", null, item.name),
-  dom("dd", null, item.value)
-));
+var descriptions = items.map(item =>
+  Preact.h(
+    Preact.Fragment,
+    null,
+    Preact.h("dt", null, item.name),
+    Preact.h("dd", null, item.value)
+  )
+);
 ```
 
-Note that if a custom pragma is specified, then a custom fragment pragma must also be specified if the `<></>` is used. Otherwise, an error will be thrown.
+Note that if a custom pragma is specified, then a custom fragment pragma must also be specified if the fragment sytnax `<></>` is used. Otherwise, an error will be thrown.
 
 ## Installation
 
@@ -126,9 +234,7 @@ npm install --save-dev @babel/plugin-transform-react-jsx
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 Without options:
 
@@ -143,11 +249,14 @@ With options:
 ```json
 {
   "plugins": [
-    ["@babel/plugin-transform-react-jsx", {
-      "pragma": "dom", // default pragma is React.createElement
-      "pragmaFrag": "DomFrag", // default is React.Fragment
-      "throwIfNamespace": false // defaults to true
-    }]
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "throwIfNamespace": false, // defaults to true
+        "runtime": "automatic", // defaults to classic
+        "importSource": "custom-jsx-library" // defaults to react
+      }
+    ]
   ]
 }
 ```
@@ -161,14 +270,50 @@ babel --plugins @babel/plugin-transform-react-jsx script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-react-jsx"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-react-jsx"],
 });
 ```
 
 ## Options
 
-### `pragma`
+### Both Runtimes
+
+#### `throwIfNamespace`
+
+`boolean`, defaults to `true`.
+
+Toggles whether or not to throw an error if an XML namespaced tag name is used. For example:
+
+    <f:image />
+
+Though the JSX spec allows this, it is disabled by default since React's JSX does not currently have support for it.
+
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+
+#### `runtime`
+
+`classic | automatic`, defaults to `classic`
+
+Added in: `v7.9.0`
+
+Decides which runtime to use.
+
+`automatic` auto imports the functions that JSX transpiles to. `classic` does not automatically import anything.
+
+### React Automatic Runtime
+
+#### importSource
+
+`string`, defaults to `react`.
+
+Added in: `v7.9.0`
+
+Replaces the import source when importing functions.
+
+### React Classic Runtime
+
+#### `pragma`
 
 `string`, defaults to `React.createElement`.
 
@@ -176,7 +321,7 @@ Replace the function used when compiling JSX expressions.
 
 Note that the `@jsx React.DOM` pragma has been deprecated as of React v0.12
 
-### `pragmaFrag`
+#### `pragmaFrag`
 
 `string`, defaults to `React.Fragment`.
 
@@ -188,13 +333,8 @@ Replace the component used when compiling JSX fragments.
 
 When spreading props, use `Object.assign` directly instead of Babel's extend helper.
 
-### `throwIfNamespace`
+### `useSpread`
 
-`boolean`, defaults to `true`.
+`boolean`, defaults to `false`.
 
-Toggles whether or not to throw an error if a XML namespaced tag name is used. For example:
-
-    <f:image />
-
-Though the JSX spec allows this, it is disabled by default since React's JSX does not currently have support for it.
-
+When spreading props, use inline object with spread elements directly instead of Babel's extend helper or `Object.assign`.

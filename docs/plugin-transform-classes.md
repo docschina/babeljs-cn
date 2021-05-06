@@ -1,13 +1,16 @@
 ---
 id: babel-plugin-transform-classes
 title: @babel/plugin-transform-classes
-sidebar_label: transform-classes
+sidebar_label: classes
 ---
+
+> **NOTE**: This plugin is included in `@babel/preset-env`
 
 ## Caveats
 
 When extending a native class (e.g., `class extends Array {}`), the super class
 needs to be wrapped. This is needed to workaround two problems:
+
 - Babel transpiles classes using `SuperClass.apply(/* ... */)`, but native
   classes aren't callable and thus throw in this case.
 - Some built-in functions (like `Array`) always return a new object. Instead of
@@ -15,6 +18,26 @@ needs to be wrapped. This is needed to workaround two problems:
 
 The wrapper works on IE11 and every other browser with `Object.setPrototypeOf` or `__proto__` as fallback.
 There is **NO IE <= 10 support**. If you need IE <= 10 it's recommended that you don't extend natives.
+
+Babel needs to statically know if you are extending a built-in class. For this reason, the "mixin pattern" doesn't work:
+
+```js
+class Foo extends mixin(Array) {}
+
+function mixin(Super) {
+  return class extends Super {
+    mix() {}
+  };
+}
+```
+
+To workaround this limitation, you can add another class in the inheritance chain so that Babel can wrap the native class:
+
+```js
+const ExtensibleArray = class extends Array {};
+
+class Foo extends mixin(ExtensibleArray) {}
+```
 
 ## Examples
 
@@ -26,7 +49,7 @@ class Test {
     this.name = name;
   }
 
-  logger () {
+  logger() {
     console.log("Hello", this.name);
   }
 }
@@ -35,9 +58,13 @@ class Test {
 **Out**
 
 ```javascript
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
 
-var Test = function () {
+var Test = (function() {
   function Test(name) {
     _classCallCheck(this, Test);
 
@@ -49,7 +76,7 @@ var Test = function () {
   };
 
   return Test;
-}();
+})();
 ```
 
 ## Installation
@@ -60,9 +87,7 @@ npm install --save-dev @babel/plugin-transform-classes
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```js
 // without options
@@ -89,8 +114,8 @@ babel --plugins @babel/plugin-transform-classes script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-classes"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-classes"],
 });
 ```
 
@@ -128,3 +153,4 @@ When `Bar.prototype.foo` is defined it triggers the setter on `Foo`. This is a
 case that is very unlikely to appear in production code however it's something
 to keep in mind.
 
+> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)

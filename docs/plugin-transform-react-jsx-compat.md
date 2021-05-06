@@ -1,7 +1,7 @@
 ---
 id: babel-plugin-transform-react-jsx-compat
 title: @babel/plugin-transform-react-jsx-compat
-sidebar_label: transform-react-jsx-compat
+sidebar_label: react-jsx-compat
 ---
 
 ## Example
@@ -9,17 +9,20 @@ sidebar_label: transform-react-jsx-compat
 **In**
 
 ```javascript
-var profile = <div>
-  <img src="avatar.png" class="profile" />
-  <h3>{[user.firstName, user.lastName].join(' ')}</h3>
-</div>;
+var profile = (
+  <div>
+    <img src="avatar.png" class="profile" />
+    <h3>{[user.firstName, user.lastName].join(" ")}</h3>
+  </div>
+);
 ```
 
 **Out**
 
 ```javascript
-var profile = React.DOM.div(null,
-  React.DOM.img({ src: "avatar.png", "class": "profile" }),
+var profile = React.DOM.div(
+  null,
+  React.DOM.img({ src: "avatar.png", class: "profile" }),
   React.DOM.h3(null, [user.firstName, user.lastName].join(" "))
 );
 ```
@@ -32,9 +35,7 @@ npm install --save-dev @babel/plugin-transform-react-jsx-compat
 
 ## Usage
 
-### Via `.babelrc` (Recommended)
-
-**.babelrc**
+### With a configuration file (Recommended)
 
 ```json
 {
@@ -51,8 +52,7 @@ babel --plugins @babel/plugin-transform-react-jsx-compat script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["@babel/plugin-transform-react-jsx-compat"]
+require("@babel/core").transformSync("code", {
+  plugins: ["@babel/plugin-transform-react-jsx-compat"],
 });
 ```
-
