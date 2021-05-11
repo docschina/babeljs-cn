@@ -15,7 +15,7 @@ title: 新增特性时间轴
 
 - 升级 [`targets`](https://babeljs.io/docs/en/options#output-targets) 选项 ([RFC](https://github.com/babel/rfcs/pull/2))
 - 粒度更小的编译器 `assumptions` ([文档](https://babeljs.io/assumptions), [RFC](https://github.com/babel/rfcs/pull/5))
-- 支持 [Records and Tuples](https://github.com/tc39/proposal-record-tuple) 提案
+- 支持 [Records 和 Tuples](https://github.com/tc39/proposal-record-tuple) 提案
   ```js
   let rec = #{ x: 1 };
   let tup = #[1, 2, 3];
