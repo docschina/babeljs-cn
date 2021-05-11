@@ -254,7 +254,7 @@ title: 新增特性时间轴
 - 放弃对已不再维护的 Node 版本（0.10, 0.12, 4, 5）的支持
 - 切换到作用域包 (从 [`babel-core`](https://www.npmjs.com/package/babel-core) 变为 [`@babel/core`](https://www.npmjs.com/package/@babel/core))
 - 移除年度预设 (`@babel/preset-es2015`) 以及阶段预设 (`@babel/preset-stage-0`) ([博客公告](https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets)).
-- 在某些情况下添加对 "pure" (`/*#__PURE__*/` )注释的支持。(后来实现为 [@babel/helper-annotate-as-pure](helper-annotate-as-pure.md)
+- 在某些情况下添加对 "pure" (`/*#__PURE__*/` )注释的支持。(后来实现为 [@babel/helper-annotate-as-pure](helper-annotate-as-pure.md)）
 - 添加项目级的 `babel.config.js` 配置文件 ([文档](config-files.md)) 以及 [`overrides`](options.md#overrides) 配置选项
 - 对[`@babel/preset-env`](preset-env.md#usebuiltins) 补充 `"useBuiltIns: "usage"` 选项
 - 通过 `@babel/preset-typescript` 支持 TypeScript
