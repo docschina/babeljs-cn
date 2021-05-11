@@ -3,7 +3,7 @@ id: features-timeline
 title: 新增特性时间轴
 ---
 
-在每个 `Babel` 版本中，我们主要引入了哪些的新特性？本文为每个小版本都做了简短摘要，你也可以在[在 GitHub](https://github.com/babel/babel/blob/main/CHANGELOG.md) 上阅读完整的更新日志！
+大多数情况下，大家都不知道在每个 Babel 版本中，我们主要引入了哪些新的特性。本文为每个小版本都做了简短摘要，你也可以在 [在 GitHub](https://github.com/babel/babel/blob/main/CHANGELOG.md) 上阅读完整的更新日志！
 此外，你也可以使用此时间轴来追踪一些其他的重要工作，例如 [babel-polyfills](https://github.com/babel/babel-polyfills) 项目。
 
 <ol class="timeline-container">
