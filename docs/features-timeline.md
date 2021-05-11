@@ -249,7 +249,7 @@ title: 新增特性时间轴
 
 [博客公告](https://babeljs.io/blog/2018/08/27/7.0.0)
 
-此处列出了许多改变，因为它们是两年内的预发布的内容。
+此处列出了许多变化，因为它们是两年内将要发布的内容。
 
 - 放弃对未维护的 Node 版本(0.10, 0.12, 4, 5)的支持
 - 切换到作用域包 (从 [`babel-core`](https://www.npmjs.com/package/babel-core) 变为 [`@babel/core`](https://www.npmjs.com/package/@babel/core))
