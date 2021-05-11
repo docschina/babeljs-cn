@@ -251,7 +251,7 @@ title: 新增特性时间轴
 
 此处列出了许多变化，因为它们是两年内将要发布的内容。
 
-- 放弃对未维护的 Node 版本(0.10, 0.12, 4, 5)的支持
+- 放弃对已不再维护的 Node 版本（0.10, 0.12, 4, 5）的支持
 - 切换到作用域包 (从 [`babel-core`](https://www.npmjs.com/package/babel-core) 变为 [`@babel/core`](https://www.npmjs.com/package/@babel/core))
 - 移除年度预设 (`@babel/preset-es2015`) 以及阶段预设 (`@babel/preset-stage-0`) ([博客公告](https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets)).
 - 在某些情况下添加对 "pure" (`/*#__PURE__*/` )注释的支持。(后来实现为 [@babel/helper-annotate-as-pure](helper-annotate-as-pure.md)
