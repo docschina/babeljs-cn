@@ -85,6 +85,17 @@ require("@babel/core").transformSync("code", {
 
 当设置为 `true` 时，类属性将被编译为赋值表达式而不是 `Object.defineProperty`。
 
+> ⚠️ Consider migrating to the top level [`setPublicClassFields`](assumptions.md#setpublicclassfields) assumption
+
+```jsonc
+// babel.config.json
+{
+  "assumptions": {
+    "setPublicClassFields": true
+  }
+}
+```
+
 有关使用其中任何一种结果的解释，请参考 [Definition vs. Assignment](http://2ality.com/2012/08/property-definition-assignment.html) (第 5 部分为总结)
 
 #### 示例
@@ -99,7 +110,7 @@ class Bork {
 }
 ```
 
-如果没有使用选项 `{ "loose": true }`，上面的代码将使用 `Object.defineProperty`，被编译为如下代码：
+如果没有使用选项 `{ "setPublicClassFields": true }`，上面的代码将使用 `Object.defineProperty`，被编译为如下代码：
 
 ```js
 var Bork = function Bork() {
@@ -132,7 +143,7 @@ Object.defineProperty(Bork, "b", {
 });
 ```
 
-但是，使用 `{ "loose": true }`，它将被编译为赋值表达式的形式：
+但是，使用 `{ "setPublicClassFields": true }`，它将被编译为赋值表达式的形式：
 
 ```js
 var Bork = function Bork() {

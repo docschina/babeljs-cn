@@ -114,7 +114,7 @@ export class Foo {}
 
 如果你手动引用了插件 `@babel/plugin-proposal-class-properties` 并使用了它，请确保在引用 `@babel/plugin-proposal-class-properties` 之前引用 `@babel/plugin-proposal-decorators`。
 
-当使用 `legacy: true` 模式时，必须在 `loose` 模式下使用 `@babel/plugin-proposal-class-properties` 来支持 `@babel/plugin-proposal-decorators`。
+当使用 `legacy: true` 模式时，必须在必须启用 [`setPublicClassFields` assumption](assumptions.md#setpublicclassfields) 来支持 `@babel/plugin-proposal-decorators`。
 
 错误示例：
 
@@ -140,9 +140,12 @@ export class Foo {}
 
 ```json
 {
+  "assumptions": {
+    "setPublicClassFields": true
+  },
   "plugins": [
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    ["@babel/plugin-proposal-class-properties", { "loose": true }]
+    ["@babel/plugin-proposal-class-properties"]
   ]
 }
 ```

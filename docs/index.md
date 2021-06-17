@@ -6,6 +6,7 @@ title: 什么是 Babel？
 ## Babel 是一个 JavaScript compiler
 
 Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中，将 ECMAScript 2015+ 代码转换为 JavaScript 向后兼容版本的代码。以下是 Babel 可以做的主要事情：
+
 - 转换语法
 - Polyfill 目标环境中缺少的功能（通过如 [core-js](https://github.com/zloirock/core-js) 的第三方 `polyfill`）
 - 源代码转换(codemods)
@@ -13,7 +14,7 @@ Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中�
 
 ```js
 // Babel 输入：ES2015 箭头函数
-[1, 2, 3].map((n) => n + 1);
+[1, 2, 3].map(n => n + 1);
 
 // Babel 输出：ES5 等价语法
 [1, 2, 3].map(function(n) {
@@ -52,11 +53,13 @@ export default React.createClass({
   },
 
   render() {
-    return <div>
-      Your dice roll:
-      {this.state.num}
-    </div>;
-  }
+    return (
+      <div>
+        Your dice roll:
+        {this.state.num}
+      </div>
+    );
+  },
 });
 ```
 
@@ -87,14 +90,13 @@ npm install --save-dev @babel/preset-typescript
 
 ```js
 function Greeter(greeting: string) {
-    this.greeting = greeting;
+  this.greeting = greeting;
 }
 ```
 
 > 了解更多关于 [Flow](https://flow.org/) 和 [TypeScript](https://www.typescriptlang.org/) 的信息。
 
-可插件化
----------
+## 可插件化
 
 Babel 是用 plugins 构建的。你可以使用现有 plugins 编写自己的转换管道，或编写自己的 plugins。通过使用或创建一个 [preset](plugins.md#presets) 轻松使用一组插件。[了解更多 →](plugins.md)
 
@@ -102,31 +104,31 @@ Babel 是用 plugins 构建的。你可以使用现有 plugins 编写自己的�
 
 ```javascript
 // plugin 仅仅是一个函数
-export default function ({types: t}) {
+export default function({ types: t }) {
   return {
     visitor: {
       Identifier(path) {
         let name = path.node.name; // reverse the name: JavaScript -> tpircSavaJ
-        path.node.name = name.split('').reverse().join('');
-      }
-    }
+        path.node.name = name
+          .split("")
+          .reverse()
+          .join("");
+      },
+    },
   };
 }
 ```
 
-可调试
-----------
+## 可调试
 
 支持 **Source map**，因此你可以轻松调试编译过的代码。
 
-规范性
---------
+## 规范性
 
 Babel 试图尽可能地遵循 ECMAScript 标准。作为性能的折衷方案，它可能还具有一些特定的选项，使其更符合规范。
 
-可压缩
---------
+## 可压缩
 
 Babel 尝试使用尽可能少的代码而不依赖于庞大的运行时环境。
 
-有些情况可能很难达到，因此为了保证可读性、文件大小以及（运行）速度，会针对特定转换牺牲一些合规性，即提供 "loose" 选项。
+有些情况可能很难达到，因此为了保证可读性、文件大小以及（运行）速度，会牺牲一些合规性，即提供了 ["assumptions"](/assumptions) 选项。

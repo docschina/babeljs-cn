@@ -17,7 +17,6 @@ title: 使用指南
 
    ```sh
    npm install --save-dev @babel/core @babel/cli @babel/preset-env
-   npm install --save @babel/polyfill
    ```
 
 2. 使用以下内容在项目的根目录中创建名为 `babel.config.json` (需要 `v7.8.0` 及以上版本) 的配置文件：
@@ -174,7 +173,7 @@ npm install --save-dev @babel/preset-env
 
 ## polyfill
 
-> 🚨 自 Babel 7.4.0 起，此 package 已被弃用，你可以直接引入 `core-js/stable`（用于 polyfill ECMAScript 新特性）以及 `regenerator-runtime/runtime` (被用于转译 generator 函数)：
+> 🚨 <span id="polyfill-deprecated">自</span> Babel 7.4.0 起，此 package 已被弃用，你可以直接引入 `core-js/stable`（用于 polyfill ECMAScript 新特性）以及 `regenerator-runtime/runtime` (被用于转译 generator 函数)：
 >
 > ```js
 > import "core-js/stable";
@@ -233,6 +232,33 @@ Promise.resolve().finally();
 ```
 
 如果没有将 `env` preset 的 `"useBuiltIns"` 选项的设置为 `"usage"` ，我们必须在入口起点的其他代码之前先完整 polyfill *一次*。
+
+For example:
+
+```json
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "edge": "17",
+          "firefox": "60",
+          "chrome": "67",
+          "safari": "11.1"
+        },
+        "useBuiltIns": "entry"
+      }
+    ]
+  ]
+}
+```
+Then import [core-js](https://github.com/zloirock/core-js) (to polyfill ECMAScript features) and [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js) (needed only if you are transpiling generators) first, in our entry file to emulate a full ES2015+ environment since [@babel/polyfill](polyfill.md) has been <a href="#polyfill-deprecated">deprecated</a>:
+
+```js
+ import "core-js/stable";
+ import "regenerator-runtime/runtime";
+ ```
 
 ## 总结
 

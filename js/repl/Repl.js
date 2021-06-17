@@ -18,6 +18,7 @@ import TimeTravelSlider from "./TimeTravelSlider";
 import {
   babelConfig,
   envPresetConfig,
+  envPresetDefaults,
   shippedProposalsConfig,
   pluginConfigs,
   runtimePolyfillConfig,
@@ -225,6 +226,7 @@ class Repl extends React.Component<Props, State> {
           onExternalPluginRemove={this.handleRemoveExternalPlugin}
           onIsExpandedChange={this._onIsSidebarExpandedChange}
           onSettingChange={this._onSettingChange}
+          onVersionChange={this._onVersionChange}
           pluginState={state.plugins}
           presetState={state.presets}
           runtimePolyfillConfig={runtimePolyfillConfig}
@@ -511,6 +513,15 @@ class Repl extends React.Component<Props, State> {
     name: string,
     value: any
   ) => {
+    if (name === "isBuiltInsEnabled") {
+      if (value) {
+        this.state.envConfig.builtIns ||= envPresetDefaults.builtIns.default;
+        this.state.envConfig.corejs ||= envPresetDefaults.corejs.default;
+      } else {
+        this.state.envConfig.builtIns = false;
+        this.state.envConfig.corejs = false;
+      }
+    }
     this.setState(
       state => ({
         [kind]: {
@@ -567,13 +578,12 @@ class Repl extends React.Component<Props, State> {
 
     const presetsArray = this._presetsToArray();
 
-    const builtIns = envConfig.isBuiltInsEnabled && envConfig.builtIns;
-
     const payload = {
       browsers: envConfig.browsers,
       bugfixes: envConfig.isBugfixesEnabled,
       build: state.babel.build,
-      builtIns: builtIns,
+      builtIns: envConfig.builtIns,
+      corejs: envConfig.corejs,
       spec: envConfig.isSpecEnabled,
       loose: envConfig.isLooseEnabled,
       circleciRepo: state.babel.circleciRepo,
@@ -601,6 +611,21 @@ class Repl extends React.Component<Props, State> {
     };
     StorageService.set("replState", payload);
     UriUtils.updateQuery(payload);
+  };
+
+  _onVersionChange = (e: Event) => {
+    this.setState(
+      {
+        babel: {
+          ...this.state.babel,
+          version: e.target.value,
+        },
+      },
+      () => {
+        this._persistState();
+        location.reload();
+      }
+    );
   };
 
   _pluginsUpdatedSetStateCallback = () => {
