@@ -85,7 +85,22 @@ require("@babel/core").transformSync("code", {
 
 当设置为 `true` 时，类属性将被编译为赋值表达式而不是 `Object.defineProperty`。
 
+<<<<<<< HEAD
 有关使用其中任何一种结果的解释，请参考 [Definition vs. Assignment](http://2ality.com/2012/08/property-definition-assignment.html) (第 5 部分为总结)
+=======
+> ⚠️ Consider migrating to the top level [`setPublicClassFields`](assumptions.md#setpublicclassfields) assumption
+
+```jsonc
+// babel.config.json
+{
+  "assumptions": {
+    "setPublicClassFields": true
+  }
+}
+```
+
+For an explanation of the consequences of using either, see [Definition vs. Assignment](http://2ality.com/2012/08/property-definition-assignment.html) (TL;DR in Part 5)
+>>>>>>> upstream/main
 
 #### 示例
 
@@ -99,7 +114,11 @@ class Bork {
 }
 ```
 
+<<<<<<< HEAD
 如果没有使用选项 `{ "loose": true }`，上面的代码将使用 `Object.defineProperty`，被编译为如下代码：
+=======
+Without `{ "setPublicClassFields": true }`, the above code will compile to the following, using `Object.defineProperty`:
+>>>>>>> upstream/main
 
 ```js
 var Bork = function Bork() {
@@ -132,7 +151,11 @@ Object.defineProperty(Bork, "b", {
 });
 ```
 
+<<<<<<< HEAD
 但是，使用 `{ "loose": true }`，它将被编译为赋值表达式的形式：
+=======
+However, with `{ "setPublicClassFields": true }`, it will compile using assignment expressions:
+>>>>>>> upstream/main
 
 ```js
 var Bork = function Bork() {

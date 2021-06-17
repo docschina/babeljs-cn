@@ -118,7 +118,7 @@ Since one of the original goals of `preset-env` was to help users easily transit
 }
 ```
 
-Because of this, `preset-env`'s behavior is different than [browserslist](https://github.com/browserslist/browserslist#queries): it does _not_ use the `defaults` query when there are no targets are found in your Babel _or_ browserslist config(s). If you want to use the `defaults` query, you will need to explicitly pass it as a target:
+Because of this, `preset-env`'s behavior is different than [browserslist](https://github.com/browserslist/browserslist#queries): it does _not_ use the `defaults` query when no targets are found in your Babel _or_ browserslist config(s). If you want to use the `defaults` query, you will need to explicitly pass it as a target:
 
 ```json
 {
@@ -196,6 +196,8 @@ Enable more spec compliant, but potentially slower, transformations for any plug
 `boolean`, defaults to `false`.
 
 Enable ["loose" transformations](http://2ality.com/2015/12/babel6-loose-mode.html) for any plugins in this preset that allow them.
+
+> ⚠️ Consider migrating to the top level [`assumptions`](assumptions.md) available since Babel 7.13.
 
 ### `modules`
 
@@ -478,6 +480,7 @@ The [Browserslist environment](https://github.com/browserslist/browserslist#conf
   <summary>History</summary>
 | Version | Changes |
 | --- | --- |
+| `v7.14.0` | Include private field brand checks |
 | `v7.12.0` | Include class static block and import assertions |
 | `v7.10.0` | Include class properties and private methods |
 | `v7.9.0` | Include numeric separator |
@@ -493,6 +496,13 @@ The following are currently supported:
 - [esnext.string.match-all](https://github.com/tc39/proposal-string-matchall) (only supported by `core-js@3`)
 
 **Features**
+
+- [Class static block](https://github.com/tc39/proposal-class-static-block)
+- [Import assertions](https://github.com/tc39/proposal-import-assertions) (parsing only)
+- [Private field brand checks](https://github.com/tc39/proposal-private-fields-in-in)
+
+**Materialized Features**
+These features were behind `shippedProposals` flag in older Babel versions. They are now generally available.
 
 - [class properties](https://github.com/tc39/proposal-class-fields)
 - [numeric separator](https://github.com/tc39/proposal-numeric-separator)

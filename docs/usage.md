@@ -17,7 +17,6 @@ title: 使用指南
 
    ```sh
    npm install --save-dev @babel/core @babel/cli @babel/preset-env
-   npm install --save @babel/polyfill
    ```
 
 2. 使用以下内容在项目的根目录中创建名为 `babel.config.json` (需要 `v7.8.0` 及以上版本) 的配置文件：
@@ -174,7 +173,11 @@ npm install --save-dev @babel/preset-env
 
 ## polyfill
 
+<<<<<<< HEAD
 > 🚨 自 Babel 7.4.0 起，此 package 已被弃用，你可以直接引入 `core-js/stable`（用于 polyfill ECMAScript 新特性）以及 `regenerator-runtime/runtime` (被用于转译 generator 函数)：
+=======
+> 🚨 <span id="polyfill-deprecated">As</span> of Babel 7.4.0, this package has been deprecated in favor of directly including `core-js/stable` (to polyfill ECMAScript features) and `regenerator-runtime/runtime` (needed to use transpiled generator functions):
+>>>>>>> upstream/main
 >
 > ```js
 > import "core-js/stable";
@@ -232,7 +235,38 @@ require("core-js/modules/es.promise.finally");
 Promise.resolve().finally();
 ```
 
+<<<<<<< HEAD
 如果没有将 `env` preset 的 `"useBuiltIns"` 选项的设置为 `"usage"` ，我们必须在入口起点的其他代码之前先完整 polyfill *一次*。
+=======
+If we weren't using the `env` preset with the `"useBuiltIns"` option set to `"usage"` (defaults to "false") we would've had to require the full polyfill _only once_ in our entry point before any other code.
+
+For example:
+
+```json
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "edge": "17",
+          "firefox": "60",
+          "chrome": "67",
+          "safari": "11.1"
+        },
+        "useBuiltIns": "entry"
+      }
+    ]
+  ]
+}
+```
+Then import [core-js](https://github.com/zloirock/core-js) (to polyfill ECMAScript features) and [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js) (needed only if you are transpiling generators) first, in our entry file to emulate a full ES2015+ environment since [@babel/polyfill](polyfill.md) has been <a href="#polyfill-deprecated">deprecated</a>:
+
+```js
+ import "core-js/stable";
+ import "regenerator-runtime/runtime";
+ ```
+>>>>>>> upstream/main
 
 ## 总结
 

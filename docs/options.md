@@ -15,7 +15,7 @@ sidebar_label: Config Options
 - [Option concepts](#options-concepts)
 
 Options can be passed to Babel in a variety of ways. When passed directly to Babel,
-you can just pass the objects object. When Babel is used via a wrapper, it may also be
+you can just pass the options object. When Babel is used via a wrapper, it may also be
 necessary, or at least more useful, to pass the options via [configuration files](config-files.md).
 
 If passing options via `@babel/cli` you'll need to `kebab-case` the names. i.e.
@@ -377,7 +377,7 @@ We recognize this isn’t ideal and will be revisiting this in Babel v8.
 
 Type: `boolean`
 
-You may also target browsers supporting ES Modules (https://www.ecma-international.org/ecma-262/6.0/#sec-modules). When specifying this option, the browsers field will be ignored. You can use this approach in combination with `<script type="module"></script>` to conditionally serve smaller scripts to users (https://jakearchibald.com/2017/es-modules-in-browsers/#nomodule-for-backwards-compatibility).
+You may also target browsers supporting ES Modules (<https://www.ecma-international.org/ecma-262/6.0/#sec-modules>). When specifying this option, the browsers field will be ignored. You can use this approach in combination with `<script type="module"></script>` to conditionally serve smaller scripts to users (<https://jakearchibald.com/2017/es-modules-in-browsers/#nomodule-for-backwards-compatibility>).
 
 > _Please note_: when specifying both `browsers` and the esmodules target, they will be intersected.
 
@@ -799,67 +799,7 @@ and will consider it an error otherwise.
 
 ### Merging
 
-Babel's configuration merging is relatively straightforward. Options will overwrite existing options
-when they are present, and their value is not `undefined`, with a few special cases:
-
-- `parserOpts` objects are merged, rather than replaced, using the same logic as top-level options.
-- `generatorOpts` objects are merged, rather than replaced, using the same logic as top-level options.
-- `plugins` and `presets` are replaced based on the identity of the plugin/preset object/function itself combined with the name of the entry.
-
-#### Plugin/Preset merging
-
-As an example, consider a config with:
-
-```js
-plugins: [
-  './other',
-  ['./plug', { thing: true, field1: true }]
-],
-overrides: [{
-  plugins: [
-    ['./plug', { thing: false, field2: true }],
-  ]
-}]
-```
-
-The `overrides` item will be merged on top of the top-level plugins. Importantly, the `plugins`
-array as a whole doesn't just replace the top-level one. The merging logic will see that `"./plug"`
-is the same plugin in both cases, and `{ thing: false, field2: true }` will replace the original
-options, resulting in a config as
-
-```js
-plugins: [
-  './other',
-  ['./plug', { thing: false, field2: true }],
-],
-```
-
-Since merging is based on identity + name, it is considered an error to use the same plugin with
-the same name twice in the same `plugins`/`presets` array. For example
-
-```js
-plugins: ["./plug", "./plug"];
-```
-
-is considered an error, because it's identical to `plugins: ['./plug']`. Additionally, even
-
-```js
-plugins: [["./plug", { one: true }], ["./plug", { two: true }]];
-```
-
-is considered an error, because the second one would just always replace the first one.
-
-If you actually _do_ want to instantiate two separate instances of a plugin, you must assign each one
-a name to disambiguate them. For example:
-
-```js
-plugins: [
-  ["./plug", { one: true }, "first-instance-name"],
-  ["./plug", { two: true }, "second-instance-name"],
-];
-```
-
-because each instance has been given a unique name and this a unique identity.
+Please refer to [How Babel merges config items](configuration.md#how-babel-merges-config-items).
 
 ### Plugin/Preset entries
 

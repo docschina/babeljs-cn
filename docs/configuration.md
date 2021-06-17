@@ -115,7 +115,7 @@ babel --plugins @babel/plugin-transform-arrow-functions script.js
 
 ```js
 require("@babel/core").transformSync("code", {
-  plugins: ["@babel/plugin-transform-arrow-functions"]
+  plugins: ["@babel/plugin-transform-arrow-functions"],
 });
 ```
 
@@ -123,7 +123,12 @@ require("@babel/core").transformSync("code", {
 
 ## 打印生效配置
 
+<<<<<<< HEAD
 你可以告知 Babel，为给定的输入路径打印生效的配置
+=======
+You can tell Babel to print effective configs on a given input path
+
+>>>>>>> upstream/main
 ```sh
 # *nix 或 WSL
 BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
@@ -188,28 +193,68 @@ Babel 将按优先级升序打印生效的配置源。上面示例的优先级�
 ```
 babel.config.json < .babelrc < @babel/cli 可编程选项
 ```
+<<<<<<< HEAD
 换句话说，`babel.config.json` 会被 `.babelrc` 覆盖，而 `.babelrc` 被可编程选项覆盖。
 
 对于每个配置源，Babel 会按优先级升序打印适用的配置项（例如 [`overrides`](options.md#overrides) 和 [`.env`](options.md#env)）。通常，每个配置源都有至少一个配置项 - 所有配置的根路径。如果你配置了 `overrides` 或 `env`，Babel 不会在根路径中打印它们，而是输出一个名为 `.overrides[index]` 的单独配置项，其中 `index` 是项目的位置。这有助于确定该项对输入路径是否生效，以及将覆盖哪些配置。
+=======
+
+In other words, `babel.config.json` is overwritten by `.babelrc`, and `.babelrc` is overwritten by programmatic options.
+
+For each config source, Babel prints applicable config items (e.g. [`overrides`](options.md#overrides) and [`env`](options.md#env)) in the order of ascending priority. Generally each config sources has at least one config item -- the root content of configs. If you have configured `overrides` or `env`, Babel will not print them in the root, but will instead output a separate config item titled as `.overrides[index]`, where `index` is the position of the item. This helps determine whether the item is effective on the input and which configs it will override.
+>>>>>>> upstream/main
 
 如果输入路径是通过 `ignore` 或 `only` 来配置忽略，Babel 将打印：该文件被忽略。
 
 ### Babel 如何合并配置项
 
+<<<<<<< HEAD
 对于上面提到的每个配置项，Babel 将通过 `Object.assign` 应用于选项（`plugins` 和 `presets` 除外，这些选项由 `Array#concat` 拼接）。例如
+=======
+Babel's configuration merging is relatively straightforward. Options will overwrite existing options
+when they are present and their value is not `undefined`. There are, however, a few special cases:
+
+- For `assumptions`, `parserOpts` and `generatorOpts`, objects are merged, rather than replaced.
+- For `plugins` and `presets`, they are replaced based on the identity of the plugin/preset object/function itself combined with the name of the entry.
+
+#### Option (except plugin/preset) merging
+
+As an example, consider a config with:
+
+>>>>>>> upstream/main
 ```js
-const config = {
-  plugins: [["plugin-1a", { loose: true }], "plugin-1b"],
-  presets: ["preset-1a"],
-  sourceType: "script"
-}
+{
+  sourceType: "script",
+  assumptions: {
+    setClassFields: true,
+    iterableIsArray: false
+  },
+  env: {
+    test: {
+      sourceType: "module",
+      assumptions: {
+        iterableIsArray: true,
+      },
+    }
+  }
+};
+```
 
-const newConfigItem = {
-  plugins: [["plugin-1a", { loose: false }], "plugin-2b"],
-  presets: ["preset-1a", "preset-2a"],
-  sourceType: "module"
-}
+When `NODE_ENV` is `test`, the `sourceType` option will be replaced and the `assumptions` option will be merged. The effective config is:
 
+```js
+{
+  sourceType: "module", // sourceType: "script" is overwritten
+  assumptions: {
+    setClassFields: true,
+    iterableIsArray: true, // assumptions are merged by Object.assign
+  },
+}
+```
+
+#### Plugin/Preset merging
+
+<<<<<<< HEAD
 BabelConfigMerge(config, newConfigItem);
 // 返回
 ({
@@ -226,4 +271,57 @@ BabelConfigMerge(config, newConfigItem);
   ], // 推入新的 presets
   sourceType: "module" // sourceType: "script" 被覆盖
 })
+=======
+As an example, consider a config with:
+
+```js
+plugins: [
+  './other',
+  ['./plug', { thing: true, field1: true }]
+],
+overrides: [{
+  plugins: [
+    ['./plug', { thing: false, field2: true }],
+  ]
+}]
 ```
+
+The `overrides` item will be merged on top of the top-level options. Importantly, the `plugins`
+array as a whole doesn't just replace the top-level one. The merging logic will see that `"./plug"`
+is the same plugin in both cases, and `{ thing: false, field2: true }` will replace the original
+options, resulting in a config as
+
+```js
+plugins: [
+  './other',
+  ['./plug', { thing: false, field2: true }],
+],
+>>>>>>> upstream/main
+```
+
+Since merging is based on identity + name, it is considered an error to use the same plugin with
+the same name twice in the same `plugins`/`presets` array. For example
+
+```js
+plugins: ["./plug", "./plug"];
+```
+
+is considered an error, because it's identical to `plugins: ['./plug']`. Additionally, even
+
+```js
+plugins: [["./plug", { one: true }], ["./plug", { two: true }]];
+```
+
+is considered an error, because the second one would just always replace the first one.
+
+If you actually _do_ want to instantiate two separate instances of a plugin, you must assign each one
+a name to disambiguate them. For example:
+
+```js
+plugins: [
+  ["./plug", { one: true }, "first-instance-name"],
+  ["./plug", { two: true }, "second-instance-name"],
+];
+```
+
+because each instance has been given a unique name and this a unique identity.

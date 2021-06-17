@@ -35,3 +35,6 @@ yarn.lock
 
 .idea
 /.idea
+/.yarn/install-state.gz
+/.yarn/cache
+/.yarn/build-state.yml
