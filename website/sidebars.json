@@ -1,11 +1,7 @@
 {
   "docs": {
-<<<<<<< HEAD
     "指南": ["index", "usage", "configuration", "learn", "v7-migration"],
-    "用法": ["config-files", "options", "presets", "plugins"],
-=======
-    "Guides": ["index", "usage", "configuration", "learn", "v7-migration"],
-    "Config Reference": [
+    "配置方案": [
       "config-files",
       "options",
       "presets",
@@ -13,18 +9,13 @@
       "plugins-list",
       "assumptions"
     ],
->>>>>>> upstream/main
     "Presets": [
       "babel-preset-env",
       "babel-preset-react",
       "babel-preset-typescript",
       "babel-preset-flow"
     ],
-<<<<<<< HEAD
-    "通用": ["editors", "caveats", "faq"],
-=======
-    "Misc": ["roadmap", "caveats", "features-timeline", "faq", "editors"],
->>>>>>> upstream/main
+    "杂项": ["roadmap", "caveats", "features-timeline", "faq", "editors"],
     "Integration Packages": [
       "babel-cli",
       "babel-polyfill",
@@ -42,26 +33,24 @@
       "babel-traverse",
       "babel-types"
     ],
-    "Helper Packages": [
+    "帮助工具包": [
       "babel-helper-compilation-targets",
       "babel-helper-module-imports"
     ]
-<<<<<<< HEAD
-=======
   },
   "plugins": {
-    "Extensions": [
+    "扩展": [
       "babel-plugin-transform-react-jsx",
       "babel-plugin-transform-flow-strip-types",
       "babel-plugin-transform-typescript"
     ],
-    "Modules": [
+    "模块": [
       "babel-plugin-transform-modules-amd",
       "babel-plugin-transform-modules-commonjs",
       "babel-plugin-transform-modules-systemjs",
       "babel-plugin-transform-modules-umd"
     ],
-    "TC39 Proposals": [
+    "TC39 提案": [
       "babel-plugin-proposal-async-do-expressions",
       "babel-plugin-proposal-class-properties",
       "babel-plugin-proposal-class-static-block",
@@ -171,6 +160,5 @@
         ]
       }
     ]
->>>>>>> upstream/main
   }
 }

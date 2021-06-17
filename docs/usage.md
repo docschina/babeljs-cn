@@ -173,11 +173,7 @@ npm install --save-dev @babel/preset-env
 
 ## polyfill
 
-<<<<<<< HEAD
-> 🚨 自 Babel 7.4.0 起，此 package 已被弃用，你可以直接引入 `core-js/stable`（用于 polyfill ECMAScript 新特性）以及 `regenerator-runtime/runtime` (被用于转译 generator 函数)：
-=======
-> 🚨 <span id="polyfill-deprecated">As</span> of Babel 7.4.0, this package has been deprecated in favor of directly including `core-js/stable` (to polyfill ECMAScript features) and `regenerator-runtime/runtime` (needed to use transpiled generator functions):
->>>>>>> upstream/main
+> 🚨 <span id="polyfill-deprecated">自</span> Babel 7.4.0 起，此 package 已被弃用，你可以直接引入 `core-js/stable`（用于 polyfill ECMAScript 新特性）以及 `regenerator-runtime/runtime` (被用于转译 generator 函数)：
 >
 > ```js
 > import "core-js/stable";
@@ -235,10 +231,7 @@ require("core-js/modules/es.promise.finally");
 Promise.resolve().finally();
 ```
 
-<<<<<<< HEAD
 如果没有将 `env` preset 的 `"useBuiltIns"` 选项的设置为 `"usage"` ，我们必须在入口起点的其他代码之前先完整 polyfill *一次*。
-=======
-If we weren't using the `env` preset with the `"useBuiltIns"` option set to `"usage"` (defaults to "false") we would've had to require the full polyfill _only once_ in our entry point before any other code.
 
 For example:
 
@@ -266,7 +259,6 @@ Then import [core-js](https://github.com/zloirock/core-js) (to polyfill ECMAScri
  import "core-js/stable";
  import "regenerator-runtime/runtime";
  ```
->>>>>>> upstream/main
 
 ## 总结
 

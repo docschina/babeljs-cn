@@ -23,11 +23,8 @@
     "start:repl": "webpack -d -w",
     "start:codemirror6": "cross-env NODE_ENV=development yarn build:codemirror6",
     "test": "remark docs README.md --quiet",
-<<<<<<< HEAD
-    "deploy": "gh-pages -d ./website/build/babel -b gh-pages-v7"
-=======
+    "deploy": "gh-pages -d ./website/build/babel -b gh-pages-v7",
     "version": "node ./scripts/generate-repl-past-versions.mjs && git add ./js/repl/past-versions.json"
->>>>>>> upstream/main
   },
   "remarkConfig": {
     "plugins": {

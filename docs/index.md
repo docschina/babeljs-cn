@@ -5,8 +5,8 @@ title: 什么是 Babel？
 
 ## Babel 是一个 JavaScript compiler
 
-<<<<<<< HEAD
 Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中，将 ECMAScript 2015+ 代码转换为 JavaScript 向后兼容版本的代码。以下是 Babel 可以做的主要事情：
+
 - 转换语法
 - Polyfill 目标环境中缺少的功能（通过如 [core-js](https://github.com/zloirock/core-js) 的第三方 `polyfill`）
 - 源代码转换(codemods)
@@ -14,19 +14,7 @@ Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中�
 
 ```js
 // Babel 输入：ES2015 箭头函数
-[1, 2, 3].map((n) => n + 1);
-=======
-Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments. Here are the main things Babel can do for you:
-
-- Transform syntax
-- Polyfill features that are missing in your target environment (through a third-party polyfill such as [core-js](https://github.com/zloirock/core-js))
-- Source code transformations (codemods)
-- And more! (check out these [videos](/videos.html) for inspiration)
-
-```js
-// Babel Input: ES2015 arrow function
 [1, 2, 3].map(n => n + 1);
->>>>>>> upstream/main
 
 // Babel 输出：ES5 等价语法
 [1, 2, 3].map(function(n) {
@@ -108,25 +96,15 @@ function Greeter(greeting: string) {
 
 > 了解更多关于 [Flow](https://flow.org/) 和 [TypeScript](https://www.typescriptlang.org/) 的信息。
 
-<<<<<<< HEAD
-可插件化
----------
-=======
-## Pluggable
->>>>>>> upstream/main
+## 可插件化
 
 Babel 是用 plugins 构建的。你可以使用现有 plugins 编写自己的转换管道，或编写自己的 plugins。通过使用或创建一个 [preset](plugins.md#presets) 轻松使用一组插件。[了解更多 →](plugins.md)
 
 直接使用 [astexplorer.net](https://astexplorer.net/#/KJ8AjD6maa) 创建插件，或者使用 [generator-babel-plugin](https://github.com/babel/generator-babel-plugin) 生成一个插件模板。
 
 ```javascript
-<<<<<<< HEAD
 // plugin 仅仅是一个函数
-export default function ({types: t}) {
-=======
-// A plugin is just a function
 export default function({ types: t }) {
->>>>>>> upstream/main
   return {
     visitor: {
       Identifier(path) {
@@ -141,35 +119,16 @@ export default function({ types: t }) {
 }
 ```
 
-<<<<<<< HEAD
-可调试
-----------
-=======
-## Debuggable
->>>>>>> upstream/main
+## 可调试
 
 支持 **Source map**，因此你可以轻松调试编译过的代码。
 
-<<<<<<< HEAD
-规范性
---------
-=======
-## Spec Compliant
->>>>>>> upstream/main
+## 规范性
 
 Babel 试图尽可能地遵循 ECMAScript 标准。作为性能的折衷方案，它可能还具有一些特定的选项，使其更符合规范。
 
-<<<<<<< HEAD
-可压缩
---------
-=======
-## Compact
->>>>>>> upstream/main
+## 可压缩
 
 Babel 尝试使用尽可能少的代码而不依赖于庞大的运行时环境。
 
-<<<<<<< HEAD
-有些情况可能很难达到，因此为了保证可读性、文件大小以及（运行）速度，会针对特定转换牺牲一些合规性，即提供 "loose" 选项。
-=======
-This may be difficult to do in cases, and there are ["assumptions"](/assumptions) options that tradeoff spec compliancy for readability, file size, and speed.
->>>>>>> upstream/main
+有些情况可能很难达到，因此为了保证可读性、文件大小以及（运行）速度，会牺牲一些合规性，即提供了 ["assumptions"](/assumptions) 选项。
