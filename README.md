@@ -1,37 +1,29 @@
-# [babel/website](https://babeljs.io)
+# [babel/website](https://babel.docschina.org/)
 
-[![CircleCI](https://img.shields.io/circleci/token/5917ed1a8019c7e3987cfc2d2c181688ccfca5b2/project/github/QC-L/babeljs.cn/cn-v7.svg?style=flat-square)](https://circleci.com/gh/QC-L/babeljs.cn/tree/cn-v7)
+这是 [babeljs.io](https://babel.docschina.org/) 网站的源代码；请随意对我们的文档提出更改建议！
 
-- Current: `master` branch is deployed to https://babeljs.io
-- Old: `old-site` branch is deployed to https://old.babeljs.io
+- 当前: `cn-v7` 分支被部署到 https://babel.docschina.org/
 
-### Setup
+### 设置
 
-Node: Check that Node is installed with version 10.19.0 and up. You can check this with node -v.
+Node: 检查 Node 是否安装了 10.19.0 及以上版本。你可以通过 node -v 检查。
 
-Yarn: Make sure that Yarn 1 is installed with version >= 1.19.0.
+Yarn: 确保已经安装 Yarn 1 并且版本号 >= 1.19.0。
 
 ```bash
-$ git clone git@github.com:babel/website.git
-$ cd website
+$ git clone git@github.com:docschina/babeljs-cn.git
+$ cd babeljs-cn
 $ yarn && yarn bootstrap
 ```
 
-- Just run `yarn start` next time (check the package.json for scripts).
+- 接下来仅需要运行 `yarn start` （在 package.json 中检查该脚本）。
 
-### Contributing to the website
+### 为网站作出贡献
 
-To keep documentation in sync across all of Babel's packages, the docs are now directly located in this repository. The READMEs in [`babel/babel`](https://github.com/babel/babel) are [auto generated](https://github.com/babel/babel/blob/master/scripts/generators/readmes.js) and point to this documentation.
+为了使所有 Babel 的包中的文档保持同步，文档现在直接位于这个存储库中。 [`babel/babel`](https://github.com/babel/babel) 中的 README 是 [自动生成的](https://github.com/babel/babel/blob/master/scripts/generators/readmes.js) 并指向这个文档。
 
-You might want to make yourself familiar with [docusaurus](https://docusaurus.io/docs/en/installation) to make significant changes to the website. If you only want to make content changes you just need to know about versioned docs.
+你可能想让自己熟悉 [docusaurus](https://docusaurus.io/docs/en/installation) 来使网站有重大变化。
 
-#### Versioned docs
+#### 寻求支持？
 
-- `/docs` - the files in here are responsible for the "next" version at https://babeljs.io/docs/en/next.
-- `/website/versioned_docs/version-*` - these are the docs for the past versions, the latest one being the currently published version at https://babeljs.io/docs/en
-
-After making your changes to the markdown files in the `/docs` folder, a git hook script will suggest files from the past versions folders that you might also need to apply your changes to.
-
-#### Looking for support?
-
-For questions and support on contributing please join our [Slack community](https://slack.babeljs.io/), channel `#website` or directly [here](https://babeljs.slack.com/messages/website).
+有关贡献的问题和支持，请加入我们的 [Slack 社区](https://slack.babeljs.io/) 的 `#website` 频道，或直接在 [这里](https://babeljs.slack.com/messages/website).
