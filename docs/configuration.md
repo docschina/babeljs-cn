@@ -9,12 +9,12 @@ Babel 是可配置的！许多其他工具都有类似的配置：ESLint (`.esli
 
 ## 你的使用场景是什么？
 
-- 你正在使用一个 monorepo？
+- 你正在使用一个单体式仓库？
 - 你想要编译 `node_modules`？
 
 > [`babel.config.json`](#babelconfigjson) 推荐你使用！
 
-- 配置仅适用于项目的单个部分吗？
+- 你的配置仅适用于项目的单个部分吗？
 
 > [`.babelrc.json`](#babelrcjson) 推荐你使用！
 
@@ -64,7 +64,7 @@ module.exports = function (api) {
 
 ### `package.json`
 
-或者，你可以选择在 package.json 中 `babel` key 中指定 [`.babelrc.json`](#babelrcjson) 配置，如下所示：
+或者，你可以选择在 package.json 的 key `babel` 中指定你的 [`.babelrc.json`](#babelrcjson) 配置，如下所示：
 
 ```json
 {
@@ -88,7 +88,7 @@ const plugins = [ ... ];
 module.exports = { presets, plugins };
 ```
 
-你可以访问任何 Node.js API，例如基于 process environment 的动态配置：
+你可以访问任何 Node.js API，例如基于 process 环境变量的动态配置：
 
 ```js
 const presets = [ ... ];
@@ -134,7 +134,7 @@ BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
 $env:BABEL_SHOW_CONFIG_FOR = ".\src\myComponent.jsx"; npm start
 ```
 
-`BABEL_SHOW_CONFIG_FOR` 接收绝对和相对_文件_路径。如果是相对路径，将从 [`cwd`](options.md#cwd) 解析。
+`BABEL_SHOW_CONFIG_FOR` 接收绝对和相对*文件*路径。如果是相对路径，将从 [`cwd`](options.md#cwd) 解析。
 
 当 Babel 处理完由 `BABEL_SHOW_CONFIG_FOR` 指定的输入文件之后，Babel 就会将生效配置打印到控制台。这里是示例输出：
 
@@ -198,15 +198,14 @@ babel.config.json < .babelrc < @babel/cli 可编程选项
 
 ### Babel 如何合并配置项
 
-Babel's configuration merging is relatively straightforward. Options will overwrite existing options
-when they are present and their value is not `undefined`. There are, however, a few special cases:
+Babel 的配置合并相对简单。当选项存在且其值不为 `undefined` 时，将覆盖现有选项。不过，也有一些特殊情况：
 
-- For `assumptions`, `parserOpts` and `generatorOpts`, objects are merged, rather than replaced.
-- For `plugins` and `presets`, they are replaced based on the identity of the plugin/preset object/function itself combined with the name of the entry.
+- 如 `assumptions`, `parserOpts` 和 `generatorOpts`, 对象被合并，而不是被替换。
+- 如 `plugins` and `presets`, 则根据 plugin/preset object/function 本身的标识结合入口的名称来替换它们。
 
-#### Option (except plugin/preset) merging
+#### 选项（plugin/preset 除外）合并
 
-As an example, consider a config with:
+例如，考虑如下配置:
 
 ```js
 {
@@ -226,21 +225,21 @@ As an example, consider a config with:
 };
 ```
 
-When `NODE_ENV` is `test`, the `sourceType` option will be replaced and the `assumptions` option will be merged. The effective config is:
+当 `NODE_ENV` 为 `test`, `sourceType` 选项将被替换，`assumptions` 选项将被合并。生效的配置是：
 
 ```js
 {
-  sourceType: "module", // sourceType: "script" is overwritten
+  sourceType: "module", // sourceType: "script" 被覆盖了
   assumptions: {
     setClassFields: true,
-    iterableIsArray: true, // assumptions are merged by Object.assign
+    iterableIsArray: true, // assumptions 由 Object.assign 合并了
   },
 }
 ```
 
-#### Plugin/Preset merging
+#### Plugin/Preset 合并
 
-As an example, consider a config with:
+例如，考虑如下配置:
 
 ```js
 plugins: [
@@ -254,10 +253,7 @@ overrides: [{
 }]
 ```
 
-The `overrides` item will be merged on top of the top-level options. Importantly, the `plugins`
-array as a whole doesn't just replace the top-level one. The merging logic will see that `"./plug"`
-is the same plugin in both cases, and `{ thing: false, field2: true }` will replace the original
-options, resulting in a config as
+`overrides` 配置项将被合并到顶级选项之上。重要的是，`plugins` 数组作为一个整体并不仅是替换一个顶层的插件。合并逻辑将发现 `"./plug"` 在这两种情况下是相同的插件，`{ thing: false, field2: true }` 将替换原始选项，导致配置为
 
 ```js
 plugins: [
@@ -266,23 +262,21 @@ plugins: [
 ],
 ```
 
-Since merging is based on identity + name, it is considered an error to use the same plugin with
-the same name twice in the same `plugins`/`presets` array. For example
+由于合并是基于标识 + 名称的，因此在同一个 `plugins`/`presets` 数组中使用两次相同名称的插件被认为是错误的。例如
 
 ```js
 plugins: ["./plug", "./plug"];
 ```
 
-is considered an error, because it's identical to `plugins: ['./plug']`. Additionally, even
+被认为是一个错误，因为它与 `plugins: ['./plug']` 完全相同。此外
 
 ```js
 plugins: [["./plug", { one: true }], ["./plug", { two: true }]];
 ```
 
-is considered an error, because the second one would just always replace the first one.
+也被认为是一个错误，因为第二个总是会取代第一个。
 
-If you actually _do_ want to instantiate two separate instances of a plugin, you must assign each one
-a name to disambiguate them. For example:
+如果你 _确实想要_ 实例化一个插件的两个独立实例，你必须为每个实例分配一个名称以消除它们的歧义。例如：
 
 ```js
 plugins: [
@@ -291,4 +285,4 @@ plugins: [
 ];
 ```
 
-because each instance has been given a unique name and this a unique identity.
+因为每个实例都有一个独特的名字，这是一个独特的身份。
