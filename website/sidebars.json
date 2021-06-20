@@ -1,7 +1,7 @@
 {
   "docs": {
     "指南": ["index", "usage", "configuration", "learn", "v7-migration"],
-    "配置方案": [
+    "配置参考": [
       "config-files",
       "options",
       "presets",
@@ -9,21 +9,21 @@
       "plugins-list",
       "assumptions"
     ],
-    "Presets": [
+    "预设": [
       "babel-preset-env",
       "babel-preset-react",
       "babel-preset-typescript",
       "babel-preset-flow"
     ],
     "杂项": ["roadmap", "caveats", "features-timeline", "faq", "editors"],
-    "Integration Packages": [
+    "集成包": [
       "babel-cli",
       "babel-polyfill",
       "babel-plugin-transform-runtime",
       "babel-register",
       "babel-standalone"
     ],
-    "工具": [
+    "工具包": [
       "babel-parser",
       "babel-core",
       "babel-generator",
