@@ -1,6 +1,6 @@
 # [babel/website](https://babel.docschina.org/)
 
-这是 [babeljs.io](https://babel.docschina.org/) 网站的源代码；请随意对我们的文档提出更改建议！
+这是 [babel.docschina.org](https://babel.docschina.org/) 网站的源代码；请随意对我们的文档提出更改建议！
 
 - 当前: `cn-v7` 分支被部署到 https://babel.docschina.org/
 
