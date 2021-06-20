@@ -198,7 +198,8 @@ babel.config.json < .babelrc < @babel/cli 可编程选项
 
 ### Babel 如何合并配置项
 
-Babel 的配置合并相对简单。当选项存在且其值不为 `undefined` 时，将覆盖现有选项。不过，也有一些特殊情况：
+Babel 的配置合并相对简单。当选项存在且其值不为 `undefined` 时，将覆盖现有选项。
+不过，也有一些特殊情况：
 
 - 如 `assumptions`, `parserOpts` 和 `generatorOpts`, 对象被合并，而不是被替换。
 - 如 `plugins` and `presets`, 则根据 plugin/preset object/function 本身的标识结合入口的名称来替换它们。
@@ -253,7 +254,10 @@ overrides: [{
 }]
 ```
 
-`overrides` 配置项将被合并到顶级选项之上。重要的是，`plugins` 数组作为一个整体并不仅是替换一个顶层的插件。合并逻辑将发现 `"./plug"` 在这两种情况下是相同的插件，`{ thing: false, field2: true }` 将替换原始选项，导致配置为
+`overrides` 配置项将被合并到顶级选项之上。
+重要的是，`plugins` 数组作为一个整体并不仅是替换一个顶层的插件。
+合并逻辑将发现 `"./plug"` 在这两种情况下是相同的插件，
+`{ thing: false, field2: true }` 将替换原始选项，导致配置为
 
 ```js
 plugins: [
@@ -262,7 +266,8 @@ plugins: [
 ],
 ```
 
-由于合并是基于标识 + 名称的，因此在同一个 `plugins`/`presets` 数组中使用两次相同名称的插件被认为是错误的。例如
+由于合并是基于标识 + 名称的，
+因此在同一个 `plugins`/`presets` 数组中使用两次相同名称的插件被认为是错误的。例如
 
 ```js
 plugins: ["./plug", "./plug"];
@@ -276,7 +281,8 @@ plugins: [["./plug", { one: true }], ["./plug", { two: true }]];
 
 也被认为是一个错误，因为第二个总是会取代第一个。
 
-如果你 _确实想要_ 实例化一个插件的两个独立实例，你必须为每个实例分配一个名称以消除它们的歧义。例如：
+如果你 _确实想要_ 实例化一个插件的两个独立实例，
+你必须为每个实例分配一个名称以消除它们的歧义。例如：
 
 ```js
 plugins: [
