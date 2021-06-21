@@ -63,9 +63,9 @@ class Footer extends React.Component {
           <div>
             <h5>更多</h5>
             <a href={this.props.config.baseUrl + "blog"}>博客</a>
-            <a href="https://github.com/babel">GitHub Org</a>
-            <a href="https://github.com/babel/babel">GitHub Repo</a>
-            <a href="https://github.com/babel/website">Website Repo</a>
+            <a href="https://github.com/babel">GitHub 组织</a>
+            <a href="https://github.com/babel/babel">GitHub 仓库</a>
+            <a href="https://github.com/docschina/babeljs-cn">Website 仓库</a>
             <a href="https://old.babeljs.io">旧版网址 6.x</a>
             <a href="http://henryzoo.com/babel.github.io">旧版网址 5.x</a>
           </div>

@@ -88,7 +88,7 @@ const siteConfig = {
   useEnglishUrl: true,
   editUrl: `${GITHUB_URL}/blob/master/docs/`,
   title: "Babel 中文文档",
-  tagline: "下一代 JavaScript compiler",
+  tagline: "下一代 JavaScript 编译器",
   url: "https://babel.docschina.org",
   v6Url: "https://v6.babeljs.io/docs/setup/",
   baseUrl: "/",
@@ -139,7 +139,7 @@ const siteConfig = {
   scripts: [
     {
       src: "/scripts/hmt.js",
-      defer: true
+      defer: true,
     },
     {
       src: "https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js",

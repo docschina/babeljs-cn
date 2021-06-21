@@ -3,8 +3,11 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "下一代 JavaScript compiler",
+    "tagline": "下一代 JavaScript 编译器",
     "docs": {
+      "assumptions": {
+        "title": "Compiler assumptions"
+      },
       "babelconfigjs": {
         "title": "babel.config.js"
       },
@@ -42,7 +45,7 @@
         "title": "FAQ"
       },
       "features-timeline": {
-        "title": "Features Timeline"
+        "title": "新增特性时间轴"
       },
       "babel-generator": {
         "title": "@babel/generator"
@@ -70,6 +73,10 @@
       "babel-helper-call-delegate": {
         "title": "@babel/helper-call-delegate",
         "sidebar_label": "helper-call-delegate"
+      },
+      "babel-helper-compilation-targets": {
+        "title": "@babel/helper-compilation-targets",
+        "sidebar_label": "helper-compilation-targets"
       },
       "babel-helper-define-map": {
         "title": "@babel/helper-define-map",
@@ -251,6 +258,10 @@
         "title": "babel-plugin-minify-type-constructors",
         "sidebar_label": "minify-type-constructors"
       },
+      "babel-plugin-proposal-async-do-expressions": {
+        "title": "@babel/plugin-proposal-async-do-expressions",
+        "sidebar_label": "async-do-expressions"
+      },
       "babel-plugin-proposal-async-generator-functions": {
         "title": "@babel/plugin-proposal-async-generator-functions",
         "sidebar_label": "async-generator-functions"
@@ -342,6 +353,10 @@
       "babel-plugin-proposal-unicode-property-regex": {
         "title": "@babel/plugin-proposal-unicode-property-regex",
         "sidebar_label": "unicode-property-regex"
+      },
+      "babel-plugin-syntax-async-do-expressions": {
+        "title": "@babel/plugin-syntax-async-do-expressions",
+        "sidebar_label": "syntax-async-do-expressions"
       },
       "babel-plugin-syntax-async-generators": {
         "title": "@babel/plugin-syntax-async-generators",
@@ -805,16 +820,20 @@
     },
     "categories": {
       "指南": "指南",
-      "用法": "用法",
-      "Presets": "Presets",
-      "通用": "通用",
-      "Integration Packages": "Integration Packages",
-      "工具": "工具"
+      "配置参考": "配置参考",
+      "预设": "预设",
+      "杂项": "杂项",
+      "集成包": "集成包",
+      "工具包": "工具包",
+      "帮助工具包": "帮助工具包",
+      "扩展": "扩展",
+      "模块": "模块",
+      "TC39 提案": "TC39 提案",
+      "@babel/preset-env": "@babel/preset-env"
     }
   },
   "pages-strings": {
-    "Assumptions|assumptions page - header": "Assumptions",
-    "Babel 是一个 JavaScript compiler。|no description given": "Babel 是一个 JavaScript compiler。",
+    "Babel 是一个 JavaScript 编译器。|no description given": "Babel 是一个 JavaScript 编译器。",
     "现在就开始使用下一代 JavaScript 语法吧。|no description given": "现在就开始使用下一代 JavaScript 语法吧。",
     "使用 Babel|setup page - header": "使用 Babel",
     "教你如何在使用 Babel 时选择工具|setup page - header desc": "教你如何在使用 Babel 时选择工具",

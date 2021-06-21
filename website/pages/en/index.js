@@ -70,9 +70,7 @@ const GetStarted = ({ language }) => {
     >
       <p>
         想了解更多关于 Babel 的信息，请阅读{" "}
-        <a href={siteConfig.getDocUrl("index.html", language)}>
-          入门指南
-        </a>{" "}
+        <a href={siteConfig.getDocUrl("index.html", language)}>入门指南</a>{" "}
         或者翻阅{" "}
         <a href={siteConfig.getPageUrl("videos.html", language)}>视频</a>{" "}
         了解更多关于 Babel 的故事
@@ -95,11 +93,11 @@ const HomeContainer = props => (
 const Hero = ({ language }) => (
   <div className="hero">
     <a href="https://teespring.com/babel-christmas?pr=FLAVORTOWN">
-      <div className="homepage-banner">获取 Babel 的假日服饰👕</div>
+      <div className="homepage-banner">获取 Babel 的假日服饰 👕</div>
     </a>
     <div className="hero__container">
       <h1>
-        <translate>Babel 是一个 JavaScript compiler。</translate>
+        <translate>Babel 是一个 JavaScript 编译器。</translate>
       </h1>
       <p>
         <translate>现在就开始使用下一代 JavaScript 语法吧。</translate>
@@ -109,8 +107,11 @@ const Hero = ({ language }) => (
         <span>
           <strong>Babel 7.14 发布！</strong> 请阅读我们的{" "}
           <a href="blog/2021/04/29/7.14.0">博客公告</a> 以及{" "}
-          <a href="https://github.com/babel/babel/releases/tag/v7.14.0">changelog</a> 了解更多详情！
-      </span>
+          <a href="https://github.com/babel/babel/releases/tag/v7.14.0">
+            更新日志
+          </a>{" "}
+          了解更多详情！
+        </span>
       </div>
 
       <DummyMiniRepl />
