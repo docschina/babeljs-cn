@@ -768,7 +768,7 @@
         "title": "@babel/preset-typescript"
       },
       "presets": {
-        "title": "Presets"
+        "title": "预设"
       },
       "babel-register": {
         "title": "@babel/register"
