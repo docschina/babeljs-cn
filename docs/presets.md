@@ -47,7 +47,7 @@ Babel 预设可以作为 Babel 插件和配置 [选项](options.md) 的共享集
 <blockquote class="babel-callout babel-callout-danger">
   <h4>废弃</h4>
   <p>
-    从 Babel 7 开始，我们决定不再使用 Stage-X 预设，并停止发布它们。因为这些提案本身就容易改变，所以让用户将单个提案指定为插件似乎更好，而不是一个你无论如何都需要检查的“包罗万象”的预设。请查阅我们的 <a href="https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets">博客</a> 了解更多背景信息。
+    从 Babel 7 开始，我们决定废弃 Stage-X 预设，并停止发布它们。因为这些提案本身就容易改变，所以让用户将单个提案指定为插件似乎更好，而不是一个你无论如何都需要检查的“包罗万象”的预设。请查阅我们的 <a href="https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets">博客</a> 了解更多背景信息。
   </p>
 </blockquote>
 
