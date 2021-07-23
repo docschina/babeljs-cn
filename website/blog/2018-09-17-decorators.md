@@ -17,7 +17,11 @@ Babel 7.1.0 最终支持了新的装饰器提案：你可以使用 [`@babel/plug
 三年多以前，[Yehuda Katz](https://github.com/wycats) [首先提出](https://github.com/wycats/javascript-decorators/blob/696232bbd997618d603d6577848d635872f25c43/README.md)了装饰器的概念。TypeScript 在 [1.5 版本](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#typescript-15)（2015）中发布了对装饰器的支持以及许多 ES6 的相关特性。
 一些主流框架，如 Angular 和 MobX 等开始使用它们来增加开发者体验：这使得装饰器非常受欢迎，并给社区带来了一种已经稳定的错觉。
 
+<<<<<<< HEAD
 Babel 第一次实现装饰器是在 [v5 版本中](https://github.com/babel/babel/blob/master/.github/CHANGELOG-v5.md#500)，但由于该提案仍在不断变化，则在 Babel v6 中移除了它们。[Logan Smyth](https://github.com/loganfsmyth) 创建了一个非官方的插件([`babel-plugin-transform-decorators-legacy`](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy))，它延用了 Babel 5 中装饰器的行为；在 Babel 7 的 alpha 版本发布期间该库被移至 Babel 官方的仓库中。当时该插件仍使用旧的装饰器语法，因为新提案尚未明确。
+=======
+Babel first implemented decorators in [version 5](https://github.com/babel/babel/blob/main/.github/CHANGELOG-v5.md#500), but removed them in Babel 6 because the proposal was still in flux. [Logan Smyth](https://github.com/loganfsmyth) created an unofficial plugin ([`babel-plugin-transform-decorators-legacy`](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy)) which replicated the Babel 5 behavior; it has since then been moved to the official Babel repository during the first Babel 7 alpha release. This plugin still used the old decorators semantics, because it wasn't clear yet what the new proposal would have been.
+>>>>>>> d12f0a40b4bf839ee673fce964d2088743d64d82
 
 自那时起，[Daniel Ehrenberg](https://github.com/littledan)、[Brian Terlson](https://github.com/bterlson) 以及 [Yehuda Katz](https://github.com/wycats) 就一起成为了该提案的共同作者，该提案几乎已被完全重写。当然并非一切事情都已确定，因为至今尚未出现符合规范的实现方式。
 
@@ -171,4 +175,8 @@ npm install @babel/plugin-proposal-decorators --save-dev
 
 作为 JavaScript 开发者，你可以帮助规划改语言的未来。你可以为装饰器考虑各种语义环境同时进行测试，并向提案的作者提出反馈。我们需要知道你在真实项目环境中是如何使用它们的！你还可以通过阅读[提案仓库](https://github.com/tc39/proposal-decorators)中的 issues 讨论及会议记录来找出为什么最终做出这样的设计决策。
 
+<<<<<<< HEAD
 如果想立即尝试装饰器，可以使用我们的 [repl](https://babeljs.io/repl/build/master) 配置不同的 preset 选项进行试用！
+=======
+If you want to try out decorators right now, you can play with the different presets options in our [repl](https://babeljs.io/repl/build/main)!
+>>>>>>> d12f0a40b4bf839ee673fce964d2088743d64d82

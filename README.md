@@ -2,7 +2,12 @@
 
 这是 [babel.docschina.org](https://babel.docschina.org/) 网站的源代码；请随意对我们的文档提出更改建议！
 
+<<<<<<< HEAD
 - 当前: `cn-v7` 分支被部署到 https://babel.docschina.org/
+=======
+- Current: `main` branch is deployed to https://babeljs.io
+- Old: `old-site` branch is deployed to https://v6.babeljs.io
+>>>>>>> d12f0a40b4bf839ee673fce964d2088743d64d82
 
 ### 设置
 
@@ -20,7 +25,11 @@ $ yarn && yarn bootstrap
 
 ### 为网站作出贡献
 
+<<<<<<< HEAD
 为了使所有 Babel 的包中的文档保持同步，文档现在直接位于这个存储库中。 [`babel/babel`](https://github.com/babel/babel) 中的 README 是 [自动生成的](https://github.com/babel/babel/blob/master/scripts/generators/readmes.js) 并指向这个文档。
+=======
+To keep documentation in sync across all of Babel's packages, the docs are now directly located in this repository. The READMEs in [`babel/babel`](https://github.com/babel/babel) are [auto generated](https://github.com/babel/babel/blob/main/scripts/generators/readmes.js) and point to this documentation.
+>>>>>>> d12f0a40b4bf839ee673fce964d2088743d64d82
 
 你可能想让自己熟悉 [docusaurus](https://docusaurus.io/docs/en/installation) 来使网站有重大变化。
 

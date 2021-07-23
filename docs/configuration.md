@@ -20,7 +20,11 @@ Babel 是可配置的！许多其他工具都有类似的配置：ESLint (`.esli
 
 - Guy Fieri 是你的英雄？（译注：Guy Fieri 是明星厨师，这里意思是喜欢根据自己喜好配置）
 
+<<<<<<< HEAD
 > 我们建议使用 [`babel.config.json`](config-files.md#project-wide-configuration) 格式。[Babel 本身正在使用它](https://github.com/babel/babel/blob/master/babel.config.js)。
+=======
+> We recommend using the [`babel.config.json`](config-files.md#project-wide-configuration) format. [Babel itself is using it](https://github.com/babel/babel/blob/main/babel.config.js).
+>>>>>>> d12f0a40b4bf839ee673fce964d2088743d64d82
 
 ### `babel.config.json`
 
