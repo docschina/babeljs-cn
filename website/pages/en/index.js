@@ -79,8 +79,6 @@ const GetStarted = ({ language }) => {
   );
 };
 
-<<<<<<< HEAD
-=======
 const SponsorTier = props => {
   let { min, max } = props;
   const tierSponsors = siteConfig.sponsors.filter(sponsor => {
@@ -169,7 +167,6 @@ const OpenCollectiveSponsors = ({ language }) => {
   );
 };
 
->>>>>>> d12f0a40b4bf839ee673fce964d2088743d64d82
 const HomeContainer = props => (
   <div
     className="container"
