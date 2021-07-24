@@ -86,7 +86,7 @@ const GITHUB_URL = "https://github.com/babel/website";
 
 const siteConfig = {
   useEnglishUrl: true,
-  editUrl: `${GITHUB_URL}/blob/master/docs/`,
+  editUrl: `${GITHUB_URL}/blob/main/docs/`,
   title: "Babel 中文文档",
   tagline: "下一代 JavaScript 编译器",
   url: "https://babel.docschina.org",

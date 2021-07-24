@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "在 Babel 中支持 TC39 标准的装饰器"
+title: "在 Babel 中支持 TC39 标准的装饰器"
 author: Nicolò Ribaudo
 authorURL: https://twitter.com/NicoloRibaudo
 date:   2018-09-17 12:00:00
@@ -17,7 +17,7 @@ Babel 7.1.0 最终支持了新的装饰器提案：你可以使用 [`@babel/plug
 三年多以前，[Yehuda Katz](https://github.com/wycats) [首先提出](https://github.com/wycats/javascript-decorators/blob/696232bbd997618d603d6577848d635872f25c43/README.md)了装饰器的概念。TypeScript 在 [1.5 版本](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#typescript-15)（2015）中发布了对装饰器的支持以及许多 ES6 的相关特性。
 一些主流框架，如 Angular 和 MobX 等开始使用它们来增加开发者体验：这使得装饰器非常受欢迎，并给社区带来了一种已经稳定的错觉。
 
-Babel 第一次实现装饰器是在 [v5 版本中](https://github.com/babel/babel/blob/master/.github/CHANGELOG-v5.md#500)，但由于该提案仍在不断变化，则在 Babel v6 中移除了它们。[Logan Smyth](https://github.com/loganfsmyth) 创建了一个非官方的插件([`babel-plugin-transform-decorators-legacy`](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy))，它延用了 Babel 5 中装饰器的行为；在 Babel 7 的 alpha 版本发布期间该库被移至 Babel 官方的仓库中。当时该插件仍使用旧的装饰器语法，因为新提案尚未明确。
+Babel 第一次实现装饰器是在 [v5 版本中](https://github.com/babel/babel/blob/main/.github/CHANGELOG-v5.md#500)，但由于该提案仍在不断变化，则在 Babel v6 中移除了它们。[Logan Smyth](https://github.com/loganfsmyth) 创建了一个非官方的插件([`babel-plugin-transform-decorators-legacy`](https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy))，它延用了 Babel 5 中装饰器的行为；在 Babel 7 的 alpha 版本发布期间该库被移至 Babel 官方的仓库中。当时该插件仍使用旧的装饰器语法，因为新提案尚未明确。
 
 自那时起，[Daniel Ehrenberg](https://github.com/littledan)、[Brian Terlson](https://github.com/bterlson) 以及 [Yehuda Katz](https://github.com/wycats) 就一起成为了该提案的共同作者，该提案几乎已被完全重写。当然并非一切事情都已确定，因为至今尚未出现符合规范的实现方式。
 
@@ -76,13 +76,13 @@ const myObj = {
 
 在提案的第一个版本中，类元素装饰器接收的参数分别为目标类（或对象），key 以及属性描述符 - 与传递给 `Object.defineProperty` 的形式类似。类装饰器将目标构造函数（constructor）作为唯一参数。
 
-新的装饰器提案更加强大：元素装饰器会接收一个对象，该对象除更改属性描述符外，还允许更改 key 值，可以赋值（`static`，`prototype` 或者 `own`），以及元素的类型（`field` 或 `method`）。它们还可以创建其他属性并在装饰类上定义运行函数（*完成器*）。
+新的装饰器提案更加强大：元素装饰器会接收一个对象，该对象除更改属性描述符外，还允许更改 key 值，可以赋值（`static`，`prototype` 或者 `own`），以及元素的类型（`field` 或 `method`）。它们还可以创建其他属性并在装饰类上定义运行函数（_完成器_）。
 
 类装饰器接收一个包含类描述符的对象，使得类在创建之前修改它们成为可能。
 
 ### 升级
 
-鉴于这些不兼容性问题，新提案中不可能使用现有的装饰器：这将使得迁移变得缓慢，因为现有库（MobX，Angular等）无法在不引入这些突破性变化的情况下进行升级。
+鉴于这些不兼容性问题，新提案中不可能使用现有的装饰器：这将使得迁移变得缓慢，因为现有库（MobX，Angular 等）无法在不引入这些突破性变化的情况下进行升级。
 为解决此问题，我们发布了实用工具包，它将装饰器包装在你的代码当中。运行后，
 你可以安心的更改你的 Babel 配置以便使用新提案 🎉。
 
@@ -127,9 +127,10 @@ export class MyClass {}
 > [tc39/proposal-decorators#129](https://github.com/tc39/proposal-decorators/issues/129), [tc39/proposal-decorators#133](https://github.com/tc39/proposal-decorators/issues/133)
 
 装饰器引发了一个重要的安全隐患：如果装饰私有元素，那么私有名称（可以视为私有元素的 "key"）可能会被泄露。有不同的安全级别需要考虑：
-  1) 装饰器有意外泄露私有名称的风险。恶意代码不应该以任何方式从其他装饰器中"窃取"私有名称。
-  2) 只有直接应用于私有元素的装饰器才被视为可信任：类装饰器是不是不应该读写私有元素？
-  3) *高度隐私* (class fields 提案的目标之一) 意味着私有元素只能从类内部访问：是否需要让任何装饰器都可以访问私有名称？是否应该只装饰公共元素？
+
+1. 装饰器有意外泄露私有名称的风险。恶意代码不应该以任何方式从其他装饰器中"窃取"私有名称。
+2. 只有直接应用于私有元素的装饰器才被视为可信任：类装饰器是不是不应该读写私有元素？
+3. _高度隐私_ (class fields 提案的目标之一) 意味着私有元素只能从类内部访问：是否需要让任何装饰器都可以访问私有名称？是否应该只装饰公共元素？
 
 这些问题需要在解决之前进一步讨论，这正是 Babel 所存在的意义。
 
@@ -145,10 +146,8 @@ export class MyClass {}
 
 ```javascript=
 const ast = babylon.parse(code, {
-  plugins: [
-    ["decorators", { decoratorsBeforeExport: true }]
-  ]
-})
+  plugins: [["decorators", { decoratorsBeforeExport: true }]],
+});
 ```
 
 ### 用法
@@ -161,7 +160,10 @@ npm install @babel/plugin-proposal-decorators --save-dev
 
 ```json
 {
-  "plugins": ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }]
+  "plugins": [
+    "@babel/plugin-proposal-decorators",
+    { "decoratorsBeforeExport": true }
+  ]
 }
 ```
 
@@ -171,4 +173,4 @@ npm install @babel/plugin-proposal-decorators --save-dev
 
 作为 JavaScript 开发者，你可以帮助规划改语言的未来。你可以为装饰器考虑各种语义环境同时进行测试，并向提案的作者提出反馈。我们需要知道你在真实项目环境中是如何使用它们的！你还可以通过阅读[提案仓库](https://github.com/tc39/proposal-decorators)中的 issues 讨论及会议记录来找出为什么最终做出这样的设计决策。
 
-如果想立即尝试装饰器，可以使用我们的 [repl](https://babeljs.io/repl/build/master) 配置不同的 preset 选项进行试用！
+如果想立即尝试装饰器，可以使用我们的 [repl](https://babeljs.io/repl/build/main) 配置不同的 preset 选项进行试用！
