@@ -233,7 +233,7 @@ Jest
 `babel-jest` 的默认行为，以便设置选项，例如：
 
 ```js
-module.exports = require("babel-jest").createTransformer({
+module.exports = require("babel-jest").default.createTransformer({
   rootMode: "upward",
 });
 ```
@@ -250,6 +250,8 @@ module.exports = require("babel-jest").createTransformer({
 因此所有的 JS 文件都将使用你指定的已启用该选项的 `babel-jest` 版本进行处理。
 
 #### 其他
+
+> 注意：当使用 `babel-jest` 等版本时，你必须删除 `.default` 部分：`require("babel-jest").createTransformer({ ...`。
 
 有很多工具，但最核心的是，如果工作目录还不是单体式仓库的根目录，它们需要启用
 `rootMode` 选项。
