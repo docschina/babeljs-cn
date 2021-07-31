@@ -249,7 +249,6 @@ module.exports = require("babel-jest").default.createTransformer({
 
 因此所有的 JS 文件都将使用你指定的已启用该选项的 `babel-jest` 版本进行处理。
 
-
 #### 其他
 
 > 注意：当使用 `babel-jest` 等版本时，你必须删除 `.default` 部分：`require("babel-jest").createTransformer({ ...`。
