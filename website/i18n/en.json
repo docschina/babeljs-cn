@@ -710,8 +710,8 @@
         "sidebar_label": "unicode-regex"
       },
       "plugins-list": {
-        "title": "Plugins List",
-        "sidebar_label": "Plugins List"
+        "title": "插件列表",
+        "sidebar_label": "插件列表"
       },
       "plugins": {
         "title": "插件"

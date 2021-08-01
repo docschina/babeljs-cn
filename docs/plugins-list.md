@@ -1,12 +1,12 @@
 ---
-title: Plugins List
+title: 插件列表
 id: plugins-list
-sidebar_label: Plugins List
+sidebar_label: 插件列表
 ---
 
 ## JavaScript
 
-### TC39 Proposals
+### TC39 提案
 
 - [class-properties](plugin-proposal-class-properties.md)
 - [class-static-block](plugin-proposal-class-static-block.md)
@@ -34,7 +34,7 @@ sidebar_label: Plugins List
 - [nullish-coalescing-operator](plugin-proposal-nullish-coalescing-operator.md)
 - [optional-chaining](plugin-proposal-optional-chaining.md)
 
-#### Syntax Only
+#### 可解析语法
 
 - [syntax-bigint](plugin-syntax-bigint.md)
 - [syntax-dynamic-import](plugin-syntax-dynamic-import.md)
@@ -95,7 +95,7 @@ sidebar_label: Plugins List
 - [property-literals](plugin-transform-property-literals.md)
 - [reserved-words](plugin-transform-reserved-words.md)
 
-### Module Formats
+### 模块格式
 
 - [modules-amd](plugin-transform-modules-amd.md)
 - [modules-commonjs](plugin-transform-modules-commonjs.md)
@@ -107,7 +107,7 @@ sidebar_label: Plugins List
 - [react-constant-elements](plugin-transform-react-constant-elements.md)
 - [react-inline-elements](plugin-transform-react-inline-elements.md)
 
-#### React Preset
+#### React 预设
 
 - [react-display-name](plugin-transform-react-display-name.md)
 - [react-jsx](plugin-transform-react-jsx.md)
@@ -123,7 +123,7 @@ sidebar_label: Plugins List
 
 - [typescript](plugin-transform-typescript.md)
 
-### Misc
+### 杂项
 
 - [external-helpers](plugin-external-helpers.md)
 - [jscript](plugin-transform-jscript.md)
