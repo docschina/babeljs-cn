@@ -34,7 +34,7 @@ sidebar_label: 插件列表
 - [nullish-coalescing-operator](plugin-proposal-nullish-coalescing-operator.md)
 - [optional-chaining](plugin-proposal-optional-chaining.md)
 
-#### 仅限语法
+#### 可解析语法
 
 - [syntax-bigint](plugin-syntax-bigint.md)
 - [syntax-dynamic-import](plugin-syntax-dynamic-import.md)
