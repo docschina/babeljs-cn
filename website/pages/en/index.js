@@ -79,6 +79,94 @@ const GetStarted = ({ language }) => {
   );
 };
 
+const SponsorTier = props => {
+  let { min, max } = props;
+  const tierSponsors = siteConfig.sponsors.filter(sponsor => {
+    let value = Math.max(sponsor.monthly, (sponsor.yearly || 0) / 12);
+    return +value >= min && (!max || (max && +value < max));
+  });
+  return (
+    <div>
+      <h3>{props.title}</h3>
+      <div>
+        are currently pledging or have donated an average of{" "}
+        {max ? `$${min}-$${max}` : `>$${min}`}
+        /month in the last year{" "}
+      </div>
+      <br />
+      <ul className={`sponsors-tier tier-${props.tier}`}>
+        {tierSponsors.map((sponsor, i) => (
+          <li key={i}>
+            <a
+              href={sponsor.url}
+              title={sponsor.name}
+              target="_blank"
+              rel="noopener sponsored"
+            >
+              <img src={sponsor.image} alt={`Sponsored by ${sponsor.name}`} />
+            </a>
+          </li>
+        ))}
+      </ul>
+      {props.button ? (
+        <PromoSection>
+          <Button href={props.button.link} target="_blank">
+            {props.button.title}
+          </Button>
+        </PromoSection>
+      ) : null}
+    </div>
+  );
+};
+
+const ocButton = {
+  title: "Become a sponsor",
+  link: "https://opencollective.com/babel",
+};
+
+const OpenCollectiveSponsors = ({ language }) => {
+  return (
+    <div className="container paddingBottom">
+      <div className="wrapper productShowcaseSection">
+        <h3>Current Sponsors</h3>
+        <p>
+          We&apos;re a small group of{" "}
+          <a href={siteConfig.getPageUrl("team.html", language)}>volunteers</a>{" "}
+          that spend their free time maintaining this project, funded by the
+          community. If Babel has benefited you in your work, becoming a{" "}
+          <a href="https://github.com/babel/babel/blob/main/CONTRIBUTING.md">
+            contributor
+          </a>{" "}
+          or <a href="https://opencollective.com/babel">sponsoring</a> might
+          just be a great way to give back!
+        </p>
+        <div className="sponsor-tiers" id="sponsors">
+          <SponsorTier
+            type="opencollective"
+            title="Base Support"
+            tier="base-support-sponsors"
+            min={2000}
+          />
+          <SponsorTier
+            type="opencollective"
+            title="Gold"
+            tier="gold-sponsors"
+            min={1000}
+            max={2000}
+          />
+          <SponsorTier
+            type="opencollective"
+            title="Silver"
+            tier="silver-sponsors"
+            min={500}
+            max={1000}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const HomeContainer = props => (
   <div
     className="container"
@@ -105,9 +193,9 @@ const Hero = ({ language }) => (
 
       <div className="hero__announcement">
         <span>
-          <strong>Babel 7.14 发布！</strong> 请阅读我们的{" "}
-          <a href="blog/2021/04/29/7.14.0">博客公告</a> 以及{" "}
-          <a href="https://github.com/babel/babel/releases/tag/v7.14.0">
+          <strong>Babel 7.15 已发布！</strong> 请阅读我们的{" "}
+          <a href="blog/2021/07/26/7.15.0">博客公告</a> 了解亮点以及{" "}
+          <a href="https://github.com/babel/babel/releases/tag/v7.15.0">
             更新日志
           </a>{" "}
           了解更多详情！

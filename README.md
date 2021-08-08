@@ -20,7 +20,7 @@ $ yarn && yarn bootstrap
 
 ### 为网站作出贡献
 
-为了使所有 Babel 的包中的文档保持同步，文档现在直接位于这个存储库中。 [`babel/babel`](https://github.com/babel/babel) 中的 README 是 [自动生成的](https://github.com/babel/babel/blob/master/scripts/generators/readmes.js) 并指向这个文档。
+为了使所有 Babel 的包中的文档保持同步，文档现在直接位于这个存储库中。 [`babel/babel`](https://github.com/babel/babel) 中的 README 是 [自动生成的](https://github.com/babel/babel/blob/main/scripts/generators/readmes.js) 并指向这个文档。
 
 你可能想让自己熟悉 [docusaurus](https://docusaurus.io/docs/en/installation) 来使网站有重大变化。
 

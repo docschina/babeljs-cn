@@ -33,6 +33,7 @@ mind. When in doubt, use `.parse()`.
   <summary>History</summary>
 | Version | Changes |
 | --- | --- |
+| `v7.15.0` | Added `attachComment` |
 | `v7.7.0` | Added `errorRecovery` |
 | `v7.5.0` | Added `allowUndeclaredExports` |
 | `v7.2.0` | Added `createParenthesizedExpressions` |
@@ -63,6 +64,8 @@ mind. When in doubt, use `.parse()`.
   might insert the appropriate declarations, so it is sometimes important
   to set this option to `true` to prevent the parser from prematurely
   complaining about undeclared exports that will be added later.
+
+- **attachComment**: By default, Babel attaches comments to adjacent AST nodes. When this option is set to `false`, comments are not attached. It can provide up to 30% performance improvement when the input code has _many_ comments. `@babel/eslint-parser` will set it for you. It is not recommended to use `attachComment: false` with Babel transform, as doing so removes all the comments in output code, and renders annotations such as `/* istanbul ignore next */` nonfunctional.
 
 - **createParenthesizedExpressions**: By default, the parser sets `extra.parenthesized` on the expression nodes. When this option is set to `true`, `ParenthesizedExpression` AST nodes are created instead.
 
@@ -262,10 +265,19 @@ You should enable these features only if you are using an older version.
 
 - `pipelineOperator`:
 
-  - `proposal` (required, accepted values: `minimal`, `smart`, `fsharp`)
-    There are different proposals for the pipeline operator. This option
-    allows to choose which one to use.
-    See [What's Happening With the Pipeline (|>) Proposal?](https://babeljs.io/blog/2018/07/19/whats-happening-with-the-pipeline-proposal) for more information.
+  - `proposal` (required, accepted values: `minimal`, `fsharp`, `hack`, ~~`smart`~~ (deprecated))
+    There are several different proposals for the pipeline operator.
+    This option chooses which proposal to use.
+    See [plugin-proposal-pipeline-operator](/docs/en/babel-plugin-proposal-pipeline-operator)
+    for more information, including a table comparing their behavior.
+
+  - `topicToken` (required when `proposal` is `hack`, accepted values: `%`, `#`)
+    The `hack` proposal uses a “topic” placeholder in its pipe.
+    There are two different choices for this topic placeholder.
+    This option chooses what token to use to refer to the topic.
+    `topicToken: "#"` is incompatible with `recordAndTuple` with `syntaxType: "hash"`.
+    See [plugin-proposal-pipeline-operator](/docs/en/babel-plugin-proposal-pipeline-operator)
+    for more information.
 
 - `recordAndtuple`:
 
@@ -278,6 +290,7 @@ You should enable these features only if you are using an older version.
     See [Ergonomics of `#{}`/`#[]`](https://github.com/tc39/proposal-record-tuple/issues/10) for more information.
 
 - `flow`:
+
   - `all` (`boolean`, default: `false`)
     Some code has different meaning in Flow and in vanilla JavaScript. For example, `foo<T>(x)` is parsed as a call expression with a type argument in Flow, but as a comparison (`foo < T > x`) accordingly to the ECMAScript specification. By default, `babel-parser` parses those ambiguous constructs as Flow types only if the file starts with a `// @flow` pragma.
     Set this option to `true` to always parse files as if `// @flow` was specified.

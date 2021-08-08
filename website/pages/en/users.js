@@ -46,7 +46,7 @@ class Users extends React.Component {
               <p>并向我们表达出你对 Babel 的喜爱！</p>
               <br />
               <a
-                href="https://github.com/babel/website/edit/master/website/data/users.yml"
+                href="https://github.com/babel/website/edit/main/website/data/users.yml"
                 className="button"
               >
                 提交 Pull Request！
