@@ -16,11 +16,7 @@ Babel 预设可以作为 Babel 插件和配置 [选项](options.md) 的共享集
 
 ## 其它集成
 
-<<<<<<< HEAD
 如果你没有直接使用 Babel，那么你正在使用的框架可能有自己的配置供您使用或扩展。[npm 上](https://www.npmjs.com/search?q=babel-preset) 提供了许多其他社区维护的预设！
-=======
-If you aren't using Babel directly, the framework you are using may have its own configuration for you to use or extend. Many other community maintained presets are available [on npm](https://www.npmjs.com/search?q=babel-preset)!
->>>>>>> 241d703eee8a2ab1ef3e86a60f0396bc871eea42
 
 [Next.js](https://nextjs.org/docs/advanced-features/customizing-babel-config) | [Nuxt.js](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#babel) | [Parcel](https://en.parceljs.org/javascript.html#babel) | [Jest](https://jestjs.io/docs/getting-started#using-babel) | [Gatsby](https://www.gatsbyjs.com/docs/how-to/custom-configuration/babel)
 
@@ -36,11 +32,7 @@ If you aren't using Babel directly, the framework you are using may have its own
 }
 ```
 
-<<<<<<< HEAD
-除此以外，还可以指定预设的 相对 / 绝对 路径。
-=======
-Otherwise, you can also specify a relative or absolute path to your presets.
->>>>>>> 241d703eee8a2ab1ef3e86a60f0396bc871eea42
+除此以外，还可以指定预设的相对或绝对路径。
 
 ```json
 {
