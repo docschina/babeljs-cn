@@ -20,7 +20,6 @@ translators:
 
 当启用 `development` 配置时，自动运行时（自 v7.9.0 起）会自动添加这些插件的功能。如果你已经启用了自动运行时，再添加 [@babel/plugin-transform-react-jsx-self](plugin-transform-react-jsx-self.md) 或 [@babel/plugin-transform-react-jsx-source](plugin-transform-react-jsx-source.md) 会发生错误。
 
-
 > 注意: v7 中不再支持 `Flow` 语法。因此，你需要添加 [Flow preset](preset-flow.md) 预设。
 
 ## 安装
@@ -103,7 +102,6 @@ require("@babel/core").transformSync("code", {
 `boolean`，默认 `true`。
 
 选择是否在 XML 命名空间标签名称被使用时抛出错误。例如：
-
 
     <f:image />
 
