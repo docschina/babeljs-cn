@@ -36,13 +36,9 @@ sidebar_label: 插件列表
 - [export-namespace-from](plugin-proposal-export-namespace-from.md)
 - [nullish-coalescing-operator](plugin-proposal-nullish-coalescing-operator.md)
 - [optional-chaining](plugin-proposal-optional-chaining.md)
-<<<<<<< HEAD
 
 #### 可解析语法
 
-- [syntax-bigint](plugin-syntax-bigint.md)
-=======
->>>>>>> e386766b538e043bb5b3eafec00a09758289cb63
 - [syntax-dynamic-import](plugin-syntax-dynamic-import.md)
 - [syntax-import-meta](plugin-syntax-import-meta.md)
 - [syntax-bigint](plugin-syntax-bigint.md)
