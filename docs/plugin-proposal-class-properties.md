@@ -4,7 +4,7 @@ title: @babel/plugin-proposal-class-properties
 sidebar_label: class-properties
 ---
 
-> **提示**: `@babel/preset-env` 包含此插件
+> **提示**：在 [ES2022](https://github.com/tc39/proposals/blob/master/finished-proposals.md)，`@babel/preset-env` 包含此插件。
 
 ## 示例
 
