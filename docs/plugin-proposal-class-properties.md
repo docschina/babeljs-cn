@@ -4,14 +4,9 @@ title: @babel/plugin-proposal-class-properties
 sidebar_label: class-properties
 ---
 
-<<<<<<< HEAD
-> **提示**: `@babel/preset-env` 包含此插件
+> **提示**：在 [ES2022](https://github.com/tc39/proposals/blob/master/finished-proposals.md)，`@babel/preset-env` 包含此插件。
 
 ## 示例
-=======
-> **NOTE**: This plugin is included in `@babel/preset-env`, in [ES2022](https://github.com/tc39/proposals/blob/master/finished-proposals.md)
-## Example
->>>>>>> e386766b538e043bb5b3eafec00a09758289cb63
 
 以下展示了一个包含 4 个属性的类，它们将会被转译。
 
