@@ -3,13 +3,13 @@ id: plugins
 title: 插件
 ---
 
-Babel's code transformations are enabled by applying plugins (or [presets](presets.md)) to your [configuration file](config-files.md).
+通过在 [配置文件](config-files.md) 中应用插件（或 [预设](presets.md)），可以启用 Babel 的代码转换。
 
 <div id="pluginpreset-paths"></div>
 
-## Using a Plugin
+## 使用一个插件
 
-If the plugin is on [npm](https://www.npmjs.com/search?q=babel-plugin), you can pass in the name of the plugin and Babel will check that it's installed in `node_modules`. This is added to the [plugins](options.md#presets) config option, which takes an array.
+如果插件在 [npm](https://www.npmjs.com/search?q=babel-plugin) 中，你可以传入插件的名字，Babel 会检查它是否安装在 `node_modules` 中。这将被添加到 [plugins](options.md#plugins) 配置项，该选项接受一个数组。
 
 ```json
 {
@@ -17,7 +17,7 @@ If the plugin is on [npm](https://www.npmjs.com/search?q=babel-plugin), you can 
 }
 ```
 
-You can also specify an relative/absolute path to your plugin.
+你还可以指定插件的 相对/绝对 路径。
 
 ```json
 {
@@ -25,27 +25,27 @@ You can also specify an relative/absolute path to your plugin.
 }
 ```
 
-See [name normalization](options.md#name-normalization) for more specifics on configuring the path of a plugin or preset.
+有关配置插件或预设的路径的更多详细信息，请查阅 [命名规范化](options.md#name-normalization)。
 
-## Transform Plugins
+## 转换插件
 
-These plugins apply transformations to your code.
+这些代码将对你的代码应用转换。
 
 <blockquote class="babel-callout babel-callout-info">
   <p>
-    Transform plugins will enable the corresponding syntax plugin so you don't have to specify both.
+    转换插件将启用相应的语法插件，所以你不必两者都指定。
   </p>
 </blockquote>
 
-## Syntax Plugins
+## 语法插件
 
-Most syntax is transformable by Babel. In rarer cases (if the transform isn't implemented yet, or there isn't a default way to do so), you can use plugins such as `@babel/plugin-syntax-bigint` to only allow Babel to **parse** specific types of syntax. Or you want to preserve the source code because you only want Babel to do code analysis or codemods.
+大多数语法可以通过 Babel 进行转换。在比较罕见的情况下（如果转换还没有实现，或者没有默认的实现方式），你可以使用 `@babel/plugin-syntax-bigint` 之类的插件来只允许 Babel **解析** 特定类型的语法。或者你希望保留源代码，因为你只希望 Babel 执行代码分析或源码转换。
 
-> NOTE: You don't need to specify the syntax plugin if the corresponding transform plugin is used already, since it enables it automatically.
+> 注意：如果你已经使用了相应的转换插件，则不需要指定语法插件，因为它会自动启用。
 
-Alternatively, you can also provide any [`plugins` option](parser.md#plugins) from the Babel parser:
+或者，你也可以从 Babel 解析器中提供任何 [`plugins` 选项](parser.md#plugins)：
 
-Your `.babelrc`:
+你的 `.babelrc`:
 
 ```json
 {
@@ -55,17 +55,17 @@ Your `.babelrc`:
 }
 ```
 
-## Plugin Ordering
+## 插件排序
 
-> Ordering matters for each visitor in the plugin.
+> 排序对于插件中的每个访问者来说都很重要。
 
-This means if two transforms both visit the "Program" node, the transforms will run in either plugin or preset order.
+这意味着如果两个转换都访问 "Program" 节点，则转换将按插件或预设的顺序执行。
 
-- Plugins run before Presets.
-- Plugin ordering is first to last.
-- Preset ordering is reversed (last to first).
+- 插件在预设之前运行。
+- 插件排序是从第一个到最后一个。
+- 预设顺序是颠倒的（最后一个到第一个）。
 
-For example:
+示例:
 
 ```json
 {
@@ -73,9 +73,9 @@ For example:
 }
 ```
 
-Will run `transform-decorators-legacy` then `transform-class-properties`.
+将运行 `transform-decorators-legacy` 再运行 `transform-class-properties`。
 
-It is important to remember that with presets, the order is _reversed_. The following:
+重要的是要记住，使用预设时，顺序是 _颠倒的_。例如下面：
 
 ```json
 {
@@ -83,13 +83,13 @@ It is important to remember that with presets, the order is _reversed_. The foll
 }
 ```
 
-Will run in the following order: `@babel/preset-react` then `@babel/preset-env`.
+将按以下顺序运行：先 `@babel/preset-react` 再 `@babel/preset-env`。
 
-## Plugin Options
+## 插件选项
 
-Both plugins and presets can have options specified by wrapping the name and an options object in an array inside your config.
+插件和预设都可以通过将名称和选项对象包装在数组中来指定配置内的选项。
 
-For specifying no options, these are all equivalent:
+如果不指定选项，则这些都是等效的：
 
 ```json
 {
@@ -97,7 +97,7 @@ For specifying no options, these are all equivalent:
 }
 ```
 
-To specify an option, pass an object with the keys as the option names.
+若要指定选项，请传递一个以对象，其中键作为选项名称。
 
 ```json
 {
@@ -113,7 +113,7 @@ To specify an option, pass an object with the keys as the option names.
 }
 ```
 
-Settings options for presets works exactly the same:
+预设设置选项的工作原理完全相同：
 
 ```json
 {
@@ -129,12 +129,12 @@ Settings options for presets works exactly the same:
 }
 ```
 
-## Plugin Development
+## 插件开发
 
-Please refer to the excellent [babel-handbook](https://github.com/thejameskyle/babel-handbook)
-to learn how to create your own plugins.
+请参考优秀的 [babel 手册](https://github.com/thejameskyle/babel-handbook)
+学习如何创建自己的插件。
 
-The simple plugin that reverses names (from the homepage):
+颠倒名称的简单插件（来自首页）：
 
 ```js
 export default function() {
@@ -142,7 +142,7 @@ export default function() {
     visitor: {
       Identifier(path) {
         const name = path.node.name;
-        // reverse the name: JavaScript -> tpircSavaJ
+        // 颠倒名称：JavaScript -> tpircSavaJ
         path.node.name = name
           .split("")
           .reverse()
