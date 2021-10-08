@@ -5,30 +5,30 @@ translators:
   - fikyair
 ---
 
-使用者需要参阅此文档升级 Babel 7。点击 [这里](v7-migration-api.md) 查看 API 的的所有变更。
+使用者可参阅此文档升级至 Babel 7。点击 [这里](v7-migration-api.md) 查看 API 的所有变更。
 
 <!--truncate-->
 
-因为不是每一个变更都会影响每一个项目，所以我们依据破坏测试用例的可能性，对这些部分进行了排序。
+因为不是每一个破坏性变更都会影响到每一个项目，所以我们依据每个变更在升级时产生破坏的可能性测试，对它们进行了排序。
 
 ## 所有的 Babel
 
 > 已取消对 Node.js 0.10、0.12、4 和 5 的支持 [#5025](https://github.com/babel/babel/pull/5025), [#5041](https://github.com/babel/babel/pull/5041), [#7755](https://github.com/babel/babel/pull/7755), [#5186](https://github.com/babel/babel/pull/5186)
 
-我们强烈建议您使用较新版本的 Node.js (LTS v8)，因为之前的版本没有得到维护。
+我们强烈建议你使用较新版本的 Node.js (LTS v8)，因为较旧的版本不再进行维护了。
 有关更多信息，请参阅 [nodejs/LTS](https://github.com/nodejs/LTS)。
 
-这只是意味着 Babel _itself_ 不会在旧版本的 Node 上运行。它仍然可以 _output_ 在旧 Node 版本上。
+这意味着虽然 Babel _本身_ 不能在旧版本的 Node 上运行。它仍然可以在旧版本的 Node 上 _输出_ 代码。
 
 ## 查阅参数的变更
 
 请阅读 [6.x vs 7.x comparison](config-files.md#6x-vs-7x-babelrc-loading) 了解更多信息。
 
-Babel 之前在处理 `node_modules` 时遇到过问题，symlinks, and monorepos。为此，我们进行了一些更改：Babel 将停止在 `package.json` 边界查找而不是查找链。对于 monorepos，我们添加了一个新的 `babel.config.js` 文件，它将我们的配置集中在所有包中（或者你可以为每个包进行配置）。在 7.1 中，我们引入了 [`rootMode`](options.md#rootmode) 选项，以便在必要时进一步查找。
+Babel 之前在处理 `node_modules` 、symlinks 以及 monorepos 时有一些问题。为此，我们进行了一些更改：Babel 将停止查找 `package.json` 边界而支持查找链。对于 monorepos，我们添加了一个新的 `babel.config.js` 文件，它将集中管理我们所有包的配置（或者你也可以为每个包进行单独配置）。在 7.1 中，我们引入了 [`rootMode`](options.md#rootmode) 选项，以便在必要时进一步查找。
 
 ## [弃用年度预设](/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
 
-“env“ 预设已经推出一年多了, 并完全取代了我们之前已有的和建议的一些预设。
+“env“ 预设已经推出一年多了, 也完全取代了我们早期拥有并且推荐的一些预设。
 
 - `babel-preset-es2015`
 - `babel-preset-es2016`
