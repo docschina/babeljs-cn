@@ -25,7 +25,7 @@ title: 使用指南
    {
      "presets": [
        [
-         "@babel/env",
+         "@babel/preset-env",
          {
            "targets": {
              "edge": "17",
@@ -48,7 +48,7 @@ title: 使用指南
 ```js
 const presets = [
   [
-    "@babel/env",
+    "@babel/preset-env",
     {
       targets: {
         edge: "17",
@@ -155,7 +155,7 @@ npm install --save-dev @babel/preset-env
 {
   "presets": [
     [
-      "@babel/env",
+      "@babel/preset-env",
       {
         "targets": {
           "edge": "17",
@@ -202,7 +202,7 @@ npm install --save @babel/polyfill
 {
   "presets": [
     [
-      "@babel/env",
+      "@babel/preset-env",
       {
         "targets": {
           "edge": "17",
@@ -239,7 +239,7 @@ For example:
 {
   "presets": [
     [
-      "@babel/env",
+      "@babel/preset-env",
       {
         "targets": {
           "edge": "17",
