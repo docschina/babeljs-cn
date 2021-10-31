@@ -25,25 +25,25 @@ title: 插件
 }
 ```
 
-有关配置插件或预设的路径的更多详细信息，请查阅 [命名规范化](options.md#name-normalization)。
+更多有关配置插件或预设的详细信息，请查阅 [命名规范化](options.md#name-normalization)。
 
-## 转换插件
+## 转换类插件
 
-这些代码将对你的代码应用转换。
+这些插件可以转译你的代码。
 
 <blockquote class="babel-callout babel-callout-info">
   <p>
-    转换插件将启用相应的语法插件，所以你不必两者都指定。
+    转换类插件将启用相应的语法类插件，所以你不必两者都指定。
   </p>
 </blockquote>
 
-## 语法插件
+## 语法类插件
 
-大多数语法可以通过 Babel 进行转换。在比较罕见的情况下（如果转换还没有实现，或者没有默认的实现方式），你可以使用 `@babel/plugin-syntax-bigint` 之类的插件来只允许 Babel **解析** 特定类型的语法。或者你希望保留源代码，因为你只希望 Babel 执行代码分析或源码转换。
+大多数语法可以通过 Babel 进行转译。在比较罕见的情况下（如果转译还没有实现，或者没有默认的实现方式），你可以使用 `@babel/plugin-syntax-bigint` 之类的插件来只允许 Babel **解析** 特定类型的语法。例如你希望 Babel 只执行代码分析或代码重构，以此来保留源代码。
 
 > 注意：如果你已经使用了相应的转换插件，则不需要指定语法插件，因为它会自动启用。
 
-或者，你也可以从 Babel 解析器中提供任何 [`plugins` 选项](parser.md#plugins)：
+或者，你也可以在 Babel 解析器中设定相应 [`plugins` 选项](parser.md#plugins)：
 
 你的 `.babelrc`:
 
@@ -59,7 +59,7 @@ title: 插件
 
 > 排序对于插件中的每个访问者来说都很重要。
 
-这意味着如果两个转换都访问 "Program" 节点，则转换将按插件或预设的顺序执行。
+这意味着如果两次转译都访问了 "Program" 节点，则转译将按插件或预设的顺序执行。
 
 - 插件在预设之前运行。
 - 插件排序是从第一个到最后一个。
@@ -73,7 +73,7 @@ title: 插件
 }
 ```
 
-将运行 `transform-decorators-legacy` 再运行 `transform-class-properties`。
+将先运行 `transform-decorators-legacy` 再运行 `transform-class-properties`。
 
 重要的是要记住，使用预设时，顺序是 _颠倒的_。例如下面：
 
@@ -89,7 +89,7 @@ title: 插件
 
 插件和预设都可以通过将名称和选项对象包装在数组中来指定配置内的选项。
 
-如果不指定选项，则这些都是等效的：
+如果不指定选项，则这些写法都是等效的：
 
 ```json
 {
@@ -113,7 +113,7 @@ title: 插件
 }
 ```
 
-预设设置选项的工作原理完全相同：
+预设设置选项的工作原理与插件完全相同：
 
 ```json
 {
@@ -134,7 +134,7 @@ title: 插件
 请参考优秀的 [babel 手册](https://github.com/thejameskyle/babel-handbook)
 学习如何创建自己的插件。
 
-颠倒名称的简单插件（来自首页）：
+一个逆转名称的简单插件示例（来自首页）：
 
 ```js
 export default function() {
@@ -142,7 +142,7 @@ export default function() {
     visitor: {
       Identifier(path) {
         const name = path.node.name;
-        // 颠倒名称：JavaScript -> tpircSavaJ
+        // 逆转名称：JavaScript -> tpircSavaJ
         path.node.name = name
           .split("")
           .reverse()
