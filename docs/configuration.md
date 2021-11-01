@@ -291,4 +291,8 @@ plugins: [
 ];
 ```
 
+<<<<<<< HEAD
 因为每个实例都有一个独特的名字，这是一个独特的身份。
+=======
+because each instance has been given a unique name and thus a unique identity.
+>>>>>>> d8b296e04760a272dd59fc5fb1418587f429fba3
