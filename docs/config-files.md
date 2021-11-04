@@ -258,9 +258,15 @@ module.exports = require("babel-jest").default.createTransformer({
 
 ### 子包的 `.babelrc.json` 文件
 
+<<<<<<< HEAD
 类似于 [`babel.config.json`](#project-wide-configuration) 文件必须位于 ["root"](options.md#root) 中的方式，
 默认情况下，[`.babelrc.json`](#file-relative-configuration) 文件必须位于根 _包_ 下。 这意味着，与工作目录影响
 [`babel.config.json`](#project-wide-configuration) 加载的方式相同，它也会影响 [`.babelrc.json`](#file-relative-configuration) 加载。
+=======
+Similar to the way [`babel.config.json`](#project-wide-configuration) files are required to be in the ["root"](options.md#root),
+[`.babelrc.json`](#file-relative-configuration) files must be in the root _package_, by default. This means that, the same way the
+working directory affects [`babel.config.json`](#project-wide-configuration) loading, it also affects [`.babelrc.json`](#file-relative-configuration) loading.
+>>>>>>> 88c81ac29d013b2e50f0f35ed0df4b7a9d298bdb
 
 假设你已经像上面讨论的那样正确地加载了
 [`babel.config.json`](#project-wide-configuration) 文件，Babel 将只处理根包（而不是子包）中的
