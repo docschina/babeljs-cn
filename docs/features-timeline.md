@@ -7,7 +7,35 @@ title: 新增特性时间轴
 除此之外，你也可以使用此时间轴来追踪一些其他的重要工作，例如 [babel-polyfills](https://github.com/babel/babel-polyfills) 项目。
 
 <ol class="timeline-container">
-<li data-date="Feb 2021">
+<li data-date="Jul 2021">
+
+## Babel 7.15.0
+
+[blog post](https://babeljs.io/blog/2021/07/26/7.15.0)
+
+- Enable parsing for the [top-level `await`](https://github.com/tc39/proposal-top-level-await) Stage 4 proposal by default
+  ```js
+  import db from "db";
+  await db.connect();
+  ```
+- Enable the [Private Brand Checks](https://github.com/tc39/proposal-private-fields-in-in) Stage 4 proposal by default
+  ```js
+  class A {
+    static { initialize(A); } // static block
+    #field;
+    is(obj) {
+      return #field in obj; // private brand check
+    }
+  }
+  ```
+- Support the "Hack-style" [pipeline operator](https://github.com/tc39/proposal-pipeline-operator) Stage 2 proposal
+  ```js
+  const result = "World" |> `Hello, ${%}!` |> alert(%);
+  ```
+- [TypeScript 4.4](https://devblogs.microsoft.com/typescript/announcing-typescript-4-4/) support
+
+</li>
+<li data-date="Apr 2021">
 
 ## Babel 7.14.0
 
@@ -289,7 +317,7 @@ title: 新增特性时间轴
 - 支持 JSX 语法 `<></>`
 - 支持一系列 TC39 提案:
   - [Unicode Property Regex](plugin-proposal-unicode-property-regex.md)
-  - [JSON Superset](plugin-proposal-json-strings.md) 
+  - [JSON Superset](plugin-proposal-json-strings.md)
   - [`new.target`](plugin-transform-new-target.md)
   - [Class Private Instance Fields](plugin-proposal-class-properties.md) (`class A { #b = 2 }`)
   - [Optional Catch Binding](plugin-proposal-optional-catch-binding.md) `try { throw 0 } catch { do() }`
