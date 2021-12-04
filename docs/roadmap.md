@@ -1,29 +1,29 @@
 ---
 id: roadmap
-title: Babel Roadmap
-sidebar_label: Roadmap
+title: Babel 路线图
+sidebar_label: 路线图
 ---
 
-This document outlines some of the improvements our team members would like to work on during this year.
+本文档概述了我们的团队成员希望在今年进行的一些改进。
 
-This is far from being a complete list of all the new features or important changes that we'll bring to Babel, but it's a good summary if you are interested in the general direction that the project is moving toward. We may not actually finish every listed point or may delay some of them to the next year. Some of them have clear starting and ending points, while others need more research or [RFCs](https://github.com/babel/rfcs).
+这远非我们将为 Babel 带来的所有新功能或重要更改的完整列表，但是，如果你对项目发展的大方向感兴趣，那么这是一个很好的总结。实际上，我们可能不能完成所有列出的要点，或者可能会将其中一些推迟到明年。其中一些有明确的起点和终点，而另一些则需要更多的研究或 [RFCs（征求修正意见书）](https://github.com/babel/rfcs)。
 
-If your company is interested and would like to directly sponsor any particular item please [reach out](mail:team@babeljs.io)!
+如果贵公司有兴趣并希望直接赞助任何项目，请 [联系我们](mail:team@babeljs.io)！
 
-## Babel 2021 Roadmap
+## Babel 2021 路线图
 
 ### Babel 8
 
-We have been talking about the Babel 8 release for more than one year (we initially scheduled it about one year ago)! However, we are now closer then ever to it's release!
+关于 Babel 8 的发布我们已经讨论了一年多了（我们最初是在一年前安排的）！不过，我们现在比以往任何时候都离它的发布更近！
 
-Most of the remaining tasks are in the [tracking issue](https://github.com/babel/babel/issues/10746), but there are still a few blockers:
-- We want to drop support for [Node.js 10](https://github.com/nodejs/Release), which stops being maintained on 2021-04-30.
-- We would like to release Babel as a pure ESM package. We are now in the process of converting our sources to be compatible with Node.js' ESM implementation, and while doing so, we are examining how we can make it easier for people that currently use Babel to compile ESM to CJS.
-- We are trying to align our TypeScript AST with the [`typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint/) project. Our ASTs are _almost_ identical, but we need to introduce some small breaking changes to fully align.
-- Our release infrastructure doesn't support yet pre-releases, or using multiple "main" branches (one for Babel 8 and one for Babel 7).
-- We haven't figured out yet a policy for Babel 7 maintenance.
+剩下的大部分工作都是在 [跟踪 issue](https://github.com/babel/babel/issues/10746)，但仍有一些阻塞内容：
+- 我们希望取消对 [Node.js 10](https://github.com/nodejs/Release) 的支持，它将在 2021-04-30 停止维护。
+- 我们希望将 Babel 作为一个纯 ES 模块包发布。现在我们正在转换我们的源码以兼容 Node.js 的 ES 模块实现，同时，我们正在研究如何让目前使用 Babel 的人更容易地将 ES 模块编译成 CommonJS 模块。
+- 我们正在尝试将我们的 TypeScript 抽象语法树与 [`typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint/) 项目对齐。我们的抽象语法树 _几乎_ 完全相同，但我们需要引入一些小的突破性变化才能完全一致。
+- 我们的发布基础设施还不支持预发布，也不支持使用多个 "main" 分支（一个用于 Babel 8，一个用于 Babel 7）。
+- 我们还没有弄清楚 Babel 7 的维护政策。
 
-### Implement new TC39 proposals
+### 实现新的 TC39 提案
 
 Babel can currently parse all the Stage 3 proposals, and we can transform all of them except for top-level await, import assertions and JSON modules (which are best handled by bundlers working with the dependencies graph).
 

@@ -774,8 +774,8 @@
         "title": "@babel/register"
       },
       "roadmap": {
-        "title": "Babel Roadmap",
-        "sidebar_label": "Roadmap"
+        "title": "Babel 路线图",
+        "sidebar_label": "路线图"
       },
       "babel-runtime-corejs2": {
         "title": "@babel/runtime-corejs2",
