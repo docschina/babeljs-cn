@@ -25,26 +25,26 @@ sidebar_label: 路线图
 
 ### 实现新的 TC39 提案
 
-Babel can currently parse all the Stage 3 proposals, and we can transform all of them except for top-level await, import assertions and JSON modules (which are best handled by bundlers working with the dependencies graph).
+Babel 目前可以解析所有第 3 阶段提案，除了顶级 await、导入断言和 JSON 模块（它们最好由使用依赖关系图的构建工具来处理）之外，我们都可以转译它们。
 
-We support all the Stage 2 proposals except for:
-- The new iteration of the decorators proposal (we need to implement both parsing and transform);
-- Transform for the Module Blocks proposal (we implemented parsing in Babel 7.13.0).
+我们支持所有第 2 阶段提案，除了：
+- 新版装饰器提案（我们需要同时实现解析和转译）；
+- 转译块级模块提案（在 Babel 7.13.0 我们实现了解析）。
 
-We will implement support for decorators, and investigate if and how we can implement a transform for module blocks.
+我们将实现对装饰器的支持，并研究是否应该以及如何实现对块级模块的转译。
 
-While we don't support many Stage 1 proposals, there have been recent updates to the pipeline operator and to do expressions. Since we already support those proposals and the community is quite excited about them, we will update our implementations.
+尽管我们不支持许多第 1 阶段提案，但最近对管道运算符和 to do 表达式进行了更新。因为我们已经支持这些提案，并且社区对它们非常期待，所以我们将更新我们的实现。
 
-There are also other proposals (such as pattern matching) that we have not yet implemented because their champions expect to do significant changes to the syntax and semantics. However, we are closely following their development, and will implement them in Babel as soon as they stabilize a bit.
+还有其它提案（比如模式匹配）我们至今没有实现，因为它们的拥护者希望对语法和语义进行重大更改。然而，我们正在密切关注它们的发展，一旦它们稳定下来，我们就会在 Babel 中实现它们。
 
-### Move `@babel/preset-env` into `@babel/core`
+### 将 `@babel/preset-env` 移入 `@babel/core`
 
-A minimal Babel transforming setup requires at least three packages:
+一个最小的 Babel 转译配置至少需要三个包：
 - `@babel/core`
 - `@babel/preset-env`
-- a Babel "runner" (`@babel/cli`, `babel-loader`, `@rollup/plugin-babel`, etc)
+- 一个 Babel "运行器"（`@babel/cli`、`babel-loader`、`@rollup/plugin-babel` 等）
 
-Moving `@babel/preset-env` directly into `@babel/core` has two big advantages:
+将 `@babel/preset-env` 直接移入 `@babel/core` 有两大好处：
 
 - It will be easier to configure Babel in simple projects, you would only need to enable a `compileJS: true` option in `babel.config.json` (or it could even be the default in the future -- it can't be default as `@babel/eslint-parser` does not compile the source)
 - It will make sure that the plugin versions are in sync with the `@babel/core` version, avoiding most of the bugs caused by mismatched/incompatible packages versions
