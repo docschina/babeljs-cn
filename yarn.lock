@@ -5,137 +5,6 @@ __metadata:
   version: 4
   cacheKey: 7
 
-<<<<<<< HEAD
-"@algolia/cache-browser-local-storage@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/cache-browser-local-storage@npm:4.9.3"
-  dependencies:
-    "@algolia/cache-common": 4.9.3
-  checksum: 78a77e1ce155a1a54266434f5eceac98bfc35ce55f6f3faf8afbb9009c92a0ca80eb5e41e8c1f7d9217dc9130e3dab986fc983e9673a73861bc31de28c641807
-  languageName: node
-  linkType: hard
-
-"@algolia/cache-common@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/cache-common@npm:4.9.3"
-  checksum: 46547d773e64edf9a7a9a129b0edb3bc4f6d88a4806fb428b00a4ff1351cac2e994c58378f7bd8efac1970cf25361122dcb8cd6a561f3148ac4f778f761eef6a
-  languageName: node
-  linkType: hard
-
-"@algolia/cache-in-memory@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/cache-in-memory@npm:4.9.3"
-  dependencies:
-    "@algolia/cache-common": 4.9.3
-  checksum: 2356202b8d73e6c476ee2543caa3ca0498ca3d13c66b97a7c3091dc1d6dbe29b9294f0b8fa4b76290e1735c4bec2c338195fb2b225ab5cdcd78ddabf5de691aa
-  languageName: node
-  linkType: hard
-
-"@algolia/client-account@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/client-account@npm:4.9.3"
-  dependencies:
-    "@algolia/client-common": 4.9.3
-    "@algolia/client-search": 4.9.3
-    "@algolia/transporter": 4.9.3
-  checksum: 383803f5c00a2a8814fdbbe58438f506eb85d73ea779d61690533ef85c21c8aab7d6efcc08a327e15e4167c2c4a811f9c9c79605881eb423d8ef9801b62e9bd3
-  languageName: node
-  linkType: hard
-
-"@algolia/client-analytics@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/client-analytics@npm:4.9.3"
-  dependencies:
-    "@algolia/client-common": 4.9.3
-    "@algolia/client-search": 4.9.3
-    "@algolia/requester-common": 4.9.3
-    "@algolia/transporter": 4.9.3
-  checksum: 8c1b5aaebf41b8d5c0f2406db5b52c6e75178feefda3232ea3f80e67c738f90be7cb5e0fec28bfb02a30e491c4a6cbf71bbf186e63138cfb8c3dab60c24d6b5c
-  languageName: node
-  linkType: hard
-
-"@algolia/client-common@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/client-common@npm:4.9.3"
-  dependencies:
-    "@algolia/requester-common": 4.9.3
-    "@algolia/transporter": 4.9.3
-  checksum: ccf9217846ed2decd04ce07685f28ec9769ad890753052a6d0164cd18eb1006607fcbeadb41bc508e0d5ff3ebfd0d79f111e83b5fe683642d31c8bdfa7384713
-  languageName: node
-  linkType: hard
-
-"@algolia/client-recommendation@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/client-recommendation@npm:4.9.3"
-  dependencies:
-    "@algolia/client-common": 4.9.3
-    "@algolia/requester-common": 4.9.3
-    "@algolia/transporter": 4.9.3
-  checksum: 044425959c2a6a70883b801b75ab3238af4080ef96ce42a4d347a8dc897dc43ea811733b08703b57240925dff46a42264e4bccbf88a8218d84df2d49ae8ebb93
-  languageName: node
-  linkType: hard
-
-"@algolia/client-search@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/client-search@npm:4.9.3"
-  dependencies:
-    "@algolia/client-common": 4.9.3
-    "@algolia/requester-common": 4.9.3
-    "@algolia/transporter": 4.9.3
-  checksum: 0cc57b0cac7add24a7afbeb95dee020aa70ff2f4eed32ae12381d38b203aff45bf0686f4c8af8ed7256aa815fbe324c9c556a3d0a099ed7e9f1354a3dbbbd507
-  languageName: node
-  linkType: hard
-
-"@algolia/logger-common@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/logger-common@npm:4.9.3"
-  checksum: b4943b9b68f829a2325600cf2befd76ed2b8af483bf29e704748d2d9a0b976f0aa5d4aca9f40e9e0b9d3889d4d67729dc569b26fd80aeae8a2113149388222d2
-  languageName: node
-  linkType: hard
-
-"@algolia/logger-console@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/logger-console@npm:4.9.3"
-  dependencies:
-    "@algolia/logger-common": 4.9.3
-  checksum: 14d328a958a8124355dbca44f32f557e0d5e0155f21814844f98287f94b3a06ee381fdcc632da662f10d378ea44a45e6c85042fcfcf1c2a8ee06660f455cadf1
-  languageName: node
-  linkType: hard
-
-"@algolia/requester-browser-xhr@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/requester-browser-xhr@npm:4.9.3"
-  dependencies:
-    "@algolia/requester-common": 4.9.3
-  checksum: 6303a3e3f996633248a83df678f95290d2bb235931790ec642dabeb194419e9402f44e0d0c10c9a0bcec4cb8750010cc4f1f097e13bfe17ed6fe83013f4a5a69
-  languageName: node
-  linkType: hard
-
-"@algolia/requester-common@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/requester-common@npm:4.9.3"
-  checksum: 7967505265ddc13cf818a4a8212b19c1817aa4717dfe2dcc470d576f7912ef77a69695d0dd9b5e62ccc1c83424f09d6e14f5f1e8df2bfb80a7bf4b3fb5104557
-  languageName: node
-  linkType: hard
-
-"@algolia/requester-node-http@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/requester-node-http@npm:4.9.3"
-  dependencies:
-    "@algolia/requester-common": 4.9.3
-  checksum: 49c3511482f76fbf0975acfcddc68120316b40c697ee1ab7cc298bd62493a3aae0ede22166378490f6da0433009202c97f53ffa22697c7534d597daddbdec27f
-  languageName: node
-  linkType: hard
-
-"@algolia/transporter@npm:4.9.3":
-  version: 4.9.3
-  resolution: "@algolia/transporter@npm:4.9.3"
-  dependencies:
-    "@algolia/cache-common": 4.9.3
-    "@algolia/logger-common": 4.9.3
-    "@algolia/requester-common": 4.9.3
-  checksum: 2d55fc097615836325b273ba163362e1e318d8c6e3a83566663945f15bd3bbfa58ec954cedf904335eb26e58914c405ba12243e9683d66c08d99c294a8129565
-=======
 "@algolia/cache-browser-local-storage@npm:4.12.0":
   version: 4.12.0
   resolution: "@algolia/cache-browser-local-storage@npm:4.12.0"
@@ -265,7 +134,6 @@ __metadata:
     "@algolia/logger-common": 4.12.0
     "@algolia/requester-common": 4.12.0
   checksum: 6a5e6c110f87d58482955ff461d67169275707296c79af2184af36e75d5cb05b9e6c1edb08c000b1b63508b999a562ad7902946c952848298cea0e7b234661b2
->>>>>>> 59119dd9c74d9b454e851313105dc3a0ec41fbe7
   languageName: node
   linkType: hard
 
@@ -2539,27 +2407,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-"algoliasearch@npm:^4.5.1":
-  version: 4.9.3
-  resolution: "algoliasearch@npm:4.9.3"
-  dependencies:
-    "@algolia/cache-browser-local-storage": 4.9.3
-    "@algolia/cache-common": 4.9.3
-    "@algolia/cache-in-memory": 4.9.3
-    "@algolia/client-account": 4.9.3
-    "@algolia/client-analytics": 4.9.3
-    "@algolia/client-common": 4.9.3
-    "@algolia/client-recommendation": 4.9.3
-    "@algolia/client-search": 4.9.3
-    "@algolia/logger-common": 4.9.3
-    "@algolia/logger-console": 4.9.3
-    "@algolia/requester-browser-xhr": 4.9.3
-    "@algolia/requester-common": 4.9.3
-    "@algolia/requester-node-http": 4.9.3
-    "@algolia/transporter": 4.9.3
-  checksum: ab1a97569797b5b2f5bab896d48ae387f88d7fa7a9b451b1eccb21cc8abf7b184ed3c0b57590e906872a263eedba3a7a2c5e01b2569bff29bcd46dae74ee293a
-=======
 "algoliasearch@npm:^4.12.0":
   version: 4.12.0
   resolution: "algoliasearch@npm:4.12.0"
@@ -2579,7 +2426,6 @@ __metadata:
     "@algolia/requester-node-http": 4.12.0
     "@algolia/transporter": 4.12.0
   checksum: 1032e862a6589c164d76d2a11576cbbaaf27ccad5355e220d1cc6aaf9c15576d9a037b2c901a29e2e54d487d25ff7290a7cf7e72d835d72852d5f1bf6a594a36
->>>>>>> 59119dd9c74d9b454e851313105dc3a0ec41fbe7
   languageName: node
   linkType: hard
 
