@@ -6,7 +6,7 @@ sidebar_label: 路线图
 
 本文档概述了我们的团队成员希望在今年进行的一些改进。
 
-这远非我们将为 Babel 带来的所有新功能或重要更改的完整列表，但是，如果你对项目发展的大方向感兴趣，那么这是一个很好的总结。实际上，我们可能不能完成所有列出的要点，或者可能会将其中一些推迟到明年。其中一些有明确的起点和终点，而另一些则需要更多的研究或 [RFCs（征求修正意见书）](https://github.com/babel/rfcs)。
+这远非我们将为 Babel 带来的所有新功能或重要更改的完整列表，但是，如果你对项目发展的大方向感兴趣，那么这是一个很好的总结。实际上，我们可能不能完成所有列出的要点，或者可能会将其中一些推迟到明年。其中一些有明确的起点和终点，而另一些则需要更多的研究或 [RFCs](https://github.com/babel/rfcs)。
 
 如果贵公司有兴趣并希望直接赞助任何项目，请 [联系我们](mail:team@babeljs.io)！
 
@@ -19,9 +19,9 @@ sidebar_label: 路线图
 剩下的大部分工作都是在 [跟踪 issue](https://github.com/babel/babel/issues/10746)，但仍有一些阻塞内容：
 - 我们希望取消对 [Node.js 10](https://github.com/nodejs/Release) 的支持，它将在 2021-04-30 停止维护。
 - 我们希望将 Babel 作为一个纯 ES 模块包发布。现在我们正在转换我们的源码以兼容 Node.js 的 ES 模块实现，同时，我们正在研究如何让目前使用 Babel 的人更容易地将 ES 模块编译成 CommonJS 模块。
-- 我们正在尝试将我们的 TypeScript 抽象语法树与 [`typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint/) 项目对齐。我们的抽象语法树 _几乎_ 完全相同，但我们需要引入一些小的突破性变化才能完全一致。
+- 我们正在尝试将我们的 TypeScript AST 与 [`typescript-eslint`](https://github.com/typescript-eslint/typescript-eslint/) 项目对齐。我们的 AST _几乎_ 完全相同，但我们还需要引入一些小的突破性变化才能完全一致。
 - 我们的发布基础设施还不支持预发布，也不支持使用多个 "main" 分支（一个用于 Babel 8，一个用于 Babel 7）。
-- 我们还没有弄清楚 Babel 7 的维护政策。
+- 我们还没有弄清楚 Babel 7 的维护策略。
 
 ### 实现新的 TC39 提案
 
@@ -46,105 +46,105 @@ Babel 目前可以解析所有第 3 阶段提案，除了顶级 await、导入�
 
 将 `@babel/preset-env` 直接移入 `@babel/core` 有两大好处：
 
-- It will be easier to configure Babel in simple projects, you would only need to enable a `compileJS: true` option in `babel.config.json` (or it could even be the default in the future -- it can't be default as `@babel/eslint-parser` does not compile the source)
-- It will make sure that the plugin versions are in sync with the `@babel/core` version, avoiding most of the bugs caused by mismatched/incompatible packages versions
-- When we move to ESM, it will be hard to resolve and load plugin synchronously in `transformSync`. This prevents it from being a problem.
+- 在简单的项目中配置 Babel 将会更容易，你只需要在 `babel.config.json` 中启用 `compileJS: true` 选项（或者在将来它甚至可能是默认值 —— 它不能作为默认值是因为 `@babel/eslint-parser` 不编译源码）
+- 它将确保插件版本与 `@babel/core` 版本保持同步，从而避免因为 不匹配/不兼容 的包版本而导致的大多数问题
+- 当我们迁移至 ES 模块时，将很难在 `transformSync` 中同步解析和加载插件。这样可以防止它成为一个问题。
 
-There is already [a RFC](https://github.com/babel/rfcs/pull/10) to move _plugins_ for stable ECMAScript features in `@babel/core`, which is the first step in this direction.
+已经有[一个 RFC](https://github.com/babel/rfcs/pull/10) 可以为 `@babel/core` 中的标准 ECMAScript 特性迁移 _插件_，这是朝该方向迈出的第一步。
 
-With our current `@babel/preset-env` architecture, we would need to specially handle official plugins to automatically enable or disable them based on `targets`.
-However, this has two drawbacks:
-- Compatibility data for a specific plugin is completely separated from the plugin implementation (it's not even a dependency, more something like an internal implicit peer dependency: plugin -> @babel/core -> @babel/compat-data);
-- Official plugins would get special treatment from `@babel/core`, but we want to make sure that third-party plugins have the same capabilities as official plugins.
+使用我们当前的 `@babel/preset-env` 架构，我们需要专门处理官方插件，以便根据 `targets` 自动启用或禁用它们。
+然而，这有两个缺点：
+- 特定插件的兼容性数据与插件实现完全分离（它甚至不是依赖，更像是内部隐式的对等依赖：插件 -> @babel/core -> @babel/compat-data）；
+- 官方插件将从 `@babel/core` 获得特殊对待，但我们希望确保第三方插件具有与官方插件相同的能力。
 
-### Continue developing the `babel-polyfills` project
+### 继续开发 `babel-polyfills` 项目
 
-We have already decided to remove the older `core-js@2` support from `@babel/preset-env` in Babel 8. We also want to stop promoting a specific third-party polyfill, which might give our users the impression that it's part of Babel itself.
+我们已经决定从 Babel 8 的 `@babel/preset-env` 中移除较旧的 `core-js@2` 的支持。我们还希望停止推广特定的第三方 polyfill，因为这可能会给我们的用户留下这样的印象：它是 Babel 本身的一部分。
 
-This might happen in two different ways:
-- We just remove `core-js@3` from `@babel/preset-env` in Babel 8, encouraging users to migrate to `babel-plugin-polyfill-corejs3` (which is what `@babel/preset-env` internally uses starting from version 7.10.0)
-- We can keep `core-js@3` support in `@babel/preset-env`, but not migrate it to `@babel/core` when we'll move the transform plugins.
+这可能以两种不同的方式进行：
+- 我们只需从 Babel 8 的 `@babel/preset-env` 中移除 `core-js@3`，鼓励用户迁移到 `babel-plugin-polyfill-corejs3`（从 v7.10.0 开始，在 `@babel/preset-env` 内部使用）
+- 我们可以在 `@babel/preset-env` 中保留对 `core-js@3` 的支持，但在移动转译插件时，不能将其迁移到 `@babel/core`。
 
-Whichever path we take, we would like to offer at least one alternative to our users when they'll need to update the `core-js` integration in their configuration. `core-js` is a really good polyfill that ensures the highest possible spec compliancy, but users may prefer different trade-offs.
+无论我们采取哪种方式，当我们的用户需要在他们的配置中更新 `core-js` 集成的时候，我们希望为他们提供至少一个替代方案。`core-js` 是一个非常好的 polyfill，它确保了尽可能高的规范合规性，但用户可能更喜欢不同的权衡。
 
-([Nicolò](https://github.com/nicolo-ribaudo)) is working with [@ljharb](https://github.com/ljharb) to make sure that the [`@es-shims` project](https://github.com/es-shims/) supports at least all the ES2015+ features (we actually aim for ES5+), so that Babel users are free to choose to between at least two options.
+([Nicolò](https://github.com/nicolo-ribaudo)) 正在与 [@ljharb](https://github.com/ljharb) 合作，为了确保 [`@es-shims` 项目](https://github.com/es-shims/) 至少支持 ES2015+ 的所有功能（实际上我们的目标是 ES5+），这样 Babel 用户可以在至少两个选项之间自由选择。
 
-This needs to happen _before_ dropping built-in support for `core-js@3`, so that people interested in `es-shims` don't have to migrate twice.
+这需要在放弃对 `core-js@3` 的内置支持 _之前_ 完成, 这样对 `es-shims` 感兴趣的人就不需要迁移两次了。
 
-### Expand `targets` usage for granular transforms
+### 扩展粒度转译的 `targets` 使用率
 
-Since the beginning, `@babel/preset-env` has used the `targets` option to automatically enable or disable transform plugins.
+从一开始，`@babel/preset-env` 就使用 `targets` 选项自动启用或禁用转译插件。
 
-However, there isn't a 1-to-1 mapping between Babel plugins and features implemented in browsers.
+然而，在 Babel 插件与浏览器中实现的特性之间不存在一对一的映射。
 
-For example, we have a single plugin for the different class fields types (public and private, static and instance), but browsers have varying compatibility matrices:
+例如，对于不同的类字段类型（公共和私有、静态和实例），我们只有一个插件，但浏览器却有不同的兼容性矩阵：
 
-- Firefox 73 and Safari 14 support only public instance fields
-- Firefox 75+ supports public instance and static fields
-- Chrome 79+ supports public and private fields, but doesn't support private fields in some optional chaining expressions
-- Chrome 84+ fully supports private fields, and also private methods
-- Safari TP 121 fully supports private fields (even with `?.`), but it doesn't support private methods
+- Firefox 73 和 Safari 14 仅支持公共实例字段
+- Firefox 75+ 支持公有实例和静态字段
+- Chrome 79+ 支持公有和私有字段，但不支持某些可选链接表达式中的私有字段
+- Chrome 84+ 完全支持私有字段，以及私有方法
+- Safari TP 121 完全支持私有字段（即使使用 `?.`），但不支持私有方法
 
-Creating a plugin for each feature is sub-optimal. For example, we can convert private methods to private fields and then, if needed, convert them to older syntax. However, we can generate better/optimized output by directly converting private methods down to older syntax without the intermediate step if we know that it needs to be transpiled down.
+为每个功能创建一个插件并不是最优的。例如，我们可以将私有方法转译为私有字段，然后根据需要将它们转译为较旧的语法。但是，如果我们知道私有方法需要向下转译，我们可以通过直接将私有方法向下转译为较旧的语法来生成更好/优化的输出，而不需要中间步骤。
 
-Since Babel 7.13.0, we can read the `targets` option directly inside a plugin, we can modify our plugins to automatically perform a _partial_ compilation of a given ECMAScript feature, which would give advantages in the output size and runtime performance.
+从 Babel 7.13.0 开始，我们可以直接在插件中读取 `targets` 选项，我们可以修改我们的插件来自动执行给定 ECMAScript 特性的 _部分_ 编译，这将在输出大小和运行时性能方面带来优势。
 
-**Prior Art**
+**现有技术**
 
-This approach isn't completely new. Thanks to a collaboration with [@_developit](https://twitter.com/_developit), in Babel 7.9.0 we introduced a new `bugfixes: true` option for `@babel/preset-env`. When this option is enabled, and when using `esmodules: true` as the compilation target, we only partially compile [some features](https://github.com/babel/preset-modules#features-supported). This what made us initially think about this possibility, but the current partial transforms are less useful when using more modern targets (for example, `defaults, not ie 11`).
+这种方法并不是全新的。多亏了与 [@_developit](https://twitter.com/_developit) 的合作，在 Babel 7.9.0 中，我们在 `@babel/preset-env` 中引入了一个新的 `bugfixes: true` 选项。启用此选项并使用 `esmodules: true` 作为编译目标时，我们只会部分编译 [某些特性](https://github.com/babel/preset-modules#features-supported)。这就是我们最初考虑这种可能性的原因，但当前的部分转译在使用更现代的目标（例如：`defaults, not ie 11`）时用处不大。
 
-We also already use the `targets` option to decide whether we can use `Object.assign` when compiling object spread or not.
+我们已经使用 `targets` 选项来决定在编译对象扩展时是否可以使用 `Object.assign`。
 
-**Action Points**
+**行动要点**
 
-This goal can be split into two big tasks that can be done in parallel:
-- We need to identify *where* these optimizations can be useful by collecting real-world browserslist queries and by simulating how popular queries (for example, `defaults` or `>2%, not dead`) will evolve in the future.
-- We need to actually implement the necessary optimizations, making sure that they still work well with the other plugins (since they would highly increase the number of possible transform combinations).
+这个目标可以分为两个可以并行完成的大任务：
+- 我们需要通过收集真实的 browserslist 查询并模拟流行的查询（例如：`defaults` 或 `>2%, not dead`）在未来将如何演变，来确定这些优化在 *哪些方面* 有用。
+- 我们需要实际实现必要的优化，确保它们仍然可以与其他插件很好地协同工作（因为它们会极大地增加可能的转译组合的数量）。
 
-### Investigate new compiler `assumptions`
+### 调查新的编译器 `assumptions`
 
-In Babel 7.13.0 we introduced a new top-level [`assumptions`](https://babeljs.io/docs/en/options#assumptions) option, to formalize what the `loose` mode option does and offer more granular control to our users (since often they can only enable _some_ assumptions and not all of them).
+在 Babel 7.13.0 中，我们引入了一个新的顶层 [`assumptions`](https://babeljs.io/docs/en/options#assumptions) 选项来正式化 `loose` 模式选项的功能，并为我们的用户提供更精细的控制（因为他们通常只能启用 _某些_ 假设，而不是所有）。
 
-However, we only included options for assumptions we _already_ made when compiling in `loose` mode. We can now investigate what new assumptions our users might need.
+但是，我们只包含了在 `loose` 模式下编译时 _已经_ 做出的假设选项。我们现在可以调查我们的用户可能需要哪些新的假设。
 
-The are already some proposals, such as:
-- [#8222](https://github.com/babel/babel/issues/8222) - assume that all the ESM imports are actually immutable, avoiding the code needed for live bindings.
-- [#11356](https://github.com/babel/babel/issues/11356) - assume that compiled classes do not extends native classes, avoiding the runtime performance cost needed to instantiate possibly native classes.
+已经有一些提案，例如：
+- [#8222](https://github.com/babel/babel/issues/8222) - 假设所有 ESM 导入实际上都是不可变的，从而避免了活动绑定所需的代码。
+- [#11356](https://github.com/babel/babel/issues/11356) - 假设编译的类不扩展原生类，从而避免了实例化可能的原生类所需的运行时性能成本。
 
-We can find which new assumptions we should implement, by:
-- Manually checking which features we compile to "non-obvious" output, which is usually caused by edge cases that many developers don't care about.
-- Ask for feedback from the community, since developers can test which assumptions work and which don't on their applications.
+我们可以通过以下方式找到我们应该实现的新假设：
+- 手动检查我们编译成“不明显”输出的特性，这通常是由许多开发人员不关心的边缘情况引起的。
+- 从社区寻求反馈，因为开发人员可以测试哪些假设对他们的应用有效，哪些假设无效。
 
-### Overhaul the Babel REPL
+### 大修 Babel REPL
 
-The Babel REPL is a convenient playground to learn how Babel transpiles source code.
+Babel REPL 是一个方便学习 Babel 如何转译源码的 playground。
 
-Current limits:
+目前的限制：
 
-- The REPL does not support `assumptions` config. Although we have a dedicated per-assumption basis mini REPL on https://babel.dev/assumptions, currently we can not show how these `assumptions` might work together
-- The REPL does not support plugin options. Some plugins have required options, such as `@babel/plugin-proposal-record-and-tuple` and `@babel/plugin-proposal-decorators`
+- REPL 不支持 `assumptions` 配置。尽管我们目前在 https://babel.dev/assumptions 上有一个专门基于每个假设的迷你 REPL，但我们不能说明这些 `assumptions` 是如何协同工作的
+- REPL 不支持插件选项。某些插件具有必需的选项，例如 `@babel/plugin-proposal-record-and-tuple` 和 `@babel/plugin-proposal-decorators`
 https://github.com/babel/website/issues/1292, https://github.com/babel/website/issues/2224, https://github.com/babel/website/pull/1970
 
-Features good to have:
+已有的优秀功能：
 
-- AST Explorer (integrate with existing one)
-- stderr with complete stack trace as error log
-- stdout as output
-- Change Babel version from UI
+- AST 资源管理器（与现有系统集成）
+- 具有完整堆栈跟踪的标准错误输出作为错误日志
+- 标准输出作为输出
+- 从 UI 更改 Babel 版本
 
-At least 15% of open issues in babel-website are related to the REPL: https://github.com/babel/website/issues?q=is%3Aissue+is%3Aopen+label%3Arepl
+Babel 站点仓库上至少有 15% 的未解决问题与 REPL 有关：https://github.com/babel/website/issues?q=is%3Aissue+is%3Aopen+label%3Arepl
 
-### Educational/Debugging Tooling
+### 教育/调试工具
 
-Related to the REPL/ASTExplorer, we could do with more tooling to help with general plugin development for ourselves and 3rd-party plugins. This is rather exploratory in nature: different visualizations for the AST itself, debugging, etc.
+与 REPL/AST 资源管理器相关，我们可以使用更多工具来帮助我们自己和第三方插件进行通用插件开发。这在本质上是相当具有探索性的：AST 本身、调试等有不同的可视化。
 
-Some things already in progress Henry has been working on and off on:
+一些事情已经在进行中，Henry 一直在断断续续地工作：
 
-- [Codesandbox](https://codesandbox.io/s/babel-repl-custom-plugin-7s08o) for making a simple Babel plugin in the same vein as https://astexplorer.net but with custom configs.
-- [Visualization](https://twitter.com/left_pad/status/1367941962083471361?s=20) of input to output mapping to help understand how Babel transforms it's code. Could be useful even for documentation in getting JavaScript users familiar with new syntax or a specific demo of a transform.
-- [Mapping](https://twitter.com/left_pad/status/1298792944099561473?s=20) of input to output like a sourcemap type structure. Can do a reverse mapping to find out what plugin caused the code to be outputted a certain way which helps with debugging.
+- [Codesandbox](https://codesandbox.io/s/babel-repl-custom-plugin-7s08o) 用于制作一个简单的 Babel 插件，与 https://astexplorer.net 的思路相同，不过会带有自定义配置。
+- [可视化](https://twitter.com/left_pad/status/1367941962083471361?s=20) 的输入到输出映射帮助理解 Babel 是如何转译代码的。甚至作为让 JavaScript 用户熟悉新语法或一个特定的转译示例的文档也很有用。
+- 输入到输出的 [映射](https://twitter.com/left_pad/status/1298792944099561473?s=20) 类似于 sourcemap 类型的结构。可以做一个反向映射，找出是什么插件导致代码以某种方式输出，这有助于调试。
 
-For an interactive example of what we are thinking about: https://babel-explorer.netlify.app/ (click and hold the mouse in the bottom sector!)
+查看我们正在思考的互动示例：https://babel-explorer.netlify.app/（在底部扇区单击并按住鼠标！）
 
 <!--
 
