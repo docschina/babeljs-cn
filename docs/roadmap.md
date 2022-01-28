@@ -132,7 +132,7 @@ https://github.com/babel/website/issues/1292, https://github.com/babel/website/i
 - 标准输出作为输出
 - 从 UI 更改 Babel 版本
 
-Babel 站点仓库上至少有 15% 的未解决问题与 REPL 有关：https://github.com/babel/website/issues?q=is%3Aissue+is%3Aopen+label%3Arepl
+Babel 站点仓库上至少有 15% 的未解决 issues 与 REPL 有关：https://github.com/babel/website/issues?q=is%3Aissue+is%3Aopen+label%3Arepl
 
 ### 教育/调试工具
 
