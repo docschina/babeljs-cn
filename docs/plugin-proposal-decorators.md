@@ -80,16 +80,36 @@ require("@babel/core").transformSync("code", {
 
 ## 选项
 
-### `decoratorsBeforeExport`
-
-`boolean`
-
 <details>
   <summary>History</summary>
+<<<<<<< HEAD
 | Version  | Changes                                                                        |
 | -------- | ------------------------------------------------------------------------------ |
 | `v7.2.0` | `decoratorsBeforeExport` must be specified. Before that it defaults to `false` |
+=======
+| Version | Changes |
+| --- | --- |
+| `v7.17.0` | Added the `version` option with support for `"2021-12"`, `"2018-09"` and `"legacy"` |
+>>>>>>> b65ecf681aec5c6f145795755baa707f9416933c
 </details>
+
+### `version`
+
+`"2021-12"`, `"2018-09"` or `"legacy"`. Defaults to `"2018-09"`.
+
+Selects the decorators proposal to use:
+- `"2021-12"` is the proposal version as it was presented to TC39 in Dec 2021. You can read more about it at [`tc39/proposal-decorators@d6c056fa06`](https://github.com/tc39/
+- `"2018-09"` is the proposal version that was initially promoted to Stage 2 presented to TC39 in Sept 2018.  You can read more about it at [`tc39/proposal-decorators@7fa580b40f`](https://github.com/tc39/proposal-decorators/tree/7fa580b40f2c19c561511ea2c978e307ae689a1b).proposal-decorators/tree/d6c056fa061646178c34f361bad33d583316dc85).
+- `legacy` is the original Stage 1 proposal, defined at [`wycats/javascript-decorators@e1bf8d41bf`](https://github.com/wycats/javascript-decorators/blob/e1bf8d41bfa2591d949dd3bbf013514c8904b913/README.md).
+
+### `decoratorsBeforeExport`
+
+This option:
+- is disallowed when using `version: "legacy"`;
+- is required when using `version: "2018-09"`;
+- is optional and defaults to `false` when using `version: "2021-12"`.
+
+`boolean`
 
 ```js
 // decoratorsBeforeExport: false
@@ -106,7 +126,13 @@ export class Foo {}
 
 ### `legacy`
 
+<<<<<<< HEAD
 `boolean`，默认为 `false`。
+=======
+> **⚠️ DEPRECATED**: Use `version: "legacy"` instead. This option is a legacy alias.
+
+`boolean`, defaults to `false`.
+>>>>>>> b65ecf681aec5c6f145795755baa707f9416933c
 
 使用历史遗留（stage 1）的装饰器中的语法和行为。
 
@@ -114,15 +140,19 @@ export class Foo {}
 
 如果你手动引用了插件 `@babel/plugin-proposal-class-properties` 并使用了它，请确保在引用 `@babel/plugin-proposal-class-properties` 之前引用 `@babel/plugin-proposal-decorators`。
 
+<<<<<<< HEAD
 当使用 `legacy: true` 模式时，必须在必须启用 [`setPublicClassFields` assumption](assumptions.md#setpublicclassfields) 来支持 `@babel/plugin-proposal-decorators`。
 
 错误示例：
+=======
+Wrong:
+>>>>>>> b65ecf681aec5c6f145795755baa707f9416933c
 
 ```json
 {
   "plugins": [
     "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-decorators"
+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
   ]
 }
 ```
@@ -132,20 +162,8 @@ export class Foo {}
 ```json
 {
   "plugins": [
-    "@babel/plugin-proposal-decorators",
-    "@babel/plugin-proposal-class-properties"
-  ]
-}
-```
-
-```json
-{
-  "assumptions": {
-    "setPublicClassFields": true
-  },
-  "plugins": [
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    ["@babel/plugin-proposal-class-properties"]
+    "@babel/plugin-proposal-class-properties"
   ]
 }
 ```

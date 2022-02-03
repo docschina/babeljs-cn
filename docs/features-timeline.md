@@ -7,6 +7,38 @@ title: 新增特性时间轴
 除此之外，你也可以使用此时间轴来追踪一些其他的重要工作，例如 [babel-polyfills](https://github.com/babel/babel-polyfills) 项目。
 
 <ol class="timeline-container">
+<li data-date="Feb 2022">
+
+## Babel 7.17.0
+
+[blog post](https://babeljs.io/blog/2022/02/02/7.17.0)
+
+- Support for the new version of the [decorators](https://github.com/tc39/proposal-decorators) Stage 2 proposal
+  ```js
+  class A {
+    @reactive #x = 2;
+
+    @logger
+    method() {
+      this.#x++;
+    }
+  }
+  ```
+- Support for the [RegExp set notation and properties of strings](https://github.com/tc39/proposal-regexp-set-notation/) Stage 2 proposal
+  ```js
+  /[\p{RGI_Emoji}&&[\0-\uFFFF]]/v;
+  ```
+- Parser support for the [private destructuring](https://github.com/tc39/proposal-destructuring-private) Stage 2 proposal
+  ```js
+  class A {
+    #x = 2;
+    method() {
+      const { #x: x } = this;
+    }
+  }
+  ```
+
+</li>
 <li data-date="Oct 2021">
 
 ## Babel 7.16.0
