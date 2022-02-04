@@ -82,15 +82,9 @@ require("@babel/core").transformSync("code", {
 
 <details>
   <summary>History</summary>
-<<<<<<< HEAD
-| Version  | Changes                                                                        |
-| -------- | ------------------------------------------------------------------------------ |
-| `v7.2.0` | `decoratorsBeforeExport` must be specified. Before that it defaults to `false` |
-=======
 | Version | Changes |
 | --- | --- |
 | `v7.17.0` | Added the `version` option with support for `"2021-12"`, `"2018-09"` and `"legacy"` |
->>>>>>> b65ecf681aec5c6f145795755baa707f9416933c
 </details>
 
 ### `version`
@@ -126,13 +120,9 @@ export class Foo {}
 
 ### `legacy`
 
-<<<<<<< HEAD
-`boolean`，默认为 `false`。
-=======
-> **⚠️ DEPRECATED**: Use `version: "legacy"` instead. This option is a legacy alias.
+> **⚠️ 弃用**：使用 `version: "legacy"` 代替。此选项是一个遗留的别名。
 
-`boolean`, defaults to `false`.
->>>>>>> b65ecf681aec5c6f145795755baa707f9416933c
+`boolean`，默认为 `false`
 
 使用历史遗留（stage 1）的装饰器中的语法和行为。
 
@@ -140,13 +130,7 @@ export class Foo {}
 
 如果你手动引用了插件 `@babel/plugin-proposal-class-properties` 并使用了它，请确保在引用 `@babel/plugin-proposal-class-properties` 之前引用 `@babel/plugin-proposal-decorators`。
 
-<<<<<<< HEAD
-当使用 `legacy: true` 模式时，必须在必须启用 [`setPublicClassFields` assumption](assumptions.md#setpublicclassfields) 来支持 `@babel/plugin-proposal-decorators`。
-
 错误示例：
-=======
-Wrong:
->>>>>>> b65ecf681aec5c6f145795755baa707f9416933c
 
 ```json
 {
