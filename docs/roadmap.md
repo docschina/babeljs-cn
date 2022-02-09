@@ -6,7 +6,7 @@ sidebar_label: 路线图
 
 本文档概述了我们的团队成员希望在今年进行的一些改进。
 
-这远非我们将为 Babel 带来的所有新功能或重要更改的完整列表，但是，如果你对项目发展的大方向感兴趣，那么这是一个很好的总结。实际上，我们可能不能完成所有列出的要点，或者可能会将其中一些推迟到明年。其中一些有明确的起点和终点，而另一些则需要更多的研究或 [RFCs](https://github.com/babel/rfcs)。
+这远不是我们将为 Babel 带来的所有新功能或重要更改的完整列表，但是，如果你对项目发展的大方向感兴趣，那么这是一个很好的总结。实际上，我们也许并不能完成列出的所有要点，甚至可能会将某些实现推迟到明年。某些要点已有明确的起止时间，而另一些则需要更多的研究或 [RFCs](https://github.com/babel/rfcs)。
 
 如果贵公司有兴趣并希望直接赞助，请 [联系我们](mail:team@babeljs.io)！
 
@@ -121,7 +121,7 @@ Babel REPL 是一个方便学习 Babel 如何转译源码的 playground。
 
 目前的限制：
 
-- REPL 不支持 `assumptions` 配置。尽管我们目前在 https://babel.dev/assumptions 上有一个专门基于每个假设的迷你 REPL，但我们不能说明这些 `assumptions` 是如何协同工作的
+- REPL 不支持 `assumptions` 配置。尽管我们目前在 https://babel.dev/assumptions 上有一个专门基于每个假设的迷你 REPL，但我们还不能展示这些 `assumptions` 是如何协同工作的
 - REPL 不支持插件选项。某些插件具有必需的选项，例如 `@babel/plugin-proposal-record-and-tuple` 和 `@babel/plugin-proposal-decorators`
 https://github.com/babel/website/issues/1292, https://github.com/babel/website/issues/2224, https://github.com/babel/website/pull/1970
 
