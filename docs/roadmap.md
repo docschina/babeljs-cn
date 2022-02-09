@@ -48,7 +48,7 @@ sidebar_label: 路线图
 
 - 在简单的项目中配置 Babel 将会更容易，你只需要在 `babel.config.json` 中启用 `compileJS: true` 选项（或者在将来它甚至可能是默认值 —— 目前它不能作为默认值是因为 `@babel/eslint-parser` 不编译源码）
 - 它将确保插件版本与 `@babel/core` 版本保持同步，从而避免因为 不匹配/不兼容 的包版本而导致的大多数问题
-- 当我们迁移至 ES 模块时，将很难在 `transformSync` 中同步解析和加载插件。这样可以防止它成为一个问题。
+- 当我们迁移至 ES 模块时，将很难在 `transformSync` 中同步解析和加载插件。而这就可以解决前面的问题。
 
 已经有[一个 RFC](https://github.com/babel/rfcs/pull/10) 可以为 `@babel/core` 中的标准 ECMAScript 特性迁移 _插件_，这是朝该方向迈出的第一步。
 
