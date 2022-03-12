@@ -40,26 +40,26 @@ Babel 之前在处理 `node_modules` 、symlinks 以及 monorepos 时有一些�
 
 ## [弃用 Stage 预设](https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets)
 
-我们正在删除 Stage 预设，以使用已经确定的提案。可以查看 [stage-0 README](https://github.com/babel/babel/tree/755ec192e22c6b6e00782e4810366d0166fdbebd/packages/babel-preset-stage-0#babelpreset-stage-0) 了解更多迁移步骤。
+我们正在删除 Stage 预设，以支持已明确提案的使用。你可以查看 [stage-0 README](https://github.com/babel/babel/tree/755ec192e22c6b6e00782e4810366d0166fdbebd/packages/babel-preset-stage-0#babelpreset-stage-0) 文件来了解更多迁移步骤。
 
-要自动执行此操作，你可以运行 [`npx babel-upgrade`](https://github.com/babel/babel-upgrade) ([这里获取帮助](https://github.com/babel/babel-upgrade/pull/69))。
+想自动执行升级操作，你可以执行 [`npx babel-upgrade`](https://github.com/babel/babel-upgrade) 命令 (相关 PR 在[此处](https://github.com/babel/babel-upgrade/pull/69))。
 
 ## [移除在 `@babel/polyfill` 里的 polyfills 提案](https://github.com/babel/babel/issues/8416)
 
-基于类似的想法，我们从 `@babel/polyfill` 中删除了 polyfill 提案。
+基于与前文相同的观点，我们从 `@babel/polyfill` 中删除了 polyfill 提案。
 
 现在 `@babel/polyfill` 大多只是`core-js` v2 的别名。[源文件](https://github.com/babel/babel/blob/master/packages/babel-polyfill/src/index.js)
 
-以前它只是 2 个导入：
+使用它之前只需要导入 2 个包：
 
 ```js
 import "core-js/shim"; // included < Stage 4 proposals
 import "regenerator-runtime/runtime";
 ```
 
-如果你想使用提案, 你需要单独导入它们。你应该直接从 [`core-js`](https://github.com/zloirock/core-js/tree/v2#usage) 包或 npm 上的其他包中导入它们。
+如果你想使用这些被移除了的提案, 你需要单独导入它们。你应该直接从 [`core-js`](https://github.com/zloirock/core-js/tree/v2#usage) 包或 npm 上的其他包中导入它们。
 
-e.g.
+例如：
 
 ```js
 // for core-js v2:
@@ -69,7 +69,7 @@ import "core-js/fn/array/flat-map";
 import "core-js/features/array/flat-map";
 ```
 
-以下是 `core-js` v2 中的 Stage < 3 polyfills 的提案列表。
+以下是 `core-js` v2 中 Stage < 3 的 polyfills 提案列表。
 
 <details>
 
@@ -144,13 +144,13 @@ import "core-js/fn/reflect/metadata";
 
 ## [版本控制/依赖关系](/blog/2017/12/27/nearing-the-7.0-release.html#peer-dependencies-integrations)
 
-大多数插件/顶级包现在在 `@babel/core` 上有一个 `peerDependency`。
+现在大多数插件/顶级包在 `@babel/core` 上都有一个 `peerDependency`。
 
 ## 重命名包
 
 - `babylon` 现在叫 `@babel/parser`
 
-你仍然可以在配置中使用包名的简写版本（删除 `preset-` or `plugin-`），但为了清晰起见，我选择使用整个包名（也许我们应该直接删除它，因为它不会节省太多的操作）。
+你仍然可以在配置中使用包名的简写版本（不带有 `preset-` 或 `plugin-`前缀），但为了清晰起见，我选择使用整个包名（也许我们应该直接删除它，因为它并不会节省太多的操作）。
 
 ```diff
 {
@@ -163,9 +163,9 @@ import "core-js/fn/reflect/metadata";
 
 ### 作用域包
 
-最重要的变化是最后将所有包切换到 [scoped packages](/blog/2017/12/27/nearing-the-7.0-release.html#renames-scoped-packages-babel-x)（[monorepo](https://github.com/babel/babel/tree/main/packages) 中的文件夹名称未更改，但其 `package.json` 中的名称则没变）。
+最重要的变化是最后将所有包切换到 [scoped packages](/blog/2017/12/27/nearing-the-7.0-release.html#renames-scoped-packages-babel-x)（[monorepo](https://github.com/babel/babel/tree/main/packages) 中的文件夹名称未更改，因此其 `package.json` 中的名称则没变）。
 
-这意味着不会再有意外/故意的名称被抢用、与社区插件的明确分离以及更简单的命名约定的问题。
+这意味着不会再有意外/故意地抢注名称、与社区插件明确分隔或更简单命名约定争议等问题。
 
 你的依赖项需要像这样修改：
 
@@ -173,7 +173,7 @@ import "core-js/fn/reflect/metadata";
 
 #### 在配置中使用
 
-你仍然可以使用指定预设或插件的简写方式。但是，由于切换到作用域包，你仍然必须指定 `@babel/`，就像你有自己的预设要添加到配置中一样。
+你仍然可以使用简写方式来指定预设或插件。但是，由于作用域包的切换，你仍然必须指定 `@babel/`，就像你有自己的预设要添加到配置中一样。
 
 ```js
 module.exports = {
@@ -184,7 +184,7 @@ module.exports = {
 
 ### [对于 TC39 提案，切换到 `-proposal-`](/blog/2017/12/27/nearing-the-7.0-release.html#renames-proposal)
 
-这意味着任何不在年度版本（ES2015、ES2016 等）中的插件都应该重命名为 `-proposal`。 这样我们就可以更好地表明提案并未正式使用 JavaScript。
+这意味着任何不在年度版本（ES2015、ES2016 等）中的插件都应该重命名为 `-proposal`。 这样我们就可以更好地表明提案并未正式应用于 JavaScript。
 
 例如:
 
@@ -201,7 +201,7 @@ module.exports = {
 
 ## CommonJS 中的 `"use strict"` 和 `this`
 
-Babel 6 对 ES6 模块的转换随意的地运行在要处理的任何文件上，从不考虑文件中是否真的有 ES6 导入/导出。这会将文件范围内对 `this` 的引用重写为 `undefined`，并在 Babel 处理的所有 CommonJS 模块的顶部插入 `"use strict"`。
+Babel 6 对要处理的任何文件都会随意地执行 ES6 模块转换，从未考虑文件中是否真的有 ES6 导入/导出。这会将文件范围内对 `this` 的引用重写为 `undefined`，并在 Babel 处理的所有 CommonJS 模块的顶部插入 `"use strict"`。
 
 ```js
 // input.js
@@ -219,7 +219,7 @@ undefined; // changed this to undefined
 this;
 ```
 
-这种行为在 Babel 7 中受到限制，因此对于 `transform-es2015-modules-commonjs` 转换，只有在文件中有 ES6 导入或导出时才会更改文件。（编者注：如果我们采纳这个 https://github.com/babel/babel/issues/6242，可能会再次改变，所以我们想在发布之前重新审阅）。
+这种行为在 Babel 7 中已受到限制，因此对于 `transform-es2015-modules-commonjs` 转换，只有在文件中有 ES6 导入或导出时才会更改文件。（编者注：如果我们采纳这个 https://github.com/babel/babel/issues/6242，可能会再次改变，所以我们想在发布之前重新审阅）。
 
 ```js
 // input2.js
@@ -236,9 +236,9 @@ require("a");
 
 ## React 和 Flow 预设的分离
 
-`babel-preset-react` 一直包含 Flow 插件。这给用户造成了很多问题，因为用户由于错字而无意中使用了 `flow` 语法，或者在没有使用 `flow` 本身进行类型检查的情况下添加它，从而导致错误。
+`babel-preset-react` 一直包含 Flow 插件。这给用户造成了很多问题，由于错字而无意中使用了 `flow` 语法，或者在没有使用 `flow` 进行类型检查的情况下误添加了它，从而导致报错。
 
-当我们决定支持 TypeScript 时，这个问题变得更加复杂。 如果你想使用 React 和 TypeScript 预设，我们必须想办法通过文件类型或指令自动打开/关闭语法。 最后，完全分离预设会更容易。
+当我们决定支持 TypeScript 时，这个问题变得更加复杂。 如果你想使用 React 和 TypeScript 预设，我们必须想办法通过文件类型或指令自动打开/关闭语法。 最后，我们发现完全分离预设会更容易一点儿。
 
 预设使 Babel 能够解析 Flow / TypeScript（以及其他方言 / 语言）提供的类型，然后在编译为 JavaScript 时将它们抽离。
 
@@ -253,7 +253,7 @@ require("a");
 ## 配置解析
 
 Babel 7 的配置选项比 Babel 6 更严格。
-其中以逗号分隔的列表用于预设，例如。`"presets": 'es2015, es2016'` 在之前的版本有效, 现在会失效，需要改成数组 [#5463](https://github.com/babel/babel/pull/5463)。
+之前以逗号分隔的字符串可用于预设，例如。`"presets": 'es2015, es2016'` 在技术上是有效的, 现在已经失效了，需要将其改成数组 [#5463](https://github.com/babel/babel/pull/5463)。
 
 注意，这并不适用于 CLI，在 CLI 中 `——presets es2015,es2016` 肯定仍然有效。
 
@@ -266,13 +266,13 @@ Babel 7 的配置选项比 Babel 6 更严格。
 
 ## 插件 / 预设导出
 
-为了保持一致性，所有插件 / 预设现在都应该导出一个函数而不是一个对象（[via babel/babel#6494](https://github.com/babel/babel/pull/6494)）。这个配置将帮助我们进行缓存。
+为了保持一致性，所有插件 / 预设现在都应该导出一个函数而不是一个对象（[参考 babel/babel#6494](https://github.com/babel/babel/pull/6494)）。这个配置将帮助我们进行缓存。
 
-## 解析字符串的基础配置
+## 解析基于字符串的配置值
 
-在 Babel 6 中，直接传递给 Babel（而不是从配置文件）的值是相对于正在编译的文件进行解析的，这样会导致很多混乱。
+在 Babel 6 中，直接传递给 Babel（而不是从配置文件）的配置值是相对于正在编译的文件进行解析的，这样会导致很多混乱。
 
-在 Babel 7 中，加载它们的配置文件和相对于工作目录的解析之后的值是一致的。
+在 Babel 7 中，配置值可与加载它们的配置文件一致，也可与工作目录是一致的。
 
 对于 `presets` 和 `plugins` 值，这种变化意味着 CLI 将在以下情况下表现良好。
 
@@ -286,15 +286,15 @@ babel --presets @babel/preset-env ../file.js
 
 ## 基于路径的 `only` 和 `ignore` 模式
 
-在 Babel 6 中，`only` 和 `ignore` 被视为通用匹配字符串，而不是文件路径 glob。所以想这样 `*.foo.js` 会匹配 `./**/*.foo.js`，这会让大多数用户感到疑惑。
+在 Babel 6 中，`only` 和 `ignore` 被视为通用匹配字符串，而不是文件路径 glob。所以像这样 `*.foo.js` 会匹配 `./**/*.foo.js`，而这会让大多数用户感到疑惑。
 
 在 Babel 7 中，基于路径的 glob 模式，可以是相对路径或绝对路径。这意味着，如果你正在使用这些模式，您现在可能至少需要为它们添加一个 `**/` 前缀，以确保你的模式与目录深度匹配。
 
-`only` 和 `ignore` 模式 _do_ 仍然适用于目录，所以你也可以使用 `only: './tests'` 只编译你的 `tests` 目录中的文件，而无需使用 `**/* .js` 以匹配所有嵌套文件。
+`only` 和 `ignore` 模式 _确实_ 仍然适用于目录，所以你也可以使用 `only: './tests'` 只编译你的 `tests` 目录中的文件，而无需使用 `**/* .js` 以匹配所有嵌套文件。
 
 ## Babel 的 CLI 命令
 
-`babel` 命令的 `--copy-files` 参数意味着 Babel 不知道如何处理的目录中的所有文件，当前版本复制失败的文件会进行 `only` / `ignore` 检查，之前的版本则会跳过所有被忽略的文件。
+`babel` 命令的 `--copy-files` 参数意味着让 Babel 直接复制所有不知道如何处理的目录中的文件，以及 `only` / `ignore` 检查失败的文件，之前的版本则会跳过所有被忽略的文件。
 
 ### `@babel/node`
 
