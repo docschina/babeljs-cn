@@ -180,7 +180,11 @@ npm install --save-dev @babel/preset-env
 > import "regenerator-runtime/runtime";
 > ```
 
+<<<<<<< HEAD
 [@babel/polyfill](polyfill.md) 模块包括 [core-js](https://github.com/zloirock/core-js) 和一个自定义 [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js)，用于模拟完整的 ES2015+ 环境。
+=======
+The [@babel/polyfill](polyfill.md) module includes [core-js](https://github.com/zloirock/core-js) and a custom [regenerator runtime](https://github.com/facebook/regenerator/blob/main/packages/runtime/runtime.js) to emulate a full ES2015+ environment.
+>>>>>>> 4d4a93147903f6a00b5bd17034b3b87b7c89adb6
 
 这意味着你可以使用像 `Promise` 或 `WeakMap` 这样的新内置函数，像 `Array.from` 或 `Object.assign` 这样的静态方法，像 `Array.prototype.includes` 这样的实例方法，以及（提供 regenerator 插件后可以使用） generator 函数。为了做到这一点，polyfill 会在全局作用域和类似 `String` 这样的内置对象的原型对象上添加对象或方法。
 
