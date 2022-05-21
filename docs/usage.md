@@ -173,12 +173,17 @@ npm install --save-dev @babel/preset-env
 
 ## polyfill
 
+<<<<<<< HEAD
 > 🚨 <span id="polyfill-deprecated">自</span> Babel 7.4.0 起，此 package 已被弃用，你可以直接引入 `core-js/stable`（用于 polyfill ECMAScript 新特性）以及 `regenerator-runtime/runtime` (被用于转译 generator 函数)：
+=======
+> 🚨 <span id="polyfill-deprecated">As</span> of Babel 7.4.0, this package has been deprecated in favor of directly including `core-js/stable` (to polyfill ECMAScript features):
+>>>>>>> d142456794b7947777b8ad099424064d06b8c7ca
 >
 > ```js
 > import "core-js/stable";
-> import "regenerator-runtime/runtime";
 > ```
+>
+> If you are compiling generators or async function to ES5, and you are using a version of `@babel/core` or `@babel/plugin-transform-regenerator` older than `7.18.0`, you must also load the [`regenerator runtime`](https://github.com/facebook/regenerator/tree/main/packages/runtime) package. It is automatically loaded when using `@babel/preset-env`'s `useBuiltIns: "usage"` option or `@babel/plugin-transform-runtime`.
 
 [@babel/polyfill](polyfill.md) 模块包括 [core-js](https://github.com/zloirock/core-js) 和一个自定义 [regenerator runtime](https://github.com/facebook/regenerator/blob/main/packages/runtime/runtime.js)，用于模拟完整的 ES2015+ 环境。
 
@@ -253,6 +258,7 @@ For example:
   ]
 }
 ```
+<<<<<<< HEAD
 
 然后由于 [@babel/polyfill](polyfill.md) 已被 <a href="#polyfill-deprecated">废弃</a>，在我们模拟完整 ES2015+ 环境的入口文件中应首先导入 [core-js](https://github.com/zloirock/core-js) (polyfill ECMAScript 功能) 和 [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js) (只有你在转换 generators 时才需要):
 
@@ -260,6 +266,13 @@ For example:
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 ```
+=======
+Then import [core-js](https://github.com/zloirock/core-js) (to polyfill ECMAScript features) first, in our entry file to emulate a full ES2015+ environment since [@babel/polyfill](polyfill.md) has been <a href="#polyfill-deprecated">deprecated</a>:
+
+```js
+ import "core-js/stable";
+ ```
+>>>>>>> d142456794b7947777b8ad099424064d06b8c7ca
 
 ## 总结
 
