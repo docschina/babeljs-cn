@@ -173,12 +173,13 @@ npm install --save-dev @babel/preset-env
 
 ## polyfill
 
-> 🚨 <span id="polyfill-deprecated">自</span> Babel 7.4.0 起，此 package 已被弃用，你可以直接引入 `core-js/stable`（用于 polyfill ECMAScript 新特性）以及 `regenerator-runtime/runtime` (被用于转译 generator 函数)：
+> 🚨 <span id="polyfill-deprecated">自</span> Babel 7.4.0 起，此 package 已被弃用，你可以直接引入 `core-js/stable`（用于 polyfill ECMAScript 新特性）：
 >
 > ```js
 > import "core-js/stable";
-> import "regenerator-runtime/runtime";
 > ```
+>
+> If you are compiling generators or async function to ES5, and you are using a version of `@babel/core` or `@babel/plugin-transform-regenerator` older than `7.18.0`, you must also load the [`regenerator runtime`](https://github.com/facebook/regenerator/tree/main/packages/runtime) package. It is automatically loaded when using `@babel/preset-env`'s `useBuiltIns: "usage"` option or `@babel/plugin-transform-runtime`.
 
 [@babel/polyfill](polyfill.md) 模块包括 [core-js](https://github.com/zloirock/core-js) 和一个自定义 [regenerator runtime](https://github.com/facebook/regenerator/blob/main/packages/runtime/runtime.js)，用于模拟完整的 ES2015+ 环境。
 
@@ -254,11 +255,10 @@ For example:
 }
 ```
 
-然后由于 [@babel/polyfill](polyfill.md) 已被 <a href="#polyfill-deprecated">废弃</a>，在我们模拟完整 ES2015+ 环境的入口文件中应首先导入 [core-js](https://github.com/zloirock/core-js) (polyfill ECMAScript 功能) 和 [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js) (只有你在转换 generators 时才需要):
+然后由于 [@babel/polyfill](polyfill.md) 已被 <a href="#polyfill-deprecated">废弃</a>，在我们模拟完整 ES2015+ 环境的入口文件中应首先导入 [core-js](https://github.com/zloirock/core-js) (用于 polyfill ECMAScript 功能）：
 
 ```js
 import "core-js/stable";
-import "regenerator-runtime/runtime";
 ```
 
 ## 总结

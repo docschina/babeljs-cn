@@ -10,6 +10,7 @@ translators:
 - [@babel/plugin-syntax-jsx](plugin-syntax-jsx.md)
 - [@babel/plugin-transform-react-jsx](plugin-transform-react-jsx.md)
 - [@babel/plugin-transform-react-display-name](plugin-transform-react-display-name.md)
+- [@babel/plugin-transform-react-pure-annotations](plugin-transform-react-pure-annotations.md)
 
 并且有相应的开发配置项：
 
@@ -106,6 +107,12 @@ require("@babel/core").transformSync("code", {
     <f:image />
 
 虽然 JSX 规范允许这样做，但是默认情况下是被禁止的，因为 React 所实现的 JSX 目前并不支持这种方式。
+
+#### `pure`
+
+`boolean`，默认为 `true`。
+
+开启 `@babel/plugin-transform-react-pure-annotations`。它将把顶层的 React 方法调用标记为 pure，用于树状摇动。
 
 ### React 自动运行时
 

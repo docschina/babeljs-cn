@@ -13,15 +13,12 @@ require:
 ```sh
 # Polyfills for builtin methods
 npm install --save core-js
-# Polyfills for generator function
-npm install --save regenerator-runtime
 ```
 
 Add import polyfills _before_ `@babel/register`.
 ```yaml
 require:
   - 'core-js'
-  - 'regenerator-runtime'
   - '@babel/register'
 ```
 
