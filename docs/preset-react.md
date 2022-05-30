@@ -108,17 +108,13 @@ require("@babel/core").transformSync("code", {
 
 虽然 JSX 规范允许这样做，但是默认情况下是被禁止的，因为 React 所实现的 JSX 目前并不支持这种方式。
 
-<<<<<<< HEAD
-### React 自动运行时
-=======
 #### `pure`
 
-`boolean`, defaults to `true`.
+`boolean`，默认为 `true`。
 
-Enables `@babel/plugin-transform-react-pure-annotations`. It will mark top-level React method calls as pure for tree shaking.
+开启 `@babel/plugin-transform-react-pure-annotations`。它将把顶层的 React 方法调用标记为 pure，用于树状摇动。
 
-### React Automatic Runtime
->>>>>>> 386907a4031353690758bdd92e8d3ec064659b59
+### React 自动运行时
 
 #### importSource
 
