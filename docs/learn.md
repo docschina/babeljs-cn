@@ -264,7 +264,7 @@ function f() {
 }
 ```
 
-## 迭代器 + For..Of
+### 迭代器 + For..Of
 
 迭代器对象实现了像 CLR IEnumerable 或 Java Iterable 一样的自定义迭代器。
 将 `for...in` 泛化为基于自定义迭代器的 `for...of` 的迭代。
