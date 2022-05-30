@@ -354,6 +354,10 @@
         "title": "@babel/plugin-proposal-unicode-property-regex",
         "sidebar_label": "unicode-property-regex"
       },
+      "babel-plugin-proposal-unicode-sets-regex": {
+        "title": "@babel/plugin-proposal-unicode-sets-regex",
+        "sidebar_label": "unicode-sets-regex"
+      },
       "babel-plugin-syntax-async-do-expressions": {
         "title": "@babel/plugin-syntax-async-do-expressions",
         "sidebar_label": "syntax-async-do-expressions"
@@ -465,6 +469,10 @@
       "babel-plugin-syntax-typescript": {
         "title": "@babel/plugin-syntax-typescript",
         "sidebar_label": "syntax-typescript"
+      },
+      "babel-plugin-syntax-unicode-sets-regex": {
+        "title": "@babel/plugin-syntax-unicode-sets-regex",
+        "sidebar_label": "syntax-unicode-sets-regex"
       },
       "babel-plugin-transform-arrow-functions": {
         "title": "@babel/plugin-transform-arrow-functions",
