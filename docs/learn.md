@@ -4,56 +4,56 @@ id: learn
 ---
 
 <blockquote class="babel-callout babel-callout-info">
-  <h3>es6features</h3>
+  <h3>es6 特性</h3>
   <p>
-    This document was originally taken from Luke Hoban's excellent
-    <a href="https://git.io/es6features">es6features</a> repo. Go give it a star
-    on GitHub!
+    本文源自 Luke Hoban 优秀的
+    <a href="https://git.io/es6features">es6 特性</a>仓库。去 GitHub
+    给他一个 star 吧！
   </p>
 </blockquote>
 
 <blockquote class="babel-callout babel-callout-info">
   <h4>REPL</h4>
   <p>
-    Be sure to try these features out in the online
-    <a href="/repl">REPL</a>.
+    一定要在线上的 <a href="/repl">REPL</a> 中
+    尝试一下这些特性嗷！
   </p>
 </blockquote>
 
-## Introduction
+## 简介
 
-> ECMAScript 2015 is an ECMAScript standard that was ratified in June 2015.
+> ECMAScript 2015 是发布于 2015 年 6 月的 ECMAScript 标准。
 
-ES2015 is a significant update to the language, and the first major update to the language since ES5 was standardized in 2009. Implementation of these features in major JavaScript engines is [underway now](https://kangax.github.io/es5-compat-table/es6/).
+ES2015 是对该语言的一次重大更新，也是自 2009 年 ES5 标准化以来对该语言的第一次重大更新。在主要的 JavaScript 引擎中，这些特性的实现[正在进行中](https://kangax.github.io/es5-compat-table/es6/)。
 
-See the [ES2015 standard](http://www.ecma-international.org/ecma-262/6.0/index.html)
-for full specification of the ECMAScript 2015 language.
+可阅读[ES2015 标准](http://www.ecma-international.org/ecma-262/6.0/index.html)
+以了解 ECMAScript 2015 完整的语言规范。
 
-## ECMAScript 2015 Features
+## ECMAScript 2015 特性
 
 <!-- To not break some existing links to here, just in case. -->
 <a id="arrows"></a>
 
-### Arrows and Lexical This
+### 箭头函数和 this 作用域
 
-Arrows are a function shorthand using the `=>` syntax.  They are syntactically
-similar to the related feature in C#, Java 8 and CoffeeScript.  They support
-both expression and statement bodies.  Unlike functions, arrows share the same
-lexical `this` as their surrounding code. If an arrow is inside another function,
-it shares the "arguments" variable of its parent function.
+箭头函数是一种使用 `=>` 语法的函数速记。
+它们在语法上类似于 C#、Java 8 和 CoffeeScript 中的相关特性。
+它们同时支持表达式和语句体两种写法。
+不同于函数，箭头函数与其上下文代码共享相同的 `this`。
+如果一个箭头函数在另一个函数里面，它共享其父函数的 "arguments "变量。
 
 ```js
-// Expression bodies
+// 表达式写法
 var odds = evens.map(v => v + 1);
 var nums = evens.map((v, i) => v + i);
 
-// Statement bodies
+// 语句体写法
 nums.forEach(v => {
   if (v % 5 === 0)
     fives.push(v);
 });
 
-// Lexical this
+// this 作用域
 var bob = {
   _name: "Bob",
   _friends: [],
@@ -63,7 +63,7 @@ var bob = {
   }
 };
 
-// Lexical arguments
+// arguments 作用域
 function square() {
   let example = () => {
     let numbers = [];
@@ -80,12 +80,12 @@ function square() {
 square(2, 4, 7.5, 8, 11.5, 21); // returns: [4, 16, 56.25, 64, 132.25, 441]
 ```
 
-### Classes
+### 类
 
-ES2015 classes are syntactic sugar over the prototype-based OO pattern.  Having a
-single convenient declarative form makes class patterns easier to use, and
-encourages interoperability.  Classes support prototype-based inheritance, super
-calls, instance and static methods and constructors.
+ES2015 的类是基于原型的面向对象模式的语法糖。
+单一方便的声明形式使类模式更易用，并提升了互通性。
+类支持基于原型的继承、父类调用、实例、
+静态方法以及构造函数。
 
 ```js
 class SkinnedMesh extends THREE.Mesh {
@@ -107,63 +107,63 @@ class SkinnedMesh extends THREE.Mesh {
 }
 ```
 
-### Enhanced Object Literals
+### 增强的对象字面量
 
-Object literals are extended to support setting the prototype at construction,
-shorthand for `foo: foo` assignments, defining methods and making super calls.
-Together, these also bring object literals and class declarations closer
-together, and let object-based design benefit from some of the same
-conveniences.
+对象字面量被扩展到在构造时支持设置原型、简写为`foo: foo`的赋值、
+定义方法以及进行父类调用。
+这些都使对象字面量和类声明更加接近，
+并使基于对象的设计
+从一些相同的便利中受益。
 
 ```js
 var obj = {
-    // Sets the prototype. "__proto__" or '__proto__' would also work.
+    // 设置原型。"__proto__" 或者 '__proto__' 都可以。
     __proto__: theProtoObj,
-    // Computed property name does not set prototype or trigger early error for
-    // duplicate __proto__ properties.
+    // 计算出的属性名称不会设置为原型，
+    // 重复的 __proto__ 属性也不会在运行前报错。
     ['__proto__']: somethingElse,
-    // Shorthand for ‘handler: handler’
+    // ‘handler: handler’ 的简写
     handler,
-    // Methods
+    // 方法
     toString() {
-     // Super calls
+     // 父类调用
      return "d " + super.toString();
     },
-    // Computed (dynamic) property names
+    // （动态）计算的属性名称
     [ "prop_" + (() => 42)() ]: 42
 };
 ```
 
 <blockquote class="babel-callout babel-callout-warning">
   <p>
-    The <code>__proto__</code> property requires native support, and was deprecated in previous ECMAScript versions. Most engines now support the property, but <a href="https://kangax.github.io/compat-table/es6/#__proto___in_object_literals">some do not</a>. Also, note that only <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-additional-ecmascript-features-for-web-browsers">web browsers</a> are required to implement it, as it's in <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-object.prototype.__proto__">Annex B</a>. It is available in Node.
+   <code>__proto__</code> 属性必须得引擎原生支持，在前一版 ECMAScript 中已被弃用。大多数引擎现在仍然支持此属性，但 <a href="https://kangax.github.io/compat-table/es6/#__proto___in_object_literals">有些已不支持了</a>。另外，请注意，只有 <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-additional-ecmascript-features-for-web-browsers">web 游览器</a> 需要实现它，因为它在 <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-object.prototype.__proto__">附件 B</a> 中。它在 Node 中是可用的。
   </p>
 </blockquote>
 
-### Template Strings
+### 模版字符串
 
-Template strings provide syntactic sugar for constructing strings. This is
-similar to string interpolation features in Perl, Python and more. Optionally, a
-tag can be added to allow the string construction to be customized, avoiding
-injection attacks or constructing higher level data structures from string
-contents.
+模版字符串为构造字符串提供语法糖。
+这与 Perl、Python 等的字符串插值功能类似。
+可以选择添加一个标签，以允许自定义字符串的构造，
+避免注入攻击 或
+从字符串内容中构造更高级别的数据结构。
 
 ```js
-// Basic literal string creation
+// 创建字符串字面量
 `This is a pretty little template string.`
 
-// Multiline strings
+// 多行字符串
 `In ES5 this is
  not legal.`
 
-// Interpolate variable bindings
+// 插入变量绑定
 var name = "Bob", time = "today";
 `Hello ${name}, how are you ${time}?`
 
-// Unescaped template strings
+// 未转义的模版字符串
 String.raw`In ES5 "\n" is a line-feed.`
 
-// Construct an HTTP request prefix is used to interpret the replacements and construction
+// 构建一个 HTTP 请求前缀是用来解释可替换性和可构建性。
 GET`http://foo.org/bar?a=${a}&b=${b}
     Content-Type: application/json
     X-Credentials: ${credentials}
@@ -171,63 +171,63 @@ GET`http://foo.org/bar?a=${a}&b=${b}
       "bar": ${bar}}`(myOnReadyStateChangeHandler);
 ```
 
-### Destructuring
+### 解构
 
-Destructuring allows binding using pattern matching, with support for matching
-arrays and objects.  Destructuring is fail-soft, similar to standard object
-lookup `foo["bar"]`, producing `undefined` values when not found.
+解构允许使用模式匹配进行绑定，并支持匹配数组和对象。
+解构是软失败的，类似于标准的对象查找 `foo["bar"]`，
+在没有找到时提供 `undefined` 值。
 
 ```js
-// list matching
+// 列表匹配
 var [a, ,b] = [1,2,3];
 a === 1;
 b === 3;
 
-// object matching
+// 对象匹配
 var { op: a, lhs: { op: b }, rhs: c }
        = getASTNode()
 
-// object matching shorthand
-// binds `op`, `lhs` and `rhs` in scope
+// 对象匹配简写
+// 在作用域内，绑定 `op`, `lhs` 和 `rhs`
 var {op, lhs, rhs} = getASTNode()
 
-// Can be used in parameter position
+// 也可用于参数
 function g({name: x}) {
   console.log(x);
 }
 g({name: 5})
 
-// Fail-soft destructuring
+// 软失败解构
 var [a] = [];
 a === undefined;
 
-// Fail-soft destructuring with defaults
+// 带默认值的软失败解构
 var [a = 1] = [];
 a === 1;
 
-// Destructuring + defaults arguments
+// 解构与默认参数
 function r({x, y, w = 10, h = 10}) {
   return x + y + w + h;
 }
 r({x:1, y:2}) === 23
 ```
 
-### Default + Rest + Spread
+### 默认值 + Rest + Spread
 
-Callee-evaluated default parameter values. Turn an array into consecutive
-arguments in a function call. Bind trailing parameters to an array. Rest
-replaces the need for `arguments` and addresses common cases more directly.
+默认值就是调用执行的默认参数值。
+在一个函数调用中把一个数组变成连续的参数。并将尾部参数绑定到一个数组—— Rest，
+它可以取代对 `arguments` 的需求，也可以更直接地解决常见的情况。
 
 ```js
 function f(x, y=12) {
-  // y is 12 if not passed (or passed as undefined)
+  // 如果没有传值，y 是 12（或者传入的是 undefined）
   return x + y;
 }
 f(3) == 15
 ```
 ```js
 function f(x, ...y) {
-  // y is an Array
+  // y 是一个数组
   return x * y.length;
 }
 f(3, "hello", true) == 6
@@ -236,14 +236,14 @@ f(3, "hello", true) == 6
 function f(x, y, z) {
   return x + y + z;
 }
-// Pass each elem of array as argument
+// 将数组的每一项作为参数传入
 f(...[1,2,3]) == 6
 ```
 
-### Let + Const
+### 变量 + 常量
 
-Block-scoped binding constructs. `let` is the new `var`. `const` is
-single-assignment. Static restrictions prevent use before assignment.
+拥有块级作用域的 `let` 是替代 `var` 的新的变量声明关键字。
+`const`是一次赋值。在再次赋值前，静态限制防止会生效。
 
 
 ```js
@@ -251,25 +251,25 @@ function f() {
   {
     let x;
     {
-      // this is ok since it's a block scoped name
+      // 这是可以的，因为它是一个块范围
       const x = "sneaky";
-      // error, was just defined with `const` above
+      // 错误，因为上面是用 `const` 定义的。
       x = "foo";
     }
-    // this is ok since it was declared with `let`
+    // 这是可以的，因为它是用 `let` 声明的
     x = "bar";
-    // error, already declared above in this block
+    // 错误，因为在这个块级作用域中，x 已经声明过了
     let x = "inner";
   }
 }
 ```
 
-### Iterators + For..Of
+## 迭代器 + For..Of
 
-Iterator objects enable custom iteration like CLR IEnumerable or Java
-Iterable. Generalize `for..in` to custom iterator-based iteration with
-`for..of`. Don’t require realizing an array, enabling lazy design patterns like
-LINQ.
+迭代器对象实现了像 CLR IEnumerable 或 Java Iterable 一样的自定义迭代器。
+将 `for...in` 泛化为基于自定义迭代器的 `for...of` 的迭代。
+不需要实现一个数组，使懒惰的设计模式像
+LINQ。
 
 ```js
 let fibonacci = {
@@ -285,15 +285,15 @@ let fibonacci = {
 }
 
 for (var n of fibonacci) {
-  // truncate the sequence at 1000
+  // 在 1000 处截止该迭代
   if (n > 1000)
     break;
   console.log(n);
 }
 ```
 
-Iteration is based on these duck-typed interfaces (using
-[TypeScript](https://www.typescriptlang.org/) type syntax for exposition only):
+迭代器是基于这些鸭子类型的接口
+（此处使用[TypeScript](https://www.typescriptlang.org/)类型语法举例，仅供参考）。
 
 ```ts
 interface IteratorResult {
@@ -309,21 +309,21 @@ interface Iterable {
 ```
 
 <blockquote class="babel-callout babel-callout-info">
-  <h4>Support via polyfill</h4>
+  <h4> 通过 polyfill 使用</h4>
   <p>
-    In order to use Iterators you must include the Babel <a href="/docs/usage/polyfill">polyfill</a>.
+  为了使用迭代器，你必须引入 Babel <a href="/docs/usage/polyfill">polyfill</a>。
   </p>
 </blockquote>
 
-### Generators
+### 生成器
 
-Generators simplify iterator-authoring using `function*` and `yield`. A function
-declared as function* returns a Generator instance. Generators are subtypes of
-iterators which include additional `next` and `throw`. These enable values to
-flow back into the generator, so `yield` is an expression form which returns a
-value (or throws).
+生成器使用 `function*` 和 `yield` 简化了迭代器的编写。
+一个以 function* 声明的函数会返回一个生成器实例。
+生成器是迭代器的子类型，包括额外的 `next` 和 `throw`。
+这些使值能够回流到生成器中，
+所以 `yield` 是一个返回值（或抛出）的表达形式。
 
-Note: Can also be used to enable ‘await’-like async programming, see also ES7 `await` [proposal](https://github.com/lukehoban/ecmascript-asyncawait).
+注意：也可以用来启用类似 'await' 的异步编程，也可以参见 ES7 的 `await`[提案](https://github.com/lukehoban/ecmascript-asyncawait)。
 
 ```js
 var fibonacci = {
@@ -339,15 +339,15 @@ var fibonacci = {
 }
 
 for (var n of fibonacci) {
-  // truncate the sequence at 1000
+  // 在 1000 处截止该序列
   if (n > 1000)
     break;
   console.log(n);
 }
 ```
 
-The generator interface is (using [TypeScript](https://www.typescriptlang.org/) type
-syntax for exposition only):
+生成器的接口是（使用[TypeScript](https://www.typescriptlang.org/)
+语法举例说明）：
 
 ```ts
 interface Generator extends Iterator {
@@ -357,28 +357,28 @@ interface Generator extends Iterator {
 ```
 
 <blockquote class="babel-callout babel-callout-info">
-  <h4>Support via polyfill</h4>
+  <h4> 通过 polyfill 使用</h4>
   <p>
-    In order to use Generators you must include the Babel <a href="/docs/usage/polyfill">polyfill</a>.
+  为了使用生成器，你必须引入 Babel <a href="/docs/usage/polyfill">polyfill</a>。
   </p>
 </blockquote>
 
 ### Comprehensions
 
-Removed in Babel 6.0
+在 Babel 6.0 中已移除
 
 ### Unicode
 
-Non-breaking additions to support full Unicode, including new unicode literal
-form in strings and new RegExp `u` mode to handle code points, as well as new
-APIs to process strings at the 21bit code points level.  These additions support
-building global apps in JavaScript.
+非破坏性的添加，以支持完整的 Unicode 编码，
+包括字符串中新的 unicode 字面形式和新的正则 `u` 模式来处理代码点，
+以及新的 API 来处理 21 位代码点级别的字符串。
+这些新增功能支持在 JavaScript 中构建全局应用程序。
 
 ```js
-// same as ES5.1
+// 与 ES5.1 一样
 "𠮷".length == 2
 
-// new RegExp behaviour, opt-in ‘u’
+// 新的正则表达模式, opt-in ‘u’
 "𠮷".match(/./u)[0].length == 2
 
 // new form
@@ -394,12 +394,12 @@ for(var c of "𠮷") {
 }
 ```
 
-### Modules
+### 模块化
 
-Language-level support for modules for component definition. Codifies patterns
-from popular JavaScript module loaders (AMD, CommonJS). Runtime behaviour
-defined by a host-defined default loader. Implicitly async model – no code
-executes until requested modules are available and processed.
+语言层面上支持组件定义的模块。
+编纂了流行的 JavaScript 模块加载器（AMD，CommonJS）的模式。
+运行时行为由主机定义的默认加载器定义。
+隐含的异步模式--在所请求的模块可用并被处理之前不会执行任何代码。
 
 ```js
 // lib/math.js
@@ -419,7 +419,7 @@ import {sum, pi} from "lib/math";
 console.log("2π = " + sum(pi, pi));
 ```
 
-Some additional features include `export default` and `export *`:
+一些额外的功能包括 `export default` 和 `export *`：
 
 ```js
 // lib/mathplusplus.js
@@ -436,65 +436,65 @@ console.log("e^π = " + exp(pi));
 ```
 
 <blockquote class="babel-callout babel-callout-info">
-  <h4>Module Formatters</h4>
+  <h4>模块格式化</h4>
   <p>
-    Babel can transpile ES2015 Modules to several different formats including
-    Common.js, AMD, System, and UMD. You can even create your own. For more
-    details see the <a href="/docs/plugins/">modules docs</a>.
+    Babel 可以将 ES2015 模块转译成几种不同的格式，
+    包括 Common.js、AMD、System 和 UMD。你甚至可以创建你自己的格式。
+    更多细节请查看<a href="/docs/plugins/">模块文档</a>。
   </p>
 </blockquote>
 
-### Module Loaders
+### 模块加载器
 
 <blockquote class="babel-callout babel-callout-warning">
-  <h4>Not part of ES2015</h4>
+  <h4>非 ES2015 标准部分</h4>
   <p>
-    This is left as implementation-defined within the ECMAScript 2015 specification. The eventual standard will be in WHATWG's <a href="https://whatwg.github.io/loader/">Loader specification</a>, but that is currently a work in progress. What is below is from a previous ES2015 draft.
+    在 ECMAScript 2015 的规范中，这被留作实施定义。最终的标准将在 WHATWG 的 <a href="https://whatwg.github.io/loader/">Loader 规范</a>中，但那是目前正在进行的工作。下面的内容来自之前的 ES2015 草案。
   </p>
 </blockquote>
 
-Module loaders support:
+模块加载器支持：
 
-- Dynamic loading
-- State isolation
-- Global namespace isolation
-- Compilation hooks
-- Nested virtualization
+- 动态加载
+- 状态隔离
+- 全局命名空间隔离
+- 编译钩子
+- 嵌套虚拟化
 
-The default module loader can be configured, and new loaders can be constructed
-to evaluate and load code in isolated or constrained contexts.
+可以配置默认的模块加载器，
+也可以构建新的加载器来执行和加载被隔离或受限环境中的代码。
 
 ```js
-// Dynamic loading – ‘System’ is default loader
+// 动态加载 – ‘System’ 是默认的加载器
 System.import("lib/math").then(function(m) {
   alert("2π = " + m.sum(m.pi, m.pi));
 });
 
-// Create execution sandboxes – new Loaders
+// 创建一个执行沙盒 – 新的加载器
 var loader = new Loader({
-  global: fixup(window) // replace ‘console.log’
+  global: fixup(window) // 替代 ‘console.log’
 });
 loader.eval("console.log(\"hello world!\");");
 
-// Directly manipulate module cache
+// 直接操作模块缓存
 System.get("jquery");
-System.set("jquery", Module({$: $})); // WARNING: not yet finalized
+System.set("jquery", Module({$: $})); // 警告：未定稿
 ```
 
 <blockquote class="babel-callout babel-callout-warning">
-  <h4>Additional polyfill needed</h4>
+  <h4>其他必须的 polyfill</h4>
   <p>
-    Since Babel defaults to using common.js modules, it does not include the
-    polyfill for the module loader API. Get it
-    <a href="https://github.com/ModuleLoader/es6-module-loader">here</a>.
+    由于 Babel 默认使用 common.js 模块，
+    它不包括模块加载器 API 的 polyfill。
+    可以从<a href="https://github.com/ModuleLoader/es6-module-loader">这里</a>获取其他 polyfill。
   </p>
 </blockquote>
 
 <blockquote class="babel-callout babel-callout-info">
-  <h4>Using Module Loader</h4>
+  <h4>使用模块加载器</h4>
   <p>
-    In order to use this, you'll need to tell Babel to use the
-    <code>system</code> module formatter. Also be sure to check out
+    为了使用这个，你需要告诉 Babel 使用 <code>system</code> 模块格式化。
+    也必须确保检查
     <a href="https://github.com/systemjs/systemjs">System.js</a>
   </p>
 </blockquote>
@@ -502,8 +502,8 @@ System.set("jquery", Module({$: $})); // WARNING: not yet finalized
 
 ### Map + Set + WeakMap + WeakSet
 
-Efficient data structures for common algorithms.  WeakMaps provides leak-free
-object-key’d side tables.
+为常见的算法提供高效的数据结构。
+WeakMaps 提供无泄漏的对象键的边表。
 
 ```js
 // Sets
@@ -526,24 +526,24 @@ wm.size === undefined
 // Weak Sets
 var ws = new WeakSet();
 ws.add({ data: 42 });
-// Because the added object has no other references, it will not be held in the set
+// 因为添加的对象没有其他引用，所以它不会被保存在集合中
 ```
 
 <blockquote class="babel-callout babel-callout-info">
-  <h4>Support via polyfill</h4>
+  <h4>通过 polyfill 使用</h4>
   <p>
-    In order to support Maps, Sets, WeakMaps, and WeakSets in all environments you must include the Babel <a href="/docs/usage/polyfill">polyfill</a>.
+    为了在所有环境中使用 Maps、 Sets、 WeakMaps 以及 WeakSets，你必须引入 Babel <a href="/docs/usage/polyfill">polyfill</a>.
   </p>
 </blockquote>
 
-### Proxies
+### 代理
 
-Proxies enable creation of objects with the full range of behaviors available to
-host objects.  Can be used for interception, object virtualization,
-logging/profiling, etc.
+代理使创建的对象具有目标对象的全部可用行为。
+可用于拦截、对象虚拟化、
+记录/归档等。
 
 ```js
-// Proxying a normal object
+// 代理一个普通对象
 var target = {};
 var handler = {
   get: function (receiver, name) {
@@ -556,7 +556,7 @@ p.world === "Hello, world!";
 ```
 
 ```js
-// Proxying a function object
+// 代理一个函数对象
 var target = function () { return "I am the target"; };
 var handler = {
   apply: function (receiver, ...args) {
@@ -568,7 +568,7 @@ var p = new Proxy(target, handler);
 p() === "I am the proxy";
 ```
 
-There are traps available for all of the runtime-level meta-operations:
+所有的运行时级别的元操作都有 traps 可用：
 
 ```js
 var handler =
@@ -606,24 +606,24 @@ var handler =
 ```
 
 <blockquote class="babel-callout babel-callout-danger">
-  <h4>Unsupported feature</h4>
+  <h4>不支持的特性</h4>
   <p>
-    Due to the limitations of ES5, Proxies cannot be transpiled or polyfilled. See support in <a href="https://kangax.github.io/compat-table/es6/#test-Proxy">various JavaScript engines</a>.
+    由于 ES5 的限制，代理不能被转译或 polyfill。可以查看 <a href="https://kangax.github.io/compat-table/es6/#test-Proxy">多种 JavaScript 引擎</a>的支持情况。
   </p>
 </blockquote>
 
 ### Symbols
 
-Symbols enable access control for object state. Symbols allow properties to be
-keyed by either `string` (as in ES5) or `symbol`. Symbols are a new primitive
-type. Optional `name` parameter used in debugging - but is not part of identity.
-Symbols are unique (like gensym), but not private since they are exposed via
-reflection features like `Object.getOwnPropertySymbols`.
+Symbol 实现了对对象状态的访问控制。Symbol 允许属性以 `string` （如 ES5）或 `Symbol` 为键。
+Symbol 是一种新的原始类型。
+可选的 `name` 参数可在调试中使用 - 但不是身份的一部分。
+Symbol 是唯一的（就像 gensym），但不是私有的，
+因为它们是通过反射功能（如`Object.getOwnPropertySymbols`）对外暴露的。
 
 ```js
 (function() {
 
-  // module scoped symbol
+  // 模块范围内的符号
   var key = Symbol("key");
 
   function MyClass(privateData) {
@@ -636,7 +636,7 @@ reflection features like `Object.getOwnPropertySymbols`.
     }
   };
 
-  // Limited support from Babel, full support requires native implementation.
+  // Babel 可以有限支持 Symbol，完全支持还需要原生实现。
   typeof key === "symbol"
 })();
 
@@ -645,18 +645,18 @@ c["key"] === undefined
 ```
 
 <blockquote class="babel-callout babel-callout-info">
-  <h4>Limited support via polyfill</h4>
+  <h4>通过 polyfill 提供有限的支持</h4>
   <p>
-    Limited support requires the Babel <a href="/docs/usage/polyfill">polyfill</a>. Due to language limitations, some features can't be transpiled or polyfilled. See core.js's <a href="https://github.com/zloirock/core-js#caveats-when-using-symbol-polyfill">caveats section</a> for more details.
+    有限的支持依赖于 Babel <a href="/docs/usage/polyfill">polyfill</a>。由于语言级别的限制，一些功能并不能被转译或 polyfilled。详情查看 core.js's <a href="https://github.com/zloirock/core-js#caveats-when-using-symbol-polyfill">caveats  章节</a>。
   </p>
 </blockquote>
 
-### Subclassable Built-ins
+### 内置子类化
 
-In ES2015, built-ins like `Array`, `Date` and DOM `Element`s can be subclassed.
+在 ES2015，如 `Array`、`Date` 和 DOM `Element`等可以被子类化。
 
 ```js
-// User code of Array subclass
+// 自定义 Array 子类
 class MyArray extends Array {
     constructor(...args) { super(...args); }
 }
@@ -667,16 +667,16 @@ arr.length == 2
 ```
 
 <blockquote class="babel-callout babel-callout-warning">
-  <h4>Partial support</h4>
+  <h4>部分支持</h4>
   <p>
-    Built-in subclassability should be evaluated on a case-by-case basis as classes such as <code>HTMLElement</code> <strong>can</strong> be subclassed while many such as <code>Date</code>, <code>Array</code> and <code>Error</code> <strong>cannot</strong> be due to ES5 engine limitations.
+    内置的子类化只可以在个别基础类上执行，比如 <code>HTMLElement</code> <strong>可以</strong>被子类化。然而许多像 <code>Date</code>、<code>Array</code> 以及 <code>Error</code> 等由于 ES5 引擎的限制<strong>不能</strong>
   </p>
 </blockquote>
 
 ### Math + Number + String + Object APIs
 
-Many new library additions, including core Math libraries, Array conversion
-helpers, and Object.assign for copying.
+增加了许多新的库，包括核心 Math 库、数组转换方法，
+以及用于复制的 Object.assign。
 
 ```js
 Number.EPSILON
@@ -691,7 +691,7 @@ Math.imul(Math.pow(2, 32) - 1, Math.pow(2, 32) - 2) // 2
 "abc".repeat(3) // "abcabcabc"
 
 Array.from(document.querySelectorAll("*")) // Returns a real Array
-Array.of(1, 2, 3) // Similar to new Array(...), but without special one-arg behavior
+Array.of(1, 2, 3) // 与 new Array(...) 一样，但不具备特殊箭头函数行为。
 [0, 0, 0].fill(7, 1) // [0,7,7]
 [1,2,3].findIndex(x => x == 2) // 1
 ["a", "b", "c"].entries() // iterator [0, "a"], [1,"b"], [2,"c"]
@@ -702,18 +702,18 @@ Object.assign(Point, { origin: new Point(0,0) })
 ```
 
 <blockquote class="babel-callout babel-callout-warning">
-  <h4>Limited support from polyfill</h4>
+  <h4>通过 polyfill 提供有限支持</h4>
   <p>
-    Most of these APIs are supported by the Babel <a href="/docs/usage/polyfill">polyfill</a>. However, certain
-    features are omitted for various reasons (e.g.
-    <code>String.prototype.normalize</code> needs a lot of additional code to
-    support). You can find more polyfills
-    <a href="https://github.com/addyosmani/es6-tools#polyfills">here</a>.
+    Babel <a href="/docs/usage/polyfill">polyfill</a> 支持大多数 API。
+    但是由于各种原因，某些功能被省略了。
+    (例如：<code>String.prototype.normalize</code> 需要大量额外代码来支持。）
+    你可以在<a href="https://github.com/addyosmani/es6-tools#polyfills">这里</a>
+    找到更多 polyfills。
   </p>
 </blockquote>
 
-### Binary and Octal Literals
-Two new numeric literal forms are added for binary (`b`) and octal (`o`).
+### 二进制和八进制字面量
+为二进制（`b`）和八进制（`o`）增加了两种新的数字字面量。
 
 ```js
 0b111110111 === 503 // true
@@ -721,9 +721,9 @@ Two new numeric literal forms are added for binary (`b`) and octal (`o`).
 ```
 
 <blockquote class="babel-callout babel-callout-warning">
-  <h4>Only supports literal form</h4>
+  <h4>只支持字面量形式</h4>
   <p>
-    Babel is only able to transform <code>0o767</code> and not
+    Babel 只能转译 <code>0o767</code> 却不能转译
     <code>Number("0o767")</code>.
   </p>
 </blockquote>
@@ -731,9 +731,9 @@ Two new numeric literal forms are added for binary (`b`) and octal (`o`).
 
 ### Promises
 
-Promises are a library for asynchronous programming. Promises are a first class
-representation of a value that may be made available in the future. Promises are
-used in many existing JavaScript libraries.
+Promise 是一个用于异步编程的库。
+Promise 是对未来可能提供的值的第一类表示。
+Promise 在许多现有的 JavaScript 库中已有使用。
 
 ```js
 function timeout(duration = 0) {
@@ -752,18 +752,18 @@ var p = timeout(1000).then(() => {
 ```
 
 <blockquote class="babel-callout babel-callout-info">
-  <h4>Support via polyfill</h4>
+  <h4>通过 polyfill 支持</h4>
   <p>
-    In order to support Promises you must include the Babel <a href="/docs/usage/polyfill">polyfill</a>.
+    为了支持 Promise，你必须引入 Babel <a href="/docs/usage/polyfill">polyfill</a>.
   </p>
 </blockquote>
 
-### Reflect API
+### 反射 API
 
-Full reflection API exposing the runtime-level meta-operations on objects. This
-is effectively the inverse of the Proxy API, and allows making calls
-corresponding to the same meta-operations as the proxy traps. Especially useful
-for implementing proxies.
+完整的反射 API，暴露了对象上的运行时间级别的元操作。
+这实际上是代理 API 的逆向，
+并允许进行与代理 trap 相同的元操作的调用。
+对于实现代理特别有用。
 
 ```js
 var O = {a: 1};
@@ -780,16 +780,16 @@ instance.c; // 42
 ```
 
 <blockquote class="babel-callout babel-callout-info">
-  <h4>Support via polyfill</h4>
+  <h4>通过 polyfill 支持</h4>
   <p>
-    In order to use the Reflect API you must include the Babel <a href="/docs/usage/polyfill">polyfill</a>.
+    为了支持反射，你必须引入 Babel <a href="/docs/usage/polyfill">polyfill</a>.
   </p>
 </blockquote>
 
-### Tail Calls
+### 尾调用
 
-Calls in tail-position are guaranteed to not grow the stack unboundedly. Makes
-recursive algorithms safe in the face of unbounded inputs.
+在尾部位置的调用被保证不会使堆栈无限制地增长。
+使得递归算法在面对无界的输入时是安全的。
 
 ```js
 function factorial(n, acc = 1) {
@@ -798,16 +798,16 @@ function factorial(n, acc = 1) {
     return factorial(n - 1, n * acc);
 }
 
-// Stack overflow in most implementations today,
-// but safe on arbitrary inputs in ES2015
+// 在今天的大多数实现中，堆栈溢出。
+// 但在 ES2015 中对任意输入是安全的
 factorial(100000)
 ```
 
 <blockquote class="babel-callout babel-callout-warning">
-  <h4>Temporarily Removed in Babel 6</h4>
+  <h4>在 Babel 6 中暂时删除了</h4>
   <p>
-    Only explicit self referencing tail recursion was supported due to the
-    complexity and performance impact of supporting tail calls globally.
-    Removed due to other bugs and will be re-implemented.
+    由于全局支持尾部调用的复杂性和性能影响，
+    只支持显式自引用尾部递归。
+    由于其他 Bug 而被删除，将被重新实现。
   </p>
 </blockquote>
