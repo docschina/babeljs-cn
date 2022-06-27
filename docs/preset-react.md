@@ -10,7 +10,6 @@ translators:
 - [@babel/plugin-syntax-jsx](plugin-syntax-jsx.md)
 - [@babel/plugin-transform-react-jsx](plugin-transform-react-jsx.md)
 - [@babel/plugin-transform-react-display-name](plugin-transform-react-display-name.md)
-- [@babel/plugin-transform-react-pure-annotations](plugin-transform-react-pure-annotations.md)
 
 并且有相应的开发配置项：
 

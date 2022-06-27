@@ -16,10 +16,11 @@ Babel 有两种并行的配置文件方式，可以一起使用，也可以单�
 </details>
 
 - 项目范围的配置
-  - `babel.config.json` 文件，以及不同扩展名的文件 (`.js`, `.cjs`, `.mjs`)
+  - `babel.config.*` 文件，可用如下不同扩展名： `.json`, `.js`, `.cjs`, `.mjs`。
 - 相对文件的配置
-  - `.babelrc.json` 文件，以及不同扩展名的文件 (`.babelrc`, `.js`, `.cjs`, `.mjs`)
-  - 带有 `"babel"` key 的 `package.json` 文件
+  - `.babelrc.*` 文件，可用如下不同扩展名： `.json`, `.js`, `.cjs`, `.mjs`。
+  - 不带扩展名的 `.babelrc`。
+  - 带有 `"babel"` 属性的 `package.json` 文件。
 
 ## 项目范围的配置
 
@@ -108,8 +109,7 @@ packages/
 
 ## 支持的文件扩展名
 
-可以使用 Node.js 本地支持的任何文件扩展名配置 Babel：
-你可以对 `babel.config.json` 和 `.babelrc.json` 文件使用 `.json`，`.js`，`.cjs` 和 `.mjs` 扩展名。
+可以使用 Node.js 本地支持的任何文件扩展名配置 Babel，正如上面[配置文件类型](#configuration-file-types)章节提到的一样：
 
 - `babel.config.json` 和 `.babelrc.json` 被解析为 JSON5，并且应该包含一个 Babel 接受的选项格式匹配的对象。
   它们从 `v7.7.0` 开始支持。
