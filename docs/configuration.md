@@ -79,7 +79,11 @@ module.exports = function (api) {
 
 ### JavaScript 配置文件
 
+<<<<<<< HEAD
 还可以使用 JavaScript 编写 `babel.config.json` 和 `.babelrc.json` 文件：
+=======
+You can also write `babel.config.js` and `.babelrc.js` files using JavaScript:
+>>>>>>> fb72c001c8eed90cfd446554363698c4c8947b9a
 
 ```js
 const presets = [ ... ];
