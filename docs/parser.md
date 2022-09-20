@@ -212,7 +212,7 @@ require("@babel/parser").parse("code", {
 | `decimal` ([proposal](https://github.com/tc39/proposal-decimal))                                | `0.3m`                                                   |
 | `decorators` ([proposal](https://github.com/tc39/proposal-decorators)) <br> `decorators-legacy` | `@a class A {}`                                          |
 | `decoratorAutoAccessors` ([proposal](https://github.com/tc39/proposal-decorators))              | `class Example { @reactive accessor myBool = false; }`   |
-| `destructuringPrivate` ([proposal](https://github.com/tc39/proposal-destructuring-private))     | `class { #x = 1; method() { const { #x: x } = this; } }` |
+| `destructuringPrivate` ([proposal](https://github.com/tc39/proposal-destructuring-private))     | `class Example { #x = 1; method() { const { #x: x } = this; } }` |
 | `doExpressions` ([proposal](https://github.com/tc39/proposal-do-expressions))                   | `var a = do { if (true) { 'hi'; } };`                    |
 | `exportDefaultFrom` ([proposal](https://github.com/tc39/ecmascript-export-default-from))        | `export v from "mod"`                                    |
 | `functionBind` ([proposal](https://github.com/zenparsing/es-function-bind))                     | `a::b`, `::console.log`                                  |
@@ -256,6 +256,7 @@ You should enable these features only if you are using an older version.
   <summary>History</summary>
 | Version | Changes |
 | --- | --- |
+| `7.19.0` | The `syntaxType` option of the `recordAndTuple` plugin defaults to `hash`; added `allowCallParenthesized` option for the `decorators` plugin. |
 | `7.17.0` | Added `@@` and `^^` to the `topicToken` option of the `hack` pipeline operator |
 | `7.16.0` | Added `disallowAmbiguousJSXLike` for `typescript` plugin. Added `^` to the `topicToken` option of the `hack` pipeline operators |
 | `7.14.0` | Added `dts` for `typescript` plugin |
@@ -276,6 +277,10 @@ You should enable these features only if you are using an older version.
     export @dec class C {}
     ```
 
+  - `allowCallParenthesized` (`boolean`, defaults to `true`)
+
+    When `false`, disallow decorators in the `@(...)()` form in favor of `@(...())`. The stage 3 decorators proposal uses `allowCallParenthesized: false`.
+
 - `pipelineOperator`:
 
   - `proposal` (required, accepted values: `minimal`, `fsharp`, `hack`, ~~`smart`~~ (deprecated))
@@ -294,7 +299,7 @@ You should enable these features only if you are using an older version.
 
 - `recordAndtuple`:
 
-  - `syntaxType` (required, accepted values: `hash`, `bar`)
+  - `syntaxType` (`hash` or `bar`, defaults to `hash`)
     There are two syntax variants for `recordAndTuple`. They share exactly same runtime semantics.
     | SyntaxType | Record Example | Tuple Example |
     | --- | --- | --- |

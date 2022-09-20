@@ -7,6 +7,19 @@ title: 新增特性时间轴
 除此之外，你也可以使用此时间轴来追踪一些其他的重要工作，例如 [babel-polyfills](https://github.com/babel/babel-polyfills) 项目。
 
 <ol class="timeline-container">
+<li data-date="Sept 2022">
+
+## Babel 7.19.0
+
+[blog post](https://babeljs.io/blog/2022/09/05/7.19.0)
+
+- Support for the Stage 3 version of the [decorators](https://github.com/tc39/proposal-decorators) proposal
+- Transform support for the [duplicate named capturing groups](https://github.com/tc39/proposal-duplicate-named-capturing-groups) Stage 3 proposal
+  ```js
+  /(?<year>\d\d\d\d)-(?<month>\d\d)|(?<month>\d\d)-(?<year>\d\d\d\d)/
+  ```
+
+</li>
 <li data-date="May 2022">
 
 ## Babel 7.18.0
