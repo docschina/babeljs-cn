@@ -118,13 +118,7 @@ export @decorator class Bar {}
 export class Foo {}
 ```
 
-<<<<<<< HEAD
-添加该选项是为了针对于两种可能的语法进行实验，帮助 TC39 收集社区的反馈。
-
-欲了解更多信息，请查阅：[tc39/proposal-decorators#69](https://github.com/tc39/proposal-decorators/issues/69).
-=======
-This option was added to help tc39 collect feedback from the community by allowing experimentation with both possible syntaxes. The proposal now settled on having decorators after `export`.
->>>>>>> ec954298cc29a8df40b4ed23bccff8b24d468136
+添加该选项是为了针对于两种可能的语法进行实验，帮助 TC39 收集社区的反馈。当前提案建议在 `export` 之后设置装饰器。
 
 ### `legacy`
 
@@ -136,11 +130,7 @@ This option was added to help tc39 collect feedback from the community by allowi
 
 #### 注意：`@babel/plugin-proposal-class-properties` 的兼容性问题
 
-<<<<<<< HEAD
 如果你手动引用了插件 `@babel/plugin-proposal-class-properties` 并使用了它，请确保在引用 `@babel/plugin-proposal-class-properties` 之前引用 `@babel/plugin-proposal-decorators`。
-=======
-If you are including your plugins manually and using `@babel/plugin-proposal-class-properties` and legacy decorators, make sure that `@babel/plugin-proposal-decorators` comes _before_ `@babel/plugin-proposal-class-properties`.
->>>>>>> ec954298cc29a8df40b4ed23bccff8b24d468136
 
 错误示例：
 
