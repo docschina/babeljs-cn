@@ -80,9 +80,9 @@ const GetStarted = ({ language }) => {
 };
 
 const SponsorTier = props => {
-  let { min, max } = props;
+  const { min, max } = props;
   const tierSponsors = siteConfig.sponsors.filter(sponsor => {
-    let value = Math.max(sponsor.monthly, (sponsor.yearly || 0) / 12);
+    const value = Math.max(sponsor.monthly, (sponsor.yearly || 0) / 12);
     return +value >= min && (!max || (max && +value < max));
   });
   return (
@@ -206,9 +206,9 @@ const Hero = ({ language }) => (
 
       <div className="hero__announcement">
         <span>
-          <strong>Babel 7.18 已发布！</strong> 请阅读我们的{" "}
-          <a href="blog/2022/05/19/7.18.0">博客公告</a> 了解亮点以及{" "}
-          <a href="https://github.com/babel/babel/releases/tag/v7.18.0">
+          <strong>Babel 7.19 已发布！</strong> 请阅读我们的{" "}
+          <a href="/blog/2022/09/05/7.19.0">博客公告</a> 了解亮点以及{" "}
+          <a href="https://github.com/babel/babel/releases/tag/v7.19.0">
             更新日志
           </a>{" "}
           了解更多详情！
