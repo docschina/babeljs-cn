@@ -55,7 +55,7 @@ export default function compile(code: string, config: CompileConfig): Return {
   let compileErrorMessage = null;
   let envPresetDebugInfo = null;
   let sourceMap = null;
-  let useBuiltIns:false|"entry"|"usage" = false;
+  let useBuiltIns: false | "entry" | "usage" = false;
   let spec = false;
   let loose = false;
   let bugfixes = false;
@@ -69,7 +69,7 @@ export default function compile(code: string, config: CompileConfig): Return {
   let presetEnvOptions = {};
 
   if (envConfig && envConfig.isEnvPresetEnabled) {
-    const targets:any = {};
+    const targets: any = {};
     const { forceAllTransforms, shippedProposals } = envConfig;
 
     if (envConfig.browsers) {
@@ -82,7 +82,10 @@ export default function compile(code: string, config: CompileConfig): Return {
       targets.electron = envConfig.electron;
     }
     if (envConfig.isBuiltInsEnabled) {
-      useBuiltIns = (!config.evaluate && envConfig.builtIns) as false|"entry"|"usage";
+      useBuiltIns = (!config.evaluate && envConfig.builtIns) as
+        | false
+        | "entry"
+        | "usage";
       if (envConfig.corejs) {
         corejs = envConfig.corejs;
       }
@@ -129,9 +132,10 @@ export default function compile(code: string, config: CompileConfig): Return {
         if (/^stage-[0-2]$/.test(preset)) {
           const decoratorsLegacy =
             presetsOptions.decoratorsVersion === "legacy" || undefined;
-          const decoratorsBeforeExport = decoratorsLegacy
-            ? undefined
-            : presetsOptions.decoratorsBeforeExport;
+          const decoratorsBeforeExport =
+            decoratorsLegacy || presetsOptions.decoratorsVersion === "2022-03"
+              ? undefined
+              : presetsOptions.decoratorsBeforeExport;
           const decoratorsVersion = decoratorsLegacy
             ? undefined
             : presetsOptions.decoratorsVersion;
