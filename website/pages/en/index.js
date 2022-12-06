@@ -206,10 +206,17 @@ const Hero = ({ language }) => (
 
       <div className="hero__announcement">
         <span>
+<<<<<<< HEAD
           <strong>Babel 7.19 已发布！</strong> 请阅读我们的{" "}
           <a href="/blog/2022/09/05/7.19.0">博客公告</a> 了解亮点以及{" "}
           <a href="https://github.com/babel/babel/releases/tag/v7.19.0">
             更新日志
+=======
+          <strong>Babel 7.20 is released!</strong> Please read our{" "}
+          <a href="/blog/2022/10/27/7.20.0">blog post</a> for highlights and{" "}
+          <a href="https://github.com/babel/babel/releases/tag/v7.20.0">
+            changelog
+>>>>>>> 6f5c48a4f7e4c2652361714c29817413f21be593
           </a>{" "}
           了解更多详情！
         </span>
