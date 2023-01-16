@@ -10,13 +10,14 @@ sidebar_label: 插件列表
 
 - [decorators](plugin-proposal-decorators.md)
 - [do-expressions](plugin-proposal-do-expressions.md)
-- [duplicated-named-capturing-groups-regex](plugin-proposal-duplicated-named-capturing-groups-regex.md)
+- [duplicate-named-capturing-groups-regex](plugin-proposal-duplicate-named-capturing-groups-regex.md)
 - [export-default-from](plugin-proposal-export-default-from.md)
 - [export-namespace-from](plugin-proposal-export-namespace-from.md)
 - [function-bind](plugin-proposal-function-bind.md)
 - [function-sent](plugin-proposal-function-sent.md)
 - [partial-application](plugin-proposal-partial-application.md)
 - [pipeline-operator](plugin-proposal-pipeline-operator.md)
+- [private-methods](plugin-proposal-private-methods.md)
 - [throw-expressions](plugin-proposal-throw-expressions.md)
 - [record-and-tuple](plugin-proposal-record-and-tuple.md)
 

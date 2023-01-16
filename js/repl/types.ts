@@ -6,7 +6,7 @@ export type BabelPlugin = {
 };
 
 export type PresetsOptions = {
-  decoratorsVersion: "2021-12" | "2018-09" | "legacy";
+  decoratorsVersion: "2022-03" | "2021-12" | "2018-09" | "legacy";
   decoratorsBeforeExport: boolean;
   pipelineProposal: "minimal" | "fsharp" | "hack";
   reactRuntime: "classic" | "automatic";
@@ -22,7 +22,7 @@ export type EnvConfig = {
   isNodeEnabled: boolean;
   isSpecEnabled: boolean;
   isLooseEnabled: boolean;
-  builtIns: false|"entry"|"usage";
+  builtIns: false | "entry" | "usage";
   corejs: string | false;
   forceAllTransforms: boolean;
   shippedProposals: boolean;
@@ -134,7 +134,7 @@ export type ReplState = {
   showSidebar: boolean;
   targets: string;
   version: any;
-  decoratorsVersion: "2021-12" | "2018-09" | "legacy";
+  decoratorsVersion: "2022-03" | "2021-12" | "2018-09" | "legacy";
   decoratorsLegacy?: boolean; // deprecated since 7.17
   decoratorsBeforeExport: boolean;
   pipelineProposal: "minimal" | "fsharp" | "hack";
