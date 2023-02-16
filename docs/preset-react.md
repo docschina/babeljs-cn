@@ -129,13 +129,21 @@ require("@babel/core").transformSync("code", {
 
 `string` 类型，默认值为 `React.createElement`。
 
+<<<<<<< HEAD
 替换编译 JSX 表达式时使用的函数。
+=======
+Replace the function used when compiling JSX expressions. It should be a qualified name (e.g. `React.createElement`) or an identifier (e.g. `createElement`).
+>>>>>>> d985a64d3ac5216cc565b7626c3c808943d2b145
 
 #### `pragmaFrag`
 
 `string` 类型，默认值为 `React.Fragment`。
 
+<<<<<<< HEAD
 替换编译 JSX 片段时使用的组件。
+=======
+Replace the component used when compiling JSX fragments. It should be a valid JSX tag name.
+>>>>>>> d985a64d3ac5216cc565b7626c3c808943d2b145
 
 #### `useBuiltIns`
 
