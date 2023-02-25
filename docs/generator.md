@@ -1,19 +1,19 @@
 ---
 id: babel-generator
-title: @babel/generator
+title: "@babel/generator"
 ---
 
 > Turns an AST into code.
 
 ## Install
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/generator
 ```
 
 ## Usage
 
-```js
+```js title="JavaScript"
 import { parse } from "@babel/parser";
 import generate from "@babel/generator";
 
@@ -33,6 +33,13 @@ const output = generate(
 
 ## Options
 
+<details>
+  <summary>History</summary>
+| Version | Changes |
+| --- | --- |
+| v7.21.0 | Added `inputSourceMap` |
+</details>
+
 Options for formatting output:
 
 | name                   | type                | default         | description                                                                                                                                                                                                                                                        |
@@ -50,15 +57,16 @@ Options for formatting output:
 | retainFunctionParens   | boolean             | `false`         | Retain parens around function expressions (could be used to change engine parsing behavior)                                                                                                                                                                        |
 | retainLines            | boolean             | `false`         | Attempt to use the same line numbers in the output code as in the source code (helps preserve stack traces)                                                                                                                                                        |
 | shouldPrintComment     | function            | `opts.comments` | Function that takes a comment (as a string) and returns `true` if the comment should be included in the output. By default, comments are included if `opts.comments` is `true` or if `opts.minified` is `false` and the comment contains `@preserve` or `@license` |
-| topicToken             | `'%'` or `'#'`      |                 | The token to use with [Hack-pipe topic references](/docs/en/babel-plugin-proposal-pipeline-operator). This is required when there are any `TopicReference` nodes.
+| topicToken             | `'%'` or `'#'`      |                 | The token to use with [Hack-pipe topic references](plugin-proposal-pipeline-operator.md). This is required when there are any `TopicReference` nodes.
 
 Options for source maps:
 
-| name           | type    | default | description                                                                                                            |
-| -------------- | ------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| sourceMaps     | boolean | `false` | Enable generating source maps                                                                                          |
-| sourceRoot     | string  |         | A root for all relative URLs in the source map                                                                         |
-| sourceFileName | string  |         | The filename for the source code (i.e. the code in the `code` argument). This will only be used if `code` is a string. |
+| name           | type             | default | description                                                                                                            |
+| -------------- | ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
+| sourceMaps     | boolean          | `false` | Enable generating source maps                                                                                          |
+| inputSourceMap | string or object |         | The input source map                                                                                                   |
+| sourceRoot     | string           |         | A root for all relative URLs in the source map                                                                         |
+| sourceFileName | string           |         | The filename for the source code (i.e. the code in the `code` argument). This will only be used if `code` is a string. |
 
 ## AST from Multiple Sources
 
@@ -70,7 +78,7 @@ should be the source filenames, and values should be the source content.
 
 Here's an example of what that might look like:
 
-```js
+```js title="JavaScript"
 import { parse } from "@babel/parser";
 import generate from "@babel/generator";
 

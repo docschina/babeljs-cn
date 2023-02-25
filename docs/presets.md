@@ -26,7 +26,7 @@ Babel 预设可以作为 Babel 插件和配置 [选项](options.md) 的共享集
 
 在 Babel 配置中，如果预设在 [npm](https://www.npmjs.com/search?q=babel-preset) 上，你可以传入预设的名称，Babel 将检查它是否已经安装在 `node_modules` 中。 这将添加到 [预设](options.md#presets) 配置选项中，该选项接受一个数组。
 
-```json
+```json title="babel.config.json"
 {
   "presets": ["babel-preset-myPreset", "@babel/preset-env"]
 }
@@ -34,7 +34,7 @@ Babel 预设可以作为 Babel 插件和配置 [选项](options.md) 的共享集
 
 除此以外，还可以指定预设的相对或绝对路径。
 
-```json
+```json title="babel.config.json"
 {
   "presets": ["./myProject/myPreset"]
 }
@@ -44,12 +44,18 @@ Babel 预设可以作为 Babel 插件和配置 [选项](options.md) 的共享集
 
 ## Stage-X (实验性预设)
 
+<<<<<<< HEAD
 <blockquote class="babel-callout babel-callout-danger">
   <h4>废弃</h4>
   <p>
     从 Babel 7 开始，我们决定废弃 Stage-X 预设，并停止发布它们。因为这些提案本身就容易改变，所以让用户将单个提案指定为插件似乎更好，而不是一个你无论如何都需要检查的“包罗万象”的预设。请查阅我们的 <a href="https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets">博客</a> 了解更多背景信息。
   </p>
 </blockquote>
+=======
+:::danger Deprecated
+As of Babel 7, we've decided to deprecate the Stage-X presets and stop publishing them. Because these proposals are inherently subject to change, it seems better to ask users to specify individual proposals as plugins vs. a catch all preset that you would need to check up on anyway. Check out our <a href="https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets">blog</a> for more context.
+:::
+>>>>>>> 56bd99ed380aeeff28e3e7ecb1a2e9c656540668
 
 stage-x 预设中的任何转换都是对一部分未经批准作为 JavaScript 发行版的更改（例如 ES6 / ES2015）。
 
@@ -71,7 +77,7 @@ Yehuda Katz (@wycatz) 在 [thefeedbackloop.xyz](https://thefeedbackloop.xyz) 的
 
 > 它可以返回一个插件数组..
 
-```js
+```js title="JavaScript"
 module.exports = function() {
   return {
     plugins: ["pluginA", "pluginB", "pluginC"],
@@ -81,7 +87,7 @@ module.exports = function() {
 
 > 预设可以包含其它预设和带有选项的插件。
 
-```js
+```js title="JavaScript"
 module.exports = () => ({
   presets: [require("@babel/preset-env")],
   plugins: [
@@ -97,7 +103,7 @@ module.exports = () => ({
 
 预设排序是倒序（从最后一个到第一个）。
 
-```json
+```json title="babel.config.json"
 {
   "presets": ["a", "b", "c"]
 }
@@ -113,7 +119,7 @@ module.exports = () => ({
 
 如果指定可选项，以下都是等效的：
 
-```json
+```json title="babel.config.json"
 {
   "presets": [
     "presetA", // 单字符串
@@ -125,7 +131,7 @@ module.exports = () => ({
 
 若要指定选项，请传递一个以键作为选项名称的对象。
 
-```json
+```json title="babel.config.json"
 {
   "presets": [
     [

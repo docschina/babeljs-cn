@@ -3,15 +3,7 @@ title: Compiler assumptions
 id: assumptions
 ---
 
-<script defer src="/js/babel.min.js"></script>
-<script type="module" src="/js/components/mini-repl.js"></script>
-<script type="module" src="/js/components/assumption-repl.js"></script>
-
-<style>
-.assumption-input {
-  display: none;
-}
-</style>
+import "@site/src/css/assumptions.css";
 
 By default Babel tries to compile your code so that it matches the native behavior as closely as possible. However, this sometimes means generating more output code, or slower output code, just to support some edge cases you don't care about.
 
@@ -19,7 +11,7 @@ Since Babel 7.13.0, you can specify an `assumptions` option in your configuratio
 
 For example:
 
-```json
+```json title="babel.config.json"
 {
   "targets": ">0.5%",
   "assumptions": {
@@ -40,7 +32,7 @@ This can be useful, for example, to iterate DOM collections in older browsers.
 
 <div is="assumption-repl" data-assumption="arrayLikeIsIterable" data-plugins="transform-destructuring,transform-spread,transform-for-of">
 
-```text assumption-input
+```js title="JavaScript"
 let images = $("img");
 
 for (const img of images) {
@@ -55,7 +47,7 @@ const copy = [...images];
 
 When re-exporting a binding from a module, assume that it doesn't change and thus it's safe to directly export it, as if you were doing
 
-```js
+```js title="JavaScript"
 import { value as val } from "dep";
 
 export const value = val;
@@ -65,7 +57,7 @@ export const value = val;
 
 <div is="assumption-repl" data-assumption="constantReexports" data-plugins="transform-modules-commonjs">
 
-```text assumption-input
+```js title="JavaScript"
 export { value } from "dependency";
 ```
 
@@ -77,7 +69,7 @@ The super class of a class can be changed at any time by using `Object.setProtot
 
 <div is="assumption-repl" data-assumption="constantSuper" data-plugins="transform-classes">
 
-```text assumption-input
+```js title="JavaScript"
 class Child extends Base {
   method() {
     super.method(2);
@@ -93,7 +85,7 @@ When compiling ESM to CJS, Babel defines a `__esModule` property on the `module.
 
 <div is="assumption-repl" data-assumption="enumerableModuleMeta" data-plugins="transform-modules-commonjs">
 
-```text assumption-input
+```js title="JavaScript"
 export const number = 2;
 ```
 
@@ -105,7 +97,7 @@ Functions have a `.length` property that reflect the number of parameters up to 
 
 <div is="assumption-repl" data-assumption="ignoreFunctionLength" data-plugins="transform-parameters">
 
-```text assumption-input
+```js title="JavaScript"
 function fn(a, b = 2, c, d = 3) {
   return a + b + c + d;
 }
@@ -119,7 +111,7 @@ When using language features that might call the [`[Symbol.toPrimitive]`](https:
 
 <div is="assumption-repl" data-assumption="ignoreToPrimitiveHint" data-plugins="transform-template-literals">
 
-```text assumption-input
+```js title="JavaScript"
 let str = `a${foo}b`;
 ```
 
@@ -131,7 +123,7 @@ When using an iterable object (in array destructuring, for-of or spreads), assum
 
 <div is="assumption-repl" data-assumption="iterableIsArray" data-plugins="transform-for-of,transform-destructuring,transform-spread">
 
-```text assumption-input
+```js title="JavaScript"
 const [first, ...rest] = obj;
 
 call(first, ...obj);
@@ -150,7 +142,7 @@ Don't use `Object.freeze` for the template object created for tagged template li
 
 <div is="assumption-repl" data-assumption="mutableTemplateObject" data-plugins="transform-template-literals">
 
-```text assumption-input
+```js title="JavaScript"
 let str = tag`a`;
 ```
 
@@ -162,7 +154,7 @@ When transforming classes, assume that they are always instantiate with `new` an
 
 <div is="assumption-repl" data-assumption="noClassCalls" data-plugins="transform-classes">
 
-```text assumption-input
+```js title="JavaScript"
 class Test {
   constructor() {
     this.x = 2;
@@ -178,7 +170,7 @@ When using operators that check for `null` or `undefined`, assume that they are 
 
 <div is="assumption-repl" data-assumption="noDocumentAll" data-plugins="proposal-optional-chaining,proposal-nullish-coalescing-operator">
 
-```text assumption-input
+```js title="JavaScript"
 let score = points ?? 0;
 let name = user?.name;
 ```
@@ -194,7 +186,7 @@ difference is that `Object.prototype.hasOwnProperty.call(ns, "foo")` would retur
 
 <div is="assumption-repl" data-assumption="noIncompleteNsImportDetection" data-plugins="transform-modules-commonjs">
 
-```text assumption-input
+```js title="JavaScript"
 export var foo;
 ```
 
@@ -208,7 +200,7 @@ Assume that the code never tries to instantiate arrow functions using `new`, whi
 
 <div is="assumption-repl" data-assumption="noNewArrows" data-plugins="transform-arrow-functions">
 
-```text assumption-input
+```js title="JavaScript"
 let getSum = (a, b) => {
   return { sum: a + b }
 };
@@ -222,7 +214,7 @@ When using rest patterns in object destructuring, assume that destructured objec
 
 <div is="assumption-repl" data-assumption="objectRestNoSymbols" data-plugins="transform-destructuring,proposal-object-rest-spread">
 
-```text assumption-input
+```js title="JavaScript"
 let { name, ...attrs } = obj;
 ```
 
@@ -233,6 +225,36 @@ let { name, ...attrs } = obj;
 Assume that "soft privacy" is enough for private fields, and thus they can be stored as public non-enumerable properties with an unique name (rather than using an external `WeakMap`). This makes debugging compiled private fields easier.
 
 <div is="assumption-repl" data-assumption="privateFieldsAsProperties" data-plugins="proposal-class-properties,proposal-private-methods">
+
+```js title="JavaScript"
+class Foo {
+  #method() {}
+
+  #field = 2;
+
+  run() {
+    this.#method();
+    this.#field++;
+  }
+}
+```
+
+</div>
+
+> ⚠️ When using inline Babel helpers, generated string keys are unique per-file and not globally. This could cause conflicts when extending classes from a different fields with private fields with the same name.
+
+## `privateFieldsAsSymbols`
+
+<details>
+  <summary>History</summary>
+| Version | Changes |
+| --- | --- |
+| v7.21.0 | Added `privateFieldsAsSymbols` assumption |
+</details>
+
+Assume that "soft privacy" is enough for private fields, and thus they can be stored as public properties with a symbol key (rather than using an external `WeakMap`). This makes debugging compiled private fields easier.
+
+<div is="assumption-repl" data-assumption="privateFieldsAsSymbols" data-plugins="proposal-class-properties,proposal-private-methods">
 
 ```text assumption-input
 class Foo {
@@ -255,7 +277,7 @@ Assume that getters, if present, don't have side-effects and can be accessed mul
 
 <div is="assumption-repl" data-assumption="pureGetters" data-plugins="proposal-optional-chaining">
 
-```text assumption-input
+```js title="JavaScript"
 let a = obj;
 
 a.b?.();
@@ -269,7 +291,7 @@ When declaring classes, assume that methods don't shadow getters on the supercla
 
 <div is="assumption-repl" data-assumption="setClassMethods" data-plugins="transform-classes">
 
-```text assumption-input
+```js title="JavaScript"
 class Foo extends Bar {
   method() {}
 
@@ -285,7 +307,7 @@ When using computed object properties, assume that the object doesn't contain pr
 
 <div is="assumption-repl" data-assumption="setComputedProperties" data-plugins="transform-computed-properties">
 
-```text assumption-input
+```js title="JavaScript"
 let obj = {
   set name(value) {},
   [key]: val
@@ -300,7 +322,7 @@ When using public class fields, assume that they don't shadow any getter in the 
 
 <div is="assumption-repl" data-assumption="setPublicClassFields" data-plugins="proposal-class-properties">
 
-```text assumption-input
+```js title="JavaScript"
 class Test {
   field = 2;
 
@@ -316,7 +338,7 @@ When using object spread, assume that spreaded properties don't trigger getters 
 
 <div is="assumption-repl" data-assumption="setSpreadProperties" data-plugins="proposal-object-rest-spread">
 
-```text assumption-input
+```js title="JavaScript"
 const result = {
   set name(value) {},
   ...obj,
@@ -331,7 +353,7 @@ When using `for-of` with an iterator, it should always be closed with `.return()
 
 <div is="assumption-repl" data-assumption="skipForOfIteratorClosing" data-plugins="transform-for-of">
 
-```text assumption-input
+```js title="JavaScript"
 for (const val of iterable) {
   console.log(val);
 }
@@ -345,7 +367,7 @@ When extending classes, assume that the super class is callable. This means that
 
 <div is="assumption-repl" data-assumption="superIsCallableConstructor" data-plugins="transform-classes">
 
-```text assumption-input
+```js title="JavaScript"
 class Child extends Parent {
   constructor() {
     super(42);
