@@ -1,6 +1,6 @@
 ---
 id: babel-plugin-proposal-async-do-expressions
-title: @babel/plugin-proposal-async-do-expressions
+title: "@babel/plugin-proposal-async-do-expressions"
 sidebar_label: async-do-expressions
 ---
 
@@ -10,7 +10,7 @@ sidebar_label: async-do-expressions
 
 Issuing HTTP request in parallel
 
-```js
+```js title="JavaScript"
 Promise.all([
   async do {
     const result = await fetch('https://example.com/A');
@@ -28,7 +28,7 @@ Promise.all([
 
 will be transformed to
 
-```js
+```js title="JavaScript"
 Promise.all([
   (async () {
     const result = await fetch('https://example.com/A');
@@ -46,7 +46,7 @@ Promise.all([
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-proposal-async-do-expressions
 ```
 
@@ -54,7 +54,7 @@ npm install --save-dev @babel/plugin-proposal-async-do-expressions
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-proposal-async-do-expressions"]
 }
@@ -62,7 +62,7 @@ npm install --save-dev @babel/plugin-proposal-async-do-expressions
 
 Note: This plugin transpiles `async do {}` to ES2017 Async arrow function `async () => {}`. If you target to an older engine, i.e. Node.js 6 or IE 11, please also add [`@babel/plugin-transform-async-to-generator`](plugin-transform-async-to-generator.md):
 
-```
+```json title="babel.config.json"
 {
   "plugins": [
     "@babel/plugin-proposal-async-do-expressions",
@@ -73,13 +73,13 @@ Note: This plugin transpiles `async do {}` to ES2017 Async arrow function `async
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-proposal-async-do-expressions script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-proposal-async-do-expressions"],
 });
@@ -87,4 +87,4 @@ require("@babel/core").transformSync("code", {
 
 ## References
 
-- [Proposal](https://github.com/tc39/proposal-async-do-expressions)
+- [Proposal: `async do` expressions](https://github.com/tc39/proposal-async-do-expressions)

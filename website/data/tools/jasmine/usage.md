@@ -1,6 +1,6 @@
 在你的 `spec/support/jasmine.json` 文件中作出如下变化：
 
-```json
+```json title="JSON"
 {
   "helpers": [
     "../node_modules/@babel/register/lib/node.js"
@@ -12,13 +12,13 @@
 
 Create a `babel.config.json` in your project root:
 
-```json
+```json title="babel.config.json"
 {
   "presets": ["@babel/preset-env"]
 }
 ```
 
-<blockquote class="babel-callout babel-callout-info">
+<blockquote class="alert alert--info">
   <p>
     欲了解更多信息，请参阅 <a href="https://github.com/piecioshka/test-jasmine-babel">piecioshka/test-jasmine-babel 项目</a>。
   </p>

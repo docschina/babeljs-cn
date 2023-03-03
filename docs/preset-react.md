@@ -1,8 +1,12 @@
 ---
 id: babel-preset-react
+<<<<<<< HEAD
 title: @babel/preset-react
 translators:
   - fikyair
+=======
+title: "@babel/preset-react"
+>>>>>>> 85fd0601345b275e9e1ad106afcc6e2fbe1f408b
 ---
 
 这个预设包含以下插件：
@@ -26,7 +30,7 @@ translators:
 
 > 您可以查看 React [开始页面](https://facebook.github.io/react/docs/hello-world.html)
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/preset-react
 ```
 
@@ -36,7 +40,7 @@ npm install --save-dev @babel/preset-react
 
 不带参数：
 
-```json
+```json title="babel.config.json"
 {
   "presets": ["@babel/preset-react"]
 }
@@ -44,7 +48,7 @@ npm install --save-dev @babel/preset-react
 
 带参数：
 
-```json
+```json title="babel.config.json"
 {
   "presets": [
     [
@@ -63,13 +67,13 @@ npm install --save-dev @babel/preset-react
 
 ### 通过命令行工具使用（CLI）
 
-```sh
+```sh title="Shell"
 babel --presets @babel/preset-react script.js
 ```
 
 ### 通过 Node API 使用
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   presets: ["@babel/preset-react"],
 });
@@ -129,13 +133,21 @@ require("@babel/core").transformSync("code", {
 
 `string` 类型，默认值为 `React.createElement`。
 
+<<<<<<< HEAD
 替换编译 JSX 表达式时使用的函数。
+=======
+Replace the function used when compiling JSX expressions. It should be a qualified name (e.g. `React.createElement`) or an identifier (e.g. `createElement`).
+>>>>>>> 85fd0601345b275e9e1ad106afcc6e2fbe1f408b
 
 #### `pragmaFrag`
 
 `string` 类型，默认值为 `React.Fragment`。
 
+<<<<<<< HEAD
 替换编译 JSX 片段时使用的组件。
+=======
+Replace the component used when compiling JSX fragments. It should be a valid JSX tag name.
+>>>>>>> 85fd0601345b275e9e1ad106afcc6e2fbe1f408b
 
 #### `useBuiltIns`
 
@@ -151,9 +163,9 @@ require("@babel/core").transformSync("code", {
 
 当传递 props 时，直接使用带有传递元素的内联对象，而不是 Babel 的扩展工具或 `Object.assign`。
 
-### .babelrc.js
+### babel.config.js
 
-```js
+```js title="babel.config.js"
 module.exports = {
   presets: [
     [
@@ -166,11 +178,11 @@ module.exports = {
 };
 ```
 
-### .babelrc
+### babel.config.json
 
 > 注意: `env` 参数可能很快就会被弃用
 
-```json
+```json title="babel.config.json"
 {
   "presets": ["@babel/preset-react"],
   "env": {
