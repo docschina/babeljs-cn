@@ -35,7 +35,8 @@
     ],
     "帮助工具包": [
       "babel-helper-compilation-targets",
-      "babel-helper-module-imports"
+      "babel-helper-module-imports",
+      "babel-helper-validator-identifier"
     ]
   },
   "plugins": {
@@ -53,40 +54,44 @@
     "TC39 提案": [
       "babel-plugin-proposal-async-do-expressions",
       "babel-plugin-proposal-decorators",
+      "babel-plugin-proposal-destructuring-private",
       "babel-plugin-proposal-do-expressions",
+      "babel-plugin-proposal-duplicate-named-capturing-groups-regex",
       "babel-plugin-proposal-export-default-from",
       "babel-plugin-proposal-function-bind",
       "babel-plugin-proposal-function-sent",
       "babel-plugin-proposal-partial-application",
       "babel-plugin-proposal-pipeline-operator",
-      "babel-plugin-proposal-private-methods",
       "babel-plugin-proposal-record-and-tuple",
-      "babel-plugin-proposal-throw-expressions"
+      "babel-plugin-proposal-regexp-modifiers",
+      "babel-plugin-proposal-throw-expressions",
+      "babel-plugin-proposal-unicode-sets-regex"
     ],
     "@babel/preset-env": [
       {
-        "type": "subcategory",
+        "type": "category",
         "label": "ES2022",
-        "ids": [
-          "babel-plugin-proposal-class-private-methods",
+        "items": [
           "babel-plugin-proposal-class-properties",
           "babel-plugin-proposal-class-static-block",
+          "babel-plugin-proposal-private-methods",
           "babel-plugin-proposal-private-property-in-object",
           "babel-plugin-syntax-top-level-await"
         ]
       },
       {
-        "type": "subcategory",
+        "type": "category",
         "label": "ES2021",
-        "ids": [
+        "items": [
           "babel-plugin-proposal-logical-assignment-operators",
           "babel-plugin-proposal-numeric-separator"
         ]
       },
       {
-        "type": "subcategory",
+        "type": "category",
         "label": "ES2020",
-        "ids": [
+        "items": [
+          "babel-plugin-proposal-dynamic-import",
           "babel-plugin-proposal-export-namespace-from",
           "babel-plugin-proposal-nullish-coalescing-operator",
           "babel-plugin-proposal-optional-chaining",
@@ -96,17 +101,17 @@
         ]
       },
       {
-        "type": "subcategory",
+        "type": "category",
         "label": "ES2019",
-        "ids": [
+        "items": [
           "babel-plugin-proposal-optional-catch-binding",
           "babel-plugin-proposal-json-strings"
         ]
       },
       {
-        "type": "subcategory",
+        "type": "category",
         "label": "ES2018",
-        "ids": [
+        "items": [
           "babel-plugin-proposal-async-generator-functions",
           "babel-plugin-proposal-object-rest-spread",
           "babel-plugin-proposal-unicode-property-regex",
@@ -115,21 +120,20 @@
         ]
       },
       {
-        "type": "subcategory",
+        "type": "category",
         "label": "ES2017",
-        "ids": ["babel-plugin-transform-async-to-generator"]
+        "items": ["babel-plugin-transform-async-to-generator"]
       },
       {
-        "type": "subcategory",
+        "type": "category",
         "label": "ES2016",
-        "ids": ["babel-plugin-transform-exponentiation-operator"]
+        "items": ["babel-plugin-transform-exponentiation-operator"]
       },
       {
-        "type": "subcategory",
+        "type": "category",
         "label": "ES2015",
-        "ids": [
+        "items": [
           "babel-plugin-transform-arrow-functions",
-          "babel-plugin-transform-block-scoped",
           "babel-plugin-transform-block-scoping",
           "babel-plugin-transform-classes",
           "babel-plugin-transform-computed-properties",
@@ -152,14 +156,14 @@
         ]
       },
       {
-        "type": "subcategory",
+        "type": "category",
         "label": "ES5",
-        "ids": ["babel-plugin-transform-property-mutators"]
+        "items": ["babel-plugin-transform-property-mutators"]
       },
       {
-        "type": "subcategory",
+        "type": "category",
         "label": "ES3",
-        "ids": [
+        "items": [
           "babel-plugin-transform-member-expression-literals",
           "babel-plugin-transform-property-literals",
           "babel-plugin-transform-reserved-words"
