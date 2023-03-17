@@ -64,6 +64,8 @@ const PIPELINE_PROPOSALS = {
 };
 
 const DECORATOR_PROPOSALS = {
+  "2023-01": "2023-01",
+  "2022-03": "2022-03",
   "2021-12": "2021-12",
   "2018-09": "2018-09",
   legacy: "Legacy",
@@ -117,6 +119,7 @@ type Props = {
   loadingExternalPlugins: boolean;
   onAssumptionsChange: AssumptionsChange;
   debugEnvPreset: boolean;
+  onResetBtnClick: () => void;
 };
 
 type LinkProps = {
@@ -129,7 +132,7 @@ const LinkToDocs = ({ className, children, section }: LinkProps) => (
   <a
     className={className}
     target="_blank"
-    href={`/docs/en/next/babel-preset-env.html#${section}`}
+    href={`/docs/babel-preset-env#${section}`}
   >
     {children}
   </a>
@@ -139,7 +142,7 @@ const LinkToAssumptionDocs = ({ className, children, section }: LinkProps) => (
   <a
     className={className}
     target="_blank"
-    href={`/docs/en/next/assumptions#${section.toLowerCase()}`}
+    href={`/docs/assumptions#${section.toLowerCase()}`}
   >
     {children}
   </a>
@@ -267,6 +270,7 @@ class ExpandedContainer extends Component<Props, State> {
       showOfficialExternalPlugins,
       loadingExternalPlugins,
       presetsOptions,
+      onResetBtnClick,
     } = this.props;
 
     const {
@@ -280,13 +284,15 @@ class ExpandedContainer extends Component<Props, State> {
     const { assumptions } = envConfig;
     const isReactEnabled = presetState["react"].isEnabled;
 
-    const isStage2Enabled =
-      presetState["stage-0"].isEnabled ||
-      presetState["stage-1"].isEnabled ||
-      presetState["stage-2"].isEnabled;
+    function getStages(stage: 0 | 1 | 2 | 3) {
+      return ["stage-0", "stage-1", "stage-2", "stage-3"]
+        .slice(0, stage + 1)
+        .filter((stage) => presetState[stage].isEnabled);
+    }
 
-    const isStage1Enabled =
-      presetState["stage-0"].isEnabled || presetState["stage-1"].isEnabled;
+    function isStageEnabled(stage: 0 | 1 | 2 | 3) {
+      return getStages(stage).length > 0;
+    }
 
     const isBugfixesSupported =
       babelVersion && compareVersions(babelVersion, "7.9.0") !== -1;
@@ -432,22 +438,22 @@ class ExpandedContainer extends Component<Props, State> {
                 >
                   <option
                     value="automatic"
-                    selected={!presetsOptions.reactRuntime}
+                    selected={presetsOptions.reactRuntime === "automatic"}
                   >
                     Automatic
                   </option>
                   <option
                     value="classic"
-                    selected={!!presetsOptions.reactRuntime}
+                    selected={presetsOptions.reactRuntime === "classic"}
                   >
                     Classic
                   </option>
                 </select>
               </PresetOption>
               <PresetOption
-                when={isStage2Enabled}
+                when={isStageEnabled(3)}
                 option="decoratorsVersion"
-                presets={["stage-0", "stage-1", "stage-2"]}
+                presets={getStages(3)}
               >
                 <span className={styles.presetsOptionsLabel}>
                   Decorators version
@@ -470,25 +476,22 @@ class ExpandedContainer extends Component<Props, State> {
                 </select>
               </PresetOption>
               <PresetOption
-                when={isStage2Enabled}
+                when={
+                  isStageEnabled(3) &&
+                  !["legacy", "2022-03", "2023-01"].includes(
+                    presetsOptions.decoratorsVersion
+                  )
+                }
                 option="decoratorsBeforeExport"
-                presets={["stage-0", "stage-1", "stage-2"]}
-                comment="Only works when legacy decorators are not enabled"
-                enabled={presetsOptions.decoratorsVersion !== "legacy"}
+                presets={getStages(3)}
+                comment="Only works when version of decorators is 2021-12 or 2018-09"
               >
                 <span className={styles.presetsOptionsLabel}>
                   Decorators before
                   <code>export</code>
                 </span>
                 <input
-                  disabled={presetsOptions.decoratorsVersion === "legacy"}
                   checked={presetsOptions.decoratorsBeforeExport}
-                  ref={(el) => {
-                    if (el) {
-                      el.indeterminate =
-                        presetsOptions.decoratorsVersion === "legacy";
-                    }
-                  }}
                   className={styles.envPresetCheckbox}
                   type="checkbox"
                   onChange={this._onPresetOptionChange(
@@ -498,9 +501,9 @@ class ExpandedContainer extends Component<Props, State> {
                 />
               </PresetOption>
               <PresetOption
-                when={isStage1Enabled}
+                when={isStageEnabled(1)}
                 option="pipelineProposal"
-                presets={["stage-0", "stage-1"]}
+                presets={getStages(1)}
               >
                 <span className={styles.presetsOptionsLabel}>
                   Pipeline proposal
@@ -603,7 +606,7 @@ class ExpandedContainer extends Component<Props, State> {
                   Built-ins
                 </LinkToDocs>
                 <select
-                  value={envConfig.corejs+''}
+                  value={envConfig.corejs + ""}
                   className={styles.envPresetSelect}
                   onChange={this._onEnvPresetSettingChange("corejs")}
                   disabled={
@@ -616,7 +619,7 @@ class ExpandedContainer extends Component<Props, State> {
                   <option value="3.21">core-js 3.21</option>
                 </select>
                 <select
-                  value={envConfig.builtIns+''}
+                  value={envConfig.builtIns + ""}
                   className={styles.envPresetSelect}
                   onChange={this._onEnvPresetSettingChange("builtIns")}
                   disabled={
@@ -635,6 +638,25 @@ class ExpandedContainer extends Component<Props, State> {
                   onChange={this._onEnvPresetSettingCheck("isBuiltInsEnabled")}
                   type="checkbox"
                 />
+              </label>
+              <label className={styles.envPresetRow}>
+                <LinkToDocs className={`${styles.envPresetLabel} ${styles.highlight}`}
+                  section="modules"
+                >
+                  Modules
+                </LinkToDocs>
+                <select
+                  value={envConfig.modules}
+                  className={styles.envPresetSelect}
+                  onChange={this._onEnvPresetSettingChange("modules")}
+                  disabled={!envConfig.isEnvPresetEnabled}
+                >
+                  <option value="false">false</option>
+                  <option value="amd">amd</option>
+                  <option value="umd">umd</option>
+                  <option value="systemjs">systemjs</option>
+                  <option value="commonjs">commonjs</option>
+                </select>
               </label>
               <label className={styles.envPresetRow}>
                 <LinkToDocs
@@ -767,22 +789,26 @@ class ExpandedContainer extends Component<Props, State> {
             />
           </div>
         </div>
-        {babelVersion && (
-          <div className={styles.versionRow} title={`v${babelVersion}`}>
-            <select value={babelVersion} onChange={onVersionChange}>
-              <option value="">v{babelVersion}</option>
-              <option value="latest">Latest</option>
-              {pastVersions.map(
-                (version, index) =>
-                  version !== babelVersion && (
-                    <option value={version} key={index}>
-                      v{version}
-                    </option>
-                  )
-              )}
-            </select>
-          </div>
-        )}
+
+        <div className={styles.bottomSidebar}>
+          <button onClick={onResetBtnClick}>Reset</button>
+          <select
+            className={styles.resetButton}
+            value={babelVersion}
+            onChange={onVersionChange}
+          >
+            <option value="">v{babelVersion}</option>
+            <option value="latest">Latest</option>
+            {pastVersions.map(
+              (version, index) =>
+                version !== babelVersion && (
+                  <option value={version} key={index}>
+                    v{version}
+                  </option>
+                )
+            )}
+          </select>
+        </div>
 
         <div
           className={`${styles.closeButton} ${nestedCloseButton}`}
@@ -1138,6 +1164,10 @@ const styles = {
       display: "none",
     },
   }),
+  resetButton: css({
+    marginLeft: "0.625rem",
+    transition: "all 0.25s ease-in",
+  }),
   sourceTypeSelect: css({
     backgroundPosition: "calc(100% - 1rem) calc(100% - 8px)",
     padding: "0 0.5rem",
@@ -1220,7 +1250,7 @@ const styles = {
     display: "flex",
     flex: "1 1 auto",
   }),
-  versionRow: css({
+  bottomSidebar: css({
     display: "flex",
     fontFamily: "monospace",
     fontSize: "0.75rem",
@@ -1229,6 +1259,7 @@ const styles = {
     padding: "0 1.5rem",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
+    boxSizing: "border-box",
 
     [media.large]: {
       backgroundColor: colors.inverseBackgroundDark,

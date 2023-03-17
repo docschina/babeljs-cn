@@ -55,7 +55,7 @@ export default function compile(code: string, config: CompileConfig): Return {
   let compileErrorMessage = null;
   let envPresetDebugInfo = null;
   let sourceMap = null;
-  let useBuiltIns:false|"entry"|"usage" = false;
+  let useBuiltIns: false | "entry" | "usage" = false;
   let spec = false;
   let loose = false;
   let bugfixes = false;
@@ -69,8 +69,8 @@ export default function compile(code: string, config: CompileConfig): Return {
   let presetEnvOptions = {};
 
   if (envConfig && envConfig.isEnvPresetEnabled) {
-    const targets:any = {};
-    const { forceAllTransforms, shippedProposals } = envConfig;
+    const targets: any = {};
+    const { forceAllTransforms, shippedProposals, modules } = envConfig;
 
     if (envConfig.browsers) {
       targets.browsers = envConfig.browsers
@@ -82,7 +82,10 @@ export default function compile(code: string, config: CompileConfig): Return {
       targets.electron = envConfig.electron;
     }
     if (envConfig.isBuiltInsEnabled) {
-      useBuiltIns = (!config.evaluate && envConfig.builtIns) as false|"entry"|"usage";
+      useBuiltIns = (!config.evaluate && envConfig.builtIns) as
+        | false
+        | "entry"
+        | "usage";
       if (envConfig.corejs) {
         corejs = envConfig.corejs;
       }
@@ -102,13 +105,19 @@ export default function compile(code: string, config: CompileConfig): Return {
 
     presetEnvOptions = {
       targets,
+      modules,
       forceAllTransforms,
       shippedProposals,
       useBuiltIns,
-      corejs,
+      corejs: undefined,
       spec,
       loose,
     };
+
+    if (useBuiltIns) {
+      (presetEnvOptions as any).corejs = corejs;
+    }
+
     if (Babel.version && compareVersions(Babel.version, "7.9.0") !== -1) {
       (presetEnvOptions as any).bugfixes = bugfixes;
     }
@@ -126,22 +135,24 @@ export default function compile(code: string, config: CompileConfig): Return {
         if (preset === "env") {
           return ["env", presetEnvOptions];
         }
-        if (/^stage-[0-2]$/.test(preset)) {
-          const decoratorsLegacy =
-            presetsOptions.decoratorsVersion === "legacy" || undefined;
-          const decoratorsBeforeExport = decoratorsLegacy
+        if (/^stage-[0-3]$/.test(preset)) {
+          const version = presetsOptions.decoratorsVersion;
+          const decoratorsLegacy = version === "legacy" || undefined;
+
+          const decoratorsBeforeExport = [
+            "legacy",
+            "2022-03",
+            "2023-01",
+          ].includes(version)
             ? undefined
             : presetsOptions.decoratorsBeforeExport;
-          const decoratorsVersion = decoratorsLegacy
-            ? undefined
-            : presetsOptions.decoratorsVersion;
 
           return [
             preset,
             {
               // pass decoratorsLegacy for Babel < 7.17
               decoratorsLegacy,
-              decoratorsVersion,
+              decoratorsVersion: decoratorsLegacy ? undefined : version,
               decoratorsBeforeExport,
               pipelineProposal: presetsOptions.pipelineProposal,
             },
