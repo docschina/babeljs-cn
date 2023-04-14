@@ -35,7 +35,7 @@ Babel 7.0.0 为 `@babel/plugin-proposal-decorators` 插件引入了新的标识�
 
 旧提案允许任何有效的左表达式（字面量，函数，类表达式，new 表达式以及函数调用等）用作装饰器主体。有效代码如下所示：
 
-```javascript=
+```js title="JavaScript"
 class MyClass {
   @getDecorators().methods[name]
   foo() {}
@@ -47,7 +47,7 @@ class MyClass {
 
 该语法存在问题：`[...]` 符号在装饰器内被用作属性访问及定义计算名称。为了防止这种歧义出现，新提案只允许通过点属性访问（`foo.bar`）可以选择在参数末尾使用（`foo.bar()`）。如果需要使用很复杂的表达式，可以将它们包裹在括号内：
 
-```javascript=
+```js title="JavaScript"
 class MyClass {
   @decorator
   @dec(arg1, arg2)
@@ -61,7 +61,7 @@ class MyClass {
 
 旧提案允许除类和类元素装饰器以外的对象成员使用装饰器：
 
-```javascript=
+```js title="JavaScript"
 const myObj = {
   @dec1 foo: 3,
   @dec2 bar() {},
@@ -111,7 +111,7 @@ npx wrap-legacy-decorators src/file-with-decorators.js --decorators-before-expor
 
 该问题在装饰器提案中反复被问到：装饰器应该放置在关键字 export 前还是关键字 export 后？
 
-```javascript=
+```js title="JavaScript"
 export @decorator class MyClass {}
 
 // 或者
@@ -144,7 +144,7 @@ export class MyClass {}
 
 如果你直接使用 ([`@babel/parser`](https://babeljs.io/docs/en/next/babel-parser.html)，之前的 `babylon`)，你可以在 7.0.0 版本中使用 `decoratorsBeforeExport` 选项：
 
-```javascript=
+```js title="JavaScript"
 const ast = babylon.parse(code, {
   plugins: [["decorators", { decoratorsBeforeExport: true }]],
 });
@@ -154,11 +154,11 @@ const ast = babylon.parse(code, {
 
 用于 Babel 本身:
 
-```sh
+```shell npm2yarn
 npm install @babel/plugin-proposal-decorators --save-dev
 ```
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [
     "@babel/plugin-proposal-decorators",

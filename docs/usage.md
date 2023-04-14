@@ -5,7 +5,11 @@ title: 使用指南
 
 无论你是“终端用户”还是基于 Babel 自身构建一个集成工具的用户，Babel 工具链中都有很多工具可以让你轻松使用 Babel。这里简要介绍下这些工具，你可以在文档的“用法”部分中阅读有关它们的更多信息。
 
+<<<<<<< HEAD
 > 如果你正在使用框架，不同框架配置 Babel 的方式可能会有所不同，实际上有些框架已经为你配置。具体的配置方法请查看 [交互式设置指南](/setup.html)。
+=======
+> If you're using a framework, the work of configuring Babel might be different or actually already handled for you. Check out our [interactive setup guide](/setup) instead.
+>>>>>>> 0253e6b50b7bf5bd87beed9f44ab40f5552247a7
 
 ## 概览
 
@@ -15,13 +19,13 @@ title: 使用指南
 
 1. 运行这些命令以安装 packages:
 
-   ```sh
+   ```bash npm2yarn
    npm install --save-dev @babel/core @babel/cli @babel/preset-env
    ```
 
 2. 使用以下内容在项目的根目录中创建名为 `babel.config.json`（需要 `v7.8.0` 及以上版本）的配置文件：
 
-   ```json
+   ```json title="babel.config.json"
    {
      "presets": [
        [
@@ -45,7 +49,7 @@ title: 使用指南
 
 或者使用 `babel.config.js`，如果你在使用旧版本 Babel
 
-```js
+```js title="babel.config.js"
 const presets = [
   [
     "@babel/preset-env",
@@ -67,7 +71,7 @@ module.exports = { presets };
 
 3. 运行此命令将所有代码从 `src` 目录编译到 `lib`：
 
-   ```sh
+   ```sh title="Shell"
    ./node_modules/.bin/babel src --out-dir lib
    ```
 
@@ -83,13 +87,13 @@ module.exports = { presets };
 
 Babel 的核心功能容纳于 [@babel/core](core.md) 模块。通过以下命令安装后：
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/core
 ```
 
 你可以直接在 JavaScript 中 `require` 它并像下面这样使用它：
 
-```js
+```js title="JavaScript"
 const babel = require("@babel/core");
 
 babel.transformSync("code", optionsObject);
@@ -101,7 +105,7 @@ babel.transformSync("code", optionsObject);
 
 [@babel/cli](cli.md) 是一个允许你在终端使用 babel 的工具。这是安装命令和基本用法示例：
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/core @babel/cli
 
 ./node_modules/.bin/babel src --out-dir lib
@@ -115,7 +119,7 @@ npm install --save-dev @babel/core @babel/cli
 
 转换规则会体现为插件的形式，插件是小型 JavaScript 程序，它指示 Babel 如何进行代码转换。你甚至可以编写自己的插件，来应用你想要的任何转换规则。想要将 ES2015+ 语法转换为 ES5，我们可以依赖类似 `@babel/plugin-transform-arrow-functions` 这样的官方插件，如：
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-transform-arrow-functions
 
 ./node_modules/.bin/babel src --out-dir lib --plugins=@babel/plugin-transform-arrow-functions
@@ -123,7 +127,7 @@ npm install --save-dev @babel/plugin-transform-arrow-functions
 
 现在代码中的所有箭头函数都将被转换为 ES5 兼容的函数表达式：
 
-```js
+```js title="JavaScript"
 const fn = () => 1;
 
 // 转为
@@ -137,7 +141,7 @@ var fn = function fn() {
 
 就像使用 plugins 一样，你也可以创建自己的 preset，分享你需要的任何插件组合。在这个例子中，我们使用了 `env` preset。
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/preset-env
 
 ./node_modules/.bin/babel src --out-dir lib --presets=@babel/env
@@ -151,7 +155,7 @@ npm install --save-dev @babel/preset-env
 
 现在，让我们创建一个名为 `babel.config.json` (需要 `v7.8.0` 及以上) 的文件，其中包含以下内容：
 
-```json
+```json title="babel.config.json"
 {
   "presets": [
     [
@@ -175,7 +179,7 @@ npm install --save-dev @babel/preset-env
 
 > 🚨 <span id="polyfill-deprecated">自</span> Babel 7.4.0 起，此 package 已被弃用，你可以直接引入 `core-js/stable`（用于 polyfill ECMAScript 新特性）：
 >
-> ```js
+> ```js title="JavaScript"
 > import "core-js/stable";
 > ```
 >
@@ -191,7 +195,7 @@ npm install --save-dev @babel/preset-env
 
 由于我们正在构建一个应用程序，我们可以只安装 `@babel/polyfill`:
 
-```sh
+```shell npm2yarn
 npm install --save @babel/polyfill
 ```
 
@@ -199,7 +203,7 @@ npm install --save @babel/polyfill
 
 幸运的是，对于我们来说，我们使用的是 `env` preset，其中有一个 `"useBuiltIns"` 选项，当设置为 `"usage"` 时，实际上针对最后一个版本的浏览器应用优化，只会包含你需要的 polyfill。使用此新选项，配置更改如下：
 
-```json
+```json title="babel.config.json"
 {
   "presets": [
     [
@@ -220,13 +224,13 @@ npm install --save @babel/polyfill
 
 Babel 将检查你的所有代码，以查找目标环境中缺少的功能，并仅包含所需的 polyfill。例如这段代码：
 
-```js
+```js title="JavaScript"
 Promise.resolve().finally();
 ```
 
 会变成这样（因为 Edge 17 没有 `Promise.prototype.finally`）：
 
-```js
+```js title="JavaScript"
 require("core-js/modules/es.promise.finally");
 
 Promise.resolve().finally();
@@ -236,7 +240,7 @@ Promise.resolve().finally();
 
 For example:
 
-```json
+```json title="babel.config.json"
 {
   "presets": [
     [
@@ -257,12 +261,22 @@ For example:
 
 然后由于 [@babel/polyfill](polyfill.md) 已被 <a href="#polyfill-deprecated">废弃</a>，在我们模拟完整 ES2015+ 环境的入口文件中应首先导入 [core-js](https://github.com/zloirock/core-js) (用于 polyfill ECMAScript 功能）：
 
+<<<<<<< HEAD
 ```js
 import "core-js/stable";
 ```
+=======
+```js title="JavaScript"
+ import "core-js/stable";
+ ```
+>>>>>>> 0253e6b50b7bf5bd87beed9f44ab40f5552247a7
 
 ## 总结
 
 我们使用 `@babel/cli` 从终端运行 Babel，`@babel/polyfill` 用于 polyfill 所有新的 JavaScript 功能，`env` preset 只包含我们使用的功能的转换规则，polyfills 用于填充目标浏览器中缺少的功能。
 
+<<<<<<< HEAD
 有关使用构建系统设置 Babel，以及 IDE 等更多信息，请查看 [交互式设置指南](/setup.html)。
+=======
+For more information on setting up Babel with your build system, IDE, and more, check out our [interactive setup guide](/setup).
+>>>>>>> 0253e6b50b7bf5bd87beed9f44ab40f5552247a7

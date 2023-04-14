@@ -1,11 +1,12 @@
 ---
 id: babel-plugin-transform-modules-amd
-title: @babel/plugin-transform-modules-amd
+title: "@babel/plugin-transform-modules-amd"
 sidebar_label: AMD
 ---
 
 <details>
   <summary>History</summary>
+
 | Version | Changes |
 | --- | --- |
 | `v7.14.0` | Implemented the `importInterop` option |
@@ -19,13 +20,13 @@ This plugin transforms ECMAScript modules to [AMD](https://github.com/amdjs/amdj
 
 **In**
 
-```javascript
+```js title="JavaScript"
 export default 42;
 ```
 
 **Out**
 
-```javascript
+```js title="JavaScript"
 define(["exports"], function(exports) {
   "use strict";
 
@@ -39,7 +40,7 @@ define(["exports"], function(exports) {
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-transform-modules-amd
 ```
 
@@ -47,7 +48,7 @@ npm install --save-dev @babel/plugin-transform-modules-amd
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-transform-modules-amd"]
 }
@@ -55,13 +56,13 @@ npm install --save-dev @babel/plugin-transform-modules-amd
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-transform-modules-amd script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-modules-amd"],
 });

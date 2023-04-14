@@ -1,6 +1,6 @@
 ---
 id: babel-plugin-proposal-decorators
-title: @babel/plugin-proposal-decorators
+title: "@babel/plugin-proposal-decorators"
 sidebar_label: decorators
 ---
 
@@ -10,7 +10,7 @@ sidebar_label: decorators
 
 ### 简单的类装饰器（class decorator）
 
-```js
+```js title="JavaScript"
 @annotation
 class MyClass {}
 
@@ -21,7 +21,7 @@ function annotation(target) {
 
 ### 类装饰器（class decorator）
 
-```js
+```js title="JavaScript"
 @isTestable(true)
 class MyClass {}
 
@@ -34,7 +34,7 @@ function isTestable(value) {
 
 ### 类函数装饰器（class function decorator）
 
-```js
+```js title="JavaScript"
 class C {
   @enumerable(false)
   method() {}
@@ -50,7 +50,7 @@ function enumerable(value) {
 
 ## 安装
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-proposal-decorators
 ```
 
@@ -58,7 +58,7 @@ npm install --save-dev @babel/plugin-proposal-decorators
 
 ### 使用配置文件（推荐）
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-proposal-decorators"]
 }
@@ -66,13 +66,13 @@ npm install --save-dev @babel/plugin-proposal-decorators
 
 ### 通过 CLI 使用
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-proposal-decorators script.js
 ```
 
 ### 通过 Node API 使用
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-proposal-decorators"],
 });
@@ -82,17 +82,20 @@ require("@babel/core").transformSync("code", {
 
 <details>
   <summary>History</summary>
+
 | Version | Changes |
 | --- | --- |
+| `v7.21.0` | Added support for `version: "2023-01"` |
 | `v7.19.0` | Added support for `version: "2022-03"` |
 | `v7.17.0` | Added the `version` option with support for `"2021-12"`, `"2018-09"` and `"legacy"` |
 </details>
 
 ### `version`
 
-`"2022-03"`, `"2021-12"`, `"2018-09"` or `"legacy"`. Defaults to `"2018-09"`.
+`"2023-01"`, `"2022-03"`, `"2021-12"`, `"2018-09"` or `"legacy"`.
 
 Selects the decorators proposal to use:
+- `"2023-01"` is the proposal version after the updates that reached consensus in the January 2023 TC39 meeting, integrating [`pzuraq/ecma262#4`](https://github.com/pzuraq/ecma262/pull/4).
 - `"2022-03"` is the proposal version that reached consensus for Stage 3 in the March 2022 TC39 meeting. You can read more about it at [`tc39/proposal-decorators@8ca65c046d`](https://github.com/tc39/proposal-decorators/tree/8ca65c046dd5e9aa3846a1fe5df343a6f7efd9f8).
 - `"2021-12"` is the proposal version as it was presented to TC39 in Dec 2021. You can read more about it at [`tc39/proposal-decorators@d6c056fa06`](https://github.com/tc39/proposal-decorators/tree/d6c056fa061646178c34f361bad33d583316dc85).
 - `"2018-09"` is the proposal version that was initially promoted to Stage 2 presented to TC39 in Sept 2018.  You can read more about it at [`tc39/proposal-decorators@7fa580b40f`](https://github.com/tc39/proposal-decorators/tree/7fa580b40f2c19c561511ea2c978e307ae689a1b).
@@ -103,13 +106,13 @@ Selects the decorators proposal to use:
 ### `decoratorsBeforeExport`
 
 This option:
-- is disallowed when using `version: "legacy"` or `version: "2021-12"`;
+- is disallowed when using `version: "legacy"`, `version: "2022-03"`, or `version: "2023-01"`;
 - is required when using `version: "2018-09"`;
 - is optional and defaults to `false` when using `version: "2021-12"`.
 
 `boolean`
 
-```js
+```js title="JavaScript"
 // decoratorsBeforeExport: false
 export @decorator class Bar {}
 
@@ -118,7 +121,11 @@ export @decorator class Bar {}
 export class Foo {}
 ```
 
+<<<<<<< HEAD
 添加该选项是为了针对于两种可能的语法进行实验，帮助 TC39 收集社区的反馈。当前提案建议在 `export` 之后设置装饰器。
+=======
+This option was originally added to help tc39 collect feedback from the community by allowing experimentation with the proposed syntaxes. The proposal has now settled on allowing decorators either before or after `export`.
+>>>>>>> 0253e6b50b7bf5bd87beed9f44ab40f5552247a7
 
 ### `legacy`
 
@@ -134,7 +141,7 @@ export class Foo {}
 
 错误示例：
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [
     "@babel/plugin-proposal-class-properties",
@@ -145,7 +152,7 @@ export class Foo {}
 
 正确示例：
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [
     ["@babel/plugin-proposal-decorators", { "version": "legacy" }],
