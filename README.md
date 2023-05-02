@@ -10,9 +10,15 @@ Node: 检查 Node 是否安装了 10.19.0 及以上版本。你可以通过 node
 
 Yarn: 确保已经安装 Yarn 1 并且版本号 >= 1.19.0。
 
+<<<<<<< HEAD
 ```bash
 $ git clone git@github.com:docschina/babeljs-cn.git
 $ cd babeljs-cn
+=======
+```shell title="Shell"
+$ git clone git@github.com:babel/website.git
+$ cd website
+>>>>>>> 8b32b37d2e8e0cddbbe07578cde87b40b4d97bef
 $ yarn && yarn bootstrap
 ```
 

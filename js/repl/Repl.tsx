@@ -1,6 +1,6 @@
 import "regenerator-runtime/runtime";
 
-import { cx, css } from "emotion";
+import { cx, css } from "@emotion/css";
 import debounce from "lodash.debounce";
 import React, { type ChangeEvent } from "react";
 import { prettySize, compareVersions } from "./Utils";
@@ -243,6 +243,11 @@ class Repl extends React.Component<Props, State> {
           showOfficialExternalPlugins={state.showOfficialExternalPlugins}
           loadingExternalPlugins={state.loadingExternalPlugins}
           onAssumptionsChange={this._onAssumptionsChange}
+          onResetBtnClick={() => {
+            StorageService.remove("replState");
+            location.hash = "";
+            location.reload();
+          }}
         />
         <div className={styles.wrapperPanels}>
           <div
@@ -425,9 +430,9 @@ class Repl extends React.Component<Props, State> {
     const bundledUrl = [
       "https://bundle.run",
       "https://packd.liuxingbaoyu.xyz",
-    ].map(url => `${url}/${plugin.name}@${plugin.version}`);
+    ].map((url) => `${url}/${plugin.name}@${plugin.version}`);
 
-    return this._workerApi.loadExternalPlugin(bundledUrl).then(loaded => {
+    return this._workerApi.loadExternalPlugin(bundledUrl).then((loaded) => {
       if (loaded === false) {
         this.setState({
           compileErrorMessage: `Plugin ${plugin.name} could not be loaded`,
@@ -527,6 +532,9 @@ class Repl extends React.Component<Props, State> {
           this.state.envConfig.corejs = false;
         }
       }
+      if (name === "modules" && value === "false") {
+        value = false;
+      }
       this.setState(
         // TODO: FIXME
         // @ts-expect-error
@@ -608,6 +616,7 @@ class Repl extends React.Component<Props, State> {
       circleciRepo: state.babel.circleciRepo,
       code: state.code,
       debug: state.debugEnvPreset,
+      modules: envConfig.modules,
       forceAllTransforms: envConfig.forceAllTransforms,
       shippedProposals: envConfig.shippedProposals,
       evaluate: state.runtimePolyfillState.isEnabled,

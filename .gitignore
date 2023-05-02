@@ -40,3 +40,5 @@ yarn.lock
 /.yarn/build-state.yml
 
 tsconfig.tsbuildinfo
+
+.docusaurus

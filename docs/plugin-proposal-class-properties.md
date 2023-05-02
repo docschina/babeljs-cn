@@ -1,15 +1,22 @@
 ---
 id: babel-plugin-proposal-class-properties
-title: @babel/plugin-proposal-class-properties
+title: "@babel/plugin-proposal-class-properties"
 sidebar_label: class-properties
 ---
 
+<<<<<<< HEAD
 > **提示**：在 [ES2022](https://github.com/tc39/proposals/blob/master/finished-proposals.md)，`@babel/preset-env` 包含此插件。
+=======
+> **NOTE**: This plugin is included in `@babel/preset-env`, in [ES2022](https://github.com/tc39/proposals/blob/master/finished-proposals.md)
+
+## Example
+>>>>>>> 8b32b37d2e8e0cddbbe07578cde87b40b4d97bef
 
 ## 示例
 
 以下展示了一个包含 4 个属性的类，它们将会被转译。
 
+<<<<<<< HEAD
 ```js
   class Bork {
     // 属性初始化器语法
@@ -17,6 +24,15 @@ sidebar_label: class-properties
     boundFunction = () => {
       return this.instanceProperty;
     };
+=======
+```js title="JavaScript"
+class Bork {
+  //Property initializer syntax
+  instanceProperty = "bork";
+  boundFunction = () => {
+    return this.instanceProperty;
+  };
+>>>>>>> 8b32b37d2e8e0cddbbe07578cde87b40b4d97bef
 
     // 静态类属性
     static staticProperty = "babelIsCool";
@@ -39,7 +55,7 @@ sidebar_label: class-properties
 
 ## 安装
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-proposal-class-properties
 ```
 
@@ -49,7 +65,7 @@ npm install --save-dev @babel/plugin-proposal-class-properties
 
 未使用选项：
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-proposal-class-properties"]
 }
@@ -57,7 +73,7 @@ npm install --save-dev @babel/plugin-proposal-class-properties
 
 使用选项：
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [["@babel/plugin-proposal-class-properties", { "loose": true }]]
 }
@@ -65,13 +81,13 @@ npm install --save-dev @babel/plugin-proposal-class-properties
 
 ### 通过 CLI 使用
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-proposal-class-properties script.js
 ```
 
 ### 通过 Node API 使用
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-proposal-class-properties"],
 });
@@ -87,8 +103,7 @@ require("@babel/core").transformSync("code", {
 
 > ⚠️ Consider migrating to the top level [`setPublicClassFields`](assumptions.md#setpublicclassfields) assumption
 
-```jsonc
-// babel.config.json
+```json title="babel.config.json"
 {
   "assumptions": {
     "setPublicClassFields": true
@@ -100,7 +115,7 @@ require("@babel/core").transformSync("code", {
 
 #### 示例
 
-```js
+```js title="JavaScript"
 class Bork {
   static a = "foo";
   static b;
@@ -110,9 +125,13 @@ class Bork {
 }
 ```
 
+<<<<<<< HEAD
 如果没有使用选项 `{ "setPublicClassFields": true }`，上面的代码将使用 `Object.defineProperty`，被编译为如下代码：
+=======
+When `setPublicClassFields` is `false`, the above code will compile to the following, using `Object.defineProperty`:
+>>>>>>> 8b32b37d2e8e0cddbbe07578cde87b40b4d97bef
 
-```js
+```js title="JavaScript"
 var Bork = function Bork() {
   babelHelpers.classCallCheck(this, Bork);
   Object.defineProperty(this, "x", {
@@ -143,9 +162,13 @@ Object.defineProperty(Bork, "b", {
 });
 ```
 
+<<<<<<< HEAD
 但是，使用 `{ "setPublicClassFields": true }`，它将被编译为赋值表达式的形式：
+=======
+When `setPublicClassFields` is set to `true`, it will compile using assignment expressions:
+>>>>>>> 8b32b37d2e8e0cddbbe07578cde87b40b4d97bef
 
-```js
+```js title="JavaScript"
 var Bork = function Bork() {
   babelHelpers.classCallCheck(this, Bork);
   this.x = "bar";

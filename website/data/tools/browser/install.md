@@ -1,4 +1,4 @@
-<blockquote class="babel-callout babel-callout-warning">
+<blockquote class="alert alert--warning">
   <p>
     在浏览器中编译的用例非常有限，
     因此如果你在生产环境下工作，你应该在服务端预编译脚本。

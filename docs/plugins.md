@@ -11,7 +11,7 @@ title: 插件
 
 如果插件在 [npm](https://www.npmjs.com/search?q=babel-plugin) 中，你可以传入插件的名字，Babel 会检查它是否安装在 `node_modules` 中。这将被添加到 [plugins](options.md#plugins) 配置项，该选项接受一个数组。
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["babel-plugin-myPlugin", "@babel/plugin-transform-runtime"]
 }
@@ -19,7 +19,7 @@ title: 插件
 
 你还可以指定插件的 相对/绝对 路径。
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["./node_modules/asdf/plugin"]
 }
@@ -31,11 +31,17 @@ title: 插件
 
 这些插件可以转译你的代码。
 
+<<<<<<< HEAD
 <blockquote class="babel-callout babel-callout-info">
   <p>
     转换类插件将启用相应的语法类插件，所以你不必两者都指定。
   </p>
 </blockquote>
+=======
+:::info
+Transform plugins will enable the corresponding syntax plugin so you don't have to specify both.
+:::
+>>>>>>> 8b32b37d2e8e0cddbbe07578cde87b40b4d97bef
 
 ## 语法类插件
 
@@ -47,7 +53,7 @@ title: 插件
 
 你的 `.babelrc`:
 
-```json
+```json title="JSON"
 {
   "parserOpts": {
     "plugins": ["jsx", "flow"]
@@ -67,7 +73,7 @@ title: 插件
 
 示例:
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["transform-decorators-legacy", "transform-class-properties"]
 }
@@ -77,7 +83,7 @@ title: 插件
 
 重要的是要记住，使用预设时，顺序是 _颠倒的_。例如下面：
 
-```json
+```json title="babel.config.json"
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"]
 }
@@ -91,7 +97,7 @@ title: 插件
 
 如果不指定选项，则这些写法都是等效的：
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["pluginA", ["pluginA"], ["pluginA", {}]]
 }
@@ -99,7 +105,7 @@ title: 插件
 
 若要指定选项，请传递一个以对象，其中键作为选项名称。
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [
     [
@@ -115,7 +121,7 @@ title: 插件
 
 预设设置选项的工作原理与插件完全相同：
 
-```json
+```json title="babel.config.json"
 {
   "presets": [
     [
@@ -136,7 +142,7 @@ title: 插件
 
 一个逆转名称的简单插件示例（来自首页）：
 
-```js
+```js title="JavaScript"
 export default function() {
   return {
     visitor: {

@@ -1,4 +1,4 @@
-```js
+```js title="JavaScript"
 var babelMiddleware = require("babel-connect");
 
 app.use(babelMiddleware({
@@ -12,7 +12,7 @@ app.use(babelMiddleware({
 app.use(connect.static("cache"));
 ```
 
-<blockquote class="babel-callout babel-callout-info">
+<blockquote class="alert alert--info">
   <p>
     欲了解更多信息，请参阅 <a href="https://github.com/babel/babel-connect">babel/babel-connect 项目</a>。
   </p>
