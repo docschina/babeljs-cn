@@ -136,7 +136,7 @@ export const persistedStateToPresetsOptions = (
     decoratorsBeforeExport:
       !decoratorsLegacy && !!persistedState.decoratorsBeforeExport,
     pipelineProposal: persistedState.pipelineProposal || "minimal",
-    reactRuntime: persistedState.reactRuntime || "classic",
+    reactRuntime: persistedState.reactRuntime || "automatic",
   };
 };
 
@@ -153,6 +153,7 @@ export const persistedStateToEnvConfig = (
     isEnvPresetEnabled,
     isElectronEnabled: false,
     isNodeEnabled: false,
+    modules: persistedState.modules ?? envPresetDefaults.modules.default,
     forceAllTransforms: !!persistedState.forceAllTransforms,
     shippedProposals: !!persistedState.shippedProposals,
     isBuiltInsEnabled: !!persistedState.builtIns,

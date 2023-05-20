@@ -8,19 +8,35 @@ id: config-files
 Babel 有两种并行的配置文件方式，可以一起使用，也可以单独使用。
 
 <details>
+<<<<<<< HEAD
   <summary>历史</summary>
 | 版本 | 变更 |
+=======
+  <summary>History</summary>
+
+| Version | Changes |
+>>>>>>> 6f3a798ef90ebbb277153463a27655f15199c0f1
 | --- | --- |
-| `v7.8.0` | Support `.babelrc.mjs` and `babel.config.mjs` |
-| `v7.7.0` | Support `.babelrc.json`, `.babelrc.cjs`, `babel.config.json`, `babel.config.cjs` |
+| `v7.21.0` | Support `.babelrc.cts` and `babel.config.cts` (Experimental) |
+| `v7.8.0`  | Support `.babelrc.mjs` and `babel.config.mjs` |
+| `v7.7.0`  | Support `.babelrc.json`, `.babelrc.cjs`, `babel.config.json`, `babel.config.cjs` |
 </details>
 
+<<<<<<< HEAD
 - 项目范围的配置
   - `babel.config.*` 文件，可用如下不同扩展名： `.json`, `.js`, `.cjs`, `.mjs`。
 - 相对文件的配置
   - `.babelrc.*` 文件，可用如下不同扩展名： `.json`, `.js`, `.cjs`, `.mjs`。
   - 不带扩展名的 `.babelrc`。
   - 带有 `"babel"` 属性的 `package.json` 文件。
+=======
+- Project-wide configuration
+  - `babel.config.*` files, with the following extensions: `.json`, `.js`, `.cjs`, `.mjs`, `.cts`.
+- File-relative configuration
+  - `.babelrc.*` files, with the following extensions: `.json`, `.js`, `.cjs`, `.mjs`, `.cts`.
+  - `.babelrc` file, with no extension.
+  - `package.json` files, with a `"babel"` key.
+>>>>>>> 6f3a798ef90ebbb277153463a27655f15199c0f1
 
 ## 项目范围的配置
 
@@ -95,7 +111,7 @@ packages/
 
 一种替代方法是在每个子包中创建一个 `.babelrc`，将 ["extends"](options.md#extends) 用作
 
-```json
+```json title=".babelrc.json"
 { "extends": "../../.babelrc" }
 ```
 
@@ -134,10 +150,21 @@ packages/
   `babel.config.js` 和 `.babelrc.js` 的行为类似 `.mjs`，
   否则它们与 `.cjs` 文件完全相同。
 
+<<<<<<< HEAD
 JavaScript 配置文件可以导出一个对象，也可以导出一个函数，
 当调用该函数时，该函数将返回生成的配置。
 函数返回配置被赋予一些特殊功能，因为它们可以访问由 Babel 本身公开的 API。
 有关更多信息，请参阅 [配置函数 API](#config-function-api)。
+=======
+- `babel.config.cts` and `.babelrc.cts` allow you to define your configuration as Typescript + CommonJS. You must either install `@babel/preset-typescript`, or run Babel using `ts-node`.
+
+  > 🚧 This functionality is experimental. It's not possible yet to use `babel.config.ts` and `babel.config.mts` files, pending stabilization of the Node.js ESM loader API.
+
+JavaScript configuration files can either export an object, or a function that when called will
+return the generated configuration.
+Function-returning configs are given a few special powers because they can access an API exposed
+by Babel itself. See [Config Function API](#config-function-api) for more information.
+>>>>>>> 6f3a798ef90ebbb277153463a27655f15199c0f1
 
 > 出于兼容性原因，`.babelrc` 是 `.babelrc.json` 的别名。
 
@@ -174,7 +201,7 @@ Babel 希望从 ["root"](options.md#root) 设置的目录加载 [`babel.config.j
 这意味着如果你创建了一个 [`babel.config.json`](#project-wide-configuration),
 却在单个包中运行 Babel，例如：
 
-```bash
+```shell title="Shell"
 cd packages/some-package;
 babel src -d dist
 ```
@@ -197,13 +224,13 @@ babel src -d dist
 
 #### CLI
 
-```bash
+```shell title="Shell"
 babel --root-mode upward src -d lib
 ```
 
 #### @babel/register
 
-```js
+```js title="JavaScript"
 require("@babel/register")({
   rootMode: "upward",
 });
@@ -211,7 +238,7 @@ require("@babel/register")({
 
 #### Webpack
 
-```js
+```js title="webpack.config.js"
 module: {
   rules: [
     {
@@ -232,7 +259,7 @@ Jest
 主要部分是创建一个自定义 jest transformer 文件，该文件包装
 `babel-jest` 的默认行为，以便设置选项，例如：
 
-```js
+```js title="wrapper.js"
 module.exports = require("babel-jest").default.createTransformer({
   rootMode: "upward",
 });
@@ -241,7 +268,7 @@ module.exports = require("babel-jest").default.createTransformer({
 将其保存在某个位置后，你可以在 Jest 选项中的
 [transform 选项](https://jestjs.io/docs/en/configuration#transform-object-string-string) 中使用处于 `babel-jest` 位置的这个文件：
 
-```json
+```json title="jest.config.js"
 "transform": {
   "^.+\\.jsx?$": "./path/to/wrapper.js"
 },
@@ -282,7 +309,7 @@ packages/
 要启用对该 [`.babelrc.json`](#file-relative-configuration) 的处理，你需要在 [`babel.config.json`](#project-wide-configuration) 文件中使用
 ["babelrcRoots"](options.md#babelrcroots) 选项来执行以下操作
 
-```js
+```js title="JavaScript"
 babelrcRoots: [
   ".",
   "packages/*",
@@ -296,7 +323,7 @@ babelrcRoots: [
 
 JS 配置文件可以导出一个将传递配置函数 API 的函数：
 
-```js
+```js title="JavaScript"
 module.exports = function(api) {
   return {};
 };
@@ -367,7 +394,7 @@ JS 配置很棒，因为他们可以动态计算配置，
 `caller` 值可用作回调函数的第一个参数。
 最好用有类似的东西
 
-```js
+```js title="JavaScript"
 function isBabelRegister(caller) {
   return !!(caller && caller.name === "@babel/register");
 }
@@ -388,7 +415,7 @@ module.exports = function(api) {
 虽然 `api.version` 在一般情况下很有用，但有时候声明你的版本会很好。
 此 API 公开了一种简单的方法：
 
-```js
+```js title="JavaScript"
 module.exports = function(api) {
   api.assertVersion("^7.2");
 

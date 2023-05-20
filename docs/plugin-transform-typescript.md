@@ -1,7 +1,7 @@
 ---
 id: babel-plugin-transform-typescript
-title: @babel/plugin-transform-typescript
-sidebar_label: Typescript Plugin
+title: "@babel/plugin-transform-typescript"
+sidebar_label: transform-typescript
 ---
 
 > **NOTE**: This plugin is included in `@babel/preset-typescript`
@@ -26,7 +26,7 @@ const x = 0;
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-transform-typescript
 ```
 
@@ -34,7 +34,7 @@ npm install --save-dev @babel/plugin-transform-typescript
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-transform-typescript"]
 }
@@ -42,13 +42,13 @@ npm install --save-dev @babel/plugin-transform-typescript
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-transform-typescript script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-typescript"],
 });
@@ -66,7 +66,7 @@ Added in `v7.7.0`
 
 When enabled, type-only class fields are only removed if they are prefixed with the `declare` modifier:
 
-```javascript
+```js title="JavaScript"
 class A {
   declare foo: string; // Removed
   bar: string; // Initialized to undefined
@@ -79,6 +79,7 @@ class A {
 
 <details>
   <summary>History</summary>
+
 | Version | Changes |
 | --- | --- |
 | `v7.5.0` | Added `allowNamespaces`, defaults to `false` |
@@ -94,6 +95,14 @@ Enables compilation of TypeScript namespaces.
 Added in: `v7.16.0`
 
 Even when JSX parsing is not enabled, this option disallows using syntax that would be ambiguous with JSX (`<X> y` type assertions and `<X>() => {}` type arguments). It matches the `tsc` behavior when parsing `.mts` and `.mjs` files.
+
+### `dts`
+
+`boolean`, defaults to `false`
+
+Added in: `v7.20.0`
+
+This option will enable parsing within a TypeScript ambient context, where certain syntax have different rules (like `.d.ts` files and inside `declare module` blocks). Please see [Official Handbook](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html) and [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/type-system/intro) for more information about ambient contexts.
 
 ### `isTSX`
 
@@ -121,7 +130,7 @@ Added in: `v7.9.0`
 
 When set to `true`, the transform will only remove [type-only imports](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#type-only-imports-exports) (introduced in TypeScript 3.8). This should only be used if you are using TypeScript >= 3.8.
 
-```javascript
+```js title="JavaScript"
 class A {
   declare foo: string; // Removed
   bar: string; // Initialized to undefined
@@ -137,18 +146,19 @@ class A {
 Added in: `v7.15.0`
 
 When set to `true`, Babel will inline enum values rather than using the usual `enum` output:
+
 ```typescript
 // Input
 const enum Animals {
-  Fish
+  Fish,
 }
 console.log(Animals.Fish);
 
 // Default output
 var Animals;
 
-(function (Animals) {
-  Animals[Animals["Fish"] = 0] = "Fish";
+(function(Animals) {
+  Animals[(Animals["Fish"] = 0)] = "Fish";
 })(Animals || (Animals = {}));
 
 console.log(Animals.Fish);
@@ -160,6 +170,7 @@ console.log(0);
 This option differs from TypeScript's `--isolatedModules` behavior, which ignores the `const` modifier and compiles them as normal enums, and aligns Babel's behavior with TypeScript's default behavior.
 
 However, when _exporting_ a `const enum` Babel will compile it to a plain object literal so that it doesn't need to rely on cross-file analysis when compiling it:
+
 ```typescript
 // Input
 export const enum Animals {
@@ -180,7 +191,7 @@ equivalents in Babel can be enabled by some configuration options or plugins.
 
 - `--alwaysStrict`
   You can use the `strictMode` [parser option](https://babeljs.io/docs/en/babel-parser#options):
-  ```js
+  ```js title="JavaScript"
   module.exports = {
     parserOpts: { strictMode: true },
   };
@@ -194,7 +205,7 @@ equivalents in Babel can be enabled by some configuration options or plugins.
   This is the default behavior of Babel when transpiling ECMAScript modules.
 - `--experimentalDecorators`
   This option enables support for the "legacy" decorator proposal. You can enable it in Babel using the `@babel/plugin-proposal-decorators` plugin, but please be aware, there are some minor differences.
-  ```js
+  ```js title="JavaScript"
   module.exports = {
     plugins: [["@babel/plugin-proposal-decorators", { legacy: true }]],
   };
@@ -284,7 +295,7 @@ If you have existing code which uses the TypeScript-only [namespace][namespace] 
 
   The TypeScript compiler compiles it to something like this:
 
-  ```javascript
+  ```js title="JavaScript"
   var N = {};
   (function(N) {
     N.V = 1;
@@ -296,7 +307,7 @@ If you have existing code which uses the TypeScript-only [namespace][namespace] 
 
   While Babel will transform it to something like this:
 
-  ```javascript
+  ```js title="JavaScript"
   var N;
   (function(_N) {
     const V = (_N = 1);

@@ -1,20 +1,20 @@
 ---
 id: babel-plugin-proposal-record-and-tuple
-title: @babel/plugin-proposal-record-and-tuple
+title: "@babel/plugin-proposal-record-and-tuple"
 sidebar_label: record-and-tuple
 ---
 
 ## Installation
 
-```sh
-$ npm install --save-dev @babel/plugin-proposal-record-and-tuple
+```shell npm2yarn
+npm install --save-dev @babel/plugin-proposal-record-and-tuple
 ```
 
 ## Usage
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-proposal-record-and-tuple"]
 }
@@ -22,13 +22,13 @@ $ npm install --save-dev @babel/plugin-proposal-record-and-tuple
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 $ babel --plugins @babel/plugin-proposal-record-and-tuple script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: [["@babel/plugin-proposal-record-and-tuple"]],
 });
@@ -42,7 +42,7 @@ require("@babel/core").transformSync("code", {
 
 By default this plugin only transforms the proposal syntax, using the `Record` and `Tuple` globals:
 
-```js
+```js title="JavaScript"
 let a = #[1, 2, 3];
 
 // ⬇ ⬇ ⬇ ⬇ ⬇ ⬇ ⬇ ⬇ ⬇ ⬇
@@ -52,7 +52,7 @@ let a = Tuple(1, 2, 3);
 
 You either need to load a polyfill, or you can pass the `"importPolyfill": true` option to inject imports to `@bloomberg/record-tuple-polyfill`, maintained by the proposal authors:
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [
     [
@@ -65,7 +65,7 @@ You either need to load a polyfill, or you can pass the `"importPolyfill": true`
 }
 ```
 
-```js
+```js title="JavaScript"
 let a = #[1, 2, 3];
 
 // ⬇ ⬇ ⬇ ⬇ ⬇ ⬇ ⬇ ⬇ ⬇ ⬇
@@ -82,3 +82,7 @@ Don't forget to add `@bloomberg/record-tuple-polyfill` to your dependencies!
 `string`, defaults to `"@bloomberg/record-tuple-polyfill"`.
 
 If you wish to inject imports to a polyfill different from `@bloomberg/record-tuple-polyfill`, you can use this option to specify its name.
+
+## References
+
+- [Proposal: JavaScript Records & Tuples](https://github.com/tc39/proposal-record-tuple)

@@ -17,7 +17,7 @@
 
 现在从我们的终端可以运行以下命令：
 
-```sh
+```sh title="Shell"
 npm run build
 ```
 
@@ -25,13 +25,17 @@ npm run build
 
 另外，你可以在 `node_modules` 中引用 `babel` 命令。
 
-```sh
+```sh title="Shell"
 ./node_modules/.bin/babel src -d lib
 ```
 
-<blockquote class="babel-callout babel-callout-info">
+<blockquote class="alert alert--info">
   <p>
+<<<<<<< HEAD
     了解完整 Babel CLI 文档请看
     <a href="/docs/usage/cli/">使用文档</a>。
+=======
+    For full documentation on the Babel CLI see the <a href="/docs/usage/cli/">usage docs</a>.
+>>>>>>> 6f3a798ef90ebbb277153463a27655f15199c0f1
   </p>
 </blockquote>
