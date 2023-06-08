@@ -1,10 +1,10 @@
 ---
 id: babel-plugin-syntax-top-level-await
-title: @babel/plugin-syntax-top-level-await
+title: "@babel/plugin-syntax-top-level-await"
 sidebar_label: syntax-top-level-await
 ---
 
-> **NOTE**: This plugin is included in `@babel/preset-env`, in [ES2022](https://github.com/tc39/proposals/blob/master/finished-proposals.md)
+> **NOTE**: This plugin is included in `@babel/preset-env`, in [ES2022](https://github.com/tc39/proposals/blob/master/finished-proposals.md).
 >
 > #### Syntax only
 >
@@ -12,7 +12,11 @@ sidebar_label: syntax-top-level-await
 > top-level await, but you can use Rollup's `experimentalTopLevelAwait` or webpack@5's
 > `experiments.topLevelAwait` options.
 
-```js
+:::tip
+You can safely remove this plugin from your Babel config if using `@babel/core` 7.15.0 or above.
+:::
+
+```js title="JavaScript"
 const val = await promise;
 
 export { val };
@@ -20,7 +24,7 @@ export { val };
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-syntax-top-level-await
 ```
 
@@ -28,7 +32,7 @@ npm install --save-dev @babel/plugin-syntax-top-level-await
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-syntax-top-level-await"]
 }
@@ -36,13 +40,13 @@ npm install --save-dev @babel/plugin-syntax-top-level-await
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-syntax-top-level-await script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync(code, {
   plugins: ["@babel/plugin-syntax-top-level-await"],
 });

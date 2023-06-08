@@ -19,9 +19,13 @@
     requirejs: RequireJS
     rollup: Rollup
     sprockets: Sprockets
-    webpack: Webpack
     start: Start
+<<<<<<< HEAD
 - name: 框架
+=======
+    webpack: Webpack
+- name: Frameworks
+>>>>>>> 96b58779a6437d784b76fe2800a142884209aed5
   items:
     ember: Ember
     meteor: Meteor

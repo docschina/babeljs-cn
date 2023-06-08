@@ -1,4 +1,4 @@
-```js
+```js title="JavaScript"
 var gulp = require("gulp");
 var babel = require("gulp-babel");
 
@@ -15,7 +15,7 @@ gulp.task("default", function () {
 
 像这样使用 [gulp-sourcemaps](https://github.com/floridoo/gulp-sourcemaps):
 
-```js
+```js title="JavaScript"
 var gulp = require("gulp");
 var sourcemaps = require("gulp-sourcemaps");
 var babel = require("gulp-babel");
@@ -31,7 +31,7 @@ gulp.task("default", function () {
 });
 ```
 
-<blockquote class="babel-callout babel-callout-info">
+<blockquote class="alert alert--info">
   <p>
     欲了解更多信息，请参阅 <a href="https://github.com/babel/gulp-babel">babel/gulp-babel 项目</a>。
   </p>

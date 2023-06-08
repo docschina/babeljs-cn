@@ -1,11 +1,12 @@
 ---
 id: babel-plugin-transform-modules-umd
-title: @babel/plugin-transform-modules-umd
+title: "@babel/plugin-transform-modules-umd"
 sidebar_label: UMD
 ---
 
 <details>
   <summary>History</summary>
+
 | Version | Changes |
 | --- | --- |
 | `v7.14.0` | Implemented the `importInterop` option |
@@ -21,13 +22,13 @@ This plugin transforms ES2015 modules to [UMD](https://github.com/umdjs/umd). No
 
 **In**
 
-```javascript
+```js title="JavaScript"
 export default 42;
 ```
 
 **Out**
 
-```javascript
+```js title="JavaScript"
 (function(global, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
@@ -53,7 +54,7 @@ export default 42;
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-transform-modules-umd
 ```
 
@@ -61,7 +62,7 @@ npm install --save-dev @babel/plugin-transform-modules-umd
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-transform-modules-umd"]
 }
@@ -71,7 +72,7 @@ You can also override the names of particular libraries when this module is
 running in the browser. For example the `es6-promise` library exposes itself
 as `global.Promise` rather than `global.es6Promise`. This can be accommodated by:
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [
     [
@@ -95,20 +96,20 @@ _First_, this transform uses the
 the global names in the UMD output. This means that if you're importing
 multiple modules with the same basename, like:
 
-```js
+```js title="JavaScript"
 import fooBar1 from "foo-bar";
 import fooBar2 from "./mylib/foo-bar";
 ```
 
 it will transpile into two references to the same browser global:
 
-```js
+```js title="JavaScript"
 factory(global.fooBar, global.fooBar);
 ```
 
 If you set the plugin options to:
 
-```json
+```json title="JSON"
 {
   "globals": {
     "foo-bar": "fooBAR",
@@ -119,7 +120,7 @@ If you set the plugin options to:
 
 it will still transpile both to one browser global:
 
-```js
+```js title="JavaScript"
 factory(global.fooBAR, global.fooBAR);
 ```
 
@@ -129,7 +130,7 @@ _Second_, the specified override will still be passed to the `toIdentifier`
 function in [babel-types/src/converters](https://github.com/babel/babel/blob/main/packages/babel-types/src/converters).
 This means that if you specify an override as a member expression like:
 
-```json
+```json title="JSON"
 {
   "globals": {
     "fizzbuzz": "fizz.buzz"
@@ -159,20 +160,20 @@ Doing this instructs the plugin to:
 Thus, if you set `exactGlobals` to `true` and do not pass any overrides, the
 first example of:
 
-```js
+```js title="JavaScript"
 import fooBar1 from "foo-bar";
 import fooBar2 from "./mylib/foo-bar";
 ```
 
 will transpile to:
 
-```js
+```js title="JavaScript"
 factory(global.fooBar, global.mylibFooBar);
 ```
 
 And if you set the plugin options to:
 
-```json
+```json title="JSON"
 {
   "globals": {
     "foo-bar": "fooBAR",
@@ -184,13 +185,13 @@ And if you set the plugin options to:
 
 then it'll transpile to:
 
-```js
+```js title="JavaScript"
 factory(global.fooBAR, global.mylib.fooBar);
 ```
 
 Finally, with the plugin options set to:
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [
     "@babel/plugin-external-helpers",
@@ -210,7 +211,7 @@ Finally, with the plugin options set to:
 
 it will transpile to:
 
-```js
+```js title="JavaScript"
 factory(mod.exports);
 global.My = global.My || {};
 global.My.Custom = global.My.Custom || {};
@@ -220,18 +221,51 @@ global.My.Custom.Module.Name = mod.exports;
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-transform-modules-umd script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-modules-umd"],
 });
 ```
 
-### Options
+## Options
 
-See options for [`@babel/plugin-transform-modules-commonjs`](https://babeljs.io/docs/en/babel-plugin-transform-modules-commonjs#options).
+### `moduleIds`
+
+`boolean` defaults to `!!moduleId`
+
+Added in: `v7.9.0`
+
+Enables module ID generation.
+
+### `moduleId`
+
+`string`
+
+Added in: `v7.9.0`
+
+A hard-coded ID to use for the module. Cannot be used alongside `getModuleId`.
+
+### `getModuleId`
+
+`(name: string) => string`
+
+Added in: `v7.9.0`
+
+Given the babel-generated module name, return the name to use. Returning
+a falsy value will use the original `name`.
+
+### `moduleRoot`
+
+`string`
+
+Added in: `v7.9.0`
+
+A root path to include on generated module names.
+
+For options not listed here, see options for [`@babel/plugin-transform-modules-commonjs`](plugin-transform-modules-commonjs.md#options).
