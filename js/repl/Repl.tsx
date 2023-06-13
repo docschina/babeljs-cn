@@ -1,6 +1,6 @@
 import "regenerator-runtime/runtime";
 
-import { cx, css } from "emotion";
+import { cx, css } from "@emotion/css";
 import debounce from "lodash.debounce";
 import React, { type ChangeEvent } from "react";
 import { prettySize, compareVersions } from "./Utils";
@@ -100,6 +100,33 @@ function toCamelCase(str) {
 
 function hasOwnProperty(obj, string) {
   return Object.prototype.hasOwnProperty.call(obj, string);
+}
+
+function provideDefaultOptionsForExternalPlugins(pluginName, babelVersion) {
+  switch (pluginName) {
+    case "@babel/plugin-proposal-decorators": {
+      if (compareVersions(babelVersion, "7.22.0") >= 0) {
+        return { version: "2023-05" };
+      } else if (compareVersions(babelVersion, "7.21.0") >= 0) {
+        return { version: "2023-01" };
+      } else if (compareVersions(babelVersion, "7.19.0") >= 0) {
+        return { version: "2022-03" };
+      } else if (compareVersions(babelVersion, "7.17.0") >= 0) {
+        return { version: "2021-12" };
+      } else if (compareVersions(babelVersion, "7.0.0") >= 0) {
+        return { version: "2018-09", decoratorsBeforeExport: true };
+      }
+    }
+    case "@babel/plugin-proposal-pipeline-operator": {
+      if (compareVersions(babelVersion, "7.15.0") >= 0) {
+        return { proposal: "hack", topicToken: "%" };
+      } else {
+        return { proposal: "minimal" };
+      }
+    }
+    default:
+      return {};
+  }
 }
 
 class Repl extends React.Component<Props, State> {
@@ -243,6 +270,11 @@ class Repl extends React.Component<Props, State> {
           showOfficialExternalPlugins={state.showOfficialExternalPlugins}
           loadingExternalPlugins={state.loadingExternalPlugins}
           onAssumptionsChange={this._onAssumptionsChange}
+          onResetBtnClick={() => {
+            StorageService.remove("replState");
+            location.hash = "";
+            location.reload();
+          }}
         />
         <div className={styles.wrapperPanels}>
           <div
@@ -291,8 +323,6 @@ class Repl extends React.Component<Props, State> {
         babelState.didError = true;
         babelState.errorMessage =
           babelState.errorMessage || envState.errorMessage;
-      } else {
-        await this._workerApi.registerEnvPreset();
       }
     }
 
@@ -378,8 +408,7 @@ class Repl extends React.Component<Props, State> {
 
     if (result.didError) return result;
 
-    const availablePlugins = await this._workerApi.getAvailablePlugins();
-    const availablePluginsNames = availablePlugins.map(({ label }) => label);
+    const availablePluginsNames = await this._workerApi.getAvailablePlugins();
     const notRegisteredPackages =
       this.state.shippedProposalsState.config.packages
         .filter(
@@ -421,13 +450,21 @@ class Repl extends React.Component<Props, State> {
     );
   };
 
-  _loadExternalPlugin = (plugin: BabelPlugin) => {
+  _loadExternalPlugin = async (plugin: BabelPlugin) => {
+    // use available plugins from @babel/standalone for official external plugins
+    if (plugin.name.startsWith("@babel/plugin-")) {
+      const availablePlugins = await this._workerApi.getAvailablePlugins();
+      const shorthandName = plugin.name.replace("@babel/plugin-", "");
+      if (availablePlugins.includes(shorthandName)) {
+        return this._workerApi.registerPluginAlias(plugin.name, shorthandName);
+      }
+    }
     const bundledUrl = [
       "https://bundle.run",
       "https://packd.liuxingbaoyu.xyz",
-    ].map(url => `${url}/${plugin.name}@${plugin.version}`);
+    ].map((url) => `${url}/${plugin.name}@${plugin.version}`);
 
-    return this._workerApi.loadExternalPlugin(bundledUrl).then(loaded => {
+    return this._workerApi.loadExternalPlugin(bundledUrl).then((loaded) => {
       if (loaded === false) {
         this.setState({
           compileErrorMessage: `Plugin ${plugin.name} could not be loaded`,
@@ -489,7 +526,13 @@ class Repl extends React.Component<Props, State> {
 
     this._workerApi
       .compile(code, {
-        plugins: state.externalPlugins.map((plugin) => plugin.name),
+        plugins: state.externalPlugins.map((plugin) => [
+          plugin.name,
+          provideDefaultOptionsForExternalPlugins(
+            plugin.name,
+            state.babel.version
+          ),
+        ]),
         debugEnvPreset: state.debugEnvPreset,
         envConfig: state.envConfig,
         presetsOptions: state.presetsOptions,
@@ -526,6 +569,9 @@ class Repl extends React.Component<Props, State> {
           this.state.envConfig.builtIns = false;
           this.state.envConfig.corejs = false;
         }
+      }
+      if (name === "modules" && value === "false") {
+        value = false;
       }
       this.setState(
         // TODO: FIXME
@@ -608,6 +654,7 @@ class Repl extends React.Component<Props, State> {
       circleciRepo: state.babel.circleciRepo,
       code: state.code,
       debug: state.debugEnvPreset,
+      modules: envConfig.modules,
       forceAllTransforms: envConfig.forceAllTransforms,
       shippedProposals: envConfig.shippedProposals,
       evaluate: state.runtimePolyfillState.isEnabled,

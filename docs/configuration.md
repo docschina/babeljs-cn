@@ -26,13 +26,14 @@ Babel 是可配置的！许多其他工具都有类似的配置：ESLint (`.esli
 
 在项目的根目录（`package.json` 所在的位置）中，创建一个名为 `babel.config.json` 的文件，其中包含以下内容。
 
-```json
+```json title="babel.config.json"
 {
   "presets": [...],
   "plugins": [...]
 }
 ```
 
+<<<<<<< HEAD
 ```js
 module.exports = function (api) {
   api.cache(true);
@@ -48,12 +49,15 @@ module.exports = function (api) {
 ```
 
 查阅 [`babel.config.json` 文档](config-files.md#project-wide-configuration) 以查看更多配置选项。
+=======
+Check out the [`babel.config.json` documentation](config-files.md#project-wide-configuration) to see more configuration options.
+>>>>>>> 4748a8229ae31f9a9e3794606e16bdea7fd7fd2e
 
 ### `.babelrc.json`
 
 在项目中创建一个名为 `.babelrc.json` 的文件，其中包含以下内容。
 
-```json
+```json title=".babelrc.json"
 {
   "presets": [...],
   "plugins": [...]
@@ -66,7 +70,7 @@ module.exports = function (api) {
 
 或者，你可以选择在 package.json 的 key `babel` 中指定你的 [`.babelrc.json`](#babelrcjson) 配置，如下所示：
 
-```json
+```json title="package.json"
 {
   "name": "my-package",
   "version": "1.0.0",
@@ -81,31 +85,45 @@ module.exports = function (api) {
 
 还可以使用 JavaScript 编写 `babel.config.js` 和 `.babelrc.js` 文件：
 
-```js
-const presets = [ ... ];
-const plugins = [ ... ];
+```js title="babel.config.js"
+module.exports = function (api) {
+  api.cache(true);
 
-module.exports = { presets, plugins };
+  const presets = [ ... ];
+  const plugins = [ ... ];
+
+  return {
+    presets,
+    plugins
+  };
+}
 ```
 
 你可以访问任何 Node.js API，例如基于 process 环境变量的动态配置：
 
-```js
-const presets = [ ... ];
-const plugins = [ ... ];
+```js title="babel.config.js"
+module.exports = function (api) {
+  api.cache(true);
 
-if (process.env["ENV"] === "prod") {
-  plugins.push(...);
+  const presets = [ ... ];
+  const plugins = [ ... ];
+
+  if (process.env["ENV"] === "prod") {
+    plugins.push(...);
+  }
+
+  return {
+    presets,
+    plugins
+  };
 }
-
-module.exports = { presets, plugins };
 ```
 
 你可以在 [专用文档](config-files.md) 中，阅读有关 JavaScript 配置文件的更多信息。
 
 ## 使用 CLI (`@babel/cli`)
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-transform-arrow-functions script.js
 ```
 
@@ -113,7 +131,7 @@ babel --plugins @babel/plugin-transform-arrow-functions script.js
 
 ## 使用 API (`@babel/core`)
 
-```js
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-arrow-functions"],
 });
@@ -125,14 +143,29 @@ require("@babel/core").transformSync("code", {
 
 你可以告知 Babel，为给定的输入路径打印生效的配置
 
+<<<<<<< HEAD
 ```sh
 # *nix 或 WSL
-BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
-```
+=======
+import CodeBlock from '@theme/CodeBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-```powershell
+<Tabs>
+<TabItem value="shell" label="Shell" default>
+<CodeBlock language="bash">{`
+# *nix or WSL
+>>>>>>> 4748a8229ae31f9a9e3794606e16bdea7fd7fd2e
+BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
+`}
+</CodeBlock>
+</TabItem>
+<TabItem value="powershell" label="powershell">
+<CodeBlock language="powershell">{`
 $env:BABEL_SHOW_CONFIG_FOR = ".\src\myComponent.jsx"; npm start
-```
+`}</CodeBlock>
+</TabItem>
+</Tabs>
 
 `BABEL_SHOW_CONFIG_FOR` 接收绝对和相对*文件*路径。如果是相对路径，将从 [`cwd`](options.md#cwd) 解析。
 
@@ -208,7 +241,7 @@ Babel 的配置合并相对简单。当选项存在且其值不为 `undefined` �
 
 例如，考虑如下配置:
 
-```js
+```js title="JavaScript"
 {
   sourceType: "script",
   assumptions: {
@@ -228,7 +261,7 @@ Babel 的配置合并相对简单。当选项存在且其值不为 `undefined` �
 
 当 `NODE_ENV` 为 `test`, `sourceType` 选项将被替换，`assumptions` 选项将被合并。生效的配置是：
 
-```js
+```js title="JavaScript"
 {
   sourceType: "module", // sourceType: "script" 被覆盖了
   assumptions: {
@@ -242,7 +275,7 @@ Babel 的配置合并相对简单。当选项存在且其值不为 `undefined` �
 
 例如，考虑如下配置:
 
-```js
+```js title="JavaScript"
 plugins: [
   './other',
   ['./plug', { thing: true, field1: true }]
@@ -259,7 +292,7 @@ overrides: [{
 合并逻辑将发现 `"./plug"` 在这两种情况下是相同的插件，
 `{ thing: false, field2: true }` 将替换原始选项，导致配置为
 
-```js
+```js title="JavaScript"
 plugins: [
   './other',
   ['./plug', { thing: false, field2: true }],
@@ -269,13 +302,13 @@ plugins: [
 由于合并是基于标识 + 名称的，
 因此在同一个 `plugins`/`presets` 数组中使用两次相同名称的插件被认为是错误的。例如
 
-```js
+```js title="JavaScript"
 plugins: ["./plug", "./plug"];
 ```
 
 被认为是一个错误，因为它与 `plugins: ['./plug']` 完全相同。此外
 
-```js
+```js title="JavaScript"
 plugins: [["./plug", { one: true }], ["./plug", { two: true }]];
 ```
 
@@ -284,7 +317,7 @@ plugins: [["./plug", { one: true }], ["./plug", { two: true }]];
 如果你 _确实想要_ 实例化一个插件的两个独立实例，
 你必须为每个实例分配一个名称以消除它们的歧义。例如：
 
-```js
+```js title="JavaScript"
 plugins: [
   ["./plug", { one: true }, "first-instance-name"],
   ["./plug", { two: true }, "second-instance-name"],

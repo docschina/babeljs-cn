@@ -7,11 +7,11 @@
 
 我们可以通过以下命令本地安装 Babel CLI:
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/core @babel/cli
 ```
 
-<blockquote class="babel-callout babel-callout-info">
+<blockquote class="alert alert--info">
   <p>
     <strong>注意：</strong> 如果你没有一个 <code>package.json</code>,
     在安装之前请新建一个。这可以保证

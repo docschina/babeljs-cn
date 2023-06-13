@@ -1,16 +1,16 @@
 ---
 id: babel-plugin-syntax-class-static-block
-title: @babel/plugin-syntax-class-static-block
+title: "@babel/plugin-syntax-class-static-block"
 sidebar_label: syntax-class-static-block
 ---
 
 > #### Syntax only
 >
-> It's unlikely you want to use this plugin directly as it only enables Babel to parse this syntax. Instead, use [plugin-proposal-class-static-block](plugin-proposal-class-static-block.md) to _both_ parse and transform this syntax.
+> It's unlikely you want to use this plugin directly as it only enables Babel to parse this syntax. Instead, use [plugin-transform-class-static-block](plugin-transform-class-static-block.md) to _both_ parse and transform this syntax.
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-syntax-class-static-block
 ```
 
@@ -18,7 +18,7 @@ npm install --save-dev @babel/plugin-syntax-class-static-block
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-syntax-class-static-block"]
 }
@@ -26,13 +26,13 @@ npm install --save-dev @babel/plugin-syntax-class-static-block
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-syntax-class-static-block script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-syntax-class-static-block"],
 });

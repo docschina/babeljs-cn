@@ -1,16 +1,16 @@
 ---
 id: babel-plugin-syntax-class-properties
-title: @babel/plugin-syntax-class-properties
+title: "@babel/plugin-syntax-class-properties"
 sidebar_label: syntax-class-properties
 ---
 
 > #### Syntax only
 >
-> It's unlikely you want to use this plugin directly as it only enables Babel to parse this syntax. Instead, use [plugin-proposal-class-properties](plugin-proposal-class-properties.md) to _both_ parse and transform this syntax.
+> It's unlikely you want to use this plugin directly as it only enables Babel to parse this syntax. Instead, use [plugin-transform-class-properties](plugin-transform-class-properties.md) to _both_ parse and transform this syntax.
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-syntax-class-properties
 ```
 
@@ -18,7 +18,7 @@ npm install --save-dev @babel/plugin-syntax-class-properties
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-syntax-class-properties"]
 }
@@ -26,13 +26,13 @@ npm install --save-dev @babel/plugin-syntax-class-properties
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-syntax-class-properties script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-syntax-class-properties"]
 });

@@ -1,6 +1,6 @@
 #### 通过 config 方式
 
-```js
+```js title="JavaScript"
 {
   module: {
     rules: [
@@ -19,7 +19,7 @@
 }
 ```
 
-<blockquote class="babel-callout babel-callout-info">
+<blockquote class="alert alert--info">
   <p>
     欲了解更多信息，请参阅 <a href="https://github.com/babel/babel-loader">babel/babel-loader 项目</a>。
   </p>

@@ -1,16 +1,16 @@
 ---
 id: babel-plugin-syntax-json-strings
-title: @babel/plugin-syntax-json-strings
+title: "@babel/plugin-syntax-json-strings"
 sidebar_label: syntax-json-strings
 ---
 
 > #### Syntax only
 >
-> It's unlikely you want to use this plugin directly as it only enables Babel to parse this syntax. Instead, use [plugin-proposal-json-strings](plugin-proposal-json-strings.md) to _both_ parse and transform this syntax.
+> It's unlikely you want to use this plugin directly as it only enables Babel to parse this syntax. Instead, use [plugin-transform-json-strings](plugin-transform-json-strings.md) to _both_ parse and transform this syntax.
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-syntax-json-strings
 ```
 
@@ -18,7 +18,7 @@ npm install --save-dev @babel/plugin-syntax-json-strings
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-syntax-json-strings"]
 }
@@ -26,13 +26,13 @@ npm install --save-dev @babel/plugin-syntax-json-strings
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-syntax-json-strings script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-syntax-json-strings"]
 });
