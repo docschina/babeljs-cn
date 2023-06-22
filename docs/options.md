@@ -55,6 +55,7 @@ interface CallerData {
 
 <details>
   <summary>History</summary>
+
 | Version | Changes |
 | --- | --- |
 | v7.11.0 | Add `supportsExportNamespaceFrom` |
@@ -65,7 +66,7 @@ interface CallerData {
 Utilities may pass a `caller` object to identify themselves to Babel and pass
 capability-related flags for use by configs, presets and plugins. For example
 
-```js
+```js title="JavaScript"
 babel.transformFileSync("example.js", {
   caller: {
     name: "my-custom-tool",
@@ -119,7 +120,7 @@ Babel's default is to generate a string and a sourcemap, but in some
 contexts it can be useful to get the AST itself. The primary use case for this
 would be a chain of multiple transform passes, along the lines of
 
-```js
+```js title="JavaScript"
 const filename = "example.js";
 const source = fs.readFileSync(filename, "utf8");
 
@@ -267,7 +268,7 @@ This option allows users to provide a list of other packages that should be cons
 For example, a monorepo setup that wishes to allow individual packages to
 have their own configs might want to do
 
-```js
+```js title="JavaScript"
 babelrcRoots: [
   // Keep the root as a root
   ".",
@@ -328,11 +329,20 @@ Default: `{}`<br />
 Placement: Allowed in Babel's programmatic options, or in config files<br />
 Added in: `v7.13.0`<br />
 
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v7.20.0` | Support `deno` target |
+| `v7.15.0` | Support `rhino` target |
+</details>
+
 Describes the environments you support/target for your project.
 
 This can either be a [browserslist-compatible](https://github.com/ai/browserslist) query (with [caveats](preset-env.md#ineffective-browserslist-queries)):
 
-```json
+```json title="babel.config.json"
 {
   "targets": "> 0.25%, not dead"
 }
@@ -340,7 +350,7 @@ This can either be a [browserslist-compatible](https://github.com/ai/browserslis
 
 Or an object of minimum environment versions to support:
 
-```json
+```json title="babel.config.json"
 {
   "targets": {
     "chrome": "58",
@@ -349,17 +359,19 @@ Or an object of minimum environment versions to support:
 }
 ```
 
-Supported environments: `android`, `chrome`, `edge`, `electron`, `firefox`, `ie`, `ios`, `node`, `opera`, `rhino`, `safari`, `samsung`.
+Supported environments: `android`, `chrome`, `deno`, `edge`, `electron`, `firefox`, `ie`, `ios`, `node`, `opera`, `rhino`, `safari`, `samsung`.
 
 If a minor version is not specified, Babel will interpret it as `MAJOR.0`. For example, `"node": 12` will be considered as Node.js 12.0.
 
 #### No targets
 
+:::babel7
+
 When no targets are specified: Babel will assume you are targeting the oldest browsers possible. For example, `@babel/preset-env` will transform all ES2015-ES2020 code to be ES5 compatible.
 
 > We recommend setting `targets` to reduce the output code size.
 
-```json
+```json title="babel.config.json"
 {
   "presets": ["@babel/preset-env"]
 }
@@ -367,13 +379,21 @@ When no targets are specified: Babel will assume you are targeting the oldest br
 
 Because of this, Babel's behavior is different than [browserslist](https://github.com/browserslist/browserslist#queries): it does _not_ use the `defaults` query when there are no targets are found in your Babel _or_ browserslist config(s). If you want to use the `defaults` query, you will need to explicitly pass it as a target:
 
-```json
+```json title="babel.config.json"
 {
   "targets": "defaults"
 }
 ```
 
 We recognize this isn’t ideal and will be revisiting this in Babel v8.
+
+:::
+
+:::babel8
+
+When no targets are specified: Babel will assume you are using the [browserslist](https://github.com/browserslist/browserslist#queries) [`defaults`](https://browsersl.ist/#q=defaults) query, which covers most modern browsers. If you want to support legacy browsers, specify the `targets` option.
+
+:::
 
 #### `targets.esmodules`
 
@@ -383,7 +403,7 @@ You may also target browsers supporting ES Modules (<https://www.ecma-internatio
 
 > _Please note_: when specifying both `browsers` and the esmodules target, they will be intersected.
 
-```json
+```json title="babel.config.json"
 {
   "targets": {
     "esmodules": true
@@ -399,7 +419,7 @@ If you want to compile against the current node version, you can specify `"node"
 
 Alternatively, you can specify the node version in a browserslist query:
 
-```jsonc
+```json title="babel.config.json"
 {
   "targets": "node 12" // not recommended
 }
@@ -407,7 +427,7 @@ Alternatively, you can specify the node version in a browserslist query:
 
 In this case, browserslist will resolve it to the _latest_ version available in the `node-releases` library. Because Node.js may support new language features in minor releases, a program generated for Node.js 12.22 may throw a syntax error on Node.js 12.0. We recommend that you always specify a minor version when using node queries with browserslist:
 
-```json
+```json title="babel.config.json"
 {
   "targets": "node 12.0"
 }
@@ -425,6 +445,20 @@ Type: `string | Array<string>`.
 A query to select browsers (ex: last 2 versions, > 5%, safari tp) using [browserslist](https://github.com/ai/browserslist).
 
 Note, browsers' results are overridden by explicit items from `targets`.
+
+#### `targets.deno`
+
+Type: `string`.
+
+The minimum supported version is 1.0.
+
+```json title="babel.config.json"
+{
+  "targets": {
+    "deno": "1.9"
+  }
+}
+```
 
 ### `browserslistConfigFile`
 
@@ -476,7 +510,7 @@ Allows users to provide an array of options that will be [merged](#merging) into
 configuration one at a time. This feature is best used alongside the [`"test"`](#test)/[`"include"`](#include)/[`"exclude"`](#exclude)
 options to provide conditions for which an override should apply. For example:
 
-```js
+```js title="JavaScript"
 overrides: [{
   test: "./vendor/large.min.js",
   compact: true,
@@ -524,7 +558,7 @@ Placement: Not allowed inside of presets<br />
 If any of the patterns match, Babel will immediately stop all processing of
 the current build. For example, a user may want to do something like
 
-```js
+```js title="JavaScript"
 ignore: ["./lib"];
 ```
 
@@ -542,7 +576,7 @@ Placement: Not allowed inside of presets<br />
 If all of the patterns fail to match, Babel will immediately stop all processing
 of the current build. For example, a user may want to do something like
 
-```js
+```js title="JavaScript"
 only: ["./src"];
 ```
 
@@ -645,7 +679,7 @@ Placement: Allowed in programmatic options, config files and presets.<br />
 
 Set assumptions that Babel can make in order to produce smaller output:
 
-```json
+```json title="babel.config.json"
 {
   "assumptions": {
     "iterableIsArray": true
@@ -654,7 +688,7 @@ Set assumptions that Babel can make in order to produce smaller output:
 }
 ```
 
-For more informations, check the [assumptions](/assumptions) documentation page.
+For more informations, check the [assumptions](assumptions.md) documentation page.
 
 ### `highlightCode`
 
@@ -835,7 +869,7 @@ name, and doing so will result in a duplicate-plugin/preset error.
 
 That can be a little hard to read, so as an example:
 
-```js
+```js title="JavaScript"
 plugins: [
   // EntryTarget
   '@babel/plugin-transform-classes',
@@ -870,7 +904,7 @@ normalized to an empty object.
 `false` indicates that an entry is entirely disabled. This can be useful in contexts where ordering
 is important, but a separate condition is needed to decide if something is enabled. For instance:
 
-```js
+```js title="JavaScript"
 plugins: [
   'one',
   ['two', false],

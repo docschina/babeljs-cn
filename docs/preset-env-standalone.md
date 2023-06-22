@@ -1,6 +1,6 @@
 ---
 id: babel-preset-env-standalone
-title: @babel/preset-env-standalone
+title: "@babel/preset-env-standalone"
 sidebar_label: env-standalone
 ---
 
@@ -23,7 +23,7 @@ Load `babel-preset-env.js` or `babel-preset-env.min.js` in your environment, **a
 
 Then, just use it like any other preset:
 
-```js
+```js title="JavaScript"
 Babel.transform(code, {
   presets: [
     [

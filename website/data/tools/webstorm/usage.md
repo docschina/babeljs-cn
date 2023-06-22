@@ -6,7 +6,7 @@
 
 最后，在 **语言和框架 - JavaScript - JavaScript** 语言版本中，选择 ECMAScript 6.
 
-<blockquote class="babel-callout babel-callout-info">
+<blockquote class="alert alert--info">
   <p>
     欲了解更多信息，请参阅 WebStorm 博客中的<a href="https://blog.jetbrains.com/webstorm/2015/05/ecmascript-6-in-webstorm-transpiling#babelfilewatcher">博文</a>。
   </p>
