@@ -65,6 +65,9 @@ const envPresetDefaults = {
   corejs: {
     default: "3.21",
   },
+  modules: {
+    default: false,
+  },
 } as const;
 
 const runtimePolyfillConfig: PluginConfig = {
@@ -107,14 +110,15 @@ const replDefaults: ReplState = {
     compiledSize: 0,
     rawSize: 0,
   },
+  modules: false,
   presets: "react,stage-2,env",
   prettier: false,
   showSidebar: true,
   shippedProposals: false,
   targets: "",
   version: "",
-  reactRuntime: "classic",
-  decoratorsVersion: "2021-12",
+  reactRuntime: "automatic",
+  decoratorsVersion: "2023-01",
   decoratorsBeforeExport: false,
   pipelineProposal: "minimal",
   externalPlugins: "",

@@ -1,16 +1,18 @@
 ---
 id: babel-plugin-transform-arrow-functions
-title: @babel/plugin-transform-arrow-functions
+title: "@babel/plugin-transform-arrow-functions"
 sidebar_label: arrow-functions
 ---
 
-> **NOTE**: This plugin is included in `@babel/preset-env`
+:::info
+This plugin is included in `@babel/preset-env`
+:::
 
 ## Example
 
 **In**
 
-```javascript
+```js title="JavaScript"
 var a = () => {};
 var a = b => b;
 
@@ -29,7 +31,7 @@ console.log(bob.printFriends());
 
 **Out**
 
-```javascript
+```js title="JavaScript"
 var a = function() {};
 var a = function(b) {
   return b;
@@ -56,7 +58,7 @@ console.log(bob.printFriends());
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-transform-arrow-functions
 ```
 
@@ -66,7 +68,7 @@ npm install --save-dev @babel/plugin-transform-arrow-functions
 
 Without options:
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-transform-arrow-functions"]
 }
@@ -74,7 +76,7 @@ Without options:
 
 With options:
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [["@babel/plugin-transform-arrow-functions", { "spec": true }]]
 }
@@ -82,13 +84,13 @@ With options:
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-transform-arrow-functions script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-arrow-functions"],
 });
@@ -105,7 +107,7 @@ require("@babel/core").transformSync("code", {
 
 Using spec mode with the above example produces:
 
-```js
+```js title="JavaScript"
 var _this = this;
 
 var a = function a() {
@@ -152,4 +154,6 @@ This option enables the following:
 
 - Add names to arrow functions.
 
-> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::tip
+You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::

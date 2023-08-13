@@ -1,16 +1,18 @@
 ---
 id: babel-plugin-transform-computed-properties
-title: @babel/plugin-transform-computed-properties
+title: "@babel/plugin-transform-computed-properties"
 sidebar_label: computed-properties
 ---
 
-> **NOTE**: This plugin is included in `@babel/preset-env`
+:::info
+This plugin is included in `@babel/preset-env`
+:::
 
 ## Example
 
 **In**
 
-```js
+```js title="JavaScript"
 var obj = {
   ["x" + foo]: "heh",
   ["y" + bar]: "noo",
@@ -21,7 +23,7 @@ var obj = {
 
 **Out**
 
-```js
+```js title="JavaScript"
 var _obj;
 
 function _defineProperty(obj, key, value) {
@@ -49,7 +51,7 @@ _obj);
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-transform-computed-properties
 ```
 
@@ -59,7 +61,7 @@ npm install --save-dev @babel/plugin-transform-computed-properties
 
 Without options:
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-transform-computed-properties"]
 }
@@ -67,7 +69,7 @@ Without options:
 
 With options:
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [
     [
@@ -82,13 +84,13 @@ With options:
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-transform-computed-properties script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-computed-properties"],
 });
@@ -104,10 +106,11 @@ Just like method assignment in classes, in loose mode, computed property names
 use simple assignments instead of being defined. This is unlikely to be an issue
 in production code.
 
-> ⚠️ Consider migrating to the top level [`setComputedProperties`](assumptions.md#setcomputedproperties) assumption.
+:::caution
+Consider migrating to the top level [`setComputedProperties`](assumptions.md#setcomputedproperties) assumption.
+:::
 
-```jsonc
-// babel.config.json
+```json title="babel.config.json"
 {
   "assumptions": {
     "setComputedProperties": true
@@ -119,7 +122,7 @@ in production code.
 
 **_In_**
 
-```js
+```js title="JavaScript"
 var obj = {
   ["x" + foo]: "heh",
   ["y" + bar]: "noo",
@@ -132,7 +135,7 @@ var obj = {
 
 When `setComputedProperties` is `true`.
 
-```js
+```js title="JavaScript"
 var _obj;
 
 var obj = ((_obj = {}),
@@ -145,7 +148,7 @@ _obj);
 
 When `setComputedProperties` is `false`.
 
-```js
+```js title="JavaScript"
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 
 var _obj;
@@ -158,4 +161,6 @@ _defineProperty(_obj, "bar", "bar"),
 _obj);
 ```
 
-> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::tip
+You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::

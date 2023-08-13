@@ -1,17 +1,20 @@
 ---
 id: babel-plugin-transform-async-to-generator
-title: @babel/plugin-transform-async-to-generator
+title: "@babel/plugin-transform-async-to-generator"
 sidebar_label: async-to-generator
 ---
 
-> **NOTE**: This plugin is included in `@babel/preset-env`, in [ES2017](https://github.com/tc39/proposals/blob/master/finished-proposals.md)
-> In Babel 7, `transform-async-to-module-method` was merged into this plugin
+:::info
+This plugin is included in `@babel/preset-env`, in [ES2017](https://github.com/tc39/proposals/blob/master/finished-proposals.md)
+:::
+
+In Babel 7, `transform-async-to-module-method` was merged into this plugin
 
 ## Example
 
 **In**
 
-```javascript
+```js title="JavaScript"
 async function foo() {
   await bar();
 }
@@ -19,7 +22,7 @@ async function foo() {
 
 **Out**
 
-```javascript
+```js title="JavaScript"
 var _asyncToGenerator = function (fn) {
   ...
 };
@@ -32,7 +35,7 @@ var foo = _asyncToGenerator(function* () {
 
 > Turn async functions into a Bluebird coroutine ([caveats](#bluebird-non-promise-runtime-error))
 
-```javascript
+```js title="JavaScript"
 var Bluebird = require("bluebird");
 
 var foo = Bluebird.coroutine(function*() {
@@ -42,7 +45,7 @@ var foo = Bluebird.coroutine(function*() {
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-transform-async-to-generator
 ```
 
@@ -52,7 +55,7 @@ npm install --save-dev @babel/plugin-transform-async-to-generator
 
 Without options:
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-transform-async-to-generator"]
 }
@@ -60,7 +63,7 @@ Without options:
 
 With options:
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [
     [
@@ -76,13 +79,13 @@ With options:
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-transform-async-to-generator script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-async-to-generator"],
 });

@@ -1,16 +1,18 @@
 ---
 id: babel-plugin-transform-regenerator
-title: @babel/plugin-transform-regenerator
+title: "@babel/plugin-transform-regenerator"
 sidebar_label: regenerator
 ---
 
-> **NOTE**: This plugin is included in `@babel/preset-env`
+:::info
+This plugin is included in `@babel/preset-env`
+:::
 
 ## Example
 
 **In**
 
-```javascript
+```js title="JavaScript"
 function* a() {
   yield 1;
 }
@@ -18,7 +20,7 @@ function* a() {
 
 **Out**
 
-```javascript
+```js title="JavaScript"
 var _marked = [a].map(regeneratorRuntime.mark);
 
 function a() {
@@ -44,7 +46,7 @@ function a() {
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-transform-regenerator
 ```
 
@@ -54,7 +56,7 @@ npm install --save-dev @babel/plugin-transform-regenerator
 
 Without options:
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-transform-regenerator"]
 }
@@ -68,7 +70,7 @@ With options:
 | generators      | true          |
 | async           | true          |
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [
     [
@@ -85,13 +87,13 @@ With options:
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-transform-regenerator script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-regenerator"],
 });
