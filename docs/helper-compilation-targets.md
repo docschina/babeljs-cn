@@ -1,12 +1,12 @@
 ---
 id: babel-helper-compilation-targets
-title: @babel/helper-compilation-targets
+title: "@babel/helper-compilation-targets"
 sidebar_label: helper-compilation-targets
 ---
 
 `@babel/helper-compilation-targets` is a helper package that works with compilation targets (browsers or other environments like node) and compat tables (knowing what version supports a specific syntax). It is used by `@babel/preset-env` to determine which plugin should be enabled based on the [`targets`](options.md#targets) option.
 
-```javascript
+```js title="JavaScript"
 import {
   filterItems,
   default as getTargets,
@@ -42,7 +42,7 @@ Given a compat data table `list` (i.e. `@babel/compat-data`) and [browser target
 
 **Example**
 
-```javascript
+```js title="JavaScript"
 const compatData = {
   "transform-feature-1": {
     chrome: "1",
@@ -103,7 +103,9 @@ filterItems(
 );
 ```
 
-> When a new ES feature reaches stage-4, it will be matured in `@babel/parser`, which means it will always be parsed regardless of the plugin. However we need the syntax plugin for older `@babel/parser`.
+:::note
+When a new ES feature reaches stage-4, it will be matured in `@babel/parser`, which means it will always be parsed regardless of the plugin. However we need the syntax plugin for older `@babel/parser`.
+:::
 
 ## getTargets
 
@@ -143,7 +145,7 @@ Normalize user specified `targets` to a list of supported targets. See also (`@b
 
 **Example**
 
-```javascript
+```js title="JavaScript"
 // Return the default compilation targets
 // returns {}
 getTargets();
@@ -153,7 +155,7 @@ An empty compilation target is equivalent to [force all transforms](preset-env.m
 
 One can also query the compilation targets with ES Module support, like [`@vue/babel-preset-app`](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/babel-preset-app) did in order to provide a set of modern targets.
 
-```javascript
+```js title="JavaScript"
 /* returns {
   "android": "61.0.0",
   "chrome": "61.0.0",
@@ -194,14 +196,13 @@ Given browser targets `targets`, query the `compatData` whether plugin `name` is
 
 **Example**
 
-```javascript
-// babel.config.js
+```javascript title="babel.config.js"
 module.exports = api => {
   const targets = api.targets();
   // The targets have native optional chaining support
-  // if `proposal-optional-chaining` is _not_ required
+  // if `transform-optional-chaining` is _not_ required
   const optionalChainingSupported = !isRequired(
-    "proposal-optional-chaining",
+    "transform-optional-chaining",
     targets
   );
 };
@@ -209,14 +210,14 @@ module.exports = api => {
 
 Plugin authors can use `isRequired` to optimize plugin output given different `targets`:
 
-```javascript
+```javascript title="example-babel-plugin.js"
 // a naive plugin replace `a.b` to `a != null && a.b`
 module.exports = api => {
   const targets = api.targets();
   // The targets have native optional chaining support
-  // if `proposal-optional-chaining` is _not_ required
+  // if `transform-optional-chaining` is _not_ required
   const optionalChainingSupported = !isRequired(
-    "proposal-optional-chaining",
+    "transform-optional-chaining",
     targets
   );
   const visited = new WeakSet();
@@ -240,4 +241,4 @@ module.exports = api => {
 };
 ```
 
-[`@babel/plugin-proposal-object-rest-spread`](https://github.com/babel/babel/blob/962d81483ef6a57a4a3eca8230ae40795b695147/packages/babel-plugin-proposal-object-rest-spread/src/index.js#L23) uses `isRequired` to determine whether targets already have native `Object.assign` support.
+[`@babel/plugin-transform-object-rest-spread`](https://github.com/babel/babel/blob/d54bc3cd1c1c462760e01c0a8c4bd4b3013f236a/packages/babel-plugin-transform-object-rest-spread/src/index.ts#L33) uses `isRequired` to determine whether targets already have native `Object.assign` support.

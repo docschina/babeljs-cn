@@ -1,13 +1,15 @@
 ---
 id: babel-preset-stage-1
-title: @babel/preset-stage-1
+title: "@babel/preset-stage-1"
 sidebar_label: stage-1
 ---
 
-> As of Babel v7, all the stage presets have been deprecated.
-> Check [the blog post](/blog/2018/07/27/removing-babels-stage-presets) for more information.
->
-> For upgrade instructions, see [the README](https://github.com/babel/babel/blob/master/packages/babel-preset-stage-1/README.md).
+:::danger
+As of Babel v7, all the stage presets have been deprecated.
+Check [the blog post](/blog/2018/07/27/removing-babels-stage-presets) for more information.
+
+For upgrade instructions, see [the README](https://github.com/babel/babel/blob/master/packages/babel-preset-stage-1/README.md).
+:::
 
 The gist of Stage 1 is:
 
@@ -21,7 +23,7 @@ The gist of Stage 1 is:
 
 ## Install
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/preset-stage-1
 ```
 
@@ -29,7 +31,7 @@ npm install --save-dev @babel/preset-stage-1
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "presets": ["@babel/preset-stage-1"]
 }
@@ -37,13 +39,13 @@ npm install --save-dev @babel/preset-stage-1
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel script.js --presets @babel/preset-stage-1
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   presets: ["@babel/preset-stage-1"]
 });

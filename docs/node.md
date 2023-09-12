@@ -1,6 +1,6 @@
 ---
 id: babel-node
-title: @babel/node
+title: "@babel/node"
 sidebar_label: node
 ---
 
@@ -8,70 +8,76 @@ babel-node is a CLI that works exactly the same as the Node.js CLI, with the add
 
 ## Install
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/core @babel/node
 ```
 
-> #### Not meant for production use
->
-> You should not be using `babel-node` in production. It is unnecessarily heavy, with high memory usage due to the cache being stored in memory. You will also always experience a startup performance penalty as the entire app needs to be compiled on the fly.
->
-> Check out the [example Node.js server with Babel](https://github.com/babel/example-node-server) for an idea of how to use Babel in a production deployment.
+:::caution
+#### Not meant for production use
 
-> #### ES6-style module-loading may not function as expected
->
-> Due to technical limitations ES6-style module-loading is not fully supported in a `babel-node REPL`.
+You should not be using `babel-node` in production. It is unnecessarily heavy, with high memory usage due to the cache being stored in memory. You will also always experience a startup performance penalty as the entire app needs to be compiled on the fly.
+
+Check out the [example Node.js server with Babel](https://github.com/babel/example-node-server) for an idea of how to use Babel in a production deployment.
+
+#### ES6-style module-loading may not function as expected
+
+Due to technical limitations ES6-style module-loading is not fully supported in a `babel-node REPL`.
+:::
 
 babel comes with a second CLI which works exactly the same as Node.js's CLI, only
 it will compile ES6 code before running it.
 
 Launch a REPL (Read-Eval-Print-Loop).
 
-> You should install `@babel/node` and `@babel/core` first before `npx babel-node`, otherwise `npx` will install out-of-dated legacy `babel-node` 6.x.
+:::note
+You should install `@babel/node` and `@babel/core` first before `npx babel-node`, otherwise `npx` will install out-of-dated legacy `babel-node` 6.x.
+:::
 
-```sh
+```sh title="Shell"
 npx babel-node
 ```
 
 If you prefer not to install `@babel/node` and `@babel/core`, you can install them on-the-fly:
 
-```sh
+```sh title="Shell"
 npx -p @babel/core -p @babel/node babel-node
 ```
 
 Evaluate code.
 
-```sh
+```sh title="Shell"
 npx babel-node -e "class Test { }"
 ```
 
 Compile and run `test.js`.
 
-```sh
+```sh title="Shell"
 npx babel-node test
 ```
 
-> **Tip:** Use `rlwrap` to get a REPL with input history
->
-> ```sh
-> rlwrap npx babel-node
-> ```
->
-> On some platforms (like OSX), extra arguments may be required for `rlwrap` to function properly, eg:
->
-> ```sh
-> NODE_NO_READLINE=1 rlwrap --always-readline npx babel-node
-> ```
+:::tip
+Use `rlwrap` to get a REPL with input history
+
+```sh title="Shell"
+rlwrap npx babel-node
+```
+
+On some platforms (like OSX), extra arguments may be required for `rlwrap` to function properly, eg:
+
+```sh title="Shell"
+NODE_NO_READLINE=1 rlwrap --always-readline npx babel-node
+```
+:::
 
 ### Usage
 
-```sh
+```sh title="Shell"
 babel-node [options] [ -e script | script.js ] [arguments]
 ```
 
 When arguments for user script have names conflicting with node options, double dash placed before script name can be used to resolve ambiguities
 
-```sh
+```sh title="Shell"
 npx babel-node --inspect --presets @babel/preset-env -- script.js --inspect
 ```
 

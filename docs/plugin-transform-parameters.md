@@ -1,10 +1,12 @@
 ---
 id: babel-plugin-transform-parameters
-title: @babel/plugin-transform-parameters
+title: "@babel/plugin-transform-parameters"
 sidebar_label: parameters
 ---
 
-> **NOTE**: This plugin is included in `@babel/preset-env`
+:::info
+This plugin is included in `@babel/preset-env`
+:::
 
 This plugin transforms ES2015 parameters to ES5, this includes:
 
@@ -16,7 +18,7 @@ This plugin transforms ES2015 parameters to ES5, this includes:
 
 **In**
 
-```javascript
+```js title="JavaScript"
 function test(x = "hello", { a, b }, ...args) {
   console.log(x, a, b, args);
 }
@@ -24,7 +26,7 @@ function test(x = "hello", { a, b }, ...args) {
 
 **Out**
 
-```javascript
+```js title="JavaScript"
 function test() {
   var x =
     arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "hello";
@@ -48,7 +50,7 @@ function test() {
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-transform-parameters
 ```
 
@@ -62,7 +64,7 @@ not supported in your environment then you'll need the
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-transform-parameters"]
 }
@@ -70,13 +72,13 @@ not supported in your environment then you'll need the
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-transform-parameters script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-parameters"],
 });
@@ -90,10 +92,11 @@ require("@babel/core").transformSync("code", {
 
 In loose mode, parameters with default values will be counted into the arity of the function. This is not spec behavior where these parameters do not add to function arity.
 
-> ⚠️ Consider migrating to the top level [`ignoreFunctionLength`](assumptions.md#ignorefunctionlength) assumption.
+:::caution
+Consider migrating to the top level [`ignoreFunctionLength`](assumptions.md#ignorefunctionlength) assumption.
+:::
 
-```jsonc
-// babel.config.json
+```json title="babel.config.json"
 {
   "assumptions": {
     "ignoreFunctionLength": true
@@ -103,7 +106,7 @@ In loose mode, parameters with default values will be counted into the arity of 
 
 Under the `ignoreFunctionLength` assumption, Babel will generate a more performant solution as JavaScript engines will fully optimize a function that doesn't reference `arguments`. Please do your own benchmarking and determine if this option is the right fit for your application.
 
-```javascript
+```js title="JavaScript"
 // Spec behavior
 function bar1(arg1 = 1) {}
 bar1.length; // 0
@@ -113,4 +116,6 @@ function bar1(arg1 = 1) {}
 bar1.length; // 1
 ```
 
-> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::tip
+You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::

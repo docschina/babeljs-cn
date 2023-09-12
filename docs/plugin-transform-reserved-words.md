@@ -1,10 +1,12 @@
 ---
 id: babel-plugin-transform-reserved-words
-title: @babel/plugin-transform-reserved-words
+title: "@babel/plugin-transform-reserved-words"
 sidebar_label: reserved-words
 ---
 
-> **NOTE**: This plugin is included in `@babel/preset-env`
+:::info
+This plugin is included in `@babel/preset-env`
+:::
 
 Some words were reserved in ES3 as potential future keywords but were not
 reserved in ES5 and later. This plugin, to be used when targeting ES3
@@ -14,21 +16,21 @@ environments, renames variables from that set of words.
 
 **In**
 
-```javascript
+```js title="JavaScript"
 var abstract = 1;
 var x = abstract + 1;
 ```
 
 **Out**
 
-```javascript
+```js title="JavaScript"
 var _abstract = 1;
 var x = _abstract + 1;
 ```
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-transform-reserved-words
 ```
 
@@ -36,7 +38,7 @@ npm install --save-dev @babel/plugin-transform-reserved-words
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-transform-reserved-words"]
 }
@@ -44,13 +46,13 @@ npm install --save-dev @babel/plugin-transform-reserved-words
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-transform-reserved-words script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-reserved-words"],
 });

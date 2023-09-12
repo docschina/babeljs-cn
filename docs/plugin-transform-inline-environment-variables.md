@@ -8,20 +8,20 @@ sidebar_label: inline-environment-variables
 
 ### In
 
-```js
+```js title="JavaScript"
 // assuming process.env.NODE_ENV is actually "development"
 process.env.NODE_ENV;
 ```
 
 ### Out
 
-```js
+```js title="JavaScript"
 "development";
 ```
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install babel-plugin-transform-inline-environment-variables --save-dev
 ```
 
@@ -29,7 +29,7 @@ npm install babel-plugin-transform-inline-environment-variables --save-dev
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="JSON"
 // without options
 {
   "plugins": ["transform-inline-environment-variables"]
@@ -49,13 +49,13 @@ npm install babel-plugin-transform-inline-environment-variables --save-dev
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins transform-inline-environment-variables script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["transform-inline-environment-variables"],
 });
@@ -66,4 +66,6 @@ require("@babel/core").transformSync("code", {
 - `include` - array of environment variables to include
 - `exclude` - array of environment variables to exclude
 
-> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::tip
+You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::

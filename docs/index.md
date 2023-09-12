@@ -7,6 +7,7 @@ title: 什么是 Babel？
 
 Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中，将 ECMAScript 2015+ 代码转换为 JavaScript 向后兼容版本的代码。以下是 Babel 可以做的主要事情：
 
+<<<<<<< HEAD
 - 转换语法
 - Polyfill 目标环境中缺少的功能（通过如 [core-js](https://github.com/zloirock/core-js) 的第三方 `polyfill`）
 - 源代码转换(codemods)
@@ -14,6 +15,15 @@ Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中�
 
 ```js
 // Babel 输入：ES2015 箭头函数
+=======
+- Transform syntax
+- Polyfill features that are missing in your target environment (through a third-party polyfill such as [core-js](https://github.com/zloirock/core-js))
+- Source code transformations (codemods)
+- And more! (check out these [videos](/videos) for inspiration)
+
+```js title="JavaScript"
+// Babel Input: ES2015 arrow function
+>>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 [1, 2, 3].map(n => n + 1);
 
 // Babel 输出：ES5 等价语法
@@ -22,7 +32,13 @@ Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中�
 });
 ```
 
+<<<<<<< HEAD
 > 有关编译器的精彩教程，请查看 [the-super-tiny-compiler](https://github.com/thejameskyle/the-super-tiny-compiler)，它还解释了 Babel 本身如何在高层级中运行。
+=======
+:::tip
+For an awesome tutorial on compilers, check out [the-super-tiny-compiler](https://github.com/thejameskyle/the-super-tiny-compiler), which also explains how Babel itself works on a high level.
+:::
+>>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## ES2015 及其后版本
 
@@ -36,30 +52,41 @@ Babel 可以转换 JSX 语法！查看 [React preset](preset-react.md) 以开始
 
 你可以通过以下这个命令安装此 preset
 
-```shell
+```shell npm2yarn
 npm install --save-dev @babel/preset-react
 ```
 
 并将 `@babel/preset-react` 添加到你的 Babel 配置中。
 
-```jsx
+```jsx title="JSX"
 export default function DiceRoll(){
-  const [num, setNum] = useState(getRandomNumber());
-
   const getRandomNumber = () => {
     return Math.ceil(Math.random() * 6);
   };
 
+  const [num, setNum] = useState(getRandomNumber());
+
+  const handleClick = () => {
+    const newNum = getRandomNumber();
+    setNum(newNum);
+  };
+
   return (
     <div>
-      Your dice roll:
-      {num}
+      Your dice roll: {num}.
+      <button onClick={handleClick}>Click to get a new number</button>
     </div>
   );
 };
 ```
 
+<<<<<<< HEAD
 > 了解更多关于 [JSX](https://facebook.github.io/jsx/) 的信息。
+=======
+:::tip
+Learn more about [JSX](https://facebook.github.io/jsx/)
+:::
+>>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## 类型注释（Flow 和 TypeScript）
 
@@ -67,11 +94,11 @@ Babel 可以删除类型注释！查看 [Flow preset](preset-flow.md) 或 [TypeS
 
 你可以通过以下这个命令安装 flow preset
 
-```shell
+```shell npm2yarn
 npm install --save-dev @babel/preset-flow
 ```
 
-```js
+```js title="JavaScript"
 // @flow
 function square(n: number): number {
   return n * n;
@@ -80,17 +107,23 @@ function square(n: number): number {
 
 也可以通过以下这个命令安装 typescript preset
 
-```shell
+```shell npm2yarn
 npm install --save-dev @babel/preset-typescript
 ```
 
-```js
+```js title="JavaScript"
 function Greeter(greeting: string) {
   this.greeting = greeting;
 }
 ```
 
+<<<<<<< HEAD
 > 了解更多关于 [Flow](https://flow.org/) 和 [TypeScript](https://www.typescriptlang.org/) 的信息。
+=======
+:::tip
+Learn more about [Flow](https://flow.org/) and [TypeScript](https://www.typescriptlang.org/)!
+:::
+>>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## 可插件化
 
@@ -98,15 +131,19 @@ Babel 是用 plugins 构建的。你可以使用现有 plugins 编写自己的�
 
 直接使用 [astexplorer.net](https://astexplorer.net/#/KJ8AjD6maa) 创建插件，或者使用 [generator-babel-plugin](https://github.com/babel/generator-babel-plugin) 生成一个插件模板。
 
+<<<<<<< HEAD
 ```javascript
 // plugin 仅仅是一个函数
+=======
+```javascript title="example-babel-plugin.js"
+// A plugin is just a function
+>>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 export default function({ types: t }) {
   return {
     visitor: {
       Identifier(path) {
         let name = path.node.name; // reverse the name: JavaScript -> tpircSavaJ
-        path.node.name = name
-          .split("")
+        path.node.name = [...name]
           .reverse()
           .join("");
       },
@@ -127,4 +164,8 @@ Babel 试图尽可能地遵循 ECMAScript 标准。作为性能的折衷方案�
 
 Babel 尝试使用尽可能少的代码而不依赖于庞大的运行时环境。
 
+<<<<<<< HEAD
 有些情况可能很难达到，因此为了保证可读性、文件大小以及（运行）速度，会牺牲一些合规性，即提供了 ["assumptions"](/assumptions) 选项。
+=======
+This may be difficult to do in cases, and there are ["assumptions"](assumptions.md) options that tradeoff spec compliancy for readability, file size, and speed.
+>>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
