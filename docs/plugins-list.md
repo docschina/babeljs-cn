@@ -35,18 +35,9 @@ sidebar_label: 插件列表
 
 ### ES2020
 
-<<<<<<< HEAD
-- [export-namespace-from](plugin-proposal-export-namespace-from.md)
-- [nullish-coalescing-operator](plugin-proposal-nullish-coalescing-operator.md)
-- [optional-chaining](plugin-proposal-optional-chaining.md)
-
-#### 可解析语法
-
-=======
 - [export-namespace-from](plugin-transform-export-namespace-from.md)
 - [nullish-coalescing-operator](plugin-transform-nullish-coalescing-operator.md)
 - [optional-chaining](plugin-transform-optional-chaining.md)
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 - [syntax-dynamic-import](plugin-syntax-dynamic-import.md)
 - [syntax-import-meta](plugin-syntax-import-meta.md)
 - [syntax-bigint](plugin-syntax-bigint.md)

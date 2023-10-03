@@ -20,12 +20,8 @@
     rollup: Rollup
     sprockets: Sprockets
     start: Start
-<<<<<<< HEAD
-- name: 框架
-=======
     webpack: Webpack
 - name: Frameworks
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
   items:
     ember: Ember
     meteor: Meteor

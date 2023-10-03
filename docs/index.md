@@ -7,15 +7,6 @@ title: 什么是 Babel？
 
 Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中，将 ECMAScript 2015+ 代码转换为 JavaScript 向后兼容版本的代码。以下是 Babel 可以做的主要事情：
 
-<<<<<<< HEAD
-- 转换语法
-- Polyfill 目标环境中缺少的功能（通过如 [core-js](https://github.com/zloirock/core-js) 的第三方 `polyfill`）
-- 源代码转换(codemods)
-- 以及更多！（查看 [视频](/videos.html)）
-
-```js
-// Babel 输入：ES2015 箭头函数
-=======
 - Transform syntax
 - Polyfill features that are missing in your target environment (through a third-party polyfill such as [core-js](https://github.com/zloirock/core-js))
 - Source code transformations (codemods)
@@ -23,7 +14,6 @@ Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中�
 
 ```js title="JavaScript"
 // Babel Input: ES2015 arrow function
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 [1, 2, 3].map(n => n + 1);
 
 // Babel 输出：ES5 等价语法
@@ -32,13 +22,9 @@ Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中�
 });
 ```
 
-<<<<<<< HEAD
-> 有关编译器的精彩教程，请查看 [the-super-tiny-compiler](https://github.com/thejameskyle/the-super-tiny-compiler)，它还解释了 Babel 本身如何在高层级中运行。
-=======
 :::tip
 For an awesome tutorial on compilers, check out [the-super-tiny-compiler](https://github.com/thejameskyle/the-super-tiny-compiler), which also explains how Babel itself works on a high level.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## ES2015 及其后版本
 
@@ -80,13 +66,9 @@ export default function DiceRoll(){
 };
 ```
 
-<<<<<<< HEAD
-> 了解更多关于 [JSX](https://facebook.github.io/jsx/) 的信息。
-=======
 :::tip
 Learn more about [JSX](https://facebook.github.io/jsx/)
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## 类型注释（Flow 和 TypeScript）
 
@@ -117,13 +99,9 @@ function Greeter(greeting: string) {
 }
 ```
 
-<<<<<<< HEAD
-> 了解更多关于 [Flow](https://flow.org/) 和 [TypeScript](https://www.typescriptlang.org/) 的信息。
-=======
 :::tip
 Learn more about [Flow](https://flow.org/) and [TypeScript](https://www.typescriptlang.org/)!
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## 可插件化
 
@@ -131,13 +109,8 @@ Babel 是用 plugins 构建的。你可以使用现有 plugins 编写自己的�
 
 直接使用 [astexplorer.net](https://astexplorer.net/#/KJ8AjD6maa) 创建插件，或者使用 [generator-babel-plugin](https://github.com/babel/generator-babel-plugin) 生成一个插件模板。
 
-<<<<<<< HEAD
-```javascript
-// plugin 仅仅是一个函数
-=======
 ```javascript title="example-babel-plugin.js"
 // A plugin is just a function
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 export default function({ types: t }) {
   return {
     visitor: {
@@ -164,8 +137,4 @@ Babel 试图尽可能地遵循 ECMAScript 标准。作为性能的折衷方案�
 
 Babel 尝试使用尽可能少的代码而不依赖于庞大的运行时环境。
 
-<<<<<<< HEAD
-有些情况可能很难达到，因此为了保证可读性、文件大小以及（运行）速度，会牺牲一些合规性，即提供了 ["assumptions"](/assumptions) 选项。
-=======
 This may be difficult to do in cases, and there are ["assumptions"](assumptions.md) options that tradeoff spec compliancy for readability, file size, and speed.
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8

@@ -31,11 +31,6 @@ npm run build
 
 <blockquote class="alert alert--info">
   <p>
-<<<<<<< HEAD
-    了解完整 Babel CLI 文档请看
-    <a href="/docs/usage/cli/">使用文档</a>。
-=======
     For full documentation on the Babel CLI see the <a href="/docs/usage/cli/">usage docs</a>.
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
   </p>
 </blockquote>

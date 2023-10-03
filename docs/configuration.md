@@ -20,11 +20,7 @@ Babel 是可配置的！许多其他工具都有类似的配置：ESLint (`.esli
 
 - Guy Fieri 是你的英雄？（译注：Guy Fieri 是明星厨师，这里意思是喜欢根据自己喜好配置）
 
-<<<<<<< HEAD
-> 我们建议使用 [`babel.config.json`](config-files.md#project-wide-configuration) 格式。[Babel 本身正在使用它](https://github.com/babel/babel/blob/main/babel.config.js)。
-=======
 > We recommend using the [`babel.config.json`](config-files.md#project-wide-configuration) format.
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### `babel.config.json`
 
@@ -85,52 +81,7 @@ module.exports = function (api) {
 }
 ```
 
-<<<<<<< HEAD
-查阅 [`babel.config.json` 文档](config-files.md#project-wide-configuration) 以查看更多配置选项。
-
-### `.babelrc.json`
-
-在项目中创建一个名为 `.babelrc.json` 的文件，其中包含以下内容。
-
-```json
-{
-  "presets": [...],
-  "plugins": [...]
-}
-```
-
-查阅 [.babelrc 文档](config-files.md#file-relative-configuration)，以查看更多配置选项。
-
-### `package.json`
-
-或者，你可以选择在 package.json 的 key `babel` 中指定你的 [`.babelrc.json`](#babelrcjson) 配置，如下所示：
-
-```json
-{
-  "name": "my-package",
-  "version": "1.0.0",
-  "babel": {
-    "presets": [ ... ],
-    "plugins": [ ... ],
-  }
-}
-```
-
-### JavaScript 配置文件
-
-还可以使用 JavaScript 编写 `babel.config.js` 和 `.babelrc.js` 文件：
-
-```js
-const presets = [ ... ];
-const plugins = [ ... ];
-
-module.exports = { presets, plugins };
-```
-
-你可以访问任何 Node.js API，例如基于 process 环境变量的动态配置：
-=======
 You are allowed to access any Node.js APIs, for example a dynamic configuration based on the process environment:
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ```js title="babel.config.js"
 module.exports = function (api) {
@@ -174,10 +125,6 @@ require("@babel/core").transformSync("code", {
 
 你可以告知 Babel，为给定的输入路径打印生效的配置
 
-<<<<<<< HEAD
-```sh
-# *nix 或 WSL
-=======
 import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -186,7 +133,6 @@ import TabItem from '@theme/TabItem';
 <TabItem value="shell" label="Shell" default>
 <CodeBlock language="bash">{`
 # *nix or WSL
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
 `}
 </CodeBlock>

@@ -88,11 +88,6 @@
     "buffer": "^5.7.1",
     "codemirror": "^5.65.0",
     "core-js": "^3.0.1",
-<<<<<<< HEAD
-    "emotion": "^9.1.3",
-    "gh-pages": "^1.2.0",
-=======
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
     "lodash.camelcase": "^4.3.0",
     "lodash.debounce": "^4.0.8",
     "lz-string": "^1.4.4",

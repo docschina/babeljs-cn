@@ -13,25 +13,15 @@ import "@babel/register";
 
 所有以 `.es6`， `.es`， `.jsx` 和 `.js` 扩展名为后缀的文件都能被 Babel 转译。 特殊的 polyfill 自然也需要引入特殊的 [polyfill](/docs/usage/polyfill/) 。
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-warning">
-  <h4>不适合在库中使用</h4>
-=======
 <blockquote class="alert alert--warning">
   <h4>Not suitable for libraries</h4>
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
   <p>
     Require hook 会自动钩住<strong>所有</strong>节点需要的钩子。这将污染全局作用域，引发未知冲突。正因如此，它不适合在库中使用，但你如果正在编写一个应用程序，那么使用它就完全没问题。
   </p>
 </blockquote>
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-warning">
-  <h4>不适合用于生产环境下</h4>
-=======
 <blockquote class="alert alert--warning">
   <h4>Not meant for production use</h4>
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
   <p>
     Require hook 主要推荐用于简单的情况下。
   </p>

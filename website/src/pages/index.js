@@ -53,13 +53,6 @@ const MiniRepl = () => {
     <div className="hero-repl" hidden={true}>
       <div className="hero-repl__editor">
         <div className="hero-repl__pane hero-repl__pane--left">
-<<<<<<< HEAD:website/pages/en/index.js
-          <h3>请输入下一代 JavaScript 代码</h3>
-          <div id="hero-repl-in" className="hero-repl__code" />
-        </div>
-        <div className="hero-repl__pane hero-repl__pane--right">
-          <h3>获取浏览器兼容的 JavaScript 代码</h3>
-=======
           <h3>
             <Translate>Put in next-gen JavaScript</Translate>
           </h3>
@@ -69,7 +62,6 @@ const MiniRepl = () => {
           <h3>
             <Translate>Get browser-compatible JavaScript out</Translate>
           </h3>
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8:website/src/pages/index.js
           <div id="hero-repl-out" className="hero-repl__code" />
           <div className="hero-repl__error" />
         </div>
@@ -90,35 +82,21 @@ const GetStarted = ({ language }) => {
       }}
     >
       <p>
-<<<<<<< HEAD:website/pages/en/index.js
-        想了解更多关于 Babel 的信息，请阅读{" "}
-        <a href={siteConfig.getDocUrl("index.html", language)}>入门指南</a>{" "}
-        或者翻阅{" "}
-        <a href={siteConfig.getPageUrl("videos.html", language)}>视频</a>{" "}
-        了解更多关于 Babel 的故事
-=======
         Learn more about Babel with our{" "}
         <Link to="/docs">getting started guide</Link> or check out some{" "}
         <Link href="/videos">videos</Link> on the people and concepts behind it.
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8:website/src/pages/index.js
       </p>
     </div>
   );
 };
 
 const SponsorTier = props => {
-<<<<<<< HEAD:website/pages/en/index.js
-  const { min, max } = props;
-  const tierSponsors = siteConfig.sponsors.filter(sponsor => {
-    const value = Math.max(sponsor.monthly, (sponsor.yearly || 0) / 12);
-=======
   let { min, max } = props;
   const { siteConfig } = useDocusaurusContext();
   const { customFields } = siteConfig;
 
   const tierSponsors = customFields.sponsors.filter(sponsor => {
     let value = Math.max(sponsor.monthly, (sponsor.yearly || 0) / 12);
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8:website/src/pages/index.js
     return +value >= min && (!max || (max && +value < max));
   });
   return (
@@ -228,17 +206,6 @@ const HomeContainer = props => (
 
 const Hero = ({ language }) => (
   <div className="hero">
-<<<<<<< HEAD:website/pages/en/index.js
-    <a href="https://teespring.com/babel-christmas?pr=FLAVORTOWN">
-      <div className="homepage-banner">获取 Babel 的假日服饰 👕</div>
-    </a>
-    <div className="hero__container">
-      <h1>
-        <translate>Babel 是一个 JavaScript 编译器。</translate>
-      </h1>
-      <p>
-        <translate>现在就开始使用下一代 JavaScript 语法吧。</translate>
-=======
     <Link to="https://teespring.com/babel-christmas?pr=FLAVORTOWN">
       <div className="homepage-banner">Get Babel Holiday Apparel 👕</div>
     </Link>
@@ -248,26 +215,16 @@ const Hero = ({ language }) => (
       </h1>
       <p>
         <Translate>Use next generation JavaScript, today.</Translate>
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8:website/src/pages/index.js
       </p>
 
       <div className="hero__announcement">
         <span>
-<<<<<<< HEAD:website/pages/en/index.js
-          <strong>Babel 7.19 已发布！</strong> 请阅读我们的{" "}
-          <a href="/blog/2022/09/05/7.19.0">博客公告</a> 了解亮点以及{" "}
-          <a href="https://github.com/babel/babel/releases/tag/v7.19.0">
-            更新日志
-          </a>{" "}
-          了解更多详情！
-=======
           <strong>Babel 7.22 is released!</strong> Please read our{" "}
           <Link to="/blog/2023/05/26/7.22.0">blog post</Link> for highlights and{" "}
           <Link to="https://github.com/babel/babel/releases/tag/v7.22.0">
             changelog
           </Link>{" "}
           for more details!
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8:website/src/pages/index.js
         </span>
       </div>
 
@@ -285,19 +242,12 @@ const Index = ({ language }) => {
       <div>
         <Hero language={language} />
 
-<<<<<<< HEAD:website/pages/en/index.js
-      <div className="mainContainer" style={{ padding: 0 }}>
-        <HomeContainer>
-          <GetStarted language={language} />
-        </HomeContainer>
-=======
         <div className="mainContainer" style={{ padding: 0 }}>
           <HomeContainer>
             <GetStarted language={language} />
           </HomeContainer>
           <OpenCollectiveSponsors language={language} />
         </div>
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8:website/src/pages/index.js
       </div>
     </Layout>
   );

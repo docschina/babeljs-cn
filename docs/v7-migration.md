@@ -26,11 +26,7 @@ translators:
 
 Babel 之前在处理 `node_modules` 、symlinks 以及 monorepos 时有一些问题。为此，我们进行了一些更改：Babel 将停止查找 `package.json` 边界而支持查找链。对于 monorepos，我们添加了一个新的 `babel.config.js` 文件，它将集中管理我们所有包的配置（或者你也可以为每个包进行单独配置）。在 7.1 中，我们引入了 [`rootMode`](options.md#rootmode) 选项，以便在必要时进一步查找。
 
-<<<<<<< HEAD
-## [弃用年度预设](/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
-=======
 ## [Yearly Preset Deprecations](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 “env“ 预设已经推出一年多了, 也完全取代了我们早期拥有并且推荐的一些预设。
 
@@ -146,11 +142,7 @@ import "core-js/fn/reflect/metadata";
 
 </details>
 
-<<<<<<< HEAD
-## [版本控制/依赖关系](/blog/2017/12/27/nearing-the-7.0-release.html#peer-dependencies-integrations)
-=======
 ## [Versioning/Dependencies](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release.html#peer-dependencies--integrations)
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 现在大多数插件/顶级包在 `@babel/core` 上都有一个 `peerDependency`。
 
@@ -171,11 +163,7 @@ import "core-js/fn/reflect/metadata";
 
 ### 作用域包
 
-<<<<<<< HEAD
-最重要的变化是最后将所有包切换到 [scoped packages](/blog/2017/12/27/nearing-the-7.0-release.html#renames-scoped-packages-babel-x)（[monorepo](https://github.com/babel/babel/tree/main/packages) 中的文件夹名称未更改，因此其 `package.json` 中的名称则没变）。
-=======
 The most important change is finally switching all packages to [scoped packages](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release.html#renames-scoped-packages-babel-x) (the folder names in the [monorepo](https://github.com/babel/babel/tree/main/packages) are not changed but the name in its `package.json` is).
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 这意味着不会再有意外/故意地抢注名称、与社区插件明确分隔或更简单命名约定争议等问题。
 
@@ -194,11 +182,7 @@ module.exports = {
 };
 ```
 
-<<<<<<< HEAD
-### [对于 TC39 提案，切换到 `-proposal-`](/blog/2017/12/27/nearing-the-7.0-release.html#renames-proposal)
-=======
 ### [Switch to `-proposal-` for TC39 Proposals](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release.html#renames-proposal)
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 这意味着任何不在年度版本（ES2015、ES2016 等）中的插件都应该重命名为 `-proposal`。 这样我们就可以更好地表明提案并未正式应用于 JavaScript。
 
@@ -209,11 +193,7 @@ module.exports = {
 
 这也意味着当提案进入第 4 阶段时，我们应该重命名包。
 
-<<<<<<< HEAD
-### [从包名称中删除年份](/blog/2017/12/27/nearing-the-7.0-release.html#renames-drop-the-year-from-the-plugin-name)
-=======
 ### [Remove the year from package names](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release.html#renames-drop-the-year-from-the-plugin-name)
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 一些插件的名称中有 `-es3-` 或 `-es2015-`，但这些都是不必要的。
 
@@ -322,11 +302,7 @@ Babel 6 中的 `babel-node` 命令是 `babel-cli` 包的一部分。 在 Babel 7
 
 ### `@babel/runtime`, `@babel/plugin-transform-runtime`
 
-<<<<<<< HEAD
-我们已经将 Babel 的 helper 与它在运行时的 “polyfilling” 行为分开了。[PR](https://github.com/babel/babel/pull/8266) 中有更多细节。
-=======
 We have separated out Babel's helpers from its "polyfilling" behavior in runtime. More details in the [PR](https://github.com/babel/babel/pull/8266).
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 [`@babel/runtime`](runtime.md) 现在只包含 helpers，如果你需要 `core-js` 你可以使用 [`@babel/runtime-corejs2`](runtime-corejs2.md) 和 transform 中提供的参数。对于两者，你仍然需要 [`@babel/plugin-transform-runtime`](plugin-transform-runtime.md)
 
@@ -349,13 +325,8 @@ npm install @babel/plugin-transform-runtime --save-dev
 
 因此，如果您需要通过 `transform-runtime` 支持 `core-js`，现在可以传递 `corejs` 选项并使用 `@babel/runtime-corejs2` 依赖项而不是 `@babel/runtime`。
 
-<<<<<<< HEAD
-```sh
-# 作为生产依赖安装运行时
-=======
 ```sh title="Shell"
 # install the runtime as a dependency
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 npm install @babel/runtime-corejs2
 # 作为开发依赖安装插件
 npm install @babel/plugin-transform-runtime --save-dev
@@ -575,11 +546,7 @@ tag(_templateObject);
 
 TC39 决定放弃这个提议。你可以将逻辑写到构造函数或静态方法中。
 
-<<<<<<< HEAD
-有关更多信息，请参阅 [/docs/plugins/transform-class-constructor-call/](/docs/plugins/transform-class-constructor-call/)。
-=======
 See [/docs/plugins/transform-class-constructor-call/](https://old.babeljs.io/docs/plugins/transform-class-constructor-call/) for more information.
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ```diff
   class Point {

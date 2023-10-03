@@ -3,24 +3,6 @@ title: 学习 ES2015
 id: learn
 ---
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-info">
-  <h3>es6 特性</h3>
-  <p>
-    本文源自 Luke Hoban 优秀的
-    <a href="https://git.io/es6features">es6 特性</a>仓库。去 GitHub
-    给他一个 star 吧！
-  </p>
-</blockquote>
-
-<blockquote class="babel-callout babel-callout-info">
-  <h4>REPL</h4>
-  <p>
-    一定要在线上的 <a href="/repl">REPL</a> 中
-    尝试一下这些特性嗷！
-  </p>
-</blockquote>
-=======
 :::info es6features
 This document was originally taken from Luke Hoban's excellent <a href="https://git.io/es6features">es6features</a> repo. Go give it a star
 on GitHub!
@@ -29,7 +11,6 @@ on GitHub!
 :::info REPL
 Be sure to try these features out in the online <a href="/repl">REPL</a>.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## 简介
 
@@ -53,13 +34,8 @@ ES2015 是对该语言的一次重大更新，也是自 2009 年 ES5 标准化�
 不同于函数，箭头函数与其上下文代码共享相同的 `this`。
 如果一个箭头函数在另一个函数里面，它共享其父函数的 "arguments "变量。
 
-<<<<<<< HEAD
-```js
-// 表达式写法
-=======
 ```js title="JavaScript"
 // Expression bodies
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 var odds = evens.map(v => v + 1);
 var nums = evens.map((v, i) => v + i);
 
@@ -150,17 +126,9 @@ var obj = {
 };
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-warning">
-  <p>
-   <code>__proto__</code> 属性必须得引擎原生支持，在前一版 ECMAScript 中已被弃用。大多数引擎现在仍然支持此属性，但 <a href="https://kangax.github.io/compat-table/es6/#__proto___in_object_literals">有些已不支持了</a>。另外，请注意，只有 <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-additional-ecmascript-features-for-web-browsers">web 游览器</a> 需要实现它，因为它在 <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-object.prototype.__proto__">附件 B</a> 中。它在 Node 中是可用的。
-  </p>
-</blockquote>
-=======
 :::caution
 The <code>__proto__</code> property requires native support, and was deprecated in previous ECMAScript versions. Most engines now support the property, but <a href="https://kangax.github.io/compat-table/es6/#__proto___in_object_literals">some do not</a>. Also, note that only <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-additional-ecmascript-features-for-web-browsers">web browsers</a> are required to implement it, as it's in <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-object.prototype.__proto__">Annex B</a>. It is available in Node.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### 模版字符串
 
@@ -170,13 +138,8 @@ The <code>__proto__</code> property requires native support, and was deprecated 
 避免注入攻击 或
 从字符串内容中构造更高级别的数据结构。
 
-<<<<<<< HEAD
-```js
-// 创建字符串字面量
-=======
 ```js title="JavaScript"
 // Basic literal string creation
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 `This is a pretty little template string.`
 
 // 多行字符串
@@ -204,13 +167,8 @@ GET`http://foo.org/bar?a=${a}&b=${b}
 解构是软失败的，类似于标准的对象查找 `foo["bar"]`，
 在没有找到时提供 `undefined` 值。
 
-<<<<<<< HEAD
-```js
-// 列表匹配
-=======
 ```js title="JavaScript"
 // list matching
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 var [a, ,b] = [1,2,3];
 a === 1;
 b === 3;
@@ -340,18 +298,9 @@ interface Iterable {
 }
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-info">
-  <h4> 通过 polyfill 使用</h4>
-  <p>
-  为了使用迭代器，你必须引入 Babel <a href="/docs/usage/polyfill">polyfill</a>。
-  </p>
-</blockquote>
-=======
 :::info Support via polyfill
 In order to use Iterators you must include the Babel <a href="/docs/babel-polyfill">polyfill</a>.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### 生成器
 
@@ -394,18 +343,9 @@ interface Generator extends Iterator {
 }
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-info">
-  <h4> 通过 polyfill 使用</h4>
-  <p>
-  为了使用生成器，你必须引入 Babel <a href="/docs/usage/polyfill">polyfill</a>。
-  </p>
-</blockquote>
-=======
 :::info Support via polyfill
 In order to use Generators you must include the Babel <a href="/docs/babel-polyfill">polyfill</a>.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### Comprehensions
 
@@ -418,13 +358,8 @@ In order to use Generators you must include the Babel <a href="/docs/babel-polyf
 以及新的 API 来处理 21 位代码点级别的字符串。
 这些新增功能支持在 JavaScript 中构建全局应用程序。
 
-<<<<<<< HEAD
-```js
-// 与 ES5.1 一样
-=======
 ```js title="JavaScript"
 // same as ES5.1
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 "𠮷".length == 2
 
 // 新的正则表达模式, opt-in ‘u’
@@ -484,37 +419,17 @@ import exp, {pi, e} from "lib/mathplusplus";
 console.log("e^π = " + exp(pi));
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-info">
-  <h4>模块格式化</h4>
-  <p>
-    Babel 可以将 ES2015 模块转译成几种不同的格式，
-    包括 Common.js、AMD、System 和 UMD。你甚至可以创建你自己的格式。
-    更多细节请查看<a href="/docs/plugins/">模块文档</a>。
-  </p>
-</blockquote>
-=======
 :::info Module Formatters
 Babel can transpile ES2015 Modules to several different formats including
 Common.js, AMD, System, and UMD. You can even create your own. For more
 details see the <a href="/docs/plugins/">modules docs</a>.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### 模块加载器
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-warning">
-  <h4>非 ES2015 标准部分</h4>
-  <p>
-    在 ECMAScript 2015 的规范中，这被留作实施定义。最终的标准将在 WHATWG 的 <a href="https://whatwg.github.io/loader/">Loader 规范</a>中，但那是目前正在进行的工作。下面的内容来自之前的 ES2015 草案。
-  </p>
-</blockquote>
-=======
 :::caution Not part of ES2015
 This is left as implementation-defined within the ECMAScript 2015 specification. The eventual standard will be in WHATWG's <a href="https://whatwg.github.io/loader/">Loader specification</a>, but that is currently a work in progress. What is below is from a previous ES2015 draft.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 模块加载器支持：
 
@@ -527,13 +442,8 @@ This is left as implementation-defined within the ECMAScript 2015 specification.
 可以配置默认的模块加载器，
 也可以构建新的加载器来执行和加载被隔离或受限环境中的代码。
 
-<<<<<<< HEAD
-```js
-// 动态加载 – ‘System’ 是默认的加载器
-=======
 ```js title="JavaScript"
 // Dynamic loading – ‘System’ is default loader
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 System.import("lib/math").then(function(m) {
   alert("2π = " + m.sum(m.pi, m.pi));
 });
@@ -549,25 +459,6 @@ System.get("jquery");
 System.set("jquery", Module({$: $})); // 警告：未定稿
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-warning">
-  <h4>其他必须的 polyfill</h4>
-  <p>
-    由于 Babel 默认使用 common.js 模块，
-    它不包括模块加载器 API 的 polyfill。
-    可以从<a href="https://github.com/ModuleLoader/es6-module-loader">这里</a>获取其他 polyfill。
-  </p>
-</blockquote>
-
-<blockquote class="babel-callout babel-callout-info">
-  <h4>使用模块加载器</h4>
-  <p>
-    为了使用这个，你需要告诉 Babel 使用 <code>system</code> 模块格式化。
-    也必须确保检查
-    <a href="https://github.com/systemjs/systemjs">System.js</a>
-  </p>
-</blockquote>
-=======
 :::caution Additional polyfill needed
 Since Babel defaults to using common.js modules, it does not include the
 polyfill for the module loader API. Get it <a href="https://github.com/ModuleLoader/es6-module-loader">here</a>.
@@ -576,7 +467,6 @@ polyfill for the module loader API. Get it <a href="https://github.com/ModuleLoa
 :::info Using Module Loader
 In order to use this, you'll need to tell Babel to use the <code>system</code> module formatter. Also be sure to check out <a href="https://github.com/systemjs/systemjs">System.js</a>.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 
 ### Map + Set + WeakMap + WeakSet
@@ -608,18 +498,9 @@ ws.add({ data: 42 });
 // 因为添加的对象没有其他引用，所以它不会被保存在集合中
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-info">
-  <h4>通过 polyfill 使用</h4>
-  <p>
-    为了在所有环境中使用 Maps、 Sets、 WeakMaps 以及 WeakSets，你必须引入 Babel <a href="/docs/usage/polyfill">polyfill</a>.
-  </p>
-</blockquote>
-=======
 :::info Support via polyfill
 In order to support Maps, Sets, WeakMaps, and WeakSets in all environments you must include the Babel <a href="/docs/babel-polyfill">polyfill</a>.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### 代理
 
@@ -627,13 +508,8 @@ In order to support Maps, Sets, WeakMaps, and WeakSets in all environments you m
 可用于拦截、对象虚拟化、
 记录/归档等。
 
-<<<<<<< HEAD
-```js
-// 代理一个普通对象
-=======
 ```js title="JavaScript"
 // Proxying a normal object
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 var target = {};
 var handler = {
   get: function (receiver, name) {
@@ -645,13 +521,8 @@ var p = new Proxy(target, handler);
 p.world === "Hello, world!";
 ```
 
-<<<<<<< HEAD
-```js
-// 代理一个函数对象
-=======
 ```js title="JavaScript"
 // Proxying a function object
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 var target = function () { return "I am the target"; };
 var handler = {
   apply: function (receiver, ...args) {
@@ -698,18 +569,9 @@ var handler =
 }
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-danger">
-  <h4>不支持的特性</h4>
-  <p>
-    由于 ES5 的限制，代理不能被转译或 polyfill。可以查看 <a href="https://kangax.github.io/compat-table/es6/#test-Proxy">多种 JavaScript 引擎</a>的支持情况。
-  </p>
-</blockquote>
-=======
 :::danger Unsupported feature
 Due to the limitations of ES5, Proxies cannot be transpiled or polyfilled. See support in <a href="https://kangax.github.io/compat-table/es6/#test-Proxy">various JavaScript engines</a>.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### Symbols
 
@@ -743,30 +605,16 @@ var c = new MyClass("hello")
 c["key"] === undefined
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-info">
-  <h4>通过 polyfill 提供有限的支持</h4>
-  <p>
-    有限的支持依赖于 Babel <a href="/docs/usage/polyfill">polyfill</a>。由于语言级别的限制，一些功能并不能被转译或 polyfilled。详情查看 core.js's <a href="https://github.com/zloirock/core-js#caveats-when-using-symbol-polyfill">caveats  章节</a>。
-  </p>
-</blockquote>
-=======
 :::info Limited support via polyfill
 Limited support requires the Babel <a href="/docs/babel-polyfill">polyfill</a>. Due to language limitations, some features can't be transpiled or polyfilled. See core.js's <a href="https://github.com/zloirock/core-js#caveats-when-using-symbol-polyfill">caveats section</a> for more details.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### 内置子类化
 
 在 ES2015，如 `Array`、`Date` 和 DOM `Element`等可以被子类化。
 
-<<<<<<< HEAD
-```js
-// 自定义 Array 子类
-=======
 ```js title="JavaScript"
 // User code of Array subclass
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 class MyArray extends Array {
     constructor(...args) { super(...args); }
 }
@@ -776,18 +624,9 @@ arr[1] = 12;
 arr.length == 2
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-warning">
-  <h4>部分支持</h4>
-  <p>
-    内置的子类化只可以在个别基础类上执行，比如 <code>HTMLElement</code> <strong>可以</strong>被子类化。然而许多像 <code>Date</code>、<code>Array</code> 以及 <code>Error</code> 等由于 ES5 引擎的限制<strong>不能</strong>
-  </p>
-</blockquote>
-=======
 :::caution Partial support
 Built-in subclassability should be evaluated on a case-by-case basis as classes such as <code>HTMLElement</code> <strong>can</strong> be subclassed while many such as <code>Date</code>, <code>Array</code> and <code>Error</code> <strong>cannot</strong> be due to ES5 engine limitations.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### Math + Number + String + Object APIs
 
@@ -817,22 +656,9 @@ Array.of(1, 2, 3) // 与 new Array(...) 一样，但不具备特殊箭头函数�
 Object.assign(Point, { origin: new Point(0,0) })
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-warning">
-  <h4>通过 polyfill 提供有限支持</h4>
-  <p>
-    Babel <a href="/docs/usage/polyfill">polyfill</a> 支持大多数 API。
-    但是由于各种原因，某些功能被省略了。
-    (例如：<code>String.prototype.normalize</code> 需要大量额外代码来支持。）
-    你可以在<a href="https://github.com/addyosmani/es6-tools#polyfills">这里</a>
-    找到更多 polyfills。
-  </p>
-</blockquote>
-=======
 :::caution Limited support from polyfill
 Most of these APIs are supported by the Babel <a href="/docs/babel-polyfill">polyfill</a>. However, certain features are omitted for various reasons (e.g. <code>String.prototype.normalize</code> needs a lot of additional code to support). You can find more polyfills <a href="https://github.com/addyosmani/es6-tools#polyfills">here</a>.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### 二进制和八进制字面量
 为二进制（`b`）和八进制（`o`）增加了两种新的数字字面量。
@@ -842,19 +668,9 @@ Most of these APIs are supported by the Babel <a href="/docs/babel-polyfill">pol
 0o767 === 503 // true
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-warning">
-  <h4>只支持字面量形式</h4>
-  <p>
-    Babel 只能转译 <code>0o767</code> 却不能转译
-    <code>Number("0o767")</code>.
-  </p>
-</blockquote>
-=======
 :::caution Only supports literal form
 Babel is only able to transform <code>0o767</code> and not <code>Number("0o767")</code>.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 
 ### Promises
@@ -879,18 +695,9 @@ var p = timeout(1000).then(() => {
 })
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-info">
-  <h4>通过 polyfill 支持</h4>
-  <p>
-    为了支持 Promise，你必须引入 Babel <a href="/docs/usage/polyfill">polyfill</a>.
-  </p>
-</blockquote>
-=======
 :::info Support via polyfill
 In order to support Promises you must include the Babel <a href="/docs/babel-polyfill">polyfill</a>.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### 反射 API
 
@@ -913,18 +720,9 @@ var instance = Reflect.construct(C, [20, 22]);
 instance.c; // 42
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-info">
-  <h4>通过 polyfill 支持</h4>
-  <p>
-    为了支持反射，你必须引入 Babel <a href="/docs/usage/polyfill">polyfill</a>.
-  </p>
-</blockquote>
-=======
 :::info Support via polyfill
 In order to use the Reflect API you must include the Babel <a href="/docs/babel-polyfill">polyfill</a>.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### 尾调用
 
@@ -943,19 +741,8 @@ function factorial(n, acc = 1) {
 factorial(100000)
 ```
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-warning">
-  <h4>在 Babel 6 中暂时删除了</h4>
-  <p>
-    由于全局支持尾部调用的复杂性和性能影响，
-    只支持显式自引用尾部递归。
-    由于其他 Bug 而被删除，将被重新实现。
-  </p>
-</blockquote>
-=======
 :::caution Temporarily Removed in Babel 6
 Only explicit self referencing tail recursion was supported due to the
 complexity and performance impact of supporting tail calls globally.
 Removed due to other bugs and will be re-implemented.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8

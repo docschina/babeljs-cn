@@ -8,35 +8,21 @@ id: config-files
 Babel 有两种并行的配置文件方式，可以一起使用，也可以单独使用。
 
 <details>
-<<<<<<< HEAD
-  <summary>历史</summary>
-| 版本 | 变更 |
-=======
   <summary>History</summary>
 
-| Version | Changes |
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
+| 版本 | 变更 |
 | --- | --- |
 | `v7.21.0` | Support `.babelrc.cts` and `babel.config.cts` (Experimental) |
 | `v7.8.0`  | Support `.babelrc.mjs` and `babel.config.mjs` |
 | `v7.7.0`  | Support `.babelrc.json`, `.babelrc.cjs`, `babel.config.json`, `babel.config.cjs` |
 </details>
 
-<<<<<<< HEAD
 - 项目范围的配置
   - `babel.config.*` 文件，可用如下不同扩展名： `.json`, `.js`, `.cjs`, `.mjs`。
 - 相对文件的配置
   - `.babelrc.*` 文件，可用如下不同扩展名： `.json`, `.js`, `.cjs`, `.mjs`。
   - 不带扩展名的 `.babelrc`。
   - 带有 `"babel"` 属性的 `package.json` 文件。
-=======
-- Project-wide configuration
-  - `babel.config.*` files, with the following extensions: `.json`, `.js`, `.cjs`, `.mjs`, `.cts`.
-- File-relative configuration
-  - `.babelrc.*` files, with the following extensions: `.json`, `.js`, `.cjs`, `.mjs`, `.cts`.
-  - `.babelrc` file, with no extension.
-  - `package.json` files, with a `"babel"` key.
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## 项目范围的配置
 
@@ -150,14 +136,6 @@ packages/
   `babel.config.js` 和 `.babelrc.js` 的行为类似 `.mjs`，
   否则它们与 `.cjs` 文件完全相同。
 
-<<<<<<< HEAD
-JavaScript 配置文件可以导出一个对象，也可以导出一个函数，
-当调用该函数时，该函数将返回生成的配置。
-函数返回配置被赋予一些特殊功能，因为它们可以访问由 Babel 本身公开的 API。
-有关更多信息，请参阅 [配置函数 API](#config-function-api)。
-
-> 出于兼容性原因，`.babelrc` 是 `.babelrc.json` 的别名。
-=======
 - `babel.config.cts` and `.babelrc.cts` allow you to define your configuration as Typescript + CommonJS. You must either install `@babel/preset-typescript`, or run Babel using `ts-node`.
 
   :::note
@@ -172,7 +150,6 @@ by Babel itself. See [Config Function API](#config-function-api) for more inform
 :::note
 For compatibility reasons, `.babelrc` is an alias for `.babelrc.json`.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## 单体式仓库
 
@@ -282,13 +259,9 @@ module.exports = require("babel-jest").default.createTransformer({
 
 因此所有的 JS 文件都将使用你指定的已启用该选项的 `babel-jest` 版本进行处理。
 
-<<<<<<< HEAD
-#### 其他
-=======
 :::note
 When using `babel-jest` &lt; 27, you must omit the `.default` part: `require("babel-jest").createTransformer({ ...`.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 > 注意：当使用 `babel-jest` 等版本时，你必须删除 `.default` 部分：`require("babel-jest").createTransformer({ ...`。
 
@@ -395,13 +368,9 @@ JS 配置很棒，因为他们可以动态计算配置，
 - `api.env()` 返回当前的 `envName` 字符串。
 - `api.env(envName => envName.startsWith("test-"))` 如果 env 以 "test-" 开头，则返回 `true`。
 
-<<<<<<< HEAD
-> **注意:** 这个函数在内部使用上面提到的 [`api.cache`](#apicache) 来确保 Babel 知道这个构建依赖于特定的 `envName`。您不应该将它和 `api.cache.forever()` 或者 `api.cache.never()` 一起使用。
-=======
 :::note
 This function internally makes use of [`api.cache`](#apicache) mentioned above to ensure that Babel is aware that this build depends on a specific `envName`. You should not use it alongside with `api.cache.forever()` or `api.cache.never()`.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ### `api.caller(cb)`
 

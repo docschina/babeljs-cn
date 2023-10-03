@@ -4,29 +4,16 @@ title: "@babel/plugin-transform-class-properties"
 sidebar_label: class-properties
 ---
 
-<<<<<<< HEAD:docs/plugin-proposal-class-properties.md
-> **提示**：在 [ES2022](https://github.com/tc39/proposals/blob/master/finished-proposals.md)，`@babel/preset-env` 包含此插件。
-=======
 :::info
 This plugin is included in `@babel/preset-env`, in [ES2022](https://github.com/tc39/proposals/blob/master/finished-proposals.md)
 :::
 
 ## Example
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8:docs/plugin-transform-class-properties.md
 
 ## 示例
 
 以下展示了一个包含 4 个属性的类，它们将会被转译。
 
-<<<<<<< HEAD:docs/plugin-proposal-class-properties.md
-```js
-  class Bork {
-    // 属性初始化器语法
-    instanceProperty = "bork";
-    boundFunction = () => {
-      return this.instanceProperty;
-    };
-=======
 ```js title="JavaScript"
 class Bork {
   //Property initializer syntax
@@ -34,7 +21,6 @@ class Bork {
   boundFunction = () => {
     return this.instanceProperty;
   };
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8:docs/plugin-transform-class-properties.md
 
     // 静态类属性
     static staticProperty = "babelIsCool";
@@ -129,11 +115,7 @@ class Bork {
 }
 ```
 
-<<<<<<< HEAD:docs/plugin-proposal-class-properties.md
-如果没有使用选项 `{ "setPublicClassFields": true }`，上面的代码将使用 `Object.defineProperty`，被编译为如下代码：
-=======
 When `setPublicClassFields` is `false`, the above code will compile to the following, using `Object.defineProperty`:
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8:docs/plugin-transform-class-properties.md
 
 ```js title="JavaScript"
 var Bork = function Bork() {
@@ -166,11 +148,7 @@ Object.defineProperty(Bork, "b", {
 });
 ```
 
-<<<<<<< HEAD:docs/plugin-proposal-class-properties.md
-但是，使用 `{ "setPublicClassFields": true }`，它将被编译为赋值表达式的形式：
-=======
 When `setPublicClassFields` is set to `true`, it will compile using assignment expressions:
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8:docs/plugin-transform-class-properties.md
 
 ```js title="JavaScript"
 var Bork = function Bork() {
@@ -183,13 +161,9 @@ Bork.a = "foo";
 Bork.b = void 0;
 ```
 
-<<<<<<< HEAD:docs/plugin-proposal-class-properties.md
-> 你可以通过[该链接](https://babeljs.io/docs/en/plugins#plugin-options)了解更多插件配置选项。
-=======
 :::tip
 You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8:docs/plugin-transform-class-properties.md
 
 ## 参考
 

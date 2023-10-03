@@ -17,11 +17,7 @@ title: 插件
 }
 ```
 
-<<<<<<< HEAD
-你还可以指定插件的 相对/绝对 路径。
-=======
 You can also specify a relative/absolute path to your plugin.
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ```json title="babel.config.json"
 {
@@ -35,29 +31,17 @@ You can also specify a relative/absolute path to your plugin.
 
 这些插件可以转译你的代码。
 
-<<<<<<< HEAD
-<blockquote class="babel-callout babel-callout-info">
-  <p>
-    转换类插件将启用相应的语法类插件，所以你不必两者都指定。
-  </p>
-</blockquote>
-=======
 :::info
 Transform plugins will enable the corresponding syntax plugin so you don't have to specify both.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## 语法类插件
 
 大多数语法可以通过 Babel 进行转译。在比较罕见的情况下（如果转译还没有实现，或者没有默认的实现方式），你可以使用 `@babel/plugin-syntax-bigint` 之类的插件来只允许 Babel **解析** 特定类型的语法。例如你希望 Babel 只执行代码分析或代码重构，以此来保留源代码。
 
-<<<<<<< HEAD
-> 注意：如果你已经使用了相应的转换插件，则不需要指定语法插件，因为它会自动启用。
-=======
 :::tip
 You don't need to specify the syntax plugin if the corresponding transform plugin is used already, since it enables it automatically.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 或者，你也可以在 Babel 解析器中设定相应 [`plugins` 选项](parser.md#plugins)：
 

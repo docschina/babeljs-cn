@@ -5,11 +5,7 @@ title: 使用指南
 
 无论你是“终端用户”还是基于 Babel 自身构建一个集成工具的用户，Babel 工具链中都有很多工具可以让你轻松使用 Babel。这里简要介绍下这些工具，你可以在文档的“用法”部分中阅读有关它们的更多信息。
 
-<<<<<<< HEAD
-> 如果你正在使用框架，不同框架配置 Babel 的方式可能会有所不同，实际上有些框架已经为你配置。具体的配置方法请查看 [交互式设置指南](/setup.html)。
-=======
 > If you're using a framework, the work of configuring Babel might be different or actually already handled for you. Check out our [interactive setup guide](/setup) instead.
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## 概览
 
@@ -261,22 +257,12 @@ For example:
 
 然后由于 [@babel/polyfill](polyfill.md) 已被 <a href="#polyfill-deprecated">废弃</a>，在我们模拟完整 ES2015+ 环境的入口文件中应首先导入 [core-js](https://github.com/zloirock/core-js) (用于 polyfill ECMAScript 功能）：
 
-<<<<<<< HEAD
-```js
-import "core-js/stable";
-```
-=======
 ```js title="JavaScript"
  import "core-js/stable";
  ```
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## 总结
 
 我们使用 `@babel/cli` 从终端运行 Babel，`@babel/polyfill` 用于 polyfill 所有新的 JavaScript 功能，`env` preset 只包含我们使用的功能的转换规则，polyfills 用于填充目标浏览器中缺少的功能。
 
-<<<<<<< HEAD
-有关使用构建系统设置 Babel，以及 IDE 等更多信息，请查看 [交互式设置指南](/setup.html)。
-=======
 For more information on setting up Babel with your build system, IDE, and more, check out our [interactive setup guide](/setup).
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8

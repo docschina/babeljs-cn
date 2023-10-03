@@ -6,13 +6,7 @@ sidebar_label: decorators
 
 ## 示例
 
-<<<<<<< HEAD
-(该示例来源于提案中)
-
-### 简单的类装饰器（class decorator）
-=======
 ### Simple class decorator
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ```js title="JavaScript"
 @annotation
@@ -36,11 +30,7 @@ function isTestable(value) {
 }
 ```
 
-<<<<<<< HEAD
-### 类函数装饰器（class function decorator）
-=======
 ### Class method decorator {#class-function-decorator}
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ```js title="JavaScript"
 class C {
@@ -77,17 +67,7 @@ npm install --save-dev @babel/plugin-proposal-decorators
 }
 ```
 
-<<<<<<< HEAD
-### 通过 CLI 使用
-
-```sh
-babel --plugins @babel/plugin-proposal-decorators script.js
-```
-
-### 通过 Node API 使用
-=======
 ### Via Node API
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ```js title="JavaScript"
 require("@babel/core").transformSync("code", {
@@ -162,13 +142,6 @@ export @decorator class Bar {}
 export class Foo {}
 ```
 
-<<<<<<< HEAD
-添加该选项是为了针对于两种可能的语法进行实验，帮助 TC39 收集社区的反馈。当前提案建议在 `export` 之后设置装饰器。
-
-### `legacy`
-
-> **⚠️ 弃用**：使用 `version: "legacy"` 代替。此选项是一个遗留的别名。
-=======
 This option was originally added to help tc39 collect feedback from the community by allowing experimentation with the proposed syntaxes. The proposal has now settled on allowing decorators either before or after `export`.
 
 ### `legacy`
@@ -176,19 +149,11 @@ This option was originally added to help tc39 collect feedback from the communit
 :::danger Deprecated
 Use `version: "legacy"` instead. This option is a legacy alias.
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 `boolean`，默认为 `false`
 
 使用历史遗留（stage 1）的装饰器中的语法和行为。
 
-<<<<<<< HEAD
-#### 注意：`@babel/plugin-proposal-class-properties` 的兼容性问题
-
-如果你手动引用了插件 `@babel/plugin-proposal-class-properties` 并使用了它，请确保在引用 `@babel/plugin-proposal-class-properties` 之前引用 `@babel/plugin-proposal-decorators`。
-
-错误示例：
-=======
 #### NOTE: Compatibility with `@babel/plugin-transform-class-properties`
 
 If you are including your plugins manually and using class elements transforms such as
@@ -198,7 +163,6 @@ If you are including your plugins manually and using class elements transforms s
 - `@babel/plugin-transform-class-static-block`
 
 make sure that `@babel/plugin-proposal-decorators` comes _before_ them.
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ```diff title="babel.config.json"
 {
@@ -243,26 +207,14 @@ If you are using `@babel/preset-env` and legacy decorators, you must ensure the 
 }
 ```
 
-<<<<<<< HEAD
-正确示例：
-=======
 The `include` option will enable the transforms included in `@babel/preset-env` so you can safely remove them from your `package.json`.
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 :::tip
 You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
 :::
 
-<<<<<<< HEAD
-> 你可以通过[该链接](https://babeljs.io/docs/en/plugins#plugin-options)了解更多插件配置选项。
-=======
 :::
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
 
 ## 参考
 
-<<<<<<< HEAD
-* [提案：JavaScript 装饰器](https://github.com/wycats/javascript-decorators/blob/master/README.md)
-=======
 - [Proposal: JavaScript Decorators](https://github.com/tc39/proposal-decorators)
->>>>>>> 9f3c7722104ca48570bbfade3d1ca7026f32d8c8
