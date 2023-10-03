@@ -1,6 +1,6 @@
 ---
 id: babel-plugin-transform-react-constant-elements
-title: @babel/plugin-transform-react-constant-elements
+title: "@babel/plugin-transform-react-constant-elements"
 sidebar_label: react-constant-elements
 ---
 
@@ -11,48 +11,62 @@ React elements to the highest possible scope, preventing multiple unnecessary re
 
 **In**
 
-```jsx
+```jsx title="JSX"
 const Hr = () => {
   return <hr className="hr" />;
 };
+
+const WithChildren = (props) => {
+  return <div className={props.className}>
+    <hr />
+  </div>;
+}
 ```
 
 **Out**
 
-```jsx
-const _ref = <hr className="hr" />;
+```jsx title="JSX"
+var _hr, _hr2;
 
 const Hr = () => {
-  return _ref;
+  return _hr || (_hr = <hr className="hr" />);
 };
+
+const WithChildren = (props) => {
+  return <div className={props.className}>
+    {_hr2 || (_hr2 = <hr />)}
+  </div>;
+}
 ```
 
 **Deopts**
 
 - **Spread Operator**
 
-  ```jsx
+  ```jsx title="JSX"
   <div {...foobar} />
   ```
 
 - **Refs**
 
-  ```jsx
+  ```jsx title="JSX"
   <div ref="foobar" />
   <div ref={node => this.node = node} />
   ```
 
 - **Mutable Properties**
 
-> See https://github.com/facebook/react/issues/3226 for more on this
+:::tip
+See https://github.com/facebook/react/issues/3226 for more on this
+:::
 
-```js
+```js title="JavaScript"
 <div style={{ width: 100 }} />
 ```
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-transform-react-constant-elements
 ```
 
@@ -60,7 +74,7 @@ npm install --save-dev @babel/plugin-transform-react-constant-elements
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-transform-react-constant-elements"]
 }
@@ -77,7 +91,7 @@ that the element won't modify its own props, you can permit objects to be allowe
 
 This will skip the `Mutable Properties` deopt.
 
-```json
+```json title="babel.config.json"
 {
   "plugins": [
     [
@@ -88,17 +102,19 @@ This will skip the `Mutable Properties` deopt.
 }
 ```
 
-> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::tip
+You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-transform-react-constant-elements script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-transform-react-constant-elements"],
 });

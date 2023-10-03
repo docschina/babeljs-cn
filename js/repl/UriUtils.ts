@@ -12,6 +12,7 @@ const URL_KEYS = [
   "code",
   "debug",
   "forceAllTransforms",
+  "modules",
   "shippedProposals",
   "circleciRepo",
   "evaluate",
@@ -51,7 +52,7 @@ const decode = (value: any) => {
 };
 
 const mergeDefinedKeys = (raw: any, keys: Array<string>, target: any) => {
-  keys.forEach(key => {
+  keys.forEach((key) => {
     if (raw[key] != null) {
       target[key] = raw[key];
     }
@@ -87,7 +88,7 @@ const parseQuery = () => {
 };
 
 const updateQuery = (state: ReplState) => {
-  const query = URL_KEYS.map(key => {
+  const query = URL_KEYS.map((key) => {
     if (state[key] == null) {
       return null;
     } else if (key === "code") {
@@ -96,7 +97,7 @@ const updateQuery = (state: ReplState) => {
       return key + "=" + encode(state[key]);
     }
   })
-    .filter(value => value)
+    .filter((value) => value)
     .join("&");
 
   window.location.hash = "?" + query;

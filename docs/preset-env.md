@@ -1,6 +1,6 @@
 ---
 id: babel-preset-env
-title: @babel/preset-env
+title: "@babel/preset-env"
 ---
 
 `@babel/preset-env` is a smart preset that allows you to use the latest JavaScript without needing to micromanage which syntax transforms (and optionally, browser polyfills) are needed by your target environment(s). This both makes your life easier and JavaScript bundles smaller!
@@ -12,16 +12,8 @@ title: @babel/preset-env
 
 ## Install
 
-With [npm](https://www.npmjs.com):
-
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/preset-env
-```
-
-Or [yarn](https://yarnpkg.com):
-
-```sh
-yarn add @babel/preset-env --dev
 ```
 
 ## How Does it Work?
@@ -30,7 +22,9 @@ yarn add @babel/preset-env --dev
 
 We leverage these data sources to maintain [mappings of which version](https://github.com/babel/babel/blob/main/packages/babel-compat-data/data/plugins.json) of our supported target environments gained support of a JavaScript syntax or browser feature, as well as a mapping of those syntaxes and features to Babel transform plugins and core-js polyfills.
 
-> Note: `@babel/preset-env` won't include any JavaScript syntax proposals less than Stage 3 because at that stage in the TC39 process, it wouldn't be implemented by any browsers anyway. Those would need to be included manually. The `shippedProposals` option will include Stage 3 proposals that some browsers have already implemented.
+:::note
+`@babel/preset-env` won't include any JavaScript syntax proposals less than Stage 3 because at that stage in the TC39 process, it wouldn't be implemented by any browsers anyway. Those would need to be included manually. The `shippedProposals` option will include Stage 3 proposals that some browsers have already implemented.
+:::
 
 `@babel/preset-env` takes any [target environments you've specified](#targets) and checks them against its mappings to compile a list of plugins and passes it to Babel.
 
@@ -40,11 +34,13 @@ For browser- or Electron-based projects, we recommend using a [`.browserslistrc`
 
 By default `@babel/preset-env` will use [browserslist config sources](https://github.com/ai/browserslist#queries) _unless_ either the [targets](#targets) or [ignoreBrowserslistConfig](#ignorebrowserslistconfig) options are set.
 
-> Please note that if you are relying on browserslist's defaults query (either explicitly or by having no browserslist config), you will want to check out the [No targets](options.md#no-targets) section for information on preset-env's behavior.
+:::tip
+If you are relying on browserslist's defaults query (either explicitly or by having no browserslist config), you will want to check out the [No targets](options.md#no-targets) section for information on preset-env's behavior.
+:::
 
 For example, to only include polyfills and code transforms needed for users whose browsers have >0.25% market share (ignoring browsers without security updates like IE 10 and BlackBerry):
 
-```json
+```json title="babel.config.json"
 {
   "presets": [
     [
@@ -58,23 +54,21 @@ For example, to only include polyfills and code transforms needed for users whos
 }
 ```
 
-**browserslist**
-
-```
+```text title=".browserslistrc"
 > 0.25%
 not dead
 ```
 
 or
 
-**package.json**
-
-```
-"browserslist": "> 0.25%, not dead"
+```json title="package.json"
+{ "browserslist": "> 0.25%, not dead" }
 ```
 
-> Please note that since `v7.4.5` the browserslist query is resolved with [`mobileToDesktop: true`](https://github.com/browserslist/browserslist#js-api).
-> For example, if you want to create a snapshot of a query run `npx browserslist --mobile-to-desktop ">0.25%, not dead"`.
+:::note
+Please note that since `v7.4.5` the browserslist query is resolved with [`mobileToDesktop: true`](https://github.com/browserslist/browserslist#js-api).
+For example, if you want to create a snapshot of a query run `npx browserslist --mobile-to-desktop ">0.25%, not dead"`.
+:::
 
 ## Options
 
@@ -92,7 +86,9 @@ For usage, refer to the [`targets` option](options.md#targets) documentation.
 
 Added in: `v7.9.0`
 
-> Note: These optimizations will be enabled by default in Babel 8
+:::note
+These optimizations will be enabled by default in Babel 8
+:::
 
 By default, `@babel/preset-env` (and Babel plugins in general) grouped ECMAScript syntax features into collections of closely related smaller features. These groups can be large and include a lot of edge cases, for example "function arguments" includes destructured, default and rest parameters. From this grouping information, Babel enables or disables each group based on the browser support target you specify to `@babel/preset-env`’s `targets` option.
 
@@ -110,7 +106,9 @@ Enable more spec compliant, but potentially slower, transformations for any plug
 
 Enable ["loose" transformations](http://2ality.com/2015/12/babel6-loose-mode.html) for any plugins in this preset that allow them.
 
-> ⚠️ Consider migrating to the top level [`assumptions`](assumptions.md) available since Babel 7.13.
+:::caution
+Consider migrating to the top level [`assumptions`](assumptions.md) available since Babel 7.13.
+:::
 
 ### `modules`
 
@@ -136,6 +134,7 @@ Outputs to `console.log` the polyfills and transform plugins enabled by `preset-
 
 <details>
   <summary>History</summary>
+
 | Version | Changes |
 | --- | --- |
 | `v7.4.0` | Support injecting `core-js@3` polyfills |
@@ -145,7 +144,11 @@ An array of plugins to always include.
 
 Valid options include any:
 
-- [Babel plugins](https://github.com/babel/babel/blob/main/packages/babel-compat-data/scripts/data/plugin-features.js) - both with (`@babel/plugin-transform-spread`) and without prefix (`plugin-transform-spread`) are supported.
+- [Babel plugins](https://github.com/babel/babel/blob/main/packages/babel-compat-data/scripts/data/plugin-features.js) - both full and shorthand names are supported, for example the following are functionally equivalent:
+  * `@babel/plugin-transform-spread`
+  * `@babel/transform-spread`
+  * `babel-transform-spread`
+  * `transform-spread`
 
 - Built-ins (both for [core-js@2](https://github.com/babel/babel/blob/master/packages/babel-preset-env/src/polyfills/corejs2/built-in-definitions.js) and [core-js@3](https://github.com/babel/babel/blob/master/packages/babel-preset-env/src/polyfills/corejs3/built-in-definitions.js), such as `es.map`, `es.set`, or `es.object.assign`.
 
@@ -163,7 +166,9 @@ This option is useful if there is a bug in a native implementation, or a combina
 
 For example, Node 4 supports native classes but not spread. If `super` is used with a spread argument, then the `@babel/plugin-transform-classes` transform needs to be `include`d, as it is not possible to transpile a spread with `super` otherwise.
 
-> NOTE: The `include` and `exclude` options _only_ work with the [plugins included with this preset](https://github.com/babel/babel/blob/main/packages/babel-compat-data/scripts/data/plugin-features.js); so, for example, including `@babel/plugin-proposal-do-expressions` or excluding `@babel/plugin-proposal-function-bind` will throw errors. To use a plugin _not_ included with this preset, add them to your ["plugins"](options.md#plugins) directly.
+:::note
+The `include` and `exclude` options _only_ work with the [plugins included with this preset](https://github.com/babel/babel/blob/main/packages/babel-compat-data/scripts/data/plugin-features.js); so, for example, including `@babel/plugin-proposal-do-expressions` or excluding `@babel/plugin-proposal-function-bind` will throw errors. To use a plugin _not_ included with this preset, add them to your ["plugins"](options.md#plugins) directly.
+:::
 
 ### `exclude`
 
@@ -173,7 +178,7 @@ An array of plugins to always exclude/remove.
 
 The possible options are the same as the `include` option.
 
-This option is useful for excluding a transform like `@babel/plugin-transform-regenerator` if you don't use generators and don't want to include `regeneratorRuntime` (when using `useBuiltIns`) or for using another plugin like [fast-async](https://github.com/MatAtBread/fast-async) instead of [Babel's async-to-gen](plugin-proposal-async-generator-functions.md).
+This option is useful for excluding a transform like `@babel/plugin-transform-regenerator` if you don't use generators and don't want to include `regeneratorRuntime` (when using `useBuiltIns`) or for using another plugin like [fast-async](https://github.com/MatAtBread/fast-async) instead of [Babel's async-to-gen](plugin-transform-async-generator-functions.md).
 
 ### `useBuiltIns`
 
@@ -185,7 +190,7 @@ When either the `usage` or `entry` options are used, `@babel/preset-env` will ad
 
 Since `@babel/polyfill` was deprecated in 7.4.0, we recommend directly adding `core-js` and setting the version via the [`corejs`](#corejs) option.
 
-```sh
+```shell npm2yarn
 npm install core-js@3 --save
 
 # or
@@ -197,28 +202,31 @@ npm install core-js@2 --save
 
 <details>
   <summary>History</summary>
+
 | Version | Changes |
 | --- | --- |
 | `v7.4.0` | It replaces `"core-js/stable"` and `"regenerator-runtime/runtime"` entry imports |
 | `v7.0.0` | It replaces `"@babel/polyfill"` entry imports |
 </details>
 
-> NOTE: Only use `import "core-js";` once in your whole app.
-> If you are using `@babel/polyfill`, it already includes `core-js`: importing it twice will throw an error.
-> Multiple imports or requires of those packages might cause global collisions and other issues that are hard to trace.
-> We recommend creating a single entry file that only contains the `import` statements.
+:::tip
+Only use `import "core-js";` once in your whole app.
+If you are using `@babel/polyfill`, it already includes `core-js`: importing it twice will throw an error.
+Multiple imports or requires of those packages might cause global collisions and other issues that are hard to trace.
+We recommend creating a single entry file that only contains the `import` statements.
+:::
 
 This option enables a new plugin that replaces the `import "core-js/stable";` and `require("core-js");` statements with individual imports to different `core-js` entry points based on environment.
 
 **In**
 
-```js
+```js title="JavaScript"
 import "core-js";
 ```
 
 **Out (different based on environment)**
 
-```js
+```js title="JavaScript"
 import "core-js/modules/es.string.pad-start";
 import "core-js/modules/es.string.pad-end";
 ```
@@ -227,14 +235,14 @@ Importing `"core-js"` loads polyfills for every possible ECMAScript feature: wha
 
 **In**
 
-```js
+```js title="JavaScript"
 import "core-js/es/array";
 import "core-js/proposals/math-extensions";
 ```
 
 **Out (different based on environment)**
 
-```js
+```js title="JavaScript"
 import "core-js/modules/es.array.unscopables.flat";
 import "core-js/modules/es.array.unscopables.flat-map";
 import "core-js/modules/esnext.math.clamp";
@@ -248,8 +256,10 @@ import "core-js/modules/esnext.math.scale";
 
 You can read [core-js](https://github.com/zloirock/core-js)'s documentation for more information about the different entry points.
 
-> NOTE: When using `core-js@2` (either explicitly using the [`corejs: "2"`](#corejs) option or implicitly), `@babel/preset-env` will also transform imports and requires of `@babel/polyfill`.
-> This behavior is deprecated because it isn't possible to use `@babel/polyfill` with different `core-js` versions.
+:::note
+When using `core-js@2` (either explicitly using the [`corejs: "2"`](#corejs) option or implicitly), `@babel/preset-env` will also transform imports and requires of `@babel/polyfill`.
+This behavior is deprecated because it isn't possible to use `@babel/polyfill` with different `core-js` versions.
+:::
 
 #### `useBuiltIns: 'usage'`
 
@@ -257,45 +267,33 @@ Adds specific imports for polyfills when they are used in each file. We take adv
 
 **In**
 
-a.js
-
-```js
+```js title="a.js"
 var a = new Promise();
 ```
 
-b.js
-
-```js
+```js title="b.js"
 var b = new Map();
 ```
 
 **Out (if environment doesn't support it)**
 
-a.js
-
-```js
+```js title="a.js"
 import "core-js/modules/es.promise";
 var a = new Promise();
 ```
 
-b.js
-
-```js
+```js title="b.js"
 import "core-js/modules/es.map";
 var b = new Map();
 ```
 
 **Out (if environment supports it)**
 
-a.js
-
-```js
+```js title="a.js"
 var a = new Promise();
 ```
 
-b.js
-
-```js
+```js title="b.js"
 var b = new Map();
 ```
 
@@ -329,7 +327,7 @@ By default, only polyfills for stable ECMAScript features are injected: if you w
 
 With Babel 7's [JavaScript config file](config-files#javascript) support, you can force all transforms to be run if env is set to `production`.
 
-```js
+```js title="babel.config.js"
 module.exports = function(api) {
   return {
     presets: [
@@ -352,16 +350,20 @@ module.exports = function(api) {
 
 </details></p>
 
-> NOTE: `targets.uglify` is deprecated and will be removed in the next major in
-> favor of this.
+:::danger
+`targets.uglify` is deprecated and will be removed in the next major in
+favor of this.
+:::
 
 By default, this preset will run all the transforms needed for the targeted
 environment(s). Enable this option if you want to force running _all_
 transforms, which is useful if the output will be run through UglifyJS or an
 environment that only supports ES5.
 
-> NOTE: If you require an alternative minifier which _does_ support ES6 syntax,
-> we recommend [Terser](https://www.npmjs.com/package/terser).
+:::tip
+If you require an alternative minifier which _does_ support ES6 syntax,
+we recommend [Terser](https://www.npmjs.com/package/terser).
+:::
 
 ### `configPath`
 
@@ -388,6 +390,7 @@ The [Browserslist environment](https://github.com/browserslist/browserslist#conf
 
 <details>
   <summary>History</summary>
+
 | Version | Changes |
 | --- | --- |
 | `v7.14.0` | Include private field brand checks |

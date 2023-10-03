@@ -1,12 +1,19 @@
 export type BabelPresets = Array<string | Array<string | any>>;
-export type BabelPlugins = Array<string>;
+export type BabelPlugins = Array<string | [string, any]>;
 export type BabelPlugin = {
   name: string;
   version: string;
 };
 
+type decoratorsVersion =
+  | "2023-01"
+  | "2022-03"
+  | "2021-12"
+  | "2018-09"
+  | "legacy";
+
 export type PresetsOptions = {
-  decoratorsVersion: "2021-12" | "2018-09" | "legacy";
+  decoratorsVersion: decoratorsVersion;
   decoratorsBeforeExport: boolean;
   pipelineProposal: "minimal" | "fsharp" | "hack";
   reactRuntime: "classic" | "automatic";
@@ -22,7 +29,8 @@ export type EnvConfig = {
   isNodeEnabled: boolean;
   isSpecEnabled: boolean;
   isLooseEnabled: boolean;
-  builtIns: false|"entry"|"usage";
+  builtIns: false | "entry" | "usage";
+  modules: false | "amd" | "umd" | "systemjs" | "commonjs";
   corejs: string | false;
   forceAllTransforms: boolean;
   shippedProposals: boolean;
@@ -127,6 +135,7 @@ export type ReplState = {
   timeTravel: boolean;
   sourceType: SourceType;
   forceAllTransforms: boolean;
+  modules: EnvConfig["modules"];
   shippedProposals: boolean;
   lineWrap: boolean;
   presets: string | undefined | null;
@@ -134,7 +143,7 @@ export type ReplState = {
   showSidebar: boolean;
   targets: string;
   version: any;
-  decoratorsVersion: "2021-12" | "2018-09" | "legacy";
+  decoratorsVersion: decoratorsVersion;
   decoratorsLegacy?: boolean; // deprecated since 7.17
   decoratorsBeforeExport: boolean;
   pipelineProposal: "minimal" | "fsharp" | "hack";

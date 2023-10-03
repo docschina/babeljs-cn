@@ -2,7 +2,7 @@
 
 在你的 `metalsmith.json` 中添加 `metalsmith-babel`.
 
-```javascript
+```js title="JavaScript"
 {
   "plugins": {
     "metalsmith-babel": {
@@ -15,7 +15,7 @@
 
 #### [API](https://github.com/segmentio/metalsmith#api)
 
-```javascript
+```js title="JavaScript"
 var Metalsmith = require("metalsmith");
 var babel = require("metalsmith-babel");
 
@@ -33,7 +33,7 @@ new Metalsmith("./source")
   });
 ```
 
-<blockquote class="babel-callout babel-callout-info">
+<blockquote class="alert alert--info">
   <p>
     欲了解更多信息，请参阅 <a href="https://github.com/babel/metalsmith-babel">babel/metalsmith-babel 项目</a>。
   </p>

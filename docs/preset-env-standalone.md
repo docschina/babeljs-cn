@@ -1,10 +1,12 @@
 ---
 id: babel-preset-env-standalone
-title: @babel/preset-env-standalone
+title: "@babel/preset-env-standalone"
 sidebar_label: env-standalone
 ---
 
-> 🚨 As of Babel 7.8.0, this package has been deprecated. It is now included in [@babel/standalone](standalone.md#usage).
+:::danger
+🚨 As of Babel 7.8.0, this package has been deprecated. It is now included in [@babel/standalone](standalone.md#usage).
+:::
 
 # Installation
 
@@ -23,7 +25,7 @@ Load `babel-preset-env.js` or `babel-preset-env.min.js` in your environment, **a
 
 Then, just use it like any other preset:
 
-```js
+```js title="JavaScript"
 Babel.transform(code, {
   presets: [
     [

@@ -8,7 +8,7 @@ sidebar_label: minify-type-constructors
 
 **In**
 
-```javascript
+```js title="JavaScript"
 Boolean(x);
 Number(x);
 String(x);
@@ -19,7 +19,7 @@ Object({foo: 'bar'});
 
 **Out**
 
-```javascript
+```js title="JavaScript"
 !!x;
 +x;
 x + "";
@@ -30,7 +30,7 @@ x + "";
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install babel-plugin-minify-type-constructors --save-dev
 ```
 
@@ -38,7 +38,7 @@ npm install babel-plugin-minify-type-constructors --save-dev
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["minify-type-constructors"]
 }
@@ -46,13 +46,13 @@ npm install babel-plugin-minify-type-constructors --save-dev
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins minify-type-constructors script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["minify-type-constructors"]
 });
@@ -66,4 +66,6 @@ require("@babel/core").transformSync("code", {
 + `object` — prevent plugin from minifying objects
 + `string` — prevent plugin from minifying strings
 
-> You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::tip
+You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+:::

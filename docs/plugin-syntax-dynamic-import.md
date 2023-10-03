@@ -1,14 +1,20 @@
 ---
 id: babel-plugin-syntax-dynamic-import
-title: @babel/plugin-syntax-dynamic-import
+title: "@babel/plugin-syntax-dynamic-import"
 sidebar_label: syntax-dynamic-import
 ---
 
-> **NOTE**: This plugin is included in `@babel/preset-env`, in [ES2020](https://github.com/tc39/proposals/blob/master/finished-proposals.md)
+:::info
+This plugin is included in `@babel/preset-env`, in [ES2020](https://github.com/tc39/proposals/blob/master/finished-proposals.md).
+:::
+
+:::tip
+You can safely remove this plugin from your Babel config if using `@babel/core` 7.8.0 or above.
+:::
 
 ## Installation
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/plugin-syntax-dynamic-import
 ```
 
@@ -16,7 +22,7 @@ npm install --save-dev @babel/plugin-syntax-dynamic-import
 
 ### With a configuration file (Recommended)
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-syntax-dynamic-import"]
 }
@@ -24,13 +30,13 @@ npm install --save-dev @babel/plugin-syntax-dynamic-import
 
 ### Via CLI
 
-```sh
+```sh title="Shell"
 babel --plugins @babel/plugin-syntax-dynamic-import script.js
 ```
 
 ### Via Node API
 
-```javascript
+```js title="JavaScript"
 require("@babel/core").transformSync("code", {
   plugins: ["@babel/plugin-syntax-dynamic-import"],
 });
@@ -42,8 +48,7 @@ Currently, `@babel/preset-env` is unaware that using `import()` with [Webpack re
 
 For example, with `core-js@3`:
 
-```js
-// webpack config
+```js title="webpack.config.js"
 const config = {
   entry: [
     "core-js/modules/es.promise",
@@ -56,8 +61,7 @@ const config = {
 
 or
 
-```js
-// src/main.js
+```js title="src/main.js"
 import "core-js/modules/es.promise";
 import "core-js/modules/es.array.iterator";
 
@@ -66,8 +70,7 @@ import "core-js/modules/es.array.iterator";
 
 This is the same for `core-js@2`, except the imports paths are slightly different:
 
-```js
-// webpack config
+```js title="webpack.config.js"
 const config = {
   entry: [
     "core-js/modules/es6.promise",
@@ -80,8 +83,7 @@ const config = {
 
 or
 
-```js
-// src/main.js
+```js title="src/main.js"
 import "core-js/modules/es6.promise";
 import "core-js/modules/es6.array.iterator";
 

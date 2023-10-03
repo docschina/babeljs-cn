@@ -2,12 +2,11 @@ import compile from "./compile";
 import { registerPromiseWorker } from "./WorkerUtils";
 
 declare var Babel: any;
-declare var babelPresetEnv: any;
 declare function importScripts(url: string): void;
 
 // This script should be executed within a web-worker.
 // Values returned below will be automatically wrapped in Promises.
-registerPromiseWorker(message => {
+registerPromiseWorker((message) => {
   const { method, name } = message;
 
   switch (method) {
@@ -33,7 +32,7 @@ registerPromiseWorker(message => {
     case "getAvailablePresets":
       if (!Babel) return [];
 
-      return Object.keys(Babel.availablePresets).map(p => ({
+      return Object.keys(Babel.availablePresets).map((p) => ({
         label: p,
         isPreLoaded: true,
       }));
@@ -41,10 +40,7 @@ registerPromiseWorker(message => {
     case "getAvailablePlugins":
       if (!Babel) return [];
 
-      return Object.keys(Babel.availablePlugins).map(p => ({
-        label: p,
-        isPreLoaded: true,
-      }));
+      return Object.keys(Babel.availablePlugins);
 
     case "loadScript":
       if (!Array.isArray(message.url)) {
@@ -59,16 +55,6 @@ registerPromiseWorker(message => {
         }
       }
       return false;
-
-    case "registerEnvPreset":
-      try {
-        // Was registered when loaded;
-        // Babel.registerPreset("env", babelPresetEnv.default);
-
-        return true;
-      } catch (error) {
-        return false;
-      }
 
     case "registerPlugins":
       try {
@@ -90,6 +76,19 @@ registerPromiseWorker(message => {
 
         return true;
       } catch (error) {
+        return false;
+      }
+
+    case "registerPluginAlias":
+      try {
+        const { aliasTo, pluginName } = message;
+        if (aliasTo in Babel.availablePlugins) {
+          Babel.registerPlugin(pluginName, Babel.availablePlugins[aliasTo]);
+          return true;
+        } else {
+          return false;
+        }
+      } catch {
         return false;
       }
   }

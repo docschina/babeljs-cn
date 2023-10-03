@@ -1,6 +1,7 @@
 "use strict";
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const config = {
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
@@ -9,7 +10,6 @@ const config = {
   },
   entry: {
     repl: "./js/repl/index.tsx",
-    minirepl: "./js/minirepl.js",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
@@ -18,7 +18,8 @@ const config = {
     // Don't bother with hashing/versioning the filename - Netlify does it
     // for us in prod.
     filename: "[name].js",
-    path: __dirname + "/website/static/js/build/",
+    publicPath: process.env.NODE_ENV === "production" ? "./repl/" : "./",
+    path: __dirname + "/website/static/repl/",
   },
   module: {
     rules: [
@@ -30,6 +31,10 @@ const config = {
     ],
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: "./js/repl/index.html",
+      inject: false,
+    }),
     new webpack.ProvidePlugin({
       Buffer: ["buffer"],
     }),

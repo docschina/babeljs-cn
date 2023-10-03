@@ -1,3 +1,3 @@
-```sh
-npm install -D start-babel
+```shell npm2yarn
+npm install -D @start/plugin-lib-babel
 ```

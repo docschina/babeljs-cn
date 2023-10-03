@@ -26,7 +26,7 @@ translators:
 
 Babel 之前在处理 `node_modules` 、symlinks 以及 monorepos 时有一些问题。为此，我们进行了一些更改：Babel 将停止查找 `package.json` 边界而支持查找链。对于 monorepos，我们添加了一个新的 `babel.config.js` 文件，它将集中管理我们所有包的配置（或者你也可以为每个包进行单独配置）。在 7.1 中，我们引入了 [`rootMode`](options.md#rootmode) 选项，以便在必要时进一步查找。
 
-## [弃用年度预设](/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
+## [Yearly Preset Deprecations](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release.html#deprecated-yearly-presets-eg-babel-preset-es20xx)
 
 “env“ 预设已经推出一年多了, 也完全取代了我们早期拥有并且推荐的一些预设。
 
@@ -52,7 +52,7 @@ Babel 之前在处理 `node_modules` 、symlinks 以及 monorepos 时有一些�
 
 使用它之前只需要导入 2 个包：
 
-```js
+```js title="JavaScript"
 import "core-js/shim"; // included < Stage 4 proposals
 import "regenerator-runtime/runtime";
 ```
@@ -61,7 +61,7 @@ import "regenerator-runtime/runtime";
 
 例如：
 
-```js
+```js title="JavaScript"
 // for core-js v2:
 import "core-js/fn/array/flat-map";
 
@@ -73,7 +73,7 @@ import "core-js/features/array/flat-map";
 
 <details>
 
-```js
+```js title="JavaScript"
 // core-js v2
 
 // Stage 3
@@ -142,7 +142,7 @@ import "core-js/fn/reflect/metadata";
 
 </details>
 
-## [版本控制/依赖关系](/blog/2017/12/27/nearing-the-7.0-release.html#peer-dependencies-integrations)
+## [Versioning/Dependencies](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release.html#peer-dependencies--integrations)
 
 现在大多数插件/顶级包在 `@babel/core` 上都有一个 `peerDependency`。
 
@@ -163,7 +163,7 @@ import "core-js/fn/reflect/metadata";
 
 ### 作用域包
 
-最重要的变化是最后将所有包切换到 [scoped packages](/blog/2017/12/27/nearing-the-7.0-release.html#renames-scoped-packages-babel-x)（[monorepo](https://github.com/babel/babel/tree/main/packages) 中的文件夹名称未更改，因此其 `package.json` 中的名称则没变）。
+The most important change is finally switching all packages to [scoped packages](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release.html#renames-scoped-packages-babel-x) (the folder names in the [monorepo](https://github.com/babel/babel/tree/main/packages) are not changed but the name in its `package.json` is).
 
 这意味着不会再有意外/故意地抢注名称、与社区插件明确分隔或更简单命名约定争议等问题。
 
@@ -175,14 +175,14 @@ import "core-js/fn/reflect/metadata";
 
 你仍然可以使用简写方式来指定预设或插件。但是，由于作用域包的切换，你仍然必须指定 `@babel/`，就像你有自己的预设要添加到配置中一样。
 
-```js
+```js title="babel.config.js"
 module.exports = {
   presets: ["@babel/env"], // "@babel/preset-env"
   plugins: ["@babel/transform-arrow-functions"], // same as "@babel/plugin-transform-arrow-functions"
 };
 ```
 
-### [对于 TC39 提案，切换到 `-proposal-`](/blog/2017/12/27/nearing-the-7.0-release.html#renames-proposal)
+### [Switch to `-proposal-` for TC39 Proposals](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release.html#renames-proposal)
 
 这意味着任何不在年度版本（ES2015、ES2016 等）中的插件都应该重命名为 `-proposal`。 这样我们就可以更好地表明提案并未正式应用于 JavaScript。
 
@@ -193,7 +193,7 @@ module.exports = {
 
 这也意味着当提案进入第 4 阶段时，我们应该重命名包。
 
-### [从包名称中删除年份](/blog/2017/12/27/nearing-the-7.0-release.html#renames-drop-the-year-from-the-plugin-name)
+### [Remove the year from package names](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release.html#renames-drop-the-year-from-the-plugin-name)
 
 一些插件的名称中有 `-es3-` 或 `-es2015-`，但这些都是不必要的。
 
@@ -203,30 +203,30 @@ module.exports = {
 
 Babel 6 对要处理的任何文件都会随意地执行 ES6 模块转换，从未考虑文件中是否真的有 ES6 导入/导出。这会将文件范围内对 `this` 的引用重写为 `undefined`，并在 Babel 处理的所有 CommonJS 模块的顶部插入 `"use strict"`。
 
-```js
+```js title="JavaScript"
 // input.js
 this;
 ```
 
-```js
+```js title="JavaScript"
 // output.js v6
 "use strict"; // assumed strict modules
 undefined; // changed this to undefined
 ```
 
-```js
+```js title="JavaScript"
 // output.js v7
 this;
 ```
 
 这种行为在 Babel 7 中已受到限制，因此对于 `transform-es2015-modules-commonjs` 转换，只有在文件中有 ES6 导入或导出时才会更改文件。（编者注：如果我们采纳这个 https://github.com/babel/babel/issues/6242，可能会再次改变，所以我们想在发布之前重新审阅）。
 
-```js
+```js title="JavaScript"
 // input2.js
 import "a";
 ```
 
-```js
+```js title="JavaScript"
 // output.js v6 and v7
 "use strict";
 require("a");
@@ -276,7 +276,7 @@ Babel 7 的配置选项比 Babel 6 更严格。
 
 对于 `presets` 和 `plugins` 值，这种变化意味着 CLI 将在以下情况下表现良好。
 
-```bash
+```shell title="Shell"
 babel --presets @babel/preset-env ../file.js
 ```
 
@@ -302,20 +302,20 @@ Babel 6 中的 `babel-node` 命令是 `babel-cli` 包的一部分。 在 Babel 7
 
 ### `@babel/runtime`, `@babel/plugin-transform-runtime`
 
-我们已经将 Babel 的 helper 与它在运行时的 “polyfilling” 行为分开了。[PR](https://github.com/babel/babel/pull/8266) 中有更多细节。
+We have separated out Babel's helpers from its "polyfilling" behavior in runtime. More details in the [PR](https://github.com/babel/babel/pull/8266).
 
 [`@babel/runtime`](runtime.md) 现在只包含 helpers，如果你需要 `core-js` 你可以使用 [`@babel/runtime-corejs2`](runtime-corejs2.md) 和 transform 中提供的参数。对于两者，你仍然需要 [`@babel/plugin-transform-runtime`](plugin-transform-runtime.md)
 
 #### Helpers
 
-```sh
+```sh title="Shell"
 # install the runtime as a dependency
 npm install @babel/runtime
 # install the plugin as a devDependency
 npm install @babel/plugin-transform-runtime --save-dev
 ```
 
-```json
+```json title="babel.config.json"
 {
   "plugins": ["@babel/plugin-transform-runtime"]
 }
@@ -325,8 +325,8 @@ npm install @babel/plugin-transform-runtime --save-dev
 
 因此，如果您需要通过 `transform-runtime` 支持 `core-js`，现在可以传递 `corejs` 选项并使用 `@babel/runtime-corejs2` 依赖项而不是 `@babel/runtime`。
 
-```sh
-# 作为生产依赖安装运行时
+```sh title="Shell"
+# install the runtime as a dependency
 npm install @babel/runtime-corejs2
 # 作为开发依赖安装插件
 npm install @babel/plugin-transform-runtime --save-dev
@@ -365,12 +365,12 @@ var {
 - [objectSpread helper function](https://github.com/babel/babel/blob/007bfb656502a44f6ab50cd64750cc4b38f9efff/packages/babel-helpers/src/helpers.js#L375)
 - [extends helper function](https://github.com/babel/babel/blob/007bfb656502a44f6ab50cd64750cc4b38f9efff/packages/babel-helpers/src/helpers.js#L357-L373)
 
-```js
+```js title="JavaScript"
 // input
 z = { x, ...y };
 ```
 
-```js
+```js title="JavaScript"
 // v7 default behavior: ["proposal-object-rest-spread"]
 function _objectSpread(target) { ... }
 
@@ -379,7 +379,7 @@ z = _objectSpread({
 }, y);
 ```
 
-```js
+```js title="JavaScript"
 // Old v6 behavior: ["proposal-object-rest-spread", { "loose": true }]
 function _extends(target) { ... }
 
@@ -388,7 +388,7 @@ z = _extends({
 }, y);
 ```
 
-```js
+```js title="JavaScript"
 // Substitute for Object.assign: ["proposal-object-rest-spread", { "loose": true, "useBuiltIns": true }]
 z = Object.assign(
   {
@@ -402,7 +402,7 @@ z = Object.assign(
 
 默认行为变为默认情况下以前的 “spec”
 
-```js
+```js title="JavaScript"
 // input
 class Bork {
   static a = "foo";
@@ -410,7 +410,7 @@ class Bork {
 }
 ```
 
-```js
+```js title="JavaScript"
 // v7 default behavior: ["@babel/plugin-proposal-class-properties"]
 var Bork = function Bork() {
   Object.defineProperty(this, "y", {
@@ -427,7 +427,7 @@ Object.defineProperty(Bork, "a", {
 });
 ```
 
-```js
+```js title="JavaScript"
 // old v6 behavior: ["@babel/plugin-proposal-class-properties", { "loose": true }]
 var Bork = function Bork() {
   this.y = void 0;
@@ -442,13 +442,13 @@ Bork.a = "foo";
 
 `@babel/plugin-proposal-export-default-from`
 
-```js
+```js title="JavaScript"
 export v from "mod";
 ```
 
 `@babel/plugin-proposal-export-namespace-from`
 
-```js
+```js title="JavaScript"
 export * as ns from "mod";
 ```
 
@@ -460,13 +460,13 @@ export * as ns from "mod";
 
 它导致 Babel 6 抛出“坏字符转义序列 (5:6)”。
 
-```js
+```js title="JavaScript"
 tag`\unicode and \u{55}`;
 ```
 
 这已在 Babel 7 中修复并生成如下内容：
 
-```js
+```js title="JavaScript"
 // default
 function _taggedTemplateLiteral(strings, raw) {
   return Object.freeze(
@@ -480,7 +480,7 @@ var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(
 tag(_templateObject);
 ```
 
-```js
+```js title="JavaScript"
 // loose mode
 function _taggedTemplateLiteralLoose(strings, raw) {
   strings.raw = raw;
@@ -497,17 +497,17 @@ tag(_templateObject);
 
 > 常规模板字符串默认为以前的 “spec” 模式
 
-```js
+```js title="JavaScript"
 // input
 `foo${bar}`;
 ```
 
-```js
+```js title="JavaScript"
 // default v7 behavior: ["@babel/plugin-transform-template-literals"]
 "foo".concat(bar);
 ```
 
-```js
+```js title="JavaScript"
 // old v6 behavior: ["@babel/plugin-transform-template-literals", { "loose": true }]
 "foo" + bar;
 ```
@@ -546,7 +546,7 @@ tag(_templateObject);
 
 TC39 决定放弃这个提议。你可以将逻辑写到构造函数或静态方法中。
 
-有关更多信息，请参阅 [/docs/plugins/transform-class-constructor-call/](/docs/plugins/transform-class-constructor-call/)。
+See [/docs/plugins/transform-class-constructor-call/](https://old.babeljs.io/docs/plugins/transform-class-constructor-call/) for more information.
 
 ```diff
   class Point {
@@ -597,7 +597,7 @@ Babel 7 中使用独立包 `@babel/register` 来代替不推荐使用的 `babel-
 
 作为一个新的依赖安装 `@babel/register`：
 
-```sh
+```shell npm2yarn
 npm install --save-dev @babel/register
 ```
 

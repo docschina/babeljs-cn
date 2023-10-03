@@ -14,7 +14,7 @@ sidebar_label: 路线图
 
 ### Babel 8
 
-关于 Babel 8 的发布我们已经讨论了一年多了（我们早在一年前就有了安排）！不过相比之前，我们现在离它的发布越来越近了！
+We have been talking about the Babel 8 release for more than one year (we initially scheduled it about one year ago)! However, we are now closer then ever to its release!
 
 剩下的大部分工作都是在 [跟踪 issue](https://github.com/babel/babel/issues/10746)，但仍有一些阻塞内容：
 - 我们希望取消对 [Node.js 10](https://github.com/nodejs/Release) 的支持，它将在 2021-04-30 停止维护。
@@ -67,7 +67,7 @@ sidebar_label: 路线图
 
 无论我们采取哪种方式，当我们的用户需要在他们的配置中更新 `core-js` 集成的时候，我们希望为他们提供至少一个替代方案。`core-js` 是一个非常好的 polyfill，它确保了尽可能高的规范合规性，但用户可能更喜欢不同的权衡。
 
-([Nicolò](https://github.com/nicolo-ribaudo)) 正在与 [@ljharb](https://github.com/ljharb) 合作，为了确保 [`@es-shims` 项目](https://github.com/es-shims/) 至少支持 ES2015+ 的所有功能（实际上我们的目标是 ES5+），这样 Babel 用户可以在至少两个选项之间自由选择。
+([Nicolò](https://github.com/nicolo-ribaudo)) is working with [@ljharb](https://github.com/ljharb) to make sure that the [`@es-shims` project](https://github.com/es-shims/) supports at least all the ES2015+ features (we actually aim for ES5+), so that Babel users are free to choose between at least two options.
 
 这需要在放弃对 `core-js@3` 的内置支持 _之前_ 完成, 这样对 `es-shims` 感兴趣的人就不需要迁移两次了。
 
@@ -107,13 +107,13 @@ sidebar_label: 路线图
 
 但是，我们只包含了在 `loose` 模式下编译时 _已经_ 做出的假设选项。我们现在可以审查我们的用户可能需要哪些新的假设。
 
-已经有一些提案，例如：
-- [#8222](https://github.com/babel/babel/issues/8222) - 假设所有 ESM 导入实际上都是不可变的，从而避免了活动绑定所需的代码。
-- [#11356](https://github.com/babel/babel/issues/11356) - 假设编译的类不扩展原生类，从而避免了实例化可能的原生类所需的运行时性能成本。
+There are already some proposals, such as:
+- [#8222](https://github.com/babel/babel/issues/8222) - assume that all the ESM imports are actually immutable, avoiding the code needed for live bindings.
+- [#11356](https://github.com/babel/babel/issues/11356) - assume that compiled classes do not extends native classes, avoiding the runtime performance cost needed to instantiate possibly native classes.
 
-我们可以通过以下方式找到我们应该实现的新假设：
-- 手动检查我们编译成“不明显”输出的特性，这通常是由许多开发人员不关心的边缘情况引起的。
-- 从社区寻求反馈，因为开发人员可以测试哪些假设对他们的应用有效，哪些假设无效。
+We can find which new assumptions we should implement, by:
+- Manually checking which features we compile to "non-obvious" output, which is usually caused by edge cases that many developers don't care about.
+- Asking for feedback from the community, since developers can test which assumptions work and which don't on their applications.
 
 ### 检修 Babel REPL
 
@@ -140,9 +140,9 @@ Babel 站点仓库上至少有 15% 的未解决 issues 与 REPL 有关：https:/
 
 一些事情已经在进行中，Henry 一直在断断续续地工作：
 
-- [Codesandbox](https://codesandbox.io/s/babel-repl-custom-plugin-7s08o) 用于制作一个简单的 Babel 插件，与 https://astexplorer.net 的思路相同，不过会带有自定义配置。
-- [可视化](https://twitter.com/left_pad/status/1367941962083471361?s=20) 的输入到输出映射帮助理解 Babel 是如何转译代码的。甚至作为让 JavaScript 用户熟悉新语法或一个特定的转译示例的文档也很有用。
-- 输入到输出的 [映射](https://twitter.com/left_pad/status/1298792944099561473?s=20) 类似于 sourcemap 类型的结构。可以做一个反向映射，找出是什么插件导致代码以某种方式输出，这有助于调试。
+- [Codesandbox](https://codesandbox.io/s/babel-repl-custom-plugin-7s08o) for making a simple Babel plugin in the same vein as https://astexplorer.net but with custom configs.
+- [Visualization](https://twitter.com/left_pad/status/1367941962083471361?s=20) of input to output mapping to help understand how Babel transforms its code. Could be useful even for documentation in getting JavaScript users familiar with new syntax or a specific demo of a transform.
+- [Mapping](https://twitter.com/left_pad/status/1298792944099561473?s=20) of input to output like a sourcemap type structure. Can do a reverse mapping to find out what plugin caused the code to be outputted a certain way which helps with debugging.
 
 查看我们正在思考的互动示例：https://babel-explorer.netlify.app/（在底部扇区单击并按住鼠标！）
 
