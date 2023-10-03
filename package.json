@@ -21,7 +21,6 @@
     "start:repl": "webpack -d source-map -w",
     "start:codemirror6": "cross-env NODE_ENV=development yarn build:codemirror6",
     "test": "remark docs README.md --quiet",
-    "deploy": "gh-pages -d ./website/build/babel -b gh-pages-v7",
     "version": "node ./scripts/generate-repl-past-versions.mjs && git add ./js/repl/past-versions.json"
   },
   "remarkConfig": {
@@ -44,7 +43,7 @@
     "@babel/preset-env": "8.0.0-alpha.2",
     "@babel/preset-react": "8.0.0-alpha.2",
     "@babel/preset-typescript": "8.0.0-alpha.2",
-    "@codemirror/lang-javascript": "6.1.9",
+    "@codemirror/lang-javascript": "6.2.1",
     "@codemirror/theme-one-dark": "6.1.2",
     "@emotion/babel-plugin": "^11.11.0",
     "@rollup/plugin-node-resolve": "^15.1.0",
