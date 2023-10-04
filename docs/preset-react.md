@@ -42,6 +42,29 @@ npm install --save-dev @babel/preset-react
 
 带参数：
 
+:::babel8
+
+```json title="babel.config.json"
+{
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic", // defaults to automatic
+        "importSource": "custom-jsx-library", // defaults to react(only in automatic runtime)
+        "throwIfNamespace": false // defaults to true
+        // "pragma": "dom", // default pragma is React.createElement (only in classic runtime)
+        // "pragmaFrag": "DomFrag", // default is React.Fragment (only in classic runtime)
+      }
+    ]
+  ]
+}
+```
+
+:::
+
+:::babel7
+
 ```json title="babel.config.json"
 {
   "presets": [
@@ -58,6 +81,8 @@ npm install --save-dev @babel/preset-react
   ]
 }
 ```
+
+:::
 
 ### 通过命令行工具使用（CLI）
 
@@ -79,11 +104,27 @@ require("@babel/core").transformSync("code", {
 
 #### `runtime`
 
-`classic | automatic`，默认值为 `classic`
+:::babel8
 
-已经添加到了：`v7.9.0`
+`classic | automatic`, defaults to `automatic`
 
-用于决定使用哪个运行时。
+:::
+
+:::babel7
+
+`classic | automatic`, defaults to `classic`
+
+:::
+
+Added in: `v7.9.0`
+
+:::babel7
+
+> Note: The default runtime will be switched to `automatic` in Babel 8.
+
+:::
+
+Decides which runtime to use.
 
 `automatic` 表示自动导入 JSX 转换而来的函数。 `classic` 表示不会自动导入任何东西。
 
@@ -135,11 +176,17 @@ Replace the function used when compiling JSX expressions. It should be a qualifi
 
 Replace the component used when compiling JSX fragments. It should be a valid JSX tag name.
 
+:::babel7
+
 #### `useBuiltIns`
 
 `boolean` 类型，默认值为 `false`。
 
-将使用原生配置，打包后的文件不使用 polyfill 来进行适配。
+:::warning
+This option will be removed in Babel 8. Set `useBuiltIns` to `true` if you are targeting to modern browsers.
+:::
+
+Will use the native built-in instead of trying to polyfill behavior for any plugins that require one.
 
 #### `useSpread`
 
@@ -147,7 +194,13 @@ Replace the component used when compiling JSX fragments. It should be a valid JS
 
 已经添加到了：`v7.7.0`
 
-当传递 props 时，直接使用带有传递元素的内联对象，而不是 Babel 的扩展工具或 `Object.assign`。
+:::warning
+This option will be removed in Babel 8. Set `useSpread` to `true` if you are targeting to modern browsers.
+:::
+
+When spreading props, use inline object with spread elements directly instead of Babel's extend helper or `Object.assign`.
+
+:::
 
 ### babel.config.js
 
