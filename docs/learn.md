@@ -16,11 +16,7 @@ Be sure to try these features out in the online <a href="/repl">REPL</a>.
 
 > ECMAScript 2015 是发布于 2015 年 6 月的 ECMAScript 标准。
 
-<<<<<<< HEAD
-ES2015 是对该语言的一次重大更新，也是自 2009 年 ES5 标准化以来对该语言的第一次重大更新。在主要的 JavaScript 引擎中，这些特性的实现[正在进行中](https://kangax.github.io/es5-compat-table/es6/)。
-=======
-ES2015 is a significant update to the language, and the first major update to the language since ES5 was standardized in 2009. Implementation of these features in major JavaScript engines is [underway now](https://compat-table.github.io/compat-table/es6).
->>>>>>> 6ca818dc8f3582cce34d2d8e6bbd3a1b14a912d3
+ES2015 是对该语言的一次重大更新，也是自 2009 年 ES5 标准化以来对该语言的第一次重大更新。在主要的 JavaScript 引擎中，这些特性的实现[正在进行中](https://compat-table.github.io/es5-compat-table/es6/)。
 
 可阅读[ES2015 标准](http://www.ecma-international.org/ecma-262/6.0/index.html)
 以了解 ECMAScript 2015 完整的语言规范。
