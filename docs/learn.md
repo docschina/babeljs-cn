@@ -16,7 +16,7 @@ Be sure to try these features out in the online <a href="/repl">REPL</a>.
 
 > ECMAScript 2015 是发布于 2015 年 6 月的 ECMAScript 标准。
 
-ES2015 是对该语言的一次重大更新，也是自 2009 年 ES5 标准化以来对该语言的第一次重大更新。在主要的 JavaScript 引擎中，这些特性的实现[正在进行中](https://kangax.github.io/es5-compat-table/es6/)。
+ES2015 是对该语言的一次重大更新，也是自 2009 年 ES5 标准化以来对该语言的第一次重大更新。在主要的 JavaScript 引擎中，这些特性的实现[正在进行中](https://compat-table.github.io/es5-compat-table/es6/)。
 
 可阅读[ES2015 标准](http://www.ecma-international.org/ecma-262/6.0/index.html)
 以了解 ECMAScript 2015 完整的语言规范。
@@ -127,7 +127,7 @@ var obj = {
 ```
 
 :::caution
-The <code>__proto__</code> property requires native support, and was deprecated in previous ECMAScript versions. Most engines now support the property, but <a href="https://kangax.github.io/compat-table/es6/#__proto___in_object_literals">some do not</a>. Also, note that only <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-additional-ecmascript-features-for-web-browsers">web browsers</a> are required to implement it, as it's in <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-object.prototype.__proto__">Annex B</a>. It is available in Node.
+The <code>__proto__</code> property requires native support, and was deprecated in previous ECMAScript versions. Most engines now support the property, but <a href="https://compat-table.github.io/compat-table/es6/#proto-in-object-literals-note">some do not</a>. Also, note that only <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-additional-ecmascript-features-for-web-browsers">web browsers</a> are required to implement it, as it's in <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-object.prototype.__proto__">Annex B</a>. It is available in Node.
 :::
 
 ### 模版字符串
@@ -570,7 +570,7 @@ var handler =
 ```
 
 :::danger Unsupported feature
-Due to the limitations of ES5, Proxies cannot be transpiled or polyfilled. See support in <a href="https://kangax.github.io/compat-table/es6/#test-Proxy">various JavaScript engines</a>.
+Due to the limitations of ES5, Proxies cannot be transpiled or polyfilled. See support in <a href="https://compat-table.github.io/compat-table/es6/#test-Proxy">various JavaScript engines</a>.
 :::
 
 ### Symbols
