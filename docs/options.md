@@ -242,8 +242,8 @@ Type: `boolean`<br />
 Default: `true` as long as the `filename` option has been specified<br />
 Placement: Allowed in Babel's programmatic options, or inside of the loaded [`"configFile"`](#configfile). A programmatic option will override a config file one.<br />
 
-`true` will enable searching for [configuration files](config-files.md#file-relative-configuration) relative
-to the [`"filename"`](#filename) provided to Babel.
+`true` will enable searching for [configuration files](config-files.md#file-relative-configuration)
+and the legacy `.babelignore` file relative to the [`"filename"`](#filename) provided to Babel.
 
 A `babelrc` value passed in the programmatic options will override one set
 within a configuration file.
@@ -401,7 +401,7 @@ When no targets are specified: Babel will assume you are using the [browserslist
 
 Type: `boolean`
 
-You may also target browsers supporting ES Modules (<https://www.ecma-international.org/ecma-262/6.0/#sec-modules>). When the `esmodules` target is specified, it will intersect with the `browsers` target and `browserslist`'s targets. You can use this approach in combination with `<script type="module"></script>` to conditionally serve smaller scripts to users (https://jakearchibald.com/2017/es-modules-in-browsers/#nomodule-for-backwards-compatibility).
+You may also target browsers supporting [ES Modules](https://www.ecma-international.org/ecma-262/6.0/#sec-modules). When the `esmodules` target is specified, it will intersect with the `browsers` target and `browserslist`'s targets. You can use this approach in combination with `<script type="module"></script>` to conditionally serve smaller scripts to users (https://jakearchibald.com/2017/es-modules-in-browsers/#nomodule-for-backwards-compatibility).
 
 :::note When specifying both `browsers` and the esmodules target, they will be intersected.
 :::
