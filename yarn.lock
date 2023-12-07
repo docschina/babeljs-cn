@@ -2792,15 +2792,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-"@babel/traverse@npm:^7.12.9, @babel/traverse@npm:^7.18.8, @babel/traverse@npm:^7.20.5, @babel/traverse@npm:^7.20.7, @babel/traverse@npm:^7.21.0, @babel/traverse@npm:^7.21.2, @babel/traverse@npm:^7.21.4":
-  version: 7.23.2
-  resolution: "@babel/traverse@npm:7.23.2"
-=======
 "@babel/traverse@npm:^7.22.8, @babel/traverse@npm:^7.23.2, @babel/traverse@npm:^7.23.3":
   version: 7.23.3
   resolution: "@babel/traverse@npm:7.23.3"
->>>>>>> 2d680cdc606fbe0470bae7a6d24ed51bda804ce4
   dependencies:
     "@babel/code-frame": "npm:^7.22.13"
     "@babel/generator": "npm:^7.23.3"
@@ -6074,11 +6068,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-"chalk@npm:^2.0.0, chalk@npm:^2.4.1, chalk@npm:^2.4.2":
-=======
 "chalk@npm:^2.4.1, chalk@npm:^2.4.2":
->>>>>>> 2d680cdc606fbe0470bae7a6d24ed51bda804ce4
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
   dependencies:
@@ -11975,13 +11965,8 @@ __metadata:
   linkType: hard
 
 "nanoid@npm:^3.3.6":
-<<<<<<< HEAD
-  version: 3.3.6
-  resolution: "nanoid@npm:3.3.6"
-=======
   version: 3.3.7
   resolution: "nanoid@npm:3.3.7"
->>>>>>> 2d680cdc606fbe0470bae7a6d24ed51bda804ce4
   bin:
     nanoid: bin/nanoid.cjs
   checksum: ac1eb60f615b272bccb0e2b9cd933720dad30bf9708424f691b8113826bb91aca7e9d14ef5d9415a6ba15c266b37817256f58d8ce980c82b0ba3185352565679
@@ -13262,11 +13247,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-"postcss@npm:^8.3.11, postcss@npm:^8.4.14, postcss@npm:^8.4.17, postcss@npm:^8.4.19":
-=======
 "postcss@npm:^8.4.17, postcss@npm:^8.4.21, postcss@npm:^8.4.26":
->>>>>>> 2d680cdc606fbe0470bae7a6d24ed51bda804ce4
   version: 8.4.31
   resolution: "postcss@npm:8.4.31"
   dependencies:
@@ -14752,15 +14733,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-"semver@npm:2 || 3 || 4 || 5, semver@npm:^5.4.1, semver@npm:^5.5.0":
-  version: 5.7.2
-  resolution: "semver@npm:5.7.2"
-=======
 "semver@npm:2 || 3 || 4 || 5, semver@npm:^5.5.0":
   version: 5.7.1
   resolution: "semver@npm:5.7.1"
->>>>>>> 2d680cdc606fbe0470bae7a6d24ed51bda804ce4
   bin:
     semver: ./bin/semver
   checksum: fbc71cf00736480ca0dd67f2527cda6e0fde5447af00bd2ce06cb522d510216603a63ed0c6c87d8904507c1a4e8113e628a71424ebd9e0fd7d345ee8ed249690
