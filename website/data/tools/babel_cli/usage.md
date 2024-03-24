@@ -31,6 +31,6 @@ npm run build
 
 <blockquote class="alert alert--info">
   <p>
-    For full documentation on the Babel CLI see the <a href="/docs/usage/cli/">usage docs</a>.
+    For full documentation on the Babel CLI see the <a href="/docs/usage#basic-usage-with-cli">usage docs</a>.
   </p>
 </blockquote>
