@@ -70,7 +70,7 @@ module.exports = {
               type: "category",
               label: "ES2020",
               items: [
-                "babel-plugin-proposal-dynamic-import",
+                "babel-plugin-transform-dynamic-import",
                 "babel-plugin-transform-export-namespace-from",
                 "babel-plugin-transform-nullish-coalescing-operator",
                 "babel-plugin-transform-optional-chaining",
@@ -152,6 +152,7 @@ module.exports = {
               type: "category",
               label: "Bugfix",
               items: [
+                "babel-plugin-bugfix-firefox-class-in-computed-class-key",
                 "babel-plugin-bugfix-safari-id-destructuring-collision-in-function-expression",
                 "babel-plugin-bugfix-v8-spread-parameters-in-optional-chaining",
               ],
