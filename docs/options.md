@@ -365,7 +365,7 @@ If a minor version is not specified, Babel will interpret it as `MAJOR.0`. For e
 
 #### No targets
 
-:::babel7
+::::babel7
 
 When no targets are specified: Babel will assume you are targeting the oldest browsers possible. For example, `@babel/preset-env` will transform all ES2015-ES2020 code to be ES5 compatible.
 
@@ -389,7 +389,7 @@ Because of this, Babel's behavior is different than [browserslist](https://githu
 
 We recognize this isn’t ideal and will be revisiting this in Babel v8.
 
-:::
+::::
 
 :::babel8
 
@@ -612,7 +612,8 @@ Default: `false`<br />
 - `"inline"` to generate a sourcemap and append it as a data URL to the end of the code, but not include it in the result object.
 - `"both"` is the same as inline, but will include the map in the result object.
 
-`@babel/cli` overloads some of these to also affect how maps are written to disk:
+Options in configuration files have no effect on whether `@babel/cli` writes files separate `.map` files to disk.
+When the `--source-maps` CLI option is passed to `@babel/cli` it will also control whether `.map` files are written:
 
 - `true` will write the map to a `.map` file on disk
 - `"inline"` will write the file directly, so it will have a `data:` containing the map
