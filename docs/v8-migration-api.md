@@ -284,7 +284,36 @@ Check out the [v8-migration guide](v8-migration.md) for other user-level changes
 
   **Migration**: Adapt to the new token design. If you want to restore to the Babel 7 behaviour, manually transform them to the Babel 7 tokens ([example](https://github.com/babel/babel/blob/7e60a93897f9a134506251ea51269faf4d02a86c/packages/babel-parser/src/parser/statement.ts#L116-L188)).
 
+- Remove `extra.shorthand` from `ObjectProperty` nodes ([#16521](https://github.com/babel/babel/pull/16521))
+
+  **Migration**: Use `node.shorthand` rather than `node.extra.shorthand`.
+
 ### `@babel/traverse`
+
+![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
+
+- Remove some `NodePath` methods ([#16655](https://github.com/babel/babel/pull/16655))
+
+  __Migration__:
+  `hoist`, `updateSiblingKeys`, `call`, `setScope`, `resync`, `popContext`, `pushContext`, `setup`, `setKey`
+  These methods are meant to be private so there is no real migration approach. But if your plugin / build is broken by this change, feel free to open an issue and tell us how you use these methods and we can see what we can do after Babel 8 is released.
+
+  `is`, `isnt`, `has`, `equals`
+  Access `path.node` instead.
+  ```diff
+  --- functionExpressionPath.equals("id", idNode)
+  +++ functionExpressionPath.node.id === idNode
+
+  --- functionExpressionPath.is("id")
+  --- functionExpressionPath.has("id")
+  +++ functionExpressionPath.node.id
+  
+  --- functionExpressionPath.has("arguments")
+  +++ !!functionExpressionPath.node.arguments.length
+
+  --- functionExpressionPath.isnt("async")
+  +++ !functionExpressionPath.node.async
+  ```
 
 ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
 
@@ -302,6 +331,33 @@ Check out the [v8-migration guide](v8-migration.md) for other user-level changes
   **Notes**: `NodePath#requeue()` can requeue a skipped NodePath. This is actually a bugfix, but it causes an infinite loop in the tdz implementation of `@babel/plugin-transform-block-scoping` in Babel 7. So it may break other plugins as well.
 
   __Migration__: Adapt to the new behaviour. You can use `NodePath#shouldSkip` to check whether a NodePath has been skipped before calling `NodePath#requeue()`.
+
+- Remove methods starting with `_` ([#16504](https://github.com/babel/babel/pull/16504))
+
+  ```
+  _assertUnremoved
+  _call
+  _callRemovalHooks
+  _containerInsert
+  _containerInsertAfter
+  _containerInsertBefore
+  _getKey
+  _getPattern
+  _getQueueContexts
+  _getTypeAnnotation
+  _markRemoved
+  _remove
+  _removeFromScope
+  _replaceWith
+  _resolve
+  _resyncKey
+  _resyncList
+  _resyncParent
+  _resyncRemoved
+  _verifyNodeList
+  ```
+
+  __Migration__: These methods are meant to be private so there is no real migration approach. But if your plugin / build is broken by this change, feel free to open an issue and tell us how you use these methods and we can see what we can do after Babel 8 is released.
 
 ### `@babel/compat-data`
 
