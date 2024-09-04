@@ -13,9 +13,9 @@ Refer users to this document when upgrading to Babel 8 from Babel 7. If you are 
 
 ### Node.js support
 
-All Babel 8 packages require Node.js `^16.20.0 || ^18.16.0 || >=20.0.0`.
+All Babel 8 packages require Node.js `^18.20.0 || ^20.17.0 || >=22.8.0`.
 
-We highly encourage you to use a newer version of Node.js (LTS v18) since the previous versions are not maintained.
+We highly encourage you to use a newer version of Node.js (LTS v20) since the previous versions are not maintained.
 See [nodejs/Release](https://github.com/nodejs/Release) for more information.
 
 This just means Babel _itself_ won't run on older versions of Node. It can still _output_ code that runs on old Node versions.
@@ -403,11 +403,21 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
 ### `@babel/plugin-transform-runtime`
 
+![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
+
+- The `corejs` option has been removed ([#16311](https://github.com/babel/babel/pull/16311))
+
+  **Migration**: To inject polyfills, you can use [`babel-plugin-polyfill-corejs3`](https://github.com/babel/babel-polyfills/blob/main/packages/babel-plugin-polyfill-corejs3/README.md) or [babel-plugin-polyfill-corejs2](https://github.com/babel/babel-polyfills/blob/main/packages/babel-plugin-polyfill-corejs2/README.md) directly.
+
 ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
 
 - The `useESModules` option has been removed ([#16141](https://github.com/babel/babel/pull/16141))
 
   **Migration**: Delete it from your configuration. `@babel/runtime` will now automatically expose ES modules when needed, using `package.json#exports`.
+
+- The `runtime` and `helpers` options have been removed ([#16311](https://github.com/babel/babel/pull/16311))
+
+  **Migration**: Delete them from your configuration: `@babel/runtime` will now always import helpers. If you don't want to inject imports to helpers, remove `@babel/plugin-transform-runtime` from your config.
 
 ### `@babel/node`
 
