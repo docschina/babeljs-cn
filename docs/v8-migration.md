@@ -13,9 +13,9 @@ Refer users to this document when upgrading to Babel 8 from Babel 7. If you are 
 
 ### Node.js support
 
-All Babel 8 packages require Node.js `^16.20.0 || ^18.16.0 || >=20.0.0`.
+All Babel 8 packages require Node.js `^18.20.0 || ^20.17.0 || >=22.8.0`.
 
-We highly encourage you to use a newer version of Node.js (LTS v18) since the previous versions are not maintained.
+We highly encourage you to use a newer version of Node.js (LTS v20) since the previous versions are not maintained.
 See [nodejs/Release](https://github.com/nodejs/Release) for more information.
 
 This just means Babel _itself_ won't run on older versions of Node. It can still _output_ code that runs on old Node versions.
@@ -176,7 +176,7 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 - Remove `useSpread` and `useBuiltIns` options ([#12593](https://github.com/babel/babel/pull/12593))
 
   **Migration**: Babel 8 always compiles JSX spread elements to object spread:
-  ```jsx title=input.jsx
+  ```jsx title="input.jsx"
   <div {...props}></div>
   // transforms to
   jsx("div", { ...props })
@@ -311,6 +311,17 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
   **Migration**: Remove the option from your config, since it's now enabled by default. Previously the `classFeatures` plugin enables `@babel/parser` to produce class properties AST compatible with ESLint 8, following the ESTree specification. In Babel 8 the `eslint-parser` only works with ESLint 8 and above.
 
+  - Remove `decimal` plugin option [#16741](https://github.com/babel/babel/pull/16741)
+
+  **Migration**: Migrate your project to the latest proposal and remove the plugin from your config since the latest proposal doesn't have syntax anymore.
+
+  ```diff title="example.js"
+  - 1.03m
+  + new Decimal("1.03")
+  - decimal1 + decimal2
+  + decimal1.add(decimal2)
+  ```
+
 ### `@babel/generator` {#configuration-change-generator}
 
 ![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
@@ -403,11 +414,21 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
 ### `@babel/plugin-transform-runtime`
 
+![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
+
+- The `corejs` option has been removed ([#16311](https://github.com/babel/babel/pull/16311))
+
+  **Migration**: To inject polyfills, you can use [`babel-plugin-polyfill-corejs3`](https://github.com/babel/babel-polyfills/blob/main/packages/babel-plugin-polyfill-corejs3/README.md) or [babel-plugin-polyfill-corejs2](https://github.com/babel/babel-polyfills/blob/main/packages/babel-plugin-polyfill-corejs2/README.md) directly.
+
 ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
 
 - The `useESModules` option has been removed ([#16141](https://github.com/babel/babel/pull/16141))
 
   **Migration**: Delete it from your configuration. `@babel/runtime` will now automatically expose ES modules when needed, using `package.json#exports`.
+
+- The `runtime` and `helpers` options have been removed ([#16311](https://github.com/babel/babel/pull/16311))
+
+  **Migration**: Delete them from your configuration: `@babel/runtime` will now always import helpers. If you don't want to inject imports to helpers, remove `@babel/plugin-transform-runtime` from your config.
 
 ### `@babel/node`
 
@@ -415,6 +436,8 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
 - The `-gc` and `-d` command-line flags have been removed ([#15956](https://github.com/babel/babel/pull/15956))
   **Migration**: Use the `--expose-gc` and `--inspect` Node.js flags respectively. Note that although `-d` was short for `--debug`, the latter has been [deprecated since Node.js 7.7.0](https://nodejs.org/en/docs/guides/debugging-getting-started#legacy-debugger).
+
+- Command-line flags for Node.js and Babel must now be passed _before_ the filename, while flags for the script itself must be passed after. ([#16706](https://github.com/babel/babel/pull/16706))
 
 ## Compilation Changes
 
@@ -455,7 +478,7 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 - [Disallow sequence expressions inside JSX attributes](https://github.com/babel/babel/issues/8604) ([#12447](https://github.com/babel/babel/pull/12447))
 
   **Migration**: Find and replace the following code patterns. You can start the migration prior to Babel 8:
-  ```diff title=input.jsx
+  ```diff title="input.jsx"
   - <p key={foo, bar}></p> // Invalid
   + <p key={(foo, bar)}></p> // Valid
   ```
@@ -463,7 +486,7 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 - [Disallow `{`, `}`, `<` and `>` in JSX text](https://github.com/babel/babel/issues/11042) ([#12451](https://github.com/babel/babel/pull/12451))
 
   **Migration**: Use `{'{'}`, `{'}'}`, `{'<'}` and `{'>'}` instead. Find and replace the following code patterns. You can start the migration prior to Babel 8:
-  ```diff title=input.jsx
+  ```diff title="input.jsx"
   - <p>">" is greater than.</p>
   + <p>"{'>'}" is greater than.</p>
   ```
@@ -477,7 +500,7 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
   **Migration**:
   Use the new `declare` syntax, introduced in TypeScript 3.7, if you don't want fields to be initialized to `undefined`:
-  ```ts title=input.ts
+  ```ts title="input.ts"
   class A {
     foo: string | void; // initialized to undefined
     declare bar: number; // type-only, will be removed
@@ -492,7 +515,7 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
   **Migration**:
   Use the new `declare` syntax, introduced in Flow 0.120, if you don't want fields to be initialized to `undefined`:
-  ```flow title=input.js
+  ```flow title="input.js"
   class A {
     foo: string | void; // initialized to undefined
     declare bar: number; // type-only, will be removed
