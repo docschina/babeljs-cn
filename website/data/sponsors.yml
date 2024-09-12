@@ -1,3 +1,9 @@
+- name: Igalia
+  url: https://www.igalia.com/
+  image: https://images.opencollective.com/igalia/1c2e7cb/logo/256.png
+  type: opencollective
+  tier: base-support-sponsor
+  yearly: 30000 # There is not actual amount, but we need a large enough amount to fit in the tier
 - name: Coinbase
   url: https://github.com/coinbase
   image: https://avatars.githubusercontent.com/u/1885080?s=200&v=4
@@ -16,3 +22,9 @@
   type: opencollective
   tier: gold-sponsors
   monthly: 1000
+- name: Route Planner
+  url: https://route4me.com/
+  image: https://github.com/user-attachments/assets/002949fe-aa5e-4311-b77f-7f2c905e91f5
+  type: opencollective
+  tier: silver-sponsors
+  monthly: 500
