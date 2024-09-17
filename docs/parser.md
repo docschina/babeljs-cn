@@ -32,15 +32,16 @@ mind. When in doubt, use `.parse()`.
 <details>
   <summary>History</summary>
 
-| Version | Changes |
-| --- | --- |
-| `v7.23.0` | Added `createImportExpressions` |
+| Version   | Changes                                            |
+| --------- | -------------------------------------------------- |
+| `v7.23.0` | Added `createImportExpressions`                    |
 | `v7.21.0` | Added `allowNewTargetOutsideFunction` and `annexb` |
-| `v7.16.0` | Added `startColumn` |
-| `v7.15.0` | Added `attachComment` |
-| `v7.7.0` | Added `errorRecovery` |
-| `v7.5.0` | Added `allowUndeclaredExports` |
-| `v7.2.0` | Added `createParenthesizedExpressions` |
+| `v7.16.0` | Added `startColumn`                                |
+| `v7.15.0` | Added `attachComment`                              |
+| `v7.7.0`  | Added `errorRecovery`                              |
+| `v7.5.0`  | Added `allowUndeclaredExports`                     |
+| `v7.2.0`  | Added `createParenthesizedExpressions`             |
+
 </details>
 
 - **allowImportExportEverywhere**: By default, `import` and `export`
@@ -118,10 +119,11 @@ It is based on [ESTree spec][] with the following deviations:
 - [Program][] and [BlockStatement][] contain additional `directives` field with [Directive][] and [DirectiveLiteral][]
 - [ClassMethod][], [ClassPrivateMethod][], [ObjectProperty][], and [ObjectMethod][] value property's properties in [FunctionExpression][] is coerced/brought into the main method node.
 - [ChainExpression][] is replaced with [OptionalMemberExpression][] and [OptionalCallExpression][]
-- [ImportExpression][] is replaced with a [CallExpression][] whose `callee` is an [Import] node.
+- [ImportExpression][] is replaced with a [CallExpression][] whose `callee` is an [Import] node. This change will be reversed in Babel 8.
+- [ExportAllDeclaration][] with `exported` field is replaced with an [ExportNamedDeclaration][] containing an [ExportNamespaceSpecifier][] node.
 
-:::tip
-There is now an `estree` plugin which reverts these deviations
+:::note
+The `estree` plugin can revert these deviations. Use it only if you are passing Babel AST to other ESTree-compliant tools.
 :::
 
 AST for JSX code is based on [Facebook JSX AST][].
@@ -134,6 +136,7 @@ AST for JSX code is based on [Facebook JSX AST][].
 [propertydefinition]: https://github.com/estree/estree/blob/master/es2022.md#propertydefinition
 [chainexpression]: https://github.com/estree/estree/blob/master/es2020.md#chainexpression
 [importexpression]: https://github.com/estree/estree/blob/master/es2020.md#importexpression
+[exportalldeclaration]: https://github.com/estree/estree/blob/master/es2020.md#exportalldeclaration
 [privateidentifier]: https://github.com/estree/estree/blob/master/es2022.md#privateidentifier
 [stringliteral]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#stringliteral
 [numericliteral]: https://github.com/babel/babel/tree/main/packages/babel-parser/ast/spec.md#numericliteral
@@ -157,6 +160,8 @@ AST for JSX code is based on [Facebook JSX AST][].
 [optionalcallexpression]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#optionalcallexpression
 [callexpression]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#callexpression
 [import]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#import
+[exportnameddeclaration]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#exportnameddeclaration
+[exportnamespacespecifier]: https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md#exportnamespacespecifier
 [facebook jsx ast]: https://github.com/facebook/jsx/blob/master/AST.md
 
 ### Semver
@@ -190,52 +195,30 @@ require("@babel/parser").parse("code", {
 
 #### Language extensions
 
-
 <details>
   <summary>History</summary>
 
-| Version | Changes |
-| --- | --- |
+| Version  | Changes             |
+| -------- | ------------------- |
 | `v7.6.0` | Added `v8intrinsic` |
+
 </details>
 
-| Name | Code Example |
-|------|--------------|
-| `flow` ([repo](https://github.com/facebook/flow)) | `var a: string = "";` |
-| `flowComments` ([docs](https://flow.org/en/docs/types/comments/)) | <code>/&ast;:: type Foo = \{...}; &ast;/</code> |
-| `jsx` ([repo](https://facebook.github.io/jsx/)) | `<a attr="b">{s}</a>` |
-| `typescript` ([repo](https://github.com/Microsoft/TypeScript)) | `var a: string = "";` |
-| `v8intrinsic` | `%DebugPrint(foo);` |
-
-
+| Name                                                              | Code Example                              |
+| ----------------------------------------------------------------- | ----------------------------------------- |
+| `flow` ([repo](https://github.com/facebook/flow))                 | `var a: string = "";`                     |
+| `flowComments` ([docs](https://flow.org/en/docs/types/comments/)) | <code>/\*:: type Foo = \{...}; \*/</code> |
+| `jsx` ([repo](https://facebook.github.io/jsx/))                   | `<a attr="b">{s}</a>`                     |
+| `typescript` ([repo](https://github.com/Microsoft/TypeScript))    | `var a: string = "";`                     |
+| `v8intrinsic`                                                     | `%DebugPrint(foo);`                       |
 
 #### ECMAScript [proposals](https://github.com/babel/proposals)
 
-<details>
-  <summary>History</summary>
-
-| Version | Changes |
-| --- | --- |
-| `v7.23.0` | Added `sourcePhaseImports`, `deferredImportEvaluation`, `optionalChainingAssign` |
-| `v7.22.0` | Enabled `regexpUnicodeSets` by default, added `importAttributes` |
-| `v7.20.0` | Added `explicitResourceManagement`, `importReflection` |
-| `v7.17.0` | Added `regexpUnicodeSets`, `destructuringPrivate`, `decoratorAutoAccessors` |
-| `v7.15.0` | Added `hack` to the `proposal` option of `pipelineOperator`. Moved `topLevelAwait`, `privateIn` to Latest ECMAScript features |
-| `v7.14.0` | Added `asyncDoExpressions`. Moved `classProperties`, `classPrivateProperties`, `classPrivateMethods`, `moduleStringNames` to Latest ECMAScript features |
-| `v7.13.0` | Added `moduleBlocks` |
-| `v7.12.0` | Added `classStaticBlock`, `moduleStringNames` |
-| `v7.11.0` | Added `decimal` |
-| `v7.10.0` | Added `privateIn` |
-| `v7.9.0` | Added `recordAndTuple` |
-| `v7.7.0` | Added `topLevelAwait` |
-| `v7.4.0` | Added `partialApplication` |
-| `v7.2.0` | Added `classPrivateMethods` |
-</details>
+:::babel8
 
 | Name                                                                                                     | Code Example                                                     |
 | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `asyncDoExpressions` ([proposal](https://github.com/tc39/proposal-async-do-expressions))                 | `async do { await requestAPI().json() }`                         |
-| `decimal` ([proposal](https://github.com/tc39/proposal-decimal))                                         | `0.3m`                                                           |
 | `decorators` ([proposal](https://github.com/tc39/proposal-decorators)) <br/> `decorators-legacy`         | `@a class A {}`                                                  |
 | `decoratorAutoAccessors` ([proposal](https://github.com/tc39/proposal-decorators))                       | `class Example { @reactive accessor myBool = false; }`           |
 | `deferredImportEvaluation` ([proposal](https://github.com/tc39/proposal-defer-import-eval))              | `import defer * as ns from "dep";`                               |
@@ -245,8 +228,7 @@ require("@babel/parser").parse("code", {
 | `exportDefaultFrom` ([proposal](https://github.com/tc39/ecmascript-export-default-from))                 | `export v from "mod"`                                            |
 | `functionBind` ([proposal](https://github.com/zenparsing/es-function-bind))                              | `a::b`, `::console.log`                                          |
 | `functionSent` ([proposal](https://github.com/tc39/proposal-function.sent))                              | `function.sent`                                                  |
-| `importAttributes` ([proposal](https://github.com/tc39/proposal-import-attributes)) <br/> `importAssertions` (⚠️ deprecated) | `import json from "./foo.json" with { type: "json" };`           |
-| `importReflection` ([proposal](https://github.com/tc39/proposal-import-reflection))                      | `import module foo from "./foo.wasm";`                           |
+| `importAttributes` ([proposal](https://github.com/tc39/proposal-import-attributes))                      | `import json from "./foo.json" with { type: "json" };`           |
 | `moduleBlocks` ([proposal](https://github.com/tc39/proposal-js-module-blocks))                           | `let m = module { export let y = 1; };`                          |
 | `optionalChainingAssign` ([proposal](https://github.com/tc39/proposal-optional-chaining-assignment))     | `x?.prop = 2`                                                    |
 | `partialApplication` ([proposal](https://github.com/babel/proposals/issues/32))                          | `f(?, a)`                                                        |
@@ -254,6 +236,55 @@ require("@babel/parser").parse("code", {
 | `recordAndTuple` ([proposal](https://github.com/tc39/proposal-record-tuple))                             | `#{x: 1}`, `#[1, 2]`                                             |
 | `sourcePhaseImports` ([proposal](https://github.com/tc39/proposal-source-phase-imports))                 | `import source x from "./x"`                                     |
 | `throwExpressions` ([proposal](https://github.com/babel/proposals/issues/23))                            | `() => throw new Error("")`                                      |
+
+:::
+
+:::babel7
+
+<details>
+  <summary>History</summary>
+
+| Version   | Changes                                                                                                                                                 |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `v7.23.0` | Added `sourcePhaseImports`, `deferredImportEvaluation`, `optionalChainingAssign`                                                                        |
+| `v7.22.0` | Enabled `regexpUnicodeSets` by default, added `importAttributes`                                                                                        |
+| `v7.20.0` | Added `explicitResourceManagement`, `importReflection`                                                                                                  |
+| `v7.17.0` | Added `regexpUnicodeSets`, `destructuringPrivate`, `decoratorAutoAccessors`                                                                             |
+| `v7.15.0` | Added `hack` to the `proposal` option of `pipelineOperator`. Moved `topLevelAwait`, `privateIn` to Latest ECMAScript features                           |
+| `v7.14.0` | Added `asyncDoExpressions`. Moved `classProperties`, `classPrivateProperties`, `classPrivateMethods`, `moduleStringNames` to Latest ECMAScript features |
+| `v7.13.0` | Added `moduleBlocks`                                                                                                                                    |
+| `v7.12.0` | Added `classStaticBlock`, `moduleStringNames`                                                                                                           |
+| `v7.11.0` | Added `decimal`                                                                                                                                         |
+| `v7.10.0` | Added `privateIn`                                                                                                                                       |
+| `v7.9.0`  | Added `recordAndTuple`                                                                                                                                  |
+| `v7.7.0`  | Added `topLevelAwait`                                                                                                                                   |
+| `v7.4.0`  | Added `partialApplication`                                                                                                                              |
+| `v7.2.0`  | Added `classPrivateMethods`                                                                                                                             |
+
+</details>
+
+| Name                                                                                                                         | Code Example                                                     |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `asyncDoExpressions` ([proposal](https://github.com/tc39/proposal-async-do-expressions))                                     | `async do { await requestAPI().json() }`                         |
+| `decimal` ([proposal](https://github.com/tc39/proposal-decimal))                                                             | `0.3m`                                                           |
+| `decorators` ([proposal](https://github.com/tc39/proposal-decorators)) <br/> `decorators-legacy`                             | `@a class A {}`                                                  |
+| `decoratorAutoAccessors` ([proposal](https://github.com/tc39/proposal-decorators))                                           | `class Example { @reactive accessor myBool = false; }`           |
+| `deferredImportEvaluation` ([proposal](https://github.com/tc39/proposal-defer-import-eval))                                  | `import defer * as ns from "dep";`                               |
+| `destructuringPrivate` ([proposal](https://github.com/tc39/proposal-destructuring-private))                                  | `class Example { #x = 1; method() { const { #x: x } = this; } }` |
+| `doExpressions` ([proposal](https://github.com/tc39/proposal-do-expressions))                                                | `var a = do { if (true) { 'hi'; } };`                            |
+| `explicitResourceManagement` ([proposal](https://github.com/tc39/proposal-explicit-resource-management))                     | `using reader = getReader()`                                     |
+| `exportDefaultFrom` ([proposal](https://github.com/tc39/ecmascript-export-default-from))                                     | `export v from "mod"`                                            |
+| `functionBind` ([proposal](https://github.com/zenparsing/es-function-bind))                                                  | `a::b`, `::console.log`                                          |
+| `functionSent` ([proposal](https://github.com/tc39/proposal-function.sent))                                                  | `function.sent`                                                  |
+| `importAttributes` ([proposal](https://github.com/tc39/proposal-import-attributes)) <br/> `importAssertions` (⚠️ deprecated)  | `import json from "./foo.json" with { type: "json" };`           |
+| `importReflection` ([proposal](https://github.com/tc39/proposal-import-reflection))                                          | `import module foo from "./foo.wasm";`                           |
+| `moduleBlocks` ([proposal](https://github.com/tc39/proposal-js-module-blocks))                                               | `let m = module { export let y = 1; };`                          |
+| `optionalChainingAssign` ([proposal](https://github.com/tc39/proposal-optional-chaining-assignment))                         | `x?.prop = 2`                                                    |
+| `partialApplication` ([proposal](https://github.com/babel/proposals/issues/32))                                              | `f(?, a)`                                                        |
+| `pipelineOperator` ([proposal](https://github.com/babel/proposals/issues/29))                                                | <code>a &#124;> b</code>                                         |
+| `recordAndTuple` ([proposal](https://github.com/tc39/proposal-record-tuple))                                                 | `#{x: 1}`, `#[1, 2]`                                             |
+| `sourcePhaseImports` ([proposal](https://github.com/tc39/proposal-source-phase-imports))                                     | `import source x from "./x"`                                     |
+| `throwExpressions` ([proposal](https://github.com/babel/proposals/issues/23))                                                | `() => throw new Error("")`                                      |
 
 #### Latest ECMAScript features
 
@@ -273,7 +304,7 @@ You should enable these features only if you are using an older version.
 | `logicalAssignment` ([proposal](https://github.com/tc39/proposal-logical-assignment))     | `a &&= b`                                           |
 | `moduleStringNames` ([proposal](https://github.com/tc39/ecma262/pull/2154))               | `import { "😄" as smile } from "emoji";`            |
 | `nullishCoalescingOperator` ([proposal](https://github.com/babel/proposals/issues/14))    | `a ?? b`                                            |
-| `numericSeparator` ([proposal](https://github.com/tc39/proposal-numeric-separator)) | `1_000_000`                                         |
+| `numericSeparator` ([proposal](https://github.com/tc39/proposal-numeric-separator))       | `1_000_000`                                         |
 | `objectRestSpread` ([proposal](https://github.com/tc39/proposal-object-rest-spread))      | `var a = { b, ...c };`                              |
 | `optionalCatchBinding` ([proposal](https://github.com/babel/proposals/issues/7))          | `try {throw 0;} catch{do();}`                       |
 | `optionalChaining` ([proposal](https://github.com/tc39/proposal-optional-chaining))       | `a?.b`                                              |
@@ -281,18 +312,21 @@ You should enable these features only if you are using an older version.
 | `regexpUnicodeSets` ([proposal](https://github.com/tc39/proposal-regexp-set-notation))    | `/[\p{Decimal_Number}--[0-9]]/v;`                   |
 | `topLevelAwait` ([proposal](https://github.com/tc39/proposal-top-level-await/))           | `await promise` in modules                          |
 
+:::
+
 #### Plugins options
 
 <details>
   <summary>History</summary>
 
-| Version | Changes |
-| --- | --- |
+| Version  | Changes                                                                                                                                       |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `7.21.0` | The default behavior of the `decorators`' `decoratorsBeforeExport` option is to allow decorators either before or after the `export` keyword. |
 | `7.19.0` | The `syntaxType` option of the `recordAndTuple` plugin defaults to `hash`; added `allowCallParenthesized` option for the `decorators` plugin. |
-| `7.17.0` | Added `@@` and `^^` to the `topicToken` option of the `hack` pipeline operator |
-| `7.16.0` | Added `disallowAmbiguousJSXLike` for `typescript` plugin. Added `^` to the `topicToken` option of the `hack` pipeline operators |
-| `7.14.0` | Added `dts` for `typescript` plugin |
+| `7.17.0` | Added `@@` and `^^` to the `topicToken` option of the `hack` pipeline operator                                                                |
+| `7.16.0` | Added `disallowAmbiguousJSXLike` for `typescript` plugin. Added `^` to the `topicToken` option of the `hack` pipeline operators               |
+| `7.14.0` | Added `dts` for `typescript` plugin                                                                                                           |
+
 </details>
 
 <!-- TODO: Is this note still true? Don't we raise an exception? -->
@@ -305,7 +339,11 @@ When a plugin is specified multiple times, only the first options are considered
 
   - `deprecatedAssertSyntax` (`boolean`, defaults to `false`)
 
-    When `true`, allow parsing import attributes using the [deprecated](https://tc39.es/proposal-import-attributes/#sec-deprecated-assert-keyword-for-import-attributes) `assert` keyword. This matches the syntax originally supported by the `importAssertions` parser plugin.
+    When `true`, allow parsing an old version of the import attributes, which used the `assert` keyword instead of `with`.
+
+    :::babel7
+    This matches the syntax originally supported by the `importAssertions` parser plugin.
+    :::
 
 - `decorators`:
 
@@ -315,20 +353,21 @@ When a plugin is specified multiple times, only the first options are considered
 
   - `decoratorsBeforeExport` (`boolean`)
 
-    By default decorators on exported classes can be placed either before or after the `export` keyword. When this option is set, decorators will only be allowed in the specified position.
+        By default decorators on exported classes can be placed either before or after the `export` keyword. When this option is set, decorators will only be allowed in the specified position.
 
-    ```js title="JavaScript"
-    // decoratorsBeforeExport: true
-    @dec
-    export class C {}
+        ```js title="JavaScript"
+        // decoratorsBeforeExport: true
+        @dec
+        export class C {}
 
-    // decoratorsBeforeExport: false
-    export @dec class C {}
-    ```
+        // decoratorsBeforeExport: false
+        export @dec class C {}
+        ```
 
-    :::caution
-This option is deprecated and will be removed in a future version. Code that is valid when this option is explicitly set to `true` or `false` is also valid when this option is not set.
-:::
+        :::caution
+
+    This option is deprecated and will be removed in a future version. Code that is valid when this option is explicitly set to `true` or `false` is also valid when this option is not set.
+    :::
 
 - `optionalChainingAssign`:
 
@@ -380,9 +419,10 @@ This option is deprecated and will be removed in a future version. Code that is 
 <details>
   <summary>History</summary>
 
-| Version | Changes |
-| --- | --- |
+| Version   | Changes           |
+| --------- | ----------------- |
 | `v7.14.0` | Added error codes |
+
 </details>
 
 Error codes are useful for handling the errors thrown by `@babel/parser`.
