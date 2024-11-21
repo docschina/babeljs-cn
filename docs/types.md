@@ -290,8 +290,8 @@ See also `t.isCallExpression(node, opts)` and `t.assertCallExpression(node, opts
 
 AST Node `CallExpression` shape:
 - `callee`: `Expression | Super | V8IntrinsicIdentifier` (required)
-- `arguments`: `Array<Expression | SpreadElement | JSXNamespacedName | ArgumentPlaceholder>` (required)
-- `optional`: `true | false` (default: `null`, excluded from builder function)
+- `arguments`: `Array<Expression | SpreadElement | ArgumentPlaceholder>` (required)
+- `optional`: `boolean` (default: `null`, excluded from builder function)
 - `typeArguments`: `TypeParameterInstantiation` (default: `null`, excluded from builder function)
 - `typeParameters`: `TSTypeParameterInstantiation` (default: `null`, excluded from builder function)
 
@@ -620,13 +620,15 @@ Aliases: [`Flow`](#flow), [`FlowDeclaration`](#flowdeclaration), [`Statement`](#
 #### declareExportAllDeclaration
 
 ```js title="JavaScript"
-t.declareExportAllDeclaration(source);
+t.declareExportAllDeclaration(source, attributes);
 ```
 
 See also `t.isDeclareExportAllDeclaration(node, opts)` and `t.assertDeclareExportAllDeclaration(node, opts)`.
 
 AST Node `DeclareExportAllDeclaration` shape:
 - `source`: `StringLiteral` (required)
+- `attributes`: `Array<ImportAttribute>` (default: `null`)
+- `assertions`: `Array<ImportAttribute>` (default: `null`, excluded from builder function)
 - `exportKind`: `"type" | "value"` (default: `null`, excluded from builder function)
 
 Aliases: [`Flow`](#flow), [`FlowDeclaration`](#flowdeclaration), [`Statement`](#statement), [`Declaration`](#declaration)
@@ -636,7 +638,7 @@ Aliases: [`Flow`](#flow), [`FlowDeclaration`](#flowdeclaration), [`Statement`](#
 #### declareExportDeclaration
 
 ```js title="JavaScript"
-t.declareExportDeclaration(declaration, specifiers, source);
+t.declareExportDeclaration(declaration, specifiers, source, attributes);
 ```
 
 See also `t.isDeclareExportDeclaration(node, opts)` and `t.assertDeclareExportDeclaration(node, opts)`.
@@ -645,6 +647,8 @@ AST Node `DeclareExportDeclaration` shape:
 - `declaration`: `Flow` (default: `null`)
 - `specifiers`: `Array<ExportSpecifier | ExportNamespaceSpecifier>` (default: `null`)
 - `source`: `StringLiteral` (default: `null`)
+- `attributes`: `Array<ImportAttribute>` (default: `null`)
+- `assertions`: `Array<ImportAttribute>` (default: `null`, excluded from builder function)
 - `default`: `boolean` (default: `null`, excluded from builder function)
 
 Aliases: [`Flow`](#flow), [`FlowDeclaration`](#flowdeclaration), [`Statement`](#statement), [`Declaration`](#declaration)
@@ -1856,7 +1860,7 @@ AST Node `MemberExpression` shape:
 - `object`: `Expression | Super` (required)
 - `property`: if computed then `Expression` else `Identifier` (required)
 - `computed`: `boolean` (default: `false`)
-- `optional`: `true | false` (default: `null`)
+- `optional`: `boolean` (default: `null`)
 
 Aliases: [`Standardized`](#standardized), [`Expression`](#expression), [`LVal`](#lval)
 
@@ -1915,8 +1919,8 @@ See also `t.isNewExpression(node, opts)` and `t.assertNewExpression(node, opts)`
 
 AST Node `NewExpression` shape:
 - `callee`: `Expression | Super | V8IntrinsicIdentifier` (required)
-- `arguments`: `Array<Expression | SpreadElement | JSXNamespacedName | ArgumentPlaceholder>` (required)
-- `optional`: `true | false` (default: `null`, excluded from builder function)
+- `arguments`: `Array<Expression | SpreadElement | ArgumentPlaceholder>` (required)
+- `optional`: `boolean` (default: `null`, excluded from builder function)
 - `typeArguments`: `TypeParameterInstantiation` (default: `null`, excluded from builder function)
 - `typeParameters`: `TSTypeParameterInstantiation` (default: `null`, excluded from builder function)
 
@@ -2232,7 +2236,7 @@ See also `t.isOptionalCallExpression(node, opts)` and `t.assertOptionalCallExpre
 
 AST Node `OptionalCallExpression` shape:
 - `callee`: `Expression` (required)
-- `arguments`: `Array<Expression | SpreadElement | JSXNamespacedName | ArgumentPlaceholder>` (required)
+- `arguments`: `Array<Expression | SpreadElement | ArgumentPlaceholder>` (required)
 - `optional`: `boolean` (required)
 - `typeArguments`: `TypeParameterInstantiation` (default: `null`, excluded from builder function)
 - `typeParameters`: `TSTypeParameterInstantiation` (default: `null`, excluded from builder function)
@@ -2344,6 +2348,9 @@ See also `t.isPlaceholder(node, opts)` and `t.assertPlaceholder(node, opts)`.
 AST Node `Placeholder` shape:
 - `expectedNode`: `"Identifier" | "StringLiteral" | "Expression" | "Statement" | "Declaration" | "BlockStatement" | "ClassBody" | "Pattern"` (required)
 - `name`: `Identifier` (required)
+- `decorators`: `Array<Decorator>` (default: `null`, excluded from builder function)
+- `optional`: `boolean` (default: `null`, excluded from builder function)
+- `typeAnnotation`: `TypeAnnotation | TSTypeAnnotation | Noop` (default: `null`, excluded from builder function)
 
 Aliases: [`Miscellaneous`](#miscellaneous)
 
@@ -3135,6 +3142,7 @@ AST Node `TSModuleDeclaration` shape:
 - `body`: `TSModuleBlock | TSModuleDeclaration` (required)
 - `declare`: `boolean` (default: `null`, excluded from builder function)
 - `global`: `boolean` (default: `null`, excluded from builder function)
+- `kind`: `"global" | "module" | "namespace"` (required)
 
 Aliases: [`TypeScript`](#typescript), [`Statement`](#statement), [`Declaration`](#declaration)
 
