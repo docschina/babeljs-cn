@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "../../static/css/index.css";
 import "../../static/css/minirepl.css";
-import "../../../js/minirepl.js";
 import Link from "@docusaurus/Link";
 import BABEL_MINI_REPL from "../../../js/minirepl.js";
 import Translate from "@docusaurus/Translate";
@@ -152,9 +151,6 @@ const ocButton = {
 };
 
 const OpenCollectiveSponsors = ({ language }) => {
-  const { siteConfig } = useDocusaurusContext();
-  const { customFields } = siteConfig;
-
   return (
     <div className="container paddingBottom">
       <div className="wrapper productShowcaseSection">
@@ -219,9 +215,9 @@ const Hero = ({ language }) => (
 
       <div className="hero__announcement">
         <span>
-          <strong>Babel 7.24 is released!</strong> Please read our{" "}
-          <Link to="/blog/2024/02/28/7.24.0">blog post</Link> for highlights and{" "}
-          <Link to="https://github.com/babel/babel/releases/tag/v7.24.0">
+          <strong>Babel 7.26 is released!</strong> Please read our{" "}
+          <Link to="/blog/2024/10/25/7.26.0">blog post</Link> for highlights and{" "}
+          <Link to="https://github.com/babel/babel/releases/tag/v7.26.0">
             changelog
           </Link>{" "}
           for more details!
@@ -236,9 +232,8 @@ const Hero = ({ language }) => (
 
 const Index = ({ language }) => {
   const { siteConfig } = useDocusaurusContext();
-  const { customFields } = siteConfig;
   return (
-    <Layout title={siteConfig?.title} description={siteConfig?.tagline}>
+    <Layout title={siteConfig.title} description={siteConfig.tagline}>
       <div>
         <Hero language={language} />
 
