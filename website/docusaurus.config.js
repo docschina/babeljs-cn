@@ -111,14 +111,20 @@ function remarkDirectiveBabel8Plugin({ renderBabel8 }) {
             children.splice(index, 1, ...node.children);
           }
         } else {
-          transformer(node); // for support inside ::tip, etc
+          transformer(node); // inside :::tip, etc
         }
+      } else if (Array.isArray(node.children)) {
+        transformer(node); // inside list items
       }
     }
   };
 }
 
 const siteConfig = {
+  future: {
+    // See https://docusaurus.io/blog/releases/3.6
+    experimental_faster: true,
+  },
   titleDelimiter: "·",
   baseUrl: "/",
   favicon: "img/favicon.png",
@@ -169,6 +175,8 @@ const siteConfig = {
         blog: {
           blogSidebarTitle: "All Blog Posts",
           blogSidebarCount: "ALL",
+          onInlineAuthors: "throw",
+          onUntruncatedBlogPosts: "throw",
           remarkPlugins: [require("@docusaurus/remark-plugin-npm2yarn")],
         },
         // ...
@@ -189,7 +197,7 @@ const siteConfig = {
       respectPrefersColorScheme: true,
     },
     prism: {
-      additionalLanguages: ["flow", "powershell"],
+      additionalLanguages: ["diff", "flow", "powershell"],
       theme: require("./src/theme/prism/light"),
       darkTheme: require("./src/theme/prism/dark"),
       magicComments: [
@@ -264,7 +272,7 @@ const siteConfig = {
 
   scripts: [
     {
-      src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js",
+      src: "https://unpkg.com/jquery@1.9.1/jquery.min.js",
       defer: true,
     },
     {
