@@ -30,7 +30,11 @@ For an awesome tutorial on compilers, check out [the-super-tiny-compiler](https:
 
 Babel 通过语法转换(syntax transformer)支持最新版本的 JavaScript。
 
+<<<<<<< HEAD
 这些 [plugins](plugins.md) 允许你**现在**就使用新语法，而无需等待浏览器的支持。查看我们的 [使用指南](usage.md) 以开始使用。
+=======
+These [plugins](plugins-list.md) allow you to use new syntax, **right now** without waiting for browser support. Check out our [usage guide](usage.md) to get started.
+>>>>>>> 4b73ecc0d9a2db69d4fccb0f0d8c6e06c4cbbd01
 
 ## JSX 和 React
 
