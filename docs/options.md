@@ -282,7 +282,7 @@ babelrcRoots: [
 
 ### `plugins`
 
-Type: `Array<PluginEntry | Plugin>` ([`PluginEntry`](#plugin-preset-entries))<br />
+Type: `Array<PluginEntry | Plugin>` ([`PluginEntry`](#pluginpreset-entries))<br />
 Default: `[]`<br />
 
 An array of plugins to activate when processing this file. For more information on how
@@ -295,7 +295,7 @@ representation of a plugin or preset, you should use [`babel.createConfigItem()`
 
 ### `presets`
 
-Type: `Array<PresetEntry>` ([`PresetEntry`](#plugin-preset-entries))<br />
+Type: `Array<PresetEntry>` ([`PresetEntry`](#pluginpreset-entries))<br />
 Default: `[]`<br />
 
 An array of presets to activate when processing this file. For more information on how
@@ -365,7 +365,7 @@ If a minor version is not specified, Babel will interpret it as `MAJOR.0`. For e
 
 #### No targets
 
-:::babel7
+::::babel7
 
 When no targets are specified: Babel will assume you are targeting the oldest browsers possible. For example, `@babel/preset-env` will transform all ES2015-ES2020 code to be ES5 compatible.
 
@@ -389,7 +389,7 @@ Because of this, Babel's behavior is different than [browserslist](https://githu
 
 We recognize this isn’t ideal and will be revisiting this in Babel v8.
 
-:::
+::::
 
 :::babel8
 
@@ -612,7 +612,8 @@ Default: `false`<br />
 - `"inline"` to generate a sourcemap and append it as a data URL to the end of the code, but not include it in the result object.
 - `"both"` is the same as inline, but will include the map in the result object.
 
-`@babel/cli` overloads some of these to also affect how maps are written to disk:
+Options in configuration files have no effect on whether `@babel/cli` writes files separate `.map` files to disk.
+When the `--source-maps` CLI option is passed to `@babel/cli` it will also control whether `.map` files are written:
 
 - `true` will write the map to a `.map` file on disk
 - `"inline"` will write the file directly, so it will have a `data:` containing the map
@@ -838,7 +839,7 @@ Type: `string | RegExp | (filename: string | void, context: { caller: { name: st
 Several Babel options perform tests against file paths. In general, these
 options support a common pattern approach where each pattern can be
 
-- `string` - A file path with simple support for `*` and `**` as full slug matches. Any file or
+- `string` - A file path with simple support for `**`, `*`, and `*.ext`. Any file or
   parent folder matching the pattern counts as a match. The path follow's Node's normal path logic,
   so on POSIX is must be `/`-separated, but on Windows both `/` and `\` are supported.
 - `RegExp` - A regular expression to match against the normalized filename. On POSIX the path
@@ -851,6 +852,28 @@ and will consider it an error otherwise.
   return a boolean to indicate whether it is a match or not. The function is passed the filename
   or `undefined` if one was not given to Babel. It is also passed the current `envName` and `caller`
   options that were specified by the top-level call to Babel and `dirname` that is either a directory of the configuration file or the current working directory (if the transformation was called programmatically).
+
+:::note
+Matching based on strings does *not* support full glob patterns. `**` matches 0 or more path parts, `*` matches exactly 1 path part, and `*.ext` matches a wildcard with an extension. Using `*` in any other way, for example, as part of a path or file name, is not supported. If you need complex pattern matching, use regex matching, or a self-defined function in the configuration.
+:::
+
+Here are some examples, on how matching works:
+
+| Description                        | Pattern          | Matches                                      | Does Not Match                                 |
+| ---------------------------------- | ---------------- | -------------------------------------------- | ---------------------------------------------- |
+| Exact path matching                | `foo/bar`        | `/src/foo/bar`                               | `/src/foo`, `/src/foo/baz`, `/src/foo/bar/baz` |
+| Single wildcard (`*`)              | `*/bar`          | `/src/foo/bar`, `/src/xyz/bar`               | `/src/foo/baz`, `/src/bar`, `/src/foo/bar/baz` |
+| Double wildcard (`**`)             | `**/bar`         | `/src/bar`, `/src/foo/bar`, `/src/a/b/c/bar` | `/src/bar/foo`, `/src/barfoo`                  |
+| File extension pattern (`*.ext`)   | `foo/*.js`       | `/src/foo/test.js`, `/src/foo/index.js/`     | `/src/foo/test.ts`, `/src/foo/test.js.map`     |
+| Combined patterns                  | `**/test/*.js`   | `/src/test/file.js`, `/src/a/b/test/file.js` | `/src/test.js`, `/src/test/sub/file.js`        |
+
+Here are examples, where `*` does *not* have a wildcard function: 
+
+| Description           | Pattern          | Does Not Match                                              |
+| --------------------- | ---------------- | ----------------------------------------------------------- |
+| Star in path          | `test*me/*.js`   | `/src/testme/1.js`, `/src/testme/2.js`, `/src/test-me/3.js` |
+| Star in file name     | `foo*bar.js`     | `/src/foobar.js`, `/src/foo-bar.js`                         |
+| Star in extension     | `file.ts*`       | `/src/file.ts`, `/src/file.tsx`                             |
 
 ### Merging
 
