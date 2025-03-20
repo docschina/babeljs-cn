@@ -653,7 +653,6 @@ class Repl extends React.Component<Props, State> {
       corejs: envConfig.corejs,
       spec: envConfig.isSpecEnabled,
       loose: envConfig.isLooseEnabled,
-      circleciRepo: state.babel.circleciRepo,
       code: state.code,
       debug: state.debugEnvPreset,
       modules: envConfig.modules,
@@ -757,7 +756,7 @@ const styles = {
     background: colors.inverseBackgroundDark,
     color: colors.inverseForegroundLight,
     display: "flex",
-    height: "100vh",
+    height: "100%",
     justifyContent: "center",
   }),
   loadingAnimation: css({
