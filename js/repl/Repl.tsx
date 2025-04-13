@@ -50,7 +50,7 @@ import type {
   SourceType,
 } from "./types";
 
-type Props = {};
+type Props = object;
 
 type State = {
   babel: BabelState;
@@ -391,7 +391,6 @@ class Repl extends React.Component<Props, State> {
           // No need to recompile at this point;
           // Just evaluate the most recently compiled code.
           try {
-            // eslint-disable-next-line
             scopedEval.execute(this.state.compiled, this.state.sourceMap);
           } catch (error) {
             evalErrorMessage = error.message;
@@ -653,7 +652,6 @@ class Repl extends React.Component<Props, State> {
       corejs: envConfig.corejs,
       spec: envConfig.isSpecEnabled,
       loose: envConfig.isLooseEnabled,
-      circleciRepo: state.babel.circleciRepo,
       code: state.code,
       debug: state.debugEnvPreset,
       modules: envConfig.modules,
@@ -757,7 +755,7 @@ const styles = {
     background: colors.inverseBackgroundDark,
     color: colors.inverseForegroundLight,
     display: "flex",
-    height: "100vh",
+    height: "100%",
     justifyContent: "center",
   }),
   loadingAnimation: css({
