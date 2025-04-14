@@ -120,7 +120,6 @@ type Props = {
   runtimePolyfillState: PluginState;
   loadingExternalPlugins: boolean;
   onAssumptionsChange: AssumptionsChange;
-  debugEnvPreset: boolean;
   onResetBtnClick: () => void;
 };
 
@@ -531,7 +530,6 @@ class ExpandedContainer extends Component<Props, State> {
                 />
                 Enabled
               </label>
-
               <label className={styles.envPresetRow}>
                 <LinkToDocs
                   className={`${styles.envPresetLabel} ${styles.highlight}`}
@@ -636,7 +634,7 @@ class ExpandedContainer extends Component<Props, State> {
                   Modules
                 </LinkToDocs>
                 <select
-                  value={envConfig.modules}
+                  value={envConfig.modules + ""}
                   className={styles.envPresetSelect}
                   onChange={this._onEnvPresetSettingChange("modules")}
                   disabled={!envConfig.isEnvPresetEnabled}
@@ -648,36 +646,42 @@ class ExpandedContainer extends Component<Props, State> {
                   <option value="commonjs">commonjs</option>
                 </select>
               </label>
-              <label className={styles.envPresetRow}>
-                <LinkToDocs
-                  className={`${styles.envPresetLabel} ${styles.highlight}`}
-                  section="spec"
-                >
-                  Spec
-                </LinkToDocs>
-                <input
-                  checked={envConfig.isSpecEnabled}
-                  className={styles.envPresetCheckbox}
-                  disabled={!envConfig.isEnvPresetEnabled}
-                  onChange={this._onEnvPresetSettingCheck("isSpecEnabled")}
-                  type="checkbox"
-                />
-              </label>
-              <label className={styles.envPresetRow}>
-                <LinkToDocs
-                  className={`${styles.envPresetLabel} ${styles.highlight}`}
-                  section="loose"
-                >
-                  Loose
-                </LinkToDocs>
-                <input
-                  checked={envConfig.isLooseEnabled}
-                  className={styles.envPresetCheckbox}
-                  disabled={!envConfig.isEnvPresetEnabled}
-                  onChange={this._onEnvPresetSettingCheck("isLooseEnabled")}
-                  type="checkbox"
-                />
-              </label>
+              {(!babelVersion ||
+                compareVersions(babelVersion, "8.0.0") === -1) && (
+                <label className={styles.envPresetRow}>
+                  <LinkToDocs
+                    className={`${styles.envPresetLabel} ${styles.highlight}`}
+                    section="spec"
+                  >
+                    Spec
+                  </LinkToDocs>
+                  <input
+                    checked={envConfig.isSpecEnabled}
+                    className={styles.envPresetCheckbox}
+                    disabled={!envConfig.isEnvPresetEnabled}
+                    onChange={this._onEnvPresetSettingCheck("isSpecEnabled")}
+                    type="checkbox"
+                  />
+                </label>
+              )}
+              {(!babelVersion ||
+                compareVersions(babelVersion, "8.0.0") === -1) && (
+                <label className={styles.envPresetRow}>
+                  <LinkToDocs
+                    className={`${styles.envPresetLabel} ${styles.highlight}`}
+                    section="loose"
+                  >
+                    Loose
+                  </LinkToDocs>
+                  <input
+                    checked={envConfig.isLooseEnabled}
+                    className={styles.envPresetCheckbox}
+                    disabled={!envConfig.isEnvPresetEnabled}
+                    onChange={this._onEnvPresetSettingCheck("isLooseEnabled")}
+                    type="checkbox"
+                  />
+                </label>
+              )}
               {isBugfixesSupported && (
                 <label className={styles.envPresetRow}>
                   <LinkToDocs
@@ -974,7 +978,7 @@ const styles = {
 
     [media.large]: {
       height: "calc(100% - 38px)", // 38px is babel-version tab's height
-      width: "18rem",
+      minWidth: "18rem",
       [`& .${nestedCloseButton}`]: {
         right: "-2rem",
       },
@@ -1137,7 +1141,6 @@ const styles = {
   optionSelect: css({
     appearance: "none",
     backgroundColor: colors.selectBackground,
-    // eslint-disable-next-line
     backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='${colors.inverseForegroundLight}'><polygon points='0,0 100,0 50,50'/></svg>")`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "8px",

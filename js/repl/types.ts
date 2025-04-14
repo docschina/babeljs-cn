@@ -75,7 +75,6 @@ export type BabelState = LazyLoadedState & {
   availablePresets: Array<any>;
   build: any;
   errorMessage?: string;
-  circleciRepo: string;
   config: PluginConfig;
   version: any;
 };
@@ -84,7 +83,6 @@ export type EnvState = LazyLoadedState & {
   availablePresets: Array<any>;
   build: number;
   errorMessage?: string;
-  circleciRepo: string;
   config: PluginConfig;
   version: any;
   isEnabled: boolean;
@@ -109,7 +107,6 @@ export type PluginStateMap = {
 export type SourceType = "script" | "module" | "unambiguous";
 
 export type CompileConfig = {
-  debugEnvPreset: boolean;
   envConfig: EnvConfig | undefined | null;
   presetsOptions: PresetsOptions;
   evaluate: boolean;
@@ -129,9 +126,7 @@ export type ReplState = {
   corejs?: string | false;
   spec: boolean;
   loose: boolean;
-  circleciRepo: string;
   code: string;
-  debug: boolean;
   evaluate: boolean;
   fileSize: boolean;
   timeTravel: boolean;
