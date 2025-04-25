@@ -1,6 +1,6 @@
 ---
-id: babel-plugin-proposal-json-modules
-title: "@babel/plugin-proposal-json-modules"
+id: babel-plugin-transform-json-modules
+title: "@babel/plugin-transform-json-modules"
 sidebar_label: json-modules
 ---
 
@@ -63,7 +63,7 @@ will be transformed to
 ## Installation
 
 ```shell npm2yarn
-npm install --save-dev @babel/plugin-proposal-json-modules
+npm install --save-dev @babel/plugin-transform-json-modules
 ```
 
 ## Usage
@@ -72,26 +72,50 @@ npm install --save-dev @babel/plugin-proposal-json-modules
 
 ```json title="babel.config.json"
 {
-  "plugins": [
-    "@babel/plugin-proposal-json-modules"
-  ]
+  "plugins": ["@babel/plugin-transform-json-modules"]
 }
 ```
 
 ### Via CLI
 
 ```sh title="Shell"
-babel --plugins=@babel/plugin-proposal-json-modules script.js
+babel --plugins=@babel/plugin-transform-json-modules script.js
 ```
 
 ### Via Node API
 
 ```js title="JavaScript"
 require("@babel/core").transformSync("code", {
-  plugins: [
-    "@babel/plugin-proposal-json-modules"
-  ],
+  plugins: ["@babel/plugin-transform-json-modules"],
 });
+```
+
+## Options
+
+### `uncheckedRequire`
+
+Type: `boolean`<br />
+Default: `false`<br />
+Added in `v7.25.0`
+
+When set to `true`, the plugin will generate a simpler output by using `require` directly to import the JSON file. When targeting CommonJS, this option leads to output that is easier to analyze for bundlers but doesn't check that the module being imported is actually JSON:
+
+**In**
+
+```js
+import data from "./data.json" with { type: "json" };
+```
+
+**Out (without `uncheckedRequire: true`)**
+
+```js
+const data = JSON.parse(require("fs").readFileSync(require.resolve("./data.json")));
+```
+
+**Out (with `uncheckedRequire: true`)**
+
+```js
+const data = require("./data.json");
 ```
 
 ## References
