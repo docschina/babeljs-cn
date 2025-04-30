@@ -1,4 +1,4 @@
-import algoliasearch from "algoliasearch/lite";
+import { liteClient } from "algoliasearch/lite";
 import { css } from "@emotion/css";
 import React, { type ChangeEvent } from "react";
 import {
@@ -7,13 +7,13 @@ import {
   InstantSearch,
   Pagination,
   PoweredBy,
-} from "react-instantsearch-dom";
+} from "react-instantsearch";
 import SearchBox from "./ExternalPluginsSearchBox";
 import Modal from "./Modal";
 import { colors, media } from "./styles";
 import type { BabelPlugin } from "./types";
 
-const searchClient = algoliasearch(
+const searchClient = liteClient(
   "OFCNCOG2CU",
   "1f0cc4b7da241f62651b85531d788fbd"
 );
@@ -43,14 +43,6 @@ type Props = {
 };
 
 export default class ExternalPluginsModal extends React.Component<Props> {
-  _input: HTMLInputElement | undefined | null;
-
-  componentDidMount() {
-    if (this._input) {
-      this._input.focus();
-    }
-  }
-
   handleSelectPlugin = (hit: SearchHit) => {
     this.props.onPluginSelect(hit);
     this.props.onClose();
@@ -104,7 +96,7 @@ export default class ExternalPluginsModal extends React.Component<Props> {
               filters={filters}
             />
             <div className={styles.modalSearch}>
-              <SearchBox inputRef={(x) => (this._input = x)} />
+              <SearchBox />
               <label>
                 <input
                   checked={officialOnly}
@@ -207,7 +199,7 @@ const styles = {
 
     .ais-PoweredBy-logo {
       height: 20px;
-      width: 74px;
+      width: 148px;
 
       path:last-child {
         fill: #fff !important;

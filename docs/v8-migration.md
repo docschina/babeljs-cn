@@ -13,16 +13,16 @@ Refer users to this document when upgrading to Babel 8 from Babel 7. If you are 
 
 ### Node.js support
 
-All Babel 8 packages require Node.js `^16.20.0 || ^18.16.0 || >=20.0.0`.
+All Babel 8 packages require Node.js `^20.19.0 || >=22.12.0`.
 
-We highly encourage you to use a newer version of Node.js (LTS v18) since the previous versions are not maintained.
+We highly encourage you to use a newer version of Node.js (LTS v22) since the previous versions are not maintained.
 See [nodejs/Release](https://github.com/nodejs/Release) for more information.
 
 This just means Babel _itself_ won't run on older versions of Node. It can still _output_ code that runs on old Node versions.
 
 ### ESM only
 
-Babel is now shipped in native ECMAScript modules. ([#11701](https://github.com/babel/babel/pull/11701))
+Babel is now shipped in native ECMAScript modules. ([#11701](https://github.com/babel/babel/pull/11701), [#17265](https://github.com/babel/babel/pull/17265))
 
 ### `@babel/core` requirements
 
@@ -72,12 +72,68 @@ you install the new runtime, please set the [`corejs` version](https://babel.dev
 ```
 
 ### `@babel/plugin-syntax-import-assertions`
-Please migrate to `@babel/plugin-syntax-import-attributes` ([#15536](https://github.com/babel/babel/pull/15536)). After you replace the plugin, you should search and replace the following patterns in your codebase:
+
+The proposal evolved into [import attributes](https://github.com/tc39/proposal-import-attributes), which now Babel supports parsing by default. You can remove `@babel/plugin-syntax-import-assertions` from your config, and  replace the following patterns in your codebase:
 
 ```diff title="input.js"
 - import value from "module" assert { type: "json" };
 + import value from "module" with { type: "json" };
 ```
+
+### `@babel/plugin-proposal-record-and-tuple`
+
+Please replace the record/tuple syntax with the polyfill factory calls. For example, if you are using [`@bloomberg/record-tuple-polyfill`](https://github.com/bloomberg/record-tuple-polyfill):
+
+```diff title="input.mjs"
++ import { Record, Tuple } from "@bloomberg/record-tuple-polyfill"
+
+// syntaxType: "hash"
+
+- #{ p: "value" }
++ Record({ p: "value" })
+
+- #[0, 1, 2]
++ Tuple(0, 1, 2)
+
+// syntaxType: "bar"
+- {| p: "value" |}
++ Record({ p: "value" })
+
+- [|0, 1, 2|]
++ Tuple(0, 1, 2)
+```
+
+If you have to do a large scale migration. You can run Babel 7 with only the `@babel/plugin-proposal-record-and-tuple` plugin to transform the code base:
+```json title="babel.record-tuple-migration.config.json"
+{
+  "babelrc": false,
+  "configFile": false,
+  "generateOpts": {
+    "experimental_preserveFormat": true,
+    "retainLines": true,
+    "tokens": true
+  },
+  "parserOpts": {
+    "createParenthesizedExpressions": true
+  },
+  "plugins": [
+    "@babel/plugin-syntax-jsx",
+    "@babel/plugin-syntax-typescript",
+
+    // or syntaxType: "bar" if you are using `{||}` or `[||]`
+    ["@babel/plugin-proposal-record-and-tuple", {
+      "syntaxType": "hash", "importPolyfill": true
+    }]
+  ]
+}
+```
+
+And then run `@babel/cli@7` to transform the input source `src`, this command will output the transformed source to `src-mod`:
+```sh npm2yarn
+npx @babel/cli@7 --config-file ./babel.record-tuple-migration.config.json src --out-lib src-mod
+```
+
+Please manually check whether `src-mod` can work. If everything looks good, overwrite `src` with contents in `src-mod`.
 
 ### Syntax plugins
 The following syntax plugins are no longer needed, you can safely remove them from your config and node modules:
@@ -104,6 +160,9 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 - `@babel/plugin-syntax-top-level-await`
 - `@babel/plugin-syntax-trailing-function-commas`
 - `@babel/plugin-syntax-unicode-sets-regex`
+
+The following plugins are discontinued and their functionality is not available anymore:
+- `@babel/plugin-syntax-import-assertions`. Use `@babel/plugin-syntax-import-attributes` instead, and see the [`@babel/parser`](#configuration-change-parser) section for more information.
 
 ## Configuration Changes
 
@@ -171,12 +230,24 @@ The following syntax plugins are no longer needed, you can safely remove them fr
   **Migration**: You can safely remove them if you are using any of [syntax plugins listed above](#syntax-plugins) in the `includes` and `excludes` options.
 ### `@babel/preset-react` {#configuration-change-preset-react}
 
+![high](https://img.shields.io/badge/risk%20of%20breakage%3F-high-red.svg)
+
+- Make the `development` option default to the configured env ([#16927](https://github.com/babel/babel/pull/16927))
+
+  Note that Babel's env, set through [`envName` option](./options.md#envname), defaults to
+  `process.env.BABEL_ENV || process.env.NODE_ENV || "development"`: if you don't specify neither the `envName` option
+  nor the `BABEL_ENV` or `NODE_ENV` environment variables, it will default to `development`.
+
+  **Migration**: In production builds, set the `BABEL_ENV` or `NODE_ENV` environment variables, or the `envName` Babel
+  option, to `"production"`. If you want to run _only this preset_ in production mode, then you can explicitly set the
+  `development` option to `false`.
+
 ![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
 
 - Remove `useSpread` and `useBuiltIns` options ([#12593](https://github.com/babel/babel/pull/12593))
 
   **Migration**: Babel 8 always compiles JSX spread elements to object spread:
-  ```jsx title=input.jsx
+  ```jsx title="input.jsx"
   <div {...props}></div>
   // transforms to
   jsx("div", { ...props })
@@ -186,6 +257,27 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
   If your code needs to run in an environment which doesn't support object spread, you can either use `@babel/preset-env` (recommended) or `@babel/plugin-transform-object-rest-spread`. If you want to transpile `Object.assign` down, you also need to enable `@babel/plugin-transform-object-assign`.
   In Babel 7.7.0, you can opt-in this behavior by using the `useSpread` option.
+
+- `targets.esmodules: true` option now behaves as same as `targets.esmodules: "intersect"` ([#17188](https://github.com/babel/babel/pull/17188))
+
+  **Migration**: In Babel 7, specifying `esmodules: true` will override the `browsers` target or `browserslist`'s targets, while specifying `"intersect"` will intersect with such targets.
+
+  If your app targets modern browsers released after 2019, you can safely remove the `esmodules` option as they all support ES modules.
+
+  If your app targets legacy browsers such as IE, you can also remove the `esmodules` option as IE requires more transforms than any other browser.
+
+  If your app targets browsers released before 2019 and you want to preserve the Babel 7 `esmodules: true` behavior, remove the `esmodules` option and set the following `browsers` target:
+
+  ```json title="babel.config.json"
+  [
+    "@babel/preset-env",
+    {
+      "targets": {
+        "browsers": "chrome 61, firefox 60, safari 10.1, node 13.2"
+      }
+    }
+  ]
+  ```
 
 - Type check input options ([#12460](https://github.com/babel/babel/pull/12460))
 
@@ -291,6 +383,10 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
   **Migration**: Remove the option from your config, since it's now enabled by default. Previously `allowDeclareFields` enables transforming the `declare` syntax introduced in Flow 0.120.0, in Babel 8 we support the syntax without such a flag. See also the [compilation changes](#compilation-change-flow) section.
 
+- Remove `enums` option ([#16792](https://github.com/babel/babel/pull/16792))
+
+  **Migration**: Remove the option from your config. The `enums` option was used to enable Flow enums, which are now supported by default.
+
 - Type check input options ([#12460](https://github.com/babel/babel/pull/12460))
 
   **Migration**: The preset will also report invalid option names. Refer to the [docs](./preset-flow.md#options) and ensure valid usage.
@@ -303,13 +399,40 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
   **Migration**: Remove the option from your config. You will probably be fine with the new behaviour.
 
+- Remove `enums` option ([#16792](https://github.com/babel/babel/pull/16792))
+
+  **Migration**: Remove the option from your config. The `enums` option was used to enable Flow enums, which are now supported by default.
+
 ### `@babel/parser` {#configuration-change-parser}
 
-![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
+![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
 
 - Remove `estree` plugin option `classFeatures` ([#13752](https://github.com/babel/babel/pull/13752))
 
   **Migration**: Remove the option from your config, since it's now enabled by default. Previously the `classFeatures` plugin enables `@babel/parser` to produce class properties AST compatible with ESLint 8, following the ESTree specification. In Babel 8 the `eslint-parser` only works with ESLint 8 and above.
+
+  - Remove `decimal` plugin option [#16741](https://github.com/babel/babel/pull/16741)
+
+  **Migration**: Migrate your project to the latest proposal and remove the plugin from your config since the latest proposal doesn't have syntax anymore.
+
+  ```diff title="example.js"
+  - 1.03m
+  + new Decimal("1.03")
+  - decimal1 + decimal2
+  + decimal1.add(decimal2)
+  ```
+
+- Remove `importAssertions` parser plugin ([#16770](https://github.com/babel/babel/pull/16770))
+
+  This plugin was for an old version of the import attributes proposal, using the `assert` keyword instead of `with`. The proposal moved ahead without the `assert` keyword.
+
+  **Migration**: Replace the plugin with `importAttributes`. If you are still using the `assert` keyword it's recommended that you migrate to `with`: if it's not possible to do so, you can use the `["importAttributes", { deprecatedAssertSyntax: true }]` option.`
+
+- Remove `importReflection` parser plugin ([#16808](https://github.com/babel/babel/pull/16808))
+
+  The "import reflection" proposal does not exist anymore, and it was superseeded by the "source phase imports" proposal, which uses the `source` modifier for imports instead of `module`.
+
+  **Migration**: Replace the plugin with `sourcePhaseImports`, and migrate your code to use `source` instead of `module` in import declarations.
 
 ### `@babel/generator` {#configuration-change-generator}
 
@@ -403,11 +526,21 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
 ### `@babel/plugin-transform-runtime`
 
+![medium](https://img.shields.io/badge/risk%20of%20breakage%3F-medium-yellow.svg)
+
+- The `corejs` option has been removed ([#16311](https://github.com/babel/babel/pull/16311))
+
+  **Migration**: To inject polyfills, you can use [`babel-plugin-polyfill-corejs3`](https://github.com/babel/babel-polyfills/blob/main/packages/babel-plugin-polyfill-corejs3/README.md) or [babel-plugin-polyfill-corejs2](https://github.com/babel/babel-polyfills/blob/main/packages/babel-plugin-polyfill-corejs2/README.md) directly.
+
 ![low](https://img.shields.io/badge/risk%20of%20breakage%3F-low-yellowgreen.svg)
 
 - The `useESModules` option has been removed ([#16141](https://github.com/babel/babel/pull/16141))
 
   **Migration**: Delete it from your configuration. `@babel/runtime` will now automatically expose ES modules when needed, using `package.json#exports`.
+
+- The `runtime` and `helpers` options have been removed ([#16311](https://github.com/babel/babel/pull/16311))
+
+  **Migration**: Delete them from your configuration: `@babel/runtime` will now always import helpers. If you don't want to inject imports to helpers, remove `@babel/plugin-transform-runtime` from your config.
 
 ### `@babel/node`
 
@@ -415,6 +548,8 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
 - The `-gc` and `-d` command-line flags have been removed ([#15956](https://github.com/babel/babel/pull/15956))
   **Migration**: Use the `--expose-gc` and `--inspect` Node.js flags respectively. Note that although `-d` was short for `--debug`, the latter has been [deprecated since Node.js 7.7.0](https://nodejs.org/en/docs/guides/debugging-getting-started#legacy-debugger).
+
+- Command-line flags for Node.js and Babel must now be passed _before_ the filename, while flags for the script itself must be passed after. ([#16706](https://github.com/babel/babel/pull/16706))
 
 ## Compilation Changes
 
@@ -455,7 +590,7 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 - [Disallow sequence expressions inside JSX attributes](https://github.com/babel/babel/issues/8604) ([#12447](https://github.com/babel/babel/pull/12447))
 
   **Migration**: Find and replace the following code patterns. You can start the migration prior to Babel 8:
-  ```diff title=input.jsx
+  ```diff title="input.jsx"
   - <p key={foo, bar}></p> // Invalid
   + <p key={(foo, bar)}></p> // Valid
   ```
@@ -463,7 +598,7 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 - [Disallow `{`, `}`, `<` and `>` in JSX text](https://github.com/babel/babel/issues/11042) ([#12451](https://github.com/babel/babel/pull/12451))
 
   **Migration**: Use `{'{'}`, `{'}'}`, `{'<'}` and `{'>'}` instead. Find and replace the following code patterns. You can start the migration prior to Babel 8:
-  ```diff title=input.jsx
+  ```diff title="input.jsx"
   - <p>">" is greater than.</p>
   + <p>"{'>'}" is greater than.</p>
   ```
@@ -477,7 +612,7 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
   **Migration**:
   Use the new `declare` syntax, introduced in TypeScript 3.7, if you don't want fields to be initialized to `undefined`:
-  ```ts title=input.ts
+  ```ts title="input.ts"
   class A {
     foo: string | void; // initialized to undefined
     declare bar: number; // type-only, will be removed
@@ -492,7 +627,7 @@ The following syntax plugins are no longer needed, you can safely remove them fr
 
   **Migration**:
   Use the new `declare` syntax, introduced in Flow 0.120, if you don't want fields to be initialized to `undefined`:
-  ```flow title=input.js
+  ```flow title="input.js"
   class A {
     foo: string | void; // initialized to undefined
     declare bar: number; // type-only, will be removed
