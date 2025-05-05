@@ -35,9 +35,6 @@ const config = {
       template: "./js/repl/index.html",
       inject: false,
     }),
-    new webpack.ProvidePlugin({
-      Buffer: ["buffer"],
-    }),
     new webpack.DefinePlugin({
       "process.env": {
         BABEL_TYPES_8_BREAKING: false,
@@ -45,7 +42,6 @@ const config = {
     }),
   ],
   externals: {
-    codemirror: "CodeMirror",
     "lz-string": "LZString",
   },
   performance: {
