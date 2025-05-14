@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import "../../static/css/index.css";
 import "../../static/css/minirepl.css";
-import "../../../js/minirepl.js";
 import Link from "@docusaurus/Link";
 import BABEL_MINI_REPL from "../../../js/minirepl.js";
 import Translate from "@docusaurus/Translate";
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Head from "@docusaurus/Head";
 
 class Button extends React.Component {
   render() {
@@ -29,14 +29,14 @@ Button.defaultProps = {
 };
 
 function waitUntilAceIsLoaded(callback) {
-  if ('ace' in window) {
-    callback()
+  if ("ace" in window) {
+    callback();
   } else {
     setTimeout(() => waitUntilAceIsLoaded(callback), 500);
   }
 }
 
-const PromoSection = props => (
+const PromoSection = (props) => (
   <div className="section promoSection">
     <div className="promoRow">
       <div className="pluginRowBlock">{props.children}</div>
@@ -70,7 +70,7 @@ const MiniRepl = () => {
   );
 };
 
-const GetStarted = ({ language }) => {
+const GetStarted = () => {
   return (
     <div
       className="blockElement"
@@ -90,13 +90,13 @@ const GetStarted = ({ language }) => {
   );
 };
 
-const SponsorTier = props => {
+const SponsorTier = (props) => {
   let { min, max } = props;
   const { siteConfig } = useDocusaurusContext();
   const { customFields } = siteConfig;
 
-  const tierSponsors = customFields.sponsors.filter(sponsor => {
-    let value = Math.max(sponsor.monthly, (sponsor.yearly || 0) / 12);
+  const tierSponsors = customFields.sponsors.filter((sponsor) => {
+    let value = Math.max(sponsor.monthly || 0, (sponsor.yearly || 0) / 12);
     return +value >= min && (!max || (max && +value < max));
   });
   return (
@@ -146,15 +146,7 @@ const SponsorTier = props => {
   );
 };
 
-const ocButton = {
-  title: "Become a sponsor",
-  link: "https://opencollective.com/babel",
-};
-
-const OpenCollectiveSponsors = ({ language }) => {
-  const { siteConfig } = useDocusaurusContext();
-  const { customFields } = siteConfig;
-
+const OpenCollectiveSponsors = () => {
   return (
     <div className="container paddingBottom">
       <div className="wrapper productShowcaseSection">
@@ -196,7 +188,7 @@ const OpenCollectiveSponsors = ({ language }) => {
   );
 };
 
-const HomeContainer = props => (
+const HomeContainer = (props) => (
   <div style={{ paddingBottom: 20 }}>
     <div className="wrapper">
       <div className="gridBlock">{props.children}</div>
@@ -219,9 +211,9 @@ const Hero = ({ language }) => (
 
       <div className="hero__announcement">
         <span>
-          <strong>Babel 7.24 is released!</strong> Please read our{" "}
-          <Link to="/blog/2024/02/28/7.24.0">blog post</Link> for highlights and{" "}
-          <Link to="https://github.com/babel/babel/releases/tag/v7.24.0">
+          <strong>Babel 7.27 is released!</strong> Please read our{" "}
+          <Link to="/blog/2025/03/24/7.27.0">blog post</Link> for highlights and{" "}
+          <Link to="https://github.com/babel/babel/releases/tag/v7.27.0">
             changelog
           </Link>{" "}
           for more details!
@@ -236,9 +228,15 @@ const Hero = ({ language }) => (
 
 const Index = ({ language }) => {
   const { siteConfig } = useDocusaurusContext();
-  const { customFields } = siteConfig;
   return (
-    <Layout title={siteConfig?.title} description={siteConfig?.tagline}>
+    <Layout title={siteConfig.title} description={siteConfig.tagline}>
+      <Head>
+        <script
+          src="https://unpkg.com/ace-builds@1.3.3/src-min-noconflict/ace.js"
+          defer=""
+        ></script>
+      </Head>
+
       <div>
         <Hero language={language} />
 
