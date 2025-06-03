@@ -12,7 +12,7 @@ module.exports = {
         "usage",
         "configuration",
         "learn",
-        bool(process.env.BABEL_8_BREAKING) ? "v8-migration" : "v7-migration",
+        ...(bool(process.env.BABEL_8_BREAKING) ? ["v8-migration", "v8-migration-api"] : ["v7-migration"]),
       ],
     },
     {
@@ -44,6 +44,23 @@ module.exports = {
           items: [
             {
               type: "category",
+              label: "ES2026",
+              items: [
+                "babel-plugin-transform-explicit-resource-management",
+              ],
+            },
+            {
+              type: "category",
+              label: "ES2025",
+              items: [
+                "babel-plugin-transform-duplicate-named-capturing-groups-regex",
+                "babel-plugin-transform-json-modules",
+                "babel-plugin-transform-regexp-modifiers",
+                "babel-plugin-syntax-import-attributes",
+              ],
+            },
+            {
+              type: "category",
               label: "ES2024",
               items: ["babel-plugin-transform-unicode-sets-regex"],
             },
@@ -70,7 +87,7 @@ module.exports = {
               type: "category",
               label: "ES2020",
               items: [
-                "babel-plugin-proposal-dynamic-import",
+                "babel-plugin-transform-dynamic-import",
                 "babel-plugin-transform-export-namespace-from",
                 "babel-plugin-transform-nullish-coalescing-operator",
                 "babel-plugin-transform-optional-chaining",
@@ -152,6 +169,8 @@ module.exports = {
               type: "category",
               label: "Bugfix",
               items: [
+                "babel-plugin-bugfix-firefox-class-in-computed-class-key",
+                "babel-plugin-bugfix-safari-class-field-initializer-scope",
                 "babel-plugin-bugfix-safari-id-destructuring-collision-in-function-expression",
                 "babel-plugin-bugfix-v8-spread-parameters-in-optional-chaining",
               ],
@@ -213,6 +232,7 @@ module.exports = {
         "babel-parser",
         "babel-core",
         "babel-generator",
+        "babel-compat-data",
         "babel-code-frame",
         "babel-runtime",
         "babel-template",
@@ -241,12 +261,7 @@ module.exports = {
     "TC39 Proposals": {
       "Stage 3": [
         "babel-plugin-proposal-decorators",
-        "babel-plugin-proposal-duplicate-named-capturing-groups-regex",
-        "babel-plugin-proposal-explicit-resource-management",
         "babel-plugin-proposal-import-wasm-source",
-        "babel-plugin-proposal-json-modules",
-        "babel-plugin-proposal-regexp-modifiers",
-        "babel-plugin-syntax-import-attributes",
       ],
       "Early stages": [
         "babel-plugin-proposal-async-do-expressions",
