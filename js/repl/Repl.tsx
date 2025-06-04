@@ -5,7 +5,7 @@ import debounce from "lodash.debounce";
 import React, { type ChangeEvent } from "react";
 import { prettySize, compareVersions } from "./Utils";
 import ErrorBoundary from "./ErrorBoundary";
-import CodeMirrorPanel from "./CodeMirrorPanel";
+import { load as loadMonaco, Monaco } from "./Monaco";
 import ReplOptions from "./ReplOptions";
 import StorageService from "./StorageService";
 import UriUtils from "./UriUtils";
@@ -50,16 +50,14 @@ import type {
   SourceType,
 } from "./types";
 
-type Props = {};
+type Props = object;
 
 type State = {
   babel: BabelState;
   code: string;
   compiled: string | undefined | null;
   compileErrorMessage: string | undefined | null;
-  debugEnvPreset: boolean;
   envConfig: EnvConfig;
-  envPresetDebugInfo: string | undefined | null;
   envPresetState: EnvState;
   shippedProposalsState: ShippedProposalsState;
   presetsOptions: PresetsOptions;
@@ -135,8 +133,8 @@ class Repl extends React.Component<Props, State> {
   _numLoadingPlugins = 0;
   _workerApi = new WorkerApi();
 
-  constructor(props: Props, context: any) {
-    super(props, context);
+  constructor(props: Props) {
+    super(props);
 
     const persistedState = replState();
     const defaultPlugins = {
@@ -167,10 +165,8 @@ class Repl extends React.Component<Props, State> {
       compiled: null,
       pluginSearch: "",
       compileErrorMessage: null,
-      debugEnvPreset: persistedState.debug,
       presetsOptions,
       envConfig,
-      envPresetDebugInfo: null,
       envPresetState: persistedStateToEnvState(
         persistedState,
         envPresetConfig,
@@ -241,7 +237,6 @@ class Repl extends React.Component<Props, State> {
         <ReplOptions
           babelVersion={state.babel.version}
           className={styles.optionsColumn}
-          debugEnvPreset={state.debugEnvPreset}
           envConfig={state.envConfig}
           envPresetState={state.envPresetState}
           shippedProposalsState={state.shippedProposalsState}
@@ -282,23 +277,23 @@ class Repl extends React.Component<Props, State> {
           <div
             className={cx(styles.panels, !state.timeTravel && styles.panelsMax)}
           >
-            <CodeMirrorPanel
+            <Monaco
               className={styles.codeMirrorPanel}
               code={state.code}
               errorMessage={state.compileErrorMessage}
-              fileSize={state.meta.rawSize}
+              fileSize={options.fileSize && state.meta.rawSize}
+              lineWrapping={state.lineWrap}
               onChange={this._updateCode}
-              options={options}
               placeholder="Write code here"
             />
-            <CodeMirrorPanel
+            <Monaco
               className={styles.codeMirrorPanel}
               code={state.compiled}
               errorMessage={state.evalErrorMessage}
-              fileSize={state.meta.compiledSize}
-              info={state.debugEnvPreset ? state.envPresetDebugInfo : null}
-              options={options}
+              fileSize={options.fileSize && state.meta.compiledSize}
+              lineWrapping={state.lineWrap}
               placeholder="Compiled output will be shown here"
+              fastMode={state.timeTravel}
             />
           </div>
           {state.timeTravel && (
@@ -327,6 +322,8 @@ class Repl extends React.Component<Props, State> {
           babelState.errorMessage || envState.errorMessage;
       }
     }
+
+    await loadMonaco();
 
     this.setState({
       babel: babelState,
@@ -391,7 +388,6 @@ class Repl extends React.Component<Props, State> {
           // No need to recompile at this point;
           // Just evaluate the most recently compiled code.
           try {
-            // eslint-disable-next-line
             scopedEval.execute(this.state.compiled, this.state.sourceMap);
           } catch (error) {
             evalErrorMessage = error.message;
@@ -535,7 +531,6 @@ class Repl extends React.Component<Props, State> {
             state.babel.version
           ),
         ]),
-        debugEnvPreset: state.debugEnvPreset,
         envConfig: state.envConfig,
         presetsOptions: state.presetsOptions,
         evaluate:
@@ -653,9 +648,7 @@ class Repl extends React.Component<Props, State> {
       corejs: envConfig.corejs,
       spec: envConfig.isSpecEnabled,
       loose: envConfig.isLooseEnabled,
-      circleciRepo: state.babel.circleciRepo,
       code: state.code,
-      debug: state.debugEnvPreset,
       modules: envConfig.modules,
       forceAllTransforms: envConfig.forceAllTransforms,
       shippedProposals: envConfig.shippedProposals,
@@ -757,7 +750,7 @@ const styles = {
     background: colors.inverseBackgroundDark,
     color: colors.inverseForegroundLight,
     display: "flex",
-    height: "100vh",
+    height: "100%",
     justifyContent: "center",
   }),
   loadingAnimation: css({
@@ -770,6 +763,7 @@ const styles = {
   }),
   codeMirrorPanel: css({
     flex: "0 0 50%",
+    borderRight: `1px solid var(--ifm-scrollbar-track-background-color)`,
   }),
   optionsColumn: css({
     flex: "0 0 auto",
