@@ -33,23 +33,25 @@ function loadYaml(fsPath) {
   return parseYaml(fs.readFileSync(path.join(__dirname, fsPath), "utf8"));
 }
 
-const users = loadYaml("./data/users.yml").map(user => ({
+const users = loadYaml("./data/users.yml").map((user) => ({
   pinned: user.pinned,
   caption: user.name,
   infoLink: user.url,
   image: `/img/users/${user.logo}`,
 }));
 
-const sponsorsManual = (loadYaml("./data/sponsors.yml") || []).map(sponsor => ({
-  ...sponsor,
-  image: sponsor.image || path.join("/img/sponsors/", sponsor.logo),
-}));
+const sponsorsManual = (loadYaml("./data/sponsors.yml") || []).map(
+  (sponsor) => ({
+    ...sponsor,
+    image: sponsor.image || path.join("/img/sponsors/", sponsor.logo),
+  })
+);
 const sponsorsDownloaded = require(path.join(__dirname, "/data/sponsors.json"));
 
 const sponsors = [
   ...sponsorsDownloaded
-    .filter(sponsor => sponsor.slug !== "github-sponsors")
-    .map(sponsor => {
+    .filter((sponsor) => sponsor.slug !== "github-sponsors")
+    .map((sponsor) => {
       let website = sponsor.website;
       if (typeof website == "string") {
         website = url.parse(website).protocol ? website : `http://${website}`;
@@ -79,7 +81,7 @@ const team = loadYaml("./data/team.yml");
 const tools = loadYaml("./data/tools.yml");
 const setupBabelrc = loadMD("./data/tools/setup.md");
 
-toolsMD.forEach(tool => {
+toolsMD.forEach((tool) => {
   tool.install = loadMD(`${tool.path}/install.md`);
   tool.usage = loadMD(`${tool.path}/usage.md`);
 });
@@ -111,14 +113,20 @@ function remarkDirectiveBabel8Plugin({ renderBabel8 }) {
             children.splice(index, 1, ...node.children);
           }
         } else {
-          transformer(node); // for support inside ::tip, etc
+          transformer(node); // inside :::tip, etc
         }
+      } else if (Array.isArray(node.children)) {
+        transformer(node); // inside list items
       }
     }
   };
 }
 
 const siteConfig = {
+  future: {
+    // See https://docusaurus.io/blog/releases/3.6
+    experimental_faster: true,
+  },
   titleDelimiter: "·",
   baseUrl: "/",
   favicon: "img/favicon.png",
@@ -169,6 +177,8 @@ const siteConfig = {
         blog: {
           blogSidebarTitle: "All Blog Posts",
           blogSidebarCount: "ALL",
+          onInlineAuthors: "throw",
+          onUntruncatedBlogPosts: "throw",
           remarkPlugins: [require("@docusaurus/remark-plugin-npm2yarn")],
         },
         // ...
@@ -189,7 +199,7 @@ const siteConfig = {
       respectPrefersColorScheme: true,
     },
     prism: {
-      additionalLanguages: ["flow", "powershell"],
+      additionalLanguages: ["diff", "flow", "powershell"],
       theme: require("./src/theme/prism/light"),
       darkTheme: require("./src/theme/prism/dark"),
       magicComments: [
@@ -229,11 +239,7 @@ const siteConfig = {
         { to: "docs/", label: "Docs", position: "right" },
         { to: "setup", label: "Setup", position: "right" },
         {
-          target: "_top",
-          href:
-            process.env.ENV === "development"
-              ? "http://localhost:3000/repl"
-              : `/repl`,
+          to: "repl",
           label: "Try it out",
           position: "right",
         },
@@ -264,27 +270,7 @@ const siteConfig = {
 
   scripts: [
     {
-      src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js",
-      defer: true,
-    },
-    {
       src: "https://unpkg.com/@babel/standalone@^7.0.0/babel.min.js",
-      defer: true,
-    },
-    {
-      src: "https://unpkg.com/ace-builds@1.3.3/src-min-noconflict/ace.js",
-      defer: true,
-    },
-    {
-      src: "https://unpkg.com/clipboard@2.0.0/dist/clipboard.min.js",
-      defer: true,
-    },
-    {
-      src: "/js/code-blocks-buttons.js",
-      defer: true,
-    },
-    {
-      src: "/scripts/repl-page-hacks.js",
       defer: true,
     },
     {
