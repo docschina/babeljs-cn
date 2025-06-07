@@ -1,9 +1,9 @@
 // Globals pre-loaded by Worker
 import { compareVersions } from "./Utils";
 
-declare var Babel: any;
-declare var prettier: any;
-declare var prettierPlugins: any;
+declare const Babel: any;
+declare const prettier: any;
+declare const prettierPlugins: any;
 
 import Transitions from "./Transitions";
 import type {
@@ -16,7 +16,6 @@ import type {
 type Return = {
   compiled: string | undefined | null;
   compileErrorMessage: string | undefined | null;
-  envPresetDebugInfo: string | undefined | null;
   meta: {
     compiledSize: number;
     rawSize: number;
@@ -53,20 +52,26 @@ export default function compile(code: string, config: CompileConfig): Return {
 
   let compiled = null;
   let compileErrorMessage = null;
-  let envPresetDebugInfo = null;
   let sourceMap = null;
   let useBuiltIns: false | "entry" | "usage" = false;
-  let spec = false;
-  let loose = false;
-  let bugfixes = false;
-  let corejs = "3.21";
+  let corejs = "3.42";
   const transitions = new Transitions();
   const meta = {
     compiledSize: 0,
     rawSize: new Blob([code], { type: "text/plain" }).size,
   };
 
-  let presetEnvOptions = {};
+  let presetEnvOptions: {
+    targets: any;
+    modules: any;
+    forceAllTransforms: boolean;
+    shippedProposals: boolean;
+    useBuiltIns: false | "entry" | "usage";
+    corejs: string;
+    spec?: boolean;
+    loose?: boolean;
+    bugfixes?: boolean;
+  };
 
   if (envConfig && envConfig.isEnvPresetEnabled) {
     const targets: any = {};
@@ -93,15 +98,6 @@ export default function compile(code: string, config: CompileConfig): Return {
     if (envConfig.isNodeEnabled) {
       targets.node = envConfig.node;
     }
-    if (envConfig.isSpecEnabled) {
-      spec = envConfig.isSpecEnabled;
-    }
-    if (envConfig.isLooseEnabled) {
-      loose = envConfig.isLooseEnabled;
-    }
-    if (envConfig.isBugfixesEnabled) {
-      bugfixes = envConfig.isBugfixesEnabled;
-    }
 
     presetEnvOptions = {
       targets,
@@ -110,16 +106,24 @@ export default function compile(code: string, config: CompileConfig): Return {
       shippedProposals,
       useBuiltIns,
       corejs: undefined,
-      spec,
-      loose,
     };
 
-    if (useBuiltIns) {
-      (presetEnvOptions as any).corejs = corejs;
+    if (Babel.version && compareVersions(Babel.version, "8.0.0") === -1) {
+      presetEnvOptions.spec = envConfig.isSpecEnabled;
+      presetEnvOptions.loose = envConfig.isLooseEnabled;
     }
 
-    if (Babel.version && compareVersions(Babel.version, "7.9.0") !== -1) {
-      (presetEnvOptions as any).bugfixes = bugfixes;
+    if (useBuiltIns) {
+      presetEnvOptions.corejs = corejs;
+    }
+
+    if (
+      envConfig.isBugfixesEnabled &&
+      Babel.version &&
+      compareVersions(Babel.version, "7.9.0") !== -1 &&
+      compareVersions(Babel.version, "8.0.0") < 0
+    ) {
+      presetEnvOptions.bugfixes = envConfig.isBugfixesEnabled;
     }
   }
 
@@ -233,14 +237,12 @@ export default function compile(code: string, config: CompileConfig): Return {
   } catch (error) {
     compiled = null;
     compileErrorMessage = error.message;
-    envPresetDebugInfo = null;
     sourceMap = null;
   }
 
   return {
     compiled,
     compileErrorMessage,
-    envPresetDebugInfo,
     meta,
     sourceMap,
     transitions: transitions.getValue(),
