@@ -67,7 +67,6 @@ export default class Modal extends Component<Props> {
       }
     }
 
-    // eslint-disable-next-line no-unused-vars
     const { children, onClick, onClose, ...props } = this.props;
 
     const result = (
@@ -76,7 +75,9 @@ export default class Modal extends Component<Props> {
         <div
           className={styles.content}
           onClick={this.handleContentClick}
-          ref={(x) => (this._content = x)}
+          ref={(x) => {
+            this._content = x;
+          }}
           {...props}
         >
           {children}

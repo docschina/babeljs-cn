@@ -66,7 +66,6 @@ export const persistedStateToBabelState = (
 ): BabelState => ({
   availablePresets: [],
   build: persistedState.build,
-  circleciRepo: persistedState.circleciRepo,
   didError: false,
   isLoaded: false,
   isLoading: true,
@@ -135,7 +134,7 @@ export const persistedStateToPresetsOptions = (
     decoratorsVersion,
     decoratorsBeforeExport:
       !decoratorsLegacy && !!persistedState.decoratorsBeforeExport,
-    pipelineProposal: persistedState.pipelineProposal || "minimal",
+    pipelineProposal: persistedState.pipelineProposal || "hack",
     reactRuntime: persistedState.reactRuntime || "automatic",
   };
 };
