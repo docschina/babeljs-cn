@@ -62,12 +62,12 @@ t.arrayPattern(elements);
 See also `t.isArrayPattern(node, opts)` and `t.assertArrayPattern(node, opts)`.
 
 AST Node `ArrayPattern` shape:
-- `elements`: `Array<null | PatternLike | LVal>` (required)
+- `elements`: `Array<null | PatternLike>` (required)
 - `decorators`: `Array<Decorator>` (default: `null`, excluded from builder function)
 - `optional`: `boolean` (default: `null`, excluded from builder function)
 - `typeAnnotation`: `TypeAnnotation | TSTypeAnnotation | Noop` (default: `null`, excluded from builder function)
 
-Aliases: [`Standardized`](#standardized), [`Pattern`](#pattern), [`PatternLike`](#patternlike), [`LVal`](#lval)
+Aliases: [`Standardized`](#standardized), [`FunctionParameter`](#functionparameter), [`Pattern`](#pattern), [`PatternLike`](#patternlike), [`LVal`](#lval)
 
 ---
 
@@ -95,7 +95,7 @@ t.arrowFunctionExpression(params, body, async);
 See also `t.isArrowFunctionExpression(node, opts)` and `t.assertArrowFunctionExpression(node, opts)`.
 
 AST Node `ArrowFunctionExpression` shape:
-- `params`: `Array<Identifier | Pattern | RestElement>` (required)
+- `params`: `Array<FunctionParameter>` (required)
 - `body`: `BlockStatement | Expression` (required)
 - `async`: `boolean` (default: `false`)
 - `expression`: `boolean` (required)
@@ -140,7 +140,7 @@ AST Node `AssignmentPattern` shape:
 - `optional`: `boolean` (default: `null`, excluded from builder function)
 - `typeAnnotation`: `TypeAnnotation | TSTypeAnnotation | Noop` (default: `null`, excluded from builder function)
 
-Aliases: [`Standardized`](#standardized), [`Pattern`](#pattern), [`PatternLike`](#patternlike), [`LVal`](#lval)
+Aliases: [`Standardized`](#standardized), [`FunctionParameter`](#functionparameter), [`Pattern`](#pattern), [`PatternLike`](#patternlike), [`LVal`](#lval)
 
 ---
 
@@ -290,8 +290,8 @@ See also `t.isCallExpression(node, opts)` and `t.assertCallExpression(node, opts
 
 AST Node `CallExpression` shape:
 - `callee`: `Expression | Super | V8IntrinsicIdentifier` (required)
-- `arguments`: `Array<Expression | SpreadElement | JSXNamespacedName | ArgumentPlaceholder>` (required)
-- `optional`: `true | false` (default: `null`, excluded from builder function)
+- `arguments`: `Array<Expression | SpreadElement | ArgumentPlaceholder>` (required)
+- `optional`: `boolean` (default: `null`, excluded from builder function)
 - `typeArguments`: `TypeParameterInstantiation` (default: `null`, excluded from builder function)
 - `typeParameters`: `TSTypeParameterInstantiation` (default: `null`, excluded from builder function)
 
@@ -431,7 +431,7 @@ See also `t.isClassMethod(node, opts)` and `t.assertClassMethod(node, opts)`.
 AST Node `ClassMethod` shape:
 - `kind`: `"get" | "set" | "method" | "constructor"` (default: `'method'`)
 - `key`: if computed then `Expression` else `Identifier | Literal` (required)
-- `params`: `Array<Identifier | Pattern | RestElement | TSParameterProperty>` (required)
+- `params`: `Array<FunctionParameter | TSParameterProperty>` (required)
 - `body`: `BlockStatement` (required)
 - `computed`: `boolean` (default: `false`)
 - `static`: `boolean` (default: `false`)
@@ -461,7 +461,7 @@ See also `t.isClassPrivateMethod(node, opts)` and `t.assertClassPrivateMethod(no
 AST Node `ClassPrivateMethod` shape:
 - `kind`: `"get" | "set" | "method"` (default: `'method'`)
 - `key`: `PrivateName` (required)
-- `params`: `Array<Identifier | Pattern | RestElement | TSParameterProperty>` (required)
+- `params`: `Array<FunctionParameter | TSParameterProperty>` (required)
 - `body`: `BlockStatement` (required)
 - `static`: `boolean` (default: `false`)
 - `abstract`: `boolean` (default: `null`, excluded from builder function)
@@ -494,6 +494,7 @@ AST Node `ClassPrivateProperty` shape:
 - `decorators`: `Array<Decorator>` (default: `null`)
 - `static`: `boolean` (default: `false`)
 - `definite`: `boolean` (default: `null`, excluded from builder function)
+- `optional`: `boolean` (default: `null`, excluded from builder function)
 - `readonly`: `boolean` (default: `null`, excluded from builder function)
 - `typeAnnotation`: `TypeAnnotation | TSTypeAnnotation | Noop` (default: `null`, excluded from builder function)
 - `variance`: `Variance` (default: `null`, excluded from builder function)
@@ -620,13 +621,15 @@ Aliases: [`Flow`](#flow), [`FlowDeclaration`](#flowdeclaration), [`Statement`](#
 #### declareExportAllDeclaration
 
 ```js title="JavaScript"
-t.declareExportAllDeclaration(source);
+t.declareExportAllDeclaration(source, attributes);
 ```
 
 See also `t.isDeclareExportAllDeclaration(node, opts)` and `t.assertDeclareExportAllDeclaration(node, opts)`.
 
 AST Node `DeclareExportAllDeclaration` shape:
 - `source`: `StringLiteral` (required)
+- `attributes`: `Array<ImportAttribute>` (default: `null`)
+- `assertions`: `Array<ImportAttribute>` (default: `null`, excluded from builder function)
 - `exportKind`: `"type" | "value"` (default: `null`, excluded from builder function)
 
 Aliases: [`Flow`](#flow), [`FlowDeclaration`](#flowdeclaration), [`Statement`](#statement), [`Declaration`](#declaration)
@@ -636,7 +639,7 @@ Aliases: [`Flow`](#flow), [`FlowDeclaration`](#flowdeclaration), [`Statement`](#
 #### declareExportDeclaration
 
 ```js title="JavaScript"
-t.declareExportDeclaration(declaration, specifiers, source);
+t.declareExportDeclaration(declaration, specifiers, source, attributes);
 ```
 
 See also `t.isDeclareExportDeclaration(node, opts)` and `t.assertDeclareExportDeclaration(node, opts)`.
@@ -645,6 +648,8 @@ AST Node `DeclareExportDeclaration` shape:
 - `declaration`: `Flow` (default: `null`)
 - `specifiers`: `Array<ExportSpecifier | ExportNamespaceSpecifier>` (default: `null`)
 - `source`: `StringLiteral` (default: `null`)
+- `attributes`: `Array<ImportAttribute>` (default: `null`)
+- `assertions`: `Array<ImportAttribute>` (default: `null`, excluded from builder function)
 - `default`: `boolean` (default: `null`, excluded from builder function)
 
 Aliases: [`Flow`](#flow), [`FlowDeclaration`](#flowdeclaration), [`Statement`](#statement), [`Declaration`](#declaration)
@@ -1235,7 +1240,7 @@ See also `t.isFunctionDeclaration(node, opts)` and `t.assertFunctionDeclaration(
 
 AST Node `FunctionDeclaration` shape:
 - `id`: `Identifier` (default: `null`)
-- `params`: `Array<Identifier | Pattern | RestElement>` (required)
+- `params`: `Array<FunctionParameter>` (required)
 - `body`: `BlockStatement` (required)
 - `generator`: `boolean` (default: `false`)
 - `async`: `boolean` (default: `false`)
@@ -1258,7 +1263,7 @@ See also `t.isFunctionExpression(node, opts)` and `t.assertFunctionExpression(no
 
 AST Node `FunctionExpression` shape:
 - `id`: `Identifier` (default: `null`)
-- `params`: `Array<Identifier | Pattern | RestElement>` (required)
+- `params`: `Array<FunctionParameter>` (required)
 - `body`: `BlockStatement` (required)
 - `generator`: `boolean` (default: `false`)
 - `async`: `boolean` (default: `false`)
@@ -1336,7 +1341,7 @@ AST Node `Identifier` shape:
 - `optional`: `boolean` (default: `null`, excluded from builder function)
 - `typeAnnotation`: `TypeAnnotation | TSTypeAnnotation | Noop` (default: `null`, excluded from builder function)
 
-Aliases: [`Standardized`](#standardized), [`Expression`](#expression), [`PatternLike`](#patternlike), [`LVal`](#lval), [`TSEntityName`](#tsentityname)
+Aliases: [`Standardized`](#standardized), [`Expression`](#expression), [`FunctionParameter`](#functionparameter), [`PatternLike`](#patternlike), [`LVal`](#lval), [`TSEntityName`](#tsentityname)
 
 ---
 
@@ -1380,6 +1385,8 @@ See also `t.isImportAttribute(node, opts)` and `t.assertImportAttribute(node, op
 AST Node `ImportAttribute` shape:
 - `key`: `Identifier | StringLiteral` (required)
 - `value`: `StringLiteral` (required)
+
+Aliases: [`Standardized`](#standardized)
 
 ---
 
@@ -1748,7 +1755,8 @@ AST Node `JSXOpeningElement` shape:
 - `name`: `JSXIdentifier | JSXMemberExpression | JSXNamespacedName` (required)
 - `attributes`: `Array<JSXAttribute | JSXSpreadAttribute>` (required)
 - `selfClosing`: `boolean` (default: `false`)
-- `typeParameters`: `TypeParameterInstantiation | TSTypeParameterInstantiation` (default: `null`, excluded from builder function)
+- `typeArguments`: `TypeParameterInstantiation` (default: `null`, excluded from builder function)
+- `typeParameters`: `TSTypeParameterInstantiation` (default: `null`, excluded from builder function)
 
 Aliases: [`JSX`](#jsx), [`Immutable`](#immutable)
 
@@ -1856,9 +1864,9 @@ AST Node `MemberExpression` shape:
 - `object`: `Expression | Super` (required)
 - `property`: if computed then `Expression` else `Identifier` (required)
 - `computed`: `boolean` (default: `false`)
-- `optional`: `true | false` (default: `null`)
+- `optional`: `boolean` (default: `null`)
 
-Aliases: [`Standardized`](#standardized), [`Expression`](#expression), [`LVal`](#lval)
+Aliases: [`Standardized`](#standardized), [`Expression`](#expression), [`LVal`](#lval), [`PatternLike`](#patternlike)
 
 ---
 
@@ -1915,8 +1923,8 @@ See also `t.isNewExpression(node, opts)` and `t.assertNewExpression(node, opts)`
 
 AST Node `NewExpression` shape:
 - `callee`: `Expression | Super | V8IntrinsicIdentifier` (required)
-- `arguments`: `Array<Expression | SpreadElement | JSXNamespacedName | ArgumentPlaceholder>` (required)
-- `optional`: `true | false` (default: `null`, excluded from builder function)
+- `arguments`: `Array<Expression | SpreadElement | ArgumentPlaceholder>` (required)
+- `optional`: `boolean` (default: `null`, excluded from builder function)
 - `typeArguments`: `TypeParameterInstantiation` (default: `null`, excluded from builder function)
 - `typeParameters`: `TSTypeParameterInstantiation` (default: `null`, excluded from builder function)
 
@@ -2043,7 +2051,7 @@ See also `t.isObjectMethod(node, opts)` and `t.assertObjectMethod(node, opts)`.
 AST Node `ObjectMethod` shape:
 - `kind`: `"method" | "get" | "set"` (default: `'method'`)
 - `key`: if computed then `Expression` else `Identifier | Literal` (required)
-- `params`: `Array<Identifier | Pattern | RestElement>` (required)
+- `params`: `Array<FunctionParameter>` (required)
 - `body`: `BlockStatement` (required)
 - `computed`: `boolean` (default: `false`)
 - `generator`: `boolean` (default: `false`)
@@ -2070,7 +2078,7 @@ AST Node `ObjectPattern` shape:
 - `optional`: `boolean` (default: `null`, excluded from builder function)
 - `typeAnnotation`: `TypeAnnotation | TSTypeAnnotation | Noop` (default: `null`, excluded from builder function)
 
-Aliases: [`Standardized`](#standardized), [`Pattern`](#pattern), [`PatternLike`](#patternlike), [`LVal`](#lval)
+Aliases: [`Standardized`](#standardized), [`FunctionParameter`](#functionparameter), [`Pattern`](#pattern), [`PatternLike`](#patternlike), [`LVal`](#lval)
 
 ---
 
@@ -2232,7 +2240,7 @@ See also `t.isOptionalCallExpression(node, opts)` and `t.assertOptionalCallExpre
 
 AST Node `OptionalCallExpression` shape:
 - `callee`: `Expression` (required)
-- `arguments`: `Array<Expression | SpreadElement | JSXNamespacedName | ArgumentPlaceholder>` (required)
+- `arguments`: `Array<Expression | SpreadElement | ArgumentPlaceholder>` (required)
 - `optional`: `boolean` (required)
 - `typeArguments`: `TypeParameterInstantiation` (default: `null`, excluded from builder function)
 - `typeParameters`: `TSTypeParameterInstantiation` (default: `null`, excluded from builder function)
@@ -2344,6 +2352,9 @@ See also `t.isPlaceholder(node, opts)` and `t.assertPlaceholder(node, opts)`.
 AST Node `Placeholder` shape:
 - `expectedNode`: `"Identifier" | "StringLiteral" | "Expression" | "Statement" | "Declaration" | "BlockStatement" | "ClassBody" | "Pattern"` (required)
 - `name`: `Identifier` (required)
+- `decorators`: `Array<Decorator>` (default: `null`, excluded from builder function)
+- `optional`: `boolean` (default: `null`, excluded from builder function)
+- `typeAnnotation`: `TypeAnnotation | TSTypeAnnotation | Noop` (default: `null`, excluded from builder function)
 
 Aliases: [`Miscellaneous`](#miscellaneous)
 
@@ -2438,12 +2449,12 @@ t.restElement(argument);
 See also `t.isRestElement(node, opts)` and `t.assertRestElement(node, opts)`.
 
 AST Node `RestElement` shape:
-- `argument`: `LVal` (required)
+- `argument`: `Identifier | ArrayPattern | ObjectPattern | MemberExpression | TSAsExpression | TSSatisfiesExpression | TSTypeAssertion | TSNonNullExpression | RestElement | AssignmentPattern` (required)
 - `decorators`: `Array<Decorator>` (default: `null`, excluded from builder function)
 - `optional`: `boolean` (default: `null`, excluded from builder function)
 - `typeAnnotation`: `TypeAnnotation | TSTypeAnnotation | Noop` (default: `null`, excluded from builder function)
 
-Aliases: [`Standardized`](#standardized), [`LVal`](#lval), [`PatternLike`](#patternlike)
+Aliases: [`Standardized`](#standardized), [`FunctionParameter`](#functionparameter), [`PatternLike`](#patternlike), [`LVal`](#lval)
 
 ---
 
@@ -2753,7 +2764,7 @@ See also `t.isTSDeclareFunction(node, opts)` and `t.assertTSDeclareFunction(node
 AST Node `TSDeclareFunction` shape:
 - `id`: `Identifier` (default: `null`)
 - `typeParameters`: `TSTypeParameterDeclaration | Noop` (default: `null`)
-- `params`: `Array<Identifier | Pattern | RestElement>` (required)
+- `params`: `Array<FunctionParameter>` (required)
 - `returnType`: `TSTypeAnnotation | Noop` (default: `null`)
 - `async`: `boolean` (default: `false`, excluded from builder function)
 - `declare`: `boolean` (default: `null`, excluded from builder function)
@@ -2775,7 +2786,7 @@ AST Node `TSDeclareMethod` shape:
 - `decorators`: `Array<Decorator>` (default: `null`)
 - `key`: `Identifier | StringLiteral | NumericLiteral | BigIntLiteral | Expression` (required)
 - `typeParameters`: `TSTypeParameterDeclaration | Noop` (default: `null`)
-- `params`: `Array<Identifier | Pattern | RestElement | TSParameterProperty>` (required)
+- `params`: `Array<FunctionParameter | TSParameterProperty>` (required)
 - `returnType`: `TSTypeAnnotation | Noop` (default: `null`)
 - `abstract`: `boolean` (default: `null`, excluded from builder function)
 - `access`: `"public" | "private" | "protected"` (default: `null`, excluded from builder function)
@@ -2792,6 +2803,21 @@ Aliases: [`TypeScript`](#typescript)
 
 ---
 
+#### tsEnumBody
+
+```js title="JavaScript"
+t.tsEnumBody(members);
+```
+
+See also `t.isTSEnumBody(node, opts)` and `t.assertTSEnumBody(node, opts)`.
+
+AST Node `TSEnumBody` shape:
+- `members`: `Array<TSEnumMember>` (required)
+
+Aliases: [`TypeScript`](#typescript)
+
+---
+
 #### tsEnumDeclaration
 
 ```js title="JavaScript"
@@ -2803,6 +2829,7 @@ See also `t.isTSEnumDeclaration(node, opts)` and `t.assertTSEnumDeclaration(node
 AST Node `TSEnumDeclaration` shape:
 - `id`: `Identifier` (required)
 - `members`: `Array<TSEnumMember>` (required)
+- `body`: `TSEnumBody` (default: `null`, excluded from builder function)
 - `const`: `boolean` (default: `null`, excluded from builder function)
 - `declare`: `boolean` (default: `null`, excluded from builder function)
 - `initializer`: `Expression` (default: `null`, excluded from builder function)
@@ -2904,7 +2931,7 @@ AST Node `TSImportEqualsDeclaration` shape:
 - `importKind`: `"type" | "value"` (default: `null`, excluded from builder function)
 - `isExport`: `boolean` (required)
 
-Aliases: [`TypeScript`](#typescript), [`Statement`](#statement)
+Aliases: [`TypeScript`](#typescript), [`Statement`](#statement), [`Declaration`](#declaration)
 
 ---
 
@@ -2920,7 +2947,7 @@ AST Node `TSImportType` shape:
 - `argument`: `StringLiteral` (required)
 - `qualifier`: `TSEntityName` (default: `null`)
 - `typeParameters`: `TSTypeParameterInstantiation` (default: `null`)
-- `options`: `Expression` (default: `null`, excluded from builder function)
+- `options`: `ObjectExpression` (default: `null`, excluded from builder function)
 
 Aliases: [`TypeScript`](#typescript), [`TSType`](#tstype)
 
@@ -3135,6 +3162,7 @@ AST Node `TSModuleDeclaration` shape:
 - `body`: `TSModuleBlock | TSModuleDeclaration` (required)
 - `declare`: `boolean` (default: `null`, excluded from builder function)
 - `global`: `boolean` (default: `null`, excluded from builder function)
+- `kind`: `"global" | "module" | "namespace"` (required)
 
 Aliases: [`TypeScript`](#typescript), [`Statement`](#statement), [`Declaration`](#declaration)
 
@@ -3296,7 +3324,7 @@ AST Node `TSPropertySignature` shape:
 - `key`: `Expression` (required)
 - `typeAnnotation`: `TSTypeAnnotation` (default: `null`)
 - `computed`: `boolean` (default: `false`, excluded from builder function)
-- `kind`: `"get" | "set"` (required)
+- `kind`: `"get" | "set"` (default: `null`, excluded from builder function)
 - `optional`: `boolean` (default: `null`, excluded from builder function)
 - `readonly`: `boolean` (default: `null`, excluded from builder function)
 
@@ -3378,6 +3406,22 @@ t.tsSymbolKeyword();
 ```
 
 See also `t.isTSSymbolKeyword(node, opts)` and `t.assertTSSymbolKeyword(node, opts)`.
+
+Aliases: [`TypeScript`](#typescript), [`TSType`](#tstype), [`TSBaseType`](#tsbasetype)
+
+---
+
+#### tsTemplateLiteralType
+
+```js title="JavaScript"
+t.tsTemplateLiteralType(quasis, types);
+```
+
+See also `t.isTSTemplateLiteralType(node, opts)` and `t.assertTSTemplateLiteralType(node, opts)`.
+
+AST Node `TSTemplateLiteralType` shape:
+- `quasis`: `Array<TemplateElement>` (required)
+- `types`: `Array<TSType>` (required)
 
 Aliases: [`TypeScript`](#typescript), [`TSType`](#tstype), [`TSBaseType`](#tsbasetype)
 
@@ -3477,14 +3521,14 @@ Aliases: [`TypeScript`](#typescript), [`TSType`](#tstype)
 #### tsTypeOperator
 
 ```js title="JavaScript"
-t.tsTypeOperator(typeAnnotation);
+t.tsTypeOperator(typeAnnotation, operator);
 ```
 
 See also `t.isTSTypeOperator(node, opts)` and `t.assertTSTypeOperator(node, opts)`.
 
 AST Node `TSTypeOperator` shape:
 - `typeAnnotation`: `TSType` (required)
-- `operator`: `string` (required)
+- `operator`: `string` (default: `'keyof'`)
 
 Aliases: [`TypeScript`](#typescript), [`TSType`](#tstype)
 
@@ -3982,6 +4026,7 @@ t.variableDeclaration(kind, declarations);
 | Version | Changes |
 | --- | --- |
 | `v7.20.0` | `kind` can be "using". |
+| `v7.22.0` | `kind` can be "await using". |
 </details>
 
 See also `t.isVariableDeclaration(node, opts)` and `t.assertVariableDeclaration(node, opts)`.
@@ -4004,7 +4049,7 @@ t.variableDeclarator(id, init);
 See also `t.isVariableDeclarator(node, opts)` and `t.assertVariableDeclarator(node, opts)`.
 
 AST Node `VariableDeclarator` shape:
-- `id`: `LVal` (required)
+- `id`: `LVal | VoidPattern` (required)
 - `init`: `Expression` (default: `null`)
 - `definite`: `boolean` (default: `null`, excluded from builder function)
 
@@ -4024,6 +4069,26 @@ AST Node `Variance` shape:
 - `kind`: `"minus" | "plus"` (required)
 
 Aliases: [`Flow`](#flow)
+
+---
+
+#### voidPattern
+
+```js title="JavaScript"
+t.voidPattern();
+```
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v7.28.0` | Introduced |
+</details>
+
+See also `t.isVoidPattern(node, opts)` and `t.assertVoidPattern(node, opts)`.
+
+Aliases: [`Pattern`](#pattern), [`PatternLike`](#patternlike), [`FunctionParameter`](#functionparameter)
 
 ---
 
@@ -4212,6 +4277,7 @@ Covered nodes:
 - [`OpaqueType`](#opaquetype)
 - [`TSDeclareFunction`](#tsdeclarefunction)
 - [`TSEnumDeclaration`](#tsenumdeclaration)
+- [`TSImportEqualsDeclaration`](#tsimportequalsdeclaration)
 - [`TSInterfaceDeclaration`](#tsinterfacedeclaration)
 - [`TSModuleDeclaration`](#tsmoduledeclaration)
 - [`TSTypeAliasDeclaration`](#tstypealiasdeclaration)
@@ -4528,6 +4594,21 @@ Covered nodes:
 - [`FunctionExpression`](#functionexpression)
 - [`ObjectMethod`](#objectmethod)
 
+#### FunctionParameter
+
+A cover of function parameters. They are the elements of [FormalParameterList](https://tc39.es/ecma262/#prod-FormalParameterList).
+```js title="JavaScript"
+t.isFunctionParameter(node);
+```
+
+Covered nodes:
+- [`ArrayPattern`](#arraypattern)
+- [`AssignmentPattern`](#assignmentpattern)
+- [`Identifier`](#identifier)
+- [`ObjectPattern`](#objectpattern)
+- [`RestElement`](#restelement)
+- [`VoidPattern`](#voidpattern)
+
 #### FunctionParent
 
 A cover of AST nodes that start an execution context with new [VariableEnvironment](https://tc39.es/ecma262/#table-additional-state-components-for-ecmascript-code-execution-contexts). In other words, they define the scope of `var` declarations. FunctionParent did not include `Program` since Babel 7.
@@ -4752,6 +4833,7 @@ Covered nodes:
 - [`ArrayPattern`](#arraypattern)
 - [`AssignmentPattern`](#assignmentpattern)
 - [`ObjectPattern`](#objectpattern)
+- [`VoidPattern`](#voidpattern)
 
 #### PatternLike
 
@@ -4764,12 +4846,14 @@ Covered nodes:
 - [`ArrayPattern`](#arraypattern)
 - [`AssignmentPattern`](#assignmentpattern)
 - [`Identifier`](#identifier)
+- [`MemberExpression`](#memberexpression)
 - [`ObjectPattern`](#objectpattern)
 - [`RestElement`](#restelement)
 - [`TSAsExpression`](#tsasexpression)
 - [`TSNonNullExpression`](#tsnonnullexpression)
 - [`TSSatisfiesExpression`](#tssatisfiesexpression)
 - [`TSTypeAssertion`](#tstypeassertion)
+- [`VoidPattern`](#voidpattern)
 
 #### Private
 
@@ -4894,6 +4978,7 @@ Covered nodes:
 - [`Identifier`](#identifier)
 - [`IfStatement`](#ifstatement)
 - [`Import`](#import)
+- [`ImportAttribute`](#importattribute)
 - [`ImportDeclaration`](#importdeclaration)
 - [`ImportDefaultSpecifier`](#importdefaultspecifier)
 - [`ImportExpression`](#importexpression)
@@ -5015,6 +5100,7 @@ Covered nodes:
 - [`TSObjectKeyword`](#tsobjectkeyword)
 - [`TSStringKeyword`](#tsstringkeyword)
 - [`TSSymbolKeyword`](#tssymbolkeyword)
+- [`TSTemplateLiteralType`](#tstemplateliteraltype)
 - [`TSThisType`](#tsthistype)
 - [`TSUndefinedKeyword`](#tsundefinedkeyword)
 - [`TSUnknownKeyword`](#tsunknownkeyword)
@@ -5063,6 +5149,7 @@ Covered nodes:
 - [`TSRestType`](#tsresttype)
 - [`TSStringKeyword`](#tsstringkeyword)
 - [`TSSymbolKeyword`](#tssymbolkeyword)
+- [`TSTemplateLiteralType`](#tstemplateliteraltype)
 - [`TSThisType`](#tsthistype)
 - [`TSTupleType`](#tstupletype)
 - [`TSTypeLiteral`](#tstypeliteral)
@@ -5123,6 +5210,7 @@ Covered nodes:
 - [`TSConstructorType`](#tsconstructortype)
 - [`TSDeclareFunction`](#tsdeclarefunction)
 - [`TSDeclareMethod`](#tsdeclaremethod)
+- [`TSEnumBody`](#tsenumbody)
 - [`TSEnumDeclaration`](#tsenumdeclaration)
 - [`TSEnumMember`](#tsenummember)
 - [`TSExportAssignment`](#tsexportassignment)
@@ -5160,6 +5248,7 @@ Covered nodes:
 - [`TSSatisfiesExpression`](#tssatisfiesexpression)
 - [`TSStringKeyword`](#tsstringkeyword)
 - [`TSSymbolKeyword`](#tssymbolkeyword)
+- [`TSTemplateLiteralType`](#tstemplateliteraltype)
 - [`TSThisType`](#tsthistype)
 - [`TSTupleType`](#tstupletype)
 - [`TSTypeAliasDeclaration`](#tstypealiasdeclaration)
