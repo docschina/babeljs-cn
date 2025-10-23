@@ -6,6 +6,10 @@ require("@babel/core").transform("code", {
 
 <blockquote class="alert alert--info">
   <p>
+<<<<<<< HEAD
     关于 Babel 的完整 API 文档请查阅<a href="/docs/usage/api/">使用文档</a>。
+=======
+    Explore the <a href="/docs/babel-core">@babel/core documentation</a> for the full API.
+>>>>>>> 35780929c38b57a6f1609e5d748c6b18104d5e98
   </p>
 </blockquote>
