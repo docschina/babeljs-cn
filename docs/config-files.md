@@ -306,16 +306,42 @@ babelrcRoots: [
 
 ## 配置函数 API
 
+<<<<<<< HEAD
 JS 配置文件可以导出一个将传递配置函数 API 的函数：
+=======
+JS config files may export a function that will be passed config API:
+>>>>>>> a3eb8663fa074076d83ed11388b5d51e73591120
 
-```js title="JavaScript"
+:::babel7
+
+```js title="babel.config.js"
 module.exports = function(api) {
   return {};
 };
 ```
 
+<<<<<<< HEAD
 `api` 对象与配置文件特定的 API 一起暴露了
 Babel 本身暴露于其索引模块的所有内容：
+=======
+:::
+
+:::babel8
+
+```js title="babel.config.js"
+/**
+ * @param {import("@babel/core").ConfigAPI} api
+ * @returns {import("@babel/core").InputOptions}
+ */
+module.exports = function(api) {
+  return {};
+};
+```
+
+:::
+
+The ConfigAPI object `api` provides the following properties or methods:
+>>>>>>> a3eb8663fa074076d83ed11388b5d51e73591120
 
 ### `api.version`
 
