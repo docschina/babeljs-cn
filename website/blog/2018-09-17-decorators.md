@@ -1,8 +1,13 @@
 ---
 layout: post
+<<<<<<< HEAD
 title: "在 Babel 中支持 TC39 标准的装饰器"
 author: Nicolò Ribaudo
 authorURL: https://twitter.com/NicoloRibaudo
+=======
+title:  "TC39 Standards Track Decorators in Babel"
+authors: nicolò
+>>>>>>> 6a1b9e50b7817de061d040807120b646d398b718
 date:   2018-09-17 12:00:00
 categories: announcements
 share_text: "在 Babel 中支持 TC39 标准的装饰器"
