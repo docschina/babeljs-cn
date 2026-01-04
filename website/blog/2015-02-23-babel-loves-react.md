@@ -1,8 +1,13 @@
 ---
 layout: post
+<<<<<<< HEAD
 title:  "Babel 喜爱 React"
 author: James Kyle
 authorURL: https://twitter.com/thejameskyle
+=======
+title:  "Babel <3 React"
+authors: james_kyle
+>>>>>>> 531ad534892e7a56574cc84483ece365bbbb48f9
 date:   2015-02-23 10:00:00
 categories: announcements
 share_text: "Babel <3 React"
