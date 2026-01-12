@@ -82,31 +82,27 @@ For usage, refer to the [`targets` option](options.md#targets) documentation.
 
 ### `bugfixes`
 
-:::babel8
-
-`boolean`, defaults to `true`.
-
-:::
-
-:::babel7
+::::babel7
 
 `boolean`, defaults to `false`.
 
-:::
-
 Added in: `v7.9.0`
 
-::::babel7
-
 :::note
-This option will be enabled by default in Babel 8.
+This option will be always enabled and thus removed in Babel 8.
 :::
-
-::::
 
 By default, `@babel/preset-env` (and Babel plugins in general) grouped ECMAScript syntax features into collections of closely related smaller features. These groups can be large and include a lot of edge cases, for example "function arguments" includes destructured, default and rest parameters. From this grouping information, Babel enables or disables each group based on the browser support target you specify to `@babel/preset-env`’s `targets` option.
 
 When this option is enabled, `@babel/preset-env` tries to compile the broken syntax to the closest _non-broken modern syntax_ supported by your target browsers. Depending on your `targets` and on how many modern syntax you are using, this can lead to a significant size reduction in the compiled app. This option merges the features of [`@babel/preset-modules`](https://github.com/babel/preset-modules) without having to use another preset.
+
+::::
+
+:::babel8
+
+This option has been removed in Babel 8. `@babel/preset-env` will always compile the broken syntax to the closest _non-broken modern syntax_ supported by your target browsers.
+
+:::
 
 ::::babel8
 
@@ -178,18 +174,18 @@ Valid options include any:
 
 :::babel7
 
-- [Babel plugins](https://github.com/babel/babel/blob/main/packages/babel-compat-data/scripts/data/plugin-features.js) - both full and shorthand names are supported, for example the following are functionally equivalent:
+- [Babel plugins](https://github.com/babel/babel/blob/main/packages/babel-preset-env/src/available-plugins.ts) - both full and shorthand names are supported, for example the following are functionally equivalent:
   * `@babel/plugin-transform-spread`
   * `@babel/transform-spread`
   * `babel-transform-spread`
   * `transform-spread`
-- Built-ins (both for [core-js@2](https://github.com/babel/babel/blob/master/packages/babel-preset-env/src/polyfills/corejs2/built-in-definitions.js) and [core-js@3](https://github.com/babel/babel/blob/master/packages/babel-preset-env/src/polyfills/corejs3/built-in-definitions.js), such as `es.map`, `es.set`, or `es.object.assign`.
+- Built-ins (both for [core-js@3](https://github.com/babel/babel/blob/master/packages/babel-preset-env/src/polyfills/corejs3/built-in-definitions.js) and [core-js@2](https://github.com/babel/babel/blob/master/packages/babel-preset-env/src/polyfills/corejs2/built-in-definitions.js), such as `es.map`, `es.set`, or `es.object.assign`.
 
 :::
 
 :::babel8
 
-- [Babel plugins](https://github.com/babel/babel/blob/main/packages/babel-compat-data/scripts/data/plugin-features.js) - both full and shorthand names are supported, for example the following are functionally equivalent:
+- [Babel plugins](https://github.com/babel/babel/blob/main/packages/babel-preset-env/src/available-plugins.ts) - both full and shorthand names are supported, for example the following are functionally equivalent:
   * `@babel/plugin-transform-optional-chaining`
   * `@babel/transform-optional-chaining`
   * `transform-optional-chaining`
@@ -212,7 +208,7 @@ This option is useful if there is a bug in a native implementation, or a combina
 For example, Node 4 supports native classes but not spread. If `super` is used with a spread argument, then the `@babel/plugin-transform-classes` transform needs to be `include`d, as it is not possible to transpile a spread with `super` otherwise.
 
 :::note
-The `include` and `exclude` options _only_ work with the [plugins included with this preset](https://github.com/babel/babel/blob/main/packages/babel-compat-data/scripts/data/plugin-features.js); so, for example, including `@babel/plugin-proposal-do-expressions` or excluding `@babel/plugin-proposal-function-bind` will throw errors. To use a plugin _not_ included with this preset, add them to your ["plugins"](options.md#plugins) directly.
+The `include` and `exclude` options _only_ work with the [plugins included with this preset](https://github.com/babel/babel/blob/main/packages/babel-preset-env/src/available-plugins.ts); so, for example, including `@babel/plugin-proposal-do-expressions` or excluding `@babel/plugin-proposal-function-bind` will throw errors. To use a plugin _not_ included with this preset, add them to your ["plugins"](options.md#plugins) directly.
 :::
 
 ### `exclude`
@@ -487,15 +483,15 @@ The following are currently supported:
 
 **Features**
 
-- [Class static block](https://github.com/tc39/proposal-class-static-block)
-- [Import assertions](https://github.com/tc39/proposal-import-assertions) (parsing only)
-- [Private field brand checks](https://github.com/tc39/proposal-private-fields-in-in)
+- [Import attributes](https://github.com/tc39/proposal-import-attributes) (parsing only)
 
 **Materialized Features**
 These features were behind `shippedProposals` flag in older Babel versions. They are now generally available.
 
 - [class properties](https://github.com/tc39/proposal-class-fields)
+- [Class static block](https://github.com/tc39/proposal-class-static-block)
 - [numeric separator](https://github.com/tc39/proposal-numeric-separator)
+- [Private field brand checks](https://github.com/tc39/proposal-private-fields-in-in)
 - [private methods](https://github.com/tc39/proposal-private-methods)
 
 > You can read more about configuring preset options [here](https://babeljs.io/docs/en/presets#preset-options)
