@@ -5,11 +5,18 @@
       "ESNext",
       "DOM"
     ],
+    "types": [
+      "node",
+      "@docusaurus/module-type-aliases",
+      "@docusaurus/theme-classic"
+    ],
     "jsx": "react",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "noEmit": true,
     "incremental": true,
+    "skipLibCheck": true,
   },
 }
