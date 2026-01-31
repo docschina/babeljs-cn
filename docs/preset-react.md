@@ -22,7 +22,11 @@ title: "@babel/preset-react"
 
 ## 安装
 
+<<<<<<< HEAD
 > 您可以查看 React [开始页面](https://facebook.github.io/react/docs/hello-world.html)
+=======
+> You can also check out the React [Getting Started page](https://react.dev/learn/installation)
+>>>>>>> 08992f4d6679820d9cd826f93c6758fcf0f23ee7
 
 ```shell npm2yarn
 npm install --save-dev @babel/preset-react
@@ -130,9 +134,25 @@ Decides which runtime to use.
 
 #### `development`
 
+<<<<<<< HEAD
 `boolean` 类型，默认值为 `false`。
 
 如果添加了 `__source` 和 `__self`，将可以开启特定于开发环境的一些操作。
+=======
+:::babel7
+
+`boolean`, defaults to `false`.
+
+:::
+
+:::babel8
+
+`boolean`, defaults to `true` if Babel's [`envName`](./options.md#envname) id `"development"`, and `false` otherwise.
+
+:::
+
+This toggles behavior specific to development, such as adding `__source` and `__self`.
+>>>>>>> 08992f4d6679820d9cd826f93c6758fcf0f23ee7
 
 当与 [env option](options.md#env) 配置或者与 [js config files](config-files.md#javascript) 一起使用时会很有用。
 
@@ -176,7 +196,7 @@ Replace the function used when compiling JSX expressions. It should be a qualifi
 
 Replace the component used when compiling JSX fragments. It should be a valid JSX tag name.
 
-:::babel7
+::::babel7
 
 #### `useBuiltIns`
 
@@ -200,7 +220,7 @@ This option will be removed in Babel 8. Set `useSpread` to `true` if you are tar
 
 When spreading props, use inline object with spread elements directly instead of Babel's extend helper or `Object.assign`.
 
-:::
+::::
 
 ### babel.config.js
 
