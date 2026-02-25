@@ -73,7 +73,7 @@
     "remark-lint-no-empty-url": "^3.1.1",
     "remark-lint-no-literal-urls": "^3.1.1",
     "remark-preset-lint-recommended": "^6.1.2",
-    "rollup": "^3.28.0",
+    "rollup": "^3.30.0",
     "terser-webpack-plugin": "^5.3.9",
     "typescript": "^5.1.6",
     "webpack": "^5.88.2",
