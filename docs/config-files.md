@@ -306,16 +306,42 @@ babelrcRoots: [
 
 ## 配置函数 API
 
+<<<<<<< HEAD
 JS 配置文件可以导出一个将传递配置函数 API 的函数：
+=======
+JS config files may export a function that gets the config API as a parameter:
+>>>>>>> 689ec015b12427ee683b302d018bebb0de6d8cee
 
-```js title="JavaScript"
+:::babel7
+
+```js title="babel.config.js"
 module.exports = function(api) {
   return {};
 };
 ```
 
+<<<<<<< HEAD
 `api` 对象与配置文件特定的 API 一起暴露了
 Babel 本身暴露于其索引模块的所有内容：
+=======
+:::
+
+:::babel8
+
+```js title="babel.config.js"
+/**
+ * @param {import("@babel/core").ConfigAPI} api
+ * @returns {import("@babel/core").InputOptions}
+ */
+module.exports = function(api) {
+  return {};
+};
+```
+
+:::
+
+The ConfigAPI object `api` provides the following properties or methods:
+>>>>>>> 689ec015b12427ee683b302d018bebb0de6d8cee
 
 ### `api.version`
 
@@ -405,6 +431,24 @@ module.exports = function(api) {
 ```js title="JavaScript"
 module.exports = function(api) {
   api.assertVersion("^7.2");
+
+  return {
+    // ...
+  };
+};
+```
+
+### `api.addExternalDependency(name: string)` {#api_addExternalDependency}
+
+Added in: `v7.17.0`
+
+This API allows the plugin or preset to indicate an external dependency. `@babel/core` does not resolve external dependencies, instead it is up to the caller
+to handle any dependencies made available in the `.externalDependencies` property returned from the [`babel.transformSync`](./core.md#transformsync) method.
+
+```js title="my-babel-preset.js"
+module.exports = function(api) {
+  // Indicate that the preset depends on the .browserslistrc file
+  api.addExternalDependency(".browserslistrc");
 
   return {
     // ...
