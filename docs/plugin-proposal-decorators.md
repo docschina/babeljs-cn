@@ -98,7 +98,7 @@ require("@babel/core").transformSync("code", {
 `"2023-11"` or `"legacy"`.
 
 Selects the decorators proposal to use:
-- `"2023-11"` is the proposal version after the updates that reached consensus in the November 2023 TC39 meeting. This version will be enabled by default if it ends up being the final one.
+- `"2023-11"` is the proposal version after the updates that reached consensus in the November 2023 TC39 meeting. This version will be enabled by default if it ends up being the final one. It allows decorators either before or after `export`.
 - `legacy` is the legacy Stage 1 proposal, defined at [`wycats/javascript-decorators@e1bf8d41bf`](https://github.com/wycats/javascript-decorators/blob/e1bf8d41bfa2591d949dd3bbf013514c8904b913/README.md). The legacy mode will not have feature updates, and there are known [discrepancies between Babel and TypeScript](https://github.com/babel/babel/issues/8864#issuecomment-688535867). It is recommended to migrate to the `"2023-11"` proposal version.
 
 :::
@@ -110,7 +110,7 @@ Selects the decorators proposal to use:
 `"2023-11"`, `"2023-05"`, `"2023-01"`, `"2022-03"`, `"2021-12"`, `"2018-09"` or `"legacy"`.
 
 Selects the decorators proposal to use:
-- `"2023-11"` is the proposal version after the updates that reached consensus in the November 2023 TC30 meetings, intergrating [this change](https://github.com/pzuraq/ecma262/pull/12)
+- `"2023-11"` is the proposal version after the updates that reached consensus in the November 2023 TC39 meetings, integrating [this change](https://github.com/pzuraq/ecma262/pull/12)
 - `"2023-05"` is the proposal version after the updates that reached consensus in the March and May 2023 TC39 meetings, integrating [these changes](https://github.com/pzuraq/ecma262/compare/e86128e13b63a3c2efc3728f76c8332756752b02...c4465e44d514c6c1dba810487ec2721ccd6b08f9).
 - `"2023-01"` is the proposal version after the updates that reached consensus in the January 2023 TC39 meeting, integrating [`pzuraq/ecma262#4`](https://github.com/pzuraq/ecma262/pull/4).
 - `"2022-03"` is the proposal version that reached consensus for Stage 3 in the March 2022 TC39 meeting. You can read more about it at [`tc39/proposal-decorators@8ca65c046d`](https://github.com/tc39/proposal-decorators/tree/8ca65c046dd5e9aa3846a1fe5df343a6f7efd9f8).
@@ -212,11 +212,27 @@ If you are using `@babel/preset-env` and legacy decorators, you must ensure the 
 The `include` option will enable the transforms included in `@babel/preset-env` so you can safely remove them from your `package.json`.
 
 :::tip
-You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+You can read more about configuring plugin options [here](./plugins.md#plugin-options)
 :::
 
 ::::
 
+<<<<<<< HEAD
 ## 参考
+=======
+## `Symbol.metadata` notes
+
+When using decorators which either access or modify the metadata in the decorator context, you need to use `Symbol.metadata`. When `Symbol.metadata` is not available, Babel defaults to `Symbol.for("Symbol.metadata")`: this may be incompatible with other packages that use a different fallback.
+
+To ensure that `Symbol.metadata` is available globally and matches the symbol used by the Babel decorators plugin during transpilation, you will need to either include a polyfill that defines it, or define it yourself:
+
+```js title="symbol-metadata-polyfill.js"
+Symbol.metadata = Symbol.for("Symbol.metadata");
+```
+
+You can also use a third-party polyfill, such as `core-js/proposals/decorator-metadata-v2.js`. Make sure that the polyfill is executed before any code that uses decorators or accesses `Symbol.metadata`.
+
+## References
+>>>>>>> 36911f89ae5474274be3871b04109ca77cf317a6
 
 - [Proposal: JavaScript Decorators](https://github.com/tc39/proposal-decorators)
