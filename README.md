@@ -6,13 +6,16 @@
 
 ### 设置
 
+<<<<<<< HEAD
 Node: 检查 Node 是否安装了 10.19.0 及以上版本。你可以通过 node -v 检查。
+=======
+Node: Check that Node is installed with version 20.5.0 and up. You can check this with `node -v`.
+>>>>>>> 3543ad06bc4372b154b1ac0bb2580d5be3bba3a4
 
 Yarn: 确保已经安装 Yarn 1 并且版本号 >= 1.19.0。
 
 ```shell title="Shell"
 $ git clone git@github.com:babel/website.git
-$ cd website
 $ yarn && yarn bootstrap
 ```
 
