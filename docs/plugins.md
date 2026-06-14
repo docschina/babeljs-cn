@@ -5,9 +5,13 @@ title: 插件
 
 通过在 [配置文件](config-files.md) 中应用插件（或 [预设](presets.md)），可以启用 Babel 的代码转换。
 
+<<<<<<< HEAD
 <div id="pluginpreset-paths"></div>
 
 ## 使用一个插件
+=======
+## Using a Plugin
+>>>>>>> e2f43901b54a17c57113d1c9a663ce99e57f780c
 
 如果插件在 [npm](https://www.npmjs.com/search?q=babel-plugin) 中，你可以传入插件的名字，Babel 会检查它是否安装在 `node_modules` 中。这将被添加到 [plugins](options.md#plugins) 配置项，该选项接受一个数组。
 
