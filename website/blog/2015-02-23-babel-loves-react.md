@@ -1,8 +1,13 @@
 ---
 layout: post
+<<<<<<< HEAD
 title:  "Babel 喜爱 React"
 author: James Kyle
 authorURL: https://twitter.com/thejameskyle
+=======
+title:  "Babel <3 React"
+authors: james_kyle
+>>>>>>> 51a5688809fed804a6ccd9d447f895c6331de03f
 date:   2015-02-23 10:00:00
 categories: announcements
 share_text: "Babel <3 React"
@@ -19,7 +24,7 @@ share_text: "Babel <3 React"
 > here. If you'd like to see a more complete list check out our
 > [Using Babel](/setup) page.
 
-**In the Browser** ([docs](/setup#browser/))
+**In the Browser** ([docs](/setup#browser))
 
 原先：
 
@@ -47,7 +52,7 @@ $ browserify -t reactify main.js
 $ browserify -t babelify main.js
 ```
 
-**In Node** ([docs](/setup#require/))
+**In Node** ([docs](/setup#babel_register))
 
 原先：
 
@@ -103,7 +108,7 @@ The list goes on, but you probably get how simple it is by now. If you didn't
 see the tool you are looking for don't worry we have a full list of them on our
 [Using Babel](/setup) page.
 
-If you need more help getting setup be sure to read our [JSX](/setup#jsx/)
+If you need more help getting setup be sure to read our [JSX](/docs/#jsx-and-react)
 docs or come ask other Babel users in our
 [support chat](https://gitter.im/babel/babel).
 
