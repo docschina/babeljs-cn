@@ -103,7 +103,11 @@ We have been talking about the Babel 8 release for more than one year (we initia
 
 ### 调查新的编译器 `assumptions`
 
+<<<<<<< HEAD
 在 Babel 7.13.0 中，我们引入了一个新的顶层 [`assumptions`](https://babeljs.io/docs/en/options#assumptions) 选项来正式化 `loose` 模式选项的功能，并为我们的用户提供更精细的控制（因为他们通常只能启用 _某些_ 假设，而不是所有）。
+=======
+In Babel 7.13.0 we introduced a new top-level [`assumptions`](./options.md#assumptions) option, to formalize what the `loose` mode option does and offer more granular control to our users (since often they can only enable _some_ assumptions and not all of them).
+>>>>>>> 51a5688809fed804a6ccd9d447f895c6331de03f
 
 但是，我们只包含了在 `loose` 模式下编译时 _已经_ 做出的假设选项。我们现在可以审查我们的用户可能需要哪些新的假设。
 
