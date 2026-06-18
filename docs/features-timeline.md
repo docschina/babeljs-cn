@@ -9,6 +9,57 @@ Which major new features did we introduce in each Babel version? This page inclu
 Additionally, use this timeline to track some other important efforts, such as the [babel-polyfills](https://github.com/babel/babel-polyfills) project.
 
 <ol class="timeline-container">
+<li data-date="June 2026">
+
+## Babel 8.0.0
+
+[blog post](https://babeljs.io/blog/2026/06/16/8.0.0), [migration guide](https://babeljs.io/docs/v8-migration)
+
+- Drop support for un-maintained Node versions: 6, 8, 10, 12, 14, 16, 18, 20, 23, 25
+- Publish Babel's own codebase as ESM
+- Transpile by default to ESM and modern targets
+- Deprecate the `loose` and `spec` options, in favor of [`assumptions`](https://babeljs.io/assumptions)
+- Remove `core-js` support from `@babel/preset-env` and `@babel/plugin-transform-runtime`, in favor of [`babel-plugin-polyfill-corejs3`](https://github.com/babel/babel-polyfills/tree/main/packages/babel-plugin-polyfill-corejs3)
+
+</li>
+<li data-date="Jan 2026">
+
+## Babel 7.29.0
+
+[blog post](https://babeljs.io/blog/2026/01/31/7.29.0)
+
+- Support configuring `targets` in `@babel/standalone` [`<script>` tags](https://babeljs.io/docs/babel-standalone#script-tags)
+
+</li>
+<li data-date="Jun 2025">
+
+## Babel 7.28.0
+
+[blog post](https://babeljs.io/blog/2025/06/30/7.28.0)
+
+- Enable the [explicit resource management](https://github.com/tc39/proposal-explicit-resource-management/) proposal by default
+- Support for the [discard binding](https://github.com/tc39/proposal-discard-binding/) Stage 2 proposal
+
+</li>
+<li data-date="Oct 2024">
+
+## Babel 7.26.0
+
+[blog post](https://babeljs.io/blog/2024/10/25/7.26.0)
+
+- Enable the [regular expression modifiers](https://github.com/tc39/proposal-regexp-modifiers/) Stage 4 proposal by default
+- Enable parsing of the [import attributes](https://github.com/tc39/import-attributes/) Stage 4 proposal by default
+
+</li>
+<li data-date="Jul 2024">
+
+## Babel 7.25.0
+
+[blog post](https://babeljs.io/blog/2024/07/26/7.25.0)
+
+- Enable the Stage 4 [duplicated named capturing groups](https://github.com/tc39/proposal-duplicate-named-capturing-groups/) proposal by default
+
+</li>
 <li data-date="Feb 2024">
 
 ## Babel 7.24.0
@@ -213,7 +264,7 @@ Additionally, use this timeline to track some other important efforts, such as t
 
 - Enable the [Class Fields](https://github.com/tc39/proposal-class-fields),
   [Private Methods](https://github.com/tc39/proposal-private-methods) and [Static Class Features](https://github.com/tc39/proposal-static-class-features) Stage 4 proposals by default
-- Add the [Private Brand Checks](https://github.com/tc39/proposal-private-fields-in-in) and [Static Class Blocks](https://github.com/tc39/proposal-class-static-block) proposals to `@babel/preset-env`'s [`shippedProposals`](https://babeljs.io/docs/en/babel-preset-env#shippedproposals)
+- Add the [Private Brand Checks](https://github.com/tc39/proposal-private-fields-in-in) and [Static Class Blocks](https://github.com/tc39/proposal-class-static-block) proposals to `@babel/preset-env`'s [`shippedProposals`](./preset-env.md#shippedproposals)
   ```js title="JavaScript"
   class A {
     static { initialize(A); } // static block
@@ -229,7 +280,7 @@ Additionally, use this timeline to track some other important efforts, such as t
     2 + await computeIt();
   };
   ```
-- Support for the [`importInterop: "node"`](https://babeljs.io/docs/en/babel-plugin-transform-modules-commonjs#importinterop) option in `@babel/plugin-transform-modules-commonjs`, to aligh Babel with the Node.js behavior
+- Support for the [`importInterop: "node"`](./plugin-transform-modules-commonjs.md#importinterop) option in `@babel/plugin-transform-modules-commonjs`, to aligh Babel with the Node.js behavior
 - [TypeScript 4.3](https://devblogs.microsoft.com/typescript/announcing-typescript-4-3/) support
 
 </li>
@@ -239,8 +290,8 @@ Additionally, use this timeline to track some other important efforts, such as t
 
 [博客公告](https://babeljs.io/blog/2021/02/22/7.13.0)
 
-- Top-level [`targets`](https://babeljs.io/docs/en/options#output-targets) option ([RFC](https://github.com/babel/rfcs/pull/2))
-- Granular compiler assumptions ([docs](https://babeljs.io/assumptions), [RFC](https://github.com/babel/rfcs/pull/5))
+- Top-level [`targets`](./options.md#output-targets) option ([RFC](https://github.com/babel/rfcs/pull/2))
+- Granular compiler assumptions ([docs](./assumptions.md), [RFC](https://github.com/babel/rfcs/pull/5))
 - Support for the [Records and Tuples](https://github.com/tc39/proposal-record-tuple) proposals
   ```js title="JavaScript"
   let rec = #{ x: 1 };
@@ -326,10 +377,17 @@ Additionally, use this timeline to track some other important efforts, such as t
 
 [博客公告](https://babeljs.io/blog/2020/03/16/7.9.0)
 
+<<<<<<< HEAD
 -  在 `@babel/preset-env` 中新增 [`bugfixes`](https://babeljs.io/docs/en/babel-preset-env#bugfixes) 选项， 以支持更灵活地解决游览器漏洞，而不是重新编译整个特性。
 - 支持 [TypeScript 3.8](https://devblogs.microsoft.com/typescript/announcing-typescript-3-8/)
 - 支持 Flow `declare` 类字段。
 - 自动支持全新的 [JSX 运行环境](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)
+=======
+- [`bugfixes`](./preset-env.md#bugfixes) option in `@babel/preset-env`, to workaround browsers bugs rather than compiling whole Features
+- [TypeScript 3.8](https://devblogs.microsoft.com/typescript/announcing-typescript-3-8/) support
+- Support for Flow `declare` class fields
+- Support for the [automatic](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) JSX runtime
+>>>>>>> cd27da096fcedb2b766a641140bbb9aa7b0685ad
 
 </li>
 <li data-date="Jan 2020">
@@ -482,7 +540,7 @@ Additionally, use this timeline to track some other important efforts, such as t
 - Remove yearly presets (`@babel/preset-es2015`) and Stage presets (`@babel/preset-stage-0`) ([blog post](https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets)).
 - Added "pure" (`/*#__PURE__*/` ) annotation support in certain cases. (Implemented later as [@babel/helper-annotate-as-pure](helper-annotate-as-pure.md)
 - Add project-wide `babel.config.js` config file ([docs](config-files.md)) and [`overrides`](options.md#overrides) config option.
-- Added `"useBuiltIns: "usage"` to [`@babel/preset-env`](preset-env.md#usebuiltins)
+- Added `"useBuiltIns: "usage"` to [`@babel/preset-env`](preset-env.md#usebuiltins-corejs)
 - Support TypeScript via `@babel/preset-typescript`
 - Support JSX Fragments `<></>`
 - Support a ton of TC39 proposals:
