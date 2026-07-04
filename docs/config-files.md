@@ -68,7 +68,15 @@ Babel 从正在编译（受以下警告限制）的 ["filename"](options.md#file
 有关如何配置具有多个包的单体式仓库的更多讨论，请参阅 [单体式仓库](#monorepos) 文档。
 还可以通过将 ["babelrc"](options.md#babelrc) 设置为 `false` 来禁用相对文件的配置。
 
+<<<<<<< HEAD
 ### 6.x vs 7.x `.babelrc` 加载
+=======
+:::note
+For compatibility reasons, `.babelrc` is an alias for `.babelrc.json`.
+:::
+
+### 6.x vs 7.x `.babelrc` loading
+>>>>>>> 1d0aaee01909a5c1b92f309be44db0448f3b483d
 
 来自 Babel 6.x 的用户可能会遇到这两个边缘情况，这是 Babel 7.x 中的新功能。
 这两项限制是为了解决 Babel 6.x 中常见的 footguns 而增加的：
@@ -136,22 +144,36 @@ packages/
   `babel.config.js` 和 `.babelrc.js` 的行为类似 `.mjs`，
   否则它们与 `.cjs` 文件完全相同。
 
-- `babel.config.cts` and `.babelrc.cts` allow you to define your configuration as Typescript + CommonJS. You must either install `@babel/preset-typescript`, or run Babel using `ts-node`.
+::::babel7
 
-  :::note
-  🚧 This functionality is experimental. It's not possible yet to use `babel.config.ts` and `babel.config.mts` files, pending stabilization of the Node.js ESM loader API.
-  :::
+In Node.js with [native TypeScript support](https://nodejs.org/learn/typescript/run-natively), Babel also supports TypeScript config files, using `.ts`/`.mts`/`.cts` extensions in place of `.js`/`.mjs`/`.cjs`.
+
+:::note
+🚧 In older Node.js versions, if `@babel/preset-typescript` is installed or if you are running through `ts-node`, Babel will still be able to load `.cts` config files. `.mts` and `.ts` files are not supported under this setup.
+:::
+
+::::
+
+:::babel8
+
+Babel also supports TypeScript config files, using `.ts`/`.mts`/`.cts` extensions in place of `.js`/`.mjs`/`.cjs`.
+
+:::
 
 JavaScript configuration files can either export an object, or a function that when called will
 return the generated configuration.
 Function-returning configs are given a few special powers because they can access an API exposed
 by Babel itself. See [Config Function API](#config-function-api) for more information.
 
+<<<<<<< HEAD
 :::note
 For compatibility reasons, `.babelrc` is an alias for `.babelrc.json`.
 :::
 
 ## 单体式仓库
+=======
+## Monorepos
+>>>>>>> 1d0aaee01909a5c1b92f309be44db0448f3b483d
 
 单体式结构的仓库通常包含许多包，
 这意味着它们通常会遇到 [相对文件的配置](#file-relative-configuration)
@@ -306,16 +328,42 @@ babelrcRoots: [
 
 ## 配置函数 API
 
+<<<<<<< HEAD
 JS 配置文件可以导出一个将传递配置函数 API 的函数：
+=======
+JS config files may export a function that gets the config API as a parameter:
+>>>>>>> 1d0aaee01909a5c1b92f309be44db0448f3b483d
 
-```js title="JavaScript"
+:::babel7
+
+```js title="babel.config.js"
 module.exports = function(api) {
   return {};
 };
 ```
 
+<<<<<<< HEAD
 `api` 对象与配置文件特定的 API 一起暴露了
 Babel 本身暴露于其索引模块的所有内容：
+=======
+:::
+
+:::babel8
+
+```js title="babel.config.js"
+/**
+ * @param {import("@babel/core").ConfigAPI} api
+ * @returns {import("@babel/core").InputOptions}
+ */
+module.exports = function(api) {
+  return {};
+};
+```
+
+:::
+
+The ConfigAPI object `api` provides the following properties or methods:
+>>>>>>> 1d0aaee01909a5c1b92f309be44db0448f3b483d
 
 ### `api.version`
 
@@ -405,6 +453,24 @@ module.exports = function(api) {
 ```js title="JavaScript"
 module.exports = function(api) {
   api.assertVersion("^7.2");
+
+  return {
+    // ...
+  };
+};
+```
+
+### `api.addExternalDependency(name: string)` {#api_addExternalDependency}
+
+Added in: `v7.17.0`
+
+This API allows the plugin or preset to indicate an external dependency. `@babel/core` does not resolve external dependencies, instead it is up to the caller
+to handle any dependencies made available in the `.externalDependencies` property returned from the [`babel.transformSync`](./core.md#transformsync) method.
+
+```js title="my-babel-preset.js"
+module.exports = function(api) {
+  // Indicate that the preset depends on the .browserslistrc file
+  api.addExternalDependency(".browserslistrc");
 
   return {
     // ...
