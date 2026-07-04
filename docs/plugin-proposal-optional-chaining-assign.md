@@ -34,10 +34,12 @@ npm install --save-dev @babel/plugin-proposal-optional-chaining-assign
 ```json title="babel.config.json"
 {
   "plugins": [
-    "@babel/plugin-proposal-optional-chaining-assign",
-    {
-      "version": "2023-07"
-    }
+    [
+      "@babel/plugin-proposal-optional-chaining-assign",
+      {
+        "version": "2023-07"
+      }
+    ]
   ]
 }
 ```
@@ -56,7 +58,7 @@ require("@babel/core").transformSync("code", {
 
 ### Assumptions
 
-This plugin is affected by the [`noDocumentAll`](https://babeljs.io/docs/assumptions#nodocumentall) assumption.
+This plugin is affected by the [`noDocumentAll`](./assumptions.md#nodocumentall) assumption.
 
 ### `version`
 

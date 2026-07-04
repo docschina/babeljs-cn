@@ -30,7 +30,11 @@ For an awesome tutorial on compilers, check out [the-super-tiny-compiler](https:
 
 Babel 通过语法转换(syntax transformer)支持最新版本的 JavaScript。
 
+<<<<<<< HEAD
 这些 [plugins](plugins.md) 允许你**现在**就使用新语法，而无需等待浏览器的支持。查看我们的 [使用指南](usage.md) 以开始使用。
+=======
+These [plugins](plugins-list.md) allow you to use new syntax, **right now** without waiting for browser support. Check out our [usage guide](usage.md) to get started.
+>>>>>>> 1d0aaee01909a5c1b92f309be44db0448f3b483d
 
 ## JSX 和 React
 
@@ -105,7 +109,11 @@ Learn more about [Flow](https://flow.org/) and [TypeScript](https://www.typescri
 
 ## 可插件化
 
+<<<<<<< HEAD
 Babel 是用 plugins 构建的。你可以使用现有 plugins 编写自己的转换管道，或编写自己的 plugins。通过使用或创建一个 [preset](plugins.md#presets) 轻松使用一组插件。[了解更多 →](plugins.md)
+=======
+Babel is built out of [plugins](plugins.md). Compose your own transformation pipeline using existing plugins or write your own. Easily use a set of plugins by using or creating a [preset](presets.md).
+>>>>>>> 1d0aaee01909a5c1b92f309be44db0448f3b483d
 
 直接使用 [astexplorer.net](https://astexplorer.net/#/KJ8AjD6maa) 创建插件，或者使用 [generator-babel-plugin](https://github.com/babel/generator-babel-plugin) 生成一个插件模板。
 
