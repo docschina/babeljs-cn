@@ -3,12 +3,17 @@ id: babel-preset-react
 title: "@babel/preset-react"
 ---
 
+<<<<<<< HEAD
 这个预设包含以下插件：
+=======
+This preset includes the following plugins:
+>>>>>>> 9c1cb541f30b1fce7825c0b76a0468fac5161d95
 
 - [@babel/plugin-syntax-jsx](plugin-syntax-jsx.md)
 - [@babel/plugin-transform-react-jsx](plugin-transform-react-jsx.md)
 - [@babel/plugin-transform-react-display-name](plugin-transform-react-display-name.md)
 
+<<<<<<< HEAD
 并且有相应的开发配置项：
 
 添加经典的运行时：
@@ -17,12 +22,19 @@ title: "@babel/preset-react"
 - [@babel/plugin-transform-react-jsx-source](plugin-transform-react-jsx-source.md)
 
 当启用 `development` 配置时，自动运行时（自 v7.9.0 起）会自动添加这些插件的功能。如果你已经启用了自动运行时，再添加 [@babel/plugin-transform-react-jsx-self](plugin-transform-react-jsx-self.md) 或 [@babel/plugin-transform-react-jsx-source](plugin-transform-react-jsx-source.md) 会发生错误。
+=======
+Automatic runtime (since `v7.9.0`) adds the functionality for these plugins automatically when the `development` option is enabled. If you have automatic runtime enabled, adding [@babel/plugin-transform-react-jsx-self](plugin-transform-react-jsx-self.md) or [@babel/plugin-transform-react-jsx-source](plugin-transform-react-jsx-source.md) will error.
+>>>>>>> 9c1cb541f30b1fce7825c0b76a0468fac5161d95
 
 > 注意: v7 中不再支持 `Flow` 语法。因此，你需要添加 [Flow preset](preset-flow.md) 预设。
 
 ## 安装
 
+<<<<<<< HEAD
 > 您可以查看 React [开始页面](https://facebook.github.io/react/docs/hello-world.html)
+=======
+> You can also check out the React [Getting Started page](https://react.dev/learn/installation)
+>>>>>>> 9c1cb541f30b1fce7825c0b76a0468fac5161d95
 
 ```shell npm2yarn
 npm install --save-dev @babel/preset-react
@@ -42,8 +54,6 @@ npm install --save-dev @babel/preset-react
 
 带参数：
 
-:::babel8
-
 ```json title="babel.config.json"
 {
   "presets": [
@@ -61,8 +71,8 @@ npm install --save-dev @babel/preset-react
 }
 ```
 
-:::
 
+<<<<<<< HEAD
 :::babel7
 
 ```json title="babel.config.json"
@@ -83,6 +93,8 @@ npm install --save-dev @babel/preset-react
 ```
 
 :::
+=======
+>>>>>>> 9c1cb541f30b1fce7825c0b76a0468fac5161d95
 
 ### 通过命令行工具使用（CLI）
 
@@ -104,25 +116,13 @@ require("@babel/core").transformSync("code", {
 
 #### `runtime`
 
-:::babel8
-
 `classic | automatic`, defaults to `automatic`
 
-:::
 
-:::babel7
-
-`classic | automatic`, defaults to `classic`
-
-:::
 
 Added in: `v7.9.0`
 
-:::babel7
 
-> Note: The default runtime will be switched to `automatic` in Babel 8.
-
-:::
 
 Decides which runtime to use.
 
@@ -130,11 +130,29 @@ Decides which runtime to use.
 
 #### `development`
 
+<<<<<<< HEAD
 `boolean` 类型，默认值为 `false`。
+=======
+
+
+`boolean`, defaults to `true` if Babel's [`envName`](./options.md#envname) id `"development"`, and `false` otherwise.
+>>>>>>> 9c1cb541f30b1fce7825c0b76a0468fac5161d95
 
 如果添加了 `__source` 和 `__self`，将可以开启特定于开发环境的一些操作。
 
+<<<<<<< HEAD
 当与 [env option](options.md#env) 配置或者与 [js config files](config-files.md#javascript) 一起使用时会很有用。
+=======
+This is useful when combined with the [env option](options.md#env) configuration or [js config files](config-files.md#supported-file-extensions).
+
+#### `developmentSourceSelf`
+
+`boolean`, defaults to `false`.
+
+When `true`, the plugin generates `__source` and `__self` arguments in `jsxDEV` calls. These were used by older versions of React for development warnings but have been removed since React 19.2.
+
+Set this to `true` if you are using a React version older than 19.2 or a custom JSX runtime that depends on these arguments.
+>>>>>>> 9c1cb541f30b1fce7825c0b76a0468fac5161d95
 
 #### `throwIfNamespace`
 
@@ -176,8 +194,8 @@ Replace the function used when compiling JSX expressions. It should be a qualifi
 
 Replace the component used when compiling JSX fragments. It should be a valid JSX tag name.
 
-:::babel7
 
+<<<<<<< HEAD
 #### `useBuiltIns`
 
 `boolean` 类型，默认值为 `false`。
@@ -201,6 +219,8 @@ This option will be removed in Babel 8. Set `useSpread` to `true` if you are tar
 When spreading props, use inline object with spread elements directly instead of Babel's extend helper or `Object.assign`.
 
 :::
+=======
+>>>>>>> 9c1cb541f30b1fce7825c0b76a0468fac5161d95
 
 ### babel.config.js
 
@@ -232,4 +252,8 @@ module.exports = {
 }
 ```
 
+<<<<<<< HEAD
 > 您可以 [此处](https://babeljs.io/docs/en/presets#preset-options) 阅读有关配置预设参数的更多信息。
+=======
+> You can read more about configuring preset options [here](./presets.md#preset-options)
+>>>>>>> 9c1cb541f30b1fce7825c0b76a0468fac5161d95
