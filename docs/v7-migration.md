@@ -250,7 +250,19 @@ require("a");
 }
 ```
 
+<<<<<<< HEAD
 ## 配置解析
+=======
+If you use `@babel/standalone`, you can specify the `flow` preset via [`data-presets`](./standalone.md#data-presets):
+
+```diff title="index.html"
+- <script type="text/babel">
++ <script type="text/babel" data-presets="flow">
+</script>
+```
+
+## Option parsing
+>>>>>>> 56ed398a67c76847ce35fe0834e479d1e53f691f
 
 Babel 7 的配置选项比 Babel 6 更严格。
 之前以逗号分隔的字符串可用于预设，例如。`"presets": 'es2015, es2016'` 在技术上是有效的, 现在已经失效了，需要将其改成数组 [#5463](https://github.com/babel/babel/pull/5463)。
