@@ -284,8 +284,6 @@ Without options:
 
 With options:
 
-:::babel8
-
 ```json title="babel.config.json"
 {
   "plugins": [
@@ -301,26 +299,7 @@ With options:
 }
 ```
 
-:::
 
-:::babel7
-
-```json title="babel.config.json"
-{
-  "plugins": [
-    [
-      "@babel/plugin-transform-react-jsx",
-      {
-        "throwIfNamespace": false, // defaults to true
-        "runtime": "automatic", // defaults to classic
-        "importSource": "custom-jsx-library" // defaults to react
-      }
-    ]
-  ]
-}
-```
-
-:::
 
 ### Via CLI
 
@@ -351,22 +330,14 @@ Toggles whether or not to throw an error if an XML namespaced tag name is used. 
 Though the JSX spec allows this, it is disabled by default since React's JSX does not currently have support for it.
 
 :::tip
-You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+You can read more about configuring plugin options [here](./plugins.md#plugin-options)
 :::
 
 #### `runtime`
 
-:::babel8
-
 `classic | automatic`, defaults to `automatic`
 
-:::
 
-:::babel7
-
-`classic | automatic`, defaults to `classic`
-
-:::
 
 Added in: `v7.9.0`
 
@@ -400,18 +371,4 @@ Note that the `@jsx React.DOM` pragma has been deprecated as of React v0.12
 
 Replace the component used when compiling JSX fragments. It should be a valid JSX tag name.
 
-:::babel7
 
-### `useBuiltIns`
-
-`boolean`, defaults to `false`.
-
-When spreading props, use `Object.assign` directly instead of Babel's extend helper.
-
-### `useSpread`
-
-`boolean`, defaults to `false`.
-
-When spreading props, use inline object with spread elements directly instead of Babel's extend helper or `Object.assign`.
-
-:::
