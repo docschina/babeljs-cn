@@ -1,8 +1,13 @@
 ---
 layout: post
+<<<<<<< HEAD
 title:  "并非出生而逐渐走向灭亡"
 author: James Kyle
 authorURL: https://twitter.com/thejameskyle
+=======
+title:  "Not Born to Die"
+authors: james_kyle
+>>>>>>> 47ed36c15ccbe78d791d408a32301d032f031ed6
 date:   2015-02-15 9:18:00
 categories: announcements
 share_text: "Not Born to Die: 6to5 has been renamed to Babel"
