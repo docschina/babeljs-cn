@@ -78,6 +78,12 @@ require("@babel/core").transformSync("code", {
 
 ## Options
 
+### `allowTopLevelThis`
+
+`boolean`, defaults to `false`.
+
+When this option is `true`, Babel will transform top level `this` (always `undefined` in ES Modules) to `void 0`.
+
 ### `importInterop`
 
 `"babel" | "node" | "none"`, or `(specifier: string, requestingFilename: string | undefined) => "babel" | "node" | "none"`. Defaults to `"babel"`.
@@ -164,6 +170,14 @@ _bar.bar;
 
 `boolean`, defaults to `false`.
 
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Deprecated in favor of [`assumptions`](assumptions.md) |
+</details>
+
 By default, when using exports with babel a non-enumerable `__esModule` property
 is exported.
 
@@ -248,7 +262,7 @@ The two cases where imports can never be lazy are:
   way to know what names need to be exported.
 
 :::tip
-You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+You can read more about configuring plugin options [here](./plugins.md#plugin-options)
 :::
 
 ### `noInterop`
@@ -261,7 +275,7 @@ You can read more about configuring plugin options [here](https://babeljs.io/doc
 
 When set to `true`, this option has the same behavior as setting `importInterop: "none"`.
 
-## Relevant [`assumptions`](https://babeljs.io/docs/en/assumptions)
+## Relevant [`assumptions`](./assumptions.md)
 
-- [`enumerableModuleMeta`](https://babeljs.io/docs/en/assumptions#enumerablemodulemeta)
-- [`noIncompleteNsImportDetection`](https://babeljs.io/docs/en/assumptions#noincompletensimportdetection)
+- [`enumerableModuleMeta`](./assumptions.md#enumerablemodulemeta)
+- [`noIncompleteNsImportDetection`](./assumptions.md#noincompletensimportdetection)

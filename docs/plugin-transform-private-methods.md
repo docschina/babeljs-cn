@@ -83,6 +83,14 @@ require("@babel/core").transformSync("code", {
 
 `boolean`, defaults to `false`.
 
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Deprecated in favor of [`assumptions`](assumptions.md) |
+</details>
+
 :::note
 The `loose` mode configuration setting _must_ be the same as [`@babel/plugin-transform-class-properties`](plugin-transform-class-properties.md).
 :::
@@ -166,7 +174,7 @@ var _privateMethod2 = function _privateMethod2() {
 ```
 
 :::tip
-You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+You can read more about configuring plugin options [here](./plugins.md#plugin-options)
 :::
 
 ## References

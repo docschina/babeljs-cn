@@ -4,10 +4,17 @@ title: "@babel/plugin-syntax-import-attributes"
 sidebar_label: syntax-import-attributes
 ---
 
+:::info
+This plugin is included in `@babel/preset-env`, in [ES2025](https://github.com/tc39/proposals/blob/master/finished-proposals.md)
+:::
+
 :::note
 #### Syntax only
 
-This plugin only enables Babel to parse this syntax. Babel does not support transforming this syntax
+This plugin only enables Babel to parse and generate this syntax. Babel does not support transforming this syntax.
+
+
+
 :::
 
 This plugin enables Babel to parse import attributes:
@@ -51,6 +58,14 @@ require("@babel/core").transformSync("code", {
 ### `deprecatedAssertSyntax`
 
 `boolean`, defaults to `false`.
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Removed support for the `assert` keyword: this option no longer has any effect |
+</details>
 
 If enabled, support parsing import attributes using the [deprecated](https://tc39.es/proposal-import-attributes/#sec-deprecated-assert-keyword-for-import-attributes) `assert` keyword:
 

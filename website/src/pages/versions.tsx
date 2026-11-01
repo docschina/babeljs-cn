@@ -1,0 +1,121 @@
+import React from "react";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Layout from "@theme/Layout";
+import versions from "../../past-versions.json";
+
+const Versions = () => {
+  const { siteConfig } = useDocusaurusContext();
+  const { customFields } = siteConfig;
+  const latestVersion = versions[0];
+  const { repoUrl, v6Url, v7Url } = customFields as any;
+  return (
+    <Layout>
+      <div className="docMainWrapper wrapper">
+        <div className="mainContainer versionsContainer">
+          <div className="post">
+            <header className="postHeader">
+              <h2>{siteConfig.title + " 版本"}</h2>
+            </header>
+<<<<<<< HEAD:website/src/pages/versions.js
+            <p>该项目的新版本将定期发布。</p>
+            <a name="latest" />
+            <h3>当前版本（稳定版）</h3>
+=======
+            <p>New versions of this project are released periodically.</p>
+            <a id="latest" />
+            <h3>Current version (Stable)</h3>
+>>>>>>> d9334cd702e6fc8a20a8424a4e0d58cd7113d50f:website/src/pages/versions.tsx
+            <table className="versions">
+              <tbody>
+                <tr>
+                  <th>{latestVersion}</th>
+                  <td>
+                    <a href={siteConfig.baseUrl + "docs/" + "index.html"}>
+                      Documentation
+                    </a>
+                  </td>
+                  <td>
+                    <a href={`${repoUrl}/releases/tag/v${latestVersion}`}>
+                      Release Notes
+                    </a>
+                  </td>
+                  <td>
+                    <a href={`${siteConfig.baseUrl}${latestVersion}`}>
+                      Blog Post
+                    </a>
+                  </td>
+                  <td>
+                    <a href={repoUrl}>Source Code</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p>This is the current stable version of the project.</p>
+            <div>
+              <a id="archive" />
+              <h3>Past Versions</h3>
+              {versions && versions.length > 1 && (
+                <table className="versions">
+                  <tbody>
+                    {versions.map(
+                      (version) =>
+                        version !== latestVersion && (
+                          <tr key={version}>
+                            <th>{version}</th>
+                            <td>
+                              <a href={`${repoUrl}/releases/tag/v${version}`}>
+                                Release Notes
+                              </a>
+                            </td>
+                            <td>
+                              <a href={`${siteConfig.baseUrl}${version}`}>
+                                Blog Post
+                              </a>
+                            </td>
+                          </tr>
+                        )
+                    )}
+                  </tbody>
+                </table>
+              )}
+              <table className="versions">
+                <tbody>
+                  <tr>
+                    <th>7.29.8</th>
+                    <td>
+                      <a href={v7Url}>Documentation</a>
+                    </td>
+                    <td>
+                      <a href={`${repoUrl}/releases/tag/v7.29.8`}>
+                        Release Notes
+                      </a>
+                    </td>
+                    <td>
+                      <a href={`${siteConfig.baseUrl}7.29.0`}>Blog Post</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>6.26.3</th>
+                    <td>
+                      <a href={v6Url}>Documentation</a>
+                    </td>
+                    <td>
+                      <a href={`${repoUrl}/releases/tag/v6.26.3`}>
+                        Release Notes
+                      </a>
+                    </td>
+                    <td>
+                      <a href={`${siteConfig.baseUrl}6.23.0`}>Blog Post</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default Versions;
