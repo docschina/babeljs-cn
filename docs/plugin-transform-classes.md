@@ -127,6 +127,14 @@ require("@babel/core").transformSync("code", {
 
 `boolean`, defaults to `false`.
 
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Deprecated in favor of [`assumptions`](assumptions.md) |
+</details>
+
 :::caution
 Consider migrating to the top level [`assumptions`](assumptions.md) which offers granular control over various `loose` mode deductions Babel has applied.
 :::
@@ -171,5 +179,5 @@ case that is very unlikely to appear in production code however it's something
 to keep in mind.
 
 :::tip
-You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+You can read more about configuring plugin options [here](./plugins.md#plugin-options)
 :::

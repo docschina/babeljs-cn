@@ -78,7 +78,14 @@ f < T > e;
 
 `boolean`, defaults to `false`
 
-Added in: `v7.9.0`
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Removed, it's now always enabled |
+| `v7.9.0` | Added |
+</details>
 
 :::note
 This will be enabled by default in Babel 8
@@ -95,15 +102,7 @@ class A {
 
 ### `ignoreExtensions`
 
-:::babel7
 
-`boolean`, defaults to `true`
-
-Added in: `v7.24.0`
-
-:::
-
-:::babel8
 
 `boolean`, defaults to `false`
 
@@ -115,8 +114,6 @@ Added in: `v7.24.0`
 | `v8.0.0` | Default changed to `false` |
 | `v7.24.0` | Introduced, defaulting to `true` |
 </details>
-
-:::
 
 When it is set to `true`, Babel will apply the flow transform to all extensions. When it is set to `false`, Babel will avoid the flow transform for `*.tsx` files.
 
@@ -132,4 +129,4 @@ The [Hermes](https://hermesengine.dev/) team is maintaining an alternative Flow 
 The Hermes parser does not currently attach comments to the AST. This can cause problems with transforms that depend on the presence of specific comments.
 :::
 
-> You can read more about configuring preset options [here](https://babeljs.io/docs/en/presets#preset-options)
+> You can read more about configuring preset options [here](./presets.md#preset-options)

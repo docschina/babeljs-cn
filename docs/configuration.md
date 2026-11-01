@@ -123,24 +123,32 @@ require("@babel/core").transformSync("code", {
 
 ## 打印生效配置
 
+<<<<<<< HEAD
 你可以告知 Babel，为给定的输入路径打印生效的配置
+=======
+Added in: `v7.11.0`
 
-import CodeBlock from '@theme/CodeBlock';
+You can tell Babel to print effective configs on a given input path
+>>>>>>> d9334cd702e6fc8a20a8424a4e0d58cd7113d50f
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
 <TabItem value="shell" label="Shell" default>
-<CodeBlock language="bash">{`
+
+```bash
 # *nix or WSL
 BABEL_SHOW_CONFIG_FOR=./src/myComponent.jsx npm start
-`}
-</CodeBlock>
+```
+
 </TabItem>
 <TabItem value="powershell" label="powershell">
-<CodeBlock language="powershell">{`
+
+```powershell
 $env:BABEL_SHOW_CONFIG_FOR = ".\src\myComponent.jsx"; npm start
-`}</CodeBlock>
+```
+
 </TabItem>
 </Tabs>
 
