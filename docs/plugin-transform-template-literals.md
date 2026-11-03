@@ -75,6 +75,14 @@ require("@babel/core").transformSync("code", {
 
 `boolean`, defaults to `false`.
 
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Deprecated in favor of [`assumptions`](assumptions.md) |
+</details>
+
 :::caution
 Consider migrating to the top level [`mutableTemplateObject`](assumptions.md#mutabletemplateobject) assumption.
 :::
@@ -104,5 +112,5 @@ When `false` or not set, all template literal expressions and quasis are combine
 ```
 
 :::tip
-You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+You can read more about configuring plugin options [here](./plugins.md#plugin-options)
 :::
