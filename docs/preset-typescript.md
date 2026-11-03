@@ -56,15 +56,7 @@ require("@babel/core").transformSync("code", {
 
 ## Options
 
-:::babel7
 
-### `isTSX`
-
-`boolean`, defaults to `false`
-
-Forcibly enables `jsx` parsing. Otherwise angle brackets will be treated as typescript's legacy type assertion `var foo = <string>bar;`. Also, `isTSX: true` requires `allExtensions: true`.
-
-:::
 
 ### `jsxPragma`
 
@@ -76,21 +68,15 @@ Replace the function used when compiling JSX expressions. This is so that we kno
 
 `string`, defaults to `React.Fragment`
 
+Added in: `v7.12.0`
+
 Replace the function used when compiling JSX fragment expressions. This is so that we know that the import is not a type import, and should not be removed.
 
-:::babel7
 
-### `allExtensions`
-
-`boolean`, defaults to `false`
-
-Indicates that every file should be parsed as TS, TSX, or as TS without JSX ambiguities (depending on the `isTSX` and `disallowAmbiguousJSXLike` options).
-
-:::
 
 ### `allowNamespaces`
 
-`boolean`, uses the default set by [`@babel/plugin-transform-typescript`](https://babeljs.io/docs/en/babel-plugin-transform-typescript#allownamespaces).
+`boolean`, uses the default set by [`@babel/plugin-transform-typescript`](./plugin-transform-typescript.md#allownamespaces).
 
 Added in: `v7.6.0`
 
@@ -100,7 +86,14 @@ Enables compilation of TypeScript namespaces.
 
 `boolean`, defaults to `false`
 
-Added in: `v7.7.0`
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Removed, it's now always enabled |
+| `v7.7.0` | Added |
+</details>
 
 > NOTE: This will be enabled by default in Babel 8
 
@@ -147,9 +140,17 @@ When it is set to `true`, Babel will provide a general TS plugin. If you want to
 
 ### `onlyRemoveTypeImports`
 
-`boolean`, defaults to `false`
+`boolean`, defaults to `true`
 
-Added in: `v7.9.0`
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | defaults to `true` |
+| `v7.9.0` | Added `onlyRemoveTypeImports`, defaults to `false` |
+
+</details>
 
 When set to `true`, the transform will only remove [type-only imports](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#type-only-imports-exports) (introduced in TypeScript 3.8). This should only be used if you are using TypeScript >= 3.8.
 
@@ -195,7 +196,7 @@ export var Animals = {
 };
 ```
 
-> You can read more about configuring preset options [here](https://babeljs.io/docs/en/presets#preset-options).
+> You can read more about configuring preset options [here](./presets.md#preset-options).
 
 ### `rewriteImportExtensions`
 
@@ -203,9 +204,9 @@ export var Animals = {
 
 Added in: `v7.23.0`
 
-When set to `true`, Babel will rewrite `.ts`/`.mts`/`.cts` extensions in import declarations to `.js`/`.mjs`/`.cjs`.
+When set to `true`, Babel will rewrite `.ts`/`.mts`/`.cts` extensions in import declarations to `.js`/`.mjs`/`.cjs`. This options mirrors TypeScripts's [`rewriteRelativeImportExtensions`](https://www.typescriptlang.org/tsconfig/#rewriteRelativeImportExtensions) option.
 
-This option, when used together with TypeScript's [`allowImportingTsExtension`](https://www.typescriptlang.org/tsconfig#allowImportingTsExtensions) option, allows to write complete relative specifiers in import declaratoinss while using the same extension used by the source files.
+This option, when used together with TypeScript's [`allowImportingTsExtension`](https://www.typescriptlang.org/tsconfig#allowImportingTsExtensions) option, allows to write complete relative specifiers in import declarations while using the same extension used by the source files.
 
 As an example, given this project structure (where `src` contains the source files, and `dist` the compiled files):
 ```

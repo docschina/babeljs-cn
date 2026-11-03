@@ -1,9 +1,7 @@
 ---
-title: Compiler assumptions
+title: Compiler Assumptions
 id: assumptions
 ---
-
-import "@site/src/css/assumptions.css";
 
 By default Babel tries to compile your code so that it matches the native behavior as closely as possible. However, this sometimes means generating more output code, or slower output code, just to support some edge cases you don't care about.
 
@@ -99,7 +97,7 @@ export const number = 2;
 
 ## `ignoreFunctionLength`
 
-Functions have a `.length` property that reflect the number of parameters up to the last non-default parameter. When this option is enabled, assume that the compiled code does not rely on this `.length` property.
+Functions have a `.length` property that reflect the number of parameters up to the last non-default parameter that is not preceded by a default parameter. When this option is enabled, assume that the compiled code does not rely on this `.length` property.
 
 <div is="assumption-repl" data-assumption="ignoreFunctionLength" data-plugins="transform-parameters">
 
@@ -170,11 +168,72 @@ class Test {
 
 </div>
 
+## `noClassPrototypeAssign`
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| v8.1.0 | Added `noClassPrototypeAssign` assumption |
+</details>
+
+When transforming classes, assume that the code never tries to reassign or redefine the `prototype` property of a class.
+
+When this assumption is enabled, Babel can skip the `createClass` helper in some cases, and the `prototype` property of compiled classes may be writable. When combined with [`setClassMethods`](#setclassmethods), the `prototype` is _guaranteed_ to be left as writable.
+
+<div is="assumption-repl" data-assumption="noClassPrototypeAssign" data-plugins="transform-classes">
+
+```js title="JavaScript"
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+```
+
+</div>
+
+## `noConstructorPrimitiveReturn`
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| v8.1.0 | Added `noConstructorPrimitiveReturn` assumption |
+</details>
+
+When transforming classes, assume that class constructors never explicitly return a primitive value other than `undefined`: they either return an object, or don't return anything.
+
+```js title="JavaScript"
+class Foo extends Bar {
+  constructor() {
+    super();
+    return 1; // This should throw a TypeError
+  }
+}
+```
+
+<div is="assumption-repl" data-assumption="noConstructorPrimitiveReturn" data-plugins="transform-classes">
+
+```js title="JavaScript"
+class Child extends Parent {
+  constructor(cached) {
+    super();
+    if (cached) return cached;
+  }
+}
+```
+
+</div>
+
 ## `noDocumentAll`
 
 When using operators that check for `null` or `undefined`, assume that they are never used with the special value `document.all`.
 
-<div is="assumption-repl" data-assumption="noDocumentAll" data-plugins="proposal-optional-chaining,proposal-nullish-coalescing-operator">
+<div is="assumption-repl" data-assumption="noDocumentAll" data-plugins="transform-optional-chaining,transform-nullish-coalescing-operator">
 
 ```js title="JavaScript"
 let score = points ?? 0;
@@ -184,6 +243,14 @@ let name = user?.name;
 </div>
 
 ## `noIncompleteNsImportDetection`
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v7.15.0` | Added `noIncompleteNsImportDetection` assumption |
+</details>
 
 Assume that no own property of a module export object is observed before initialization.
 For example, when trying to access `ns.foo`, it will return `undefined` both with this assumption turned on or off. The
@@ -246,11 +313,36 @@ class MyClass {
 
 </div>
 
+## `noUninitializedThis`
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| v8.1.0 | Added `noUninitializedThis` assumption |
+</details>
+
+When transforming classes, assume that the constructors of subclasses never access `this` before it's initialized by calling `super()`.
+
+<div is="assumption-repl" data-assumption="noUninitializedThis" data-plugins="transform-classes">
+
+```js title="JavaScript"
+class Child extends Parent {
+  constructor(name) {
+    if (Math.random() < 0.99) super();
+    this.name = name;
+  }
+}
+```
+
+</div>
+
 ## `objectRestNoSymbols`
 
 When using rest patterns in object destructuring, assume that destructured objects don't have symbol keys or that it's not a problem if they are not copied.
 
-<div is="assumption-repl" data-assumption="objectRestNoSymbols" data-plugins="transform-destructuring,proposal-object-rest-spread">
+<div is="assumption-repl" data-assumption="objectRestNoSymbols" data-plugins="transform-destructuring,transform-object-rest-spread">
 
 ```js title="JavaScript"
 let { name, ...attrs } = obj;
@@ -262,7 +354,7 @@ let { name, ...attrs } = obj;
 
 Assume that "soft privacy" is enough for private fields, and thus they can be stored as public non-enumerable properties with an unique name (rather than using an external `WeakMap`). This makes debugging compiled private fields easier.
 
-<div is="assumption-repl" data-assumption="privateFieldsAsProperties" data-plugins="proposal-class-properties,proposal-private-methods">
+<div is="assumption-repl" data-assumption="privateFieldsAsProperties" data-plugins="transform-class-properties,transform-private-methods">
 
 ```js title="JavaScript"
 class Foo {
@@ -295,7 +387,7 @@ When using inline Babel helpers, generated string keys are unique per-file and n
 
 Assume that "soft privacy" is enough for private fields, and thus they can be stored as public properties with a symbol key (rather than using an external `WeakMap`). This makes debugging compiled private fields easier.
 
-<div is="assumption-repl" data-assumption="privateFieldsAsSymbols" data-plugins="proposal-class-properties,proposal-private-methods">
+<div is="assumption-repl" data-assumption="privateFieldsAsSymbols" data-plugins="transform-class-properties,transform-private-methods">
 
 ```text assumption-input
 class Foo {
@@ -316,7 +408,7 @@ class Foo {
 
 Assume that getters, if present, don't have side-effects and can be accessed multiple times.
 
-<div is="assumption-repl" data-assumption="pureGetters" data-plugins="proposal-optional-chaining">
+<div is="assumption-repl" data-assumption="pureGetters" data-plugins="transform-optional-chaining">
 
 ```js title="JavaScript"
 let a = obj;
@@ -361,7 +453,7 @@ let obj = {
 
 When using public class fields, assume that they don't shadow any getter in the current class, in its subclasses or in its superclass. Thus, it's safe to assign them rather than using `Object.defineProperty`.
 
-<div is="assumption-repl" data-assumption="setPublicClassFields" data-plugins="proposal-class-properties">
+<div is="assumption-repl" data-assumption="setPublicClassFields" data-plugins="transform-class-properties">
 
 ```js title="JavaScript"
 class Test {
@@ -377,7 +469,7 @@ class Test {
 
 When using object spread, assume that spreaded properties don't trigger getters on the target object and thus it's safe to assign them rather than defining them using `Object.defineProperty`.
 
-<div is="assumption-repl" data-assumption="setSpreadProperties" data-plugins="proposal-object-rest-spread">
+<div is="assumption-repl" data-assumption="setSpreadProperties" data-plugins="transform-object-rest-spread">
 
 ```js title="JavaScript"
 const result = {
@@ -433,9 +525,9 @@ class Child extends Parent {
     "ignoreToPrimitiveHint": true,
     "mutableTemplateObject": true,
     "noClassCalls": true,
+    "noClassPrototypeAssign": true,
+    "noConstructorPrimitiveReturn": true,
     "noDocumentAll": true,
-    "noObjectSuper": true,
-    "noUndeclaredVariablesCheck": true,
     "objectRestNoSymbols": true,
     "privateFieldsAsProperties": true,
     "pureGetters": true,

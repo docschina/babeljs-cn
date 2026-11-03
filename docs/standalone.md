@@ -69,6 +69,15 @@ Most popular presets are: [`env`](./preset-env.md), [`react`](./preset-react.md)
 If you want to pass additional options, refer to the [custom presets](#custom-presets-passing-options-to-built-in-presetsplugins) section.
 
 #### `data-plugins`
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | `transform-class-properties`, `transform-object-rest-spread` and `transform-flow-strip-types` are no longer enabled by default when `data-plugins` is not specified |
+</details>
+
 Use the `data-plugins` attribute to enable builtin Babel plugins. Multiple values are comma separated.
 
 ```html
@@ -78,6 +87,27 @@ Use the `data-plugins` attribute to enable builtin Babel plugins. Multiple value
 See [here](https://github.com/babel/babel/blob/main/packages/babel-standalone/src/generated/plugins.ts) for a list of builtin plugins in `@babel/standalone`. You can also access the list from `Babel.availablePlugins`.
 
 If you want to add custom plugins, refer to the [custom plugins](#custom-plugins) section.
+
+#### `data-targets`
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | When not specified, the targets default to the browserslist `defaults` query |
+| `v7.29.0` | Added |
+</details>
+
+Use the `data-targets` attribute to specify the [compilation targets](./options.md#targets) of the project.
+
+
+
+By default Babel will transpile all features to the [browserslist](https://github.com/browserslist/browserslist#queries) [`defaults`](https://browsersl.ist/#q=defaults) targets, which covers most modern browsers. If you want to support legacy browsers such as IE 8, you must specify the this attribute:
+
+```html
+<script type="text/babel" data-presets="env" data-targets="ie 8">
+```
 
 #### `src`
 Loading external scripts via `src` attribute is supported too:
@@ -95,7 +125,7 @@ You can also set the `async` attribute for external scripts.
 
 ## API
 
-Load `babel.js` or `babel.min.js` in your environment. This will expose [Babel's API](http://babeljs.io/docs/usage/api/) in a `Babel` object:
+Load `babel.js` or `babel.min.js` in your environment. This will expose [Babel's API](./core.md) in a `Babel` object:
 
 ```js title="JavaScript"
 var input = 'const getMessage = () => "Hello World";';
@@ -105,6 +135,8 @@ var output = Babel.transform(input, { presets: ["env"] }).code;
 Note that [config files](config-files.md) don't work in `@babel/standalone`, as no file system access is available. The presets and/or plugins to use **must** be specified in the options passed to `Babel.transform`.
 
 ### Internal packages
+
+Added in: `v7.24.0`
 
 `@babel/standalone` exposes some internal Babel packages on the `Babel.packages` object:
 - `Babel.packages.generator`

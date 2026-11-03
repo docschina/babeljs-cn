@@ -11,13 +11,13 @@ sidebar_label: 插件列表
 #### Stage 3
 
 - [decorators](plugin-proposal-decorators.md)
-- [duplicate-named-capturing-groups-regex](plugin-proposal-duplicate-named-capturing-groups-regex.md)
-- [json-modules](plugin-proposal-json-modules.md)
+- [import-defer](plugin-proposal-import-defer.md)
 - [import-wasm-source](plugin-proposal-import-wasm-source.md)
-- [regexp-modifiers](plugin-proposal-regexp-modifiers.md)
+- [text-modules](plugin-proposal-text-modules.md)
 
 #### Early stages
 
+- [bytes-modules](plugin-proposal-bytes-modules.md)
 - [do-expressions](plugin-proposal-do-expressions.md)
 - [export-default-from](plugin-proposal-export-default-from.md)
 - [function-bind](plugin-proposal-function-bind.md)
@@ -26,6 +26,16 @@ sidebar_label: 插件列表
 - [pipeline-operator](plugin-proposal-pipeline-operator.md)
 - [throw-expressions](plugin-proposal-throw-expressions.md)
 - [record-and-tuple](plugin-proposal-record-and-tuple.md)
+
+### ES2026
+
+- [explicit-resource-management](./plugin-transform-explicit-resource-management.md)
+
+### ES2025
+
+- [duplicate-named-capturing-groups-regex](plugin-transform-duplicate-named-capturing-groups-regex.md)
+- [json-modules](plugin-transform-json-modules.md)
+- [regexp-modifiers](plugin-transform-regexp-modifiers.md)
 
 ### ES2024
 
@@ -37,7 +47,6 @@ sidebar_label: 插件列表
 - [class-static-block](plugin-transform-class-static-block.md)
 - [private-property-in-object](plugin-transform-private-property-in-object.md)
 - [private-methods](plugin-transform-private-methods.md)
-- [syntax-top-level-await](plugin-syntax-top-level-await.md)
 
 ### ES2021
 
@@ -46,12 +55,10 @@ sidebar_label: 插件列表
 
 ### ES2020
 
+- [dynamic-import](plugin-transform-dynamic-import.md)
 - [export-namespace-from](plugin-transform-export-namespace-from.md)
 - [nullish-coalescing-operator](plugin-transform-nullish-coalescing-operator.md)
 - [optional-chaining](plugin-transform-optional-chaining.md)
-- [syntax-dynamic-import](plugin-syntax-dynamic-import.md)
-- [syntax-import-meta](plugin-syntax-import-meta.md)
-- [syntax-bigint](plugin-syntax-bigint.md)
 
 ### ES2019
 

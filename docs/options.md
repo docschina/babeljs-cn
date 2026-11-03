@@ -168,10 +168,11 @@ Placement: Only allowed in Babel's programmatic options<br />
 
 The initial path that will be processed based on the [`"rootMode"`](#rootmode)
 to determine the conceptual root folder for the current Babel project.
-This is used in two primary cases:
+This is used in three primary cases:
 
 - The base directory when checking for the default [`"configFile"`](#configfile) value
-- The default value for [`"babelrcRoots"`](#babelrcroots).
+- The default value for [`"babelrcRoots"`](#babelrcroots)
+- The base directory from which a relative `sourceMappingURL` in the source file can be resolved. Any source maps not within `root` will be ignored.
 
 ### `rootMode`
 
@@ -282,7 +283,7 @@ babelrcRoots: [
 
 ### `plugins`
 
-Type: `Array<PluginEntry | Plugin>` ([`PluginEntry`](#plugin-preset-entries))<br />
+Type: `Array<PluginEntry | Plugin>` ([`PluginEntry`](#pluginpreset-entries))<br />
 Default: `[]`<br />
 
 An array of plugins to activate when processing this file. For more information on how
@@ -295,7 +296,7 @@ representation of a plugin or preset, you should use [`babel.createConfigItem()`
 
 ### `presets`
 
-Type: `Array<PresetEntry>` ([`PresetEntry`](#plugin-preset-entries))<br />
+Type: `Array<PresetEntry>` ([`PresetEntry`](#pluginpreset-entries))<br />
 Default: `[]`<br />
 
 An array of presets to activate when processing this file. For more information on how
@@ -327,15 +328,17 @@ support for defining ordering between plugins.
 Type: `string | Array<string> | { [string]: string }`<br />
 Default: `{}`<br />
 Placement: Allowed in Babel's programmatic options, or in config files<br />
-Added in: `v7.13.0`<br />
 
 <details>
   <summary>History</summary>
 
 | Version | Changes |
 | --- | --- |
+| `v8.0.0` | Use browserslist's `defaults` query when no targets are specified |
+| `v7.22.6` | Support `opera_mobile` target |
 | `v7.20.0` | Support `deno` target |
 | `v7.15.0` | Support `rhino` target |
+| `v7.13.0` | Added |
 </details>
 
 Describes the environments you support/target for your project.
@@ -359,60 +362,48 @@ Or an object of minimum environment versions to support:
 }
 ```
 
-Supported environments: `android`, `chrome`, `deno`, `edge`, `electron`, `firefox`, `ie`, `ios`, `node`, `opera`, `rhino`, `safari`, `samsung`.
+Supported environments: `android`, `chrome`, `deno`, `edge`, `electron`, `firefox`, `ie`, `ios`, `node`, `opera`, `opera_mobile`, `rhino`, `safari`, `samsung`.
 
 If a minor version is not specified, Babel will interpret it as `MAJOR.0`. For example, `"node": 12` will be considered as Node.js 12.0.
 
 #### No targets
 
-:::babel7
 
-When no targets are specified: Babel will assume you are targeting the oldest browsers possible. For example, `@babel/preset-env` will transform all ES2015-ES2020 code to be ES5 compatible.
-
-:::tip
-We recommend setting `targets` to reduce the output code size.
-:::
-
-```json title="babel.config.json"
-{
-  "presets": ["@babel/preset-env"]
-}
-```
-
-Because of this, Babel's behavior is different than [browserslist](https://github.com/browserslist/browserslist#queries): it does _not_ use the `defaults` query when there are no targets are found in your Babel _or_ browserslist config(s). If you want to use the `defaults` query, you will need to explicitly pass it as a target:
-
-```json title="babel.config.json"
-{
-  "targets": "defaults"
-}
-```
-
-We recognize this isn’t ideal and will be revisiting this in Babel v8.
-
-:::
-
-:::babel8
 
 When no targets are specified: Babel will assume you are using the [browserslist](https://github.com/browserslist/browserslist#queries) [`defaults`](https://browsersl.ist/#q=defaults) query, which covers most modern browsers. If you want to support legacy browsers, specify the `targets` option.
 
-:::
-
 #### `targets.esmodules`
 
-Type: `boolean`
+Type: `boolean` | "intersect"
 
-You may also target browsers supporting [ES Modules](https://www.ecma-international.org/ecma-262/6.0/#sec-modules). When the `esmodules` target is specified, it will intersect with the `browsers` target and `browserslist`'s targets. You can use this approach in combination with `<script type="module"></script>` to conditionally serve smaller scripts to users (https://jakearchibald.com/2017/es-modules-in-browsers/#nomodule-for-backwards-compatibility).
+<details>
+  <summary>History</summary>
 
-:::note When specifying both `browsers` and the esmodules target, they will be intersected.
-:::
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | `esmodules: true` is an alias of `esmodules: "intersect"` |
+| `v7.13.0` | Support `"intersect"` |
+</details>
+
+You may also target browsers supporting [ES Modules](https://www.ecma-international.org/ecma-262/6.0/#sec-modules). When the `esmodules` option is `"intersect"`, it will intersect with the `browsers` target and `browserslist`'s targets. You can use this approach in combination with `<script type="module"></script>` to conditionally serve smaller scripts to users (https://jakearchibald.com/2017/es-modules-in-browsers/#nomodule-for-backwards-compatibility).
 
 ```json title="babel.config.json"
 {
+  // Resolve to "Chrome 61+, FF60+, Safari 11+"
   "targets": {
-    "esmodules": true
+    "esmodules": "intersect", // Chrome 61+, FF 60+, Safari 10.1+
+    "browsers": "chrome 58, firefox 60, safari 11"
   }
 }
 ```
+
+
+
+`esmodules: true` is an alias of `esmodules: "intersect"`.
+
+:::tip
+If you use browserslist `defaults` as the target, or you plan to support any mainstream browsers released in or after 2019, you can safely remove `esmodules` because these browsers already support ES Modules.
+:::
 
 #### `targets.node`
 
@@ -597,6 +588,14 @@ options as a less aggressive alternative.
 Type: `boolean | SourceMap`<br />
 Default: `true`<br />
 
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Only a `sourceMappingURL` comment at the end of the file is used to load the input source map |
+</details>
+
 `true` will attempt to load an input sourcemap from the file itself, if it
 contains a `//# sourceMappingURL=...` comment. If no map is found, or the
 map fails to load and parse, it will be silently discarded.
@@ -612,7 +611,8 @@ Default: `false`<br />
 - `"inline"` to generate a sourcemap and append it as a data URL to the end of the code, but not include it in the result object.
 - `"both"` is the same as inline, but will include the map in the result object.
 
-`@babel/cli` overloads some of these to also affect how maps are written to disk:
+Options in configuration files have no effect on whether `@babel/cli` writes files separate `.map` files to disk.
+When the `--source-maps` CLI option is passed to `@babel/cli` it will also control whether `.map` files are written:
 
 - `true` will write the map to a `.map` file on disk
 - `"inline"` will write the file directly, so it will have a `data:` containing the map
@@ -642,11 +642,21 @@ The `sourceRoot` fields to set in the generated source map, if one is desired.
 
 ### `sourceType`
 
-Type: `"script" | "module" | "unambiguous"`<br />
+Type: `"script" | "module" | "commonjs" | "unambiguous"`<br />
 Default: "module"<br />
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v7.28.0` | Support `"commonjs"` |
+</details>
 
 - `"script"` - Parse the file using the ECMAScript Script grammar. No `import`/`export` statements allowed, and files are not in strict mode.
 - `"module"` - Parse the file using the ECMAScript Module grammar. Files are automatically strict, and `import`/`export` statements are allowed.
+- `"commonjs"` - Parse the file as it will be run in a CommonJS environment. This option is recommended when transforming `.cjs` sources. See [Parser docs](./parser.md#options) for syntax
+differences between `"script"` and `"commonjs"`.
 - `"unambiguous"` - Consider the file a "module" if `import`/`export` statements are present, or else consider it a "script".
 
 `unambiguous` can be quite useful in contexts where the type is unknown, but it can lead to
@@ -661,7 +671,7 @@ For instance, [`@babel/plugin-transform-runtime`](plugin-transform-runtime.md)
 relies on the type of the current document to decide whether to insert
 an `import` declaration, or a `require()` call.
 [`@babel/preset-env`](preset-env.md) also does the same for its
-[`"useBuiltIns"`](preset-env.md#usebuiltins) option. Since Babel defaults to treating files
+[`"useBuiltIns"`](preset-env.md#usebuiltins-corejs) option. Since Babel defaults to treating files
 are ES modules, generally these plugins/presets will insert `import` statements. Setting
 the correct `sourceType` can be important because having the wrong type can lead to cases
 where Babel would insert `import` statements into files that are meant to be CommonJS
@@ -808,11 +818,27 @@ For more code generator options, see [Generator Options](generator.md#options).
 Type: `boolean`<br />
 Default: `!!opts.moduleId`<br />
 
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Removed from `@babel/core` options, use the `moduleIds` option of the AMD, UMD or SystemJS module transform plugin instead |
+</details>
+
 Enables module ID generation.
 
 ### `moduleId`
 
 Type: `string`<br />
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Removed from `@babel/core` options, use the `moduleId` option of the AMD, UMD or SystemJS module transform plugin instead |
+</details>
 
 A hard-coded ID to use for the module. Cannot be used alongside `getModuleId`.
 
@@ -820,12 +846,28 @@ A hard-coded ID to use for the module. Cannot be used alongside `getModuleId`.
 
 Type: `(name: string) => string`<br />
 
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Removed from `@babel/core` options, use the `getModuleId` option of the AMD, UMD or SystemJS module transform plugin instead |
+</details>
+
 Given the babel-generated module name, return the name to use. Returning
 a falsy value will use the original `name`.
 
 ### `moduleRoot`
 
 Type: `string`<br />
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Removed from `@babel/core` options, use the `moduleRoot` option of the AMD, UMD or SystemJS module transform plugin instead |
+</details>
 
 A root path to include on generated module names.
 
@@ -838,7 +880,7 @@ Type: `string | RegExp | (filename: string | void, context: { caller: { name: st
 Several Babel options perform tests against file paths. In general, these
 options support a common pattern approach where each pattern can be
 
-- `string` - A file path with simple support for `*` and `**` as full slug matches. Any file or
+- `string` - A file path with simple support for `**`, `*`, and `*.ext`. Any file or
   parent folder matching the pattern counts as a match. The path follow's Node's normal path logic,
   so on POSIX is must be `/`-separated, but on Windows both `/` and `\` are supported.
 - `RegExp` - A regular expression to match against the normalized filename. On POSIX the path
@@ -851,6 +893,28 @@ and will consider it an error otherwise.
   return a boolean to indicate whether it is a match or not. The function is passed the filename
   or `undefined` if one was not given to Babel. It is also passed the current `envName` and `caller`
   options that were specified by the top-level call to Babel and `dirname` that is either a directory of the configuration file or the current working directory (if the transformation was called programmatically).
+
+:::note
+Matching based on strings does *not* support full glob patterns. `**` matches 0 or more path parts, `*` matches exactly 1 path part, and `*.ext` matches a wildcard with an extension. Using `*` in any other way, for example, as part of a path or file name, is not supported. If you need complex pattern matching, use regex matching, or a self-defined function in the configuration.
+:::
+
+Here are some examples, on how matching works:
+
+| Description                        | Pattern          | Matches                                      | Does Not Match                                 |
+| ---------------------------------- | ---------------- | -------------------------------------------- | ---------------------------------------------- |
+| Exact path matching                | `foo/bar`        | `/src/foo/bar`                               | `/src/foo`, `/src/foo/baz`, `/src/foo/bar/baz` |
+| Single wildcard (`*`)              | `*/bar`          | `/src/foo/bar`, `/src/xyz/bar`               | `/src/foo/baz`, `/src/bar`, `/src/foo/bar/baz` |
+| Double wildcard (`**`)             | `**/bar`         | `/src/bar`, `/src/foo/bar`, `/src/a/b/c/bar` | `/src/bar/foo`, `/src/barfoo`                  |
+| File extension pattern (`*.ext`)   | `foo/*.js`       | `/src/foo/test.js`, `/src/foo/index.js/`     | `/src/foo/test.ts`, `/src/foo/test.js.map`     |
+| Combined patterns                  | `**/test/*.js`   | `/src/test/file.js`, `/src/a/b/test/file.js` | `/src/test.js`, `/src/test/sub/file.js`        |
+
+Here are examples, where `*` does *not* have a wildcard function:
+
+| Description           | Pattern          | Does Not Match                                              |
+| --------------------- | ---------------- | ----------------------------------------------------------- |
+| Star in path          | `test*me/*.js`   | `/src/testme/1.js`, `/src/testme/2.js`, `/src/test-me/3.js` |
+| Star in file name     | `foo*bar.js`     | `/src/foobar.js`, `/src/foo-bar.js`                         |
+| Star in extension     | `file.ts*`       | `/src/file.ts`, `/src/file.tsx`                             |
 
 ### Merging
 

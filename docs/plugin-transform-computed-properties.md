@@ -102,6 +102,14 @@ require("@babel/core").transformSync("code", {
 
 `boolean`, defaults to `false`
 
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Deprecated in favor of [`assumptions`](assumptions.md) |
+</details>
+
 Just like method assignment in classes, in loose mode, computed property names
 use simple assignments instead of being defined. This is unlikely to be an issue
 in production code.
@@ -162,5 +170,5 @@ _obj);
 ```
 
 :::tip
-You can read more about configuring plugin options [here](https://babeljs.io/docs/en/plugins#plugin-options)
+You can read more about configuring plugin options [here](./plugins.md#plugin-options)
 :::

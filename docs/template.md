@@ -23,7 +23,7 @@ Input (syntactic placeholders):
 
 ```js title="JavaScript"
 import template from "@babel/template";
-import generate from "@babel/generator";
+import { generate } from "@babel/generator";
 import * as t from "@babel/types";
 
 const buildRequire = template(`
@@ -74,7 +74,7 @@ which will parse and return the AST directly.
 
 ```js title="JavaScript"
 import template from "@babel/template";
-import generate from "@babel/generator";
+import { generate } from "@babel/generator";
 import * as t from "@babel/types";
 
 const source = "my-module";
@@ -170,12 +170,20 @@ Added in: `v7.4.0`
 
 When this option is `true`, you can use `%%foo%%` to mark placeholders in
 your templates. When it is `false`, placeholders are identifiers determined
-by the `placeholderWhitelist` and `placeholderPattern` options.
+by the `placeholderAllowlist` and `placeholderPattern` options.
 
-##### placeholderWhitelist
+##### placeholderAllowlist
 
 Type: `Set<string>`
 Default: `undefined`
+
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | Renamed from `placeholderWhitelist` |
+</details>
 
 > This option is not compatible with `syntacticPlaceholders: true`
 
@@ -192,7 +200,7 @@ Default: `/^[_$A-Z0-9]+$/`
 A pattern to search for when looking for Identifier and StringLiteral
 nodes that should be considered placeholders.
 'false' will disable placeholder searching entirely, leaving only the
-'placeholderWhitelist' value to find placeholders.
+'placeholderAllowlist' value to find placeholders.
 
 ##### preserveComments
 

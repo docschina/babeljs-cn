@@ -109,6 +109,16 @@ When a new ES feature reaches stage-4, it will be matured in `@babel/parser`, wh
 
 ## getTargets
 
+<details>
+  <summary>History</summary>
+
+| Version | Changes |
+| --- | --- |
+| `v8.0.0` | When no targets are specified, the browserslist `defaults` query is used. `esmodules: true` behaves like `esmodules: "intersect"` |
+| `v7.13.0` | Added the `configFile` option and `esmodules: "intersect"` |
+| `v7.10.0` | Added the `browserslistEnv` option |
+</details>
+
 ```typescript
 type GetTargetsOption = {
   // This is not the path of the config file, but the path where start searching it from
@@ -151,7 +161,7 @@ Normalize user specified `targets` to a list of supported targets. See also (`@b
 getTargets();
 ```
 
-An empty compilation target is equivalent to [force all transforms](preset-env.md#forceAllTransforms). The default compilation targets will be changed to browserlists query [`defaults, not IE 11`](https://runkit.com/jlhwung/605cd58b2c44c6001a463717) in Babel 8.
+An empty compilation target is equivalent to [force all transforms](preset-env.md#forcealltransforms). The default compilation targets will be changed to browserlists query [`defaults, not IE 11`](https://runkit.com/jlhwung/605cd58b2c44c6001a463717) in Babel 8.
 
 One can also query the compilation targets with ES Module support, like [`@vue/babel-preset-app`](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/babel-preset-app) did in order to provide a set of modern targets.
 
